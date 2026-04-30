@@ -37,7 +37,7 @@ function HeroBE() {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg, var(--blue) 0%, #0F2060 100%)" }}
+      style={{ background: "linear-gradient(135deg, var(--blue) 0%, #0a2d36 100%)" }}
     >
       <div className="container py-24 md:py-32">
         <p className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-white/70">
@@ -75,7 +75,7 @@ function HeroMA() {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg, var(--blue) 0%, #0F2060 100%)" }}
+      style={{ background: "linear-gradient(135deg, var(--blue) 0%, #0a2d36 100%)" }}
     >
       <div className="container py-24 md:py-32">
         <p className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-white/70">
