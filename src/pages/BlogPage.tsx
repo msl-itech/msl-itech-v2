@@ -12,6 +12,8 @@ export default function BlogPage() {
     description:
       post?.metaDescription ?? "Articles, conseils et analyses Odoo par MSL-iTECH.",
     path: post ? `/blog/${post.slug}` : "/blog",
+    faqs: post?.faqs,
+    ldId: post?.faqs ? `ld-faq-blog-${post.slug}` : undefined,
   });
 
   if (!post) {
@@ -143,6 +145,33 @@ export default function BlogPage() {
               );
             })}
           </div>
+
+          {post.faqs && post.faqs.length > 0 && (
+            <div className="mt-14">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand-blue">
+                Questions fréquentes
+              </p>
+              <h2 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-3xl">
+                FAQ
+              </h2>
+              <div className="mt-6 space-y-4">
+                {post.faqs.map((f) => (
+                  <details
+                    key={f.q}
+                    className="group rounded-xl border border-border bg-card p-5 transition hover:shadow-sm"
+                  >
+                    <summary className="flex cursor-pointer items-center justify-between font-body font-semibold text-brand-black">
+                      {f.q}
+                      <span className="ml-4 text-2xl leading-none text-brand-blue transition group-open:rotate-45">
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-3 font-body text-base text-brand-grey">{f.a}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          )}
 
           {post.relatedPath && (
             <div
