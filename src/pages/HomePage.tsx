@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, Clock, Globe2, ShieldCheck, Wallet } from "lucide-react";
+import { ArrowRight, Clock, Globe2, ShieldCheck, Wallet, Sparkles } from "lucide-react";
 import { useMarket } from "@/hooks/useMarket";
 
 /* ------------------------------ SEO ------------------------------ */
@@ -32,77 +32,100 @@ function useSeo(market: "BE" | "MA") {
   }, [market]);
 }
 
-/* ------------------------------ Hero BE ------------------------------ */
-function HeroBE() {
+/* ------------------------------ Hero (shared shell) ------------------------------ */
+function HeroShell({
+  bgImage,
+  eyebrow,
+  titleTop,
+  titleAccent,
+  description,
+}: {
+  bgImage: string;
+  eyebrow: string;
+  titleTop: string;
+  titleAccent: string;
+  description: string;
+}) {
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg, var(--blue) 0%, #0a2d36 100%)" }}
-    >
-      <div className="container py-24 md:py-32">
-        <p className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-white/70">
-          Partenaire officiel Odoo · Belgique
-        </p>
-        <h1 className="max-w-[800px] font-heading text-4xl font-bold leading-[1.05] text-white md:text-[52px]">
-          Implémentez Odoo avec un partenaire officiel certifié — avec des packs d'heures{" "}
-          <span className="text-brand-gold">20 à 50% plus accessibles</span> que les Success Packs observés sur le marché belge
+    <section className="relative isolate overflow-hidden" style={{ backgroundColor: "var(--blue)" }}>
+      {/* Background image with blend & fade */}
+      <div className="absolute inset-0 -z-10">
+        <img
+          src={bgImage}
+          alt=""
+          className="h-full w-full object-cover opacity-30 mix-blend-luminosity"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(18,77,90,0.92) 0%, rgba(10,45,54,0.96) 60%, rgba(10,45,54,1) 100%)",
+          }}
+        />
+      </div>
+
+      {/* Glow effects */}
+      <div
+        className="pointer-events-none absolute -top-32 -right-32 h-[500px] w-[500px] rounded-full opacity-30 blur-3xl"
+        style={{ backgroundColor: "var(--gold)" }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 -left-40 h-[400px] w-[400px] rounded-full opacity-20 blur-3xl"
+        style={{ backgroundColor: "var(--blue-light)" }}
+      />
+
+      <div className="container relative py-24 md:py-32">
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 backdrop-blur-sm">
+          <Sparkles size={14} className="text-brand-gold" />
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/80">{eyebrow}</p>
+        </div>
+
+        <h1 className="mt-8 max-w-[860px] font-heading text-4xl font-bold leading-[1.05] text-white md:text-[56px]">
+          {titleTop}{" "}
+          <span className="block text-brand-gold">{titleAccent}</span>
         </h1>
-        <p className="mt-6 max-w-[580px] font-body text-lg text-white/80">
-          Votre entreprise mérite un ERP performant sans entrer dans une logique de cabinet lourd ou opaque.
-          MSL-iTECH est un partenaire officiel Odoo, avec une équipe structurée entre la Belgique et le Maroc,
-          ce qui nous permet de proposer une expertise certifiée, des tarifs transparents et un accompagnement
-          adapté à la réalité des PME.
-        </p>
-        <div className="mt-10">
+
+        <p className="mt-6 max-w-[620px] font-body text-lg text-white/80">{description}</p>
+
+        <div className="mt-10 flex flex-wrap items-center gap-4">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-md px-8 py-4 font-body text-base font-bold text-brand-black transition hover:opacity-90"
+            className="group inline-flex items-center gap-2 rounded-md px-8 py-4 font-body text-base font-bold text-brand-black shadow-[0_10px_40px_-10px_rgba(255,221,87,0.6)] transition hover:opacity-90"
             style={{ backgroundColor: "var(--gold)" }}
           >
-            Réserver ma démo gratuite <ArrowRight size={18} />
+            Réserver ma démo gratuite
+            <ArrowRight size={18} className="transition group-hover:translate-x-1" />
           </Link>
-          <p className="mt-4 font-body text-sm text-white/60">
-            Sans engagement · Réponse sous 24 à 72h ouvrables
-          </p>
         </div>
+        <p className="mt-4 font-body text-sm text-white/60">
+          Sans engagement · Réponse sous 24 à 72h ouvrables
+        </p>
       </div>
     </section>
   );
 }
 
-/* ------------------------------ Hero MA ------------------------------ */
+function HeroBE() {
+  return (
+    <HeroShell
+      bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80"
+      eyebrow="Partenaire officiel Odoo · Belgique"
+      titleTop="L'expertise d'un partenaire officiel certifié."
+      titleAccent="Des tarifs repensés."
+      description="Votre PME mérite un ERP performant sans la lourdeur d'un grand cabinet. Profitez de packs d'heures 20 à 50% plus accessibles que les standards du marché belge, sans compromis sur la qualité."
+    />
+  );
+}
+
 function HeroMA() {
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg, var(--blue) 0%, #0a2d36 100%)" }}
-    >
-      <div className="container py-24 md:py-32">
-        <p className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-white/70">
-          Partenaire officiel Odoo · Maroc
-        </p>
-        <h1 className="max-w-[800px] font-heading text-4xl font-bold leading-[1.05] text-white md:text-[52px]">
-          Votre entreprise a dépassé Excel — <span className="text-brand-gold">Odoo vous donne les outils des grandes structures</span>, au prix du marché marocain
-        </h1>
-        <p className="mt-6 max-w-[580px] font-body text-lg text-white/80">
-          HORECA, BTP, Santé, Commerce : si vous gérez un effectif de 5 personnes ou plus et que votre CA
-          approche ou dépasse 1,5 million de dirhams, vos outils actuels freinent votre croissance.
-          MSL-iTECH structure vos opérations avec Odoo, construit votre présence en ligne et pilote votre acquisition.
-        </p>
-        <div className="mt-10">
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 rounded-md px-8 py-4 font-body text-base font-bold text-brand-black transition hover:opacity-90"
-            style={{ backgroundColor: "var(--gold)" }}
-          >
-            Réserver ma démo gratuite <ArrowRight size={18} />
-          </Link>
-          <p className="mt-4 font-body text-sm text-white/60">
-            Sans engagement · Réponse sous 24 à 72h ouvrables
-          </p>
-        </div>
-      </div>
-    </section>
+    <HeroShell
+      bgImage="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=2000&q=80"
+      eyebrow="Partenaire officiel Odoo · Maroc"
+      titleTop="Vous avez dépassé Excel."
+      titleAccent="Passez à la vitesse supérieure."
+      description="HORECA, BTP, Santé, Commerce : équipez-vous des outils des grandes structures au prix du marché marocain. Nous structurons vos opérations et pilotons votre acquisition."
+    />
   );
 }
 
@@ -122,11 +145,11 @@ function SocialProof() {
     </>,
     "✓ Certifié Odoo 17+",
     "✓ Belgique · Maroc · Canada",
-    "✓ 9 références publiques sur odoo.com/partners",
-    "✓ Packs 20 à 50% plus accessibles que les Success Packs marché belge",
+    "✓ 9 références publiques vérifiées",
+    "✓ Tarifs 20 à 50% plus compétitifs",
     "✓ Réponse sous 24 à 72h ouvrables",
   ];
-  const doubled = [...items, ...items];
+  const doubled = [...items, ...items, ...items];
   return (
     <section className="overflow-hidden bg-brand-black py-5">
       <div className="flex w-max animate-marquee gap-12 whitespace-nowrap font-body text-sm text-white/85">
@@ -140,144 +163,187 @@ function SocialProof() {
   );
 }
 
-/* ------------------------------ Pillars ------------------------------ */
+/* ------------------------------ Pillars (Bento with images) ------------------------------ */
 function Pillars() {
   return (
-    <section className="container py-20">
-      <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-        Notre approche
-      </p>
-      <h2 className="max-w-2xl font-heading text-3xl font-bold text-brand-black md:text-4xl">
-        Nous structurons, construisons et accélérons votre entreprise
-      </h2>
-      <p className="mt-5 max-w-3xl font-body text-base text-brand-grey md:text-lg">
-        MSL-iTECH n'est pas une agence généraliste. Nous partons d'Odoo pour structurer
-        vos opérations, puis nous connectons votre présence web et votre acquisition pour
-        accélérer votre croissance. Trois expertises. Un seul interlocuteur.
-      </p>
-      <div className="mt-12 grid gap-6 lg:grid-cols-7">
-        {/* Odoo dominant: 3 cols of 7 */}
+    <section className="container py-24">
+      <div className="max-w-3xl">
+        <div className="mb-3 inline-flex items-center gap-2">
+          <span className="h-px w-8 bg-brand-blue" />
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+            Notre écosystème
+          </p>
+        </div>
+        <h2 className="font-heading text-3xl font-bold text-brand-black md:text-5xl">
+          Structurer. Construire. Accélérer.
+        </h2>
+        <p className="mt-5 font-body text-base text-brand-grey md:text-lg">
+          Bien plus qu'une agence. Un interlocuteur unique qui aligne votre gestion interne (ERP)
+          avec votre croissance externe (Web & Marketing).
+        </p>
+      </div>
+
+      <div className="mt-14 grid gap-5 lg:grid-cols-7">
+        {/* Main pillar — Odoo */}
         <Link
           to="/odoo-crm-ventes"
-          className="group relative flex flex-col justify-between overflow-hidden rounded-2xl p-8 lg:col-span-3 lg:row-span-1"
+          className="group relative isolate flex min-h-[420px] flex-col justify-between overflow-hidden rounded-3xl p-10 lg:col-span-4"
           style={{ backgroundColor: "var(--blue)" }}
         >
+          <img
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80"
+            alt=""
+            className="absolute inset-0 -z-10 h-full w-full object-cover opacity-20 mix-blend-luminosity transition duration-700 group-hover:opacity-30 group-hover:scale-105"
+          />
+          <div
+            className="absolute inset-0 -z-10"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(18,77,90,0.85) 0%, rgba(10,45,54,0.95) 100%)",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute -bottom-20 -right-20 h-72 w-72 rounded-full opacity-20 blur-3xl"
+            style={{ backgroundColor: "var(--gold)" }}
+          />
+
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/60">
-              01 — Pilier principal
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-gold">
+              01 — Pilier central
             </p>
-            <h3 className="mt-4 font-heading text-3xl font-bold text-white md:text-4xl">
-              Structurer avec Odoo ERP
+            <h3 className="mt-5 max-w-md font-heading text-3xl font-bold text-white md:text-4xl">
+              L'ERP qui structure vos opérations.
             </h3>
             <p className="mt-4 max-w-md font-body text-base text-white/80">
-              Intégration Odoo certifiée pour vos finances, votre CRM, votre stock, votre
-              production et vos ressources humaines. Un seul outil pour piloter toute votre
-              entreprise.
+              Finance, CRM, Stock, RH. Odoo rassemble tous vos outils en un seul écosystème
+              intelligent et centralisé.
             </p>
           </div>
           <div className="mt-10 inline-flex items-center gap-2 font-body text-sm font-medium text-brand-gold">
-            Découvrir les modules <ArrowRight size={16} />
+            Découvrir les modules
+            <ArrowRight size={16} className="transition group-hover:translate-x-1" />
           </div>
         </Link>
 
-        <Link
-          to="/creation-web"
-          className="group flex flex-col justify-between rounded-2xl border border-brand-grey-light p-8 transition hover:border-brand-blue lg:col-span-2"
-          style={{ backgroundColor: "var(--grey-light)" }}
-        >
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
-              02
+        {/* Right column — 2 stacked */}
+        <div className="grid gap-5 lg:col-span-3">
+          <Link
+            to="/creation-web"
+            className="group relative isolate flex min-h-[200px] flex-col justify-between overflow-hidden rounded-3xl p-8"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80"
+              alt=""
+              className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black/85 via-brand-black/55 to-brand-black/30" />
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-gold">
+              02 — Web
             </p>
-            <h3 className="mt-4 font-heading text-2xl font-bold text-brand-black">
-              Construire avec la création web
-            </h3>
-            <p className="mt-3 font-body text-sm text-brand-grey">
-              Sites web React haute performance, solutions WordPress rapides, et refonte
-              de présence en ligne. Conçus pour convertir, optimisés pour être trouvés.
-            </p>
-          </div>
-          <div className="mt-8 inline-flex items-center gap-2 font-body text-sm font-medium text-brand-blue">
-            En savoir plus <ArrowRight size={16} />
-          </div>
-        </Link>
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-white">Création & Refonte</h3>
+              <p className="mt-2 font-body text-sm text-white/80">
+                Sites vitrines et e-commerce taillés pour la conversion.
+              </p>
+              <div className="mt-4 inline-flex items-center gap-2 font-body text-sm font-medium text-brand-gold">
+                Explorer <ArrowRight size={14} className="transition group-hover:translate-x-1" />
+              </div>
+            </div>
+          </Link>
 
-        <Link
-          to="/marketing-digital"
-          className="group flex flex-col justify-between rounded-2xl border border-brand-grey-light p-8 transition hover:border-brand-blue lg:col-span-2"
-          style={{ backgroundColor: "var(--grey-light)" }}
-        >
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
-              03
+          <Link
+            to="/marketing-digital"
+            className="group relative isolate flex min-h-[200px] flex-col justify-between overflow-hidden rounded-3xl p-8"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80"
+              alt=""
+              className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black/85 via-brand-black/55 to-brand-black/30" />
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-gold">
+              03 — Growth
             </p>
-            <h3 className="mt-4 font-heading text-2xl font-bold text-brand-black">
-              Accélérer avec le marketing digital
-            </h3>
-            <p className="mt-3 font-body text-sm text-brand-grey">
-              SEO, référencement IA (GEO), campagnes d'acquisition et audit digital. Nous
-              générons le trafic qualifié qui nourrit votre pipeline Odoo.
-            </p>
-          </div>
-          <div className="mt-8 inline-flex items-center gap-2 font-body text-sm font-medium text-brand-blue">
-            En savoir plus <ArrowRight size={16} />
-          </div>
-        </Link>
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-white">Marketing Digital</h3>
+              <p className="mt-2 font-body text-sm text-white/80">
+                Acquisition IA, SEO et campagnes ciblées.
+              </p>
+              <div className="mt-4 inline-flex items-center gap-2 font-body text-sm font-medium text-brand-gold">
+                Explorer <ArrowRight size={14} className="transition group-hover:translate-x-1" />
+              </div>
+            </div>
+          </Link>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ------------------------------ Sectors ------------------------------ */
+/* ------------------------------ Sectors (image cards) ------------------------------ */
 const sectorsBE = [
-  { label: "PME de services", desc: "Cabinets de conseil, agences, freelances structurés" },
-  { label: "Cabinets & bureaux d'études", desc: "Architecture, ingénierie, expertise" },
-  { label: "Commerce B2B", desc: "Distribution, négoce, grossistes" },
-  { label: "Secteur administratif & RH", desc: "Organisations sociales, ASBL, RH externalisée" },
-  { label: "Entreprises en croissance (10–50 salariés)", desc: "Scale-ups dépassant les outils tableurs" },
+  { label: "Services & Conseil", desc: "Agences, freelances structurés", img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80", to: null as string | null },
+  { label: "Bureaux d'études", desc: "Architecture, ingénierie", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", to: null },
+  { label: "Commerce B2B", desc: "Distribution, grossistes", img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80", to: null },
+  { label: "Administratif & RH", desc: "ASBL, RH externalisée", img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80", to: null },
+  { label: "Scale-ups (10-50 emp.)", desc: "Entreprises en forte croissance", img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80", to: null },
 ];
 
 const sectorsMA = [
-  { label: "HORECA", to: "/odoo-horeca-maroc", desc: "Restaurants, cafés, hôtels" },
-  { label: "BTP & Construction", to: "/odoo-btp-maroc", desc: "Marchés publics, chantiers, sous-traitance" },
-  { label: "Santé, Pharma & Aide sociale", to: "/odoo-sante-maroc", desc: "Cliniques, cabinets, distribution médicale" },
-  { label: "Commerce de gros & Distribution", to: "/odoo-gestion-stock-maroc", desc: "Multi-points de vente, e-commerce, stock multi-dépôts" },
-  { label: "Transport & Logistique", to: "/odoo-transport-logistique-maroc", desc: "Flotte, expéditions, douane" },
-  { label: "Agroalimentaire", to: null, desc: "Production, traçabilité, distribution" },
+  { label: "HORECA", to: "/odoo-horeca-maroc", desc: "Restaurants, cafés, hôtels", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" },
+  { label: "BTP & Construction", to: "/odoo-btp-maroc", desc: "Marchés publics, chantiers", img: "https://images.unsplash.com/photo-1541888088374-c6e001925b30?auto=format&fit=crop&w=800&q=80" },
+  { label: "Santé & Pharma", to: "/odoo-sante-maroc", desc: "Cliniques, distribution", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" },
+  { label: "Commerce de gros", to: "/odoo-gestion-stock-maroc", desc: "Multi-dépôts, e-commerce", img: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80" },
+  { label: "Logistique", to: "/odoo-transport-logistique-maroc", desc: "Flotte, expéditions", img: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&w=800&q=80" },
+  { label: "Agroalimentaire", to: null as string | null, desc: "Production, traçabilité", img: "https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?auto=format&fit=crop&w=800&q=80" },
 ];
 
 function Sectors({ market }: { market: "BE" | "MA" }) {
   const items = market === "MA" ? sectorsMA : sectorsBE;
   return (
     <section className="bg-brand-bg">
-      <div className="container py-20">
-        <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-          Secteurs
-        </p>
-        <h2 className="max-w-2xl font-heading text-3xl font-bold text-brand-black md:text-4xl">
-          Nous connaissons votre secteur
-        </h2>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="container py-24">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="font-heading text-3xl font-bold text-brand-black md:text-5xl">
+            Des solutions pensées pour <br className="hidden md:block" />
+            votre réalité terrain.
+          </h2>
+          <p className="mt-5 font-body text-base text-brand-grey md:text-lg">
+            Chaque industrie a ses codes. Nos implémentations sont pré-configurées pour vos cas
+            d'usage spécifiques.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((s) => {
+            const isClickable = !!s.to;
             const Card = (
-              <div className="group h-full rounded-xl border border-brand-grey-light bg-brand-white p-6 transition hover:border-brand-blue hover:shadow-[0_8px_24px_rgba(26,58,143,0.08)]">
-                <h3 className="font-heading text-xl font-bold text-brand-black group-hover:text-brand-blue">
-                  {s.label}
-                </h3>
-                <p className="mt-2 font-body text-sm text-brand-grey">{s.desc}</p>
-                {"to" in s && s.to && (
-                  <div className="mt-4 inline-flex items-center gap-1 font-mono text-xs text-brand-blue">
-                    Découvrir <ArrowRight size={12} />
+              <div className="group relative isolate flex h-72 flex-col justify-end overflow-hidden rounded-2xl">
+                <img
+                  src={s.img}
+                  alt={s.label}
+                  className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black/90 via-brand-black/50 to-transparent" />
+                <div className="p-6">
+                  <h3 className="font-heading text-2xl font-bold text-white">{s.label}</h3>
+                  <p className="mt-1 font-body text-sm text-white/80">{s.desc}</p>
+                  <div className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-brand-gold">
+                    {isClickable ? (
+                      <span className="inline-flex items-center gap-1">
+                        Découvrir la solution <ArrowRight size={12} />
+                      </span>
+                    ) : (
+                      <span className="rounded-full bg-white/10 px-2 py-1 backdrop-blur-sm">
+                        Bientôt disponible
+                      </span>
+                    )}
                   </div>
-                )}
-                {"to" in s && !s.to && (
-                  <span className="mt-4 inline-block rounded-full bg-brand-grey-light px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-brand-grey">
-                    Coming soon
-                  </span>
-                )}
+                </div>
               </div>
             );
-            return "to" in s && s.to ? (
+
+            return isClickable && s.to ? (
               <Link key={s.label} to={s.to}>
                 {Card}
               </Link>
@@ -291,72 +357,73 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
   );
 }
 
-/* ------------------------------ Case Study ------------------------------ */
+/* ------------------------------ Case Study (split with image) ------------------------------ */
 function CaseStudy({ market }: { market: "BE" | "MA" }) {
   const data =
     market === "MA"
       ? {
-          tag: "BTP · Marchés publics · Maroc",
+          tag: "BTP · Marchés publics",
           name: "AIT OUKHALI TRAVAUX",
           quote:
-            "CRM appels d'offres, gestion de projet chantier, RH et facturation déployés. Toute la gestion centralisée dans Odoo en moins de 10 semaines.",
+            "Toute la gestion centralisée dans Odoo en moins de 10 semaines. CRM appels d'offres, chantier, RH et facturation.",
           metrics: [
-            { k: "<10", v: "semaines de déploiement" },
-            { k: "100%", v: "gestion centralisée dans Odoo" },
-            { k: "1", v: "source de vérité" },
+            { k: "<10", v: "semaines" },
+            { k: "100%", v: "centralisé" },
+            { k: "1", v: "seul outil" },
           ],
-          isPlaceholder: false as const,
+          img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1200",
         }
       : {
-          tag: "Agence immobilière sociale · Bruxelles",
+          tag: "Immobilier social · Bruxelles",
           name: "AIS Hector Denis",
           quote:
-            "AIS Hector Denis figure parmi nos références publiques, vérifiables sur notre fiche partenaire officielle Odoo. Témoignage direct à venir.",
+            "Une implémentation structurée et transparente. AIS figure parmi nos références publiques, vérifiables sur odoo.com.",
           metrics: [
-            { k: "9", v: "références publiques" },
-            { k: "Odoo 17", v: "certifié" },
+            { k: "9", v: "références" },
+            { k: "V17", v: "certifié" },
             { k: "100%", v: "vérifiable" },
           ],
-          isPlaceholder: true as const,
+          img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200",
         };
 
   return (
-    <section className="container py-20">
-      <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-        Étude de cas
-      </p>
-      <h2 className="mb-8 max-w-2xl font-heading text-3xl font-bold text-brand-black md:text-4xl">
-        Ce que nos clients ont obtenu
-      </h2>
-      <div className="grid gap-8 rounded-2xl border border-brand-grey-light bg-brand-white p-8 md:p-12 lg:grid-cols-2">
-        <div>
-          <span className="inline-block rounded-full bg-brand-blue-light px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
-            {data.tag}
-          </span>
-          <h3 className="mt-5 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-            {data.name}
-          </h3>
-          <p className="mt-4 font-body text-base text-brand-grey">{data.quote}</p>
+    <section className="container py-24">
+      <div className="grid overflow-hidden rounded-3xl border border-brand-grey-light bg-brand-white lg:grid-cols-2">
+        {/* Left content */}
+        <div className="flex flex-col justify-between p-8 md:p-12">
+          <div>
+            <span className="inline-block rounded-full bg-brand-blue-light px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
+              {data.tag}
+            </span>
+            <h3 className="mt-5 font-heading text-3xl font-bold text-brand-black md:text-4xl">
+              {data.name}
+            </h3>
+            <p className="mt-5 font-body text-lg italic text-brand-grey">"{data.quote}"</p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-3 gap-4">
+            {data.metrics.map((m) => (
+              <div key={m.v} className="border-l-2 border-brand-gold pl-4">
+                <div className="font-heading text-2xl font-bold text-brand-blue md:text-3xl">
+                  {m.k}
+                </div>
+                <div className="mt-1 font-body text-xs text-brand-grey">{m.v}</div>
+              </div>
+            ))}
+          </div>
+
           <Link
             to="/realisations"
-            className="mt-6 inline-flex items-center gap-2 font-body text-sm font-medium text-brand-blue hover:underline"
+            className="mt-10 inline-flex items-center gap-2 font-body text-sm font-medium text-brand-blue hover:underline"
           >
-            Voir toutes les réalisations <ArrowRight size={16} />
+            Voir toutes les études de cas <ArrowRight size={16} />
           </Link>
         </div>
-        <div className="grid grid-cols-3 gap-4 self-center">
-          {data.metrics.map((m) => (
-            <div
-              key={m.v}
-              className="rounded-xl p-5 text-center"
-              style={{ backgroundColor: "var(--blue-light)" }}
-            >
-              <div className="font-heading text-2xl font-bold text-brand-blue md:text-3xl">
-                {m.k}
-              </div>
-              <div className="mt-2 font-body text-xs text-brand-grey">{m.v}</div>
-            </div>
-          ))}
+
+        {/* Right image */}
+        <div className="relative min-h-[320px] lg:min-h-full">
+          <img src={data.img} alt={data.name} className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-white/40 via-transparent to-transparent lg:from-brand-white/20" />
         </div>
       </div>
     </section>
@@ -368,50 +435,49 @@ function Why() {
   const items = [
     {
       icon: ShieldCheck,
-      title: "Partenaire officiel Odoo — vérifiable publiquement",
-      desc: "MSL-iTECH figure sur la fiche officielle des partenaires Odoo, accessible sur odoo.com/partners. Nos certifications, notre statut de partenaire et nos références clients y sont visibles. Ce n'est pas une promesse — c'est une preuve externe vérifiable en quelques secondes.",
+      title: "Vérifiable publiquement",
+      desc: "Certifications et références clients directement visibles sur la fiche officielle odoo.com/partners. La transparence avant tout.",
     },
     {
       icon: Wallet,
-      title: "Des packs d'heures plus accessibles sur des volumes comparables",
-      desc: "Notre structure internationale — équipe technique au Maroc, présence commerciale en Belgique — nous permet de proposer des packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge, sur des volumes comparables. Cet écart ne repose pas sur un compromis de qualité, mais sur une organisation plus optimisée.",
+      title: "Tarification optimisée",
+      desc: "Notre présence BeLux-Maroc nous permet de proposer des packs 20 à 50% plus accessibles, à qualité et volume équivalents.",
     },
     {
       icon: Globe2,
-      title: "Un interlocuteur unique pour tout",
-      desc: "ERP, site web, marketing : vous n'avez pas à coordonner trois prestataires différents. Une équipe, un projet, une vision cohérente. C'est ce que fait MSL-iTECH depuis 2020.",
+      title: "Un interlocuteur unique",
+      desc: "ERP, création web et stratégie d'acquisition. Une seule équipe qui comprend votre business dans sa globalité.",
     },
     {
       icon: Clock,
-      title: "Réponse rapide et cadrée",
-      desc: "Chaque demande de démo est traitée sous 24 à 72 heures ouvrables. Pas de tunnel de vente impersonnel : un consultant qui comprend votre secteur reprend votre demande et prépare un échange utile.",
+      title: "Réactivité cadrée",
+      desc: "Réponse experte sous 24 à 72h. Pas de commerciaux génériques — vous parlez directement à des consultants qui comprennent votre métier.",
     },
   ];
+
   return (
-    <section className="bg-brand-bg">
-      <div className="container py-20">
-        <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-          Pourquoi MSL-iTECH
-        </p>
-        <h2 className="max-w-2xl font-heading text-3xl font-bold text-brand-black md:text-4xl">
-          Pourquoi choisir MSL-iTECH pour votre projet Odoo ?
-        </h2>
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
+    <section className="bg-brand-white">
+      <div className="container py-24">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-heading text-3xl font-bold text-brand-black md:text-5xl">
+            Pourquoi choisir MSL-iTECH ?
+          </h2>
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {items.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="flex gap-5 rounded-xl border border-brand-grey-light bg-brand-white p-6"
+              className="group rounded-2xl border border-brand-grey-light bg-brand-bg p-7 transition hover:border-brand-blue hover:shadow-[0_12px_40px_-12px_rgba(18,77,90,0.25)]"
             >
               <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg"
+                className="flex h-12 w-12 items-center justify-center rounded-xl transition group-hover:scale-110"
                 style={{ backgroundColor: "var(--blue-light)" }}
               >
                 <Icon size={22} className="text-brand-blue" />
               </div>
-              <div>
-                <h3 className="font-heading text-lg font-bold text-brand-black">{title}</h3>
-                <p className="mt-1 font-body text-sm text-brand-grey">{desc}</p>
-              </div>
+              <h3 className="mt-5 font-heading text-lg font-bold text-brand-black">{title}</h3>
+              <p className="mt-2 font-body text-sm text-brand-grey">{desc}</p>
             </div>
           ))}
         </div>
@@ -423,23 +489,40 @@ function Why() {
 /* ------------------------------ Final CTA ------------------------------ */
 function FinalCTA() {
   return (
-    <section style={{ backgroundColor: "var(--blue)" }}>
-      <div className="container flex flex-col items-start gap-10 py-20 lg:flex-row lg:items-center lg:justify-between">
-        <div className="max-w-2xl">
-          <h2 className="font-heading text-3xl font-bold leading-tight text-white md:text-5xl">
-            Prêt à structurer votre entreprise avec Odoo ?
-          </h2>
-          <p className="mt-4 font-body text-base text-white/80">
-            Sans engagement · Réponse sous 24 à 72h ouvrables · Consultant dédié
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-4">
+    <section className="relative isolate overflow-hidden" style={{ backgroundColor: "var(--blue)" }}>
+      <img
+        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2000&q=80"
+        alt=""
+        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-20 mix-blend-luminosity"
+      />
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(18,77,90,0.92) 0%, rgba(10,45,54,0.96) 100%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute -top-24 right-1/4 h-80 w-80 rounded-full opacity-20 blur-3xl"
+        style={{ backgroundColor: "var(--gold)" }}
+      />
+
+      <div className="container relative py-24 text-center">
+        <h2 className="mx-auto max-w-3xl font-heading text-3xl font-bold leading-tight text-white md:text-5xl">
+          Prêt à structurer votre entreprise avec Odoo ?
+        </h2>
+        <p className="mx-auto mt-5 max-w-xl font-body text-base text-white/80">
+          Consultant dédié · Démo sur mesure · Sans engagement
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-md px-8 py-4 font-body text-base font-bold text-brand-black transition hover:opacity-90"
+            className="group inline-flex items-center gap-2 rounded-md px-8 py-4 font-body text-base font-bold text-brand-black shadow-[0_10px_40px_-10px_rgba(255,221,87,0.6)] transition hover:opacity-90"
             style={{ backgroundColor: "var(--gold)" }}
           >
-            Réserver ma démo gratuite <ArrowRight size={18} />
+            Réserver ma démo
+            <ArrowRight size={18} className="transition group-hover:translate-x-1" />
           </Link>
           <Link
             to="/realisations"
