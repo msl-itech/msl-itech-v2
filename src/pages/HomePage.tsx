@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Clock, Globe2, ShieldCheck, Wallet, Sparkles } from "lucide-react";
 import { useMarket } from "@/hooks/useMarket";
+import heroBeImg from "@/assets/hero-be.jpg";
+import heroMaImg from "@/assets/hero-ma.jpg";
 
 /* ------------------------------ SEO ------------------------------ */
 function useSeo(market: "BE" | "MA") {
@@ -53,13 +55,13 @@ function HeroShell({
         <img
           src={bgImage}
           alt=""
-          className="h-full w-full object-cover opacity-30 mix-blend-luminosity"
+          className="h-full w-full object-cover"
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(135deg, rgba(18,77,90,0.92) 0%, rgba(10,45,54,0.96) 60%, rgba(10,45,54,1) 100%)",
+              "linear-gradient(110deg, rgba(10,45,54,0.92) 0%, rgba(18,77,90,0.78) 50%, rgba(18,77,90,0.45) 100%)",
           }}
         />
       </div>
@@ -108,7 +110,7 @@ function HeroShell({
 function HeroBE() {
   return (
     <HeroShell
-      bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80"
+      bgImage={heroBeImg}
       eyebrow="Partenaire officiel Odoo · Belgique"
       titleTop="L'expertise d'un partenaire officiel certifié."
       titleAccent="Des tarifs repensés."
@@ -120,7 +122,7 @@ function HeroBE() {
 function HeroMA() {
   return (
     <HeroShell
-      bgImage="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=2000&q=80"
+      bgImage={heroMaImg}
       eyebrow="Partenaire officiel Odoo · Maroc"
       titleTop="Vous avez dépassé Excel."
       titleAccent="Passez à la vitesse supérieure."
