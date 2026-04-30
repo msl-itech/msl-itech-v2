@@ -23,6 +23,72 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "gestion-stock-maroc-apres-1-5m-mad",
+    title:
+      "Gestion de stock au Maroc : pourquoi Excel devient un frein à partir de 1,5 million de dirhams de chiffre d'affaires",
+    metaTitle:
+      "Gestion de Stock Maroc : Pourquoi Excel Devient un Frein après 1,5M MAD",
+    metaDescription:
+      "À partir de quel CA faut-il arrêter de gérer son stock dans Excel ? Ce que les entreprises marocaines perdent sans outil dédié — et comment y remédier.",
+    excerpt:
+      "À partir de quel chiffre d'affaires faut-il arrêter de gérer son stock dans Excel ? Le seuil critique pour les PME marocaines.",
+    category: "Gestion & opérations",
+    region: "MA",
+    readingTime: "6 min",
+    publishedAt: "2026-01-29",
+    intent: "Informationnelle · Funnel haut",
+    relatedPath: "/odoo-gestion-stock-maroc",
+    relatedLabel: "Découvrir Odoo Gestion de Stock pour le Maroc",
+    cta: {
+      title: "Voir Odoo Inventaire configuré pour votre activité",
+      subtitle: "Démo gratuite · Réponse sous 24 à 72h · +212 6 89 30 62 78",
+    },
+    body: [
+      {
+        type: "p",
+        text: "Dans les premières années d'activité, Excel suffit. Quelques dizaines de références, un ou deux fournisseurs, une équipe réduite — un tableau bien tenu fait l'affaire. Mais passé un certain seuil, Excel ne suffit plus.",
+      },
+      { type: "h2", text: "Le seuil critique : 1,5 million de MAD et 5 employés" },
+      {
+        type: "p",
+        text: "C'est le seuil à partir duquel plusieurs choses se produisent simultanément : le nombre de références dépasse ce qu'on peut gérer mentalement, plusieurs personnes touchent au stock en même temps, et les erreurs commencent à coûter plus cher que le logiciel qui les éviterait.",
+      },
+      { type: "h2", text: "Les 4 pertes invisibles d'une gestion de stock sans outil" },
+      { type: "h3", text: "1. Les ruptures de stock non anticipées" },
+      {
+        type: "p",
+        text: "Vous commandez trop tard parce que vous n'aviez pas vu que le stock descendait sous le seuil critique. Un client commande, vous n'avez plus le produit, il part chez un concurrent.",
+      },
+      { type: "h3", text: "2. Les surstocks qui immobilisent la trésorerie" },
+      {
+        type: "p",
+        text: "Par peur de la rupture, on commande trop. Pour une entreprise marocaine à 1,5M MAD de CA, immobiliser 20 % du stock en surplus représente 300 000 MAD de trésorerie gelée.",
+      },
+      { type: "h3", text: "3. Les pertes pour péremption (agroalimentaire, pharma)" },
+      {
+        type: "p",
+        text: "Un restaurant marocain perd selon les études sectorielles jusqu'à 27 % de ses aliments faute de gestion rigoureuse.",
+      },
+      { type: "h3", text: "4. Le temps perdu en gestion manuelle" },
+      {
+        type: "p",
+        text: "Dans une PME marocaine sans logiciel, 15 à 20 % du temps des équipes administratives peut partir dans des tâches à zéro valeur ajoutée.",
+      },
+      { type: "h2", text: "Odoo Inventaire : ce que vous gagnez dès le premier mois" },
+      {
+        type: "ul",
+        items: [
+          "Stock en temps réel",
+          "Alertes de réapprovisionnement automatiques",
+          "Traçabilité par lot",
+          "Inventaire physique simplifié",
+          "Commandes fournisseurs automatiques",
+          "Intégration caisse et facturation",
+        ],
+      },
+    ],
+  },
+  {
     slug: "partenaire-odoo-certifie-vs-freelance",
     title:
       "Partenaire Odoo certifié ou freelance — les 5 différences qui impactent vraiment votre projet",
