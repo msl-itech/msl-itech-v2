@@ -8,12 +8,12 @@ function useSeo(market: "BE" | "MA") {
   useEffect(() => {
     const title =
       market === "MA"
-        ? "MSL-iTECH — Partenaire Odoo certifié au Maroc"
-        : "MSL-iTECH — Partenaire Odoo officiel certifié en Belgique";
+        ? "Intégration Odoo Maroc | ERP PME & Digital — MSL-iTECH"
+        : "Expert Odoo Belgique | Intégration ERP & Digital — MSL-iTECH";
     const desc =
       market === "MA"
-        ? "Partenaire Odoo certifié au Maroc. Implémentation Odoo pour HORECA, BTP, Santé, Commerce. Tarifs transparents."
-        : "Partenaire Odoo officiel certifié. Packs d'heures 20 à 50% plus accessibles que les Success Packs marché belge.";
+        ? "Intégrateur Odoo certifié au Maroc. Solutions ERP sur mesure pour HORECA, BTP, Santé et Commerce. À partir de 199 MAD/mois. Démo gratuite."
+        : "Partenaire officiel Odoo en Belgique. Implémentation ERP, création web et marketing digital pour PME. Packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge. Démo gratuite.";
     document.title = title;
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
@@ -148,8 +148,13 @@ function Pillars() {
         Notre approche
       </p>
       <h2 className="max-w-2xl font-heading text-3xl font-bold text-brand-black md:text-4xl">
-        Trois piliers pour structurer, construire et accélérer votre activité
+        Nous structurons, construisons et accélérons votre entreprise
       </h2>
+      <p className="mt-5 max-w-3xl font-body text-base text-brand-grey md:text-lg">
+        MSL-iTECH n'est pas une agence généraliste. Nous partons d'Odoo pour structurer
+        vos opérations, puis nous connectons votre présence web et votre acquisition pour
+        accélérer votre croissance. Trois expertises. Un seul interlocuteur.
+      </p>
       <div className="mt-12 grid gap-6 lg:grid-cols-7">
         {/* Odoo dominant: 3 cols of 7 */}
         <Link
@@ -165,8 +170,9 @@ function Pillars() {
               Structurer avec Odoo ERP
             </h3>
             <p className="mt-4 max-w-md font-body text-base text-white/80">
-              CRM, Finance, Stock, Production, RH : un système unifié pour piloter
-              toute l'entreprise. Implémentation par des consultants certifiés Odoo 17+.
+              Intégration Odoo certifiée pour vos finances, votre CRM, votre stock, votre
+              production et vos ressources humaines. Un seul outil pour piloter toute votre
+              entreprise.
             </p>
           </div>
           <div className="mt-10 inline-flex items-center gap-2 font-body text-sm font-medium text-brand-gold">
@@ -187,7 +193,8 @@ function Pillars() {
               Construire avec la création web
             </h3>
             <p className="mt-3 font-body text-sm text-brand-grey">
-              Sites institutionnels, e-commerce, plateformes métier connectées à Odoo.
+              Sites web React haute performance, solutions WordPress rapides, et refonte
+              de présence en ligne. Conçus pour convertir, optimisés pour être trouvés.
             </p>
           </div>
           <div className="mt-8 inline-flex items-center gap-2 font-body text-sm font-medium text-brand-blue">
@@ -208,7 +215,8 @@ function Pillars() {
               Accélérer avec le marketing digital
             </h3>
             <p className="mt-3 font-body text-sm text-brand-grey">
-              SEO, acquisition payante, contenu : générer une demande qualifiée et mesurable.
+              SEO, référencement IA (GEO), campagnes d'acquisition et audit digital. Nous
+              générons le trafic qualifié qui nourrit votre pipeline Odoo.
             </p>
           </div>
           <div className="mt-8 inline-flex items-center gap-2 font-body text-sm font-medium text-brand-blue">
@@ -226,16 +234,16 @@ const sectorsBE = [
   { label: "Cabinets & bureaux d'études", desc: "Architecture, ingénierie, expertise" },
   { label: "Commerce B2B", desc: "Distribution, négoce, grossistes" },
   { label: "Secteur administratif & RH", desc: "Organisations sociales, ASBL, RH externalisée" },
-  { label: "Entreprises en croissance", desc: "Scale-ups dépassant les outils tableurs" },
+  { label: "Entreprises en croissance (10–50 salariés)", desc: "Scale-ups dépassant les outils tableurs" },
 ];
 
 const sectorsMA = [
   { label: "HORECA", to: "/odoo-horeca-maroc", desc: "Restaurants, cafés, hôtels" },
   { label: "BTP & Construction", to: "/odoo-btp-maroc", desc: "Marchés publics, chantiers, sous-traitance" },
-  { label: "Santé / Pharma", to: "/odoo-sante-maroc", desc: "Cliniques, cabinets, distribution médicale" },
-  { label: "Commerce & Stock", to: "/odoo-gestion-stock-maroc", desc: "Multi-points de vente, e-commerce" },
+  { label: "Santé, Pharma & Aide sociale", to: "/odoo-sante-maroc", desc: "Cliniques, cabinets, distribution médicale" },
+  { label: "Commerce de gros & Distribution", to: "/odoo-gestion-stock-maroc", desc: "Multi-points de vente, e-commerce, stock multi-dépôts" },
   { label: "Transport & Logistique", to: "/odoo-transport-logistique-maroc", desc: "Flotte, expéditions, douane" },
-  { label: "Agroalimentaire", to: null, desc: "Bientôt disponible" },
+  { label: "Agroalimentaire", to: null, desc: "Production, traçabilité, distribution" },
 ];
 
 function Sectors({ market }: { market: "BE" | "MA" }) {
@@ -247,9 +255,7 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
           Secteurs
         </p>
         <h2 className="max-w-2xl font-heading text-3xl font-bold text-brand-black md:text-4xl">
-          {market === "MA"
-            ? "Des solutions Odoo pensées pour les secteurs clés du Maroc"
-            : "Pour des PME belges qui veulent structurer sans complexifier"}
+          Nous connaissons votre secteur
         </h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((s) => {
@@ -293,23 +299,25 @@ function CaseStudy({ market }: { market: "BE" | "MA" }) {
           tag: "BTP · Marchés publics · Maroc",
           name: "AIT OUKHALI TRAVAUX",
           quote:
-            "Suivi de chantiers, pilotage des marchés publics et gestion administrative unifiée dans Odoo.",
+            "CRM appels d'offres, gestion de projet chantier, RH et facturation déployés. Toute la gestion centralisée dans Odoo en moins de 10 semaines.",
           metrics: [
-            { k: "—40%", v: "temps de reporting chantier" },
-            { k: "100%", v: "marchés publics suivis dans Odoo" },
+            { k: "<10", v: "semaines de déploiement" },
+            { k: "100%", v: "gestion centralisée dans Odoo" },
             { k: "1", v: "source de vérité" },
           ],
+          isPlaceholder: false as const,
         }
       : {
           tag: "Agence immobilière sociale · Bruxelles",
           name: "AIS Hector Denis",
           quote:
-            "Une agence immobilière sociale en Région Bruxelloise structurée sur Odoo : gestion locative, suivi des bénéficiaires et reporting consolidé.",
+            "AIS Hector Denis figure parmi nos références publiques, vérifiables sur notre fiche partenaire officielle Odoo. Témoignage direct à venir.",
           metrics: [
-            { k: "1", v: "ERP unifié pour toute l'AIS" },
-            { k: "—50%", v: "saisie manuelle" },
-            { k: "100%", v: "traçabilité des dossiers" },
+            { k: "9", v: "références publiques" },
+            { k: "Odoo 17", v: "certifié" },
+            { k: "100%", v: "vérifiable" },
           ],
+          isPlaceholder: true as const,
         };
 
   return (
@@ -317,6 +325,9 @@ function CaseStudy({ market }: { market: "BE" | "MA" }) {
       <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
         Étude de cas
       </p>
+      <h2 className="mb-8 max-w-2xl font-heading text-3xl font-bold text-brand-black md:text-4xl">
+        Ce que nos clients ont obtenu
+      </h2>
       <div className="grid gap-8 rounded-2xl border border-brand-grey-light bg-brand-white p-8 md:p-12 lg:grid-cols-2">
         <div>
           <span className="inline-block rounded-full bg-brand-blue-light px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
@@ -357,23 +368,23 @@ function Why() {
   const items = [
     {
       icon: ShieldCheck,
-      title: "Partenaire officiel vérifiable",
-      desc: "Listés sur odoo.com/partners. Consultants certifiés Odoo 17+.",
+      title: "Partenaire officiel Odoo — vérifiable publiquement",
+      desc: "MSL-iTECH figure sur la fiche officielle des partenaires Odoo, accessible sur odoo.com/partners. Nos certifications, notre statut de partenaire et nos références clients y sont visibles. Ce n'est pas une promesse — c'est une preuve externe vérifiable en quelques secondes.",
     },
     {
       icon: Wallet,
-      title: "Packs plus accessibles",
-      desc: "20 à 50% sous les Success Packs observés sur le marché belge.",
+      title: "Des packs d'heures plus accessibles sur des volumes comparables",
+      desc: "Notre structure internationale — équipe technique au Maroc, présence commerciale en Belgique — nous permet de proposer des packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge, sur des volumes comparables. Cet écart ne repose pas sur un compromis de qualité, mais sur une organisation plus optimisée.",
     },
     {
       icon: Globe2,
-      title: "Interlocuteur unique",
-      desc: "Une équipe structurée Belgique-Maroc-Canada, un seul point de contact.",
+      title: "Un interlocuteur unique pour tout",
+      desc: "ERP, site web, marketing : vous n'avez pas à coordonner trois prestataires différents. Une équipe, un projet, une vision cohérente. C'est ce que fait MSL-iTECH depuis 2020.",
     },
     {
       icon: Clock,
-      title: "Réponse rapide",
-      desc: "Réponse sous 24 à 72h ouvrables. Sans engagement.",
+      title: "Réponse rapide et cadrée",
+      desc: "Chaque demande de démo est traitée sous 24 à 72 heures ouvrables. Pas de tunnel de vente impersonnel : un consultant qui comprend votre secteur reprend votre demande et prépare un échange utile.",
     },
   ];
   return (
@@ -383,7 +394,7 @@ function Why() {
           Pourquoi MSL-iTECH
         </p>
         <h2 className="max-w-2xl font-heading text-3xl font-bold text-brand-black md:text-4xl">
-          Une expertise certifiée, sans logique de cabinet opaque
+          Pourquoi choisir MSL-iTECH pour votre projet Odoo ?
         </h2>
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           {items.map(({ icon: Icon, title, desc }) => (
@@ -413,22 +424,30 @@ function Why() {
 function FinalCTA() {
   return (
     <section style={{ backgroundColor: "var(--blue)" }}>
-      <div className="container flex flex-col items-start gap-8 py-20 md:flex-row md:items-center md:justify-between">
+      <div className="container flex flex-col items-start gap-10 py-20 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-2xl">
           <h2 className="font-heading text-3xl font-bold leading-tight text-white md:text-5xl">
             Prêt à structurer votre entreprise avec Odoo ?
           </h2>
           <p className="mt-4 font-body text-base text-white/80">
-            Une démo gratuite, sans engagement. Réponse sous 24 à 72h ouvrables.
+            Sans engagement · Réponse sous 24 à 72h ouvrables · Consultant dédié
           </p>
         </div>
-        <Link
-          to="/contact"
-          className="inline-flex items-center gap-2 rounded-md px-8 py-4 font-body text-base font-bold text-brand-black transition hover:opacity-90"
-          style={{ backgroundColor: "var(--gold)" }}
-        >
-          Réserver ma démo gratuite <ArrowRight size={18} />
-        </Link>
+        <div className="flex flex-wrap items-center gap-4">
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-md px-8 py-4 font-body text-base font-bold text-brand-black transition hover:opacity-90"
+            style={{ backgroundColor: "var(--gold)" }}
+          >
+            Réserver ma démo gratuite <ArrowRight size={18} />
+          </Link>
+          <Link
+            to="/realisations"
+            className="inline-flex items-center gap-2 rounded-md border border-white/30 px-6 py-4 font-body text-sm font-medium text-white transition hover:bg-white/10"
+          >
+            Voir nos réalisations <ArrowRight size={16} />
+          </Link>
+        </div>
       </div>
     </section>
   );
