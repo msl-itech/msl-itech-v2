@@ -17,11 +17,75 @@ export type BlogPost = {
   intent?: string;
   relatedPath?: string;
   relatedLabel?: string;
+  faqs?: { q: string; a: string }[];
   cta: { title: string; subtitle: string };
   body: BlogSection[];
 };
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "facturation-electronique-maroc-2026",
+    title:
+      "Facturation électronique au Maroc 2026 — ce que votre entreprise doit faire maintenant pour être prête",
+    metaTitle:
+      "Facturation Électronique Maroc 2026 — Ce que Votre Entreprise Doit Faire Maintenant",
+    metaDescription:
+      "La facturation électronique est en cours de déploiement au Maroc. Ce que la loi impose, qui est concerné, et comment s'y préparer avec Odoo.",
+    excerpt:
+      "La facturation électronique se déploie au Maroc. Ce que la loi impose, qui est concerné et comment s'y préparer dès maintenant avec Odoo.",
+    category: "Réglementation & conformité",
+    region: "MA",
+    readingTime: "6 min",
+    publishedAt: "2026-02-05",
+    intent: "Réglementaire · Urgence réelle",
+    relatedPath: "/odoo-finance",
+    relatedLabel: "Voir Odoo Finance & Comptabilité",
+    cta: {
+      title: "Préparez votre conformité avec MSL-iTECH",
+      subtitle:
+        "Démo Odoo Finance · Expertise réglementaire marocaine · Réponse sous 24 à 72h",
+    },
+    body: [
+      {
+        type: "p",
+        text: "La Direction Générale des Impôts (DGI) du Maroc déploie progressivement la facturation électronique. Selon les textes en vigueur, certaines catégories d'entreprises sont concernées dès 2026. Si vous êtes dirigeant d'une PME marocaine et que vous ne vous êtes pas encore penché sur ce sujet, cet article est fait pour vous.",
+      },
+      { type: "h2", text: "Qu'est-ce que la facturation électronique au Maroc ?" },
+      {
+        type: "p",
+        text: "La facturation électronique marocaine implique l'émission, la transmission et la conservation des factures dans un format numérique structuré. Il ne s'agit pas simplement d'envoyer un PDF par email.",
+      },
+      { type: "h2", text: "Qui est concerné et à partir de quand ?" },
+      {
+        type: "p",
+        text: "La généralisation s'effectue par étapes selon la taille et le secteur de l'entreprise. Le calendrier exact dépend des décrets d'application. MSL-iTECH suit l'évolution des textes et accompagne ses clients dans la mise en conformité à leur date d'obligation spécifique.",
+      },
+      { type: "h2", text: "Comment Odoo vous prépare à cette obligation" },
+      {
+        type: "p",
+        text: "Odoo peut être configuré pour accompagner votre mise en conformité selon les exigences applicables à votre secteur et votre calendrier d'obligation. Vous émettez vos factures depuis Odoo dans un format structuré, configuré pour répondre aux exigences applicables à votre situation.",
+      },
+      { type: "h2", text: "Les 3 risques si vous attendez trop longtemps" },
+      {
+        type: "ul",
+        items: [
+          "Sanctions pour non-conformité à partir de la date d'obligation",
+          "Précipitation dans l'implémentation sans le temps de former vos équipes",
+          "Choisir une solution de fortune qui ne tient pas dans la durée",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Odoo est-il prêt pour la facturation électronique marocaine ?",
+        a: "Odoo peut être configuré pour accompagner votre mise en conformité en fonction des exigences applicables à votre secteur et à votre date d'obligation.",
+      },
+      {
+        q: "Un simple logiciel de facturation PDF est-il suffisant ?",
+        a: "Non. La facturation électronique conforme DGI nécessite un format de données structuré et une transmission via un canal agréé. Odoo, correctement configuré par MSL-iTECH, est conçu pour répondre à ces exigences selon leur évolution.",
+      },
+    ],
+  },
   {
     slug: "gestion-stock-maroc-apres-1-5m-mad",
     title:
