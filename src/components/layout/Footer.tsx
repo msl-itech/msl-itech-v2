@@ -1,54 +1,136 @@
 import { Link } from "react-router-dom";
 import { useMarket } from "@/hooks/useMarket";
 
+const odooCol = [
+  { to: "/odoo-crm-ventes", label: "CRM & Ventes" },
+  { to: "/odoo-finance-comptabilite", label: "Finance" },
+  { to: "/odoo-stock-inventaire", label: "Stock" },
+  { to: "/odoo-production-fabrication", label: "Production" },
+  { to: "/odoo-rh-paie", label: "RH" },
+  { to: "/odoo-services-professionnels", label: "Services Pro" },
+];
+
+const sectorsCol = [
+  { to: "/odoo-horeca-maroc", label: "HORECA" },
+  { to: "/odoo-btp-maroc", label: "BTP" },
+  { to: "/odoo-sante-maroc", label: "Santé" },
+  { to: "/odoo-gestion-stock-maroc", label: "Commerce" },
+  { to: "/odoo-transport-logistique-maroc", label: "Transport" },
+];
+
+const companyCol = [
+  { to: "/a-propos", label: "À Propos" },
+  { to: "/realisations", label: "Réalisations" },
+  { to: "/tarifs", label: "Tarifs" },
+  { to: "/blog/cout-implementation-odoo-belgique-2026", label: "Blog" },
+  { to: "/contact", label: "Contact" },
+];
+
+const COUNTRIES = {
+  BE: "🇧🇪 Belgique",
+  MA: "🇲🇦 Maroc",
+  CA: "🇨🇦 Canada",
+} as const;
+
 export const Footer = () => {
   const { market } = useMarket();
 
+  const order: (keyof typeof COUNTRIES)[] =
+    market === "MA" ? ["MA", "BE", "CA"] : ["BE", "MA", "CA"];
+
   return (
-    <footer className="mt-24 border-t border-brand-grey-light/60 bg-brand-black text-brand-white">
-      <div className="container grid gap-10 py-14 md:grid-cols-4">
+    <footer className="mt-24 bg-brand-black text-brand-white">
+      <div className="container grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
+        {/* Col 1 */}
         <div>
-          <div className="font-heading text-xl font-bold">
-            MSL-<span className="text-brand-gold">iTECH</span>
+          <div
+            className="font-heading text-xl font-bold lowercase"
+            style={{ color: "var(--blue-light)" }}
+          >
+            msl itech
           </div>
-          <p className="mt-3 max-w-xs font-body text-sm text-brand-grey-light/80">
-            Partenaire Odoo certifié — {market === "BE" ? "Belgique" : "Maroc"}.
+          <p className="mt-4 max-w-xs font-body text-sm text-brand-grey-light/85">
+            L'intégrateur Odoo qui structure, construit et accélère.
+          </p>
+          <p className="mt-4 max-w-xs font-body text-xs text-brand-grey-light/70">
+            Partenaire officiel Odoo —{" "}
+            <a
+              href="https://www.odoo.com/partners"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="underline hover:text-brand-white"
+            >
+              vérifiable sur odoo.com/partners
+            </a>
+          </p>
+          <p className="mt-5 font-mono text-xs text-brand-grey-light/80">
+            {order.map((c) => COUNTRIES[c]).join(" · ")}
           </p>
         </div>
 
+        {/* Col 2 */}
         <div>
-          <h4 className="font-heading text-sm font-semibold uppercase tracking-wide">Odoo</h4>
-          <ul className="mt-4 space-y-2 font-body text-sm text-brand-grey-light/80">
-            <li><Link to="/odoo-crm-ventes">CRM & Ventes</Link></li>
-            <li><Link to="/odoo-finance-comptabilite">Finance</Link></li>
-            <li><Link to="/odoo-stock-inventaire">Stock</Link></li>
-            <li><Link to="/odoo-rh-paie">RH & Paie</Link></li>
+          <h4 className="font-heading text-sm font-semibold uppercase tracking-wide">
+            Odoo ERP
+          </h4>
+          <ul className="mt-4 space-y-2 font-body text-sm text-brand-grey-light/85">
+            {odooCol.map((l) => (
+              <li key={l.to}>
+                <Link to={l.to} className="hover:text-brand-white">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
+        {/* Col 3 */}
         <div>
-          <h4 className="font-heading text-sm font-semibold uppercase tracking-wide">Services</h4>
-          <ul className="mt-4 space-y-2 font-body text-sm text-brand-grey-light/80">
-            <li><Link to="/creation-web">Création web</Link></li>
-            <li><Link to="/marketing-digital">Marketing digital</Link></li>
-            <li><Link to="/realisations">Réalisations</Link></li>
-            <li><Link to="/tarifs">Tarifs</Link></li>
+          <h4 className="font-heading text-sm font-semibold uppercase tracking-wide">
+            Secteurs
+          </h4>
+          <ul className="mt-4 space-y-2 font-body text-sm text-brand-grey-light/85">
+            {sectorsCol.map((l) => (
+              <li key={l.to}>
+                <Link to={l.to} className="hover:text-brand-white">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
+        {/* Col 4 */}
         <div>
-          <h4 className="font-heading text-sm font-semibold uppercase tracking-wide">Contact</h4>
-          <ul className="mt-4 space-y-2 font-body text-sm text-brand-grey-light/80">
-            <li><Link to="/contact">Nous contacter</Link></li>
-            <li><Link to="/a-propos">À propos</Link></li>
+          <h4 className="font-heading text-sm font-semibold uppercase tracking-wide">
+            Entreprise
+          </h4>
+          <ul className="mt-4 space-y-2 font-body text-sm text-brand-grey-light/85">
+            {companyCol.map((l) => (
+              <li key={l.to}>
+                <Link to={l.to} className="hover:text-brand-white">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link to="/contact" className="hover:text-brand-white">
+                Devenir partenaire
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
 
       <div className="border-t border-brand-grey/30">
-        <div className="container flex flex-col items-start justify-between gap-2 py-6 font-mono text-xs text-brand-grey-light/70 md:flex-row md:items-center">
-          <span>© {new Date().getFullYear()} MSL-iTECH. Tous droits réservés.</span>
-          <span>msl-itech.com</span>
+        <div className="container grid gap-3 py-6 font-mono text-xs text-brand-grey-light/70 md:grid-cols-3 md:items-center">
+          <span>© 2026 MSL-iTECH · Tous droits réservés</span>
+          <span className="md:text-center">
+            +32 2 886 05 49 · +212 6 89 30 62 78 · info@msl-itech.com
+          </span>
+          <Link to="/a-propos" className="hover:text-brand-white md:text-right">
+            Politique de confidentialité
+          </Link>
         </div>
       </div>
     </footer>
