@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import {
   ArrowRight,
   Sparkles,
@@ -8,29 +9,41 @@ import {
   Info,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import { useMarket } from "@/hooks/useMarket";
+
+type Currency = "EUR" | "MAD";
+const EUR_TO_MAD = 11;
+
+const fmt = (eur: number, currency: Currency) => {
+  if (currency === "EUR") {
+    return `${eur.toLocaleString("fr-FR")} €`;
+  }
+  const mad = eur * EUR_TO_MAD;
+  return `${mad.toLocaleString("fr-FR")} MAD`;
+};
 
 const packs = [
   {
     name: "Essentiel",
     hours: "4h",
-    priceNew: "400 €",
-    priceOld: "400 €",
+    priceNew: 400,
+    priceOld: 400,
     for: "Support fondamental",
     incl: "Paramétrage, formation initiale",
   },
   {
     name: "Standard",
     hours: "10h",
-    priceNew: "900 €",
-    priceOld: "900 €",
+    priceNew: 900,
+    priceOld: 900,
     for: "Découvrir Odoo",
     incl: "Paramétrage, formation, assistance",
   },
   {
     name: "Avancé",
     hours: "25h",
-    priceNew: "2 000 €",
-    priceOld: "2 000 €",
+    priceNew: 2000,
+    priceOld: 2000,
     for: "Booster votre activité",
     incl: "+ Import données, optimisation",
     highlight: true,
@@ -38,35 +51,35 @@ const packs = [
   {
     name: "Premium",
     hours: "50h",
-    priceNew: "3 500 €",
-    priceOld: "3 500 €",
+    priceNew: 3500,
+    priceOld: 3500,
     for: "Solutions sur mesure",
     incl: "+ Personnalisation apps, automatisation",
   },
   {
     name: "VIP",
     hours: "100h",
-    priceNew: "5 400 €",
-    priceOld: "6 000 €",
+    priceNew: 5400,
+    priceOld: 6000,
     for: "Performance optimale",
     incl: "+ Développement sur mesure",
   },
   {
     name: "Elite",
     hours: "200h",
-    priceNew: "8 500 €",
-    priceOld: "10 000 €",
+    priceNew: 8500,
+    priceOld: 10000,
     for: "Vision 360",
     incl: "Pack complet toutes fonctionnalités",
   },
 ];
 
 const comparison = [
-  { vol: "4 heures", odoo: "499 €", msl: "400 €", gap: "-20%", level: "Essentiel" },
-  { vol: "25 heures", odoo: "2 635 €", msl: "2 000 €", gap: "-24%", level: "Avancé" },
-  { vol: "50 heures", odoo: "4 675 €", msl: "3 500 €", gap: "-25%", level: "Premium" },
-  { vol: "100 heures", odoo: "8 415 €", msl: "5 400 €", gap: "-36%", level: "VIP" },
-  { vol: "200 heures", odoo: "16 830 €", msl: "8 500 €", gap: "-49%", level: "Elite" },
+  { vol: "4 heures", odoo: 499, msl: 400, gap: "-20%", level: "Essentiel" },
+  { vol: "25 heures", odoo: 2635, msl: 2000, gap: "-24%", level: "Avancé" },
+  { vol: "50 heures", odoo: 4675, msl: 3500, gap: "-25%", level: "Premium" },
+  { vol: "100 heures", odoo: 8415, msl: 5400, gap: "-36%", level: "VIP" },
+  { vol: "200 heures", odoo: 16830, msl: 8500, gap: "-49%", level: "Elite" },
 ];
 
 const faqs = [
@@ -89,6 +102,12 @@ const faqs = [
 ];
 
 export default function TarifsPage() {
+  const { market } = useMarket();
+  const [currency, setCurrency] = useState<Currency>(market === "MA" ? "MAD" : "EUR");
+  useEffect(() => {
+    setCurrency(market === "MA" ? "MAD" : "EUR");
+  }, [market]);
+
   useProductSeo({
     title: "Tarifs Odoo Belgique & Maroc — Packs transparents | MSL-iTECH",
     description:
@@ -153,6 +172,33 @@ export default function TarifsPage() {
               <TrendingDown size={16} style={{ color: "var(--gold)" }} /> -20% à -49% vs Success Packs
             </span>
           </div>
+
+          <div className="mt-8 inline-flex items-center gap-1 rounded-full p-1" style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}>
+            <button
+              type="button"
+              onClick={() => setCurrency("EUR")}
+              aria-pressed={currency === "EUR"}
+              className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
+              style={{
+                backgroundColor: currency === "EUR" ? "var(--gold)" : "transparent",
+                color: currency === "EUR" ? "#0F3F4A" : "white",
+              }}
+            >
+              € Euro
+            </button>
+            <button
+              type="button"
+              onClick={() => setCurrency("MAD")}
+              aria-pressed={currency === "MAD"}
+              className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
+              style={{
+                backgroundColor: currency === "MAD" ? "var(--gold)" : "transparent",
+                color: currency === "MAD" ? "#0F3F4A" : "white",
+              }}
+            >
+              MAD Dirham
+            </button>
+          </div>
         </div>
       </section>
 
@@ -210,13 +256,13 @@ export default function TarifsPage() {
 
                 <div className="mt-6">
                   <p className="font-heading text-3xl font-bold text-brand-black">
-                    {p.priceNew}
+                    {fmt(p.priceNew, currency)}
                   </p>
                   <p className="mt-1 text-xs text-brand-grey">
-                    Nouveau client · HTVA{" "}
+                    Nouveau client · {currency === "EUR" ? "HTVA" : "TTC"}{" "}
                     {p.priceOld !== p.priceNew && (
                       <span className="text-brand-grey">
-                        · Ancien client : {p.priceOld}
+                        · Ancien client : {fmt(p.priceOld, currency)}
                       </span>
                     )}
                   </p>
@@ -232,7 +278,7 @@ export default function TarifsPage() {
 
           <p className="mt-6 flex items-start gap-2 text-sm text-brand-grey">
             <Info size={14} className="mt-0.5 shrink-0" />
-            Prix HTVA · Belgique en € · Maroc en MAD TTC (équivalent affiché selon localisation).
+            Prix € HTVA pour clients belges · Prix MAD TTC pour clients marocains · Conversion indicative 1 € ≈ {EUR_TO_MAD} MAD.
           </p>
         </div>
       </section>
@@ -267,12 +313,12 @@ export default function TarifsPage() {
                 {comparison.map((r, i) => (
                   <tr key={r.vol} className={i % 2 ? "bg-muted/40" : ""}>
                     <td className="px-5 py-4 font-medium text-brand-black">{r.vol}</td>
-                    <td className="px-5 py-4 text-brand-grey line-through">{r.odoo}</td>
-                    <td className="px-5 py-4 font-semibold text-brand-black">{r.msl}</td>
+                    <td className="px-5 py-4 text-brand-grey line-through">{fmt(r.odoo, currency)}</td>
+                    <td className="px-5 py-4 font-semibold text-brand-black">{fmt(r.msl, currency)}</td>
                     <td className="px-5 py-4">
                       <span
                         className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold"
-                        style={{ backgroundColor: "rgba(255,221,87,0.2)", color: "#0F3F4A" }}
+                        style={{ backgroundColor: "rgba(34,197,94,0.15)", color: "#15803d" }}
                       >
                         {r.gap}
                       </span>
@@ -283,6 +329,9 @@ export default function TarifsPage() {
               </tbody>
             </table>
           </div>
+          <p className="mt-4 text-xs text-brand-grey">
+            Source comparaison : <a href="https://www.odoo.com/fr_FR/pricing-packs" target="_blank" rel="noopener noreferrer" className="underline hover:text-brand-blue">odoo.com/fr_FR/pricing-packs</a>
+          </p>
         </div>
       </section>
 
