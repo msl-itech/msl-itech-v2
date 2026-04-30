@@ -23,6 +23,67 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "partenaire-odoo-certifie-vs-freelance",
+    title:
+      "Partenaire Odoo certifié ou freelance — les 5 différences qui impactent vraiment votre projet",
+    metaTitle: "Partenaire Odoo Certifié vs Freelance — Ce que ça change vraiment",
+    metaDescription:
+      "Freelance Odoo ou cabinet certifié ? Les 5 différences concrètes qui impactent votre projet ERP. Guide pour PME belges par MSL-iTECH.",
+    excerpt:
+      "Freelance Odoo ou cabinet certifié ? Les 5 différences concrètes qui impactent votre projet ERP — analyse honnête pour PME belges.",
+    category: "Stratégie & prestataires",
+    region: "BE",
+    readingTime: "5 min",
+    publishedAt: "2026-01-22",
+    intent: "Transactionnelle · Comparaison prestataires",
+    relatedPath: "/consultant-odoo-belgique",
+    relatedLabel: "Découvrir notre approche de consultant Odoo certifié en Belgique",
+    cta: {
+      title: "Parlez à un consultant certifié Odoo — c'est gratuit",
+      subtitle: "30 minutes · Conseils personnalisés · Sans engagement",
+    },
+    body: [
+      {
+        type: "p",
+        text: "La question revient souvent lors des premières conversations avec nos prospects : « Est-ce qu'on ne ferait pas la même chose avec un freelance Odoo, moins cher ? » C'est une bonne question. Voici une réponse honnête.",
+      },
+      {
+        type: "h2",
+        text: "Ce qu'un partenaire certifié fait que la plupart des freelances ne font pas",
+      },
+      { type: "h3", text: "1. Il suit une méthodologie d'implémentation structurée" },
+      {
+        type: "p",
+        text: "Un partenaire certifié Odoo a suivi la formation officielle de l'éditeur et applique une méthodologie de projet éprouvée — analyse des besoins, configuration, tests, formation, mise en production.",
+      },
+      { type: "h3", text: "2. Il garantit une continuité de service" },
+      {
+        type: "p",
+        text: "Un freelance, c'est une personne. Si cette personne est en vacances, malade ou change de cap, votre projet s'arrête. Un cabinet certifié a une équipe — donc une continuité.",
+      },
+      { type: "h3", text: "3. Il a accès aux ressources officielles Odoo" },
+      {
+        type: "p",
+        text: "Les partenaires certifiés ont accès à l'espace partenaire Odoo et au support de l'éditeur pour les cas complexes. C'est un filet de sécurité que vous n'avez pas avec un freelance non certifié.",
+      },
+      { type: "h3", text: "4. Il est responsable au-delà du déploiement" },
+      {
+        type: "p",
+        text: "Un cabinet a une réputation à défendre. Son modèle économique repose sur des relations clients durables — pas sur des missions ponctuelles.",
+      },
+      { type: "h3", text: "5. Il connaît votre secteur — pas seulement l'outil" },
+      {
+        type: "p",
+        text: "Un bon partenaire Odoo a implémenté l'ERP dans plusieurs entreprises du même secteur que le vôtre. Il connaît les pièges et les configurations qui fonctionnent.",
+      },
+      { type: "h2", text: "Quand un freelance peut faire sens" },
+      {
+        type: "p",
+        text: "Un freelance peut convenir pour des projets très limités — une correction de bug ou une personnalisation mineure. Dès que le projet implique plusieurs modules, de la migration et une formation d'équipe, un partenaire certifié est le bon choix.",
+      },
+    ],
+  },
+  {
     slug: "cout-implementation-odoo-belgique-2026",
     title: "Combien coûte une implémentation Odoo en Belgique en 2026 ?",
     metaTitle: "Combien coûte une implémentation Odoo en Belgique en 2026 ?",
