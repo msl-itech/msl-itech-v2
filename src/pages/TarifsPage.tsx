@@ -102,6 +102,12 @@ const faqs = [
 ];
 
 export default function TarifsPage() {
+  const { market } = useMarket();
+  const [currency, setCurrency] = useState<Currency>(market === "MA" ? "MAD" : "EUR");
+  useEffect(() => {
+    setCurrency(market === "MA" ? "MAD" : "EUR");
+  }, [market]);
+
   useProductSeo({
     title: "Tarifs Odoo Belgique & Maroc — Packs transparents | MSL-iTECH",
     description:
@@ -223,13 +229,13 @@ export default function TarifsPage() {
 
                 <div className="mt-6">
                   <p className="font-heading text-3xl font-bold text-brand-black">
-                    {p.priceNew}
+                    {fmt(p.priceNew, currency)}
                   </p>
                   <p className="mt-1 text-xs text-brand-grey">
-                    Nouveau client · HTVA{" "}
+                    Nouveau client · {currency === "EUR" ? "HTVA" : "TTC"}{" "}
                     {p.priceOld !== p.priceNew && (
                       <span className="text-brand-grey">
-                        · Ancien client : {p.priceOld}
+                        · Ancien client : {fmt(p.priceOld, currency)}
                       </span>
                     )}
                   </p>
@@ -280,12 +286,12 @@ export default function TarifsPage() {
                 {comparison.map((r, i) => (
                   <tr key={r.vol} className={i % 2 ? "bg-muted/40" : ""}>
                     <td className="px-5 py-4 font-medium text-brand-black">{r.vol}</td>
-                    <td className="px-5 py-4 text-brand-grey line-through">{r.odoo}</td>
-                    <td className="px-5 py-4 font-semibold text-brand-black">{r.msl}</td>
+                    <td className="px-5 py-4 text-brand-grey line-through">{fmt(r.odoo, currency)}</td>
+                    <td className="px-5 py-4 font-semibold text-brand-black">{fmt(r.msl, currency)}</td>
                     <td className="px-5 py-4">
                       <span
                         className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold"
-                        style={{ backgroundColor: "rgba(255,221,87,0.2)", color: "#0F3F4A" }}
+                        style={{ backgroundColor: "rgba(34,197,94,0.15)", color: "#15803d" }}
                       >
                         {r.gap}
                       </span>
@@ -296,6 +302,9 @@ export default function TarifsPage() {
               </tbody>
             </table>
           </div>
+          <p className="mt-4 text-xs text-brand-grey">
+            Source comparaison : <a href="https://www.odoo.com/fr_FR/pricing-packs" target="_blank" rel="noopener noreferrer" className="underline hover:text-brand-blue">odoo.com/fr_FR/pricing-packs</a>
+          </p>
         </div>
       </section>
 
