@@ -5,9 +5,9 @@
 /* MSL-iTECH design system. Brand color variables (hex) plus shadcn HSL tokens. */
 
 :root {
-  --blue: #1A3A8F;
-  --blue-light: #E8EDF8;
-  --gold: #C8A84B;
+  --blue: #124d5a;
+  --blue-light: #E3EEF1;
+  --gold: #ffdd57;
   --green: #1A7A4A;
   --red: #CC2E1A;
   --grey: #6B6B6B;
@@ -31,16 +31,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 5%;
 
-    --primary: 222 69% 33%;
+    --primary: 191 67% 21%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 224 56% 94%;
-    --secondary-foreground: 222 69% 33%;
+    --secondary: 192 38% 92%;
+    --secondary-foreground: 191 67% 21%;
 
     --muted: 50 14% 88%;
     --muted-foreground: 0 0% 42%;
 
-    --accent: 45 53% 54%;
+    --accent: 49 100% 67%;
     --accent-foreground: 0 0% 5%;
 
     --destructive: 7 78% 45%;
@@ -48,7 +48,7 @@
 
     --border: 50 14% 88%;
     --input: 50 14% 88%;
-    --ring: 222 69% 33%;
+    --ring: 191 67% 21%;
 
     --radius: 0.5rem;
 
