@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useMarket } from "@/hooks/useMarket";
+import { useMarket, setMarketOverride } from "@/hooks/useMarket";
 
 const odooCol = [
   { to: "/odoo-crm-ventes", label: "CRM & Ventes" },
@@ -37,6 +37,11 @@ export const Footer = () => {
 
   const order: (keyof typeof COUNTRIES)[] =
     market === "MA" ? ["MA", "BE", "CA"] : ["BE", "MA", "CA"];
+
+  const toggleMarket = () => {
+    setMarketOverride(market === "BE" ? "MA" : "BE");
+    window.location.reload();
+  };
 
   return (
     <footer className="mt-24 bg-brand-black text-brand-white">
@@ -128,9 +133,19 @@ export const Footer = () => {
           <span className="md:text-center">
             +32 2 886 05 49 · +212 6 89 30 62 78 · info@msl-itech.com
           </span>
-          <Link to="/a-propos" className="hover:text-brand-white md:text-right">
-            Politique de confidentialité
-          </Link>
+          <div className="flex flex-wrap items-center gap-4 md:justify-end">
+            <button
+              type="button"
+              onClick={toggleMarket}
+              className="rounded-full border border-brand-grey/50 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey-light/80 transition hover:border-brand-white hover:text-brand-white"
+              title="Basculer le contenu entre BE et MA (test QA)"
+            >
+              Test : {market === "BE" ? "🇧🇪 BE → 🇲🇦 MA" : "🇲🇦 MA → 🇧🇪 BE"}
+            </button>
+            <Link to="/a-propos" className="hover:text-brand-white">
+              Politique de confidentialité
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
