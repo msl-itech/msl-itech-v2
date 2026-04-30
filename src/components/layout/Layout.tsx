@@ -8,7 +8,7 @@ export const Layout = () => {
     <div className="flex min-h-screen flex-col bg-brand-bg text-brand-black">
       <ScrollToTop />
       <Header />
-      <main className="flex-1">
+      <main>
         <Outlet />
       </main>
       <Footer />
