@@ -364,17 +364,3 @@ export function ProductPageShell(props: ProductPageShellProps) {
     </>
   );
 }
-
-export function useProductSeo(opts: {
-  title: string;
-  description: string;
-  path: string;
-  faqs?: Faq[];
-  ldId?: string;
-}) {
-  if (typeof document === "undefined") return;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  if (typeof window !== "undefined") {
-    // simple effect via microtask (shell is used inside React components only)
-  }
-}
