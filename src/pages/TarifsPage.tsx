@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import {
   ArrowRight,
   Sparkles,
@@ -8,29 +9,41 @@ import {
   Info,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import { useMarket } from "@/hooks/useMarket";
+
+type Currency = "EUR" | "MAD";
+const EUR_TO_MAD = 11;
+
+const fmt = (eur: number, currency: Currency) => {
+  if (currency === "EUR") {
+    return `${eur.toLocaleString("fr-FR")} €`;
+  }
+  const mad = eur * EUR_TO_MAD;
+  return `${mad.toLocaleString("fr-FR")} MAD`;
+};
 
 const packs = [
   {
     name: "Essentiel",
     hours: "4h",
-    priceNew: "400 €",
-    priceOld: "400 €",
+    priceNew: 400,
+    priceOld: 400,
     for: "Support fondamental",
     incl: "Paramétrage, formation initiale",
   },
   {
     name: "Standard",
     hours: "10h",
-    priceNew: "900 €",
-    priceOld: "900 €",
+    priceNew: 900,
+    priceOld: 900,
     for: "Découvrir Odoo",
     incl: "Paramétrage, formation, assistance",
   },
   {
     name: "Avancé",
     hours: "25h",
-    priceNew: "2 000 €",
-    priceOld: "2 000 €",
+    priceNew: 2000,
+    priceOld: 2000,
     for: "Booster votre activité",
     incl: "+ Import données, optimisation",
     highlight: true,
@@ -38,35 +51,35 @@ const packs = [
   {
     name: "Premium",
     hours: "50h",
-    priceNew: "3 500 €",
-    priceOld: "3 500 €",
+    priceNew: 3500,
+    priceOld: 3500,
     for: "Solutions sur mesure",
     incl: "+ Personnalisation apps, automatisation",
   },
   {
     name: "VIP",
     hours: "100h",
-    priceNew: "5 400 €",
-    priceOld: "6 000 €",
+    priceNew: 5400,
+    priceOld: 6000,
     for: "Performance optimale",
     incl: "+ Développement sur mesure",
   },
   {
     name: "Elite",
     hours: "200h",
-    priceNew: "8 500 €",
-    priceOld: "10 000 €",
+    priceNew: 8500,
+    priceOld: 10000,
     for: "Vision 360",
     incl: "Pack complet toutes fonctionnalités",
   },
 ];
 
 const comparison = [
-  { vol: "4 heures", odoo: "499 €", msl: "400 €", gap: "-20%", level: "Essentiel" },
-  { vol: "25 heures", odoo: "2 635 €", msl: "2 000 €", gap: "-24%", level: "Avancé" },
-  { vol: "50 heures", odoo: "4 675 €", msl: "3 500 €", gap: "-25%", level: "Premium" },
-  { vol: "100 heures", odoo: "8 415 €", msl: "5 400 €", gap: "-36%", level: "VIP" },
-  { vol: "200 heures", odoo: "16 830 €", msl: "8 500 €", gap: "-49%", level: "Elite" },
+  { vol: "4 heures", odoo: 499, msl: 400, gap: "-20%", level: "Essentiel" },
+  { vol: "25 heures", odoo: 2635, msl: 2000, gap: "-24%", level: "Avancé" },
+  { vol: "50 heures", odoo: 4675, msl: 3500, gap: "-25%", level: "Premium" },
+  { vol: "100 heures", odoo: 8415, msl: 5400, gap: "-36%", level: "VIP" },
+  { vol: "200 heures", odoo: 16830, msl: 8500, gap: "-49%", level: "Elite" },
 ];
 
 const faqs = [
