@@ -19,6 +19,18 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        brand: {
+          blue: "var(--blue)",
+          "blue-light": "var(--blue-light)",
+          gold: "var(--gold)",
+          green: "var(--green)",
+          red: "var(--red)",
+          grey: "var(--grey)",
+          "grey-light": "var(--grey-light)",
+          black: "var(--black)",
+          white: "var(--white)",
+          bg: "var(--bg)",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -62,6 +74,11 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        heading: ["Syne", "sans-serif"],
+        body: ["DM Sans", "sans-serif"],
+        mono: ["DM Mono", "monospace"],
       },
       keyframes: {
         "accordion-down": {
