@@ -2,17 +2,31 @@ import { useEffect, useState } from "react";
 
 export type Market = "BE" | "MA";
 
+const STORAGE_KEY = "market-override";
+
+function readOverride(): Market | null {
+  if (typeof window === "undefined") return null;
+  const v = window.localStorage.getItem(STORAGE_KEY);
+  return v === "BE" || v === "MA" ? v : null;
+}
+
+/** Test helper: force market in localStorage. Pass null to clear. */
+export function setMarketOverride(market: Market | null) {
+  if (typeof window === "undefined") return;
+  if (market === null) window.localStorage.removeItem(STORAGE_KEY);
+  else window.localStorage.setItem(STORAGE_KEY, market);
+}
+
 /**
  * Reads the X-Market header injected by the Cloudflare Worker.
- * Falls back to 'BE' when the header is missing or unreachable.
- *
- * The header is fetched via a HEAD request to the current page so the
- * Worker can echo it back. If unavailable, BE is used.
+ * A localStorage override (`market-override`) takes precedence — used for QA.
+ * Falls back to 'BE' when neither override nor header is present.
  */
 export function useMarket(): { market: Market } {
-  const [market, setMarket] = useState<Market>("BE");
+  const [market, setMarket] = useState<Market>(() => readOverride() ?? "BE");
 
   useEffect(() => {
+    if (readOverride()) return; // override wins, skip network probe
     let cancelled = false;
     fetch(window.location.pathname, { method: "HEAD" })
       .then((res) => {
