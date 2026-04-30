@@ -278,7 +278,7 @@ export default function TarifsPage() {
 
           <p className="mt-6 flex items-start gap-2 text-sm text-brand-grey">
             <Info size={14} className="mt-0.5 shrink-0" />
-            Prix HTVA · Belgique en € · Maroc en MAD TTC (équivalent affiché selon localisation).
+            Prix € HTVA pour clients belges · Prix MAD TTC pour clients marocains · Conversion indicative 1 € ≈ {EUR_TO_MAD} MAD.
           </p>
         </div>
       </section>
