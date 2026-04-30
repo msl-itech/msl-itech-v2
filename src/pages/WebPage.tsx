@@ -43,8 +43,7 @@ export default function WebPage() {
       heroImageAlt="Création de site web professionnel React et WordPress par MSL-iTECH"
       metaNote="Devis gratuit · Réponse sous 24 à 72h ouvrables · Sans engagement"
       featuresEyebrow="Deux technologies, deux cas d'usage"
-      featuresTitle="La vraie question n'est pas « combien coûte un site web ? »"
-      featuresIntro="La vraie question est : combien d'opportunités perdez-vous chaque mois parce que votre site ne convainc pas, n'est pas trouvé sur Google, ou n'est pas adapté aux mobiles ?"
+      featuresTitle="Combien d'opportunités perdez-vous chaque mois ?"
       features={features}
       whySection={{
         title: "Ce que tous nos sites intègrent",
