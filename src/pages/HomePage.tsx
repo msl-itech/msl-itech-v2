@@ -1,6 +1,14 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Clock, Globe2, ShieldCheck, Sparkles, Wallet } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Clock,
+  Globe2,
+  ShieldCheck,
+  Sparkles,
+  Wallet,
+} from "lucide-react";
 import { useMarket } from "@/hooks/useMarket";
 
 import heroBeImg from "@/assets/hero-be.webp";
@@ -21,7 +29,6 @@ import sectorLogistics from "@/assets/home/sector-logistics.webp";
 import sectorFood from "@/assets/home/sector-food.webp";
 import caseBe from "@/assets/home/case-be.webp";
 import caseMa from "@/assets/home/case-ma.webp";
-import ctaBg from "@/assets/home/cta-bg.webp";
 
 /* ------------------------------ SEO ------------------------------ */
 function useSeo(market: "BE" | "MA") {
@@ -52,6 +59,48 @@ function useSeo(market: "BE" | "MA") {
   }, [market]);
 }
 
+/* ------------------- Highlight (marker brushstroke) ------------------- */
+function Mark({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="relative inline-block">
+      <span
+        aria-hidden
+        className="absolute inset-x-[-4px] bottom-[6%] -z-0 h-[42%] -rotate-[1.5deg] rounded-[6px]"
+        style={{
+          backgroundColor: "var(--gold)",
+          filter: "blur(0.3px)",
+        }}
+      />
+      <span className="relative z-10">{children}</span>
+    </span>
+  );
+}
+
+/* ------------------- Sticker (gold rotated badge) ------------------- */
+function Sticker({
+  children,
+  rotate = -6,
+  className = "",
+}: {
+  children: React.ReactNode;
+  rotate?: number;
+  className?: string;
+}) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-2xl border-2 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] ${className}`}
+      style={{
+        backgroundColor: "var(--gold)",
+        borderColor: "var(--blue)",
+        color: "var(--blue)",
+        transform: `rotate(${rotate}deg)`,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
 /* ------------------------------ Hero ------------------------------ */
 function HeroShell({
   bgImage,
@@ -66,106 +115,131 @@ function HeroShell({
   titleAccent: string;
   description: string;
 }) {
+  // try to mark the last word of the accent phrase for visual signature
+  const accentWords = titleAccent.trim().split(" ");
+  const accentHead = accentWords.slice(0, -1).join(" ");
+  const accentTail = accentWords[accentWords.length - 1];
+
   return (
-    <section className="relative isolate overflow-hidden" style={{ backgroundColor: "var(--blue)" }}>
-      <div className="absolute inset-0 -z-10">
-        <img src={bgImage} alt="" className="h-full w-full object-cover" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(110deg, rgba(10,45,54,0.94) 0%, rgba(18,77,90,0.78) 55%, rgba(18,77,90,0.35) 100%)",
-          }}
-        />
-      </div>
-
-      {/* Glow */}
+    <section className="relative bg-brand-bg pt-10 pb-24 md:pt-14 md:pb-28">
       <div
-        className="pointer-events-none absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full opacity-25 blur-3xl"
-        style={{ backgroundColor: "var(--gold)" }}
-      />
-      <div
-        className="pointer-events-none absolute bottom-0 -left-48 h-[500px] w-[500px] rounded-full opacity-20 blur-3xl"
-        style={{ backgroundColor: "var(--blue-light)" }}
-      />
-
-      {/* Subtle grid */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px]"
         style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.4) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
+          background:
+            "radial-gradient(800px 380px at 80% 0%, rgba(255,221,87,0.18), transparent 70%), radial-gradient(700px 360px at 0% 0%, rgba(18,77,90,0.10), transparent 70%)",
         }}
       />
 
-      <div className="container relative grid gap-12 py-28 md:py-36 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 backdrop-blur-md">
-            <Sparkles size={14} className="text-brand-gold" />
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/85">{eyebrow}</p>
+      <div className="container">
+        <div className="grid items-stretch gap-8 lg:grid-cols-12">
+          {/* LEFT — Big card with title */}
+          <div
+            className="relative isolate overflow-hidden rounded-[28px] border bg-brand-white p-8 shadow-[0_30px_80px_-40px_rgba(18,77,90,0.25)] md:p-12 lg:col-span-7"
+            style={{ borderColor: "var(--grey-light)" }}
+          >
+            <div className="inline-flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-bg px-3 py-1.5">
+              <Sparkles size={12} className="text-brand-blue" />
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
+                {eyebrow}
+              </p>
+            </div>
+
+            <h1 className="mt-7 font-heading text-4xl font-bold leading-[1.04] tracking-tight text-brand-black md:text-[56px]">
+              {titleTop}{" "}
+              <span className="block">
+                {accentHead && <span className="text-brand-blue italic font-light">{accentHead} </span>}
+                <Mark>{accentTail}</Mark>
+              </span>
+            </h1>
+
+            <p className="mt-7 max-w-[560px] font-body text-base text-brand-grey md:text-lg">
+              {description}
+            </p>
+
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+                style={{ backgroundColor: "var(--gold)" }}
+              >
+                Réserver ma démo gratuite
+                <ArrowRight size={18} className="transition group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/realisations"
+                className="inline-flex items-center gap-2 rounded-full border-2 px-6 py-3.5 font-body text-sm font-semibold text-brand-black transition hover:bg-brand-bg"
+                style={{ borderColor: "var(--blue)" }}
+              >
+                Voir nos réalisations
+              </Link>
+            </div>
+
+            {/* Sticker bottom-left */}
+            <div className="absolute bottom-6 right-6 hidden md:block">
+              <Sticker rotate={-8}>★ Partenaire Odoo</Sticker>
+            </div>
           </div>
 
-          <h1 className="mt-8 max-w-[920px] font-heading text-4xl font-bold leading-[1.02] tracking-tight text-white md:text-[64px]">
-            {titleTop}{" "}
-            <span className="block bg-gradient-to-r from-brand-gold to-brand-gold/70 bg-clip-text text-transparent">
-              {titleAccent}
-            </span>
-          </h1>
-
-          <p className="mt-8 max-w-[640px] font-body text-lg text-white/80 md:text-xl">{description}</p>
-
-          <div className="mt-12 flex flex-wrap items-center gap-4">
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-2 rounded-full px-8 py-4 font-body text-base font-bold text-brand-black shadow-[0_20px_60px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
-              style={{ backgroundColor: "var(--gold)" }}
+          {/* RIGHT — Image card + floating stat cards */}
+          <div className="relative lg:col-span-5">
+            <div
+              className="relative h-full min-h-[360px] overflow-hidden rounded-[28px] border shadow-[0_30px_80px_-40px_rgba(18,77,90,0.35)]"
+              style={{ borderColor: "var(--grey-light)", backgroundColor: "var(--blue)" }}
             >
-              Réserver ma démo gratuite
-              <ArrowRight size={18} className="transition group-hover:translate-x-1" />
-            </Link>
-            <Link
-              to="/realisations"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-4 font-body text-sm font-medium text-white/90 backdrop-blur-md transition hover:bg-white/10"
-            >
-              Voir nos réalisations
-            </Link>
-          </div>
+              <img
+                src={bgImage}
+                alt=""
+                className="h-full w-full object-cover opacity-90"
+              />
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(18,77,90,0.0) 30%, rgba(10,45,54,0.55) 100%)",
+                }}
+              />
+            </div>
 
-          <div className="mt-8 flex items-center gap-6 font-body text-sm text-white/60">
-            <span className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" />
-              Sans engagement
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" />
-              Réponse sous 24-72h
-            </span>
+            {/* Floating mini-card top */}
+            <div
+              className="absolute -top-5 -left-4 hidden w-[200px] rounded-2xl border bg-brand-white p-4 shadow-[0_18px_45px_-15px_rgba(18,77,90,0.3)] md:block"
+              style={{ borderColor: "var(--grey-light)", transform: "rotate(-3deg)" }}
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+                Références
+              </p>
+              <div className="mt-1 font-heading text-3xl font-bold text-brand-blue">9+</div>
+              <div className="font-body text-xs text-brand-grey">vérifiables sur odoo.com</div>
+            </div>
+
+            {/* Floating mini-card bottom */}
+            <div
+              className="absolute -bottom-6 -right-4 hidden w-[220px] rounded-2xl border bg-brand-white p-4 shadow-[0_18px_45px_-15px_rgba(18,77,90,0.3)] md:block"
+              style={{ borderColor: "var(--grey-light)", transform: "rotate(2deg)" }}
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+                Tarifs
+              </p>
+              <div className="mt-1 font-heading text-3xl font-bold text-brand-blue">20-50%</div>
+              <div className="font-body text-xs text-brand-grey">
+                plus accessibles vs marché belge
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Stats card column */}
-        <div className="hidden lg:col-span-4 lg:flex lg:items-end">
-          <div className="grid w-full gap-3">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md">
-              <div className="font-heading text-4xl font-bold text-brand-gold">9+</div>
-              <div className="mt-1 font-body text-sm text-white/70">
-                Références publiques sur odoo.com/partners
-              </div>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md">
-              <div className="font-heading text-4xl font-bold text-brand-gold">20-50%</div>
-              <div className="mt-1 font-body text-sm text-white/70">
-                Plus accessible que les Success Packs marché belge
-              </div>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md">
-              <div className="font-heading text-4xl font-bold text-brand-gold">2020</div>
-              <div className="mt-1 font-body text-sm text-white/70">
-                Partenaire officiel Odoo certifié
-              </div>
-            </div>
-          </div>
+        {/* Trust pills row */}
+        <div className="mt-10 flex flex-wrap items-center gap-3 font-body text-sm text-brand-grey">
+          <span className="flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Sans engagement
+          </span>
+          <span className="flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Réponse sous 24-72h
+          </span>
+          <span className="flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Certifié Odoo 17+
+          </span>
         </div>
       </div>
     </section>
@@ -230,10 +304,10 @@ function SocialProof() {
   );
 }
 
-/* ------------------------------ Pillars ------------------------------ */
+/* ------------------------------ Pillars (Bento) ------------------------------ */
 function Pillars() {
   return (
-    <section className="container py-28">
+    <section className="container py-24 md:py-28">
       <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
           <div className="mb-4 inline-flex items-center gap-2">
@@ -245,8 +319,7 @@ function Pillars() {
           <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
             Structurer.
             <br />
-            Construire.{" "}
-            <span className="italic font-light text-brand-blue">Accélérer.</span>
+            Construire. <Mark>Accélérer.</Mark>
           </h2>
         </div>
         <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
@@ -255,18 +328,19 @@ function Pillars() {
         </p>
       </div>
 
-      <div className="mt-16 grid gap-5 lg:grid-cols-7">
-        {/* Main pillar — Odoo */}
+      {/* Bento 6-col */}
+      <div className="mt-16 grid gap-5 lg:grid-cols-6">
+        {/* Big ERP card — 4 cols, 2 rows */}
         <Link
           to="/odoo-crm-ventes"
-          className="group relative isolate flex min-h-[480px] flex-col justify-between overflow-hidden rounded-3xl p-10 lg:col-span-4"
+          className="group relative isolate flex min-h-[520px] flex-col justify-between overflow-hidden rounded-[28px] p-10 lg:col-span-4 lg:row-span-2"
           style={{ backgroundColor: "var(--blue)" }}
         >
           <img
             src={pillarErp}
             alt=""
             loading="lazy"
-            className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40 transition duration-700 group-hover:opacity-50 group-hover:scale-105"
+            className="absolute inset-0 -z-10 h-full w-full object-cover opacity-35 transition duration-700 group-hover:opacity-50 group-hover:scale-105"
           />
           <div
             className="absolute inset-0 -z-10"
@@ -280,9 +354,14 @@ function Pillars() {
             style={{ backgroundColor: "var(--gold)" }}
           />
 
+          {/* Sticker */}
+          <div className="absolute -top-3 right-6">
+            <Sticker rotate={8}>Pilier 01</Sticker>
+          </div>
+
           <div className="flex items-start justify-between">
             <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand-gold">
-              01 — Pilier central
+              Pilier central
             </p>
             <ArrowUpRight
               size={28}
@@ -309,66 +388,81 @@ function Pillars() {
               ))}
             </div>
           </div>
+
+          {/* Floating mini-card mockup */}
+          <div
+            className="absolute bottom-8 right-8 hidden w-[220px] rounded-2xl border bg-brand-white p-4 shadow-2xl lg:block"
+            style={{ borderColor: "var(--grey-light)", transform: "rotate(4deg)" }}
+          >
+            <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-brand-grey">
+              CRM · Pipeline
+            </p>
+            <div className="mt-2 space-y-1.5">
+              <div className="h-2 w-full rounded-full bg-brand-blue-light" />
+              <div className="h-2 w-3/4 rounded-full bg-brand-blue-light" />
+              <div className="h-2 w-1/2 rounded-full" style={{ backgroundColor: "var(--gold)" }} />
+            </div>
+            <div className="mt-3 font-heading text-xl font-bold text-brand-blue">+24%</div>
+          </div>
         </Link>
 
-        {/* Right column — 2 stacked */}
-        <div className="grid gap-5 lg:col-span-3">
-          <Link
-            to="/creation-web"
-            className="group relative isolate flex min-h-[230px] flex-col justify-between overflow-hidden rounded-3xl p-8"
-          >
-            <img
-              src={pillarWeb}
-              alt=""
-              loading="lazy"
-              className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+        {/* Web — 2 cols */}
+        <Link
+          to="/creation-web"
+          className="group relative isolate flex min-h-[250px] flex-col justify-between overflow-hidden rounded-[28px] p-7 lg:col-span-2"
+        >
+          <img
+            src={pillarWeb}
+            alt=""
+            loading="lazy"
+            className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black/85 via-brand-black/45 to-brand-black/20" />
+          <div className="flex items-start justify-between">
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand-gold">
+              02 — Web
+            </p>
+            <ArrowUpRight
+              size={22}
+              className="text-white/40 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand-gold"
             />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black/85 via-brand-black/45 to-brand-black/20" />
-            <div className="flex items-start justify-between">
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand-gold">
-                02 — Web
-              </p>
-              <ArrowUpRight
-                size={22}
-                className="text-white/40 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand-gold"
-              />
-            </div>
-            <div>
-              <h3 className="font-heading text-2xl font-bold text-white">Création & Refonte</h3>
-              <p className="mt-2 font-body text-sm text-white/75">
-                Sites vitrines et e-commerce taillés pour la conversion.
-              </p>
-            </div>
-          </Link>
+          </div>
+          <div>
+            <h3 className="font-heading text-2xl font-bold text-white">Création & Refonte</h3>
+            <p className="mt-2 font-body text-sm text-white/75">
+              Sites vitrines et e-commerce taillés pour la conversion.
+            </p>
+          </div>
+        </Link>
 
-          <Link
-            to="/marketing-digital"
-            className="group relative isolate flex min-h-[230px] flex-col justify-between overflow-hidden rounded-3xl p-8"
-          >
-            <img
-              src={pillarMarketing}
-              alt=""
-              loading="lazy"
-              className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+        {/* Marketing — 2 cols */}
+        <Link
+          to="/marketing-digital"
+          className="group relative isolate flex min-h-[250px] flex-col justify-between overflow-hidden rounded-[28px] p-7 lg:col-span-2"
+        >
+          <img
+            src={pillarMarketing}
+            alt=""
+            loading="lazy"
+            className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black/85 via-brand-black/45 to-brand-black/20" />
+          <div className="flex items-start justify-between">
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand-gold">
+              03 — Growth
+            </p>
+            <ArrowUpRight
+              size={22}
+              className="text-white/40 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand-gold"
             />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black/85 via-brand-black/45 to-brand-black/20" />
-            <div className="flex items-start justify-between">
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand-gold">
-                03 — Growth
-              </p>
-              <ArrowUpRight
-                size={22}
-                className="text-white/40 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand-gold"
-              />
-            </div>
-            <div>
-              <h3 className="font-heading text-2xl font-bold text-white">Marketing Digital</h3>
-              <p className="mt-2 font-body text-sm text-white/75">
-                Acquisition IA, SEO et campagnes ciblées.
-              </p>
-            </div>
-          </Link>
-        </div>
+          </div>
+          <div>
+            <h3 className="font-heading text-2xl font-bold text-white">Marketing Digital</h3>
+            <p className="mt-2 font-body text-sm text-white/75">
+              Acquisition IA, SEO et campagnes ciblées.
+            </p>
+          </div>
+        </Link>
       </div>
     </section>
   );
@@ -394,9 +488,18 @@ const sectorsMA = [
 
 function Sectors({ market }: { market: "BE" | "MA" }) {
   const items = market === "MA" ? sectorsMA : sectorsBE;
+  // Bento spans pattern (cycles every 6)
+  const spans = [
+    "lg:col-span-3 lg:row-span-2", // big
+    "lg:col-span-3",
+    "lg:col-span-2",
+    "lg:col-span-2",
+    "lg:col-span-2",
+    "lg:col-span-3",
+  ];
   return (
-    <section className="bg-brand-bg">
-      <div className="container py-28">
+    <section className="bg-brand-white">
+      <div className="container py-24 md:py-28">
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-4 inline-flex items-center gap-2">
             <span className="h-px w-8 bg-brand-blue" />
@@ -406,8 +509,7 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
             <span className="h-px w-8 bg-brand-blue" />
           </div>
           <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
-            Pensé pour <span className="italic font-light text-brand-blue">votre réalité</span>{" "}
-            terrain.
+            Pensé pour <Mark>votre réalité</Mark> terrain.
           </h2>
           <p className="mt-6 font-body text-base text-brand-grey md:text-lg">
             Chaque industrie a ses codes. Nos implémentations sont pré-configurées pour vos cas
@@ -415,11 +517,14 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid auto-rows-[210px] gap-5 sm:grid-cols-2 lg:grid-cols-6">
           {items.map((s, i) => {
             const isClickable = !!s.to;
+            const span = spans[i % spans.length];
             const Card = (
-              <div className="group relative isolate flex h-80 flex-col justify-end overflow-hidden rounded-2xl">
+              <div
+                className={`group relative isolate flex h-full flex-col justify-end overflow-hidden rounded-[24px] ${span}`}
+              >
                 <img
                   src={s.img}
                   alt={s.label}
@@ -429,18 +534,24 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
                 <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black via-brand-black/85 via-40% to-brand-black/30" />
 
                 <div className="absolute right-5 top-5">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/50">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/60">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
 
-                <div className="p-7" style={{ textShadow: "0 1px 12px rgba(0,0,0,0.55)" }}>
-                  <h3 className="font-heading text-2xl font-bold text-white">{s.label}</h3>
+                <div className="p-6" style={{ textShadow: "0 1px 12px rgba(0,0,0,0.55)" }}>
+                  <h3 className="font-heading text-xl font-bold text-white md:text-2xl">
+                    {s.label}
+                  </h3>
                   <p className="mt-1.5 font-body text-sm text-white/95">{s.desc}</p>
-                  <div className="mt-5">
+                  <div className="mt-4">
                     {isClickable ? (
                       <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-brand-gold">
-                        Découvrir <ArrowRight size={12} className="transition group-hover:translate-x-1" />
+                        Découvrir{" "}
+                        <ArrowRight
+                          size={12}
+                          className="transition group-hover:translate-x-1"
+                        />
                       </span>
                     ) : (
                       <span className="inline-block rounded-full border border-white/20 bg-white/5 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white/70 backdrop-blur-sm">
@@ -453,11 +564,13 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
             );
 
             return isClickable && s.to ? (
-              <Link key={s.label} to={s.to}>
+              <Link key={s.label} to={s.to} className={`${span} block h-full`}>
                 {Card}
               </Link>
             ) : (
-              <div key={s.label}>{Card}</div>
+              <div key={s.label} className={`${span} h-full`}>
+                {Card}
+              </div>
             );
           })}
         </div>
@@ -496,7 +609,7 @@ function CaseStudy({ market }: { market: "BE" | "MA" }) {
         };
 
   return (
-    <section className="container py-28">
+    <section className="container py-24 md:py-28">
       <div className="mb-12 flex items-end justify-between gap-6">
         <div>
           <div className="mb-4 inline-flex items-center gap-2">
@@ -506,7 +619,7 @@ function CaseStudy({ market }: { market: "BE" | "MA" }) {
             </p>
           </div>
           <h2 className="max-w-2xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-5xl">
-            Ce que nos clients ont obtenu.
+            Ce que nos clients ont <Mark>obtenu</Mark>.
           </h2>
         </div>
         <Link
@@ -517,34 +630,58 @@ function CaseStudy({ market }: { market: "BE" | "MA" }) {
         </Link>
       </div>
 
-      <div className="grid overflow-hidden rounded-3xl border border-brand-grey-light bg-brand-white shadow-[0_30px_80px_-30px_rgba(18,77,90,0.25)] lg:grid-cols-5">
-        {/* Left content */}
-        <div className="flex flex-col justify-between p-8 md:p-12 lg:col-span-2">
-          <div>
-            <span className="inline-block rounded-full bg-brand-blue-light px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
-              {data.tag}
-            </span>
-            <h3 className="mt-6 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-              {data.name}
-            </h3>
-            <p className="mt-6 font-body text-lg italic leading-relaxed text-brand-grey">
-              "{data.quote}"
-            </p>
-          </div>
-
-          <div className="mt-12 grid grid-cols-3 gap-4">
-            {data.metrics.map((m) => (
-              <div key={m.v} className="border-l-2 border-brand-gold pl-4">
-                <div className="font-heading text-3xl font-bold text-brand-blue">{m.k}</div>
-                <div className="mt-1 font-body text-xs text-brand-grey">{m.v}</div>
-              </div>
-            ))}
+      <div className="grid gap-5 lg:grid-cols-5">
+        {/* Image card with rounded photo overlay */}
+        <div className="relative lg:col-span-3">
+          <div
+            className="relative h-full min-h-[420px] overflow-hidden rounded-[28px] border shadow-[0_30px_80px_-30px_rgba(18,77,90,0.3)]"
+            style={{ borderColor: "var(--grey-light)" }}
+          >
+            <img
+              src={data.img}
+              alt={data.name}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute left-6 top-6">
+              <Sticker rotate={-6}>Référence vérifiée</Sticker>
+            </div>
           </div>
         </div>
 
-        {/* Right image */}
-        <div className="relative min-h-[340px] lg:col-span-3 lg:min-h-full">
-          <img src={data.img} alt={data.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+        {/* Content card */}
+        <div className="relative lg:col-span-2">
+          <div
+            className="flex h-full flex-col justify-between rounded-[28px] border bg-brand-white p-8 shadow-[0_30px_80px_-30px_rgba(18,77,90,0.2)] md:p-10"
+            style={{ borderColor: "var(--grey-light)" }}
+          >
+            <div>
+              <span className="inline-block rounded-full bg-brand-blue-light px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
+                {data.tag}
+              </span>
+              <h3 className="mt-6 font-heading text-3xl font-bold text-brand-black md:text-4xl">
+                {data.name}
+              </h3>
+              <p className="mt-6 font-body text-lg italic leading-relaxed text-brand-grey">
+                "{data.quote}"
+              </p>
+            </div>
+
+            <div className="mt-10 grid grid-cols-3 gap-4">
+              {data.metrics.map((m) => (
+                <div
+                  key={m.v}
+                  className="rounded-2xl border bg-brand-bg p-4"
+                  style={{ borderColor: "var(--grey-light)" }}
+                >
+                  <div className="font-heading text-2xl font-bold text-brand-blue md:text-3xl">
+                    {m.k}
+                  </div>
+                  <div className="mt-1 font-body text-xs text-brand-grey">{m.v}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -577,8 +714,8 @@ function Why() {
   ];
 
   return (
-    <section className="bg-brand-white">
-      <div className="container py-28">
+    <section className="bg-brand-bg">
+      <div className="container py-24 md:py-28">
         <div className="mx-auto max-w-2xl text-center">
           <div className="mb-4 inline-flex items-center gap-2">
             <span className="h-px w-8 bg-brand-blue" />
@@ -588,8 +725,7 @@ function Why() {
             <span className="h-px w-8 bg-brand-blue" />
           </div>
           <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
-            La confiance se{" "}
-            <span className="italic font-light text-brand-blue">vérifie</span>.
+            La confiance se <Mark>vérifie</Mark>.
           </h2>
         </div>
 
@@ -597,18 +733,19 @@ function Why() {
           {items.map(({ icon: Icon, title, desc }, i) => (
             <div
               key={title}
-              className="group relative overflow-hidden rounded-2xl border border-brand-grey-light bg-brand-bg p-7 transition hover:-translate-y-1 hover:border-brand-blue hover:shadow-[0_20px_50px_-15px_rgba(18,77,90,0.25)]"
+              className="group relative overflow-hidden rounded-[24px] border bg-brand-white p-7 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.25)]"
+              style={{ borderColor: "var(--grey-light)" }}
             >
-              <div className="flex items-start justify-between">
-                <div
-                  className="flex h-12 w-12 items-center justify-center rounded-xl transition group-hover:scale-110"
-                  style={{ backgroundColor: "var(--blue-light)" }}
-                >
-                  <Icon size={22} className="text-brand-blue" />
-                </div>
-                <span className="font-mono text-[10px] tracking-widest text-brand-grey">
-                  0{i + 1}
-                </span>
+              {/* Sticker number */}
+              <div className="absolute -top-3 -right-3">
+                <Sticker rotate={i % 2 === 0 ? -8 : 6}>0{i + 1}</Sticker>
+              </div>
+
+              <div
+                className="flex h-12 w-12 items-center justify-center rounded-2xl transition group-hover:scale-110"
+                style={{ backgroundColor: "var(--blue-light)" }}
+              >
+                <Icon size={22} className="text-brand-blue" />
               </div>
               <h3 className="mt-6 font-heading text-lg font-bold leading-snug text-brand-black">
                 {title}
@@ -625,64 +762,62 @@ function Why() {
 /* ------------------------------ Final CTA ------------------------------ */
 function FinalCTA() {
   return (
-    <section className="relative isolate overflow-hidden" style={{ backgroundColor: "var(--blue)" }}>
-      <img
-        src={ctaBg}
-        alt=""
-        loading="lazy"
-        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
-      />
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(18,77,90,0.92) 0%, rgba(10,45,54,0.95) 100%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute -top-32 right-1/4 h-96 w-96 rounded-full opacity-20 blur-3xl"
-        style={{ backgroundColor: "var(--gold)" }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.4) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-        }}
-      />
-
-      <div className="container relative py-28 text-center">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 backdrop-blur-md">
-          <Sparkles size={14} className="text-brand-gold" />
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/85">
-            Prêt à démarrer ?
-          </p>
-        </div>
-
-        <h2 className="mx-auto max-w-3xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
-          Structurez votre entreprise{" "}
-          <span className="italic font-light text-brand-gold">avec Odoo.</span>
-        </h2>
-        <p className="mx-auto mt-6 max-w-xl font-body text-base text-white/75 md:text-lg">
-          Consultant dédié · Démo sur mesure · Sans engagement
-        </p>
-
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-          <Link
-            to="/contact"
-            className="group inline-flex items-center gap-2 rounded-full px-8 py-4 font-body text-base font-bold text-brand-black shadow-[0_20px_60px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+    <section className="bg-brand-bg">
+      <div className="container py-20">
+        <div
+          className="relative isolate overflow-hidden rounded-[32px] p-10 md:p-16"
+          style={{ backgroundColor: "var(--blue)" }}
+        >
+          <div
+            className="pointer-events-none absolute -top-32 right-1/4 h-96 w-96 rounded-full opacity-25 blur-3xl"
             style={{ backgroundColor: "var(--gold)" }}
-          >
-            Réserver ma démo
-            <ArrowRight size={18} className="transition group-hover:translate-x-1" />
-          </Link>
-          <Link
-            to="/realisations"
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-4 font-body text-sm font-medium text-white backdrop-blur-md transition hover:bg-white/10"
-          >
-            Voir nos réalisations <ArrowRight size={16} />
-          </Link>
+          />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.08]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.4) 1px, transparent 1px)",
+              backgroundSize: "48px 48px",
+            }}
+          />
+
+          {/* Sticker */}
+          <div className="absolute right-8 top-8 hidden md:block">
+            <Sticker rotate={10}>★ Démo gratuite</Sticker>
+          </div>
+
+          <div className="relative text-center">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 backdrop-blur-md">
+              <Sparkles size={14} className="text-brand-gold" />
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/85">
+                Prêt à démarrer ?
+              </p>
+            </div>
+
+            <h2 className="mx-auto max-w-3xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
+              Structurez votre entreprise <Mark>avec Odoo.</Mark>
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl font-body text-base text-white/75 md:text-lg">
+              Consultant dédié · Démo sur mesure · Sans engagement
+            </p>
+
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-2 rounded-full px-8 py-4 font-body text-base font-bold text-brand-black shadow-[0_20px_60px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+                style={{ backgroundColor: "var(--gold)" }}
+              >
+                Réserver ma démo
+                <ArrowRight size={18} className="transition group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/realisations"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-4 font-body text-sm font-medium text-white backdrop-blur-md transition hover:bg-white/10"
+              >
+                Voir nos réalisations <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
