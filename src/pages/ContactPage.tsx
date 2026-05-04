@@ -292,47 +292,114 @@ export default function ContactPage() {
       </section>
 
       {/* OFFICES */}
-      <section className="bg-background py-20">
+      <section className="py-24" style={{ backgroundColor: "var(--bg)" }}>
         <div className="container">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-            Nos coordonnées
-          </p>
-          <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-            Trois bureaux, un seul interlocuteur dédié
-          </h2>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+              <span className="inline-block h-px w-8 bg-brand-blue" />
+              Nos coordonnées
+            </p>
+            <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]">
+              Trois bureaux, un interlocuteur dédié
+            </h2>
+          </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {offices.map((o) => (
-              <article
-                key={o.country}
-                className="rounded-2xl border border-border bg-card p-7 shadow-sm"
-              >
-                <h3 className="font-heading text-xl font-bold text-brand-black">{o.country}</h3>
-                <ul className="mt-5 space-y-3 font-body text-sm text-brand-grey">
-                  {o.address !== "—" && (
-                    <li className="flex gap-3">
-                      <MapPin size={16} className="mt-0.5 shrink-0 text-brand-blue" />
-                      <span>{o.address}</span>
-                    </li>
-                  )}
-                  <li className="flex gap-3">
-                    <Phone size={16} className="mt-0.5 shrink-0 text-brand-blue" />
-                    <a
-                      href={`tel:${o.phone.replace(/\s/g, "")}`}
-                      className="hover:text-brand-black"
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
+            {offices.map((o, i) => {
+              const variants = [
+                {
+                  bg: "var(--blue)",
+                  text: "white",
+                  desc: "rgba(255,255,255,0.78)",
+                  iconBg: "var(--gold)",
+                  iconColor: "var(--blue)",
+                  glow: "var(--gold)",
+                  border: "transparent",
+                  link: "white",
+                },
+                {
+                  bg: "white",
+                  text: "var(--black)",
+                  desc: "var(--grey)",
+                  iconBg: "var(--blue)",
+                  iconColor: "var(--gold)",
+                  glow: "var(--gold)",
+                  border: "var(--grey-light)",
+                  link: "var(--blue)",
+                },
+                {
+                  bg: "var(--blue-light)",
+                  text: "var(--blue)",
+                  desc: "rgba(18,77,90,0.75)",
+                  iconBg: "var(--blue)",
+                  iconColor: "var(--gold)",
+                  glow: "var(--gold)",
+                  border: "transparent",
+                  link: "var(--blue)",
+                },
+              ];
+              const s = variants[i % variants.length];
+              return (
+                <article
+                  key={o.country}
+                  className="group relative overflow-hidden rounded-[28px] border p-8 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.28)]"
+                  style={{ backgroundColor: s.bg, borderColor: s.border }}
+                >
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-25 blur-3xl"
+                    style={{ backgroundColor: s.glow }}
+                  />
+                  <div className="relative flex flex-col gap-6">
+                    <div className="flex items-center justify-between">
+                      <h3
+                        className="font-heading text-2xl font-bold leading-[1.1]"
+                        style={{ color: s.text }}
+                      >
+                        {o.country}
+                      </h3>
+                      <div
+                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl shadow-[0_10px_30px_-12px_rgba(0,0,0,0.25)]"
+                        style={{ backgroundColor: s.iconBg, color: s.iconColor }}
+                      >
+                        <MapPin size={18} />
+                      </div>
+                    </div>
+                    <ul
+                      className="space-y-3 font-body text-sm"
+                      style={{ color: s.desc }}
                     >
-                      {o.phone}
-                    </a>
-                  </li>
-                  <li className="flex gap-3">
-                    <Mail size={16} className="mt-0.5 shrink-0 text-brand-blue" />
-                    <a href={`mailto:${o.email}`} className="hover:text-brand-black">
-                      {o.email}
-                    </a>
-                  </li>
-                </ul>
-              </article>
-            ))}
+                      {o.address !== "—" && (
+                        <li className="flex gap-3">
+                          <MapPin size={15} className="mt-0.5 shrink-0" style={{ color: s.link }} />
+                          <span>{o.address}</span>
+                        </li>
+                      )}
+                      <li className="flex gap-3">
+                        <Phone size={15} className="mt-0.5 shrink-0" style={{ color: s.link }} />
+                        <a
+                          href={`tel:${o.phone.replace(/\s/g, "")}`}
+                          className="transition hover:opacity-80"
+                          style={{ color: s.text }}
+                        >
+                          {o.phone}
+                        </a>
+                      </li>
+                      <li className="flex gap-3">
+                        <Mail size={15} className="mt-0.5 shrink-0" style={{ color: s.link }} />
+                        <a
+                          href={`mailto:${o.email}`}
+                          className="transition hover:opacity-80"
+                          style={{ color: s.text }}
+                        >
+                          {o.email}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
