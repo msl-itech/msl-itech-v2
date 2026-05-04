@@ -82,7 +82,7 @@ const odooCases = [
 const webProjects = [
   { url: "odoo-finances.pro", label: "Odoo Finances", tag: "Showcase ERP" },
   { url: "mfinances.be", label: "M-Finances", tag: "Cabinet conseil" },
-  { url: "msales-strategy.com", label: "M-Sales Strategy", tag: "Stratégie B2B" },
+  { url: "msales.ma", label: "M-Sales Strategy", tag: "Stratégie B2B" },
   { url: "novatrait.com", label: "Novatrait", tag: "Industrie & Services" },
 ];
 
