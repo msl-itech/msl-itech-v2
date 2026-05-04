@@ -25,6 +25,7 @@ import ContactPage from "./pages/ContactPage";
 import ConsultantBePage from "./pages/ConsultantBePage";
 import TarifBePage from "./pages/TarifBePage";
 import BlogPage from "./pages/BlogPage";
+import BlogIndexPage from "./pages/BlogIndexPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -57,6 +58,7 @@ const App = () => (
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/consultant-odoo-belgique" element={<ConsultantBePage />} />
             <Route path="/tarif-odoo-belgique" element={<TarifBePage />} />
+            <Route path="/blog" element={<BlogIndexPage />} />
             <Route path="/blog/:slug" element={<BlogPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
