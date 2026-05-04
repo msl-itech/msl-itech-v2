@@ -199,6 +199,32 @@ export function useGsapReveal<T extends HTMLElement>(
       });
 
       ScrollTrigger.refresh();
+
+      // Filet de sécurité : si après 3s un élément data-anim est encore opacity 0
+      // (déclencheur jamais activé, élément hors flux de scroll, etc.), on le
+      // rend visible. Mieux vaut pas d'anim que du texte invisible.
+      const safetyTimer = window.setTimeout(() => {
+        scope
+          .querySelectorAll<HTMLElement>(
+            '[data-anim="fade"], [data-anim="fade-up"], [data-anim="reveal-img"]',
+          )
+          .forEach((el) => {
+            const cs = window.getComputedStyle(el);
+            if (parseFloat(cs.opacity) < 0.05) {
+              gsap.set(el, { opacity: 1, y: 0, clearProps: "filter,clip-path,scale" });
+            }
+          });
+        scope.querySelectorAll<HTMLElement>('[data-anim="stagger"]').forEach((el) => {
+          Array.from(el.children).forEach((c) => {
+            const cs = window.getComputedStyle(c as HTMLElement);
+            if (parseFloat(cs.opacity) < 0.05) {
+              gsap.set(c, { opacity: 1, y: 0 });
+            }
+          });
+        });
+      }, 3000);
+
+      return () => window.clearTimeout(safetyTimer);
     }, scope);
 
     return () => ctx.revert();
