@@ -1,7 +1,7 @@
 import { Warehouse, RefreshCw, Receipt, ScanLine } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import stockMarocHero from "@/assets/stock-maroc-hero.jpg";
+import stockMarocHero from "@/assets/stock-maroc-hero.webp";
 
 const features = [
   {

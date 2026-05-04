@@ -3,25 +3,25 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Clock, Globe2, ShieldCheck, Sparkles, Wallet } from "lucide-react";
 import { useMarket } from "@/hooks/useMarket";
 
-import heroBeImg from "@/assets/hero-be.jpg";
-import heroMaImg from "@/assets/hero-ma.jpg";
-import pillarErp from "@/assets/home/pillar-erp.jpg";
-import pillarWeb from "@/assets/home/pillar-web.jpg";
-import pillarMarketing from "@/assets/home/pillar-marketing.jpg";
-import sectorServices from "@/assets/home/sector-services.jpg";
-import sectorEngineering from "@/assets/home/sector-engineering.jpg";
-import sectorB2b from "@/assets/home/sector-b2b.jpg";
-import sectorHr from "@/assets/home/sector-hr.jpg";
-import sectorScaleup from "@/assets/home/sector-scaleup.jpg";
-import sectorHoreca from "@/assets/home/sector-horeca.jpg";
-import sectorBtp from "@/assets/home/sector-btp.jpg";
-import sectorHealth from "@/assets/home/sector-health.jpg";
-import sectorWholesale from "@/assets/home/sector-wholesale.jpg";
-import sectorLogistics from "@/assets/home/sector-logistics.jpg";
-import sectorFood from "@/assets/home/sector-food.jpg";
-import caseBe from "@/assets/home/case-be.jpg";
-import caseMa from "@/assets/home/case-ma.jpg";
-import ctaBg from "@/assets/home/cta-bg.jpg";
+import heroBeImg from "@/assets/hero-be.webp";
+import heroMaImg from "@/assets/hero-ma.webp";
+import pillarErp from "@/assets/home/pillar-erp.webp";
+import pillarWeb from "@/assets/home/pillar-web.webp";
+import pillarMarketing from "@/assets/home/pillar-marketing.webp";
+import sectorServices from "@/assets/home/sector-services.webp";
+import sectorEngineering from "@/assets/home/sector-engineering.webp";
+import sectorB2b from "@/assets/home/sector-b2b.webp";
+import sectorHr from "@/assets/home/sector-hr.webp";
+import sectorScaleup from "@/assets/home/sector-scaleup.webp";
+import sectorHoreca from "@/assets/home/sector-horeca.webp";
+import sectorBtp from "@/assets/home/sector-btp.webp";
+import sectorHealth from "@/assets/home/sector-health.webp";
+import sectorWholesale from "@/assets/home/sector-wholesale.webp";
+import sectorLogistics from "@/assets/home/sector-logistics.webp";
+import sectorFood from "@/assets/home/sector-food.webp";
+import caseBe from "@/assets/home/case-be.webp";
+import caseMa from "@/assets/home/case-ma.webp";
+import ctaBg from "@/assets/home/cta-bg.webp";
 
 /* ------------------------------ SEO ------------------------------ */
 function useSeo(market: "BE" | "MA") {

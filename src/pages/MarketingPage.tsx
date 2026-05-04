@@ -1,7 +1,7 @@
 import { Search, Sparkles, Megaphone } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import marketingHero from "@/assets/marketing-hero.jpg";
+import marketingHero from "@/assets/marketing-hero.webp";
 
 const features = [
   {

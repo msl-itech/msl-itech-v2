@@ -1,7 +1,7 @@
 import { Code2, Globe, Rocket } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import webHero from "@/assets/web-hero.jpg";
+import webHero from "@/assets/web-hero.webp";
 
 const features = [
   {

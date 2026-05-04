@@ -1,7 +1,7 @@
 import { Kanban, Timer, CalendarRange, LifeBuoy } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import servicesHero from "@/assets/services-hero.jpg";
+import servicesHero from "@/assets/services-hero.webp";
 
 const features = [
   {
