@@ -564,74 +564,166 @@ const sectorsMA = [
 
 function Sectors({ market }: { market: "BE" | "MA" }) {
   const items = market === "MA" ? sectorsMA : sectorsBE;
-  // Bento spans pattern (cycles every 6)
-  const spans = [
-    "lg:col-span-3 lg:row-span-2", // big
-    "lg:col-span-3",
-    "lg:col-span-2",
-    "lg:col-span-2",
-    "lg:col-span-2",
-    "lg:col-span-3",
+  // Bento bien équilibré : 1 vedette 4x2 + 5 cartes secondaires
+  // Grille 6 col / lignes 240px. 1ère carte = focus, autres = standard.
+  const layout = [
+    "lg:col-span-4 lg:row-span-2", // vedette grand format
+    "lg:col-span-2 lg:row-span-1",
+    "lg:col-span-2 lg:row-span-1",
+    "lg:col-span-2 lg:row-span-1",
+    "lg:col-span-3 lg:row-span-1",
+    "lg:col-span-3 lg:row-span-1",
   ];
   return (
-    <section className="bg-brand-white">
+    <section className="relative overflow-hidden bg-brand-white">
+      {/* Décor de fond éditorial */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "radial-gradient(var(--blue) 1px, transparent 1px)",
+          backgroundSize: "26px 26px",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-40 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
+        style={{ backgroundColor: "var(--blue-light)" }}
+      />
       <div className="container py-24 md:py-28">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-4 inline-flex items-center gap-2">
-            <span className="h-px w-8 bg-brand-blue" />
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-              Secteurs
-            </p>
-            <span className="h-px w-8 bg-brand-blue" />
+        {/* Header éditorial sur 2 colonnes */}
+        <div className="relative grid items-end gap-8 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <div className="mb-4 inline-flex items-center gap-2">
+              <span className="h-px w-8 bg-brand-blue" />
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+                Secteurs · {items.length} expertises
+              </p>
+            </div>
+            <h2 className="font-heading text-4xl font-bold leading-[1.02] tracking-tight text-brand-black md:text-6xl lg:text-[68px]">
+              Pensé pour <Mark>votre réalité</Mark> terrain.
+            </h2>
           </div>
-          <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
-            Pensé pour <Mark>votre réalité</Mark> terrain.
-          </h2>
-          <p className="mt-6 font-body text-base text-brand-grey md:text-lg">
-            Chaque industrie a ses codes. Nos implémentations sont pré-configurées pour vos cas
-            d'usage spécifiques.
-          </p>
+          <div className="lg:col-span-5">
+            <p className="font-body text-base text-brand-grey md:text-lg">
+              Chaque industrie a ses codes. Nos implémentations Odoo sont pré-configurées pour vos
+              cas d'usage spécifiques — pas de gabarit générique.
+            </p>
+            <Link
+              to="/realisations"
+              className="group mt-5 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue"
+            >
+              <span className="relative">
+                Voir toutes nos réalisations
+                <span
+                  aria-hidden
+                  className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-100 transition-transform duration-500 group-hover:scale-x-0"
+                  style={{ backgroundColor: "var(--blue)" }}
+                />
+              </span>
+              <ArrowUpRight
+                size={14}
+                className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </Link>
+          </div>
         </div>
 
-        <div className="mt-16 grid auto-rows-[210px] gap-5 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="relative mt-14 grid auto-rows-[230px] gap-4 sm:grid-cols-2 lg:grid-cols-6 md:gap-5">
           {items.map((s, i) => {
             const isClickable = !!s.to;
-            const span = spans[i % spans.length];
+            const span = layout[i % layout.length];
+            const isFeature = i === 0;
             const Card = (
               <div
-                className={`group relative isolate flex h-full flex-col justify-end overflow-hidden rounded-[24px] ${span}`}
+                className="group relative isolate flex h-full flex-col justify-end overflow-hidden rounded-[28px] ring-1 ring-black/5 shadow-[0_18px_45px_-22px_rgba(13,13,13,0.4)] transition-shadow duration-500 hover:shadow-[0_30px_70px_-25px_rgba(18,77,90,0.55)]"
               >
                 <img
                   src={s.img}
                   alt={s.label}
                   loading="lazy"
-                  className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                  className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.08]"
                 />
-                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black via-brand-black/85 via-40% to-brand-black/30" />
+                {/* Voile sombre + halo doré au hover */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black via-brand-black/80 via-45% to-brand-black/20"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  style={{
+                    background:
+                      "radial-gradient(420px 220px at 50% 100%, rgba(255,221,87,0.35), transparent 70%)",
+                  }}
+                />
 
-                <div className="absolute right-5 top-5">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/60">
-                    {String(i + 1).padStart(2, "0")}
+                {/* Top bar : compteur + status */}
+                <div className="absolute inset-x-5 top-5 flex items-start justify-between gap-3">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-white/85 backdrop-blur-md">
+                    <span
+                      aria-hidden
+                      className="inline-block h-1.5 w-1.5 rounded-full"
+                      style={{ backgroundColor: isClickable ? "var(--gold)" : "rgba(255,255,255,0.5)" }}
+                    />
+                    {String(i + 1).padStart(2, "0")} · {isClickable ? "Disponible" : "Bientôt"}
                   </span>
+                  {isFeature && (
+                    <span
+                      className="rounded-full px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.22em] shadow-[0_8px_20px_-6px_rgba(255,221,87,0.55)]"
+                      style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
+                    >
+                      ★ Expertise phare
+                    </span>
+                  )}
                 </div>
 
-                <div className="p-6" style={{ textShadow: "0 1px 12px rgba(0,0,0,0.55)" }}>
-                  <h3 className="font-heading text-xl font-bold text-white md:text-2xl">
+                {/* Trait doré qui s'étend au hover */}
+                <div
+                  aria-hidden
+                  className="absolute bottom-0 left-0 h-[3px] w-12 origin-left transition-all duration-500 group-hover:w-full"
+                  style={{ backgroundColor: "var(--gold)" }}
+                />
+
+                <div
+                  className="relative p-5 md:p-6"
+                  style={{ textShadow: "0 1px 14px rgba(0,0,0,0.6)" }}
+                >
+                  <h3
+                    className={`font-heading font-bold text-white ${
+                      isFeature ? "text-2xl md:text-[34px] leading-[1.05]" : "text-xl md:text-[22px]"
+                    }`}
+                  >
                     {s.label}
                   </h3>
-                  <p className="mt-1.5 font-body text-sm text-white/95">{s.desc}</p>
-                  <div className="mt-4">
+                  <p
+                    className={`mt-1.5 font-body text-white/95 ${
+                      isFeature ? "text-base md:text-lg max-w-md" : "text-sm"
+                    }`}
+                  >
+                    {s.desc}
+                  </p>
+                  <div className="mt-4 flex items-center justify-between gap-3">
                     {isClickable ? (
-                      <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-brand-gold">
-                        Découvrir{" "}
+                      <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-gold">
+                        Découvrir
                         <ArrowRight
                           size={12}
-                          className="transition group-hover:translate-x-1"
+                          className="transition duration-500 group-hover:translate-x-1.5"
                         />
                       </span>
                     ) : (
-                      <span className="inline-block rounded-full border border-white/20 bg-white/5 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white/70 backdrop-blur-sm">
-                        Bientôt disponible
+                      <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-white/70">
+                        En préparation
+                      </span>
+                    )}
+                    {isClickable && (
+                      <span
+                        className="flex h-9 w-9 items-center justify-center rounded-full opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100 translate-x-2"
+                        style={{ backgroundColor: "var(--gold)" }}
+                      >
+                        <ArrowUpRight size={16} style={{ color: "var(--blue)" }} />
                       </span>
                     )}
                   </div>
@@ -640,7 +732,7 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
             );
 
             return isClickable && s.to ? (
-              <Link key={s.label} to={s.to} className={`${span} block h-full`}>
+              <Link key={s.label} to={s.to} className={`${span} block h-full`} aria-label={`Découvrir ${s.label}`}>
                 {Card}
               </Link>
             ) : (
@@ -649,6 +741,24 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
               </div>
             );
           })}
+        </div>
+
+        {/* Bandeau bas : appel à action discret */}
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl border bg-brand-bg px-6 py-5"
+          style={{ borderColor: "var(--grey-light)" }}
+        >
+          <p className="font-body text-sm text-brand-grey">
+            Vous ne voyez pas votre secteur ? Nos consultants ont déployé Odoo sur{" "}
+            <span className="font-semibold text-brand-black">+30 verticaux métier</span>.
+          </p>
+          <Link
+            to="/contact"
+            className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-semibold text-brand-black transition hover:scale-[1.02]"
+            style={{ backgroundColor: "var(--gold)" }}
+          >
+            Parler à un expert
+            <ArrowRight size={14} className="transition group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>
