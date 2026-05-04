@@ -7,17 +7,17 @@ type Tag = { label: string; ty: number; r: number; accent?: boolean };
 // Les tags impairs (bleus) sont en haut, les pairs (jaunes) sont décalés vers le bas.
 const defaultTags: Tag[] = [
   { label: "Odoo ERP", ty: -18, r: -8, accent: false },
-  { label: "CRM", ty: 4, r: 4, accent: true },
-  { label: "Wireframe", ty: -22, r: -3, accent: false },
-  { label: "Comptabilité", ty: 2, r: 6, accent: true },
-  { label: "Site React", ty: -20, r: -5, accent: false },
-  { label: "Stock", ty: 4, r: 3, accent: true },
-  { label: "WordPress", ty: -22, r: -6, accent: false },
-  { label: "RH & Paie", ty: 2, r: 5, accent: true },
+  { label: "CRM", ty: 18, r: 4, accent: true },
+  { label: "Wireframe", ty: -20, r: -3, accent: false },
+  { label: "Comptabilité", ty: 17, r: 6, accent: true },
+  { label: "Site React", ty: -18, r: -5, accent: false },
+  { label: "Stock", ty: 18, r: 3, accent: true },
+  { label: "WordPress", ty: -20, r: -6, accent: false },
+  { label: "RH & Paie", ty: 17, r: 5, accent: true },
   { label: "Dashboard", ty: -18, r: -4, accent: false },
-  { label: "SEO", ty: 4, r: 7, accent: true },
-  { label: "Production", ty: -22, r: -2, accent: false },
-  { label: "Conseil", ty: 2, r: 6, accent: true },
+  { label: "SEO", ty: 18, r: 7, accent: true },
+  { label: "Production", ty: -20, r: -2, accent: false },
+  { label: "Conseil", ty: 17, r: 6, accent: true },
 ];
 
 const defaultMarquee = [
@@ -111,8 +111,8 @@ export const ProjectCTA = ({
           </div>
 
           {/* Tags en zigzag sur une seule ligne, chevauchent la bordure */}
-          <div className="relative z-30 hidden w-full overflow-hidden md:block">
-            <div className="flex w-full flex-nowrap items-center justify-center gap-2 px-4 lg:gap-3">
+          <div className="relative z-30 -mb-5 hidden h-20 w-full overflow-visible md:block">
+            <div className="absolute inset-x-0 top-3 flex flex-nowrap items-start justify-center gap-2 px-3 lg:gap-3">
               {tags.map((t, idx) => (
                 <span
                   key={`${t.label}-${idx}`}
@@ -150,7 +150,7 @@ export const ProjectCTA = ({
 
       {/* Bandeau marquee */}
       <div
-        className="relative z-10 -mt-4 overflow-hidden border-t py-5 md:-mt-6"
+        className="relative z-10 overflow-hidden border-t py-5"
         style={{ borderColor: "rgba(255,255,255,0.15)", backgroundColor: "var(--black)" }}
       >
         <div className="marquee-cta flex w-max items-center gap-10 whitespace-nowrap">
