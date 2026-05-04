@@ -1,12 +1,66 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Building2, Home, Globe, ExternalLink, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Sparkles,
+  Building2,
+  Home,
+  Globe,
+  ExternalLink,
+  CheckCircle2,
+  Star,
+} from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import caseBe from "@/assets/home/case-be.webp";
+import caseMa from "@/assets/home/case-ma.webp";
+import pillarWeb from "@/assets/home/pillar-web.webp";
+import ctaBg from "@/assets/home/cta-bg.webp";
+
+/* ---------------- Highlight (marker brushstroke) ---------------- */
+function Mark({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="relative inline-block">
+      <span
+        aria-hidden
+        className="absolute inset-x-[-4px] bottom-[6%] -z-0 h-[42%] -rotate-[1.5deg] rounded-[6px]"
+        style={{ backgroundColor: "var(--gold)", filter: "blur(0.3px)" }}
+      />
+      <span className="relative z-10">{children}</span>
+    </span>
+  );
+}
+
+/* ---------------- Sticker ---------------- */
+function Sticker({
+  children,
+  rotate = -6,
+  className = "",
+}: {
+  children: React.ReactNode;
+  rotate?: number;
+  className?: string;
+}) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-2xl border-2 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] ${className}`}
+      style={{
+        backgroundColor: "var(--gold)",
+        borderColor: "var(--blue)",
+        color: "var(--blue)",
+        transform: `rotate(${rotate}deg)`,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
 
 const odooCases = [
   {
     icon: Building2,
     name: "AIT OUKHALI TRAVAUX",
     sector: "BTP & Marchés Publics — Maroc",
+    image: caseMa,
     context:
       "Centralisation des données commerciales, CRM marchés publics, gestion du flux commercial et automatisation des projets, facturation et RH.",
     modules: ["CRM & appels d'offres", "Gestion de projet & Construction", "Facturation", "RH"],
@@ -16,6 +70,7 @@ const odooCases = [
     icon: Home,
     name: "AIS HECTOR DENIS",
     sector: "Agence Immobilière Sociale — Belgique",
+    image: caseBe,
     context:
       "Agence immobilière sociale à but non lucratif basée à Evere, gestion de plus de 1.000 logements locatifs en Région Bruxelloise.",
     modules: ["Site web WordPress professionnel"],
@@ -25,10 +80,10 @@ const odooCases = [
 ];
 
 const webProjects = [
-  "odoo-finances.pro",
-  "mfinances.be",
-  "msales-strategy.com",
-  "novatrait.com",
+  { url: "odoo-finances.pro", label: "Odoo Finances", tag: "Showcase ERP" },
+  { url: "mfinances.be", label: "M-Finances", tag: "Cabinet conseil" },
+  { url: "msales-strategy.com", label: "M-Sales Strategy", tag: "Stratégie B2B" },
+  { url: "novatrait.com", label: "Novatrait", tag: "Industrie & Services" },
 ];
 
 export default function RealisationsPage() {
@@ -41,106 +96,194 @@ export default function RealisationsPage() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: "#0F3F4A" }}>
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(900px 500px at 90% 0%, rgba(255,221,87,0.18), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(255,255,255,0.08), transparent 60%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage: "radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)",
-            backgroundSize: "22px 22px",
-          }}
-        />
-        <div className="container relative py-20 lg:py-28 text-white">
-          <p
-            className="mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em]"
-            style={{
-              backgroundColor: "rgba(255,221,87,0.14)",
-              color: "var(--gold)",
-              border: "1px solid rgba(255,221,87,0.35)",
-            }}
-          >
-            <Sparkles size={12} /> Réalisations · MSL-iTECH
-          </p>
-          <h1 className="max-w-4xl font-heading text-4xl font-bold leading-[1.08] md:text-5xl lg:text-[3.25rem]">
-            Ce que nous avons livré — et nos références{" "}
-            <span style={{ color: "var(--gold)" }}>vérifiables publiquement</span>
-          </h1>
-          <p className="mt-6 max-w-2xl font-body text-lg text-white/80">
-            Les meilleures preuves de notre expertise viennent de nos clients, de nos projets
-            documentés et de notre fiche partenaire officielle Odoo, où certaines références sont
-            directement consultables et vérifiables.
-          </p>
+      {/* HERO — image overlay (style /odoo-erp) */}
+      <section className="bg-brand-bg pt-6 md:pt-8">
+        <div className="container">
+          <div className="relative isolate rounded-[28px] md:rounded-[36px]">
+            <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
+              <img
+                src={pillarWeb}
+                alt="Réalisations MSL-iTECH"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(10,30,38,0.55) 0%, rgba(10,30,38,0.7) 55%, rgba(10,30,38,0.88) 100%)",
+                }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-32 -left-20 h-96 w-96 rounded-full opacity-25 blur-3xl"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -bottom-40 -right-24 h-[28rem] w-[28rem] rounded-full opacity-20 blur-3xl"
+                style={{ backgroundColor: "var(--blue)" }}
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 opacity-[0.08]"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }}
+              />
+            </div>
+
+            <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
+              <Sticker rotate={-8}>★ Références vérifiables</Sticker>
+            </div>
+
+            <div className="relative flex min-h-[420px] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[520px] md:py-28">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
+                <Sparkles size={12} className="text-brand-gold" />
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
+                  Réalisations · MSL-iTECH
+                </p>
+              </div>
+
+              <h1 className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[64px] lg:text-[76px]">
+                Nos preuves,{" "}
+                <span className="italic font-light text-brand-gold">
+                  publiquement
+                </span>{" "}
+                <Mark>vérifiables.</Mark>
+              </h1>
+
+              <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
+                Les meilleures preuves viennent de nos clients et de notre fiche
+                partenaire officielle Odoo — consultable et vérifiable en un clic.
+              </p>
+            </div>
+
+            {/* Breadcrumb pill */}
+            <div className="absolute -bottom-5 right-6 z-30 md:right-10">
+              <div
+                className="flex items-center gap-3 rounded-full border bg-brand-white px-5 py-2.5 shadow-[0_18px_40px_-15px_rgba(0,0,0,0.25)]"
+                style={{ borderColor: "var(--grey-light)" }}
+              >
+                <Link
+                  to="/"
+                  className="font-body text-sm text-brand-grey transition hover:text-brand-blue"
+                >
+                  Accueil
+                </Link>
+                <ArrowRight size={14} className="text-brand-gold" />
+                <span className="font-body text-sm font-semibold text-brand-blue">
+                  Réalisations
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ODOO CASES */}
-      <section className="bg-background py-20">
+      <section className="bg-brand-bg py-24 md:py-28">
         <div className="container">
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-            Cas clients
-          </p>
-          <h2 className="font-heading text-3xl font-bold text-brand-black md:text-4xl">
-            Implémentations Odoo
-          </h2>
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <div className="mb-4 inline-flex items-center gap-2">
+                <span className="h-px w-10 bg-brand-blue" />
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+                  Cas clients Odoo
+                </p>
+              </div>
+              <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
+                Implémentations
+                <br />
+                <Mark>livrées.</Mark>
+              </h2>
+            </div>
+            <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
+              Du cadrage au déploiement — voici comment nous transformons la
+              gestion quotidienne de PME ambitieuses.
+            </p>
+          </div>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-2">
-            {odooCases.map((c) => {
+          <div className="mt-16 grid gap-6 lg:grid-cols-2">
+            {odooCases.map((c, idx) => {
               const Icon = c.icon;
               return (
                 <article
                   key={c.name}
-                  className="rounded-2xl border border-border bg-card p-8 shadow-sm transition hover:shadow-md"
+                  className="group relative isolate overflow-hidden rounded-[28px] border bg-brand-white shadow-sm transition hover:shadow-xl"
+                  style={{ borderColor: "var(--grey-light)" }}
                 >
-                  <div className="flex items-start gap-4">
+                  {/* Image header */}
+                  <div className="relative h-56 overflow-hidden md:h-64">
+                    <img
+                      src={c.image}
+                      alt={c.name}
+                      className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
                     <div
-                      className="flex h-12 w-12 items-center justify-center rounded-xl"
-                      style={{ backgroundColor: "rgba(15,63,74,0.08)", color: "#0F3F4A" }}
-                    >
-                      <Icon size={22} />
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, rgba(18,77,90,0.15) 0%, rgba(18,77,90,0.75) 100%)",
+                      }}
+                    />
+                    <div className="absolute left-5 top-5">
+                      <Sticker rotate={idx % 2 === 0 ? -6 : 6}>
+                        Cas {String(idx + 1).padStart(2, "0")}
+                      </Sticker>
                     </div>
-                    <div>
-                      <h3 className="font-heading text-xl font-bold text-brand-black">
-                        {c.name}
-                      </h3>
-                      <p className="mt-1 font-mono text-xs uppercase tracking-[0.18em] text-brand-grey">
+                    <div className="absolute bottom-5 left-5 right-5">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-gold">
                         {c.sector}
                       </p>
+                      <h3 className="mt-2 font-heading text-2xl font-bold text-white md:text-3xl">
+                        {c.name}
+                      </h3>
                     </div>
                   </div>
 
-                  <p className="mt-6 font-body text-base text-brand-grey">{c.context}</p>
+                  {/* Body */}
+                  <div className="p-8">
+                    <div className="flex items-start gap-3">
+                      <div
+                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+                        style={{ backgroundColor: "rgba(18,77,90,0.08)", color: "var(--blue)" }}
+                      >
+                        <Icon size={20} />
+                      </div>
+                      <p className="font-body text-base text-brand-grey">{c.context}</p>
+                    </div>
 
-                  <div className="mt-6">
-                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand-blue">
-                      Solution déployée
-                    </p>
-                    <ul className="mt-3 flex flex-wrap gap-2">
-                      {c.modules.map((m) => (
-                        <li
-                          key={m}
-                          className="rounded-full border border-border bg-muted px-3 py-1 text-sm text-brand-black"
-                        >
-                          {m}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    <div className="mt-6">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
+                        Solution déployée
+                      </p>
+                      <ul className="mt-3 flex flex-wrap gap-2">
+                        {c.modules.map((m) => (
+                          <li
+                            key={m}
+                            className="rounded-full border bg-brand-bg px-3 py-1 font-body text-xs text-brand-black"
+                            style={{ borderColor: "var(--grey-light)" }}
+                          >
+                            {m}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                  <div
-                    className="mt-6 flex items-start gap-3 rounded-xl p-4"
-                    style={{ backgroundColor: "rgba(255,221,87,0.12)" }}
-                  >
-                    <CheckCircle2 size={18} style={{ color: "#0F3F4A" }} className="mt-0.5 shrink-0" />
-                    <p className="font-body text-sm text-brand-black">{c.result}</p>
+                    <div
+                      className="mt-6 flex items-start gap-3 rounded-2xl p-4"
+                      style={{ backgroundColor: "rgba(255,221,87,0.18)" }}
+                    >
+                      <CheckCircle2
+                        size={18}
+                        style={{ color: "var(--blue)" }}
+                        className="mt-0.5 shrink-0"
+                      />
+                      <p className="font-body text-sm text-brand-black">{c.result}</p>
+                    </div>
                   </div>
                 </article>
               );
@@ -150,36 +293,61 @@ export default function RealisationsPage() {
       </section>
 
       {/* WEB PROJECTS */}
-      <section className="bg-muted/40 py-20">
+      <section className="bg-brand-white py-24 md:py-28">
         <div className="container">
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-            Sites & plateformes
-          </p>
-          <h2 className="font-heading text-3xl font-bold text-brand-black md:text-4xl">
-            Créations Web
-          </h2>
-          <p className="mt-6 max-w-3xl font-body text-lg text-brand-grey">
-            Sites React haute performance, solutions WordPress et refonte de présence en ligne pour
-            des entreprises en Belgique et au Maroc.
-          </p>
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <div className="mb-4 inline-flex items-center gap-2">
+                <span className="h-px w-10 bg-brand-blue" />
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+                  Sites & plateformes
+                </p>
+              </div>
+              <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
+                Créations <Mark>web.</Mark>
+              </h2>
+            </div>
+            <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
+              Sites React haute performance, plateformes WordPress et refontes
+              pour des entreprises en Belgique et au Maroc.
+            </p>
+          </div>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {webProjects.map((p) => (
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {webProjects.map((p, i) => (
               <a
-                key={p}
-                href={`https://${p}`}
+                key={p.url}
+                href={`https://${p.url}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between rounded-xl border border-border bg-card p-5 transition hover:border-brand-blue hover:shadow-md"
+                className="group relative isolate flex flex-col justify-between overflow-hidden rounded-[24px] border bg-brand-bg p-6 transition hover:-translate-y-1 hover:shadow-xl"
+                style={{ borderColor: "var(--grey-light)", minHeight: 200 }}
               >
-                <div className="flex items-center gap-3">
-                  <Globe size={18} className="text-brand-blue" />
-                  <span className="font-body text-sm font-medium text-brand-black">{p}</span>
-                </div>
-                <ExternalLink
-                  size={16}
-                  className="text-brand-grey transition group-hover:text-brand-blue"
+                <div
+                  className="pointer-events-none absolute -bottom-16 -right-16 h-40 w-40 rounded-full opacity-0 blur-2xl transition group-hover:opacity-60"
+                  style={{ backgroundColor: "var(--gold)" }}
                 />
+                <div className="flex items-start justify-between">
+                  <div
+                    className="flex h-11 w-11 items-center justify-center rounded-xl"
+                    style={{ backgroundColor: "var(--blue)" }}
+                  >
+                    <Globe size={18} className="text-white" />
+                  </div>
+                  <ArrowUpRight
+                    size={20}
+                    className="text-brand-grey transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand-blue"
+                  />
+                </div>
+                <div className="mt-6">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
+                    {p.tag}
+                  </p>
+                  <h3 className="mt-2 font-heading text-lg font-bold text-brand-black">
+                    {p.label}
+                  </h3>
+                  <p className="mt-1 font-body text-xs text-brand-grey">{p.url}</p>
+                </div>
               </a>
             ))}
           </div>
@@ -187,51 +355,98 @@ export default function RealisationsPage() {
       </section>
 
       {/* ODOO PARTNER */}
-      <section className="bg-background py-20">
+      <section className="bg-brand-bg py-24 md:py-28">
         <div className="container">
           <div
-            className="rounded-2xl border border-border p-10 lg:p-14"
-            style={{ backgroundColor: "rgba(15,63,74,0.04)" }}
+            className="relative isolate overflow-hidden rounded-[28px] p-10 lg:p-16"
+            style={{ backgroundColor: "var(--blue)" }}
           >
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-              Partenaire officiel
-            </p>
-            <h2 className="mt-3 max-w-3xl font-heading text-2xl font-bold text-brand-black md:text-3xl">
-              Certaines de nos références sont également consultables sur notre fiche partenaire
-              officielle Odoo
-            </h2>
-            <p className="mt-4 max-w-2xl font-body text-base text-brand-grey">
-              Vérifiez notre statut et nos références directement sur odoo.com/partners.
-            </p>
-            <a
-              href="https://www.odoo.com/partners"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-semibold transition hover:opacity-90"
-              style={{ backgroundColor: "#0F3F4A", color: "white" }}
-            >
-              Voir odoo.com/partners <ExternalLink size={16} />
-            </a>
+            <div
+              className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full opacity-25 blur-3xl"
+              style={{ backgroundColor: "var(--gold)" }}
+            />
+            <div className="absolute -top-4 left-8 z-20">
+              <Sticker rotate={-6}>★ Partenaire officiel</Sticker>
+            </div>
+
+            <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+              <div className="lg:col-span-8">
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand-gold">
+                  Vérifiez par vous-même
+                </p>
+                <h2 className="mt-4 max-w-2xl font-heading text-3xl font-bold leading-[1.05] tracking-tight text-white md:text-5xl">
+                  Nos références sont consultables sur{" "}
+                  <span className="italic font-light">odoo.com/partners</span>
+                </h2>
+                <p className="mt-5 max-w-xl font-body text-base text-white/80">
+                  Statut, certifications et clients : tout est public. Aucune
+                  promesse en l'air, juste des preuves vérifiables.
+                </p>
+              </div>
+              <div className="flex justify-start lg:col-span-4 lg:justify-end">
+                <a
+                  href="https://www.odoo.com/partners"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+                  style={{ backgroundColor: "var(--gold)" }}
+                >
+                  Voir odoo.com/partners
+                  <ExternalLink
+                    size={16}
+                    className="transition group-hover:translate-x-1"
+                  />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20" style={{ backgroundColor: "#0F3F4A" }}>
+      <section className="relative isolate overflow-hidden bg-brand-black py-24 md:py-28">
+        <img
+          src={ctaBg}
+          alt=""
+          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(13,13,13,0.7) 0%, rgba(18,77,90,0.85) 100%)",
+          }}
+        />
         <div className="container text-center text-white">
-          <h2 className="font-heading text-3xl font-bold md:text-4xl">
-            Votre projet est <span style={{ color: "var(--gold)" }}>le prochain</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
+            <Star size={12} className="text-brand-gold" />
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
+              À votre tour
+            </p>
+          </div>
+          <h2 className="mx-auto mt-7 max-w-3xl font-heading text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+            Votre projet est <Mark>le prochain.</Mark>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl font-body text-white/80">
+          <p className="mx-auto mt-6 max-w-xl font-body text-base text-white/80 md:text-lg">
             Réponse sous 24 à 72h · Consultant dédié · Sans engagement
           </p>
-          <Link
-            to="/contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-semibold transition hover:opacity-90"
-            style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
-          >
-            Réserver une démo <ArrowRight size={16} />
-          </Link>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              to="/contact"
+              className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+              style={{ backgroundColor: "var(--gold)" }}
+            >
+              Réserver ma démo gratuite
+              <ArrowRight size={18} className="transition group-hover:translate-x-1" />
+            </Link>
+            <Link
+              to="/odoo-erp"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-white/40 px-6 py-3.5 font-body text-sm font-semibold text-white transition hover:bg-white/10"
+            >
+              Découvrir Odoo ERP
+            </Link>
+          </div>
         </div>
       </section>
     </>
