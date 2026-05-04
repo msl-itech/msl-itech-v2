@@ -80,7 +80,14 @@ export const ProjectCTA = ({
             <h2 className="mx-auto mt-7 max-w-4xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl lg:text-[68px]">
               {titleStart}
               <br />
-              <span className="text-white">{titleEnd}</span>
+              <span className="relative inline-block">
+                <span
+                  aria-hidden
+                  className="absolute inset-x-[-8px] bottom-[8%] -z-0 h-[38%] -rotate-[1.5deg] rounded-[8px]"
+                  style={{ backgroundColor: "var(--gold)" }}
+                />
+                <span className="relative z-10 text-white">{titleEnd}</span>
+              </span>
             </h2>
 
             {/* CTA */}
