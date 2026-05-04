@@ -318,8 +318,14 @@ function Features({
 
 function Why({
   whySection,
+  image,
+  imageAlt,
+  eyebrow,
 }: {
   whySection: NonNullable<ProductPageShellProps["whySection"]>;
+  image: string;
+  imageAlt: string;
+  eyebrow: string;
 }) {
   return (
     <section className="relative overflow-hidden bg-white py-24">
@@ -349,6 +355,39 @@ function Why({
           <p className="font-body text-lg leading-relaxed text-brand-grey">
             {whySection.desc}
           </p>
+
+          {/* Visual showcase */}
+          <div
+            className="relative mt-9 overflow-hidden rounded-3xl border shadow-[0_30px_70px_-30px_rgba(18,77,90,0.45)]"
+            style={{ borderColor: "var(--grey-light)" }}
+          >
+            <img
+              src={image}
+              alt={imageAlt}
+              loading="lazy"
+              className="h-64 w-full object-cover md:h-80"
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(10,30,38,0) 40%, rgba(10,30,38,0.75) 100%)",
+              }}
+            />
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-white backdrop-blur-sm">
+                <span
+                  aria-hidden
+                  className="inline-block h-1.5 w-1.5 rounded-full"
+                  style={{ backgroundColor: "var(--gold)" }}
+                />
+                {eyebrow}
+              </span>
+              <Sticker rotate={-4}>★ Cas réel</Sticker>
+            </div>
+          </div>
+
           <Link
             to="/odoo-erp"
             className="group mt-8 inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
@@ -542,7 +581,14 @@ export function ProductPageShell(props: ProductPageShellProps) {
           features={props.features}
         />
       )}
-      {props.whySection && <Why whySection={props.whySection} />}
+      {props.whySection && (
+        <Why
+          whySection={props.whySection}
+          image={props.heroImage}
+          imageAlt={props.heroImageAlt}
+          eyebrow={props.eyebrow}
+        />
+      )}
       {props.faqs && props.faqs.length > 0 && <FaqBlock faqs={props.faqs} />}
       <FinalCta ctaTitle={props.ctaTitle} ctaSubtitle={props.ctaSubtitle} />
     </>
