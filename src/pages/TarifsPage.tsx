@@ -222,7 +222,7 @@ export default function TarifsPage() {
         </div>
       </section>
 
-      {/* PACKS GRID */}
+      {/* PACKS TABLE */}
       <section className="bg-muted/40 py-20">
         <div className="container">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
@@ -231,54 +231,90 @@ export default function TarifsPage() {
           <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
             Choisissez le pack adapté à votre périmètre
           </h2>
+          <p className="mt-4 max-w-3xl font-body text-base text-brand-grey">
+            Six paliers d'engagement, du support fondamental à la vision 360. Tous nos packs
+            incluent paramétrage, formation et assistance — sans heures cachées.
+          </p>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {packs.map((p) => (
-              <article
-                key={p.name}
-                className={`relative rounded-2xl border bg-card p-7 shadow-sm transition hover:shadow-md ${
-                  p.highlight ? "border-brand-blue ring-1 ring-brand-blue" : "border-border"
-                }`}
-              >
-                {p.highlight && (
-                  <span
-                    className="absolute -top-3 left-7 rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em]"
-                    style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
+          <div className="mt-10 overflow-x-auto rounded-2xl border border-border">
+            <table className="w-full min-w-[820px] text-left text-sm">
+              <thead style={{ backgroundColor: "var(--blue)", color: "white" }}>
+                <tr>
+                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Pack</th>
+                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Volume</th>
+                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Pour qui</th>
+                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Inclus</th>
+                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">
+                    Nouveau client
+                  </th>
+                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">
+                    Ancien client
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-card">
+                {packs.map((p, i) => (
+                  <tr
+                    key={p.name}
+                    className={`${i % 2 ? "bg-muted/40" : ""} ${
+                      p.highlight ? "ring-1 ring-inset ring-brand-blue" : ""
+                    }`}
                   >
-                    Recommandé
-                  </span>
-                )}
-                <div className="flex items-baseline justify-between">
-                  <h3 className="font-heading text-xl font-bold text-brand-black">{p.name}</h3>
-                  <span className="font-mono text-sm text-brand-grey">{p.hours}</span>
-                </div>
-                <p className="mt-1 text-sm text-brand-grey">{p.for}</p>
-
-                <div className="mt-6">
-                  <p className="font-heading text-3xl font-bold text-brand-black">
-                    {fmt(p.priceNew, currency)}
-                  </p>
-                  <p className="mt-1 text-xs text-brand-grey">
-                    Nouveau client · {currency === "EUR" ? "HTVA" : "TTC"}{" "}
-                    {p.priceOld !== p.priceNew && (
-                      <span className="text-brand-grey">
-                        · Ancien client : {fmt(p.priceOld, currency)}
+                    <td className="px-5 py-4 align-top">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="font-heading text-base font-bold text-brand-black">
+                          {p.name}
+                        </span>
+                        {p.highlight && (
+                          <span
+                            className="rounded-full px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em]"
+                            style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
+                          >
+                            Recommandé
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-5 py-4 align-top font-mono text-sm text-brand-grey">
+                      {p.hours}
+                    </td>
+                    <td className="px-5 py-4 align-top text-brand-black">{p.for}</td>
+                    <td className="px-5 py-4 align-top">
+                      <span className="flex items-start gap-2 text-brand-grey">
+                        <CheckCircle2
+                          size={16}
+                          className="mt-0.5 shrink-0 text-brand-blue"
+                        />
+                        {p.incl}
                       </span>
-                    )}
-                  </p>
-                </div>
-
-                <p className="mt-6 flex items-start gap-2 font-body text-sm text-brand-black">
-                  <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-brand-blue" />
-                  {p.incl}
-                </p>
-              </article>
-            ))}
+                    </td>
+                    <td className="px-5 py-4 align-top">
+                      <p className="font-heading text-lg font-bold text-brand-black">
+                        {fmt(p.priceNew, currency)}
+                      </p>
+                      <p className="mt-0.5 text-[11px] text-brand-grey">
+                        {currency === "EUR" ? "HTVA" : "TTC"}
+                      </p>
+                    </td>
+                    <td className="px-5 py-4 align-top">
+                      {p.priceOld !== p.priceNew ? (
+                        <span className="text-brand-grey line-through">
+                          {fmt(p.priceOld, currency)}
+                        </span>
+                      ) : (
+                        <span className="text-brand-grey">{fmt(p.priceOld, currency)}</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
 
           <p className="mt-6 flex items-start gap-2 text-sm text-brand-grey">
             <Info size={14} className="mt-0.5 shrink-0" />
-            Prix € HTVA pour clients belges · Prix MAD TTC pour clients marocains · Conversion indicative 1 € ≈ {EUR_TO_MAD} MAD.
+            Prix € HTVA pour clients belges · Prix MAD TTC pour clients marocains · Conversion
+            indicative 1 € ≈ {EUR_TO_MAD} MAD.
           </p>
         </div>
       </section>
