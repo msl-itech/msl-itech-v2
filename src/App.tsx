@@ -27,6 +27,9 @@ import ConsultantBePage from "./pages/ConsultantBePage";
 import TarifBePage from "./pages/TarifBePage";
 import BlogPage from "./pages/BlogPage";
 import BlogIndexPage from "./pages/BlogIndexPage";
+import PmeStructurationPage from "./pages/PmeStructurationPage";
+import MultiSitesPage from "./pages/MultiSitesPage";
+import CroissanceRapidePage from "./pages/CroissanceRapidePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -60,6 +63,9 @@ const App = () => (
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/consultant-odoo-belgique" element={<ConsultantBePage />} />
             <Route path="/tarif-odoo-belgique" element={<TarifBePage />} />
+            <Route path="/pme-en-structuration" element={<PmeStructurationPage />} />
+            <Route path="/entreprise-multi-sites" element={<MultiSitesPage />} />
+            <Route path="/structure-en-croissance" element={<CroissanceRapidePage />} />
             <Route path="/blog" element={<BlogIndexPage />} />
             <Route path="/blog/:slug" element={<BlogPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
