@@ -30,7 +30,7 @@ const simpleLinks = [
   { to: "/marketing-digital", label: "Marketing" },
   { to: "/realisations", label: "Réalisations" },
   { to: "/tarifs", label: "Tarifs" },
-  { to: "/blog/cout-implementation-odoo-belgique-2026", label: "Blog" },
+  { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ];
 
