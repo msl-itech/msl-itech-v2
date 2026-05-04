@@ -120,7 +120,7 @@ export default function TarifsPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: "#0F3F4A" }}>
+      <section className="relative overflow-hidden" style={{ backgroundColor: "var(--blue)" }}>
         <div
           aria-hidden
           className="absolute inset-0"
@@ -181,7 +181,7 @@ export default function TarifsPage() {
               className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
               style={{
                 backgroundColor: currency === "EUR" ? "var(--gold)" : "transparent",
-                color: currency === "EUR" ? "#0F3F4A" : "white",
+                color: currency === "EUR" ? "var(--blue)" : "white",
               }}
             >
               € Euro
@@ -193,7 +193,7 @@ export default function TarifsPage() {
               className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
               style={{
                 backgroundColor: currency === "MAD" ? "var(--gold)" : "transparent",
-                color: currency === "MAD" ? "#0F3F4A" : "white",
+                color: currency === "MAD" ? "var(--blue)" : "white",
               }}
             >
               MAD Dirham
@@ -336,7 +336,7 @@ export default function TarifsPage() {
 
           <div className="mt-10 overflow-hidden rounded-2xl border border-border">
             <table className="w-full text-left text-sm">
-              <thead style={{ backgroundColor: "#0F3F4A", color: "white" }}>
+              <thead style={{ backgroundColor: "var(--blue)", color: "white" }}>
                 <tr>
                   <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Volume</th>
                   <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Odoo Success Pack</th>
@@ -434,7 +434,7 @@ export default function TarifsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20" style={{ backgroundColor: "#0F3F4A" }}>
+      <section className="py-20" style={{ backgroundColor: "var(--blue)" }}>
         <div className="container text-center text-white">
           <h2 className="font-heading text-3xl font-bold md:text-4xl">
             Réserver ma démo gratuite — je choisis{" "}
@@ -446,7 +446,7 @@ export default function TarifsPage() {
           <Link
             to="/contact"
             className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-semibold transition hover:opacity-90"
-            style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
+            style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
           >
             Réserver ma démo <ArrowRight size={16} />
           </Link>
