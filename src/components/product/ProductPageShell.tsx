@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, LucideIcon, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, LucideIcon, Sparkles } from "lucide-react";
 
 export type Feature = {
   icon: LucideIcon;
@@ -62,7 +62,18 @@ function Hero({
           backgroundSize: "22px 22px",
         }}
       />
-      <div className="container relative grid items-center gap-14 py-20 lg:grid-cols-[1.05fr_1fr] lg:py-28">
+      {/* Breadcrumb back to ERP hub */}
+      <div className="container relative pt-8">
+        <Link
+          to="/odoo-erp"
+          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-white/70 backdrop-blur-sm transition hover:border-[var(--gold)]/50 hover:text-white"
+        >
+          <span className="opacity-60">Odoo ERP</span>
+          <span className="opacity-40">/</span>
+          <span className="text-white">{eyebrow}</span>
+        </Link>
+      </div>
+      <div className="container relative grid items-center gap-14 pb-20 pt-10 lg:grid-cols-[1.05fr_1fr] lg:pb-28 lg:pt-12">
         <div className="text-white">
           <p
             className="mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em]"
@@ -77,16 +88,22 @@ function Hero({
           <h1 className="font-heading text-4xl font-bold leading-[1.08] md:text-5xl lg:text-[3.5rem]">
             {title}
           </h1>
-          <p className="mt-6 max-w-xl font-body text-lg text-white/80">
-            {intro}
-          </p>
+          <div className="mt-6 flex max-w-xl gap-4">
+            <span
+              aria-hidden
+              className="mt-2 block h-16 w-[2px] shrink-0 rounded-full"
+              style={{ backgroundColor: "var(--gold)" }}
+            />
+            <p className="font-body text-lg text-white/80">{intro}</p>
+          </div>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-semibold transition hover:opacity-90"
+              className="group inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-semibold shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
               style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
             >
-              Réserver ma démo gratuite <ArrowRight size={16} />
+              Réserver ma démo gratuite
+              <ArrowRight size={16} className="transition group-hover:translate-x-0.5" />
             </Link>
             <Link
               to="/realisations"
@@ -96,7 +113,12 @@ function Hero({
             </Link>
           </div>
           {metaNote && (
-            <p className="mt-5 font-mono text-xs uppercase tracking-[0.18em] text-white/55">
+            <p className="mt-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-white/55">
+              <span
+                aria-hidden
+                className="inline-block h-1.5 w-1.5 rounded-full"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
               {metaNote}
             </p>
           )}
@@ -118,6 +140,13 @@ function Hero({
               className="w-full rounded-[1.4rem]"
               loading="eager"
             />
+            {/* floating corner stamp */}
+            <div
+              className="absolute -bottom-3 -left-3 rounded-2xl px-4 py-2 font-mono text-[10px] uppercase tracking-[0.22em] shadow-xl"
+              style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
+            >
+              Certifié Odoo
+            </div>
           </div>
         </div>
       </div>
@@ -148,7 +177,8 @@ function Features({
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
           {featuresEyebrow && (
-            <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-brand-grey">
+            <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+              <span className="inline-block h-px w-8 bg-brand-blue" />
               {featuresEyebrow}
             </p>
           )}
@@ -160,7 +190,7 @@ function Features({
           {features.map((f, i) => (
             <article
               key={f.title}
-              className="group relative overflow-hidden rounded-3xl border bg-white p-8 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.25)]"
+              className="group relative overflow-hidden rounded-3xl border bg-white p-8 transition hover:-translate-y-1 hover:border-[var(--blue)]/30 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.28)]"
               style={{ borderColor: "var(--grey-light)" }}
             >
               <div
@@ -173,7 +203,7 @@ function Features({
               />
               <div className="flex items-start gap-5">
                 <div
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition group-hover:scale-105"
                   style={{
                     backgroundColor: "var(--blue)",
                     color: "var(--gold)",
@@ -193,6 +223,11 @@ function Features({
               <p className="mt-5 font-body text-base leading-relaxed text-brand-grey">
                 {f.desc}
               </p>
+              <div
+                aria-hidden
+                className="absolute bottom-0 left-0 right-0 h-[2px] origin-left scale-x-0 transition group-hover:scale-x-100"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
             </article>
           ))}
         </div>
@@ -210,7 +245,8 @@ function Why({
     <section className="bg-white py-24">
       <div className="container grid items-center gap-12 lg:grid-cols-2">
         <div>
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-brand-grey">
+          <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+            <span className="inline-block h-px w-8 bg-brand-blue" />
             MSL-iTECH
           </p>
           <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.25rem]">
@@ -219,25 +255,31 @@ function Why({
           <p className="mt-6 font-body text-lg text-brand-grey">
             {whySection.desc}
           </p>
+          <Link
+            to="/odoo-erp"
+            className="mt-7 inline-flex items-center gap-2 font-body text-sm font-semibold text-brand-blue transition hover:gap-3"
+          >
+            Découvrir tous les modules Odoo <ArrowUpRight size={16} />
+          </Link>
         </div>
         <ul className="grid gap-3">
           {whySection.points.map((p, i) => (
             <li
               key={p}
-              className="flex items-start gap-4 rounded-2xl border p-5 transition hover:-translate-y-0.5 hover:shadow-md"
+              className="group flex items-start gap-4 rounded-2xl border p-5 transition hover:-translate-y-0.5 hover:border-[var(--blue)]/30 hover:shadow-md"
               style={{
                 borderColor: "var(--grey-light)",
                 backgroundColor: "var(--bg)",
               }}
             >
               <span
-                className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-mono text-xs font-semibold"
+                className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-mono text-xs font-semibold transition group-hover:scale-110"
                 style={{
                   backgroundColor: "var(--gold)",
                   color: "var(--blue)",
                 }}
               >
-                {i + 1}
+                <Check size={14} strokeWidth={3} />
               </span>
               <span className="font-body text-base text-brand-black">{p}</span>
             </li>
