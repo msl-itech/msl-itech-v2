@@ -9,6 +9,7 @@ import {
   Info,
   Star,
   Minus,
+  Zap,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { useMarket } from "@/hooks/useMarket";
