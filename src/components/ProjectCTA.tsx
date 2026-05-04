@@ -116,7 +116,7 @@ export const ProjectCTA = ({
               {tags.map((t, idx) => (
                 <span
                   key={`${t.label}-${idx}`}
-                  className="-mx-1 inline-flex shrink-0 items-center whitespace-nowrap rounded-full border-2 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)] transition hover:scale-105"
+                  className="-mx-3 inline-flex shrink-0 items-center whitespace-nowrap rounded-full border-2 px-5 py-2.5 font-mono text-[14px] font-bold uppercase tracking-[0.1em] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)] transition hover:scale-105"
                   style={{
                     transform: `translateY(${t.ty}px) rotate(${t.r}deg)`,
                     backgroundColor: t.accent ? "var(--gold)" : "var(--blue)",
