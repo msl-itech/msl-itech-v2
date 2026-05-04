@@ -132,3 +132,27 @@
   animation: marquee-cta 30s linear infinite;
   will-change: transform;
 }
+
+/* Lenis smooth scroll — laisse le natif quand Lenis n'est pas actif */
+html:not(.lenis-active) {
+  scroll-behavior: smooth;
+}
+html.lenis-active.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+html.lenis-active body {
+  overscroll-behavior: none;
+}
+
+/* Préparation des éléments animés via GSAP : invisibles avant init pour éviter
+   le flash. Si reduced-motion, on force la visibilité. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-anim="fade"],
+  [data-anim="fade-up"],
+  [data-anim="reveal-img"] {
+    opacity: 0;
+  }
+  [data-anim="stagger"] > * {
+    opacity: 0;
+  }
+}

@@ -143,7 +143,7 @@ function HeroShell({
               </p>
             </div>
 
-            <h1 className="mt-7 font-heading text-4xl font-bold leading-[1.04] tracking-tight text-brand-black md:text-[60px]">
+            <h1 data-anim="chars" data-stagger="0.022" className="mt-7 font-heading text-4xl font-bold leading-[1.04] tracking-tight text-brand-black md:text-[60px]">
               {titleTop}{" "}
               <span className="block">
                 {accentHead && (

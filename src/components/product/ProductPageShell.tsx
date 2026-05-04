@@ -146,7 +146,11 @@ function Hero({
               </p>
             </div>
 
-            <h1 className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl lg:text-[68px]">
+            <h1
+              data-anim="chars"
+              data-stagger="0.025"
+              className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl lg:text-[68px]"
+            >
               {title}
             </h1>
           </div>
@@ -203,7 +207,10 @@ function Hero({
             </h2>
           </div>
           <div className="lg:col-span-6">
-            <p className="font-body text-base text-brand-grey md:text-lg">
+            <p
+              data-anim="fade-up"
+              className="font-body text-base text-brand-grey md:text-lg"
+            >
               {intro}
             </p>
 
@@ -288,7 +295,7 @@ function Features({
             {featuresTitle}
           </h2>
         </div>
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div data-anim="stagger" data-stagger="0.12" className="mt-14 grid gap-6 md:grid-cols-2">
           {features.map((f, i) => (
             <article
               key={f.title}
@@ -419,7 +426,7 @@ function Why({
             <ArrowUpRight size={16} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
         </div>
-        <ul className="grid gap-4">
+        <ul data-anim="stagger" data-stagger="0.08" className="grid gap-4">
           {whySection.points.map((p, i) => (
             <li
               key={p}
@@ -473,7 +480,7 @@ function FaqBlock({ faqs }: { faqs: Faq[] }) {
             Tout ce que vous devez savoir avant de démarrer votre projet Odoo avec MSL-iTECH.
           </p>
         </div>
-        <div className="mt-12 space-y-3">
+        <div data-anim="stagger" data-stagger="0.06" className="mt-12 space-y-3">
           {faqs.map((f, i) => (
             <details
               key={f.q}
@@ -544,7 +551,11 @@ function FinalCta({
           />
           Prochaine étape
         </p>
-        <h2 className="mx-auto max-w-3xl font-heading text-3xl font-bold leading-tight md:text-5xl">
+        <h2
+          data-anim="split"
+          data-stagger="0.04"
+          className="mx-auto max-w-3xl font-heading text-3xl font-bold leading-tight md:text-5xl"
+        >
           {ctaTitle}
         </h2>
         <div

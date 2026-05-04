@@ -88,12 +88,20 @@ export function ProductBento({ eyebrow, title, chipLabel, cards }: ProductBentoP
             <span className="inline-block h-px w-8 bg-brand-blue" />
             {eyebrow}
           </p>
-          <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]">
+          <h2
+            data-anim="split"
+            data-stagger="0.04"
+            className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]"
+          >
             {title}
           </h2>
         </div>
 
-        <div className="mt-14 grid auto-rows-[minmax(220px,auto)] gap-5 md:grid-cols-2 lg:grid-cols-12">
+        <div
+          data-anim="stagger"
+          data-stagger="0.1"
+          className="mt-14 grid auto-rows-[minmax(220px,auto)] gap-5 md:grid-cols-2 lg:grid-cols-12"
+        >
           {cards.map((c) => {
             const Icon = c.icon;
             const s = variantStyles[c.variant];
