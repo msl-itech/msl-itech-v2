@@ -315,33 +315,44 @@ function FaqBlock({ faqs }: { faqs: Faq[] }) {
     <section className="py-24" style={{ backgroundColor: "var(--bg)" }}>
       <div className="container max-w-3xl">
         <div className="text-center">
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-brand-grey">
+          <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+            <span className="inline-block h-px w-8 bg-brand-blue" />
             FAQ
+            <span className="inline-block h-px w-8 bg-brand-blue" />
           </p>
-          <h2 className="font-heading text-3xl font-bold text-brand-black md:text-4xl">
+          <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]">
             Questions fréquentes
           </h2>
+          <p className="mx-auto mt-4 max-w-xl font-body text-base text-brand-grey">
+            Tout ce que vous devez savoir avant de démarrer votre projet Odoo avec MSL-iTECH.
+          </p>
         </div>
-        <div className="mt-12 space-y-4">
-          {faqs.map((f) => (
+        <div className="mt-12 space-y-3">
+          {faqs.map((f, i) => (
             <details
               key={f.q}
-              className="group rounded-2xl border bg-white p-6 transition open:shadow-md"
+              className="group rounded-2xl border bg-white px-6 py-5 transition open:shadow-[0_18px_45px_-22px_rgba(18,77,90,0.28)] hover:border-[var(--blue)]/30"
               style={{ borderColor: "var(--grey-light)" }}
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-heading text-lg font-semibold text-brand-black">
-                {f.q}
+              <summary className="flex cursor-pointer list-none items-center gap-4 font-heading text-lg font-semibold text-brand-black">
                 <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition group-open:rotate-45"
+                  aria-hidden
+                  className="font-mono text-xs font-medium text-brand-grey"
+                >
+                  0{i + 1}
+                </span>
+                <span className="flex-1">{f.q}</span>
+                <span
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-lg leading-none transition group-open:rotate-45"
                   style={{
-                    backgroundColor: "var(--blue-light)",
-                    color: "var(--blue)",
+                    backgroundColor: "var(--blue)",
+                    color: "var(--gold)",
                   }}
                 >
                   +
                 </span>
               </summary>
-              <p className="mt-4 font-body text-base leading-relaxed text-brand-grey">
+              <p className="mt-4 pl-9 font-body text-base leading-relaxed text-brand-grey">
                 {f.a}
               </p>
             </details>
