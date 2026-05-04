@@ -23,6 +23,7 @@ import productionImg from "@/assets/production-hero.webp";
 import rhImg from "@/assets/rh-hero.webp";
 import servicesImg from "@/assets/services-hero.webp";
 import caseBe from "@/assets/home/case-be.webp";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 
 /* ---------------- SEO ---------------- */
 function useErpSeo() {
