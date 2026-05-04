@@ -370,88 +370,174 @@ export default function TarifsPage() {
           </div>
 
           <div
-            className="relative mt-14 overflow-hidden rounded-[28px] border bg-brand-white shadow-sm"
+            className="relative mt-14 overflow-hidden rounded-[28px] border bg-brand-white shadow-[0_30px_80px_-40px_rgba(13,13,13,0.25)]"
             style={{ borderColor: "var(--grey-light)" }}
           >
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[860px] text-left text-sm">
-                <thead style={{ backgroundColor: "var(--blue)", color: "white" }}>
+              <table className="w-full min-w-[960px] border-separate border-spacing-0 text-left text-sm">
+                {/* Header row — colored pack chips */}
+                <thead>
                   <tr>
-                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Pack</th>
-                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Volume</th>
-                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Pour qui</th>
-                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Inclus</th>
-                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
-                      Nouveau client
+                    <th className="sticky left-0 z-10 bg-brand-white px-6 py-6 align-bottom">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
+                        Comparatif
+                      </p>
+                      <p className="mt-2 font-heading text-base font-bold text-brand-black">
+                        Fonctionnalités
+                      </p>
                     </th>
-                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
-                      Ancien client
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {packs.map((p, i) => (
-                    <tr
-                      key={p.name}
-                      className={`border-t transition hover:bg-brand-bg ${
-                        p.highlight ? "" : ""
-                      }`}
-                      style={{
-                        borderColor: "var(--grey-light)",
-                        backgroundColor: p.highlight
-                          ? "rgba(255,221,87,0.10)"
-                          : i % 2
-                          ? "rgba(229,227,220,0.18)"
-                          : "transparent",
-                      }}
-                    >
-                      <td className="px-6 py-5 align-top">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="font-heading text-base font-bold text-brand-black">
-                            {p.name}
-                          </span>
+                    {packs.map((p) => (
+                      <th
+                        key={p.name}
+                        className="px-3 pb-4 pt-6 align-bottom text-center"
+                      >
+                        <div className="relative mx-auto flex w-full max-w-[140px] flex-col items-center">
                           {p.highlight && (
                             <span
-                              className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em]"
+                              className="mb-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em]"
                               style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
                             >
                               <Star size={10} fill="currentColor" /> Recommandé
                             </span>
                           )}
+                          <div
+                            className="flex w-full flex-col items-center rounded-2xl px-3 py-3 text-white shadow-[0_10px_24px_-12px_rgba(0,0,0,0.35)]"
+                            style={{ backgroundColor: p.color }}
+                          >
+                            <span className="font-heading text-base font-bold leading-tight">
+                              {p.name}
+                            </span>
+                            <span className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] opacity-90">
+                              {p.hours}
+                            </span>
+                          </div>
+                          <span className="mt-2 font-body text-[11px] leading-snug text-brand-grey">
+                            {p.for}
+                          </span>
                         </div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {features.map((f, ri) => (
+                    <tr key={f.label}>
+                      <td
+                        className="sticky left-0 z-10 border-t bg-brand-white px-6 py-4 font-body text-sm text-brand-black"
+                        style={{
+                          borderColor: "var(--grey-light)",
+                          backgroundColor: ri % 2 ? "rgba(229,227,220,0.25)" : "white",
+                        }}
+                      >
+                        {f.label}
                       </td>
-                      <td className="px-6 py-5 align-top font-mono text-sm text-brand-grey">
-                        {p.hours}
-                      </td>
-                      <td className="px-6 py-5 align-top text-brand-black">{p.for}</td>
-                      <td className="px-6 py-5 align-top">
-                        <span className="flex items-start gap-2 text-brand-grey">
-                          <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-brand-blue" />
-                          {p.incl}
-                        </span>
-                      </td>
-                      <td className="px-6 py-5 align-top">
-                        <p className="font-heading text-lg font-bold text-brand-black">
-                          {fmt(p.priceNew, currency)}
-                        </p>
-                        <p className="mt-0.5 text-[11px] text-brand-grey">
-                          {currency === "EUR" ? "HTVA" : "TTC"}
-                        </p>
-                      </td>
-                      <td className="px-6 py-5 align-top">
+                      {f.values.map((v, ci) => (
+                        <td
+                          key={ci}
+                          className="border-t px-3 py-4 text-center"
+                          style={{
+                            borderColor: "var(--grey-light)",
+                            backgroundColor: ri % 2 ? "rgba(229,227,220,0.18)" : "transparent",
+                          }}
+                        >
+                          {v ? (
+                            <span
+                              className="inline-flex h-7 w-7 items-center justify-center rounded-full"
+                              style={{
+                                backgroundColor: `${packs[ci].color}1A`,
+                                color: packs[ci].color,
+                              }}
+                            >
+                              <CheckCircle2 size={16} />
+                            </span>
+                          ) : (
+                            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-bg text-brand-grey/50">
+                              <Minus size={14} />
+                            </span>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+
+                  {/* Prix ancien client */}
+                  <tr>
+                    <td
+                      className="sticky left-0 z-10 border-t bg-brand-white px-6 py-5 font-heading text-sm font-bold text-brand-black"
+                      style={{ borderColor: "var(--grey-light)" }}
+                    >
+                      Prix ancien client
+                    </td>
+                    {packs.map((p) => (
+                      <td
+                        key={p.name}
+                        className="border-t px-3 py-5 text-center font-heading text-sm font-bold"
+                        style={{ borderColor: "var(--grey-light)", color: p.color }}
+                      >
                         {p.priceOld !== p.priceNew ? (
-                          <span className="text-brand-grey line-through">
+                          <span className="line-through opacity-80">
                             {fmt(p.priceOld, currency)}
                           </span>
                         ) : (
-                          <span className="text-brand-grey">{fmt(p.priceOld, currency)}</span>
+                          fmt(p.priceOld, currency)
                         )}
                       </td>
-                    </tr>
-                  ))}
+                    ))}
+                  </tr>
+
+                  {/* Prix nouveau client */}
+                  <tr>
+                    <td
+                      className="sticky left-0 z-10 border-t bg-brand-white px-6 py-6 font-heading text-base font-bold text-brand-black"
+                      style={{ borderColor: "var(--grey-light)" }}
+                    >
+                      Prix nouveau client
+                      <span className="ml-2 font-mono text-[10px] font-normal uppercase tracking-[0.2em] text-brand-grey">
+                        {currency === "EUR" ? "HTVA" : "TTC"}
+                      </span>
+                    </td>
+                    {packs.map((p) => (
+                      <td
+                        key={p.name}
+                        className="border-t px-3 py-6 text-center align-middle"
+                        style={{ borderColor: "var(--grey-light)" }}
+                      >
+                        <div
+                          className="mx-auto inline-flex min-w-[110px] flex-col items-center rounded-2xl px-3 py-3 text-white shadow-[0_10px_24px_-12px_rgba(0,0,0,0.35)]"
+                          style={{ backgroundColor: p.color }}
+                        >
+                          <span className="font-heading text-base font-bold leading-tight">
+                            {fmt(p.priceNew, currency)}
+                          </span>
+                          {p.priceOld !== p.priceNew && (
+                            <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.2em] opacity-85">
+                              Économie {Math.round((1 - p.priceNew / p.priceOld) * 100)}%
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
                 </tbody>
               </table>
             </div>
+          </div>
+
+          {/* Legend */}
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-brand-grey">
+            <span className="inline-flex items-center gap-2">
+              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue">
+                <CheckCircle2 size={12} />
+              </span>
+              Inclus dans le pack
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand-bg text-brand-grey/50">
+                <Minus size={12} />
+              </span>
+              Non inclus
+            </span>
           </div>
 
           <p className="mt-6 flex items-start gap-2 text-sm text-brand-grey">
