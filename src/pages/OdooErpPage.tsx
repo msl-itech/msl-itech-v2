@@ -47,6 +47,28 @@ function useErpSeo() {
       document.head.appendChild(canonical);
     }
     canonical.href = window.location.origin + "/odoo-erp";
+
+    // Preload module images so they're ready when user scrolls
+    const preloads = [
+      erpHero,
+      crmImg,
+      financeImg,
+      stockImg,
+      productionImg,
+      rhImg,
+      servicesImg,
+    ];
+    const links: HTMLLinkElement[] = preloads.map((href) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = href;
+      document.head.appendChild(link);
+      return link;
+    });
+    return () => {
+      links.forEach((l) => l.remove());
+    };
   }, []);
 }
 
@@ -453,7 +475,9 @@ function Modules() {
                 <img
                   src={m.img}
                   alt=""
-                  loading="lazy"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   className={`absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105 ${
                     isBig ? "opacity-30 group-hover:opacity-45" : ""
                   }`}
@@ -467,7 +491,12 @@ function Modules() {
                     }}
                   />
                 ) : (
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black/85 via-brand-black/45 to-brand-black/15" />
+                  <>
+                    {/* Uniform veil for legibility */}
+                    <div className="absolute inset-0 bg-brand-black/45" />
+                    {/* Bottom darkening for content area */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-brand-black/70 to-brand-black/30" />
+                  </>
                 )}
                 {isBig && (
                   <div
@@ -514,13 +543,15 @@ function Modules() {
                   className={`font-heading font-bold leading-tight text-white ${
                     isBig ? "max-w-md text-3xl md:text-5xl" : "text-2xl"
                   }`}
+                  style={!isBig ? { textShadow: "0 2px 14px rgba(0,0,0,0.55)" } : undefined}
                 >
                   {m.label}
                 </h3>
                 <p
-                  className={`mt-3 font-body text-white/80 ${
+                  className={`mt-3 font-body ${
                     isBig ? "max-w-md text-base md:mt-5" : "text-sm"
-                  }`}
+                  } ${isBig ? "text-white/80" : "text-white/95"}`}
+                  style={!isBig ? { textShadow: "0 1px 10px rgba(0,0,0,0.55)" } : undefined}
                 >
                   {m.desc}
                 </p>
