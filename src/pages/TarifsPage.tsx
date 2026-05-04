@@ -567,50 +567,179 @@ export default function TarifsPage() {
           </div>
 
           <div
-            className="mt-14 overflow-hidden rounded-[28px] border bg-brand-white shadow-sm"
+            className="relative mt-14 overflow-hidden rounded-[28px] border bg-brand-white shadow-[0_30px_80px_-40px_rgba(13,13,13,0.25)]"
             style={{ borderColor: "var(--grey-light)" }}
           >
+            {/* Decorative glow */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full opacity-25 blur-3xl"
+              style={{ backgroundColor: "var(--gold)" }}
+            />
+
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[680px] text-left text-sm">
-                <thead style={{ backgroundColor: "var(--blue)", color: "white" }}>
-                  <tr>
-                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Volume</th>
-                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Odoo Success Pack</th>
-                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">MSL-iTECH</th>
-                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Écart</th>
-                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Niveau</th>
+              <table className="w-full min-w-[820px] border-separate border-spacing-0 text-left text-sm">
+                <thead>
+                  <tr style={{ backgroundColor: "var(--blue)", color: "white" }}>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
+                      Volume
+                    </th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
+                      Odoo Success Pack
+                    </th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Zap size={12} className="text-brand-gold" />
+                        MSL-iTECH
+                      </span>
+                    </th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
+                      Économie
+                    </th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
+                      Niveau
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {comparison.map((r, i) => (
-                    <tr
-                      key={r.vol}
-                      className="border-t transition hover:bg-brand-bg"
-                      style={{
-                        borderColor: "var(--grey-light)",
-                        backgroundColor: i % 2 ? "rgba(229,227,220,0.18)" : "transparent",
-                      }}
-                    >
-                      <td className="px-6 py-5 font-medium text-brand-black">{r.vol}</td>
-                      <td className="px-6 py-5 text-brand-grey line-through">
-                        {fmt(r.odoo, currency)}
-                      </td>
-                      <td className="px-6 py-5 font-heading text-base font-bold text-brand-black">
-                        {fmt(r.msl, currency)}
-                      </td>
-                      <td className="px-6 py-5">
-                        <span
-                          className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold"
-                          style={{ backgroundColor: "rgba(26,122,74,0.12)", color: "var(--green)" }}
+                  {comparison.map((r, i) => {
+                    const savedPct = Math.round((1 - r.msl / r.odoo) * 100);
+                    return (
+                      <tr
+                        key={r.vol}
+                        className="group transition"
+                        style={{
+                          backgroundColor:
+                            i % 2 ? "rgba(229,227,220,0.20)" : "transparent",
+                        }}
+                      >
+                        <td
+                          className="border-t px-6 py-5 align-middle"
+                          style={{ borderColor: "var(--grey-light)" }}
                         >
-                          {r.gap}
-                        </span>
-                      </td>
-                      <td className="px-6 py-5 text-brand-grey">{r.level}</td>
-                    </tr>
-                  ))}
+                          <p className="font-heading text-base font-bold text-brand-black">
+                            {r.vol}
+                          </p>
+                          <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+                            Pack {r.level}
+                          </p>
+                        </td>
+                        <td
+                          className="border-t px-6 py-5 align-middle"
+                          style={{ borderColor: "var(--grey-light)" }}
+                        >
+                          <span
+                            className="inline-flex items-center gap-2 rounded-full px-3 py-1.5"
+                            style={{
+                              backgroundColor: "rgba(13,13,13,0.04)",
+                              border: "1px solid var(--grey-light)",
+                            }}
+                          >
+                            <span className="font-body text-sm text-brand-grey line-through">
+                              {fmt(r.odoo, currency)}
+                            </span>
+                          </span>
+                        </td>
+                        <td
+                          className="border-t px-6 py-5 align-middle"
+                          style={{ borderColor: "var(--grey-light)" }}
+                        >
+                          <span
+                            className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 shadow-[0_8px_24px_-12px_rgba(255,221,87,0.6)]"
+                            style={{
+                              backgroundColor: "var(--gold)",
+                              color: "var(--blue)",
+                            }}
+                          >
+                            <Zap size={14} />
+                            <span className="font-heading text-base font-bold">
+                              {fmt(r.msl, currency)}
+                            </span>
+                          </span>
+                        </td>
+                        <td
+                          className="border-t px-6 py-5 align-middle"
+                          style={{ borderColor: "var(--grey-light)" }}
+                        >
+                          <div className="flex items-center gap-3">
+                            <span
+                              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-mono text-xs font-bold"
+                              style={{
+                                backgroundColor: "rgba(26,122,74,0.12)",
+                                color: "var(--green)",
+                              }}
+                            >
+                              <TrendingDown size={12} />
+                              {r.gap}
+                            </span>
+                            <div
+                              className="hidden h-1.5 w-24 overflow-hidden rounded-full md:block"
+                              style={{ backgroundColor: "rgba(26,122,74,0.12)" }}
+                              aria-hidden
+                            >
+                              <div
+                                className="h-full rounded-full transition-all"
+                                style={{
+                                  width: `${savedPct}%`,
+                                  backgroundColor: "var(--green)",
+                                }}
+                              />
+                            </div>
+                          </div>
+                        </td>
+                        <td
+                          className="border-t px-6 py-5 align-middle"
+                          style={{ borderColor: "var(--grey-light)" }}
+                        >
+                          <span
+                            className="inline-flex items-center rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-brand-blue"
+                            style={{
+                              backgroundColor: "rgba(18,77,90,0.06)",
+                              borderColor: "rgba(18,77,90,0.2)",
+                            }}
+                          >
+                            {r.level}
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
+            </div>
+
+            {/* Footer summary strip */}
+            <div
+              className="grid gap-4 border-t px-6 py-5 sm:grid-cols-3"
+              style={{
+                borderColor: "var(--grey-light)",
+                backgroundColor: "rgba(229,227,220,0.25)",
+              }}
+            >
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
+                  Économie minimale
+                </p>
+                <p className="mt-1 font-heading text-xl font-bold text-brand-black">
+                  -20%
+                </p>
+              </div>
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
+                  Économie maximale
+                </p>
+                <p className="mt-1 font-heading text-xl font-bold" style={{ color: "var(--green)" }}>
+                  -49%
+                </p>
+              </div>
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
+                  Volumes comparés
+                </p>
+                <p className="mt-1 font-heading text-xl font-bold text-brand-black">
+                  4h → 200h
+                </p>
+              </div>
             </div>
           </div>
           <p className="mt-4 text-xs text-brand-grey">
