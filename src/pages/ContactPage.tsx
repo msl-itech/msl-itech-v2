@@ -856,6 +856,8 @@ function Field({
   textarea,
   rows = 4,
   maxLength,
+  showCount,
+  placeholder,
 }: {
   id: string;
   label: string;
@@ -867,6 +869,8 @@ function Field({
   textarea?: boolean;
   rows?: number;
   maxLength?: number;
+  showCount?: boolean;
+  placeholder?: string;
 }) {
   const base =
     "mt-2 w-full rounded-lg border bg-background px-4 py-3 font-body text-sm text-brand-black focus:outline-none focus:ring-1";
@@ -877,12 +881,19 @@ function Field({
   }`;
   return (
     <div>
-      <label
-        htmlFor={id}
-        className="block font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey"
-      >
-        {label}
-      </label>
+      <div className="flex items-baseline justify-between gap-3">
+        <label
+          htmlFor={id}
+          className="block font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey"
+        >
+          {label}
+        </label>
+        {showCount && maxLength && (
+          <span className="font-mono text-[10px] tabular-nums text-brand-grey/70">
+            {value.length}/{maxLength}
+          </span>
+        )}
+      </div>
       {textarea ? (
         <textarea
           id={id}
@@ -890,6 +901,7 @@ function Field({
           maxLength={maxLength}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
           className={cls}
         />
       ) : (
@@ -898,11 +910,108 @@ function Field({
           type={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
           className={cls}
         />
       )}
       {hint && !error && <p className="mt-1.5 text-xs text-brand-grey">{hint}</p>}
       {error && <p className="mt-1.5 text-xs text-destructive">{error}</p>}
+    </div>
+  );
+}
+
+/* ---------- StepHeader ---------- */
+
+function StepHeader({
+  icon,
+  title,
+  subtitle,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  subtitle?: string;
+}) {
+  return (
+    <div className="flex items-start gap-4">
+      <div
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+        style={{
+          backgroundColor: "var(--gold)",
+          color: "var(--blue)",
+        }}
+      >
+        {icon}
+      </div>
+      <div>
+        <h3 className="font-heading text-xl font-bold leading-tight text-brand-black md:text-2xl">
+          {title}
+        </h3>
+        {subtitle && (
+          <p className="mt-1.5 font-body text-sm text-brand-grey">{subtitle}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Suggestions (chips cliquables) ---------- */
+
+function Suggestions({
+  options,
+  value,
+  onAdd,
+}: {
+  options: string[];
+  value: string;
+  onAdd: (newValue: string) => void;
+}) {
+  const isSelected = (opt: string) =>
+    value
+      .split(/[\n,•]/)
+      .map((s) => s.trim().toLowerCase())
+      .includes(opt.toLowerCase());
+
+  const toggle = (opt: string) => {
+    if (isSelected(opt)) {
+      // Retire la suggestion (et la virgule/saut associés)
+      const cleaned = value
+        .split(/\n/)
+        .map((line) =>
+          line
+            .split(/,\s*/)
+            .filter((s) => s.trim().toLowerCase() !== opt.toLowerCase())
+            .join(", ")
+        )
+        .filter((line) => line.trim().length > 0)
+        .join("\n");
+      onAdd(cleaned);
+      return;
+    }
+    const sep = value.trim().length === 0 ? "" : value.trim().endsWith(",") ? " " : ", ";
+    onAdd(value + sep + opt);
+  };
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {options.map((opt) => {
+        const selected = isSelected(opt);
+        return (
+          <button
+            key={opt}
+            type="button"
+            onClick={() => toggle(opt)}
+            className="inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 font-body text-xs font-medium transition hover:-translate-y-0.5"
+            style={{
+              backgroundColor: selected ? "var(--blue)" : "white",
+              color: selected ? "white" : "var(--blue)",
+              borderColor: selected ? "var(--blue)" : "var(--grey-light)",
+            }}
+          >
+            {selected ? <CheckCircle2 size={12} /> : <Plus size={12} />}
+            {opt}
+          </button>
+        );
+      })}
     </div>
   );
 }
