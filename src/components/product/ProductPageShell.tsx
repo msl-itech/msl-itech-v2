@@ -390,19 +390,33 @@ function FinalCta({
         }}
       />
       <div className="container relative text-center text-white">
+        <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-white/80 backdrop-blur-sm">
+          <span
+            aria-hidden
+            className="inline-block h-1.5 w-1.5 rounded-full"
+            style={{ backgroundColor: "var(--gold)" }}
+          />
+          Prochaine étape
+        </p>
         <h2 className="mx-auto max-w-3xl font-heading text-3xl font-bold leading-tight md:text-5xl">
           {ctaTitle}
         </h2>
+        <div
+          aria-hidden
+          className="mx-auto mt-6 h-[3px] w-16 rounded-full"
+          style={{ backgroundColor: "var(--gold)" }}
+        />
         <p className="mx-auto mt-5 max-w-xl font-body text-base text-white/85">
           {ctaSubtitle}
         </p>
         <div className="mt-9 flex flex-wrap justify-center gap-3">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-full px-7 py-3 font-body text-sm font-semibold transition hover:opacity-90"
+            className="group inline-flex items-center gap-2 rounded-full px-7 py-3 font-body text-sm font-semibold shadow-[0_18px_50px_-15px_rgba(255,221,87,0.6)] transition hover:scale-[1.02]"
             style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
           >
-            Réserver ma démo <ArrowRight size={16} />
+            Réserver ma démo
+            <ArrowRight size={16} className="transition group-hover:translate-x-0.5" />
           </Link>
           <Link
             to="/tarifs"
@@ -411,6 +425,10 @@ function FinalCta({
             Voir nos tarifs
           </Link>
         </div>
+        <p className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">
+          <span aria-hidden className="inline-block h-px w-6 bg-white/30" />
+          30 minutes · Sans engagement · Démo personnalisée
+        </p>
       </div>
     </section>
   );
