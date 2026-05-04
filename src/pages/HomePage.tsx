@@ -356,11 +356,18 @@ function SocialProof() {
   ];
   const doubled = [...items, ...items, ...items];
   return (
-    <section className="overflow-hidden border-y border-white/5 bg-brand-black py-5">
-      <div className="flex w-max animate-marquee gap-12 whitespace-nowrap font-body text-sm text-white/85">
+    <section
+      className="relative overflow-hidden border-y py-5"
+      style={{ borderColor: "rgba(255,255,255,0.15)", backgroundColor: "var(--black)" }}
+    >
+      <div className="marquee-cta flex w-max items-center gap-10 whitespace-nowrap">
         {doubled.map((item, i) => (
-          <span key={i} className="flex items-center gap-2">
+          <span
+            key={i}
+            className="flex items-center gap-10 font-heading text-3xl font-bold uppercase tracking-tight text-white md:text-5xl"
+          >
             {item}
+            <span style={{ color: "var(--gold)" }}>✦</span>
           </span>
         ))}
       </div>
