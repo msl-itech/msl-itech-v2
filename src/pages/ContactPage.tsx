@@ -18,7 +18,7 @@ import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import contactHero from "@/assets/home/cta-bg.webp";
 import { submitLead } from "@/lib/leads";
-import { buildLeadDescription, type OdooLeadData } from "@/lib/odoo";
+import type { OdooLeadData } from "@/lib/odoo";
 
 /* ---------------- Sticker (charte MSL) ---------------- */
 function Sticker({
@@ -186,27 +186,38 @@ export default function ContactPage() {
     }
 
     const v = result.data;
+    const countryLabel: Record<string, string> = {
+      BE: "Belgique",
+      MA: "Maroc",
+      CA: "Canada",
+      OTHER: "Autre",
+    };
+
+    const descParts = [
+      `<h3>Demande de démo Odoo</h3>`,
+      `<p><strong>Nom complet:</strong> ${v.fullName}</p>`,
+      `<p><strong>Email:</strong> ${v.email}</p>`,
+      `<p><strong>Téléphone:</strong> ${v.phone}</p>`,
+      v.company ? `<p><strong>Société:</strong> ${v.company}</p>` : "",
+      `<p><strong>Pays:</strong> ${countryLabel[v.country] ?? v.country}</p>`,
+      `<h3>Objectifs</h3><p>${(v.objectives || "").replace(/\n/g, "<br/>")}</p>`,
+      v.painPoints
+        ? `<h3>Processus chronophages</h3><p>${v.painPoints.replace(/\n/g, "<br/>")}</p>`
+        : "",
+      v.currentTools
+        ? `<h3>Outils actuels</h3><p>${v.currentTools.replace(/\n/g, "<br/>")}</p>`
+        : "",
+      v.challenges
+        ? `<h3>Défis &amp; contexte</h3><p>${v.challenges.replace(/\n/g, "<br/>")}</p>`
+        : "",
+      `<p><strong>Source:</strong> Formulaire Contact - Site MSL-iTECH</p>`,
+    ].filter(Boolean);
+
     const payload: OdooLeadData = {
-      name: v.company
-        ? `Démo Odoo — ${v.fullName} (${v.company})`
-        : `Démo Odoo — ${v.fullName}`,
-      contact_name: v.fullName,
+      name: `${v.fullName}${v.company ? ` - ${v.company}` : ""}`,
       email_from: v.email,
       phone: v.phone,
-      partner_name: v.company || undefined,
-      country_code: v.country,
-      source: "msl-itech.com /contact",
-      tag_names: ["Site web", "Démo Odoo", `Pays: ${v.country}`],
-      description: buildLeadDescription({
-        Objectifs: v.objectives,
-        "Processus chronophages": v.painPoints,
-        "Outils actuels": v.currentTools,
-        "Défis & contexte": v.challenges,
-      }),
-      extra: {
-        consent: v.consent,
-        submitted_at: new Date().toISOString(),
-      },
+      description: descParts.join(""),
     };
 
     setSubmitting(true);
