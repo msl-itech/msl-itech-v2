@@ -11,8 +11,35 @@ import {
   MapPin,
   CheckCircle2,
   ShieldCheck,
+  Clock,
+  Calendar,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
+import contactHero from "@/assets/home/cta-bg.webp";
+
+/* ---------------- Sticker (charte MSL) ---------------- */
+function Sticker({
+  children,
+  rotate = -6,
+}: {
+  children: React.ReactNode;
+  rotate?: number;
+}) {
+  return (
+    <span
+      className="inline-flex items-center gap-1.5 rounded-full border-2 px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.15em] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)]"
+      style={{
+        backgroundColor: "var(--gold)",
+        color: "var(--blue)",
+        borderColor: "var(--blue)",
+        transform: `rotate(${rotate}deg)`,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
 
 const offices = [
   {
@@ -160,106 +187,245 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: "#0F3F4A" }}>
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(900px 500px at 90% 0%, rgba(255,221,87,0.18), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(255,255,255,0.08), transparent 60%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage: "radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)",
-            backgroundSize: "22px 22px",
-          }}
-        />
-        <div className="container relative py-20 lg:py-24 text-white">
-          <p
-            className="mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em]"
-            style={{
-              backgroundColor: "rgba(255,221,87,0.14)",
-              color: "var(--gold)",
-              border: "1px solid rgba(255,221,87,0.35)",
-            }}
-          >
-            <Sparkles size={12} /> Contact · MSL-iTECH
-          </p>
-          <h1 className="max-w-4xl font-heading text-4xl font-bold leading-[1.08] md:text-5xl">
-            Réservez votre démo Odoo gratuite — nous la préparons{" "}
-            <span style={{ color: "var(--gold)" }}>selon vos besoins réels</span>
-          </h1>
-          <p className="mt-6 max-w-3xl font-body text-lg text-white/80">
-            Vous n'allez pas regarder une présentation générique d'Odoo. Vous allez voir Odoo
-            configuré pour votre secteur, avec vos types de données et vos problématiques
-            spécifiques.
-          </p>
+      {/* HERO — image overlay (charte MSL) */}
+      <section className="bg-brand-bg pt-6 md:pt-8">
+        <div className="container">
+          <div className="relative isolate rounded-[28px] md:rounded-[36px]">
+            <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
+              <img
+                src={contactHero}
+                alt="Contact MSL-iTECH"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="eager"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(10,30,38,0.55) 0%, rgba(10,30,38,0.7) 55%, rgba(10,30,38,0.9) 100%)",
+                }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-32 -left-20 h-96 w-96 rounded-full opacity-25 blur-3xl"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -bottom-40 -right-24 h-[28rem] w-[28rem] rounded-full opacity-20 blur-3xl"
+                style={{ backgroundColor: "var(--blue)" }}
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 opacity-[0.08]"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }}
+              />
+            </div>
+
+            <HeroCursorGlow radius="inherit" />
+
+            {/* Sticker top-left */}
+            <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
+              <Sticker rotate={-8}>★ Réponse sous 24–72h</Sticker>
+            </div>
+
+            {/* Hero content */}
+            <div className="relative flex min-h-[420px] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[500px] md:py-28">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
+                <Sparkles size={12} className="text-brand-gold" />
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
+                  Contact · MSL-iTECH
+                </p>
+              </div>
+
+              <h1 className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[60px] lg:text-[68px]">
+                Réservez votre démo Odoo —{" "}
+                <span className="italic font-light text-brand-gold">
+                  préparée
+                </span>{" "}
+                selon vos besoins réels
+              </h1>
+
+              <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
+                Pas une démo générique : un consultant MSL-iTECH configure
+                Odoo avec vos données et vos problématiques métier avant l'appel.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-white/70">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5">
+                  <Clock size={12} className="text-brand-gold" /> 30 minutes
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5">
+                  <ShieldCheck size={12} className="text-brand-gold" /> Sans engagement
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5">
+                  <Calendar size={12} className="text-brand-gold" /> Démo personnalisée
+                </span>
+              </div>
+            </div>
+
+            {/* Breadcrumb pill — bottom right */}
+            <div className="absolute -bottom-5 right-6 z-30 md:right-10">
+              <div
+                className="flex items-center gap-3 rounded-full border bg-brand-white px-5 py-2.5 shadow-[0_18px_40px_-15px_rgba(0,0,0,0.25)]"
+                style={{ borderColor: "var(--grey-light)" }}
+              >
+                <Link
+                  to="/"
+                  className="font-body text-sm text-brand-grey transition hover:text-brand-blue"
+                >
+                  Accueil
+                </Link>
+                <span className="text-brand-grey/40">/</span>
+                <span className="font-body text-sm font-semibold text-brand-blue">
+                  Contact
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* OFFICES */}
-      <section className="bg-background py-20">
+      <section className="py-24" style={{ backgroundColor: "var(--bg)" }}>
         <div className="container">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-            Nos coordonnées
-          </p>
-          <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-            Trois bureaux, un seul interlocuteur dédié
-          </h2>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+              <span className="inline-block h-px w-8 bg-brand-blue" />
+              Nos coordonnées
+            </p>
+            <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]">
+              Trois bureaux, un interlocuteur dédié
+            </h2>
+          </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {offices.map((o) => (
-              <article
-                key={o.country}
-                className="rounded-2xl border border-border bg-card p-7 shadow-sm"
-              >
-                <h3 className="font-heading text-xl font-bold text-brand-black">{o.country}</h3>
-                <ul className="mt-5 space-y-3 font-body text-sm text-brand-grey">
-                  {o.address !== "—" && (
-                    <li className="flex gap-3">
-                      <MapPin size={16} className="mt-0.5 shrink-0 text-brand-blue" />
-                      <span>{o.address}</span>
-                    </li>
-                  )}
-                  <li className="flex gap-3">
-                    <Phone size={16} className="mt-0.5 shrink-0 text-brand-blue" />
-                    <a
-                      href={`tel:${o.phone.replace(/\s/g, "")}`}
-                      className="hover:text-brand-black"
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
+            {offices.map((o, i) => {
+              const variants = [
+                {
+                  bg: "var(--blue)",
+                  text: "white",
+                  desc: "rgba(255,255,255,0.78)",
+                  iconBg: "var(--gold)",
+                  iconColor: "var(--blue)",
+                  glow: "var(--gold)",
+                  border: "transparent",
+                  link: "white",
+                },
+                {
+                  bg: "white",
+                  text: "var(--black)",
+                  desc: "var(--grey)",
+                  iconBg: "var(--blue)",
+                  iconColor: "var(--gold)",
+                  glow: "var(--gold)",
+                  border: "var(--grey-light)",
+                  link: "var(--blue)",
+                },
+                {
+                  bg: "var(--blue-light)",
+                  text: "var(--blue)",
+                  desc: "rgba(18,77,90,0.75)",
+                  iconBg: "var(--blue)",
+                  iconColor: "var(--gold)",
+                  glow: "var(--gold)",
+                  border: "transparent",
+                  link: "var(--blue)",
+                },
+              ];
+              const s = variants[i % variants.length];
+              return (
+                <article
+                  key={o.country}
+                  className="group relative overflow-hidden rounded-[28px] border p-8 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.28)]"
+                  style={{ backgroundColor: s.bg, borderColor: s.border }}
+                >
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-25 blur-3xl"
+                    style={{ backgroundColor: s.glow }}
+                  />
+                  <div className="relative flex flex-col gap-6">
+                    <div className="flex items-center justify-between">
+                      <h3
+                        className="font-heading text-2xl font-bold leading-[1.1]"
+                        style={{ color: s.text }}
+                      >
+                        {o.country}
+                      </h3>
+                      <div
+                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl shadow-[0_10px_30px_-12px_rgba(0,0,0,0.25)]"
+                        style={{ backgroundColor: s.iconBg, color: s.iconColor }}
+                      >
+                        <MapPin size={18} />
+                      </div>
+                    </div>
+                    <ul
+                      className="space-y-3 font-body text-sm"
+                      style={{ color: s.desc }}
                     >
-                      {o.phone}
-                    </a>
-                  </li>
-                  <li className="flex gap-3">
-                    <Mail size={16} className="mt-0.5 shrink-0 text-brand-blue" />
-                    <a href={`mailto:${o.email}`} className="hover:text-brand-black">
-                      {o.email}
-                    </a>
-                  </li>
-                </ul>
-              </article>
-            ))}
+                      {o.address !== "—" && (
+                        <li className="flex gap-3">
+                          <MapPin size={15} className="mt-0.5 shrink-0" style={{ color: s.link }} />
+                          <span>{o.address}</span>
+                        </li>
+                      )}
+                      <li className="flex gap-3">
+                        <Phone size={15} className="mt-0.5 shrink-0" style={{ color: s.link }} />
+                        <a
+                          href={`tel:${o.phone.replace(/\s/g, "")}`}
+                          className="transition hover:opacity-80"
+                          style={{ color: s.text }}
+                        >
+                          {o.phone}
+                        </a>
+                      </li>
+                      <li className="flex gap-3">
+                        <Mail size={15} className="mt-0.5 shrink-0" style={{ color: s.link }} />
+                        <a
+                          href={`mailto:${o.email}`}
+                          className="transition hover:opacity-80"
+                          style={{ color: s.text }}
+                        >
+                          {o.email}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* DEMO FORM */}
-      <section className="bg-muted/40 py-20">
+      <section
+        className="py-24"
+        style={{
+          background:
+            "linear-gradient(180deg, var(--blue-light) 0%, var(--bg) 100%)",
+        }}
+      >
         <div className="container max-w-3xl">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-            Formulaire démo Odoo
-          </p>
-          <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-            5 étapes pour préparer votre démo personnalisée
-          </h2>
-          <p className="mt-4 font-body text-base text-brand-grey">
-            Pour toute demande concernant nos services, remplissez le formulaire ci-dessous. Nous
-            vous répondrons dans les 24 à 72 heures ouvrables.
-          </p>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+              <span className="inline-block h-px w-8 bg-brand-blue" />
+              Formulaire démo Odoo
+            </p>
+            <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]">
+              5 étapes pour préparer votre démo personnalisée
+            </h2>
+            <p className="mt-4 font-body text-base text-brand-grey">
+              Vous remplissez ; un consultant prépare la démo avec vos données
+              et revient vers vous sous 24 à 72h ouvrables.
+            </p>
+          </div>
 
           {submitted ? (
             <div
@@ -289,29 +455,78 @@ export default function ContactPage() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="mt-10 rounded-2xl border border-border bg-card p-7 shadow-sm md:p-10"
+              className="relative mt-12 overflow-hidden rounded-[28px] border bg-brand-white p-7 shadow-[0_30px_80px_-30px_rgba(18,77,90,0.25)] md:p-10"
+              style={{ borderColor: "var(--grey-light)" }}
               noValidate
             >
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full opacity-30 blur-3xl"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -left-24 -bottom-24 h-56 w-56 rounded-full opacity-20 blur-3xl"
+                style={{ backgroundColor: "var(--blue)" }}
+              />
+
               {/* Steps indicator */}
-              <ol className="mb-8 grid grid-cols-5 gap-2">
-                {stepLabels.map((lbl, i) => (
-                  <li key={lbl} className="flex flex-col items-center text-center">
-                    <span
-                      className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition ${
-                        i <= step ? "text-white" : "text-brand-grey"
-                      }`}
-                      style={{
-                        backgroundColor: i <= step ? "#0F3F4A" : "hsl(var(--muted))",
-                      }}
-                    >
-                      {i + 1}
-                    </span>
-                    <span className="mt-2 hidden text-[10px] uppercase tracking-[0.15em] text-brand-grey md:block">
-                      {lbl}
-                    </span>
-                  </li>
-                ))}
-              </ol>
+              <div className="relative mb-10">
+                <div
+                  className="absolute left-0 right-0 top-4 h-0.5 -z-0"
+                  style={{ backgroundColor: "var(--grey-light)" }}
+                />
+                <div
+                  className="absolute left-0 top-4 h-0.5 -z-0 transition-all duration-500"
+                  style={{
+                    backgroundColor: "var(--blue)",
+                    width: `${(step / (stepLabels.length - 1)) * 100}%`,
+                  }}
+                />
+                <ol className="relative grid grid-cols-5 gap-2">
+                  {stepLabels.map((lbl, i) => {
+                    const done = i < step;
+                    const active = i === step;
+                    return (
+                      <li key={lbl} className="flex flex-col items-center text-center">
+                        <span
+                          className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition"
+                          style={{
+                            backgroundColor:
+                              active
+                                ? "var(--gold)"
+                                : done
+                                  ? "var(--blue)"
+                                  : "white",
+                            color:
+                              active
+                                ? "var(--blue)"
+                                : done
+                                  ? "white"
+                                  : "var(--grey)",
+                            border: active || done
+                              ? "2px solid var(--blue)"
+                              : "2px solid var(--grey-light)",
+                          }}
+                        >
+                          {done ? <CheckCircle2 size={14} /> : i + 1}
+                        </span>
+                        <span
+                          className="mt-2 hidden text-[10px] uppercase tracking-[0.15em] md:block"
+                          style={{
+                            color: active ? "var(--blue)" : "var(--grey)",
+                            fontWeight: active ? 700 : 400,
+                          }}
+                        >
+                          {lbl}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
+
+              <div className="relative">
 
               {/* Step 0 — Coordonnées */}
               {step === 0 && (
@@ -455,7 +670,8 @@ export default function ContactPage() {
                   type="button"
                   onClick={handleBack}
                   disabled={step === 0}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 font-body text-sm font-semibold text-brand-black transition hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40"
+                  className="inline-flex items-center gap-2 rounded-full border bg-white px-5 py-2.5 font-body text-sm font-semibold transition hover:bg-brand-bg disabled:cursor-not-allowed disabled:opacity-40"
+                  style={{ borderColor: "var(--grey-light)", color: "var(--blue)" }}
                 >
                   <ArrowLeft size={16} /> Retour
                 </button>
@@ -464,16 +680,16 @@ export default function ContactPage() {
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-semibold transition hover:opacity-90"
-                    style={{ backgroundColor: "#0F3F4A", color: "white" }}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-semibold shadow-[0_12px_30px_-12px_rgba(18,77,90,0.5)] transition hover:-translate-y-0.5"
+                    style={{ backgroundColor: "var(--blue)", color: "white" }}
                   >
                     Continuer <ArrowRight size={16} />
                   </button>
                 ) : (
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold transition hover:opacity-90"
-                    style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold shadow-[0_14px_36px_-12px_rgba(255,221,87,0.7)] transition hover:-translate-y-0.5"
+                    style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
                   >
                     Réserver ma démo Odoo gratuite <ArrowRight size={16} />
                   </button>
@@ -484,6 +700,7 @@ export default function ContactPage() {
                 <ShieldCheck size={12} /> Sans engagement · Réponse sous 24 à 72h · Politique de
                 confidentialité
               </p>
+              </div>
             </form>
           )}
         </div>
