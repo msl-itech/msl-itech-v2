@@ -122,7 +122,7 @@ function HeroShell({
   const accentTail = accentWords[accentWords.length - 1];
 
   return (
-    <section className="relative bg-brand-bg pt-10 pb-24 md:pt-14 md:pb-28">
+    <section className="relative bg-brand-bg pt-6 pb-16 md:pt-14 md:pb-28">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px]"
@@ -132,20 +132,20 @@ function HeroShell({
         }}
       />
 
-      <div className="container">
-        <div className="grid items-stretch gap-6 lg:grid-cols-12">
+      <div className="container px-4 sm:px-6">
+        <div className="grid items-stretch gap-8 lg:grid-cols-12">
           {/* LEFT — Title + CTA (no card, plain background) */}
           <div className="relative flex flex-col justify-center lg:col-span-6 lg:pr-6">
             <div className="inline-flex w-fit items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
               <Sparkles size={12} className="text-brand-blue" />
-              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-brand-blue">
                 {eyebrow}
               </p>
             </div>
 
-            <h1 data-anim="chars" data-stagger="0.022" className="mt-7 font-heading text-4xl font-bold leading-[1.04] tracking-tight text-brand-black md:text-[60px]">
+            <h1 data-anim="chars" data-stagger="0.022" className="mt-5 break-words font-heading text-[30px] font-bold leading-[1.08] tracking-tight text-brand-black sm:text-4xl md:mt-7 md:text-[60px] md:leading-[1.04]">
               {titleTop}{" "}
-              <span className="block">
+              <span className="block sm:inline">
                 {accentHead && (
                   <span className="text-brand-blue italic font-light">{accentHead} </span>
                 )}
@@ -153,14 +153,14 @@ function HeroShell({
               </span>
             </h1>
 
-            <p className="mt-7 max-w-[520px] font-body text-base text-brand-grey md:text-lg">
+            <p className="mt-5 max-w-[520px] font-body text-[15px] leading-relaxed text-brand-grey md:mt-7 md:text-lg">
               {description}
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center md:mt-10">
               <Link
                 to="/contact"
-                className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] sm:w-auto"
                 style={{ backgroundColor: "var(--gold)" }}
               >
                 Réserver ma démo gratuite
@@ -168,7 +168,7 @@ function HeroShell({
               </Link>
               <Link
                 to="/realisations"
-                className="group inline-flex items-center gap-2 rounded-full border-2 px-6 py-3.5 font-body text-sm font-semibold text-brand-black transition hover:bg-brand-white"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full border-2 px-6 py-3.5 font-body text-sm font-semibold text-brand-black transition hover:bg-brand-white sm:w-auto"
                 style={{ borderColor: "var(--blue)" }}
               >
                 <span
@@ -187,7 +187,7 @@ function HeroShell({
             <div className="grid grid-cols-4 gap-3 md:gap-4">
               {/* Big stat — blue card with avatars */}
               <div
-                className="relative isolate col-span-4 overflow-hidden rounded-[24px] p-6 md:col-span-2 md:row-span-1 md:min-h-[260px]"
+                className="relative isolate col-span-4 overflow-hidden rounded-[24px] p-5 md:col-span-2 md:row-span-1 md:min-h-[260px] md:p-6"
                 style={{ backgroundColor: "var(--blue)" }}
               >
                 <div
@@ -233,7 +233,7 @@ function HeroShell({
 
               {/* Big image — portrait/team */}
               <div
-                className="relative col-span-4 overflow-hidden rounded-[24px] border md:col-span-2 md:row-span-2 md:min-h-[540px]"
+                className="relative col-span-4 aspect-[4/3] overflow-hidden rounded-[24px] border md:col-span-2 md:row-span-2 md:aspect-auto md:min-h-[540px]"
                 style={{ borderColor: "var(--grey-light)" }}
               >
                 <img
@@ -294,7 +294,7 @@ function HeroShell({
         </div>
 
         {/* Trust pills row */}
-        <div className="mt-10 flex flex-wrap items-center gap-3 font-body text-sm text-brand-grey">
+        <div className="mt-8 flex flex-wrap items-center gap-2 font-body text-xs text-brand-grey sm:gap-3 sm:text-sm md:mt-10">
           <span className="flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Sans engagement
           </span>
