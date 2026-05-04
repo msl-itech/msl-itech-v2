@@ -1,5 +1,6 @@
 import { Boxes, BellRing, ScanLine, ClipboardCheck } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
+import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import stockHero from "@/assets/stock-hero.webp";
 
@@ -23,6 +24,37 @@ const features = [
     icon: ClipboardCheck,
     title: "Inventaire physique simplifié",
     desc: "Vos équipes réalisent l'inventaire physique depuis une tablette ou un scanner. Les écarts sont détectés et validés automatiquement.",
+  },
+];
+
+const bentoCards: BentoCard[] = [
+  {
+    icon: Boxes,
+    title: "Inventaire temps réel",
+    desc: "Chaque entrée et sortie tracée en direct sur tous vos entrepôts. Vous savez ce que vous avez, où, et ce qui est réservé.",
+    variant: "blue",
+    span: "lg:col-span-7",
+  },
+  {
+    icon: BellRing,
+    title: "Réappro automatique",
+    desc: "Seuils min par produit. Bons de commande fournisseur générés dès que le stock descend.",
+    variant: "gold",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: ScanLine,
+    title: "Traçabilité par lot",
+    desc: "Numéros de lot, dates d'expiration, rappels ciblés — pour pharma, agro ou médical.",
+    variant: "white",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Inventaire physique simplifié",
+    desc: "Vos équipes scannent depuis tablette ou douchette. Écarts détectés et validés automatiquement.",
+    variant: "bluelight",
+    span: "lg:col-span-7",
   },
 ];
 
@@ -52,6 +84,14 @@ export default function StockPage() {
       featuresEyebrow="Ce que vous gagnez"
       featuresTitle="Ce que vous gagnez avec Odoo Stock"
       features={features}
+      featuresSlot={
+        <ProductBento
+          eyebrow="Ce que vous gagnez"
+          title="Ce que vous gagnez avec Odoo Stock"
+          chipLabel="Odoo Stock"
+          cards={bentoCards}
+        />
+      }
       ctaTitle="Réserver ma démo gratuite — Stock & Inventaire"
       ctaSubtitle="Voir Odoo Stock configuré pour votre entrepôt · Sans engagement"
     />
