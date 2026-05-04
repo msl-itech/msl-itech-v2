@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Layout } from "@/components/layout/Layout";
 import HomePage from "./pages/HomePage";
 import CrmPage from "./pages/CrmPage";
+import OdooErpPage from "./pages/OdooErpPage";
 import FinancePage from "./pages/FinancePage";
 import StockPage from "./pages/StockPage";
 import ProductionPage from "./pages/ProductionPage";
@@ -39,6 +40,7 @@ const App = () => (
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/odoo-erp" element={<OdooErpPage />} />
             <Route path="/odoo-crm-ventes" element={<CrmPage />} />
             <Route path="/odoo-finance-comptabilite" element={<FinancePage />} />
             <Route path="/odoo-stock-inventaire" element={<StockPage />} />
