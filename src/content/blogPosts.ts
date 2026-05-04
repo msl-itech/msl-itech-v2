@@ -23,6 +23,11 @@ export type BlogPost = {
   body: BlogSection[];
 };
 
+import facturationElectroniqueMarocImg from "@/assets/blog/facturation-electronique-maroc.jpg";
+import gestionStockMarocImg from "@/assets/blog/gestion-stock-maroc.jpg";
+import partenaireVsFreelanceImg from "@/assets/blog/partenaire-vs-freelance.jpg";
+import coutOdooBelgiqueImg from "@/assets/blog/cout-odoo-belgique.jpg";
+
 export const blogPosts: BlogPost[] = [
   {
     slug: "facturation-electronique-maroc-2026",
