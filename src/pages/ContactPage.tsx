@@ -641,62 +641,143 @@ export default function ContactPage() {
 
               {/* Step 1 — Objectifs */}
               {step === 1 && (
-                <Field
-                  id="objectives"
-                  label="Quels sont vos objectifs avec Odoo ? *"
-                  hint="Ex: structurer la facturation, suivre la production, gagner en visibilité commerciale…"
-                  error={errors.objectives}
-                  value={data.objectives ?? ""}
-                  onChange={(v) => update("objectives", v)}
-                  textarea
-                  rows={6}
-                  maxLength={800}
-                />
+                <div className="space-y-6">
+                  <StepHeader
+                    icon={<Target size={20} />}
+                    title="Quels sont vos objectifs avec Odoo ?"
+                    subtitle="Cliquez sur les suggestions pertinentes ou décrivez librement."
+                  />
+                  <Suggestions
+                    options={[
+                      "Structurer la facturation",
+                      "Centraliser les données clients",
+                      "Suivre la production en temps réel",
+                      "Gagner en visibilité commerciale",
+                      "Automatiser la comptabilité",
+                      "Piloter le stock multi-sites",
+                    ]}
+                    value={data.objectives ?? ""}
+                    onAdd={(v) => update("objectives", v)}
+                  />
+                  <Field
+                    id="objectives"
+                    label="Décrivez vos objectifs *"
+                    error={errors.objectives}
+                    value={data.objectives ?? ""}
+                    onChange={(v) => update("objectives", v)}
+                    textarea
+                    rows={5}
+                    maxLength={800}
+                    showCount
+                    placeholder="Ex: nous voulons unifier ventes, stock et compta sur un seul outil…"
+                  />
+                </div>
               )}
 
               {/* Step 2 — Pain points */}
               {step === 2 && (
-                <Field
-                  id="painPoints"
-                  label="Quels processus vous prennent le plus de temps aujourd'hui ?"
-                  hint="Saisies manuelles, ressaisies, Excel, validations multiples, relances clients…"
-                  error={errors.painPoints}
-                  value={data.painPoints ?? ""}
-                  onChange={(v) => update("painPoints", v)}
-                  textarea
-                  rows={6}
-                  maxLength={800}
-                />
+                <div className="space-y-6">
+                  <StepHeader
+                    icon={<Flame size={20} />}
+                    title="Qu'est-ce qui vous prend le plus de temps ?"
+                    subtitle="Identifions ensemble les processus à automatiser en priorité."
+                  />
+                  <Suggestions
+                    options={[
+                      "Ressaisies entre Excel et compta",
+                      "Saisies manuelles de factures",
+                      "Relances clients",
+                      "Validation des devis",
+                      "Suivi des stocks",
+                      "Reporting mensuel",
+                    ]}
+                    value={data.painPoints ?? ""}
+                    onAdd={(v) => update("painPoints", v)}
+                  />
+                  <Field
+                    id="painPoints"
+                    label="Vos processus chronophages"
+                    error={errors.painPoints}
+                    value={data.painPoints ?? ""}
+                    onChange={(v) => update("painPoints", v)}
+                    textarea
+                    rows={5}
+                    maxLength={800}
+                    showCount
+                    placeholder="Ex: chaque mois on reprend manuellement les ventes Shopify dans Excel…"
+                  />
+                </div>
               )}
 
               {/* Step 3 — Outils actuels */}
               {step === 3 && (
-                <Field
-                  id="currentTools"
-                  label="Quels outils utilisez-vous actuellement ?"
-                  hint="Excel, Sage, EBP, autre ERP, CRM, comptabilité externe…"
-                  error={errors.currentTools}
-                  value={data.currentTools ?? ""}
-                  onChange={(v) => update("currentTools", v)}
-                  textarea
-                  rows={5}
-                  maxLength={400}
-                />
+                <div className="space-y-6">
+                  <StepHeader
+                    icon={<Wrench size={20} />}
+                    title="Quels outils utilisez-vous aujourd'hui ?"
+                    subtitle="Pour préparer une démo réaliste avec vos cas d'usage."
+                  />
+                  <Suggestions
+                    options={[
+                      "Excel / Google Sheets",
+                      "Sage",
+                      "EBP",
+                      "Cegid",
+                      "Autre ERP",
+                      "HubSpot / Pipedrive",
+                      "Comptable externe",
+                      "Aucun outil métier",
+                    ]}
+                    value={data.currentTools ?? ""}
+                    onAdd={(v) => update("currentTools", v)}
+                  />
+                  <Field
+                    id="currentTools"
+                    label="Vos outils actuels"
+                    error={errors.currentTools}
+                    value={data.currentTools ?? ""}
+                    onChange={(v) => update("currentTools", v)}
+                    textarea
+                    rows={4}
+                    maxLength={400}
+                    showCount
+                    placeholder="Ex: Excel pour les devis, Sage pour la compta, rien pour le CRM…"
+                  />
+                </div>
               )}
 
-              {/* Step 4 — Défis */}
+              {/* Step 4 — Défis & consent */}
               {step === 4 && (
-                <div className="space-y-5">
+                <div className="space-y-6">
+                  <StepHeader
+                    icon={<Mountain size={20} />}
+                    title="Vos contraintes & défis"
+                    subtitle="Délais, budget, conformité… tout ce qui doit être pris en compte."
+                  />
+                  <Suggestions
+                    options={[
+                      "Mise en route rapide",
+                      "Budget maîtrisé",
+                      "Conformité (DGI, TVA, e-facturation)",
+                      "Multi-sites",
+                      "Multi-langues",
+                      "Migration depuis ancien ERP",
+                      "Formation des équipes",
+                    ]}
+                    value={data.challenges ?? ""}
+                    onAdd={(v) => update("challenges", v)}
+                  />
                   <Field
                     id="challenges"
-                    label="Vos principaux défis ou contraintes"
-                    hint="Délais, budget, conformité, multi-sites, multi-langues…"
+                    label="Décrivez vos contraintes"
                     error={errors.challenges}
                     value={data.challenges ?? ""}
                     onChange={(v) => update("challenges", v)}
                     textarea
-                    rows={5}
+                    rows={4}
                     maxLength={800}
+                    showCount
+                    placeholder="Ex: démarrage souhaité avant la fin du trimestre, équipe de 12 personnes…"
                   />
                   <label className="flex items-start gap-3 rounded-lg border border-border bg-muted/40 p-4 text-sm">
                     <input
