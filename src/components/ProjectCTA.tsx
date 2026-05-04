@@ -3,19 +3,21 @@ import { Link } from "react-router-dom";
 
 type Tag = { label: string; ty: number; r: number; accent?: boolean };
 
+// Alternance haut / bas pour reproduire la disposition en zigzag.
+// Les tags impairs (bleus) sont en haut, les pairs (jaunes) sont décalés vers le bas.
 const defaultTags: Tag[] = [
-  { label: "Odoo ERP", ty: -10, r: -8, accent: false },
-  { label: "CRM & Ventes", ty: -4, r: 4, accent: true },
-  { label: "Comptabilité", ty: -18, r: -3, accent: false },
-  { label: "Stock & Logistique", ty: -2, r: 6, accent: true },
-  { label: "Production", ty: -22, r: -5, accent: false },
-  { label: "RH & Paie", ty: -6, r: 3, accent: true },
-  { label: "Site React", ty: -14, r: -6, accent: false },
-  { label: "WordPress", ty: -2, r: 5, accent: true },
-  { label: "SEO & Marketing", ty: -16, r: -4, accent: false },
-  { label: "Dashboard", ty: -8, r: 7, accent: true },
-  { label: "Intégration sur-mesure", ty: -20, r: -2, accent: false },
-  { label: "Formation", ty: -4, r: 6, accent: true },
+  { label: "Odoo ERP", ty: -18, r: -8, accent: false },
+  { label: "CRM", ty: 4, r: 4, accent: true },
+  { label: "Wireframe", ty: -22, r: -3, accent: false },
+  { label: "Comptabilité", ty: 2, r: 6, accent: true },
+  { label: "Site React", ty: -20, r: -5, accent: false },
+  { label: "Stock", ty: 4, r: 3, accent: true },
+  { label: "WordPress", ty: -22, r: -6, accent: false },
+  { label: "RH & Paie", ty: 2, r: 5, accent: true },
+  { label: "Dashboard", ty: -18, r: -4, accent: false },
+  { label: "SEO", ty: 4, r: 7, accent: true },
+  { label: "Production", ty: -22, r: -2, accent: false },
+  { label: "Conseil", ty: 2, r: 6, accent: true },
 ];
 
 const defaultMarquee = [
@@ -108,18 +110,18 @@ export const ProjectCTA = ({
             </div>
           </div>
 
-          {/* Tags qui chevauchent la frontière bleu / marquee */}
-          <div className="container relative z-30 hidden px-6 md:block">
-            <div className="mx-auto flex max-w-5xl flex-wrap items-end justify-center gap-2">
+          {/* Tags en zigzag sur une seule ligne, chevauchent la bordure */}
+          <div className="relative z-30 hidden w-full overflow-hidden md:block">
+            <div className="flex w-full flex-nowrap items-center justify-center gap-2 px-4 lg:gap-3">
               {tags.map((t, idx) => (
                 <span
                   key={`${t.label}-${idx}`}
-                  className="inline-flex items-center rounded-full border-2 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.12em] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)] transition hover:scale-105"
+                  className="inline-flex shrink-0 items-center whitespace-nowrap rounded-full border-2 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)] transition hover:scale-105"
                   style={{
                     transform: `translateY(${t.ty}px) rotate(${t.r}deg)`,
-                    backgroundColor: t.accent ? "var(--gold)" : "var(--white)",
-                    borderColor: "var(--blue)",
-                    color: "var(--blue)",
+                    backgroundColor: t.accent ? "var(--gold)" : "var(--blue)",
+                    borderColor: t.accent ? "var(--blue)" : "var(--white)",
+                    color: t.accent ? "var(--blue)" : "var(--white)",
                   }}
                 >
                   {t.label}
