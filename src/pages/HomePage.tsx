@@ -426,7 +426,7 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
                   loading="lazy"
                   className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black/95 via-brand-black/55 to-transparent" />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black via-brand-black/85 via-40% to-brand-black/30" />
 
                 <div className="absolute right-5 top-5">
                   <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/50">
@@ -434,9 +434,9 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
                   </span>
                 </div>
 
-                <div className="p-7">
+                <div className="p-7" style={{ textShadow: "0 1px 12px rgba(0,0,0,0.55)" }}>
                   <h3 className="font-heading text-2xl font-bold text-white">{s.label}</h3>
-                  <p className="mt-1.5 font-body text-sm text-white/75">{s.desc}</p>
+                  <p className="mt-1.5 font-body text-sm text-white/95">{s.desc}</p>
                   <div className="mt-5">
                     {isClickable ? (
                       <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-brand-gold">
