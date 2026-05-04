@@ -1,5 +1,6 @@
 import { Boxes, Receipt, CalendarCheck, Users } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
+import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import horecaHero from "@/assets/horeca-hero.webp";
 
@@ -23,6 +24,38 @@ const features = [
     icon: Users,
     title: "Gestion du personnel simplifiée",
     desc: "Plannings, présences et paie gérés dans Odoo. Vos équipes pointent depuis leur téléphone.",
+  },
+];
+
+/* Bento — charte MSL : blue, gold, blue-light, white */
+const bentoCards: BentoCard[] = [
+  {
+    icon: Boxes,
+    title: "Stock en temps réel",
+    desc: "Chaque ingrédient utilisé est déduit du stock. Alertes avant rupture et commandes fournisseurs générées selon vos seuils.",
+    variant: "blue",
+    span: "lg:col-span-7",
+  },
+  {
+    icon: Receipt,
+    title: "Caisse & facturation",
+    desc: "POS Odoo connecté à la comptabilité. Chaque encaissement est comptabilisé en temps réel.",
+    variant: "gold",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Réservations & tables",
+    desc: "Réservations en ligne, plan de salle et liste d'attente depuis une seule interface.",
+    variant: "white",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: Users,
+    title: "Personnel simplifié",
+    desc: "Plannings, présences et paie gérés dans Odoo. Vos équipes pointent depuis leur téléphone.",
+    variant: "bluelight",
+    span: "lg:col-span-7",
   },
 ];
 
@@ -68,6 +101,14 @@ export default function HorecaPage() {
       featuresEyebrow="Dans votre établissement"
       featuresTitle="Ce qu'Odoo change dans votre établissement"
       features={features}
+      featuresSlot={
+        <ProductBento
+          eyebrow="Dans votre établissement"
+          title="Ce qu'Odoo change dans votre établissement"
+          chipLabel="Odoo HORECA"
+          cards={bentoCards}
+        />
+      }
       whySection={{
         title: "Impacts constatés",
         desc: "Trois niveaux de packs adaptés à votre type d'établissement. À partir de 199 MAD/mois, sans engagement, avec installation et formation incluses.",

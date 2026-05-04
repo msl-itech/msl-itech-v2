@@ -1,5 +1,6 @@
 import { Warehouse, RefreshCw, Receipt, ScanLine } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
+import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import stockMarocHero from "@/assets/stock-maroc-hero.webp";
 
@@ -23,6 +24,37 @@ const features = [
     icon: ScanLine,
     title: "Traçabilité et dates de péremption",
     desc: "Pour le commerce alimentaire, pharmaceutique ou cosmétique, Odoo gère la traçabilité par lot et par date de péremption.",
+  },
+];
+
+const bentoCards: BentoCard[] = [
+  {
+    icon: Warehouse,
+    title: "Inventaire temps réel",
+    desc: "Un entrepôt ou plusieurs dépôts régionaux : vision consolidée de votre stock en temps réel.",
+    variant: "blue",
+    span: "lg:col-span-7",
+  },
+  {
+    icon: RefreshCw,
+    title: "Réappro automatique",
+    desc: "Seuils par référence et par entrepôt. Odoo génère seul les bons de commande fournisseurs.",
+    variant: "gold",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: Receipt,
+    title: "POS & facturation",
+    desc: "Ventes au comptoir, facturation B2B, devis et commandes : tout est relié au stock en temps réel.",
+    variant: "white",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: ScanLine,
+    title: "Lots & péremptions",
+    desc: "Pour l'alimentaire, le pharmaceutique ou le cosmétique, Odoo gère lots et dates de péremption.",
+    variant: "bluelight",
+    span: "lg:col-span-7",
   },
 ];
 
@@ -66,6 +98,14 @@ export default function StockMarocPage() {
       featuresEyebrow="Pour les entreprises à gros volume"
       featuresTitle="Ce qu'Odoo change pour les entreprises à gros volume"
       features={features}
+      featuresSlot={
+        <ProductBento
+          eyebrow="Pour les entreprises à gros volume"
+          title="Ce qu'Odoo change pour les entreprises à gros volume"
+          chipLabel="Odoo Stock"
+          cards={bentoCards}
+        />
+      }
       faqs={faqs}
       ctaTitle="Réserver ma démo Stock gratuite"
       ctaSubtitle="Démo adaptée à votre volume et votre secteur · Réponse sous 24 à 72h"

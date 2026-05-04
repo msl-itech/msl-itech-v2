@@ -1,5 +1,6 @@
 import { ScanLine, FileHeart, ShieldCheck } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
+import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import santeHero from "@/assets/sante-hero.webp";
 
@@ -18,6 +19,30 @@ const features = [
     icon: ShieldCheck,
     title: "Facturation assurance et mutuelles",
     desc: "Intégration des tarifs CNOPS, CNSS et assurances privées. Génération automatique des feuilles de soins et suivi des remboursements.",
+  },
+];
+
+const bentoCards: BentoCard[] = [
+  {
+    icon: ScanLine,
+    title: "Traçabilité par lot",
+    desc: "Chaque médicament suivi par numéro de lot et date de péremption. Alerte automatique sur les stocks proches de l'expiration.",
+    variant: "blue",
+    span: "lg:col-span-7",
+  },
+  {
+    icon: FileHeart,
+    title: "Ordonnances & patients",
+    desc: "Suivi des ordonnances, historique patient et renouvellements automatiques pour les traitements chroniques.",
+    variant: "gold",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Assurance & mutuelles",
+    desc: "Tarifs CNOPS, CNSS et assurances privées. Feuilles de soins et suivi des remboursements automatisés.",
+    variant: "bluelight",
+    span: "lg:col-span-12",
   },
 ];
 
@@ -47,6 +72,14 @@ export default function SantePage() {
       featuresEyebrow="Pour le secteur santé"
       featuresTitle="Ce qu'Odoo apporte au secteur santé"
       features={features}
+      featuresSlot={
+        <ProductBento
+          eyebrow="Pour le secteur santé"
+          title="Ce qu'Odoo apporte au secteur santé"
+          chipLabel="Odoo Santé"
+          cards={bentoCards}
+        />
+      }
       whySection={{
         title: "MSL-iTECH dans le secteur santé marocain",
         desc: "Avec 3 clients actifs dans la santé, l'aide sociale et le pharmaceutique, MSL-iTECH a une expérience concrète des contraintes de ce secteur.",
