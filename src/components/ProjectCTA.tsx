@@ -110,18 +110,18 @@ export const ProjectCTA = ({
             </div>
           </div>
 
-          {/* Tags qui chevauchent la frontière bleu / marquee */}
-          <div className="container relative z-30 hidden px-6 md:block">
-            <div className="mx-auto flex max-w-5xl flex-wrap items-end justify-center gap-2">
+          {/* Tags en zigzag sur une seule ligne, chevauchent la bordure */}
+          <div className="relative z-30 hidden w-full overflow-hidden md:block">
+            <div className="flex w-full flex-nowrap items-center justify-center gap-2 px-4 lg:gap-3">
               {tags.map((t, idx) => (
                 <span
                   key={`${t.label}-${idx}`}
-                  className="inline-flex items-center rounded-full border-2 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.12em] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)] transition hover:scale-105"
+                  className="inline-flex shrink-0 items-center whitespace-nowrap rounded-full border-2 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)] transition hover:scale-105"
                   style={{
                     transform: `translateY(${t.ty}px) rotate(${t.r}deg)`,
-                    backgroundColor: t.accent ? "var(--gold)" : "var(--white)",
-                    borderColor: "var(--blue)",
-                    color: "var(--blue)",
+                    backgroundColor: t.accent ? "var(--gold)" : "var(--blue)",
+                    borderColor: t.accent ? "var(--blue)" : "var(--white)",
+                    color: t.accent ? "var(--blue)" : "var(--white)",
                   }}
                 >
                   {t.label}
