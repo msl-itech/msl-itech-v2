@@ -47,6 +47,28 @@ function useErpSeo() {
       document.head.appendChild(canonical);
     }
     canonical.href = window.location.origin + "/odoo-erp";
+
+    // Preload module images so they're ready when user scrolls
+    const preloads = [
+      erpHero,
+      crmImg,
+      financeImg,
+      stockImg,
+      productionImg,
+      rhImg,
+      servicesImg,
+    ];
+    const links: HTMLLinkElement[] = preloads.map((href) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = href;
+      document.head.appendChild(link);
+      return link;
+    });
+    return () => {
+      links.forEach((l) => l.remove());
+    };
   }, []);
 }
 
