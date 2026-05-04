@@ -405,18 +405,27 @@ export default function ContactPage() {
       </section>
 
       {/* DEMO FORM */}
-      <section className="bg-muted/40 py-20">
+      <section
+        className="py-24"
+        style={{
+          background:
+            "linear-gradient(180deg, var(--blue-light) 0%, var(--bg) 100%)",
+        }}
+      >
         <div className="container max-w-3xl">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-            Formulaire démo Odoo
-          </p>
-          <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-            5 étapes pour préparer votre démo personnalisée
-          </h2>
-          <p className="mt-4 font-body text-base text-brand-grey">
-            Pour toute demande concernant nos services, remplissez le formulaire ci-dessous. Nous
-            vous répondrons dans les 24 à 72 heures ouvrables.
-          </p>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+              <span className="inline-block h-px w-8 bg-brand-blue" />
+              Formulaire démo Odoo
+            </p>
+            <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]">
+              5 étapes pour préparer votre démo personnalisée
+            </h2>
+            <p className="mt-4 font-body text-base text-brand-grey">
+              Vous remplissez ; un consultant prépare la démo avec vos données
+              et revient vers vous sous 24 à 72h ouvrables.
+            </p>
+          </div>
 
           {submitted ? (
             <div
@@ -446,29 +455,78 @@ export default function ContactPage() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="mt-10 rounded-2xl border border-border bg-card p-7 shadow-sm md:p-10"
+              className="relative mt-12 overflow-hidden rounded-[28px] border bg-brand-white p-7 shadow-[0_30px_80px_-30px_rgba(18,77,90,0.25)] md:p-10"
+              style={{ borderColor: "var(--grey-light)" }}
               noValidate
             >
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full opacity-30 blur-3xl"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -left-24 -bottom-24 h-56 w-56 rounded-full opacity-20 blur-3xl"
+                style={{ backgroundColor: "var(--blue)" }}
+              />
+
               {/* Steps indicator */}
-              <ol className="mb-8 grid grid-cols-5 gap-2">
-                {stepLabels.map((lbl, i) => (
-                  <li key={lbl} className="flex flex-col items-center text-center">
-                    <span
-                      className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition ${
-                        i <= step ? "text-white" : "text-brand-grey"
-                      }`}
-                      style={{
-                        backgroundColor: i <= step ? "#0F3F4A" : "hsl(var(--muted))",
-                      }}
-                    >
-                      {i + 1}
-                    </span>
-                    <span className="mt-2 hidden text-[10px] uppercase tracking-[0.15em] text-brand-grey md:block">
-                      {lbl}
-                    </span>
-                  </li>
-                ))}
-              </ol>
+              <div className="relative mb-10">
+                <div
+                  className="absolute left-0 right-0 top-4 h-0.5 -z-0"
+                  style={{ backgroundColor: "var(--grey-light)" }}
+                />
+                <div
+                  className="absolute left-0 top-4 h-0.5 -z-0 transition-all duration-500"
+                  style={{
+                    backgroundColor: "var(--blue)",
+                    width: `${(step / (stepLabels.length - 1)) * 100}%`,
+                  }}
+                />
+                <ol className="relative grid grid-cols-5 gap-2">
+                  {stepLabels.map((lbl, i) => {
+                    const done = i < step;
+                    const active = i === step;
+                    return (
+                      <li key={lbl} className="flex flex-col items-center text-center">
+                        <span
+                          className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition"
+                          style={{
+                            backgroundColor:
+                              active
+                                ? "var(--gold)"
+                                : done
+                                  ? "var(--blue)"
+                                  : "white",
+                            color:
+                              active
+                                ? "var(--blue)"
+                                : done
+                                  ? "white"
+                                  : "var(--grey)",
+                            border: active || done
+                              ? "2px solid var(--blue)"
+                              : "2px solid var(--grey-light)",
+                          }}
+                        >
+                          {done ? <CheckCircle2 size={14} /> : i + 1}
+                        </span>
+                        <span
+                          className="mt-2 hidden text-[10px] uppercase tracking-[0.15em] md:block"
+                          style={{
+                            color: active ? "var(--blue)" : "var(--grey)",
+                            fontWeight: active ? 700 : 400,
+                          }}
+                        >
+                          {lbl}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
+
+              <div className="relative">
 
               {/* Step 0 — Coordonnées */}
               {step === 0 && (
