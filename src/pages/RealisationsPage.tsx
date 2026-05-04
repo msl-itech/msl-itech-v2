@@ -358,13 +358,16 @@ export default function RealisationsPage() {
       <section className="bg-brand-bg py-24 md:py-28">
         <div className="container">
           <div
-            className="relative isolate overflow-hidden rounded-[28px] p-10 lg:p-16"
+            className="relative isolate rounded-[28px] p-10 lg:p-16"
             style={{ backgroundColor: "var(--blue)" }}
           >
-            <div
-              className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full opacity-25 blur-3xl"
-              style={{ backgroundColor: "var(--gold)" }}
-            />
+            {/* Glow clipped inside */}
+            <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[28px]">
+              <div
+                className="absolute -top-24 -right-24 h-72 w-72 rounded-full opacity-25 blur-3xl"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+            </div>
             <div className="absolute -top-4 left-8 z-20">
               <Sticker rotate={-6}>★ Partenaire officiel</Sticker>
             </div>
