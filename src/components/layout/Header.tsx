@@ -21,9 +21,9 @@ const sectorLinks = [
 ];
 
 const profileItems = [
-  "PME en structuration (5-50 salariés)",
-  "Entreprise multi-sites",
-  "Structure en croissance rapide",
+  { to: "/pme-en-structuration", label: "PME en structuration (5-50 salariés)" },
+  { to: "/entreprise-multi-sites", label: "Entreprise multi-sites" },
+  { to: "/structure-en-croissance", label: "Structure en croissance rapide" },
 ];
 
 const simpleLinks = [
@@ -146,11 +146,13 @@ export const Header = () => {
                     </p>
                     <ul className="space-y-1">
                       {profileItems.map((p) => (
-                        <li
-                          key={p}
-                          className="rounded-md px-2 py-1.5 font-body text-sm text-brand-black"
-                        >
-                          {p}
+                        <li key={p.to}>
+                          <NavLink
+                            to={p.to}
+                            className="block rounded-md px-2 py-1.5 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
+                          >
+                            {p.label}
+                          </NavLink>
                         </li>
                       ))}
                     </ul>
