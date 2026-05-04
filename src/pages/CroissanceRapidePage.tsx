@@ -1,5 +1,6 @@
 import { TrendingUp, Rocket, Eye, Zap } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
+import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import heroImg from "@/assets/services-hero.webp";
 
@@ -23,6 +24,37 @@ const features = [
     icon: Zap,
     title: "Déploiement qui ne ralentit pas votre activité",
     desc: "Une croissance rapide ne peut pas se permettre un projet ERP qui mobilise vos équipes pendant 6 mois. MSL-iTECH déploie par blocs fonctionnels priorisés — chaque bloc apporte de la valeur immédiatement, sans attendre la fin du projet pour voir les premiers bénéfices.",
+  },
+];
+
+const bentoCards: BentoCard[] = [
+  {
+    icon: TrendingUp,
+    title: "Un ERP qui grandit avec vous",
+    desc: "Démarrez sur les modules critiques, étendez à la RH, production ou marketing au fil du développement.",
+    variant: "blue",
+    span: "lg:col-span-7",
+  },
+  {
+    icon: Rocket,
+    title: "Onboarding rapide",
+    desc: "Workflows clairs dès le premier jour — temps de montée en compétence réduit, qualité uniformisée.",
+    variant: "gold",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: Eye,
+    title: "Visibilité dirigeant temps réel",
+    desc: "Indicateurs commercial, financier, opérationnel centralisés et accessibles partout.",
+    variant: "white",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: Zap,
+    title: "Déploiement non-bloquant",
+    desc: "Par blocs fonctionnels priorisés — chaque bloc apporte de la valeur immédiatement.",
+    variant: "bluelight",
+    span: "lg:col-span-7",
   },
 ];
 
@@ -68,6 +100,14 @@ export default function CroissanceRapidePage() {
       featuresEyebrow="Odoo comme infrastructure de croissance"
       featuresTitle="Une infrastructure pensée pour absorber votre croissance"
       features={features}
+      featuresSlot={
+        <ProductBento
+          eyebrow="Odoo comme infrastructure de croissance"
+          title="Une infrastructure pensée pour absorber votre croissance"
+          chipLabel="Structure en croissance"
+          cards={bentoCards}
+        />
+      }
       whySection={{
         title: "Pourquoi MSL-iTECH est le bon partenaire pour une structure en croissance",
         desc: "Les entreprises en croissance rapide ont besoin d'un partenaire qui comprend l'urgence sans sacrifier la rigueur. Nous avons configuré Odoo pour des structures qui doublaient leur effectif en moins de 18 mois. Nous savons quels modules déployer en premier, quelles erreurs d'architecture éviter dès le départ, et comment former des équipes qui changent vite.",
