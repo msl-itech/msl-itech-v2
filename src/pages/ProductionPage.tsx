@@ -1,5 +1,6 @@
 import { Factory, ListTree, ShieldCheck, Wrench } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
+import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import productionHero from "@/assets/production-hero.webp";
 
@@ -23,6 +24,37 @@ const features = [
     icon: Wrench,
     title: "Maintenance préventive",
     desc: "Planifiez la maintenance de vos équipements, suivez leur historique et recevez des alertes avant les pannes prévues.",
+  },
+];
+
+const bentoCards: BentoCard[] = [
+  {
+    icon: Factory,
+    title: "Ordres de fabrication automatiques",
+    desc: "Dès la commande client validée, l'OF est généré : quantités, nomenclatures et planning, sans ressaisie.",
+    variant: "blue",
+    span: "lg:col-span-7",
+  },
+  {
+    icon: ListTree,
+    title: "Nomenclatures (BoM)",
+    desc: "Définissez vos recettes une fois. Besoins en composants calculés, alertes en cas de manque.",
+    variant: "gold",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Qualité intégrée",
+    desc: "Points de contrôle à chaque étape, non-conformités détectées avant l'expédition, lots tracés.",
+    variant: "white",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: Wrench,
+    title: "Maintenance préventive",
+    desc: "Maintenance planifiée, historique équipements et alertes avant pannes prévues.",
+    variant: "bluelight",
+    span: "lg:col-span-7",
   },
 ];
 
@@ -52,6 +84,14 @@ export default function ProductionPage() {
       featuresEyebrow="Dans votre atelier"
       featuresTitle="Ce qu'Odoo Production change dans votre atelier"
       features={features}
+      featuresSlot={
+        <ProductBento
+          eyebrow="Dans votre atelier"
+          title="Ce qu'Odoo Production change dans votre atelier"
+          chipLabel="Odoo Production"
+          cards={bentoCards}
+        />
+      }
       ctaTitle="Réserver ma démo gratuite — Production & Fabrication"
       ctaSubtitle="Voir Odoo Production configuré pour votre atelier · Sans engagement"
     />
