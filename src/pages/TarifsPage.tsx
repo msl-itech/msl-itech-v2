@@ -7,9 +7,12 @@ import {
   ShieldCheck,
   TrendingDown,
   Info,
+  Star,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { useMarket } from "@/hooks/useMarket";
+import pillarErp from "@/assets/home/pillar-erp.webp";
+import ctaBg from "@/assets/home/cta-bg.webp";
 
 type Currency = "EUR" | "MAD";
 const EUR_TO_MAD = 11;
@@ -21,6 +24,45 @@ const fmt = (eur: number, currency: Currency) => {
   const mad = eur * EUR_TO_MAD;
   return `${mad.toLocaleString("fr-FR")} MAD`;
 };
+
+/* ---------------- Highlight (marker brushstroke) ---------------- */
+function Mark({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="relative inline-block">
+      <span
+        aria-hidden
+        className="absolute inset-x-[-4px] bottom-[6%] -z-0 h-[42%] -rotate-[1.5deg] rounded-[6px]"
+        style={{ backgroundColor: "var(--gold)", filter: "blur(0.3px)" }}
+      />
+      <span className="relative z-10">{children}</span>
+    </span>
+  );
+}
+
+/* ---------------- Sticker ---------------- */
+function Sticker({
+  children,
+  rotate = -6,
+  className = "",
+}: {
+  children: React.ReactNode;
+  rotate?: number;
+  className?: string;
+}) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-2xl border-2 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] ${className}`}
+      style={{
+        backgroundColor: "var(--gold)",
+        borderColor: "var(--blue)",
+        color: "var(--blue)",
+        transform: `rotate(${rotate}deg)`,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
 
 const packs = [
   {
@@ -119,310 +161,452 @@ export default function TarifsPage() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: "var(--blue)" }}>
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(900px 500px at 90% 0%, rgba(255,221,87,0.18), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(255,255,255,0.08), transparent 60%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage: "radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)",
-            backgroundSize: "22px 22px",
-          }}
-        />
-        <div className="container relative py-20 lg:py-28 text-white">
-          <p
-            className="mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em]"
-            style={{
-              backgroundColor: "rgba(255,221,87,0.14)",
-              color: "var(--gold)",
-              border: "1px solid rgba(255,221,87,0.35)",
-            }}
-          >
-            <Sparkles size={12} /> Tarifs · MSL-iTECH
-          </p>
-          <h1 className="max-w-4xl font-heading text-4xl font-bold leading-[1.08] md:text-5xl lg:text-[3.25rem]">
-            Des tarifs transparents — et un partenaire officiel Odoo dont le statut est{" "}
-            <span style={{ color: "var(--gold)" }}>vérifiable publiquement</span>
-          </h1>
-          <p className="mt-6 max-w-3xl font-body text-lg text-white/80">
-            Dans le monde de l'ERP, la transparence tarifaire est rare. Chez MSL-iTECH, nos tarifs
-            sont affichés, et notre statut de partenaire officiel Odoo est vérifiable publiquement.
-            Vous pouvez évaluer notre légitimité et notre point d'entrée tarifaire avant même de
-            réserver un rendez-vous.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <span
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm"
-              style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "white" }}
-            >
-              <ShieldCheck size={16} style={{ color: "var(--gold)" }} /> Partenaire officiel Odoo
-            </span>
-            <span
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm"
-              style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "white" }}
-            >
-              <TrendingDown size={16} style={{ color: "var(--gold)" }} /> -20% à -49% vs Success Packs
-            </span>
-          </div>
+      {/* HERO — image overlay (style /realisations) */}
+      <section className="bg-brand-bg pt-6 md:pt-8">
+        <div className="container">
+          <div className="relative isolate rounded-[28px] md:rounded-[36px]">
+            <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
+              <img
+                src={pillarErp}
+                alt="Tarifs MSL-iTECH"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(10,30,38,0.55) 0%, rgba(10,30,38,0.7) 55%, rgba(10,30,38,0.9) 100%)",
+                }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-32 -left-20 h-96 w-96 rounded-full opacity-25 blur-3xl"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -bottom-40 -right-24 h-[28rem] w-[28rem] rounded-full opacity-20 blur-3xl"
+                style={{ backgroundColor: "var(--blue)" }}
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 opacity-[0.08]"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }}
+              />
+            </div>
 
-          <div className="mt-8 inline-flex items-center gap-1 rounded-full p-1" style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}>
-            <button
-              type="button"
-              onClick={() => setCurrency("EUR")}
-              aria-pressed={currency === "EUR"}
-              className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
-              style={{
-                backgroundColor: currency === "EUR" ? "var(--gold)" : "transparent",
-                color: currency === "EUR" ? "var(--blue)" : "white",
-              }}
-            >
-              € Euro
-            </button>
-            <button
-              type="button"
-              onClick={() => setCurrency("MAD")}
-              aria-pressed={currency === "MAD"}
-              className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
-              style={{
-                backgroundColor: currency === "MAD" ? "var(--gold)" : "transparent",
-                color: currency === "MAD" ? "var(--blue)" : "white",
-              }}
-            >
-              MAD Dirham
-            </button>
+            <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
+              <Sticker rotate={-8}>★ Tarifs transparents</Sticker>
+            </div>
+
+            <div className="relative flex min-h-[460px] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[560px] md:py-28">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
+                <Sparkles size={12} className="text-brand-gold" />
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
+                  Tarifs · MSL-iTECH
+                </p>
+              </div>
+
+              <h1 className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[60px] lg:text-[72px]">
+                Des tarifs{" "}
+                <span className="italic font-light text-brand-gold">
+                  transparents
+                </span>
+                ,<br className="hidden md:block" /> un partenaire{" "}
+                <Mark>vérifiable.</Mark>
+              </h1>
+
+              <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
+                Nos tarifs sont affichés et notre statut de partenaire officiel
+                Odoo est consultable publiquement. Évaluez-nous avant même de
+                réserver un rendez-vous.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <span
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white"
+                  style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
+                >
+                  <ShieldCheck size={16} className="text-brand-gold" /> Partenaire officiel Odoo
+                </span>
+                <span
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white"
+                  style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
+                >
+                  <TrendingDown size={16} className="text-brand-gold" /> -20% à -49% vs Success Packs
+                </span>
+              </div>
+
+              {/* Currency toggle */}
+              <div
+                className="mt-8 inline-flex items-center gap-1 rounded-full p-1"
+                style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setCurrency("EUR")}
+                  aria-pressed={currency === "EUR"}
+                  className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
+                  style={{
+                    backgroundColor: currency === "EUR" ? "var(--gold)" : "transparent",
+                    color: currency === "EUR" ? "var(--blue)" : "white",
+                  }}
+                >
+                  € Euro
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setCurrency("MAD")}
+                  aria-pressed={currency === "MAD"}
+                  className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
+                  style={{
+                    backgroundColor: currency === "MAD" ? "var(--gold)" : "transparent",
+                    color: currency === "MAD" ? "var(--blue)" : "white",
+                  }}
+                >
+                  MAD Dirham
+                </button>
+              </div>
+            </div>
+
+            {/* Breadcrumb pill */}
+            <div className="absolute -bottom-5 right-6 z-30 md:right-10">
+              <div
+                className="flex items-center gap-3 rounded-full border bg-brand-white px-5 py-2.5 shadow-[0_18px_40px_-15px_rgba(0,0,0,0.25)]"
+                style={{ borderColor: "var(--grey-light)" }}
+              >
+                <Link
+                  to="/"
+                  className="font-body text-sm text-brand-grey transition hover:text-brand-blue"
+                >
+                  Accueil
+                </Link>
+                <ArrowRight size={14} className="text-brand-gold" />
+                <span className="font-body text-sm font-semibold text-brand-blue">
+                  Tarifs
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* WHY COMPETITIVE */}
-      <section className="bg-background py-20">
-        <div className="container max-w-4xl">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-            Notre structure
-          </p>
-          <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-            Comment nous pouvons proposer des tarifs aussi compétitifs
-          </h2>
-          <p className="mt-6 font-body text-lg text-brand-grey">
-            Notre structure internationale — équipe technique certifiée au Maroc, présence
-            commerciale en Belgique — nous permet de proposer des packs d'heures{" "}
-            <strong className="text-brand-black">20 à 50% plus accessibles</strong> que les Success
-            Packs observés sur le marché belge, sur des volumes comparables. Vous bénéficiez d'un
-            cadre d'intervention certifié, transparent et structuré, avec une logique de prix plus
-            accessible.
-          </p>
+      <section className="bg-brand-bg py-24 md:py-28">
+        <div className="container">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <div className="mb-4 inline-flex items-center gap-2">
+                <span className="h-px w-10 bg-brand-blue" />
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+                  Notre structure
+                </p>
+              </div>
+              <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
+                Compétitifs,
+                <br />
+                <Mark>par construction.</Mark>
+              </h2>
+            </div>
+            <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
+              Notre structure internationale — équipe technique certifiée au
+              Maroc, présence commerciale en Belgique — nous permet de proposer
+              des packs <strong className="text-brand-black">20 à 50% plus
+              accessibles</strong> que les Success Packs observés sur le marché
+              belge, à volume comparable.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* PACKS TABLE */}
-      <section className="bg-muted/40 py-20">
+      <section className="bg-brand-white py-24 md:py-28">
         <div className="container">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-            Packs d'implémentation
-          </p>
-          <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-            Choisissez le pack adapté à votre périmètre
-          </h2>
-          <p className="mt-4 max-w-3xl font-body text-base text-brand-grey">
-            Six paliers d'engagement, du support fondamental à la vision 360. Tous nos packs
-            incluent paramétrage, formation et assistance — sans heures cachées.
-          </p>
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <div className="mb-4 inline-flex items-center gap-2">
+                <span className="h-px w-10 bg-brand-blue" />
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+                  Packs d'implémentation
+                </p>
+              </div>
+              <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
+                Choisissez votre <Mark>palier.</Mark>
+              </h2>
+            </div>
+            <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
+              Six paliers d'engagement, du support fondamental à la vision 360.
+              Tous nos packs incluent paramétrage, formation et assistance —
+              sans heures cachées.
+            </p>
+          </div>
 
-          <div className="mt-10 overflow-x-auto rounded-2xl border border-border">
-            <table className="w-full min-w-[820px] text-left text-sm">
-              <thead style={{ backgroundColor: "var(--blue)", color: "white" }}>
-                <tr>
-                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Pack</th>
-                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Volume</th>
-                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Pour qui</th>
-                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Inclus</th>
-                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">
-                    Nouveau client
-                  </th>
-                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">
-                    Ancien client
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-card">
-                {packs.map((p, i) => (
-                  <tr
-                    key={p.name}
-                    className={`${i % 2 ? "bg-muted/40" : ""} ${
-                      p.highlight ? "ring-1 ring-inset ring-brand-blue" : ""
-                    }`}
-                  >
-                    <td className="px-5 py-4 align-top">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-heading text-base font-bold text-brand-black">
-                          {p.name}
-                        </span>
-                        {p.highlight && (
-                          <span
-                            className="rounded-full px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em]"
-                            style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
-                          >
-                            Recommandé
-                          </span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-5 py-4 align-top font-mono text-sm text-brand-grey">
-                      {p.hours}
-                    </td>
-                    <td className="px-5 py-4 align-top text-brand-black">{p.for}</td>
-                    <td className="px-5 py-4 align-top">
-                      <span className="flex items-start gap-2 text-brand-grey">
-                        <CheckCircle2
-                          size={16}
-                          className="mt-0.5 shrink-0 text-brand-blue"
-                        />
-                        {p.incl}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4 align-top">
-                      <p className="font-heading text-lg font-bold text-brand-black">
-                        {fmt(p.priceNew, currency)}
-                      </p>
-                      <p className="mt-0.5 text-[11px] text-brand-grey">
-                        {currency === "EUR" ? "HTVA" : "TTC"}
-                      </p>
-                    </td>
-                    <td className="px-5 py-4 align-top">
-                      {p.priceOld !== p.priceNew ? (
-                        <span className="text-brand-grey line-through">
-                          {fmt(p.priceOld, currency)}
-                        </span>
-                      ) : (
-                        <span className="text-brand-grey">{fmt(p.priceOld, currency)}</span>
-                      )}
-                    </td>
+          <div
+            className="relative mt-14 overflow-hidden rounded-[28px] border bg-brand-white shadow-sm"
+            style={{ borderColor: "var(--grey-light)" }}
+          >
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[860px] text-left text-sm">
+                <thead style={{ backgroundColor: "var(--blue)", color: "white" }}>
+                  <tr>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Pack</th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Volume</th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Pour qui</th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Inclus</th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
+                      Nouveau client
+                    </th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
+                      Ancien client
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {packs.map((p, i) => (
+                    <tr
+                      key={p.name}
+                      className={`border-t transition hover:bg-brand-bg ${
+                        p.highlight ? "" : ""
+                      }`}
+                      style={{
+                        borderColor: "var(--grey-light)",
+                        backgroundColor: p.highlight
+                          ? "rgba(255,221,87,0.10)"
+                          : i % 2
+                          ? "rgba(229,227,220,0.18)"
+                          : "transparent",
+                      }}
+                    >
+                      <td className="px-6 py-5 align-top">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="font-heading text-base font-bold text-brand-black">
+                            {p.name}
+                          </span>
+                          {p.highlight && (
+                            <span
+                              className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em]"
+                              style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
+                            >
+                              <Star size={10} fill="currentColor" /> Recommandé
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-6 py-5 align-top font-mono text-sm text-brand-grey">
+                        {p.hours}
+                      </td>
+                      <td className="px-6 py-5 align-top text-brand-black">{p.for}</td>
+                      <td className="px-6 py-5 align-top">
+                        <span className="flex items-start gap-2 text-brand-grey">
+                          <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-brand-blue" />
+                          {p.incl}
+                        </span>
+                      </td>
+                      <td className="px-6 py-5 align-top">
+                        <p className="font-heading text-lg font-bold text-brand-black">
+                          {fmt(p.priceNew, currency)}
+                        </p>
+                        <p className="mt-0.5 text-[11px] text-brand-grey">
+                          {currency === "EUR" ? "HTVA" : "TTC"}
+                        </p>
+                      </td>
+                      <td className="px-6 py-5 align-top">
+                        {p.priceOld !== p.priceNew ? (
+                          <span className="text-brand-grey line-through">
+                            {fmt(p.priceOld, currency)}
+                          </span>
+                        ) : (
+                          <span className="text-brand-grey">{fmt(p.priceOld, currency)}</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <p className="mt-6 flex items-start gap-2 text-sm text-brand-grey">
             <Info size={14} className="mt-0.5 shrink-0" />
-            Prix € HTVA pour clients belges · Prix MAD TTC pour clients marocains · Conversion
-            indicative 1 € ≈ {EUR_TO_MAD} MAD.
+            Prix € HTVA pour clients belges · Prix MAD TTC pour clients marocains ·
+            Conversion indicative 1 € ≈ {EUR_TO_MAD} MAD.
           </p>
         </div>
       </section>
 
       {/* COMPARISON */}
-      <section className="bg-background py-20">
+      <section className="bg-brand-bg py-24 md:py-28">
         <div className="container">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-            Repère de comparaison
-          </p>
-          <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-            MSL-iTECH vs Success Packs Odoo (marché belge)
-          </h2>
-          <p className="mt-4 max-w-3xl font-body text-base text-brand-grey">
-            Sur des volumes comparables, nos packs ressortent à un niveau de prix significativement
-            plus accessible que les Success Packs observés pour nouveaux clients. L'écart varie de
-            20% à près de 50% selon le volume d'heures.
-          </p>
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <div className="mb-4 inline-flex items-center gap-2">
+                <span className="h-px w-10 bg-brand-blue" />
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+                  Repère de comparaison
+                </p>
+              </div>
+              <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
+                MSL-iTECH vs <Mark>Success Packs.</Mark>
+              </h2>
+            </div>
+            <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
+              Sur des volumes comparables, nos packs ressortent à un niveau de
+              prix significativement plus accessible que les Success Packs
+              observés pour nouveaux clients. L'écart varie de 20% à près de 50%
+              selon le volume.
+            </p>
+          </div>
 
-          <div className="mt-10 overflow-hidden rounded-2xl border border-border">
-            <table className="w-full text-left text-sm">
-              <thead style={{ backgroundColor: "var(--blue)", color: "white" }}>
-                <tr>
-                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Volume</th>
-                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Odoo Success Pack</th>
-                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">MSL-iTECH</th>
-                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Écart</th>
-                  <th className="px-5 py-4 font-mono text-xs uppercase tracking-[0.18em]">Niveau</th>
-                </tr>
-              </thead>
-              <tbody className="bg-card">
-                {comparison.map((r, i) => (
-                  <tr key={r.vol} className={i % 2 ? "bg-muted/40" : ""}>
-                    <td className="px-5 py-4 font-medium text-brand-black">{r.vol}</td>
-                    <td className="px-5 py-4 text-brand-grey line-through">{fmt(r.odoo, currency)}</td>
-                    <td className="px-5 py-4 font-semibold text-brand-black">{fmt(r.msl, currency)}</td>
-                    <td className="px-5 py-4">
-                      <span
-                        className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold"
-                        style={{ backgroundColor: "rgba(34,197,94,0.15)", color: "#15803d" }}
-                      >
-                        {r.gap}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4 text-brand-grey">{r.level}</td>
+          <div
+            className="mt-14 overflow-hidden rounded-[28px] border bg-brand-white shadow-sm"
+            style={{ borderColor: "var(--grey-light)" }}
+          >
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[680px] text-left text-sm">
+                <thead style={{ backgroundColor: "var(--blue)", color: "white" }}>
+                  <tr>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Volume</th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Odoo Success Pack</th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">MSL-iTECH</th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Écart</th>
+                    <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">Niveau</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {comparison.map((r, i) => (
+                    <tr
+                      key={r.vol}
+                      className="border-t transition hover:bg-brand-bg"
+                      style={{
+                        borderColor: "var(--grey-light)",
+                        backgroundColor: i % 2 ? "rgba(229,227,220,0.18)" : "transparent",
+                      }}
+                    >
+                      <td className="px-6 py-5 font-medium text-brand-black">{r.vol}</td>
+                      <td className="px-6 py-5 text-brand-grey line-through">
+                        {fmt(r.odoo, currency)}
+                      </td>
+                      <td className="px-6 py-5 font-heading text-base font-bold text-brand-black">
+                        {fmt(r.msl, currency)}
+                      </td>
+                      <td className="px-6 py-5">
+                        <span
+                          className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold"
+                          style={{ backgroundColor: "rgba(26,122,74,0.12)", color: "var(--green)" }}
+                        >
+                          {r.gap}
+                        </span>
+                      </td>
+                      <td className="px-6 py-5 text-brand-grey">{r.level}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
           <p className="mt-4 text-xs text-brand-grey">
-            Source comparaison : <a href="https://www.odoo.com/fr_FR/pricing-packs" target="_blank" rel="noopener noreferrer" className="underline hover:text-brand-blue">odoo.com/fr_FR/pricing-packs</a>
+            Source comparaison :{" "}
+            <a
+              href="https://www.odoo.com/fr_FR/pricing-packs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-brand-blue"
+            >
+              odoo.com/fr_FR/pricing-packs
+            </a>
           </p>
         </div>
       </section>
 
       {/* INCLUDED + CONDITIONS */}
-      <section className="bg-muted/40 py-20">
-        <div className="container grid gap-10 lg:grid-cols-2">
-          <div>
-            <h3 className="font-heading text-2xl font-bold text-brand-black">
-              Ce qui est inclus dans chaque pack
-            </h3>
-            <p className="mt-4 font-body text-base text-brand-grey">
-              Tous nos packs incluent : analyse de vos besoins, paramétrage Odoo selon votre
-              activité, migration de vos données existantes (selon le palier), formation de vos
-              équipes et support post-déploiement.
-            </p>
-            <p className="mt-3 font-body text-sm font-semibold text-brand-black">
-              Pas d'heures cachées, pas de facturation surprise.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-heading text-2xl font-bold text-brand-black">Conditions</h3>
-            <ul className="mt-4 space-y-3 font-body text-base text-brand-grey">
-              <li className="flex gap-2">
-                <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-brand-blue" />
-                Heures valables 12 mois à compter de la date d'achat.
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-brand-blue" />
-                Packs cumulables ; toute heure entamée est due.
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-brand-blue" />
-                Compte-rendu mensuel d'utilisation sur Avancé, Premium, VIP et Elite.
-              </li>
-            </ul>
+      <section className="bg-brand-white py-24 md:py-28">
+        <div className="container">
+          <div className="grid gap-6 lg:grid-cols-2">
+            <article
+              className="relative overflow-hidden rounded-[28px] border bg-brand-bg p-10 shadow-sm"
+              style={{ borderColor: "var(--grey-light)" }}
+            >
+              <div
+                className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full opacity-25 blur-3xl"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
+                Ce qui est inclus
+              </p>
+              <h3 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-3xl">
+                Tout, dans chaque pack.
+              </h3>
+              <p className="mt-4 font-body text-base text-brand-grey">
+                Analyse de vos besoins, paramétrage Odoo selon votre activité,
+                migration des données existantes (selon le palier), formation
+                des équipes et support post-déploiement.
+              </p>
+              <p className="mt-4 font-body text-sm font-semibold text-brand-black">
+                Pas d'heures cachées, pas de facturation surprise.
+              </p>
+            </article>
+
+            <article
+              className="relative overflow-hidden rounded-[28px] border bg-brand-bg p-10 shadow-sm"
+              style={{ borderColor: "var(--grey-light)" }}
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
+                Conditions
+              </p>
+              <h3 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-3xl">
+                Cadre clair & engagé.
+              </h3>
+              <ul className="mt-4 space-y-3 font-body text-base text-brand-grey">
+                <li className="flex gap-2">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-brand-blue" />
+                  Heures valables 12 mois à compter de la date d'achat.
+                </li>
+                <li className="flex gap-2">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-brand-blue" />
+                  Packs cumulables ; toute heure entamée est due.
+                </li>
+                <li className="flex gap-2">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-brand-blue" />
+                  Compte-rendu mensuel d'utilisation sur Avancé, Premium, VIP et Elite.
+                </li>
+              </ul>
+            </article>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="bg-background py-20">
-        <div className="container max-w-4xl">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">FAQ Tarifs</p>
-          <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-            Questions fréquentes
-          </h2>
-          <div className="mt-10 space-y-4">
+      <section className="bg-brand-bg py-24 md:py-28">
+        <div className="container">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <div className="mb-4 inline-flex items-center gap-2">
+                <span className="h-px w-10 bg-brand-blue" />
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+                  FAQ Tarifs
+                </p>
+              </div>
+              <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
+                Questions <Mark>fréquentes.</Mark>
+              </h2>
+            </div>
+          </div>
+
+          <div className="mt-12 grid gap-4 lg:grid-cols-2">
             {faqs.map((f) => (
               <details
                 key={f.q}
-                className="group rounded-xl border border-border bg-card p-5 transition hover:shadow-sm"
+                className="group rounded-[20px] border bg-brand-white p-6 transition hover:shadow-md"
+                style={{ borderColor: "var(--grey-light)" }}
               >
-                <summary className="flex cursor-pointer items-center justify-between font-body font-semibold text-brand-black">
-                  {f.q}
-                  <span className="ml-4 text-brand-blue transition group-open:rotate-45 text-2xl leading-none">
+                <summary className="flex cursor-pointer items-center justify-between gap-4 font-body font-semibold text-brand-black">
+                  <span>{f.q}</span>
+                  <span className="ml-2 text-2xl leading-none text-brand-blue transition group-open:rotate-45">
                     +
                   </span>
                 </summary>
@@ -434,21 +618,42 @@ export default function TarifsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20" style={{ backgroundColor: "var(--blue)" }}>
+      <section className="relative isolate overflow-hidden bg-brand-black py-24 md:py-28">
+        <img
+          src={ctaBg}
+          alt=""
+          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(13,13,13,0.7) 0%, rgba(18,77,90,0.85) 100%)",
+          }}
+        />
         <div className="container text-center text-white">
-          <h2 className="font-heading text-3xl font-bold md:text-4xl">
-            Réserver ma démo gratuite — je choisis{" "}
-            <span style={{ color: "var(--gold)" }}>mon pack ensuite</span>
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
+            <Sparkles size={12} className="text-brand-gold" />
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
+              Prêt à démarrer ?
+            </p>
+          </div>
+          <h2 className="mx-auto mt-6 max-w-3xl font-heading text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+            Réservez votre démo,{" "}
+            <span className="italic font-light text-brand-gold">
+              choisissez votre pack ensuite.
+            </span>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl font-body text-white/80">
-            Sans engagement · Conseil personnalisé · Réponse sous 24 à 72h ouvrables
+          <p className="mx-auto mt-5 max-w-xl font-body text-base text-white/80 md:text-lg">
+            Sans engagement · Conseil personnalisé · Réponse sous 24 à 72h ouvrables.
           </p>
           <Link
-            to="/contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-semibold transition hover:opacity-90"
-            style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
+            to="/prendre-rendez-vous"
+            className="mt-9 inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+            style={{ backgroundColor: "var(--gold)" }}
           >
-            Réserver ma démo <ArrowRight size={16} />
+            Réserver ma démo gratuite <ArrowRight size={16} />
           </Link>
         </div>
       </section>
