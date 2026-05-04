@@ -69,7 +69,7 @@ export const ProjectCTA = ({
             }}
           />
 
-          <div className="container relative z-10 px-6 pb-32 pt-20 text-center md:pb-40 md:pt-28">
+          <div className="container relative z-10 px-6 pb-20 pt-20 text-center md:pb-24 md:pt-28">
             {/* Eyebrow */}
             <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-white/85 backdrop-blur-sm">
               <Sparkles size={12} className="text-brand-gold" />
