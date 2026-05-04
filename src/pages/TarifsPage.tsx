@@ -12,6 +12,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import { useMarket } from "@/hooks/useMarket";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";

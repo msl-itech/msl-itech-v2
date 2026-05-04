@@ -11,6 +11,7 @@ import {
   Star,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import caseBe from "@/assets/home/case-be.webp";
 import caseMa from "@/assets/home/case-ma.webp";
 import pillarWeb from "@/assets/home/pillar-web.webp";

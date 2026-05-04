@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar, Clock, Sparkles } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import { blogPosts } from "@/content/blogPosts";
 import pillarMarketing from "@/assets/home/pillar-marketing.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
