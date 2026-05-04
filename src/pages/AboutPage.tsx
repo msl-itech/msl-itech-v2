@@ -28,12 +28,6 @@ const team = [
     desc: "Polyvalent et rigoureux, Elohim intervient sur les développements spécifiques et les intégrations complexes. Son profil technique couvre Odoo, React et les API tierces.",
   },
   {
-    name: "Oumnia OUAMIRA",
-    role: "Stratège Marketing",
-    icon: Megaphone,
-    desc: "Responsable de la stratégie digitale et des campagnes d'acquisition pour les clients MSL-iTECH. Elle pilote le SEO, le GEO et la performance des contenus.",
-  },
-  {
     name: "El Houssine BOUHMAIDA",
     role: "Consultant Odoo Senior",
     icon: Settings2,
