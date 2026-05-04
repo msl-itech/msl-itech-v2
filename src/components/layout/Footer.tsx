@@ -44,7 +44,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="mt-24 bg-brand-black text-brand-white">
+    <footer className="bg-brand-black text-brand-white">
       <div className="container grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
         {/* Col 1 */}
         <div>
