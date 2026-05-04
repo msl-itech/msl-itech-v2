@@ -19,6 +19,7 @@ export interface ProductPageShellProps {
   featuresEyebrow?: string;
   featuresTitle: string;
   features: Feature[];
+  featuresSlot?: ReactNode;
   whySection?: { title: string; desc: string; points: string[] };
   faqs?: Faq[];
   ctaTitle: string;
@@ -353,11 +354,15 @@ export function ProductPageShell(props: ProductPageShellProps) {
         heroImageAlt={props.heroImageAlt}
         metaNote={props.metaNote}
       />
-      <Features
-        featuresEyebrow={props.featuresEyebrow}
-        featuresTitle={props.featuresTitle}
-        features={props.features}
-      />
+      {props.featuresSlot ? (
+        props.featuresSlot
+      ) : (
+        <Features
+          featuresEyebrow={props.featuresEyebrow}
+          featuresTitle={props.featuresTitle}
+          features={props.features}
+        />
+      )}
       {props.whySection && <Why whySection={props.whySection} />}
       {props.faqs && props.faqs.length > 0 && <FaqBlock faqs={props.faqs} />}
       <FinalCta ctaTitle={props.ctaTitle} ctaSubtitle={props.ctaSubtitle} />
