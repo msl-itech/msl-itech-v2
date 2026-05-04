@@ -108,15 +108,13 @@ export const ProjectCTA = ({
             </div>
           </div>
 
-          {/* Tags qui chevauchent la bordure du bas */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden h-0 md:block">
-            <div className="container mx-auto flex max-w-5xl flex-wrap items-end justify-center gap-2 px-6">
+          {/* Tags qui chevauchent la frontière bleu / marquee */}
+          <div className="container relative z-30 hidden px-6 md:block">
+            <div className="mx-auto flex max-w-5xl flex-wrap items-end justify-center gap-2">
               {tags.map((t, idx) => (
                 <span
                   key={`${t.label}-${idx}`}
-                  className={`pointer-events-auto inline-flex items-center rounded-full border-2 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.12em] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.35)] transition hover:scale-105 ${
-                    t.accent ? "" : ""
-                  }`}
+                  className="inline-flex items-center rounded-full border-2 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.12em] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)] transition hover:scale-105"
                   style={{
                     transform: `translateY(${t.ty}px) rotate(${t.r}deg)`,
                     backgroundColor: t.accent ? "var(--gold)" : "var(--white)",
@@ -130,8 +128,8 @@ export const ProjectCTA = ({
             </div>
           </div>
 
-          {/* Tags mobile : version simplifiée stack */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-2 z-20 flex flex-wrap justify-center gap-1.5 px-4 md:hidden">
+          {/* Tags mobile */}
+          <div className="container relative z-30 flex flex-wrap justify-center gap-1.5 px-4 pb-2 md:hidden">
             {tags.slice(0, 6).map((t, idx) => (
               <span
                 key={`m-${t.label}-${idx}`}
@@ -150,7 +148,7 @@ export const ProjectCTA = ({
 
       {/* Bandeau marquee */}
       <div
-        className="relative z-10 mt-10 overflow-hidden border-t py-5 md:mt-16"
+        className="relative z-10 mt-2 overflow-hidden border-t py-5 md:mt-4"
         style={{ borderColor: "rgba(255,255,255,0.15)", backgroundColor: "var(--black)" }}
       >
         <div className="marquee-cta flex w-max items-center gap-10 whitespace-nowrap">
