@@ -679,7 +679,7 @@ export default function ContactPage() {
                 <div className="space-y-6">
                   <StepHeader
                     icon={<Flame size={20} />}
-                    title="Qu'est-ce qui vous prend le plus de temps ?"
+                    title={"Qu'est-ce qui vous prend le plus de temps\u00A0?"}
                     subtitle="Identifions ensemble les processus à automatiser en priorité."
                   />
                   <Suggestions
