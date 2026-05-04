@@ -1,5 +1,6 @@
 import { Building2, Warehouse, BarChart3, ShieldCheck } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
+import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import heroImg from "@/assets/transport-hero.webp";
 
@@ -23,6 +24,37 @@ const features = [
     icon: ShieldCheck,
     title: "Droits d'accès par site et par rôle",
     desc: "Chaque responsable de site voit ses données. La direction voit tout. Les équipes locales ne peuvent pas modifier les données d'un autre site. Les règles de confidentialité et d'accès sont configurées une fois, appliquées partout.",
+  },
+];
+
+const bentoCards: BentoCard[] = [
+  {
+    icon: Building2,
+    title: "Multi-sociétés, une instance",
+    desc: "Plusieurs entités légales dans une seule instance — comptabilité séparée, vue consolidée temps réel.",
+    variant: "blue",
+    span: "lg:col-span-7",
+  },
+  {
+    icon: Warehouse,
+    title: "Multi-entrepôts unifiés",
+    desc: "Stock centralisé, transferts inter-sites tracés, réapprovisionnement automatique par seuils.",
+    variant: "gold",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: BarChart3,
+    title: "Reporting consolidé",
+    desc: "Tableaux de bord par entité, par région ou pour le groupe — sans export manuel.",
+    variant: "white",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Droits par site & rôle",
+    desc: "Chaque responsable voit ses données, la direction voit tout. Règles configurées une fois.",
+    variant: "bluelight",
+    span: "lg:col-span-7",
   },
 ];
 
@@ -67,6 +99,14 @@ export default function MultiSitesPage() {
       featuresEyebrow="L'architecture Odoo multi-sites"
       featuresTitle="L'architecture Odoo pour les structures multi-sites"
       features={features}
+      featuresSlot={
+        <ProductBento
+          eyebrow="L'architecture Odoo multi-sites"
+          title="L'architecture Odoo pour les structures multi-sites"
+          chipLabel="Entreprise multi-sites"
+          cards={bentoCards}
+        />
+      }
       whySection={{
         title: "Ce que MSL-iTECH apporte sur les projets multi-sites",
         desc: "Les projets multi-sites sont techniquement plus complexes qu'une implémentation mono-site. Ils requièrent une architecture pensée dès le départ — les erreurs de configuration initiale coûtent cher à corriger. Nos consultants certifiés Odoo cadrent le projet avec vous avant d'écrire la moindre configuration.",

@@ -1,5 +1,6 @@
 import { Layers, Boxes, GraduationCap, Wallet } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
+import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import heroImg from "@/assets/finance-hero.webp";
 
@@ -23,6 +24,37 @@ const features = [
     icon: Wallet,
     title: "Des tarifs accessibles à votre réalité budgétaire",
     desc: "MSL-iTECH propose des packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge, sur des volumes comparables. Une PME de 20 salariés n'a pas à payer le tarif d'un grand groupe pour bénéficier d'une expertise certifiée.",
+  },
+];
+
+const bentoCards: BentoCard[] = [
+  {
+    icon: Layers,
+    title: "Un seul outil pour tout piloter",
+    desc: "CRM, facturation, stock, comptabilité, RH — tout dans un seul environnement, sans ressaisie.",
+    variant: "blue",
+    span: "lg:col-span-7",
+  },
+  {
+    icon: Boxes,
+    title: "Déploiement par blocs",
+    desc: "Les modules qui résolvent vos problèmes immédiats d'abord, les extensions ensuite.",
+    variant: "gold",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: GraduationCap,
+    title: "Prise en main rapide",
+    desc: "Vos équipes formées sur votre configuration réelle — pas sur une démo générique.",
+    variant: "white",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: Wallet,
+    title: "Tarifs accessibles",
+    desc: "Packs d'heures 20 à 50% plus accessibles que les Success Packs du marché belge.",
+    variant: "bluelight",
+    span: "lg:col-span-7",
   },
 ];
 
@@ -72,6 +104,14 @@ export default function PmeStructurationPage() {
       featuresEyebrow="Le seuil critique que vous avez atteint"
       featuresTitle="Ce qu'Odoo change pour une PME de votre taille"
       features={features}
+      featuresSlot={
+        <ProductBento
+          eyebrow="Le seuil critique que vous avez atteint"
+          title="Ce qu'Odoo change pour une PME de votre taille"
+          chipLabel="PME en structuration"
+          cards={bentoCards}
+        />
+      }
       whySection={{
         title: "Ce que vous obtenez avec MSL-iTECH",
         desc: "Entre 5 et 50 salariés, vous êtes au moment le plus délicat : trop grand pour improviser, trop petit pour gaspiller du temps et de l'argent sur un outil inadapté. Nous configurons Odoo à votre périmètre réel, migrons vos données et formons vos équipes pour atteindre l'autonomie.",
