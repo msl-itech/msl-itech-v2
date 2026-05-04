@@ -21,6 +21,7 @@ import {
   User,
   Building2,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 
 const offices = [
@@ -740,7 +741,7 @@ function Field({
   textarea?: boolean;
   rows?: number;
   maxLength?: number;
-  icon?: React.ComponentType<{ size?: number; className?: string }>;
+  icon?: LucideIcon;
 }) {
   const base =
     "w-full rounded-xl border bg-background py-3 font-body text-sm text-brand-black transition focus:outline-none focus:ring-2";
