@@ -179,7 +179,21 @@ function Hero({
             <h2 className="mt-5 font-heading text-3xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-[42px]">
               {proposalTitle ?? (
                 <>
-                  Ce que <span style={{ color: "var(--blue)" }}>MSL-iTECH</span> vous propose
+                  Ce que{" "}
+                  <span className="relative inline-block">
+                    <span
+                      aria-hidden
+                      className="absolute inset-x-0 bottom-1 -z-10 h-3 md:h-4"
+                      style={{
+                        backgroundColor: "var(--gold)",
+                        transform: "skew(-6deg)",
+                      }}
+                    />
+                    <span className="relative" style={{ color: "var(--blue)" }}>
+                      MSL-iTECH
+                    </span>
+                  </span>{" "}
+                  vous propose
                 </>
               )}
             </h2>
