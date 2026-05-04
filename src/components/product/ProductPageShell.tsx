@@ -610,9 +610,9 @@ export function ProductPageShell(props: ProductPageShellProps) {
       )}
       {props.faqs && props.faqs.length > 0 && <FaqBlock faqs={props.faqs} />}
       <ProjectCTA
-        eyebrow="Démarrons ensemble"
+        eyebrow={props.ctaSubtitle ? "Démarrons ensemble" : "Démarrons ensemble"}
         titleStart={props.ctaTitle}
-        titleEnd="ensemble"
+        titleEnd="avec MSL-iTECH"
       />
     </>
   );
