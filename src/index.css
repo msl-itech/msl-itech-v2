@@ -122,3 +122,13 @@
     font-family: var(--font-heading);
   }
 }
+
+@keyframes marquee-cta {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+
+.marquee-cta {
+  animation: marquee-cta 30s linear infinite;
+  will-change: transform;
+}
