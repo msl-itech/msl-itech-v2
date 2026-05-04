@@ -46,9 +46,9 @@ export const Footer = () => {
 
   return (
     <footer className="bg-brand-black text-brand-white">
-      <div className="container grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container grid gap-8 px-4 py-12 sm:grid-cols-2 sm:gap-10 sm:px-6 md:py-16 lg:grid-cols-4">
         {/* Col 1 */}
-        <div>
+        <div className="sm:col-span-2 lg:col-span-1">
           <Link to="/" aria-label="MSL-iTECH — accueil" className="inline-block">
             <img
               src={logoWhite}
@@ -57,10 +57,10 @@ export const Footer = () => {
               loading="lazy"
             />
           </Link>
-          <p className="mt-4 max-w-xs font-body text-sm text-brand-grey-light/85">
+          <p className="mt-4 max-w-md font-body text-sm text-brand-grey-light/85">
             L'intégrateur Odoo qui structure, construit et accélère.
           </p>
-          <p className="mt-4 max-w-xs font-body text-xs text-brand-grey-light/70">
+          <p className="mt-4 max-w-md font-body text-xs text-brand-grey-light/70">
             Partenaire officiel Odoo —{" "}
             <a
               href="https://www.odoo.com/partners"
@@ -71,7 +71,7 @@ export const Footer = () => {
               vérifiable sur odoo.com/partners
             </a>
           </p>
-          <p className="mt-5 font-mono text-xs text-brand-grey-light/80">
+          <p className="mt-5 font-mono text-[11px] text-brand-grey-light/80 sm:text-xs">
             {order.map((c) => COUNTRIES[c]).join(" · ")}
           </p>
         </div>
@@ -131,12 +131,12 @@ export const Footer = () => {
       </div>
 
       <div className="border-t border-brand-grey/30">
-        <div className="container grid gap-3 py-6 font-mono text-xs text-brand-grey-light/70 md:grid-cols-3 md:items-center">
+        <div className="container grid gap-4 px-4 py-6 text-center font-mono text-[11px] text-brand-grey-light/70 sm:px-6 sm:text-xs md:grid-cols-3 md:items-center md:gap-3 md:text-left">
           <span>© 2026 MSL-iTECH · Tous droits réservés</span>
-          <span className="md:text-center">
+          <span className="break-words md:text-center">
             +32 2 886 05 49 · +212 6 89 30 62 78 · info@msl-itech.com
           </span>
-          <div className="flex flex-wrap items-center gap-4 md:justify-end">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:justify-end">
             <button
               type="button"
               onClick={toggleMarket}
