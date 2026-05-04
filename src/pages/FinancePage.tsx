@@ -26,40 +26,88 @@ const features = [
   },
 ];
 
+/* Bento — charte MSL : blue, gold, blue-light, bg, white */
 const bentoCards = [
   {
     icon: Calculator,
     title: "Comptabilité automatisée",
-    desc: "Chaque vente et chaque achat génère automatiquement les écritures. Votre plan comptable est toujours à jour, sans ressaisie.",
-    bg: "#EAE6FA", // lavender
-    accent: "#6E5BD0",
-    span: "lg:col-span-7 lg:row-span-2",
+    desc: "Chaque vente et chaque achat génère automatiquement les écritures comptables. Votre plan comptable est toujours à jour, sans ressaisie.",
+    variant: "blue", // dark blue card, gold accent
+    span: "lg:col-span-7",
   },
   {
     icon: FileText,
     title: "Facturation pro",
-    desc: "Factures personnalisées, suivi d'ouverture, paiement en ligne et rappels automatiques.",
-    bg: "#FBE3EA", // soft pink
-    accent: "#D14B7A",
+    desc: "Factures personnalisées, suivi d'ouverture, paiement en ligne et rappels d'impayés automatiques.",
+    variant: "gold", // gold tinted
     span: "lg:col-span-5",
   },
   {
     icon: Receipt,
     title: "Notes de frais",
-    desc: "Photo du justificatif, validation en ligne, comptabilisation auto.",
-    bg: "#FBF1C5", // pastel yellow
-    accent: "#C29A1A",
-    span: "lg:col-span-2",
+    desc: "Photo du justificatif, validation en ligne, comptabilisation et remboursement automatiques.",
+    variant: "white", // white card with blue border
+    span: "lg:col-span-5",
   },
   {
     icon: Wallet,
     title: "Trésorerie temps réel",
-    desc: "Dashboard, prévisions et rapprochement bancaire automatique.",
-    bg: "#E1EFD6", // pastel green
-    accent: "#5C8A3A",
-    span: "lg:col-span-3",
+    desc: "Dashboard actualisé, prévisions de flux et rapprochement bancaire automatique.",
+    variant: "bluelight", // blue-light tinted
+    span: "lg:col-span-7",
   },
-];
+] as const;
+
+const variantStyles = {
+  blue: {
+    bg: "var(--blue)",
+    text: "white",
+    desc: "rgba(255,255,255,0.78)",
+    iconBg: "var(--gold)",
+    iconColor: "var(--blue)",
+    chipBg: "rgba(255,221,87,0.16)",
+    chipColor: "var(--gold)",
+    chipBorder: "rgba(255,221,87,0.3)",
+    glow: "var(--gold)",
+    border: "transparent",
+  },
+  gold: {
+    bg: "var(--gold)",
+    text: "var(--blue)",
+    desc: "rgba(18,77,90,0.78)",
+    iconBg: "var(--blue)",
+    iconColor: "var(--gold)",
+    chipBg: "rgba(18,77,90,0.10)",
+    chipColor: "var(--blue)",
+    chipBorder: "rgba(18,77,90,0.18)",
+    glow: "var(--blue)",
+    border: "transparent",
+  },
+  white: {
+    bg: "white",
+    text: "var(--black)",
+    desc: "var(--grey)",
+    iconBg: "var(--blue)",
+    iconColor: "var(--gold)",
+    chipBg: "rgba(18,77,90,0.06)",
+    chipColor: "var(--blue)",
+    chipBorder: "var(--grey-light)",
+    glow: "var(--gold)",
+    border: "var(--grey-light)",
+  },
+  bluelight: {
+    bg: "var(--blue-light)",
+    text: "var(--blue)",
+    desc: "rgba(18,77,90,0.75)",
+    iconBg: "var(--blue)",
+    iconColor: "var(--gold)",
+    chipBg: "white",
+    chipColor: "var(--blue)",
+    chipBorder: "rgba(18,77,90,0.15)",
+    glow: "var(--gold)",
+    border: "transparent",
+  },
+} as const;
 
 function FinanceBento() {
   return (
@@ -75,47 +123,55 @@ function FinanceBento() {
           </h2>
         </div>
 
-        <div
-          className="mt-14 grid auto-rows-[minmax(180px,auto)] gap-5 md:grid-cols-2 lg:grid-cols-12"
-        >
+        <div className="mt-14 grid auto-rows-[minmax(220px,auto)] gap-5 md:grid-cols-2 lg:grid-cols-12">
           {bentoCards.map((c) => {
             const Icon = c.icon;
+            const s = variantStyles[c.variant];
             return (
               <article
                 key={c.title}
-                className={`group relative overflow-hidden rounded-[28px] p-7 md:p-9 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.28)] ${c.span}`}
-                style={{ backgroundColor: c.bg }}
+                className={`group relative overflow-hidden rounded-[28px] border p-7 md:p-8 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.28)] ${c.span}`}
+                style={{ backgroundColor: s.bg, borderColor: s.border }}
               >
-                {/* Decorative blob */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full opacity-30 blur-2xl"
-                  style={{ backgroundColor: c.accent }}
+                  className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-25 blur-3xl"
+                  style={{ backgroundColor: s.glow }}
                 />
 
                 <div className="relative flex h-full flex-col justify-between gap-6">
-                  <div>
-                    <h3 className="font-heading text-2xl font-bold leading-[1.05] text-brand-black md:text-3xl lg:text-[2.25rem]">
-                      {c.title}
-                    </h3>
-                    <p className="mt-3 max-w-md font-body text-sm text-brand-black/70 md:text-base">
-                      {c.desc}
-                    </p>
-                  </div>
-
-                  <div className="flex items-end justify-between">
+                  <div className="flex items-start justify-between gap-4">
                     <span
-                      className="inline-flex items-center gap-1.5 rounded-full bg-white/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] backdrop-blur"
-                      style={{ color: c.accent }}
+                      className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em]"
+                      style={{
+                        backgroundColor: s.chipBg,
+                        color: s.chipColor,
+                        borderColor: s.chipBorder,
+                      }}
                     >
                       Odoo Finance
                     </span>
                     <div
-                      className="flex h-14 w-14 items-center justify-center rounded-2xl shadow-[0_10px_30px_-12px_rgba(0,0,0,0.25)] transition group-hover:scale-105 md:h-16 md:w-16"
-                      style={{ backgroundColor: c.accent, color: "white" }}
+                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl shadow-[0_10px_30px_-12px_rgba(0,0,0,0.25)] transition group-hover:scale-105"
+                      style={{ backgroundColor: s.iconBg, color: s.iconColor }}
                     >
-                      <Icon size={26} />
+                      <Icon size={22} />
                     </div>
+                  </div>
+
+                  <div>
+                    <h3
+                      className="font-heading text-2xl font-bold leading-[1.1] md:text-[1.75rem]"
+                      style={{ color: s.text }}
+                    >
+                      {c.title}
+                    </h3>
+                    <p
+                      className="mt-3 max-w-md font-body text-sm md:text-base"
+                      style={{ color: s.desc }}
+                    >
+                      {c.desc}
+                    </p>
                   </div>
                 </div>
               </article>
