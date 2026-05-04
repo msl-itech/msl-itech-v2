@@ -8,6 +8,7 @@ import {
   TrendingDown,
   Info,
   Star,
+  Minus,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { useMarket } from "@/hooks/useMarket";
@@ -72,6 +73,7 @@ const packs = [
     priceOld: 400,
     for: "Support fondamental",
     incl: "Paramétrage, formation initiale",
+    color: "#E26B3F",
   },
   {
     name: "Standard",
@@ -80,6 +82,7 @@ const packs = [
     priceOld: 900,
     for: "Découvrir Odoo",
     incl: "Paramétrage, formation, assistance",
+    color: "#5C5E8A",
   },
   {
     name: "Avancé",
@@ -89,6 +92,7 @@ const packs = [
     for: "Booster votre activité",
     incl: "+ Import données, optimisation",
     highlight: true,
+    color: "#E8867A",
   },
   {
     name: "Premium",
@@ -97,6 +101,7 @@ const packs = [
     priceOld: 3500,
     for: "Solutions sur mesure",
     incl: "+ Personnalisation apps, automatisation",
+    color: "#22A892",
   },
   {
     name: "VIP",
@@ -105,6 +110,7 @@ const packs = [
     priceOld: 6000,
     for: "Performance optimale",
     incl: "+ Développement sur mesure",
+    color: "#5E8AA0",
   },
   {
     name: "Elite",
@@ -113,7 +119,24 @@ const packs = [
     priceOld: 10000,
     for: "Vision 360",
     incl: "Pack complet toutes fonctionnalités",
+    color: "#2E3A4A",
   },
+];
+
+/* Feature matrix — order matches the legend image. true = inclus, false = non inclus */
+const features: { label: string; values: boolean[] }[] = [
+  // [Essentiel, Standard, Avancé, Premium, VIP, Elite]
+  { label: "Expert dédié", values: [true, true, true, true, true, true] },
+  { label: "Gestion de Projet", values: [false, false, true, true, true, true] },
+  { label: "Assistance multicanal (E-mail & Téléphone)", values: [true, true, true, true, true, true] },
+  { label: "Formation à l'outil", values: [false, true, true, true, true, true] },
+  { label: "Paramétrage", values: [false, true, true, true, true, true] },
+  { label: "Assistance à l'importation de données", values: [false, false, true, true, true, true] },
+  { label: "Optimisation et structuration des données", values: [false, false, true, true, true, true] },
+  { label: "Personnalisation des Applications", values: [false, false, false, true, true, true] },
+  { label: "Automatisation", values: [false, false, false, true, true, true] },
+  { label: "Développement sur-mesure", values: [false, false, false, false, true, true] },
+  { label: "Offre d'adhésion", values: [false, false, false, true, true, true] },
 ];
 
 const comparison = [
