@@ -393,17 +393,18 @@ function Pillars() {
         {/* Big ERP card — 4 cols, 2 rows */}
         <Link
           to="/odoo-crm-ventes"
-          className="group relative isolate flex min-h-[520px] flex-col justify-between overflow-hidden rounded-[28px] p-10 lg:col-span-4 lg:row-span-2"
+          className="group relative isolate flex min-h-[520px] flex-col justify-between rounded-[28px] p-10 lg:col-span-4 lg:row-span-2"
           style={{ backgroundColor: "var(--blue)" }}
         >
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[28px]">
           <img
             src={pillarErp}
             alt=""
             loading="lazy"
-            className="absolute inset-0 -z-10 h-full w-full object-cover opacity-35 transition duration-700 group-hover:opacity-50 group-hover:scale-105"
+            className="absolute inset-0 h-full w-full object-cover opacity-35 transition duration-700 group-hover:opacity-50 group-hover:scale-105"
           />
           <div
-            className="absolute inset-0 -z-10"
+            className="absolute inset-0"
             style={{
               background:
                 "linear-gradient(135deg, rgba(18,77,90,0.85) 0%, rgba(10,45,54,0.92) 100%)",
@@ -413,9 +414,10 @@ function Pillars() {
             className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full opacity-25 blur-3xl"
             style={{ backgroundColor: "var(--gold)" }}
           />
+          </div>
 
           {/* Sticker */}
-          <div className="absolute -top-3 right-6">
+          <div className="absolute -top-4 right-6 z-20">
             <Sticker rotate={8}>Pilier 01</Sticker>
           </div>
 
@@ -469,15 +471,20 @@ function Pillars() {
         {/* Web — 2 cols */}
         <Link
           to="/creation-web"
-          className="group relative isolate flex min-h-[250px] flex-col justify-between overflow-hidden rounded-[28px] p-7 lg:col-span-2"
+          className="group relative isolate flex min-h-[250px] flex-col justify-between rounded-[28px] p-7 lg:col-span-2"
         >
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[28px]">
           <img
             src={pillarWeb}
             alt=""
             loading="lazy"
-            className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+            className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black/85 via-brand-black/45 to-brand-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-black/85 via-brand-black/45 to-brand-black/20" />
+          </div>
+          <div className="absolute -top-4 right-5 z-20">
+            <Sticker rotate={-6}>Pilier 02</Sticker>
+          </div>
           <div className="flex items-start justify-between">
             <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand-gold">
               02 — Web
@@ -498,15 +505,20 @@ function Pillars() {
         {/* Marketing — 2 cols */}
         <Link
           to="/marketing-digital"
-          className="group relative isolate flex min-h-[250px] flex-col justify-between overflow-hidden rounded-[28px] p-7 lg:col-span-2"
+          className="group relative isolate flex min-h-[250px] flex-col justify-between rounded-[28px] p-7 lg:col-span-2"
         >
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[28px]">
           <img
             src={pillarMarketing}
             alt=""
             loading="lazy"
-            className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+            className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black/85 via-brand-black/45 to-brand-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-black/85 via-brand-black/45 to-brand-black/20" />
+          </div>
+          <div className="absolute -top-4 right-5 z-20">
+            <Sticker rotate={7}>Pilier 03</Sticker>
+          </div>
           <div className="flex items-start justify-between">
             <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand-gold">
               03 — Growth
