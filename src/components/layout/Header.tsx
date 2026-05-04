@@ -2,6 +2,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import logoWhite from "@/assets/logo-msl-white.png";
+import logoDark from "@/assets/logo-msl-dark.png";
 
 const odooLinks = [
   { to: "/odoo-crm-ventes", label: "CRM & Ventes" },
@@ -72,21 +73,12 @@ export const Header = () => {
           className="flex items-center"
           aria-label="MSL-iTECH — accueil"
         >
-          {scrolled ? (
-            <span
-              className="font-heading text-xl font-bold lowercase tracking-tight"
-              style={{ color: "var(--blue)" }}
-            >
-              msl itech
-            </span>
-          ) : (
-            <img
-              src={logoWhite}
-              alt="MSL-iTECH"
-              className="h-8 w-auto"
-              loading="eager"
-            />
-          )}
+          <img
+            src={scrolled ? logoDark : logoWhite}
+            alt="MSL-iTECH"
+            className="h-8 w-auto"
+            loading="eager"
+          />
         </Link>
 
         {/* Desktop nav */}
