@@ -69,18 +69,15 @@ export default function AppointmentPage() {
         </div>
       </section>
 
-      {/* Iframe — fondu dans la page, sans cadre visible */}
-      <section className="pb-20 pt-10 md:pb-28 md:pt-14">
-        <div className="container">
-          <iframe
-            src="https://odoo.msl-itech.com/appointment/4?iframe=1"
-            title="Prendre rendez-vous avec MSL-iTECH"
-            className="odoo-iframe block h-[1400px] w-full md:h-[1200px]"
-            style={{ background: "transparent" }}
-            frameBorder={0}
-            allowFullScreen
-          />
-        </div>
+      {/* Iframe — pleine largeur & hauteur écran */}
+      <section className="w-full">
+        <iframe
+          src="https://odoo.msl-itech.com/appointment/4?iframe=1"
+          title="Prendre rendez-vous avec MSL-iTECH"
+          className="odoo-iframe block w-full"
+          style={{ background: "transparent", height: "100vh", border: 0 }}
+          allowFullScreen
+        />
       </section>
     </main>
   );
