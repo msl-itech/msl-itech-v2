@@ -14,6 +14,7 @@ export type BlogPost = {
   region: "BE" | "MA" | "INT";
   readingTime: string;
   publishedAt: string;
+  image?: string;
   intent?: string;
   relatedPath?: string;
   relatedLabel?: string;
