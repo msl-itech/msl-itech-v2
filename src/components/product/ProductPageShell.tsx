@@ -129,6 +129,8 @@ function Hero({
             />
           </div>
 
+          <HeroCursorGlow radius="inherit" />
+
           {/* Sticker top-left */}
           <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
             <Sticker rotate={-8}>★ Certifié Odoo 17+</Sticker>
