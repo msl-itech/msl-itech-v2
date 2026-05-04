@@ -96,13 +96,17 @@ export default function MarketingPage() {
                       {f.badge}
                     </span>
                     <div
-                      className="absolute -bottom-6 right-5 flex h-14 w-14 items-center justify-center rounded-2xl shadow-[0_12px_30px_-10px_rgba(0,0,0,0.4)]"
-                      style={{ backgroundColor: "var(--blue)", color: "var(--gold)" }}
+                      className="absolute bottom-4 right-4 flex h-14 w-14 items-center justify-center rounded-2xl border-2 shadow-[0_12px_30px_-10px_rgba(0,0,0,0.45)]"
+                      style={{
+                        backgroundColor: "var(--blue)",
+                        color: "var(--gold)",
+                        borderColor: "var(--gold)",
+                      }}
                     >
                       <f.icon size={24} />
                     </div>
                   </div>
-                  <div className="flex flex-1 flex-col p-7 pt-9">
+                  <div className="flex flex-1 flex-col p-7">
                     <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey">
                       0{i + 1}
                     </p>
