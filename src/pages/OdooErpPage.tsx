@@ -468,7 +468,7 @@ function Modules() {
               key={m.label}
               to={m.to}
               className={`group relative isolate flex flex-col justify-between rounded-[28px] p-7 md:p-8 ${span}`}
-              style={isBig ? { backgroundColor: "var(--blue)" } : undefined}
+              style={{ backgroundColor: "var(--blue)" }}
             >
               {/* Background image + gradient inside clipped wrapper */}
               <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[28px]">
@@ -479,31 +479,28 @@ function Modules() {
                   decoding="async"
                   fetchPriority="high"
                   className={`absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105 ${
-                    isBig ? "opacity-30 group-hover:opacity-45" : ""
+                    isBig
+                      ? "opacity-30 group-hover:opacity-45"
+                      : "opacity-25 group-hover:opacity-40"
                   }`}
                 />
-                {isBig ? (
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, rgba(18,77,90,0.85) 0%, rgba(10,45,54,0.92) 100%)",
-                    }}
-                  />
-                ) : (
-                  <>
-                    {/* Uniform veil for legibility */}
-                    <div className="absolute inset-0 bg-brand-black/45" />
-                    {/* Bottom darkening for content area */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-brand-black/70 to-brand-black/30" />
-                  </>
-                )}
-                {isBig && (
-                  <div
-                    className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full opacity-25 blur-3xl"
-                    style={{ backgroundColor: "var(--gold)" }}
-                  />
-                )}
+                {/* Brand-blue tint overlay — uniform legibility on every photo */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(18,77,90,0.88) 0%, rgba(10,45,54,0.94) 100%)",
+                  }}
+                />
+                {/* Gold glow accent (bigger on the hero card) */}
+                <div
+                  className={`pointer-events-none absolute rounded-full blur-3xl ${
+                    isBig
+                      ? "-bottom-24 -right-24 h-80 w-80 opacity-25"
+                      : "-bottom-16 -right-16 h-44 w-44 opacity-20"
+                  }`}
+                  style={{ backgroundColor: "var(--gold)" }}
+                />
               </div>
 
               {/* Sticker */}
@@ -543,15 +540,13 @@ function Modules() {
                   className={`font-heading font-bold leading-tight text-white ${
                     isBig ? "max-w-md text-3xl md:text-5xl" : "text-2xl"
                   }`}
-                  style={!isBig ? { textShadow: "0 2px 14px rgba(0,0,0,0.55)" } : undefined}
                 >
                   {m.label}
                 </h3>
                 <p
-                  className={`mt-3 font-body ${
+                  className={`mt-3 font-body text-white/85 ${
                     isBig ? "max-w-md text-base md:mt-5" : "text-sm"
-                  } ${isBig ? "text-white/80" : "text-white/95"}`}
-                  style={!isBig ? { textShadow: "0 1px 10px rgba(0,0,0,0.55)" } : undefined}
+                  }`}
                 >
                   {m.desc}
                 </p>
