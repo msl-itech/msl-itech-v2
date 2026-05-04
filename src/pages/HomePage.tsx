@@ -216,17 +216,19 @@ function HeroShell({
                 </p>
 
                 {/* video sticker badge */}
-                <div
-                  className="absolute bottom-4 right-4 hidden h-[76px] w-[76px] items-center justify-center rounded-full shadow-[0_12px_30px_-8px_rgba(0,0,0,0.5)] ring-4 ring-white/15 md:flex"
+                <Link
+                  to="/realisations"
+                  aria-label="Voir nos réalisations"
+                  className="group/badge absolute bottom-4 right-4 hidden h-[76px] w-[76px] items-center justify-center rounded-full shadow-[0_12px_30px_-8px_rgba(0,0,0,0.5)] ring-4 ring-white/15 transition hover:scale-105 hover:ring-white/30 md:flex"
                   style={{ backgroundColor: "var(--black)" }}
                 >
                   <div
-                    className="flex h-11 w-11 items-center justify-center rounded-full"
+                    className="flex h-11 w-11 items-center justify-center rounded-full transition group-hover/badge:rotate-12"
                     style={{ backgroundColor: "var(--gold)" }}
                   >
                     <ArrowUpRight size={20} style={{ color: "var(--blue)" }} />
                   </div>
-                </div>
+                </Link>
               </div>
 
               {/* Big image — portrait/team */}
