@@ -1,7 +1,7 @@
 import { CalendarDays, Banknote, Clock, UserPlus } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import rhHero from "@/assets/rh-hero.jpg";
+import rhHero from "@/assets/rh-hero.webp";
 
 const features = [
   {

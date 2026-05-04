@@ -1,7 +1,7 @@
 import { Factory, ListTree, ShieldCheck, Wrench } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import productionHero from "@/assets/production-hero.jpg";
+import productionHero from "@/assets/production-hero.webp";
 
 const features = [
   {

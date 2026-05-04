@@ -1,7 +1,7 @@
 import { ScanLine, FileHeart, ShieldCheck } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import santeHero from "@/assets/sante-hero.jpg";
+import santeHero from "@/assets/sante-hero.webp";
 
 const features = [
   {

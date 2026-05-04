@@ -1,7 +1,7 @@
 import { FileSearch, HardHat, Receipt, Users } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import btpHero from "@/assets/btp-hero.jpg";
+import btpHero from "@/assets/btp-hero.webp";
 
 const features = [
   {

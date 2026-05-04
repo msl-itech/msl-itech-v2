@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import crmHero from "@/assets/crm-hero.jpg";
+import crmHero from "@/assets/crm-hero.webp";
 
 const features = [
   {

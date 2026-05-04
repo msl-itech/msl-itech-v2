@@ -1,7 +1,7 @@
 import { Boxes, Receipt, CalendarCheck, Users } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import horecaHero from "@/assets/horeca-hero.jpg";
+import horecaHero from "@/assets/horeca-hero.webp";
 
 const features = [
   {

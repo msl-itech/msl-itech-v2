@@ -1,7 +1,7 @@
 import { Calculator, FileText, Receipt, Wallet } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import financeHero from "@/assets/finance-hero.jpg";
+import financeHero from "@/assets/finance-hero.webp";
 
 const features = [
   {

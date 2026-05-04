@@ -1,7 +1,7 @@
 import { Boxes, BellRing, ScanLine, ClipboardCheck } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import stockHero from "@/assets/stock-hero.jpg";
+import stockHero from "@/assets/stock-hero.webp";
 
 const features = [
   {

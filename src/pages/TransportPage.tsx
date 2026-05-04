@@ -1,7 +1,7 @@
 import { Truck, CalendarCheck, Receipt } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import transportHero from "@/assets/transport-hero.jpg";
+import transportHero from "@/assets/transport-hero.webp";
 
 const features = [
   {
