@@ -69,7 +69,7 @@ export const ProjectCTA = ({
             }}
           />
 
-          <div className="container relative z-10 px-6 pb-32 pt-20 text-center md:pb-40 md:pt-28">
+          <div className="container relative z-10 px-6 pb-20 pt-20 text-center md:pb-24 md:pt-28">
             {/* Eyebrow */}
             <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-white/85 backdrop-blur-sm">
               <Sparkles size={12} className="text-brand-gold" />
@@ -80,16 +80,7 @@ export const ProjectCTA = ({
             <h2 className="mx-auto mt-7 max-w-4xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl lg:text-[68px]">
               {titleStart}
               <br />
-              <span className="relative inline-block">
-                <span
-                  aria-hidden
-                  className="absolute inset-x-[-6px] bottom-[8%] -z-0 h-[38%] -rotate-[1.5deg] rounded-[8px]"
-                  style={{ backgroundColor: "var(--gold)" }}
-                />
-                <span className="relative z-10" style={{ color: "var(--blue)" }}>
-                  {titleEnd}
-                </span>
-              </span>
+              <span className="text-white">{titleEnd}</span>
             </h2>
 
             {/* CTA */}
@@ -152,7 +143,7 @@ export const ProjectCTA = ({
 
       {/* Bandeau marquee */}
       <div
-        className="relative z-10 overflow-hidden border-t py-5"
+        className="relative z-10 mt-10 overflow-hidden border-t py-5 md:mt-16"
         style={{ borderColor: "rgba(255,255,255,0.15)", backgroundColor: "var(--black)" }}
       >
         <div className="marquee-cta flex w-max items-center gap-10 whitespace-nowrap">
