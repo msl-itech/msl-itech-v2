@@ -199,10 +199,10 @@ export const Header = () => {
             <Link
               to="/"
               onClick={() => setMobileOpen(false)}
-              className="font-heading text-xl font-bold lowercase"
-              style={{ color: "var(--blue)" }}
+              className="flex items-center"
+              aria-label="MSL-iTECH — accueil"
             >
-              msl itech
+              <img src={logoDark} alt="MSL-iTECH" className="h-8 w-auto" />
             </Link>
             <button aria-label="Fermer" onClick={() => setMobileOpen(false)}>
               <X size={26} />
