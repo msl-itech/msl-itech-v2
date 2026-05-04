@@ -106,7 +106,7 @@ export default function RealisationsPage() {
                 src={pillarWeb}
                 alt="Réalisations MSL-iTECH"
                 className="absolute inset-0 h-full w-full object-cover"
-              />
+              loading="eager" fetchpriority="high" decoding="async"/>
               <div
                 aria-hidden
                 className="absolute inset-0"
@@ -224,7 +224,7 @@ export default function RealisationsPage() {
                       src={c.image}
                       alt={c.name}
                       className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                    />
+                    loading="lazy" decoding="async"/>
                     <div
                       className="absolute inset-0"
                       style={{
@@ -415,7 +415,7 @@ export default function RealisationsPage() {
           src={ctaBg}
           alt=""
           className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30"
-        />
+        loading="lazy" decoding="async"/>
         <div
           aria-hidden
           className="absolute inset-0 -z-10"

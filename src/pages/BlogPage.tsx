@@ -113,7 +113,7 @@ export default function BlogPage() {
                 className="block aspect-[16/9] w-full object-cover"
                 width={1280}
                 height={720}
-              />
+              loading="eager" fetchpriority="high" decoding="async"/>
             </div>
           </div>
         </section>
