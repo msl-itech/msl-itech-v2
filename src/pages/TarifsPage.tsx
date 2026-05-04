@@ -195,7 +195,7 @@ export default function TarifsPage() {
                 src={pillarErp}
                 alt="Tarifs MSL-iTECH"
                 className="absolute inset-0 h-full w-full object-cover"
-              loading="eager" fetchpriority="high" decoding="async"/>
+              loading="eager" fetchPriority="high" decoding="async"/>
               <div
                 aria-hidden
                 className="absolute inset-0"
