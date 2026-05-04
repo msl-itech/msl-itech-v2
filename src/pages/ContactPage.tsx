@@ -728,10 +728,11 @@ export default function ContactPage() {
                 ) : (
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold shadow-[0_14px_36px_-12px_rgba(255,221,87,0.7)] transition hover:-translate-y-0.5"
+                    disabled={submitting}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold shadow-[0_14px_36px_-12px_rgba(255,221,87,0.7)] transition hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
                     style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
                   >
-                    Réserver ma démo Odoo gratuite <ArrowRight size={16} />
+                    {submitting ? "Envoi en cours…" : "Réserver ma démo Odoo gratuite"} <ArrowRight size={16} />
                   </button>
                 )}
               </div>
