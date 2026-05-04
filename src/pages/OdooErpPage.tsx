@@ -318,14 +318,17 @@ function PainPromise() {
 
           {/* Après */}
           <div
-            className="relative isolate overflow-hidden rounded-[28px] p-8 md:p-10"
+            className="relative isolate rounded-[28px] p-8 md:p-10"
             style={{ backgroundColor: "var(--blue)" }}
           >
-            <div
-              className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full opacity-25 blur-3xl"
-              style={{ backgroundColor: "var(--gold)" }}
-            />
-            <div className="absolute -top-4 right-6">
+            {/* Glow clipped inside the card */}
+            <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[28px]">
+              <div
+                className="absolute -top-24 -right-24 h-72 w-72 rounded-full opacity-25 blur-3xl"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+            </div>
+            <div className="absolute -top-4 right-6 z-20">
               <Sticker rotate={6}>Après</Sticker>
             </div>
             <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-gold">
