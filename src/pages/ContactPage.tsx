@@ -670,7 +670,8 @@ export default function ContactPage() {
                   type="button"
                   onClick={handleBack}
                   disabled={step === 0}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 font-body text-sm font-semibold text-brand-black transition hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40"
+                  className="inline-flex items-center gap-2 rounded-full border bg-white px-5 py-2.5 font-body text-sm font-semibold transition hover:bg-brand-bg disabled:cursor-not-allowed disabled:opacity-40"
+                  style={{ borderColor: "var(--grey-light)", color: "var(--blue)" }}
                 >
                   <ArrowLeft size={16} /> Retour
                 </button>
@@ -679,16 +680,16 @@ export default function ContactPage() {
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-semibold transition hover:opacity-90"
-                    style={{ backgroundColor: "#0F3F4A", color: "white" }}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-semibold shadow-[0_12px_30px_-12px_rgba(18,77,90,0.5)] transition hover:-translate-y-0.5"
+                    style={{ backgroundColor: "var(--blue)", color: "white" }}
                   >
                     Continuer <ArrowRight size={16} />
                   </button>
                 ) : (
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold transition hover:opacity-90"
-                    style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold shadow-[0_14px_36px_-12px_rgba(255,221,87,0.7)] transition hover:-translate-y-0.5"
+                    style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
                   >
                     Réserver ma démo Odoo gratuite <ArrowRight size={16} />
                   </button>
@@ -699,6 +700,7 @@ export default function ContactPage() {
                 <ShieldCheck size={12} /> Sans engagement · Réponse sous 24 à 72h · Politique de
                 confidentialité
               </p>
+              </div>
             </form>
           )}
         </div>
