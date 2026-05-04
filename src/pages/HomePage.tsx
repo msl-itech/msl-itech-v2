@@ -217,14 +217,14 @@ function HeroShell({
 
                 {/* video sticker badge */}
                 <div
-                  className="absolute -bottom-5 -right-5 hidden h-[88px] w-[88px] items-center justify-center rounded-full md:flex"
-                  style={{ backgroundColor: "var(--brand-black, #0a0a0a)" }}
+                  className="absolute bottom-4 right-4 hidden h-[76px] w-[76px] items-center justify-center rounded-full shadow-[0_12px_30px_-8px_rgba(0,0,0,0.5)] ring-4 ring-white/15 md:flex"
+                  style={{ backgroundColor: "var(--black)" }}
                 >
                   <div
-                    className="flex h-12 w-12 items-center justify-center rounded-full"
+                    className="flex h-11 w-11 items-center justify-center rounded-full"
                     style={{ backgroundColor: "var(--gold)" }}
                   >
-                    <ArrowUpRight size={20} className="text-brand-black" />
+                    <ArrowUpRight size={20} style={{ color: "var(--blue)" }} />
                   </div>
                 </div>
               </div>
