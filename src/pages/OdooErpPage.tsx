@@ -11,7 +11,6 @@ import {
   UserCog,
   Briefcase,
   CheckCircle2,
-  Workflow,
   LineChart,
   ShieldCheck,
 } from "lucide-react";
