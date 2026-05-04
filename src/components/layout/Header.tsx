@@ -74,7 +74,7 @@ export const Header = () => {
           aria-label="MSL-iTECH — accueil"
         >
           <img
-            src={scrolled ? logoDark : logoWhite}
+            src={logoDark}
             alt="MSL-iTECH"
             className="h-8 w-auto"
             loading="eager"
