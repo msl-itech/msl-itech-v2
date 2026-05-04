@@ -69,29 +69,17 @@ export default function AppointmentPage() {
         </div>
       </section>
 
-      {/* Iframe */}
-      <section className="py-16 md:py-20">
+      {/* Iframe — fondu dans la page, sans cadre visible */}
+      <section className="pb-20 pt-10 md:pb-28 md:pt-14">
         <div className="container">
-          <div
-            className="overflow-hidden rounded-3xl border bg-white shadow-[0_24px_60px_-25px_rgba(18,77,90,0.25)]"
-            style={{ borderColor: "var(--grey-light)" }}
-          >
-            <iframe
-              src="https://odoo.msl-itech.com/appointment/4?iframe=1"
-              title="Prendre rendez-vous avec MSL-iTECH"
-              className="odoo-iframe block h-[1400px] w-full md:h-[1200px]"
-              frameBorder={0}
-              allowFullScreen
-            />
-          </div>
-          <p className="mt-6 text-center font-mono text-xs uppercase tracking-[0.18em] text-brand-grey">
-            <span
-              aria-hidden
-              className="mr-2 inline-block h-1.5 w-1.5 rounded-full align-middle"
-              style={{ backgroundColor: "var(--gold)" }}
-            />
-            Réservation sécurisée — propulsée par Odoo
-          </p>
+          <iframe
+            src="https://odoo.msl-itech.com/appointment/4?iframe=1"
+            title="Prendre rendez-vous avec MSL-iTECH"
+            className="odoo-iframe block h-[1400px] w-full md:h-[1200px]"
+            style={{ background: "transparent" }}
+            frameBorder={0}
+            allowFullScreen
+          />
         </div>
       </section>
     </main>
