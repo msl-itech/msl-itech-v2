@@ -93,7 +93,7 @@ export default function BlogIndexPage() {
                 src={pillarMarketing}
                 alt="Blog MSL-iTECH"
                 className="absolute inset-0 h-full w-full object-cover"
-              />
+              loading="eager" fetchPriority="high" decoding="async"/>
               <div
                 aria-hidden
                 className="absolute inset-0"
@@ -420,7 +420,7 @@ export default function BlogIndexPage() {
           src={ctaBg}
           alt=""
           className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30"
-        />
+        loading="lazy" decoding="async"/>
         <div
           aria-hidden
           className="absolute inset-0 -z-10"

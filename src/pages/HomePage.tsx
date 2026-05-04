@@ -240,7 +240,7 @@ function HeroShell({
                   src={bgImage}
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover"
-                />
+                loading="eager" fetchPriority="high" decoding="async"/>
                 <div
                   className="pointer-events-none absolute inset-0"
                   style={{
