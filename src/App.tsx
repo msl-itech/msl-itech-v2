@@ -30,6 +30,7 @@ import BlogIndexPage from "./pages/BlogIndexPage";
 import PmeStructurationPage from "./pages/PmeStructurationPage";
 import MultiSitesPage from "./pages/MultiSitesPage";
 import CroissanceRapidePage from "./pages/CroissanceRapidePage";
+import AppointmentPage from "./pages/AppointmentPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -68,6 +69,7 @@ const App = () => (
             <Route path="/structure-en-croissance" element={<CroissanceRapidePage />} />
             <Route path="/blog" element={<BlogIndexPage />} />
             <Route path="/blog/:slug" element={<BlogPage />} />
+            <Route path="/prendre-rendez-vous" element={<AppointmentPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>
