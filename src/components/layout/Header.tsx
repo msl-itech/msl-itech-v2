@@ -68,10 +68,24 @@ export const Header = () => {
       <div className="container flex h-16 items-center justify-between">
         <Link
           to="/"
-          className="font-heading text-xl font-bold lowercase tracking-tight"
-          style={{ color: "var(--blue)" }}
+          className="flex items-center"
+          aria-label="MSL-iTECH — accueil"
         >
-          msl itech
+          {scrolled ? (
+            <span
+              className="font-heading text-xl font-bold lowercase tracking-tight"
+              style={{ color: "var(--blue)" }}
+            >
+              msl itech
+            </span>
+          ) : (
+            <img
+              src={logoWhite}
+              alt="MSL-iTECH"
+              className="h-8 w-auto"
+              loading="eager"
+            />
+          )}
         </Link>
 
         {/* Desktop nav */}
