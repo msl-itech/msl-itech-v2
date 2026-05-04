@@ -123,6 +123,8 @@ export default function BlogIndexPage() {
               />
             </div>
 
+            <HeroCursorGlow radius="inherit" />
+
             <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
               <Sticker rotate={-8}>★ Insights Odoo</Sticker>
             </div>
