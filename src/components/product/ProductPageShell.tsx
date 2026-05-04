@@ -237,46 +237,71 @@ function Why({
   whySection: NonNullable<ProductPageShellProps["whySection"]>;
 }) {
   return (
-    <section className="bg-white py-24">
-      <div className="container grid items-center gap-12 lg:grid-cols-2">
-        <div>
-          <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+    <section className="relative overflow-hidden bg-white py-24">
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "radial-gradient(var(--blue) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+      <div className="container relative grid items-start gap-14 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="lg:sticky lg:top-28">
+          <p className="mb-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
             <span className="inline-block h-px w-8 bg-brand-blue" />
             MSL-iTECH
           </p>
-          <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.25rem]">
+          <h2 className="font-heading text-3xl font-bold leading-[1.15] text-brand-black md:text-[2.5rem]">
             {whySection.title}
           </h2>
-          <p className="mt-6 font-body text-lg text-brand-grey">
+          <div
+            aria-hidden
+            className="my-7 h-[3px] w-16 rounded-full"
+            style={{ backgroundColor: "var(--gold)" }}
+          />
+          <p className="font-body text-lg leading-relaxed text-brand-grey">
             {whySection.desc}
           </p>
           <Link
             to="/odoo-erp"
-            className="mt-7 inline-flex items-center gap-2 font-body text-sm font-semibold text-brand-blue transition hover:gap-3"
+            className="group mt-8 inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
+            style={{ borderColor: "var(--blue)" }}
           >
-            Découvrir tous les modules Odoo <ArrowUpRight size={16} />
+            Découvrir tous les modules Odoo
+            <ArrowUpRight size={16} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
         </div>
-        <ul className="grid gap-3">
+        <ul className="grid gap-4">
           {whySection.points.map((p, i) => (
             <li
               key={p}
-              className="group flex items-start gap-4 rounded-2xl border p-5 transition hover:-translate-y-0.5 hover:border-[var(--blue)]/30 hover:shadow-md"
-              style={{
-                borderColor: "var(--grey-light)",
-                backgroundColor: "var(--bg)",
-              }}
+              className="group relative flex items-start gap-5 overflow-hidden rounded-2xl border bg-white p-6 transition hover:-translate-y-1 hover:border-[var(--blue)]/40 hover:shadow-[0_22px_50px_-22px_rgba(18,77,90,0.3)]"
+              style={{ borderColor: "var(--grey-light)" }}
             >
               <span
-                className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-mono text-xs font-semibold transition group-hover:scale-110"
+                aria-hidden
+                className="absolute left-0 top-0 h-full w-[3px] origin-top scale-y-0 transition-transform duration-300 group-hover:scale-y-100"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+              <span
+                className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-mono text-xs font-semibold transition group-hover:scale-110"
                 style={{
-                  backgroundColor: "var(--gold)",
-                  color: "var(--blue)",
+                  backgroundColor: "var(--blue)",
+                  color: "var(--gold)",
                 }}
               >
-                <Check size={14} strokeWidth={3} />
+                <Check size={18} strokeWidth={3} />
               </span>
-              <span className="font-body text-base text-brand-black">{p}</span>
+              <div className="flex-1">
+                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-brand-grey">
+                  0{i + 1}
+                </p>
+                <span className="mt-1 block font-heading text-lg font-semibold text-brand-black">
+                  {p}
+                </span>
+              </div>
             </li>
           ))}
         </ul>
