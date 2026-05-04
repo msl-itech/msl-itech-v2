@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useMarket, setMarketOverride } from "@/hooks/useMarket";
+import logoWhite from "@/assets/logo-msl-white.png";
 
 const odooCol = [
   { to: "/odoo-crm-ventes", label: "CRM & Ventes" },
@@ -48,12 +49,14 @@ export const Footer = () => {
       <div className="container grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
         {/* Col 1 */}
         <div>
-          <div
-            className="font-heading text-xl font-bold lowercase"
-            style={{ color: "var(--blue-light)" }}
-          >
-            msl itech
-          </div>
+          <Link to="/" aria-label="MSL-iTECH — accueil" className="inline-block">
+            <img
+              src={logoWhite}
+              alt="MSL-iTECH"
+              className="h-9 w-auto"
+              loading="lazy"
+            />
+          </Link>
           <p className="mt-4 max-w-xs font-body text-sm text-brand-grey-light/85">
             L'intégrateur Odoo qui structure, construit et accélère.
           </p>

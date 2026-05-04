@@ -1,6 +1,7 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
+import logoWhite from "@/assets/logo-msl-white.png";
 
 const odooLinks = [
   { to: "/odoo-crm-ventes", label: "CRM & Ventes" },
