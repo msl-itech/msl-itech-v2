@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, LucideIcon, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, LucideIcon } from "lucide-react";
 
 export type Feature = {
   icon: LucideIcon;
@@ -75,16 +75,6 @@ function Hero({
       </div>
       <div className="container relative grid items-center gap-14 pb-20 pt-10 lg:grid-cols-[1.05fr_1fr] lg:pb-28 lg:pt-12">
         <div className="text-white">
-          <p
-            className="mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em]"
-            style={{
-              backgroundColor: "rgba(255,221,87,0.14)",
-              color: "var(--gold)",
-              border: "1px solid rgba(255,221,87,0.35)",
-            }}
-          >
-            <Sparkles size={12} /> {eyebrow}
-          </p>
           <h1 className="font-heading text-4xl font-bold leading-[1.08] md:text-5xl lg:text-[3.5rem]">
             {title}
           </h1>
@@ -140,13 +130,18 @@ function Hero({
               className="w-full rounded-[1.4rem]"
               loading="eager"
             />
-            {/* floating corner stamp */}
-            <div
-              className="absolute -bottom-3 -left-3 rounded-2xl px-4 py-2 font-mono text-[10px] uppercase tracking-[0.22em] shadow-xl"
-              style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
-            >
-              Certifié Odoo
-            </div>
+          </div>
+          {/* floating corner stamp - outside the image clip so it stays visible */}
+          <div
+            className="absolute -bottom-4 -left-4 z-10 flex items-center gap-2 rounded-2xl px-4 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] shadow-[0_18px_40px_-12px_rgba(0,0,0,0.45)] md:-bottom-5 md:-left-5"
+            style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
+          >
+            <span
+              aria-hidden
+              className="inline-block h-1.5 w-1.5 rounded-full"
+              style={{ backgroundColor: "#0F3F4A" }}
+            />
+            Certifié Odoo
           </div>
         </div>
       </div>
