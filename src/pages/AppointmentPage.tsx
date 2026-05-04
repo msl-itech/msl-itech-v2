@@ -69,13 +69,18 @@ export default function AppointmentPage() {
         </div>
       </section>
 
-      {/* Iframe — pleine largeur & hauteur écran */}
+      {/* Iframe — pleine largeur, hauteur restante (pas de double scroll) */}
       <section className="w-full">
         <iframe
           src="https://odoo.msl-itech.com/appointment/4?iframe=1"
           title="Prendre rendez-vous avec MSL-iTECH"
           className="odoo-iframe block w-full"
-          style={{ background: "transparent", height: "100vh", border: 0 }}
+          style={{
+            background: "transparent",
+            border: 0,
+            height: "calc(100dvh - 80px)",
+            display: "block",
+          }}
           allowFullScreen
         />
       </section>
