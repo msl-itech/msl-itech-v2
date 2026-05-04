@@ -1,5 +1,6 @@
 import { CalendarDays, Banknote, Clock, UserPlus } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
+import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import rhHero from "@/assets/rh-hero.webp";
 
@@ -23,6 +24,37 @@ const features = [
     icon: UserPlus,
     title: "Recrutement structuré",
     desc: "Diffusez vos offres d'emploi, recevez les candidatures dans Odoo, programmez les entretiens et suivez l'avancement de chaque candidat.",
+  },
+];
+
+const bentoCards: BentoCard[] = [
+  {
+    icon: CalendarDays,
+    title: "Congés en libre-service",
+    desc: "Demandes depuis le mobile, validation en un clic, soldes mis à jour automatiquement. Fini les tableurs partagés.",
+    variant: "blue",
+    span: "lg:col-span-7",
+  },
+  {
+    icon: Banknote,
+    title: "Paie fiable & conforme",
+    desc: "Fiches de paie calculées avec absences, heures sup et notes de frais — produites en quelques minutes.",
+    variant: "gold",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: Clock,
+    title: "Suivi du temps par projet",
+    desc: "Timesheet par projet pour visualiser la rentabilité réelle, en direct.",
+    variant: "white",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: UserPlus,
+    title: "Recrutement structuré",
+    desc: "Diffusion d'offres, candidatures centralisées, entretiens planifiés et avancement suivi par candidat.",
+    variant: "bluelight",
+    span: "lg:col-span-7",
   },
 ];
 
@@ -51,6 +83,14 @@ export default function RhPage() {
       featuresEyebrow="Ce qu'Odoo RH automatise"
       featuresTitle="Ce qu'Odoo RH automatise pour vous"
       features={features}
+      featuresSlot={
+        <ProductBento
+          eyebrow="Ce qu'Odoo RH automatise"
+          title="Ce qu'Odoo RH automatise pour vous"
+          chipLabel="Odoo RH"
+          cards={bentoCards}
+        />
+      }
       ctaTitle="Réserver ma démo gratuite — RH & Paie"
       ctaSubtitle="Voir Odoo RH configuré pour votre structure · Sans engagement"
     />
