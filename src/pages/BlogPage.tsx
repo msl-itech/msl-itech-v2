@@ -99,6 +99,26 @@ export default function BlogPage() {
         </div>
       </section>
 
+      {/* COVER IMAGE */}
+      {post.image && (
+        <section className="bg-background pt-10">
+          <div className="container max-w-5xl">
+            <div
+              className="overflow-hidden rounded-[24px] border shadow-sm"
+              style={{ borderColor: "var(--grey-light)" }}
+            >
+              <img
+                src={post.image}
+                alt={post.title}
+                className="block aspect-[16/9] w-full object-cover"
+                width={1280}
+                height={720}
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* BODY */}
       <section className="bg-background py-20">
         <article className="container max-w-3xl">

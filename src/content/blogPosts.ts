@@ -14,6 +14,7 @@ export type BlogPost = {
   region: "BE" | "MA" | "INT";
   readingTime: string;
   publishedAt: string;
+  image?: string;
   intent?: string;
   relatedPath?: string;
   relatedLabel?: string;
@@ -21,6 +22,11 @@ export type BlogPost = {
   cta: { title: string; subtitle: string };
   body: BlogSection[];
 };
+
+import facturationElectroniqueMarocImg from "@/assets/blog/facturation-electronique-maroc.jpg";
+import gestionStockMarocImg from "@/assets/blog/gestion-stock-maroc.jpg";
+import partenaireVsFreelanceImg from "@/assets/blog/partenaire-vs-freelance.jpg";
+import coutOdooBelgiqueImg from "@/assets/blog/cout-odoo-belgique.jpg";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -37,6 +43,7 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "6 min",
     publishedAt: "2026-02-05",
+    image: facturationElectroniqueMarocImg,
     intent: "Réglementaire · Urgence réelle",
     relatedPath: "/odoo-finance",
     relatedLabel: "Voir Odoo Finance & Comptabilité",
@@ -100,6 +107,7 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "6 min",
     publishedAt: "2026-01-29",
+    image: gestionStockMarocImg,
     intent: "Informationnelle · Funnel haut",
     relatedPath: "/odoo-gestion-stock-maroc",
     relatedLabel: "Découvrir Odoo Gestion de Stock pour le Maroc",
@@ -165,6 +173,7 @@ export const blogPosts: BlogPost[] = [
     region: "BE",
     readingTime: "5 min",
     publishedAt: "2026-01-22",
+    image: partenaireVsFreelanceImg,
     intent: "Transactionnelle · Comparaison prestataires",
     relatedPath: "/consultant-odoo-belgique",
     relatedLabel: "Découvrir notre approche de consultant Odoo certifié en Belgique",
@@ -225,6 +234,7 @@ export const blogPosts: BlogPost[] = [
     region: "BE",
     readingTime: "6 min",
     publishedAt: "2026-01-15",
+    image: coutOdooBelgiqueImg,
     intent: "Transactionnelle · Décision",
     relatedPath: "/tarif-odoo-belgique",
     relatedLabel: "Voir la grille tarifaire Odoo Belgique 2026",
