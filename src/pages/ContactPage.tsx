@@ -11,8 +11,35 @@ import {
   MapPin,
   CheckCircle2,
   ShieldCheck,
+  Clock,
+  Calendar,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
+import contactHero from "@/assets/home/cta-bg.webp";
+
+/* ---------------- Sticker (charte MSL) ---------------- */
+function Sticker({
+  children,
+  rotate = -6,
+}: {
+  children: React.ReactNode;
+  rotate?: number;
+}) {
+  return (
+    <span
+      className="inline-flex items-center gap-1.5 rounded-full border-2 px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.15em] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)]"
+      style={{
+        backgroundColor: "var(--gold)",
+        color: "var(--blue)",
+        borderColor: "var(--blue)",
+        transform: `rotate(${rotate}deg)`,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
 
 const offices = [
   {
