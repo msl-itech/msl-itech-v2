@@ -475,13 +475,7 @@ export default function TarifsPage() {
                         className="border-t px-3 py-5 text-center font-heading text-sm font-bold"
                         style={{ borderColor: "var(--grey-light)", color: p.color }}
                       >
-                        {p.priceOld !== p.priceNew ? (
-                          <span className="line-through opacity-80">
-                            {fmt(p.priceOld, currency)}
-                          </span>
-                        ) : (
-                          fmt(p.priceOld, currency)
-                        )}
+                        {fmt(p.priceOld, currency)}
                       </td>
                     ))}
                   </tr>
