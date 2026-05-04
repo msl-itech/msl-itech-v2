@@ -94,47 +94,70 @@ function Hero() {
   return (
     <section className="bg-brand-bg pt-6 md:pt-8">
       <div className="container">
-        <div className="relative isolate overflow-hidden rounded-[28px] md:rounded-[36px]">
-          {/* Background image */}
-          <img
-            src={erpHero}
-            alt="Odoo ERP — plateforme de gestion intégrée"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+        <div className="relative isolate rounded-[28px] md:rounded-[36px]">
+          {/* Image + overlay clipped */}
+          <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
+            <img
+              src={erpHero}
+              alt="Odoo ERP — plateforme de gestion intégrée"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(10,30,38,0.45) 0%, rgba(10,30,38,0.62) 55%, rgba(10,30,38,0.82) 100%)",
+              }}
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -top-32 -left-20 h-96 w-96 rounded-full opacity-25 blur-3xl"
+              style={{ backgroundColor: "var(--gold)" }}
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -bottom-40 -right-24 h-[28rem] w-[28rem] rounded-full opacity-20 blur-3xl"
+              style={{ backgroundColor: "var(--blue)" }}
+            />
+            {/* dotted texture */}
+            <div
+              aria-hidden
+              className="absolute inset-0 opacity-[0.08]"
+              style={{
+                backgroundImage:
+                  "radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px)",
+                backgroundSize: "24px 24px",
+              }}
+            />
+          </div>
 
-          {/* Dark overlay */}
-          <div
-            aria-hidden
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(10,30,38,0.55) 0%, rgba(10,30,38,0.65) 60%, rgba(10,30,38,0.78) 100%)",
-            }}
-          />
-
-          {/* Subtle gold glow */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -top-32 -left-20 h-96 w-96 rounded-full opacity-25 blur-3xl"
-            style={{ backgroundColor: "var(--gold)" }}
-          />
+          {/* Sticker top-left (overflows freely) */}
+          <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
+            <Sticker rotate={-8}>★ Certifié Odoo 17+</Sticker>
+          </div>
 
           {/* Content */}
-          <div className="relative flex min-h-[340px] flex-col items-center justify-center px-6 py-20 text-center md:min-h-[440px] md:py-28">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 backdrop-blur-sm">
+          <div className="relative flex min-h-[420px] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[560px] md:py-32">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
               <Sparkles size={12} className="text-brand-gold" />
-              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/90">
-                Odoo ERP · Pilier central
+              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
+                Pilier central · Odoo ERP
               </p>
             </div>
 
-            <h1 className="mt-6 font-heading text-5xl font-bold leading-[1.02] tracking-tight text-white md:text-7xl lg:text-[88px]">
-              Odoo ERP
+            <h1 className="mt-8 font-heading text-5xl font-bold leading-[0.95] tracking-tight text-white md:text-[88px] lg:text-[112px]">
+              Odoo <span className="italic font-light text-brand-gold">ERP</span>
             </h1>
+
+            <p className="mt-7 max-w-xl font-body text-base text-white/75 md:text-lg">
+              La plateforme unique qui structure votre PME — Finance, CRM,
+              Stock, Production, RH, Services.
+            </p>
           </div>
 
           {/* Breadcrumb pill — bottom right, overlapping */}
-          <div className="absolute -bottom-5 right-6 z-20 md:right-10">
+          <div className="absolute -bottom-5 right-6 z-30 md:right-10">
             <div
               className="flex items-center gap-3 rounded-full border bg-brand-white px-5 py-2.5 shadow-[0_18px_40px_-15px_rgba(0,0,0,0.25)]"
               style={{ borderColor: "var(--grey-light)" }}
@@ -150,11 +173,6 @@ function Hero() {
                 Odoo ERP
               </span>
             </div>
-          </div>
-
-          {/* Sticker accent */}
-          <div className="absolute left-6 top-6 z-10 md:left-10 md:top-10">
-            <Sticker rotate={-8}>★ Certifié Odoo 17+</Sticker>
           </div>
         </div>
       </div>
