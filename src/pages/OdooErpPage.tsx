@@ -23,6 +23,7 @@ import productionImg from "@/assets/production-hero.webp";
 import rhImg from "@/assets/rh-hero.webp";
 import servicesImg from "@/assets/services-hero.webp";
 import caseBe from "@/assets/home/case-be.webp";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 
 /* ---------------- SEO ---------------- */
 function useErpSeo() {
@@ -153,6 +154,8 @@ function Hero() {
               }}
             />
           </div>
+
+          <HeroCursorGlow radius="inherit" />
 
           {/* Sticker top-left (overflows freely) */}
           <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">

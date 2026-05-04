@@ -11,6 +11,7 @@ import {
   Star,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import caseBe from "@/assets/home/case-be.webp";
 import caseMa from "@/assets/home/case-ma.webp";
 import pillarWeb from "@/assets/home/pillar-web.webp";
@@ -134,6 +135,8 @@ export default function RealisationsPage() {
                 }}
               />
             </div>
+
+            <HeroCursorGlow radius="inherit" />
 
             <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
               <Sticker rotate={-8}>★ Références vérifiables</Sticker>

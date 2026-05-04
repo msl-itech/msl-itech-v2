@@ -12,6 +12,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import { useMarket } from "@/hooks/useMarket";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
@@ -223,6 +224,8 @@ export default function TarifsPage() {
                 }}
               />
             </div>
+
+            <HeroCursorGlow radius="inherit" />
 
             <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
               <Sticker rotate={-8}>★ Tarifs transparents</Sticker>

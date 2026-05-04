@@ -13,6 +13,7 @@ import { useMarket } from "@/hooks/useMarket";
 
 import heroBeImg from "@/assets/hero-be.webp";
 import heroMaImg from "@/assets/hero-ma.webp";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import pillarWeb from "@/assets/home/pillar-web.webp";
 import pillarMarketing from "@/assets/home/pillar-marketing.webp";
@@ -248,6 +249,7 @@ function HeroShell({
                 <div className="absolute left-5 top-5">
                   <Sticker rotate={-6}>★ Partenaire Odoo</Sticker>
                 </div>
+                <HeroCursorGlow radius="24px" />
               </div>
 
               {/* Small white stat 1 */}

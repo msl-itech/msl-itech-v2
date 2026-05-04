@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Check, CheckCircle2, LucideIcon, Sparkles } from "lucide-react";
 import ProjectCTA from "@/components/ProjectCTA";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 
 export type Feature = {
   icon: LucideIcon;
@@ -128,6 +129,8 @@ function Hero({
               }}
             />
           </div>
+
+          <HeroCursorGlow radius="inherit" />
 
           {/* Sticker top-left */}
           <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
