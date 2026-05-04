@@ -7,6 +7,10 @@ import {
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import crmHero from "@/assets/crm-hero.webp";
+import bentoPipeline from "@/assets/crm/bento-pipeline.jpg";
+import bentoRelances from "@/assets/crm/bento-relances.jpg";
+import bentoDevis from "@/assets/crm/bento-devis.jpg";
+import bentoReporting from "@/assets/crm/bento-reporting.jpg";
 
 const features = [
   {
@@ -30,6 +34,126 @@ const features = [
     desc: "Taux de conversion par commercial, valeur du pipeline par secteur, délai moyen de signature : tous vos indicateurs clés disponibles sans exporter la moindre donnée.",
   },
 ];
+
+const bentoCards = [
+  {
+    icon: Users,
+    title: "Pipeline centralisé et visible",
+    desc: "Chaque opportunité a une fiche complète : contact, historique, valeur estimée, prochaine action. Direction et commerciaux voient le pipeline consolidé en temps réel.",
+    img: bentoPipeline,
+    span: "lg:col-span-4",
+    tag: "Pipeline",
+  },
+  {
+    icon: BellRing,
+    title: "Relances automatisées",
+    desc: "Rappels générés automatiquement selon vos règles. Plus aucun prospect oublié.",
+    img: bentoRelances,
+    span: "lg:col-span-2",
+    tag: "Automation",
+  },
+  {
+    icon: FileText,
+    title: "Devis en 2 clics",
+    desc: "Devis personnalisés depuis la fiche opportunité. Envoi, suivi d'ouverture, signature et paiement en ligne.",
+    img: bentoDevis,
+    span: "lg:col-span-2",
+    tag: "Devis",
+  },
+  {
+    icon: BarChart3,
+    title: "Reporting commercial en temps réel",
+    desc: "Taux de conversion par commercial, valeur du pipeline par secteur, délai moyen de signature — tous vos KPI sans aucun export.",
+    img: bentoReporting,
+    span: "lg:col-span-4",
+    tag: "Analytics",
+  },
+];
+
+function CrmBento() {
+  return (
+    <section className="py-24" style={{ backgroundColor: "var(--bg)" }}>
+      <div className="container">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-brand-grey">
+            Ce qu'Odoo CRM change
+          </p>
+          <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]">
+            Ce qu'Odoo CRM change concrètement
+          </h2>
+        </div>
+
+        <div className="mt-14 grid gap-5 lg:grid-cols-6">
+          {bentoCards.map((c, i) => (
+            <article
+              key={c.title}
+              className={`group relative isolate flex h-[28rem] flex-col justify-end overflow-hidden rounded-3xl border ${c.span}`}
+              style={{ borderColor: "var(--grey-light)", backgroundColor: "#0F3F4A" }}
+            >
+              <img
+                src={c.img}
+                alt={c.title}
+                loading="lazy"
+                width={1024}
+                height={768}
+                className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 -z-10"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(15,63,74,0.15) 0%, rgba(15,63,74,0.55) 45%, rgba(15,63,74,0.95) 100%)",
+                }}
+              />
+
+              <div className="absolute left-6 top-6 flex items-center gap-3">
+                <span
+                  className="flex h-10 w-10 items-center justify-center rounded-xl backdrop-blur-md"
+                  style={{
+                    backgroundColor: "rgba(255,221,87,0.18)",
+                    color: "var(--gold)",
+                    border: "1px solid rgba(255,221,87,0.4)",
+                  }}
+                >
+                  <c.icon size={18} />
+                </span>
+                <span
+                  className="rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] backdrop-blur-md"
+                  style={{
+                    backgroundColor: "rgba(255,255,255,0.1)",
+                    color: "rgba(255,255,255,0.85)",
+                    border: "1px solid rgba(255,255,255,0.18)",
+                  }}
+                >
+                  {c.tag}
+                </span>
+              </div>
+
+              <div className="absolute right-6 top-6">
+                <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/55">
+                  0{i + 1}
+                </span>
+              </div>
+
+              <div
+                className="relative p-7"
+                style={{ textShadow: "0 1px 14px rgba(0,0,0,0.5)" }}
+              >
+                <h3 className="font-heading text-2xl font-bold text-white md:text-[1.65rem]">
+                  {c.title}
+                </h3>
+                <p className="mt-2 max-w-md font-body text-sm leading-relaxed text-white/85">
+                  {c.desc}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const faqs = [
   {
@@ -73,6 +197,7 @@ export default function CrmPage() {
       featuresEyebrow="Ce qu'Odoo CRM change"
       featuresTitle="Ce qu'Odoo CRM change concrètement"
       features={features}
+      featuresSlot={<CrmBento />}
       whySection={{
         title: "Pourquoi faire appel à MSL-iTECH pour votre CRM Odoo",
         desc: "Un CRM mal paramétré crée plus de résistance qu'il n'en supprime. Nos consultants certifiés Odoo adaptent la configuration à votre cycle de vente réel — pas à un modèle générique. Nous migrons vos données existantes, formons vos équipes et restons disponibles après la mise en production.",
