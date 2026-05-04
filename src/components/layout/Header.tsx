@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 
 const odooLinks = [
-  { to: "/odoo-erp", label: "Vue d'ensemble Odoo ERP", featured: true },
   { to: "/odoo-crm-ventes", label: "CRM & Ventes" },
   { to: "/odoo-finance-comptabilite", label: "Finance & Comptabilité" },
   { to: "/odoo-stock-inventaire", label: "Stock & Inventaire" },
@@ -83,28 +82,27 @@ export const Header = () => {
             onMouseEnter={() => setOpenMenu("odoo")}
             onMouseLeave={() => setOpenMenu(null)}
           >
-            <button className="flex items-center gap-1 font-body text-sm text-brand-black hover:text-brand-blue">
+            <NavLink
+              to="/odoo-erp"
+              className={({ isActive }) =>
+                `flex items-center gap-1 font-body text-sm transition-colors hover:text-brand-blue ${
+                  isActive ? "font-medium text-brand-blue" : "text-brand-black"
+                }`
+              }
+            >
               Odoo ERP <ChevronDown size={14} />
-            </button>
+            </NavLink>
             {openMenu === "odoo" && (
               <div className="absolute left-0 top-full pt-3">
                 <div className="w-72 rounded-lg border border-brand-grey-light bg-brand-white p-2 shadow-lg">
-                  {odooLinks.map((l, i) => (
-                    <div key={l.to}>
-                      <NavLink
-                        to={l.to}
-                        className={`block rounded-md px-3 py-2 font-body text-sm transition ${
-                          l.featured
-                            ? "bg-[var(--blue-light)] font-semibold text-brand-blue hover:bg-[var(--blue)] hover:text-white"
-                            : "text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
-                        }`}
-                      >
-                        {l.label}
-                      </NavLink>
-                      {l.featured && i === 0 && (
-                        <div className="my-1 border-t border-brand-grey-light" />
-                      )}
-                    </div>
+                  {odooLinks.map((l) => (
+                    <NavLink
+                      key={l.to}
+                      to={l.to}
+                      className="block rounded-md px-3 py-2 font-body text-sm text-brand-black transition hover:bg-[var(--blue-light)] hover:text-brand-blue"
+                    >
+                      {l.label}
+                    </NavLink>
                   ))}
                 </div>
               </div>
@@ -204,9 +202,12 @@ export const Header = () => {
             </button>
           </div>
           <nav className="container flex-1 overflow-y-auto py-6">
-            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-              Odoo ERP
-            </p>
+            <NavLink
+              to="/odoo-erp"
+              className="mb-2 block font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue"
+            >
+              Odoo ERP →
+            </NavLink>
             <ul className="mb-6 space-y-1">
               {odooLinks.map((l) => (
                 <li key={l.to}>
