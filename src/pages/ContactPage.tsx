@@ -187,44 +187,107 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: "#0F3F4A" }}>
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(900px 500px at 90% 0%, rgba(255,221,87,0.18), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(255,255,255,0.08), transparent 60%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage: "radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)",
-            backgroundSize: "22px 22px",
-          }}
-        />
-        <div className="container relative py-20 lg:py-24 text-white">
-          <p
-            className="mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em]"
-            style={{
-              backgroundColor: "rgba(255,221,87,0.14)",
-              color: "var(--gold)",
-              border: "1px solid rgba(255,221,87,0.35)",
-            }}
-          >
-            <Sparkles size={12} /> Contact · MSL-iTECH
-          </p>
-          <h1 className="max-w-4xl font-heading text-4xl font-bold leading-[1.08] md:text-5xl">
-            Réservez votre démo Odoo gratuite — nous la préparons{" "}
-            <span style={{ color: "var(--gold)" }}>selon vos besoins réels</span>
-          </h1>
-          <p className="mt-6 max-w-3xl font-body text-lg text-white/80">
-            Vous n'allez pas regarder une présentation générique d'Odoo. Vous allez voir Odoo
-            configuré pour votre secteur, avec vos types de données et vos problématiques
-            spécifiques.
-          </p>
+      {/* HERO — image overlay (charte MSL) */}
+      <section className="bg-brand-bg pt-6 md:pt-8">
+        <div className="container">
+          <div className="relative isolate rounded-[28px] md:rounded-[36px]">
+            <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
+              <img
+                src={contactHero}
+                alt="Contact MSL-iTECH"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="eager"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(10,30,38,0.55) 0%, rgba(10,30,38,0.7) 55%, rgba(10,30,38,0.9) 100%)",
+                }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-32 -left-20 h-96 w-96 rounded-full opacity-25 blur-3xl"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -bottom-40 -right-24 h-[28rem] w-[28rem] rounded-full opacity-20 blur-3xl"
+                style={{ backgroundColor: "var(--blue)" }}
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 opacity-[0.08]"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }}
+              />
+            </div>
+
+            <HeroCursorGlow radius="inherit" />
+
+            {/* Sticker top-left */}
+            <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
+              <Sticker rotate={-8}>★ Réponse sous 24–72h</Sticker>
+            </div>
+
+            {/* Hero content */}
+            <div className="relative flex min-h-[420px] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[500px] md:py-28">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
+                <Sparkles size={12} className="text-brand-gold" />
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
+                  Contact · MSL-iTECH
+                </p>
+              </div>
+
+              <h1 className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[60px] lg:text-[68px]">
+                Réservez votre démo Odoo —{" "}
+                <span className="italic font-light text-brand-gold">
+                  préparée
+                </span>{" "}
+                selon vos besoins réels
+              </h1>
+
+              <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
+                Pas une démo générique : un consultant MSL-iTECH configure
+                Odoo avec vos données et vos problématiques métier avant l'appel.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-white/70">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5">
+                  <Clock size={12} className="text-brand-gold" /> 30 minutes
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5">
+                  <ShieldCheck size={12} className="text-brand-gold" /> Sans engagement
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5">
+                  <Calendar size={12} className="text-brand-gold" /> Démo personnalisée
+                </span>
+              </div>
+            </div>
+
+            {/* Breadcrumb pill — bottom right */}
+            <div className="absolute -bottom-5 right-6 z-30 md:right-10">
+              <div
+                className="flex items-center gap-3 rounded-full border bg-brand-white px-5 py-2.5 shadow-[0_18px_40px_-15px_rgba(0,0,0,0.25)]"
+                style={{ borderColor: "var(--grey-light)" }}
+              >
+                <Link
+                  to="/"
+                  className="font-body text-sm text-brand-grey transition hover:text-brand-blue"
+                >
+                  Accueil
+                </Link>
+                <span className="text-brand-grey/40">/</span>
+                <span className="font-body text-sm font-semibold text-brand-blue">
+                  Contact
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
