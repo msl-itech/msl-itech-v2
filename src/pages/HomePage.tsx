@@ -248,6 +248,7 @@ function HeroShell({
                 <div className="absolute left-5 top-5">
                   <Sticker rotate={-6}>★ Partenaire Odoo</Sticker>
                 </div>
+                <HeroCursorGlow radius="24px" />
               </div>
 
               {/* Small white stat 1 */}
