@@ -93,45 +93,120 @@ function Sticker({
 /* ---------------- Hero ---------------- */
 function Hero() {
   return (
-    <section className="relative bg-brand-bg pt-10 pb-24 md:pt-14 md:pb-28">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px]"
-        style={{
-          background:
-            "radial-gradient(800px 380px at 80% 0%, rgba(255,221,87,0.18), transparent 70%), radial-gradient(700px 360px at 0% 0%, rgba(18,77,90,0.10), transparent 70%)",
-        }}
-      />
-
+    <section className="bg-brand-bg pt-6 md:pt-8">
       <div className="container">
-        <div className="grid items-stretch gap-6 lg:grid-cols-12">
-          {/* LEFT */}
-          <div className="relative flex flex-col justify-center lg:col-span-6 lg:pr-6">
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
-              <Sparkles size={12} className="text-brand-blue" />
-              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
+        <div className="relative isolate overflow-hidden rounded-[28px] md:rounded-[36px]">
+          {/* Background image */}
+          <img
+            src={erpHero}
+            alt="Odoo ERP — plateforme de gestion intégrée"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+
+          {/* Dark overlay */}
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(10,30,38,0.55) 0%, rgba(10,30,38,0.65) 60%, rgba(10,30,38,0.78) 100%)",
+            }}
+          />
+
+          {/* Subtle gold glow */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-32 -left-20 h-96 w-96 rounded-full opacity-25 blur-3xl"
+            style={{ backgroundColor: "var(--gold)" }}
+          />
+
+          {/* Content */}
+          <div className="relative flex min-h-[340px] flex-col items-center justify-center px-6 py-20 text-center md:min-h-[440px] md:py-28">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 backdrop-blur-sm">
+              <Sparkles size={12} className="text-brand-gold" />
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/90">
                 Odoo ERP · Pilier central
               </p>
             </div>
 
-            <h1 className="mt-7 font-heading text-4xl font-bold leading-[1.04] tracking-tight text-brand-black md:text-[60px]">
+            <h1 className="mt-6 font-heading text-5xl font-bold leading-[1.02] tracking-tight text-white md:text-7xl lg:text-[88px]">
+              Odoo ERP
+            </h1>
+          </div>
+
+          {/* Breadcrumb pill — bottom right, overlapping */}
+          <div className="absolute -bottom-5 right-6 z-20 md:right-10">
+            <div
+              className="flex items-center gap-3 rounded-full border bg-brand-white px-5 py-2.5 shadow-[0_18px_40px_-15px_rgba(0,0,0,0.25)]"
+              style={{ borderColor: "var(--grey-light)" }}
+            >
+              <Link
+                to="/"
+                className="font-body text-sm text-brand-grey transition hover:text-brand-blue"
+              >
+                Accueil
+              </Link>
+              <ArrowRight size={14} className="text-brand-gold" />
+              <span className="font-body text-sm font-semibold text-brand-blue">
+                Odoo ERP
+              </span>
+            </div>
+          </div>
+
+          {/* Sticker accent */}
+          <div className="absolute left-6 top-6 z-10 md:left-10 md:top-10">
+            <Sticker rotate={-8}>★ Certifié Odoo 17+</Sticker>
+          </div>
+        </div>
+      </div>
+
+      {/* Intro block below the banner — keeps page narrative */}
+      <div className="container pt-16 md:pt-20">
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+              <span className="mr-2 inline-block h-px w-8 align-middle bg-brand-blue" />
+              Ce que nous proposons
+            </p>
+            <h2 className="mt-5 font-heading text-3xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-[44px]">
               Un ERP. Six modules.
               <span className="block">
-                <span className="text-brand-blue italic font-light">
+                <span className="italic font-light text-brand-blue">
                   Une seule
                 </span>{" "}
                 <Mark>vérité.</Mark>
               </span>
-            </h1>
-
-            <p className="mt-7 max-w-[520px] font-body text-base text-brand-grey md:text-lg">
+            </h2>
+          </div>
+          <div className="lg:col-span-6">
+            <p className="font-body text-base text-brand-grey md:text-lg">
               Stoppez la dispersion des données entre Excel, votre CRM cloud,
-              votre logiciel comptable et vos tableurs RH. Odoo centralise toute
-              votre PME dans une plateforme unique, modulaire et conçue pour
-              évoluer avec vous.
+              votre logiciel comptable et vos tableurs RH. Odoo centralise
+              toute votre PME dans une plateforme unique, modulaire et conçue
+              pour évoluer avec vous.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+            <ul className="mt-7 grid gap-3 sm:grid-cols-2">
+              {[
+                "Open-source — sans vendor lock-in",
+                "Hébergement Europe ou Maroc",
+                "6 à 10 semaines de mise en route",
+                "9+ références vérifiables",
+              ].map((p) => (
+                <li
+                  key={p}
+                  className="flex items-start gap-2 font-body text-sm text-brand-black"
+                >
+                  <CheckCircle2
+                    size={18}
+                    className="mt-0.5 shrink-0 text-brand-gold"
+                  />
+                  {p}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-9 flex flex-wrap items-center gap-3">
               <Link
                 to="/contact"
                 className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
@@ -158,143 +233,6 @@ function Hero() {
               </Link>
             </div>
           </div>
-
-          {/* RIGHT bento */}
-          <div className="lg:col-span-6">
-            <div className="grid grid-cols-4 gap-3 md:gap-4">
-              {/* Big blue stat */}
-              <div
-                className="relative isolate col-span-4 overflow-hidden rounded-[24px] p-6 md:col-span-2 md:row-span-1 md:min-h-[260px]"
-                style={{ backgroundColor: "var(--blue)" }}
-              >
-                <div
-                  className="pointer-events-none absolute -bottom-16 -right-16 h-48 w-48 rounded-full opacity-30 blur-2xl"
-                  style={{ backgroundColor: "var(--gold)" }}
-                />
-                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-gold">
-                  Modules clés
-                </p>
-                <div className="mt-5 font-heading text-4xl font-bold text-white md:text-5xl">
-                  6 en 1
-                </div>
-                <p className="mt-1 font-body text-sm text-white/85">
-                  Finance · CRM · Stock · Production · RH · Services
-                </p>
-
-                <div
-                  className="absolute -bottom-5 -right-5 hidden h-[88px] w-[88px] items-center justify-center rounded-full md:flex"
-                  style={{ backgroundColor: "var(--black, #0a0a0a)" }}
-                >
-                  <div
-                    className="flex h-12 w-12 items-center justify-center rounded-full"
-                    style={{ backgroundColor: "var(--gold)" }}
-                  >
-                    <Workflow size={20} className="text-brand-black" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Hero image */}
-              <div
-                className="relative col-span-4 overflow-hidden rounded-[24px] border md:col-span-2 md:row-span-2 md:min-h-[540px]"
-                style={{ borderColor: "var(--grey-light)" }}
-              >
-                <img
-                  src={erpHero}
-                  alt="Tableau de bord Odoo ERP"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-                <div
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(18,77,90,0.0) 40%, rgba(10,45,54,0.55) 100%)",
-                  }}
-                />
-                <div className="absolute left-5 top-5">
-                  <Sticker rotate={-6}>★ Certifié Odoo 17+</Sticker>
-                </div>
-
-                {/* Floating mini KPI mockup */}
-                <div
-                  className="absolute bottom-6 left-6 hidden w-[210px] rounded-2xl border bg-brand-white p-4 shadow-2xl md:block"
-                  style={{
-                    borderColor: "var(--grey-light)",
-                    transform: "rotate(-4deg)",
-                  }}
-                >
-                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-brand-grey">
-                    Pipeline temps réel
-                  </p>
-                  <div className="mt-2 space-y-1.5">
-                    <div className="h-2 w-full rounded-full bg-brand-blue-light" />
-                    <div className="h-2 w-3/4 rounded-full bg-brand-blue-light" />
-                    <div
-                      className="h-2 w-1/2 rounded-full"
-                      style={{ backgroundColor: "var(--gold)" }}
-                    />
-                  </div>
-                  <div className="mt-3 font-heading text-xl font-bold text-brand-blue">
-                    +32%
-                  </div>
-                </div>
-              </div>
-
-              {/* Mini stat 1 */}
-              <div
-                className="relative col-span-2 overflow-hidden rounded-[24px] border bg-brand-white p-5 md:col-span-1"
-                style={{ borderColor: "var(--grey-light)" }}
-              >
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-                  Mise en route
-                </p>
-                <div
-                  className="mt-2 font-heading text-3xl font-bold md:text-4xl"
-                  style={{ color: "var(--blue)" }}
-                >
-                  6-10
-                </div>
-                <p className="mt-1 font-body text-xs text-brand-grey">
-                  semaines
-                </p>
-              </div>
-
-              {/* Mini stat 2 */}
-              <div
-                className="relative col-span-2 overflow-hidden rounded-[24px] border bg-brand-white p-5 md:col-span-1"
-                style={{ borderColor: "var(--grey-light)" }}
-              >
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-                  Références
-                </p>
-                <div
-                  className="mt-2 font-heading text-3xl font-bold md:text-4xl"
-                  style={{ color: "var(--blue)" }}
-                >
-                  9+
-                </div>
-                <p className="mt-1 font-body text-xs text-brand-grey">
-                  vérifiées
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Trust pills */}
-        <div className="mt-10 flex flex-wrap items-center gap-3 font-body text-sm text-brand-grey">
-          <span className="flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" />
-            Open-source — pas de vendor lock-in
-          </span>
-          <span className="flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" />
-            Hébergement Europe ou Maroc
-          </span>
-          <span className="flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" />
-            Évolutif — payez seulement ce que vous utilisez
-          </span>
         </div>
       </div>
     </section>
