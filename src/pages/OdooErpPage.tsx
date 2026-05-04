@@ -200,7 +200,7 @@ function Hero() {
       </div>
 
       {/* Intro block below the banner — keeps page narrative */}
-      <div className="container pt-16 md:pt-20">
+      <div className="container pt-16 pb-20 md:pt-20 md:pb-28">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
