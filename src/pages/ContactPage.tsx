@@ -17,6 +17,8 @@ import {
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import contactHero from "@/assets/home/cta-bg.webp";
+import { submitLead } from "@/lib/leads";
+import { buildLeadDescription, type OdooLeadData } from "@/lib/odoo";
 
 /* ---------------- Sticker (charte MSL) ---------------- */
 function Sticker({
@@ -118,6 +120,7 @@ export default function ContactPage() {
 
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [data, setData] = useState<Partial<DemoForm>>({
     country: "BE",
   });
@@ -157,7 +160,7 @@ export default function ContactPage() {
   };
   const handleBack = () => setStep((s) => Math.max(0, s - 1));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = demoSchema.safeParse({ ...data, consent: data.consent ?? false });
     if (!result.success) {
@@ -181,8 +184,45 @@ export default function ContactPage() {
       if (firstBadStep >= 0) setStep(firstBadStep);
       return;
     }
-    setSubmitted(true);
-    toast.success("Demande envoyée — nous revenons vers vous sous 24 à 72h.");
+
+    const v = result.data;
+    const payload: OdooLeadData = {
+      name: v.company
+        ? `Démo Odoo — ${v.fullName} (${v.company})`
+        : `Démo Odoo — ${v.fullName}`,
+      contact_name: v.fullName,
+      email_from: v.email,
+      phone: v.phone,
+      partner_name: v.company || undefined,
+      country_code: v.country,
+      source: "msl-itech.com /contact",
+      tag_names: ["Site web", "Démo Odoo", `Pays: ${v.country}`],
+      description: buildLeadDescription({
+        Objectifs: v.objectives,
+        "Processus chronophages": v.painPoints,
+        "Outils actuels": v.currentTools,
+        "Défis & contexte": v.challenges,
+      }),
+      extra: {
+        consent: v.consent,
+        submitted_at: new Date().toISOString(),
+      },
+    };
+
+    setSubmitting(true);
+    try {
+      const res = await submitLead(payload);
+      setSubmitted(true);
+      if (res.message === "ok") {
+        toast.success("Demande envoyée — nous revenons vers vous sous 24 à 72h.");
+      } else {
+        toast.success(
+          "Demande enregistrée — elle sera transmise dès que la connexion sera stable."
+        );
+      }
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -688,10 +728,11 @@ export default function ContactPage() {
                 ) : (
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold shadow-[0_14px_36px_-12px_rgba(255,221,87,0.7)] transition hover:-translate-y-0.5"
+                    disabled={submitting}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold shadow-[0_14px_36px_-12px_rgba(255,221,87,0.7)] transition hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
                     style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
                   >
-                    Réserver ma démo Odoo gratuite <ArrowRight size={16} />
+                    {submitting ? "Envoi en cours…" : "Réserver ma démo Odoo gratuite"} <ArrowRight size={16} />
                   </button>
                 )}
               </div>
