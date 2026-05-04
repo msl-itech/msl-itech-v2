@@ -176,11 +176,13 @@ function Hero({
               <span className="mr-2 inline-block h-px w-8 align-middle bg-brand-blue" />
               {proposalEyebrow ?? "Le constat"}
             </p>
-            {proposalTitle && (
-              <h2 className="mt-5 font-heading text-3xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-[42px]">
-                {proposalTitle}
-              </h2>
-            )}
+            <h2 className="mt-5 font-heading text-3xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-[42px]">
+              {proposalTitle ?? (
+                <>
+                  Ce que <span style={{ color: "var(--blue)" }}>MSL-iTECH</span> vous propose
+                </>
+              )}
+            </h2>
           </div>
           <div className="lg:col-span-6">
             <p className="font-body text-base text-brand-grey md:text-lg">
