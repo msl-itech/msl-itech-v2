@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, LucideIcon } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, CheckCircle2, LucideIcon, Sparkles } from "lucide-react";
 
 export type Feature = {
   icon: LucideIcon;
@@ -25,6 +25,34 @@ export interface ProductPageShellProps {
   ctaTitle: string;
   ctaSubtitle: string;
   metaNote?: string;
+  heroBullets?: string[];
+  proposalEyebrow?: string;
+  proposalTitle?: ReactNode;
+}
+
+/* Sticker — same visual language as the homepage / Odoo ERP page */
+function Sticker({
+  children,
+  rotate = -6,
+  className = "",
+}: {
+  children: ReactNode;
+  rotate?: number;
+  className?: string;
+}) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-2xl border-2 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] ${className}`}
+      style={{
+        backgroundColor: "var(--gold)",
+        borderColor: "var(--blue)",
+        color: "var(--blue)",
+        transform: `rotate(${rotate}deg)`,
+      }}
+    >
+      {children}
+    </span>
+  );
 }
 
 function Hero({
@@ -34,127 +62,184 @@ function Hero({
   heroImage,
   heroImageAlt,
   metaNote,
+  heroBullets,
+  proposalEyebrow,
+  proposalTitle,
 }: Pick<
   ProductPageShellProps,
-  "eyebrow" | "title" | "intro" | "heroImage" | "heroImageAlt" | "metaNote"
+  | "eyebrow"
+  | "title"
+  | "intro"
+  | "heroImage"
+  | "heroImageAlt"
+  | "metaNote"
+  | "heroBullets"
+  | "proposalEyebrow"
+  | "proposalTitle"
 >) {
-  return (
-    <section
-      className="relative overflow-hidden"
-      style={{ backgroundColor: "#0F3F4A" }}
-    >
-      {/* soft glows */}
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(900px 500px at 90% 0%, rgba(255,221,87,0.18), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(255,255,255,0.08), transparent 60%)",
-        }}
-      />
-      {/* dotted grid */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)",
-          backgroundSize: "22px 22px",
-        }}
-      />
-      {/* Breadcrumb back to ERP hub */}
-      <div className="container relative pt-8">
-        <Link
-          to="/odoo-erp"
-          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-white/70 backdrop-blur-sm transition hover:border-[var(--gold)]/50 hover:text-white"
-        >
-          <span className="opacity-60">Odoo ERP</span>
-          <span className="opacity-40">/</span>
-          <span className="text-white">{eyebrow}</span>
-        </Link>
-      </div>
-      <div className="container relative grid items-center gap-14 pb-20 pt-10 lg:grid-cols-[1.05fr_1fr] lg:pb-28 lg:pt-12">
-        <div className="text-white">
-          <h1 className="font-heading text-4xl font-bold leading-[1.08] md:text-5xl lg:text-[3.5rem]">
-            {title}
-          </h1>
-          <div className="mt-6 flex max-w-xl gap-4">
-            <span
-              aria-hidden
-              className="mt-2 block h-16 w-[2px] shrink-0 rounded-full"
-              style={{ backgroundColor: "var(--gold)" }}
-            />
-            <p className="font-body text-lg text-white/80">{intro}</p>
-          </div>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-semibold shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
-              style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
-            >
-              Réserver ma démo gratuite
-              <ArrowRight size={16} className="transition group-hover:translate-x-0.5" />
-            </Link>
-            <Link
-              to="/realisations"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 font-body text-sm font-semibold text-white transition hover:bg-white/10"
-            >
-              Voir nos réalisations
-            </Link>
-          </div>
-          {metaNote && (
-            <p className="mt-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-white/55">
-              <span
-                aria-hidden
-                className="inline-block h-1.5 w-1.5 rounded-full"
-                style={{ backgroundColor: "var(--gold)" }}
-              />
-              {metaNote}
-            </p>
-          )}
-        </div>
+  const bullets =
+    heroBullets && heroBullets.length > 0
+      ? heroBullets
+      : [
+          "Partenaire officiel Odoo certifié",
+          "Déploiement par blocs fonctionnels",
+          "Réponse sous 24 à 72h ouvrables",
+          "Sans engagement · Démo personnalisée",
+        ];
 
-        <div className="relative">
-          <div
-            aria-hidden
-            className="absolute -inset-6 rounded-[2rem] opacity-70 blur-3xl"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(255,221,87,0.35), rgba(255,255,255,0.05))",
-            }}
-          />
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-white/5 p-2 backdrop-blur-sm shadow-2xl">
+  return (
+    <section className="bg-brand-bg pt-6 md:pt-8">
+      <div className="container">
+        {/* Banner card with image background */}
+        <div className="relative isolate rounded-[28px] md:rounded-[36px]">
+          <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
             <img
               src={heroImage}
               alt={heroImageAlt}
-              className="w-full rounded-[1.4rem]"
+              className="absolute inset-0 h-full w-full object-cover"
               loading="eager"
             />
-          </div>
-          {/* floating corner stamp - outside the image clip so it stays visible */}
-          <div
-            className="absolute -bottom-4 -left-4 z-10 flex items-center gap-2 rounded-2xl px-4 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] shadow-[0_18px_40px_-12px_rgba(0,0,0,0.45)] md:-bottom-5 md:-left-5"
-            style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
-          >
-            <span
+            <div
               aria-hidden
-              className="inline-block h-1.5 w-1.5 rounded-full"
-              style={{ backgroundColor: "#0F3F4A" }}
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(10,30,38,0.45) 0%, rgba(10,30,38,0.62) 55%, rgba(10,30,38,0.82) 100%)",
+              }}
             />
-            Certifié Odoo
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -top-32 -left-20 h-96 w-96 rounded-full opacity-25 blur-3xl"
+              style={{ backgroundColor: "var(--gold)" }}
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -bottom-40 -right-24 h-[28rem] w-[28rem] rounded-full opacity-20 blur-3xl"
+              style={{ backgroundColor: "var(--blue)" }}
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 opacity-[0.08]"
+              style={{
+                backgroundImage:
+                  "radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px)",
+                backgroundSize: "24px 24px",
+              }}
+            />
+          </div>
+
+          {/* Sticker top-left */}
+          <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
+            <Sticker rotate={-8}>★ Certifié Odoo 17+</Sticker>
+          </div>
+
+          {/* Banner content */}
+          <div className="relative flex min-h-[380px] flex-col items-center justify-center px-6 py-20 text-center md:min-h-[480px] md:py-28">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
+              <Sparkles size={12} className="text-brand-gold" />
+              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
+                {eyebrow}
+              </p>
+            </div>
+
+            <h1 className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl lg:text-[68px]">
+              {title}
+            </h1>
+          </div>
+
+          {/* Breadcrumb pill — bottom right, overlapping */}
+          <div className="absolute -bottom-5 right-6 z-30 md:right-10">
+            <div
+              className="flex items-center gap-3 rounded-full border bg-brand-white px-5 py-2.5 shadow-[0_18px_40px_-15px_rgba(0,0,0,0.25)]"
+              style={{ borderColor: "var(--grey-light)" }}
+            >
+              <Link
+                to="/odoo-erp"
+                className="font-body text-sm text-brand-grey transition hover:text-brand-blue"
+              >
+                Odoo ERP
+              </Link>
+              <ArrowRight size={14} className="text-brand-gold" />
+              <span className="font-body text-sm font-semibold text-brand-blue">
+                {eyebrow}
+              </span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* soft transition to white */}
-      <div
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 h-16"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent, var(--bg))",
-        }}
-      />
+      {/* Intro grid below the banner */}
+      <div className="container pt-16 pb-20 md:pt-20 md:pb-24">
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+              <span className="mr-2 inline-block h-px w-8 align-middle bg-brand-blue" />
+              {proposalEyebrow ?? "Le constat"}
+            </p>
+            <h2 className="mt-5 font-heading text-3xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-[42px]">
+              {proposalTitle ?? title}
+            </h2>
+          </div>
+          <div className="lg:col-span-6">
+            <p className="font-body text-base text-brand-grey md:text-lg">
+              {intro}
+            </p>
+
+            <ul className="mt-7 grid gap-3 sm:grid-cols-2">
+              {bullets.map((p) => (
+                <li
+                  key={p}
+                  className="flex items-start gap-2 font-body text-sm text-brand-black"
+                >
+                  <CheckCircle2
+                    size={18}
+                    className="mt-0.5 shrink-0 text-brand-gold"
+                  />
+                  {p}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-9 flex flex-wrap items-center gap-3">
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+                style={{ backgroundColor: "var(--gold)" }}
+              >
+                Réserver ma démo gratuite
+                <ArrowRight
+                  size={18}
+                  className="transition group-hover:translate-x-1"
+                />
+              </Link>
+              <Link
+                to="/realisations"
+                className="group inline-flex items-center gap-2 rounded-full border-2 px-6 py-3.5 font-body text-sm font-semibold text-brand-black transition hover:bg-brand-white"
+                style={{ borderColor: "var(--blue)" }}
+              >
+                <span
+                  className="flex h-7 w-7 items-center justify-center rounded-full"
+                  style={{ backgroundColor: "var(--blue)" }}
+                >
+                  <ArrowUpRight size={14} className="text-white" />
+                </span>
+                Voir nos réalisations
+              </Link>
+            </div>
+
+            {metaNote && (
+              <p className="mt-6 font-mono text-xs uppercase tracking-[0.18em] text-brand-grey">
+                <span
+                  aria-hidden
+                  className="mr-2 inline-block h-1.5 w-1.5 rounded-full align-middle"
+                  style={{ backgroundColor: "var(--gold)" }}
+                />
+                {metaNote}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -444,6 +529,9 @@ export function ProductPageShell(props: ProductPageShellProps) {
         heroImage={props.heroImage}
         heroImageAlt={props.heroImageAlt}
         metaNote={props.metaNote}
+        heroBullets={props.heroBullets}
+        proposalEyebrow={props.proposalEyebrow}
+        proposalTitle={props.proposalTitle}
       />
       {props.featuresSlot ? (
         props.featuresSlot
