@@ -202,9 +202,12 @@ export const Header = () => {
             </button>
           </div>
           <nav className="container flex-1 overflow-y-auto py-6">
-            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-              Odoo ERP
-            </p>
+            <NavLink
+              to="/odoo-erp"
+              className="mb-2 block font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue"
+            >
+              Odoo ERP →
+            </NavLink>
             <ul className="mb-6 space-y-1">
               {odooLinks.map((l) => (
                 <li key={l.to}>
