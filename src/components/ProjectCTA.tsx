@@ -112,11 +112,11 @@ export const ProjectCTA = ({
 
           {/* Tags en zigzag sur une seule ligne, chevauchent la bordure */}
           <div className="relative z-30 -mb-5 hidden h-20 w-full overflow-visible md:block">
-            <div className="absolute inset-x-0 top-3 flex flex-nowrap items-start justify-center gap-2 px-3 lg:gap-3">
+            <div className="absolute inset-x-0 top-3 flex flex-nowrap items-start justify-center px-3">
               {tags.map((t, idx) => (
                 <span
                   key={`${t.label}-${idx}`}
-                  className="inline-flex shrink-0 items-center whitespace-nowrap rounded-full border-2 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)] transition hover:scale-105"
+                  className="-mx-1 inline-flex shrink-0 items-center whitespace-nowrap rounded-full border-2 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)] transition hover:scale-105"
                   style={{
                     transform: `translateY(${t.ty}px) rotate(${t.r}deg)`,
                     backgroundColor: t.accent ? "var(--gold)" : "var(--blue)",
