@@ -546,11 +546,11 @@ function Pillars() {
 
 /* ------------------------------ Sectors ------------------------------ */
 const sectorsBE = [
-  { label: "Services & Conseil", desc: "Agences, freelances structurés", img: sectorServices, to: null as string | null },
-  { label: "Bureaux d'études", desc: "Architecture, ingénierie", img: sectorEngineering, to: null },
-  { label: "Commerce B2B", desc: "Distribution, grossistes", img: sectorB2b, to: null },
-  { label: "Administratif & RH", desc: "ASBL, RH externalisée", img: sectorHr, to: null },
-  { label: "Scale-ups (10-50 emp.)", desc: "Entreprises en forte croissance", img: sectorScaleup, to: null },
+  { label: "HORECA", desc: "Restaurants, cafés, hôtels", img: sectorHoreca, to: "/odoo-horeca-maroc" as string | null },
+  { label: "BTP & Construction", desc: "Marchés publics, chantiers", img: sectorBtp, to: "/odoo-btp-maroc" },
+  { label: "Santé & Pharma", desc: "Cliniques, distribution", img: sectorHealth, to: "/odoo-sante-maroc" },
+  { label: "Commerce & Stock", desc: "Multi-dépôts, e-commerce", img: sectorWholesale, to: "/odoo-gestion-stock-maroc" },
+  { label: "Transport & Logistique", desc: "Flotte, expéditions", img: sectorLogistics, to: "/odoo-transport-logistique-maroc" },
 ];
 
 const sectorsMA = [
