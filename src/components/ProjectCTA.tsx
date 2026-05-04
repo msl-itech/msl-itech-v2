@@ -49,12 +49,10 @@ export const ProjectCTA = ({
   marqueeItems = defaultMarquee,
 }: ProjectCTAProps) => {
   return (
-    <section className="relative bg-brand-bg pb-0 pt-24 md:pt-32">
-      <div className="container">
-        <div
-          className="relative isolate overflow-hidden rounded-[28px] md:rounded-[36px]"
-          style={{ backgroundColor: "var(--blue)" }}
-        >
+    <section
+      className="relative isolate overflow-hidden"
+      style={{ backgroundColor: "var(--blue)" }}
+    >
           {/* Halo */}
           <div
             aria-hidden
@@ -71,7 +69,7 @@ export const ProjectCTA = ({
             }}
           />
 
-          <div className="relative z-10 px-6 pb-32 pt-16 text-center md:px-12 md:pb-40 md:pt-24">
+          <div className="container relative z-10 px-6 pb-32 pt-20 text-center md:pb-40 md:pt-28">
             {/* Eyebrow */}
             <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-white/85 backdrop-blur-sm">
               <Sparkles size={12} className="text-brand-gold" />
@@ -114,7 +112,7 @@ export const ProjectCTA = ({
 
           {/* Tags qui chevauchent la bordure du bas */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden h-0 md:block">
-            <div className="mx-auto flex max-w-5xl flex-wrap items-end justify-center gap-2 px-6">
+            <div className="container mx-auto flex max-w-5xl flex-wrap items-end justify-center gap-2 px-6">
               {tags.map((t, idx) => (
                 <span
                   key={`${t.label}-${idx}`}
@@ -151,19 +149,17 @@ export const ProjectCTA = ({
               </span>
             ))}
           </div>
-        </div>
-      </div>
 
       {/* Bandeau marquee */}
       <div
-        className="mt-10 overflow-hidden border-y py-5"
-        style={{ borderColor: "var(--grey-light)", backgroundColor: "var(--bg)" }}
+        className="relative z-10 overflow-hidden border-t py-5"
+        style={{ borderColor: "rgba(255,255,255,0.15)", backgroundColor: "var(--black)" }}
       >
         <div className="marquee-cta flex w-max items-center gap-10 whitespace-nowrap">
           {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, k) => (
             <span
               key={k}
-              className="flex items-center gap-10 font-heading text-3xl font-bold uppercase tracking-tight text-brand-black md:text-5xl"
+              className="flex items-center gap-10 font-heading text-3xl font-bold uppercase tracking-tight text-white md:text-5xl"
             >
               {item}
               <span style={{ color: "var(--gold)" }}>✦</span>
