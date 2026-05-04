@@ -14,6 +14,7 @@ import {
   Clock,
   Calendar,
 } from "lucide-react";
+import { Target, Flame, Wrench, Mountain, Plus } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import contactHero from "@/assets/home/cta-bg.webp";
