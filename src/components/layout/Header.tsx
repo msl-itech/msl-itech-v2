@@ -1,6 +1,6 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import logoDark from "@/assets/logo-msl-dark.png";
 
 const odooLinks = [
@@ -39,9 +39,6 @@ export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<null | "odoo" | "sectors">(null);
-  const [mobileSection, setMobileSection] = useState<
-    null | "odoo" | "sectors" | "profile"
-  >("odoo");
   const location = useLocation();
 
   useEffect(() => {
@@ -55,17 +52,6 @@ export const Header = () => {
     setMobileOpen(false);
     setOpenMenu(null);
   }, [location.pathname]);
-
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileOpen) {
-      const prev = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = prev;
-      };
-    }
-  }, [mobileOpen]);
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `font-body text-sm transition-colors hover:text-brand-blue ${
@@ -205,201 +191,94 @@ export const Header = () => {
         </div>
       </div>
 
-      {/* Mobile drawer */}
-      <div
-        className={`fixed inset-0 z-[60] lg:hidden ${
-          mobileOpen ? "pointer-events-auto" : "pointer-events-none"
-        }`}
-        aria-hidden={!mobileOpen}
-      >
-        {/* Backdrop */}
-        <div
-          onClick={() => setMobileOpen(false)}
-          className={`absolute inset-0 bg-brand-black/40 backdrop-blur-sm transition-opacity duration-300 ${
-            mobileOpen ? "opacity-100" : "opacity-0"
-          }`}
-        />
-        {/* Panel */}
-        <aside
-          className={`absolute right-0 top-0 flex h-[100dvh] w-[88%] max-w-sm flex-col bg-brand-white shadow-2xl transition-transform duration-300 ease-out ${
-            mobileOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menu principal"
-        >
-          {/* Header */}
-          <div className="flex h-16 items-center justify-between border-b border-brand-grey-light/60 px-5">
+      {/* Mobile full-screen overlay */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-brand-white lg:hidden">
+          <div className="container flex h-16 items-center justify-between">
             <Link
               to="/"
               onClick={() => setMobileOpen(false)}
               className="flex items-center"
               aria-label="MSL-iTECH — accueil"
             >
-              <img
-                src={logoDark}
-                alt="MSL-iTECH"
-                className="h-7 w-auto"
-                loading="eager"
-                decoding="async"
-              />
+              <img src={logoDark} alt="MSL-iTECH" className="h-8 w-auto" loading="eager" decoding="async" />
             </Link>
-            <button
-              aria-label="Fermer le menu"
-              onClick={() => setMobileOpen(false)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-grey-light text-brand-black transition hover:bg-brand-bg"
-            >
-              <X size={20} />
+            <button aria-label="Fermer" onClick={() => setMobileOpen(false)}>
+              <X size={26} />
             </button>
           </div>
-
-          {/* Scrollable content */}
-          <nav className="flex-1 overflow-y-auto overscroll-contain px-5 py-5">
-            {/* Accordion: Odoo ERP */}
-            <MobileAccordion
-              label="Odoo ERP"
-              isOpen={mobileSection === "odoo"}
-              onToggle={() =>
-                setMobileSection(mobileSection === "odoo" ? null : "odoo")
-              }
-              cta={{ to: "/odoo-erp", label: "Voir la page Odoo ERP" }}
-              items={odooLinks}
-              onNavigate={() => setMobileOpen(false)}
-            />
-            <MobileAccordion
-              label="Nos Secteurs"
-              isOpen={mobileSection === "sectors"}
-              onToggle={() =>
-                setMobileSection(mobileSection === "sectors" ? null : "sectors")
-              }
-              items={sectorLinks}
-              onNavigate={() => setMobileOpen(false)}
-            />
-            <MobileAccordion
-              label="Par profil"
-              isOpen={mobileSection === "profile"}
-              onToggle={() =>
-                setMobileSection(mobileSection === "profile" ? null : "profile")
-              }
-              items={profileItems}
-              onNavigate={() => setMobileOpen(false)}
-            />
-
-            <ul className="mt-2 border-t border-brand-grey-light/60 pt-2">
-              {simpleLinks.map((l) => (
+          <nav className="container flex-1 overflow-y-auto py-6">
+            <NavLink
+              to="/odoo-erp"
+              className="mb-2 block font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue"
+            >
+              Odoo ERP →
+            </NavLink>
+            <ul className="mb-6 space-y-1">
+              {odooLinks.map((l) => (
                 <li key={l.to}>
                   <NavLink
                     to={l.to}
-                    onClick={() => setMobileOpen(false)}
-                    className={({ isActive }) =>
-                      `flex items-center justify-between rounded-lg px-3 py-3 font-body text-[15px] font-medium transition ${
-                        isActive
-                          ? "bg-[var(--blue-light)] text-brand-blue"
-                          : "text-brand-black hover:bg-brand-bg"
-                      }`
-                    }
+                    className="block py-2 font-body text-base text-brand-black"
                   >
-                    <span>{l.label}</span>
-                    <ArrowRight size={14} className="text-brand-grey" />
+                    {l.label}
                   </NavLink>
                 </li>
               ))}
             </ul>
-          </nav>
-
-          {/* Sticky CTA */}
-          <div className="border-t border-brand-grey-light/60 bg-brand-white px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4">
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+              Nos Secteurs
+            </p>
+            <ul className="mb-6 space-y-1">
+              {sectorLinks.map((l) => (
+                <li key={l.to}>
+                  <NavLink
+                    to={l.to}
+                    className="block py-2 font-body text-base text-brand-black"
+                  >
+                    {l.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+              Par profil
+            </p>
+            <ul className="mb-6 space-y-1">
+              {profileItems.map((p) => (
+                <li key={p.to}>
+                  <NavLink
+                    to={p.to}
+                    className="block py-2 font-body text-base text-brand-black"
+                  >
+                    {p.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <ul className="space-y-1 border-t border-brand-grey-light pt-4">
+              {simpleLinks.map((l) => (
+                <li key={l.to}>
+                  <NavLink
+                    to={l.to}
+                    className="block py-2 font-body text-base font-medium text-brand-black"
+                  >
+                    {l.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
             <Link
               to="/contact"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 rounded-full px-5 py-3.5 font-body text-sm font-bold text-brand-white shadow-[0_10px_24px_-12px_rgba(18,77,90,0.6)] transition hover:opacity-95"
+              className="mt-8 block rounded-md px-4 py-3 text-center font-body text-sm font-medium text-brand-white"
               style={{ backgroundColor: "var(--blue)" }}
             >
               Réserver une démo
-              <ArrowRight size={16} />
             </Link>
-            <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-              🇧🇪 Belgique · 🇲🇦 Maroc · 🇨🇦 Canada
-            </p>
-          </div>
-        </aside>
-      </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
-
-/* ----------------------------- Mobile Accordion ----------------------------- */
-function MobileAccordion({
-  label,
-  isOpen,
-  onToggle,
-  items,
-  cta,
-  onNavigate,
-}: {
-  label: string;
-  isOpen: boolean;
-  onToggle: () => void;
-  items: { to: string; label: string }[];
-  cta?: { to: string; label: string };
-  onNavigate: () => void;
-}) {
-  return (
-    <div className="border-b border-brand-grey-light/60">
-      <button
-        type="button"
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        className="flex w-full items-center justify-between px-1 py-4 text-left"
-      >
-        <span className="font-heading text-[15px] font-semibold uppercase tracking-wide text-brand-black">
-          {label}
-        </span>
-        <ChevronDown
-          size={18}
-          className={`text-brand-grey transition-transform duration-200 ${
-            isOpen ? "rotate-180 text-brand-blue" : ""
-          }`}
-        />
-      </button>
-      <div
-        className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-        }`}
-      >
-        <div className="overflow-hidden">
-          <ul className="space-y-0.5 pb-3 pl-1">
-            {cta && (
-              <li>
-                <NavLink
-                  to={cta.to}
-                  onClick={onNavigate}
-                  className="mb-1 flex items-center gap-2 rounded-lg px-3 py-2 font-body text-[13px] font-semibold text-brand-blue hover:bg-[var(--blue-light)]"
-                >
-                  → {cta.label}
-                </NavLink>
-              </li>
-            )}
-            {items.map((l) => (
-              <li key={l.to}>
-                <NavLink
-                  to={l.to}
-                  onClick={onNavigate}
-                  className={({ isActive }) =>
-                    `block rounded-lg px-3 py-2.5 font-body text-[14px] transition ${
-                      isActive
-                        ? "bg-[var(--blue-light)] font-medium text-brand-blue"
-                        : "text-brand-grey hover:bg-brand-bg hover:text-brand-black"
-                    }`
-                  }
-                >
-                  {l.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
