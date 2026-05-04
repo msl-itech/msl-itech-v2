@@ -148,7 +148,7 @@ export const ProjectCTA = ({
 
       {/* Bandeau marquee */}
       <div
-        className="relative z-10 mt-2 overflow-hidden border-t py-5 md:mt-4"
+        className="relative z-10 -mt-4 overflow-hidden border-t py-5 md:-mt-6"
         style={{ borderColor: "rgba(255,255,255,0.15)", backgroundColor: "var(--black)" }}
       >
         <div className="marquee-cta flex w-max items-center gap-10 whitespace-nowrap">
