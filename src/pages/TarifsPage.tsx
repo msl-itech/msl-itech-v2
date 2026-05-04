@@ -127,10 +127,10 @@ const packs = [
 const features: { label: string; values: boolean[] }[] = [
   // [Essentiel, Standard, Avancé, Premium, VIP, Elite]
   { label: "Expert dédié", values: [true, true, true, true, true, true] },
-  { label: "Gestion de Projet", values: [false, false, true, true, true, true] },
   { label: "Assistance multicanal (E-mail & Téléphone)", values: [true, true, true, true, true, true] },
   { label: "Formation à l'outil", values: [false, true, true, true, true, true] },
   { label: "Paramétrage", values: [false, true, true, true, true, true] },
+  { label: "Gestion de Projet", values: [false, false, true, true, true, true] },
   { label: "Assistance à l'importation de données", values: [false, false, true, true, true, true] },
   { label: "Optimisation et structuration des données", values: [false, false, true, true, true, true] },
   { label: "Personnalisation des Applications", values: [false, false, false, true, true, true] },
