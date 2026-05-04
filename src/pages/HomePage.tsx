@@ -574,10 +574,10 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
   // └───────┴─────────────────────┘
   // Grille 6 col / row 240px.
   const layout = [
-    "lg:col-span-4 lg:row-span-2", // 1 — vedette (grande gauche, 2 lignes)
-    "lg:col-span-2 lg:row-span-1", // 2 — moyenne haut-droite
+    "lg:col-span-3 lg:row-span-2", // 1 — vedette HORECA (réduite)
+    "lg:col-span-3 lg:row-span-1", // 2 — moyenne haut-droite (élargie)
     "lg:col-span-1 lg:row-span-1", // 3 — petite milieu-droite gauche
-    "lg:col-span-1 lg:row-span-1", // 4 — petite milieu-droite droite
+    "lg:col-span-2 lg:row-span-1", // 4 — milieu-droite droite (équilibrée)
     "lg:col-span-6 lg:row-span-1", // 5 — bandeau pleine largeur en bas
   ];
   return (
