@@ -234,6 +234,21 @@ export const Header = () => {
                 </li>
               ))}
             </ul>
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+              Par profil
+            </p>
+            <ul className="mb-6 space-y-1">
+              {profileItems.map((p) => (
+                <li key={p.to}>
+                  <NavLink
+                    to={p.to}
+                    className="block py-2 font-body text-base text-brand-black"
+                  >
+                    {p.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
             <ul className="space-y-1 border-t border-brand-grey-light pt-4">
               {simpleLinks.map((l) => (
                 <li key={l.to}>
