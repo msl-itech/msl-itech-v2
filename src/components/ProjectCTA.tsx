@@ -80,16 +80,7 @@ export const ProjectCTA = ({
             <h2 className="mx-auto mt-7 max-w-4xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl lg:text-[68px]">
               {titleStart}
               <br />
-              <span className="relative inline-block">
-                <span
-                  aria-hidden
-                  className="absolute inset-x-[-6px] bottom-[8%] -z-0 h-[38%] -rotate-[1.5deg] rounded-[8px]"
-                  style={{ backgroundColor: "var(--gold)" }}
-                />
-                <span className="relative z-10" style={{ color: "var(--blue)" }}>
-                  {titleEnd}
-                </span>
-              </span>
+              <span className="text-white">{titleEnd}</span>
             </h2>
 
             {/* CTA */}
@@ -152,7 +143,7 @@ export const ProjectCTA = ({
 
       {/* Bandeau marquee */}
       <div
-        className="relative z-10 overflow-hidden border-t py-5"
+        className="relative z-10 mt-10 overflow-hidden border-t py-5 md:mt-16"
         style={{ borderColor: "rgba(255,255,255,0.15)", backgroundColor: "var(--black)" }}
       >
         <div className="marquee-cta flex w-max items-center gap-10 whitespace-nowrap">
