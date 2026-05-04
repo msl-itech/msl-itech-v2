@@ -564,15 +564,21 @@ const sectorsMA = [
 
 function Sectors({ market }: { market: "BE" | "MA" }) {
   const items = market === "MA" ? sectorsMA : sectorsBE;
-  // Bento bien équilibré : 1 vedette 4x2 + 5 cartes secondaires
-  // Grille 6 col / lignes 240px. 1ère carte = focus, autres = standard.
+  // Layout asymétrique inspiré de la référence (5 cartes) :
+  // ┌───────────────┬─────────────┐
+  // │  Carte 1      │  Carte 2    │  ← ligne 1 : grande gauche (vedette) + carte droite haute
+  // │  (vedette)    ├──────┬──────┤
+  // │  4×2          │  3   │  4   │  ← ligne 2 : 2 petites
+  // ├───────┬───────┴──────┴──────┤
+  // │  5    │   (carte 5 large)   │  ← ligne 3 : 1 large pleine largeur droite
+  // └───────┴─────────────────────┘
+  // Grille 6 col / row 240px.
   const layout = [
-    "lg:col-span-4 lg:row-span-2", // vedette grand format
-    "lg:col-span-2 lg:row-span-1",
-    "lg:col-span-2 lg:row-span-1",
-    "lg:col-span-2 lg:row-span-1",
-    "lg:col-span-3 lg:row-span-1",
-    "lg:col-span-3 lg:row-span-1",
+    "lg:col-span-4 lg:row-span-2", // 1 — vedette (grande gauche, 2 lignes)
+    "lg:col-span-2 lg:row-span-1", // 2 — moyenne haut-droite
+    "lg:col-span-1 lg:row-span-1", // 3 — petite milieu-droite gauche
+    "lg:col-span-1 lg:row-span-1", // 4 — petite milieu-droite droite
+    "lg:col-span-6 lg:row-span-1", // 5 — bandeau pleine largeur en bas
   ];
   return (
     <section className="relative overflow-hidden bg-brand-white">
