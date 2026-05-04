@@ -733,11 +733,11 @@ function Why() {
           {items.map(({ icon: Icon, title, desc }, i) => (
             <div
               key={title}
-              className="group relative overflow-hidden rounded-[24px] border bg-brand-white p-7 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.25)]"
+              className="group relative rounded-[24px] border bg-brand-white p-7 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.25)]"
               style={{ borderColor: "var(--grey-light)" }}
             >
               {/* Sticker number */}
-              <div className="absolute -top-3 -right-3">
+              <div className="absolute -top-4 -right-3 z-10">
                 <Sticker rotate={i % 2 === 0 ? -8 : 6}>0{i + 1}</Sticker>
               </div>
 
