@@ -11,70 +11,60 @@ import {
   MapPin,
   CheckCircle2,
   ShieldCheck,
-  Clock,
-  Zap,
-  Users,
-  Target,
-  Wrench,
-  AlertTriangle,
-  Send,
-  User,
-  Building2,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 
 const offices = [
   {
     country: "Belgique",
-    flag: "🇧🇪",
     address: "Bruxelles, Belgique",
     phone: "+32 2 886 05 49",
     email: "info@msl-itech.com",
   },
   {
     country: "Maroc",
-    flag: "🇲🇦",
     address: "951 Q.I. Al Massar N°2, Route de Safi, Marrakech",
     phone: "+212 6 89 30 62 78",
     email: "info@msl-itech.com",
   },
   {
     country: "Canada",
-    flag: "🇨🇦",
-    address: "Winnipeg, Canada",
+    address: "—",
     phone: "+1 204 650 0765",
     email: "info@msl-itech.com",
   },
 ];
 
-const reassurances = [
-  {
-    icon: Clock,
-    title: "Réponse 24–72h",
-    text: "Un consultant senior vous rappelle dans les jours ouvrables.",
-  },
-  {
-    icon: Zap,
-    title: "Démo personnalisée",
-    text: "Configurée pour votre secteur et vos vrais cas d'usage.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Sans engagement",
-    text: "Aucun devis automatique, aucune relance commerciale agressive.",
-  },
-];
-
 const demoSchema = z.object({
-  fullName: z.string().trim().nonempty({ message: "Le nom est requis" }).max(100),
-  email: z.string().trim().email({ message: "Email invalide" }).max(255),
-  phone: z.string().trim().nonempty({ message: "Le téléphone est requis" }).max(30),
+  // step 1
+  fullName: z
+    .string()
+    .trim()
+    .nonempty({ message: "Le nom est requis" })
+    .max(100, { message: "Maximum 100 caractères" }),
+  email: z
+    .string()
+    .trim()
+    .email({ message: "Email invalide" })
+    .max(255),
+  phone: z
+    .string()
+    .trim()
+    .nonempty({ message: "Le téléphone est requis" })
+    .max(30, { message: "Numéro trop long" }),
   company: z.string().trim().max(150).optional().or(z.literal("")),
   country: z.enum(["BE", "MA", "CA", "OTHER"]),
-  objectives: z.string().trim().nonempty({ message: "Décrivez vos objectifs" }).max(800),
+  // step 2
+  objectives: z
+    .string()
+    .trim()
+    .nonempty({ message: "Décrivez vos objectifs" })
+    .max(800),
+  // step 3
   painPoints: z.string().trim().max(800).optional().or(z.literal("")),
+  // step 4
   currentTools: z.string().trim().max(400).optional().or(z.literal("")),
+  // step 5
   challenges: z.string().trim().max(800).optional().or(z.literal("")),
   consent: z.literal(true, {
     errorMap: () => ({ message: "Vous devez accepter pour continuer" }),
@@ -83,12 +73,12 @@ const demoSchema = z.object({
 
 type DemoForm = z.infer<typeof demoSchema>;
 
-const steps = [
-  { label: "Coordonnées", icon: User },
-  { label: "Objectifs", icon: Target },
-  { label: "Processus", icon: Clock },
-  { label: "Outils", icon: Wrench },
-  { label: "Défis", icon: AlertTriangle },
+const stepLabels = [
+  "Coordonnées",
+  "Objectifs",
+  "Processus chronophages",
+  "Outils actuels",
+  "Défis & finalisation",
 ];
 
 export default function ContactPage() {
@@ -101,7 +91,9 @@ export default function ContactPage() {
 
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
-  const [data, setData] = useState<Partial<DemoForm>>({ country: "BE" });
+  const [data, setData] = useState<Partial<DemoForm>>({
+    country: "BE",
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const update = <K extends keyof DemoForm>(k: K, v: DemoForm[K] | string | boolean) => {
@@ -134,7 +126,7 @@ export default function ContactPage() {
   };
 
   const handleNext = () => {
-    if (validateStep()) setStep((s) => Math.min(s + 1, steps.length - 1));
+    if (validateStep()) setStep((s) => Math.min(s + 1, stepLabels.length - 1));
   };
   const handleBack = () => setStep((s) => Math.max(0, s - 1));
 
@@ -148,6 +140,7 @@ export default function ContactPage() {
       }
       setErrors(all);
       toast.error("Merci de corriger les champs en erreur.");
+      // jump to first step containing an error
       const fieldsByStep: (keyof DemoForm)[][] = [
         ["fullName", "email", "phone", "country"],
         ["objectives"],
@@ -165,8 +158,6 @@ export default function ContactPage() {
     toast.success("Demande envoyée — nous revenons vers vous sous 24 à 72h.");
   };
 
-  const progress = ((step + 1) / steps.length) * 100;
-
   return (
     <>
       {/* HERO */}
@@ -176,7 +167,7 @@ export default function ContactPage() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(900px 500px at 90% 0%, rgba(255,221,87,0.22), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(255,255,255,0.08), transparent 60%)",
+              "radial-gradient(900px 500px at 90% 0%, rgba(255,221,87,0.18), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(255,255,255,0.08), transparent 60%)",
           }}
         />
         <div
@@ -187,208 +178,53 @@ export default function ContactPage() {
             backgroundSize: "22px 22px",
           }}
         />
-        {/* floating decorative blobs */}
-        <div
-          aria-hidden
-          className="absolute -top-24 -right-24 h-72 w-72 rounded-full blur-3xl"
-          style={{ backgroundColor: "rgba(255,221,87,0.18)" }}
-        />
-        <div
-          aria-hidden
-          className="absolute -bottom-32 -left-20 h-80 w-80 rounded-full blur-3xl"
-          style={{ backgroundColor: "rgba(26,122,74,0.18)" }}
-        />
-
-        <div className="container relative py-20 lg:py-28 text-white">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
-            <div>
-              <p
-                className="mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em]"
-                style={{
-                  backgroundColor: "rgba(255,221,87,0.14)",
-                  color: "var(--gold)",
-                  border: "1px solid rgba(255,221,87,0.35)",
-                }}
-              >
-                <Sparkles size={12} /> Contact · MSL-iTECH
-              </p>
-              <h1 className="max-w-3xl font-heading text-4xl font-bold leading-[1.05] md:text-6xl">
-                Parlons de votre projet{" "}
-                <span
-                  className="relative inline-block"
-                  style={{ color: "var(--gold)" }}
-                >
-                  Odoo
-                  <span
-                    aria-hidden
-                    className="absolute -bottom-1 left-0 h-[6px] w-full rounded-full"
-                    style={{ backgroundColor: "rgba(255,221,87,0.25)" }}
-                  />
-                </span>
-              </h1>
-              <p className="mt-6 max-w-xl font-body text-lg text-white/80">
-                Pas de présentation générique. Une démo réellement configurée pour votre
-                secteur, vos données, vos enjeux. Préparée par un consultant senior.
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-white/85">
-                <span className="inline-flex items-center gap-2">
-                  <CheckCircle2 size={16} style={{ color: "var(--gold)" }} /> Sans engagement
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <CheckCircle2 size={16} style={{ color: "var(--gold)" }} /> Réponse 24–72h
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <CheckCircle2 size={16} style={{ color: "var(--gold)" }} /> 100% personnalisée
-                </span>
-              </div>
-            </div>
-
-            {/* Floating contact card */}
-            <div className="relative hidden lg:block">
-              <div
-                className="rounded-3xl border p-7 backdrop-blur-sm"
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.06)",
-                  borderColor: "rgba(255,255,255,0.18)",
-                }}
-              >
-                <p
-                  className="font-mono text-[10px] uppercase tracking-[0.22em]"
-                  style={{ color: "var(--gold)" }}
-                >
-                  Contact direct
-                </p>
-                <ul className="mt-5 space-y-4">
-                  <li className="flex items-start gap-3">
-                    <span
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
-                      style={{ backgroundColor: "rgba(255,221,87,0.15)", color: "var(--gold)" }}
-                    >
-                      <Mail size={16} />
-                    </span>
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-white/60">Email</p>
-                      <a
-                        href="mailto:info@msl-itech.com"
-                        className="font-body text-sm font-semibold text-white hover:underline"
-                      >
-                        info@msl-itech.com
-                      </a>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
-                      style={{ backgroundColor: "rgba(255,221,87,0.15)", color: "var(--gold)" }}
-                    >
-                      <Phone size={16} />
-                    </span>
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-white/60">Belgique</p>
-                      <a
-                        href="tel:+3228860549"
-                        className="font-body text-sm font-semibold text-white hover:underline"
-                      >
-                        +32 2 886 05 49
-                      </a>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
-                      style={{ backgroundColor: "rgba(255,221,87,0.15)", color: "var(--gold)" }}
-                    >
-                      <Phone size={16} />
-                    </span>
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-white/60">Maroc</p>
-                      <a
-                        href="tel:+212689306278"
-                        className="font-body text-sm font-semibold text-white hover:underline"
-                      >
-                        +212 6 89 30 62 78
-                      </a>
-                    </div>
-                  </li>
-                </ul>
-
-                <div
-                  className="mt-6 flex items-center gap-2 rounded-xl px-3 py-2 text-xs"
-                  style={{
-                    backgroundColor: "rgba(26,122,74,0.18)",
-                    color: "#9CE0B5",
-                  }}
-                >
-                  <span className="h-2 w-2 rounded-full bg-[#34D399] animate-pulse" />
-                  Disponible aujourd'hui
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* REASSURANCE STRIP */}
-      <section className="border-b border-border bg-card">
-        <div className="container py-10">
-          <div className="grid gap-6 md:grid-cols-3">
-            {reassurances.map((r) => (
-              <div key={r.title} className="flex items-start gap-4">
-                <span
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
-                  style={{ backgroundColor: "rgba(15,63,74,0.08)", color: "#0F3F4A" }}
-                >
-                  <r.icon size={20} />
-                </span>
-                <div>
-                  <p className="font-heading text-base font-bold text-brand-black">{r.title}</p>
-                  <p className="mt-1 font-body text-sm text-brand-grey">{r.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="container relative py-20 lg:py-24 text-white">
+          <p
+            className="mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em]"
+            style={{
+              backgroundColor: "rgba(255,221,87,0.14)",
+              color: "var(--gold)",
+              border: "1px solid rgba(255,221,87,0.35)",
+            }}
+          >
+            <Sparkles size={12} /> Contact · MSL-iTECH
+          </p>
+          <h1 className="max-w-4xl font-heading text-4xl font-bold leading-[1.08] md:text-5xl">
+            Réservez votre démo Odoo gratuite — nous la préparons{" "}
+            <span style={{ color: "var(--gold)" }}>selon vos besoins réels</span>
+          </h1>
+          <p className="mt-6 max-w-3xl font-body text-lg text-white/80">
+            Vous n'allez pas regarder une présentation générique d'Odoo. Vous allez voir Odoo
+            configuré pour votre secteur, avec vos types de données et vos problématiques
+            spécifiques.
+          </p>
         </div>
       </section>
 
       {/* OFFICES */}
       <section className="bg-background py-20">
         <div className="container">
-          <div className="max-w-2xl">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-              Nos bureaux
-            </p>
-            <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-              Trois bureaux, un seul interlocuteur dédié
-            </h2>
-            <p className="mt-4 font-body text-base text-brand-grey">
-              Que vous soyez à Bruxelles, Marrakech ou Winnipeg, vous parlez à un consultant
-              MSL-iTECH qui connaît votre marché.
-            </p>
-          </div>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+            Nos coordonnées
+          </p>
+          <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
+            Trois bureaux, un seul interlocuteur dédié
+          </h2>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {offices.map((o) => (
               <article
                 key={o.country}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                className="rounded-2xl border border-border bg-card p-7 shadow-sm"
               >
-                <div
-                  aria-hidden
-                  className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-2xl transition group-hover:opacity-100"
-                  style={{ backgroundColor: "rgba(255,221,87,0.35)" }}
-                />
-                <div className="relative flex items-center gap-3">
-                  <span className="text-3xl leading-none">{o.flag}</span>
-                  <h3 className="font-heading text-xl font-bold text-brand-black">
-                    {o.country}
-                  </h3>
-                </div>
-                <ul className="relative mt-5 space-y-3 font-body text-sm text-brand-grey">
-                  <li className="flex gap-3">
-                    <MapPin size={16} className="mt-0.5 shrink-0 text-brand-blue" />
-                    <span>{o.address}</span>
-                  </li>
+                <h3 className="font-heading text-xl font-bold text-brand-black">{o.country}</h3>
+                <ul className="mt-5 space-y-3 font-body text-sm text-brand-grey">
+                  {o.address !== "—" && (
+                    <li className="flex gap-3">
+                      <MapPin size={16} className="mt-0.5 shrink-0 text-brand-blue" />
+                      <span>{o.address}</span>
+                    </li>
+                  )}
                   <li className="flex gap-3">
                     <Phone size={16} className="mt-0.5 shrink-0 text-brand-blue" />
                     <a
@@ -412,55 +248,39 @@ export default function ContactPage() {
       </section>
 
       {/* DEMO FORM */}
-      <section
-        className="relative overflow-hidden py-20"
-        style={{
-          background:
-            "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 100%)",
-        }}
-      >
-        <div
-          aria-hidden
-          className="absolute -top-32 right-0 h-80 w-80 rounded-full blur-3xl opacity-40"
-          style={{ backgroundColor: "rgba(255,221,87,0.4)" }}
-        />
-        <div
-          aria-hidden
-          className="absolute bottom-0 -left-20 h-72 w-72 rounded-full blur-3xl opacity-30"
-          style={{ backgroundColor: "rgba(15,63,74,0.25)" }}
-        />
-
-        <div className="container relative max-w-3xl">
-          <div className="text-center">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-              Formulaire démo Odoo
-            </p>
-            <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
-              5 étapes pour préparer votre démo
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl font-body text-base text-brand-grey">
-              Plus vos réponses sont précises, plus la démo sera pertinente. Comptez 3 minutes.
-            </p>
-          </div>
+      <section className="bg-muted/40 py-20">
+        <div className="container max-w-3xl">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+            Formulaire démo Odoo
+          </p>
+          <h2 className="mt-3 font-heading text-3xl font-bold text-brand-black md:text-4xl">
+            5 étapes pour préparer votre démo personnalisée
+          </h2>
+          <p className="mt-4 font-body text-base text-brand-grey">
+            Pour toute demande concernant nos services, remplissez le formulaire ci-dessous. Nous
+            vous répondrons dans les 24 à 72 heures ouvrables.
+          </p>
 
           {submitted ? (
-            <div className="mt-12 overflow-hidden rounded-3xl border border-border bg-card p-12 text-center shadow-xl">
+            <div
+              className="mt-10 rounded-2xl border border-border bg-card p-10 text-center shadow-sm"
+            >
               <div
-                className="mx-auto flex h-16 w-16 items-center justify-center rounded-full"
-                style={{ backgroundColor: "rgba(255,221,87,0.25)", color: "#0F3F4A" }}
+                className="mx-auto flex h-14 w-14 items-center justify-center rounded-full"
+                style={{ backgroundColor: "rgba(255,221,87,0.2)", color: "#0F3F4A" }}
               >
-                <CheckCircle2 size={30} />
+                <CheckCircle2 size={26} />
               </div>
-              <h3 className="mt-6 font-heading text-3xl font-bold text-brand-black">
+              <h3 className="mt-5 font-heading text-2xl font-bold text-brand-black">
                 Merci, votre demande est partie !
               </h3>
-              <p className="mx-auto mt-3 max-w-md font-body text-base text-brand-grey">
+              <p className="mt-3 font-body text-base text-brand-grey">
                 Un consultant MSL-iTECH revient vers vous sous 24 à 72h ouvrables pour fixer le
                 créneau et préparer la démo.
               </p>
               <Link
                 to="/"
-                className="mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-semibold transition hover:opacity-90"
+                className="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-semibold transition hover:opacity-90"
                 style={{ backgroundColor: "#0F3F4A", color: "white" }}
               >
                 Retour à l'accueil <ArrowRight size={16} />
@@ -469,245 +289,201 @@ export default function ContactPage() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="mt-12 overflow-hidden rounded-3xl border border-border bg-card shadow-xl"
+              className="mt-10 rounded-2xl border border-border bg-card p-7 shadow-sm md:p-10"
               noValidate
             >
-              {/* Progress bar */}
-              <div className="h-1.5 w-full bg-muted">
-                <div
-                  className="h-full transition-all duration-500 ease-out"
-                  style={{
-                    width: `${progress}%`,
-                    background:
-                      "linear-gradient(90deg, #0F3F4A 0%, var(--gold) 100%)",
-                  }}
-                />
-              </div>
+              {/* Steps indicator */}
+              <ol className="mb-8 grid grid-cols-5 gap-2">
+                {stepLabels.map((lbl, i) => (
+                  <li key={lbl} className="flex flex-col items-center text-center">
+                    <span
+                      className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition ${
+                        i <= step ? "text-white" : "text-brand-grey"
+                      }`}
+                      style={{
+                        backgroundColor: i <= step ? "#0F3F4A" : "hsl(var(--muted))",
+                      }}
+                    >
+                      {i + 1}
+                    </span>
+                    <span className="mt-2 hidden text-[10px] uppercase tracking-[0.15em] text-brand-grey md:block">
+                      {lbl}
+                    </span>
+                  </li>
+                ))}
+              </ol>
 
-              <div className="p-7 md:p-10">
-                {/* Steps indicator */}
-                <ol className="mb-10 flex items-center justify-between gap-2">
-                  {steps.map((s, i) => {
-                    const Icon = s.icon;
-                    const active = i === step;
-                    const done = i < step;
-                    return (
-                      <li
-                        key={s.label}
-                        className="flex flex-1 flex-col items-center text-center"
-                      >
-                        <span
-                          className={`flex h-11 w-11 items-center justify-center rounded-full border-2 transition ${
-                            active ? "scale-110 shadow-lg" : ""
-                          }`}
-                          style={{
-                            backgroundColor: done
-                              ? "#0F3F4A"
-                              : active
-                              ? "var(--gold)"
-                              : "hsl(var(--background))",
-                            borderColor: done
-                              ? "#0F3F4A"
-                              : active
-                              ? "var(--gold)"
-                              : "hsl(var(--border))",
-                            color: done
-                              ? "white"
-                              : active
-                              ? "#0F3F4A"
-                              : "hsl(var(--muted-foreground))",
-                          }}
-                        >
-                          {done ? <CheckCircle2 size={18} /> : <Icon size={18} />}
-                        </span>
-                        <span
-                          className={`mt-2 hidden text-[10px] font-semibold uppercase tracking-[0.12em] md:block ${
-                            active ? "text-brand-black" : "text-brand-grey"
-                          }`}
-                        >
-                          {s.label}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ol>
-
-                {/* Step 0 — Coordonnées */}
-                {step === 0 && (
-                  <div className="space-y-5">
+              {/* Step 0 — Coordonnées */}
+              {step === 0 && (
+                <div className="space-y-5">
+                  <Field
+                    id="fullName"
+                    label="Nom complet *"
+                    error={errors.fullName}
+                    value={data.fullName ?? ""}
+                    onChange={(v) => update("fullName", v)}
+                  />
+                  <div className="grid gap-5 md:grid-cols-2">
                     <Field
-                      id="fullName"
-                      label="Nom complet *"
-                      icon={User}
-                      error={errors.fullName}
-                      value={data.fullName ?? ""}
-                      onChange={(v) => update("fullName", v)}
+                      id="email"
+                      type="email"
+                      label="Email professionnel *"
+                      error={errors.email}
+                      value={data.email ?? ""}
+                      onChange={(v) => update("email", v)}
                     />
-                    <div className="grid gap-5 md:grid-cols-2">
-                      <Field
-                        id="email"
-                        type="email"
-                        label="Email professionnel *"
-                        icon={Mail}
-                        error={errors.email}
-                        value={data.email ?? ""}
-                        onChange={(v) => update("email", v)}
-                      />
-                      <Field
-                        id="phone"
-                        type="tel"
-                        label="Téléphone *"
-                        icon={Phone}
-                        error={errors.phone}
-                        value={data.phone ?? ""}
-                        onChange={(v) => update("phone", v)}
-                      />
-                    </div>
                     <Field
-                      id="company"
-                      label="Entreprise"
-                      icon={Building2}
-                      error={errors.company}
-                      value={data.company ?? ""}
-                      onChange={(v) => update("company", v)}
+                      id="phone"
+                      type="tel"
+                      label="Téléphone *"
+                      error={errors.phone}
+                      value={data.phone ?? ""}
+                      onChange={(v) => update("phone", v)}
                     />
-                    <div>
-                      <label
-                        htmlFor="country"
-                        className="block font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey"
-                      >
-                        Pays
-                      </label>
-                      <select
-                        id="country"
-                        value={data.country ?? "BE"}
-                        onChange={(e) =>
-                          update("country", e.target.value as DemoForm["country"])
-                        }
-                        className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 font-body text-sm text-brand-black transition focus:border-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
-                      >
-                        <option value="BE">🇧🇪 Belgique</option>
-                        <option value="MA">🇲🇦 Maroc</option>
-                        <option value="CA">🇨🇦 Canada</option>
-                        <option value="OTHER">🌍 Autre</option>
-                      </select>
-                    </div>
                   </div>
-                )}
-
-                {step === 1 && (
                   <Field
-                    id="objectives"
-                    label="Quels sont vos objectifs avec Odoo ? *"
-                    hint="Ex: structurer la facturation, suivre la production, gagner en visibilité commerciale…"
-                    error={errors.objectives}
-                    value={data.objectives ?? ""}
-                    onChange={(v) => update("objectives", v)}
-                    textarea
-                    rows={6}
-                    maxLength={800}
+                    id="company"
+                    label="Entreprise"
+                    error={errors.company}
+                    value={data.company ?? ""}
+                    onChange={(v) => update("company", v)}
                   />
-                )}
+                  <div>
+                    <label
+                      htmlFor="country"
+                      className="block font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey"
+                    >
+                      Pays
+                    </label>
+                    <select
+                      id="country"
+                      value={data.country ?? "BE"}
+                      onChange={(e) =>
+                        update("country", e.target.value as DemoForm["country"])
+                      }
+                      className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 font-body text-sm text-brand-black focus:border-brand-blue focus:outline-none focus:ring-1 focus:ring-brand-blue"
+                    >
+                      <option value="BE">Belgique</option>
+                      <option value="MA">Maroc</option>
+                      <option value="CA">Canada</option>
+                      <option value="OTHER">Autre</option>
+                    </select>
+                  </div>
+                </div>
+              )}
 
-                {step === 2 && (
-                  <Field
-                    id="painPoints"
-                    label="Quels processus vous prennent le plus de temps aujourd'hui ?"
-                    hint="Saisies manuelles, ressaisies, Excel, validations multiples, relances clients…"
-                    error={errors.painPoints}
-                    value={data.painPoints ?? ""}
-                    onChange={(v) => update("painPoints", v)}
-                    textarea
-                    rows={6}
-                    maxLength={800}
-                  />
-                )}
+              {/* Step 1 — Objectifs */}
+              {step === 1 && (
+                <Field
+                  id="objectives"
+                  label="Quels sont vos objectifs avec Odoo ? *"
+                  hint="Ex: structurer la facturation, suivre la production, gagner en visibilité commerciale…"
+                  error={errors.objectives}
+                  value={data.objectives ?? ""}
+                  onChange={(v) => update("objectives", v)}
+                  textarea
+                  rows={6}
+                  maxLength={800}
+                />
+              )}
 
-                {step === 3 && (
+              {/* Step 2 — Pain points */}
+              {step === 2 && (
+                <Field
+                  id="painPoints"
+                  label="Quels processus vous prennent le plus de temps aujourd'hui ?"
+                  hint="Saisies manuelles, ressaisies, Excel, validations multiples, relances clients…"
+                  error={errors.painPoints}
+                  value={data.painPoints ?? ""}
+                  onChange={(v) => update("painPoints", v)}
+                  textarea
+                  rows={6}
+                  maxLength={800}
+                />
+              )}
+
+              {/* Step 3 — Outils actuels */}
+              {step === 3 && (
+                <Field
+                  id="currentTools"
+                  label="Quels outils utilisez-vous actuellement ?"
+                  hint="Excel, Sage, EBP, autre ERP, CRM, comptabilité externe…"
+                  error={errors.currentTools}
+                  value={data.currentTools ?? ""}
+                  onChange={(v) => update("currentTools", v)}
+                  textarea
+                  rows={5}
+                  maxLength={400}
+                />
+              )}
+
+              {/* Step 4 — Défis */}
+              {step === 4 && (
+                <div className="space-y-5">
                   <Field
-                    id="currentTools"
-                    label="Quels outils utilisez-vous actuellement ?"
-                    hint="Excel, Sage, EBP, autre ERP, CRM, comptabilité externe…"
-                    error={errors.currentTools}
-                    value={data.currentTools ?? ""}
-                    onChange={(v) => update("currentTools", v)}
+                    id="challenges"
+                    label="Vos principaux défis ou contraintes"
+                    hint="Délais, budget, conformité, multi-sites, multi-langues…"
+                    error={errors.challenges}
+                    value={data.challenges ?? ""}
+                    onChange={(v) => update("challenges", v)}
                     textarea
                     rows={5}
-                    maxLength={400}
+                    maxLength={800}
                   />
-                )}
-
-                {step === 4 && (
-                  <div className="space-y-5">
-                    <Field
-                      id="challenges"
-                      label="Vos principaux défis ou contraintes"
-                      hint="Délais, budget, conformité, multi-sites, multi-langues…"
-                      error={errors.challenges}
-                      value={data.challenges ?? ""}
-                      onChange={(v) => update("challenges", v)}
-                      textarea
-                      rows={5}
-                      maxLength={800}
+                  <label className="flex items-start gap-3 rounded-lg border border-border bg-muted/40 p-4 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={!!data.consent}
+                      onChange={(e) => update("consent", e.target.checked)}
+                      className="mt-1 h-4 w-4 accent-[color:var(--gold)]"
                     />
-                    <label className="flex items-start gap-3 rounded-xl border border-border bg-secondary/40 p-4 text-sm transition hover:border-brand-blue/40">
-                      <input
-                        type="checkbox"
-                        checked={!!data.consent}
-                        onChange={(e) => update("consent", e.target.checked)}
-                        className="mt-1 h-4 w-4 accent-[color:var(--gold)]"
-                      />
-                      <span className="text-brand-grey">
-                        J'accepte que MSL-iTECH me recontacte dans le cadre de ma demande de
-                        démo, conformément à la politique de confidentialité.
-                      </span>
-                    </label>
-                    {errors.consent && (
-                      <p className="text-xs text-destructive">{errors.consent}</p>
-                    )}
-                  </div>
-                )}
-
-                {/* Nav */}
-                <div className="mt-10 flex items-center justify-between gap-3">
-                  <button
-                    type="button"
-                    onClick={handleBack}
-                    disabled={step === 0}
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 font-body text-sm font-semibold text-brand-black transition hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40"
-                  >
-                    <ArrowLeft size={16} /> Retour
-                  </button>
-
-                  {step < steps.length - 1 ? (
-                    <button
-                      type="button"
-                      onClick={handleNext}
-                      className="group inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-semibold shadow-lg transition hover:opacity-95 hover:shadow-xl"
-                      style={{ backgroundColor: "#0F3F4A", color: "white" }}
-                    >
-                      Continuer{" "}
-                      <ArrowRight
-                        size={16}
-                        className="transition group-hover:translate-x-0.5"
-                      />
-                    </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      className="group inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold shadow-lg transition hover:opacity-95 hover:shadow-xl"
-                      style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
-                    >
-                      <Send size={16} /> Réserver ma démo gratuite
-                    </button>
+                    <span className="text-brand-grey">
+                      J'accepte que MSL-iTECH me recontacte dans le cadre de ma demande de démo,
+                      conformément à la politique de confidentialité.
+                    </span>
+                  </label>
+                  {errors.consent && (
+                    <p className="text-xs text-destructive">{errors.consent}</p>
                   )}
                 </div>
+              )}
 
-                <p className="mt-5 flex items-center justify-center gap-2 text-center text-xs text-brand-grey">
-                  <ShieldCheck size={12} /> Sans engagement · Réponse sous 24 à 72h · Données
-                  protégées
-                </p>
+              {/* Nav */}
+              <div className="mt-8 flex items-center justify-between gap-3">
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  disabled={step === 0}
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 font-body text-sm font-semibold text-brand-black transition hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <ArrowLeft size={16} /> Retour
+                </button>
+
+                {step < stepLabels.length - 1 ? (
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-semibold transition hover:opacity-90"
+                    style={{ backgroundColor: "#0F3F4A", color: "white" }}
+                  >
+                    Continuer <ArrowRight size={16} />
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold transition hover:opacity-90"
+                    style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
+                  >
+                    Réserver ma démo Odoo gratuite <ArrowRight size={16} />
+                  </button>
+                )}
               </div>
+
+              <p className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-brand-grey">
+                <ShieldCheck size={12} /> Sans engagement · Réponse sous 24 à 72h · Politique de
+                confidentialité
+              </p>
             </form>
           )}
         </div>
@@ -729,7 +505,6 @@ function Field({
   textarea,
   rows = 4,
   maxLength,
-  icon: Icon,
 }: {
   id: string;
   label: string;
@@ -741,15 +516,13 @@ function Field({
   textarea?: boolean;
   rows?: number;
   maxLength?: number;
-  icon?: LucideIcon;
 }) {
   const base =
-    "w-full rounded-xl border bg-background py-3 font-body text-sm text-brand-black transition focus:outline-none focus:ring-2";
-  const padding = Icon && !textarea ? "pl-11 pr-4" : "px-4";
-  const cls = `${base} ${padding} ${
+    "mt-2 w-full rounded-lg border bg-background px-4 py-3 font-body text-sm text-brand-black focus:outline-none focus:ring-1";
+  const cls = `${base} ${
     error
-      ? "border-destructive focus:border-destructive focus:ring-destructive/30"
-      : "border-border focus:border-brand-blue focus:ring-brand-blue/30"
+      ? "border-destructive focus:border-destructive focus:ring-destructive"
+      : "border-border focus:border-brand-blue focus:ring-brand-blue"
   }`;
   return (
     <div>
@@ -759,31 +532,24 @@ function Field({
       >
         {label}
       </label>
-      <div className="relative mt-2">
-        {Icon && !textarea && (
-          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-brand-grey">
-            <Icon size={16} />
-          </span>
-        )}
-        {textarea ? (
-          <textarea
-            id={id}
-            rows={rows}
-            maxLength={maxLength}
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            className={cls}
-          />
-        ) : (
-          <input
-            id={id}
-            type={type}
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            className={cls}
-          />
-        )}
-      </div>
+      {textarea ? (
+        <textarea
+          id={id}
+          rows={rows}
+          maxLength={maxLength}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className={cls}
+        />
+      ) : (
+        <input
+          id={id}
+          type={type}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className={cls}
+        />
+      )}
       {hint && !error && <p className="mt-1.5 text-xs text-brand-grey">{hint}</p>}
       {error && <p className="mt-1.5 text-xs text-destructive">{error}</p>}
     </div>
