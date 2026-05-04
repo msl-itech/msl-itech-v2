@@ -46,7 +46,7 @@ export const Footer = () => {
 
   return (
     <footer className="bg-brand-black text-brand-white">
-      <div data-anim="stagger" data-stagger="0.08" className="container grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
         {/* Col 1 */}
         <div>
           <Link to="/" aria-label="MSL-iTECH — accueil" className="inline-block">
