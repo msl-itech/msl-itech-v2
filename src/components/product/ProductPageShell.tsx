@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Check, CheckCircle2, LucideIcon, Sparkles } from "lucide-react";
+import ProjectCTA from "@/components/ProjectCTA";
 
 export type Feature = {
   icon: LucideIcon;
@@ -608,7 +609,11 @@ export function ProductPageShell(props: ProductPageShellProps) {
         />
       )}
       {props.faqs && props.faqs.length > 0 && <FaqBlock faqs={props.faqs} />}
-      <FinalCta ctaTitle={props.ctaTitle} ctaSubtitle={props.ctaSubtitle} />
+      <ProjectCTA
+        eyebrow="Démarrons ensemble"
+        titleStart={props.ctaTitle}
+        titleEnd="ensemble"
+      />
     </>
   );
 }
