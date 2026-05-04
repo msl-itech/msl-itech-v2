@@ -1,5 +1,6 @@
 import { FileSearch, HardHat, Receipt, Users } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
+import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import btpHero from "@/assets/btp-hero.webp";
 
@@ -23,6 +24,37 @@ const features = [
     icon: Users,
     title: "Gestion RH et sous-traitants",
     desc: "Suivi des effectifs chantier, gestion des contrats sous-traitants, pointage et paie.",
+  },
+];
+
+const bentoCards: BentoCard[] = [
+  {
+    icon: HardHat,
+    title: "Gestion de chantier",
+    desc: "Planification des tâches, suivi des coûts en temps réel, ressources et stocks, Gantt et Kanban.",
+    variant: "blue",
+    span: "lg:col-span-7",
+  },
+  {
+    icon: FileSearch,
+    title: "Appels d'offres",
+    desc: "Suivi des opportunités, gestion des AO, évaluation des soumissionnaires et relances automatiques.",
+    variant: "gold",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: Receipt,
+    title: "Facturation à l'avancement",
+    desc: "Situations de travaux et décomptes mensuels générés automatiquement selon l'avancement réel.",
+    variant: "white",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: Users,
+    title: "RH & sous-traitants",
+    desc: "Effectifs chantier, contrats sous-traitants, pointage et paie centralisés.",
+    variant: "bluelight",
+    span: "lg:col-span-7",
   },
 ];
 
@@ -64,6 +96,14 @@ export default function BtpPage() {
       featuresEyebrow="Cas client AIT OUKHALI TRAVAUX"
       featuresTitle="Ce que MSL-iTECH a déployé pour AIT OUKHALI TRAVAUX"
       features={features}
+      featuresSlot={
+        <ProductBento
+          eyebrow="Cas client AIT OUKHALI TRAVAUX"
+          title="Ce que MSL-iTECH a déployé pour AIT OUKHALI TRAVAUX"
+          chipLabel="Odoo BTP"
+          cards={bentoCards}
+        />
+      }
       whySection={{
         title: "Pourquoi MSL-iTECH pour le BTP marocain",
         desc: "Nous connaissons les contraintes spécifiques du BTP marocain — marchés publics, CNSS, facturation en dirhams. Notre expérience terrain sur des projets BTP réels fait la différence.",

@@ -1,5 +1,6 @@
 import { Truck, CalendarCheck, Receipt } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
+import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import transportHero from "@/assets/transport-hero.webp";
 
@@ -18,6 +19,30 @@ const features = [
     icon: Receipt,
     title: "Facturation clients et agences",
     desc: "Génération automatique des factures à l'issue de chaque prestation. Suivi des encaissements, relances automatiques sur les impayés.",
+  },
+];
+
+const bentoCards: BentoCard[] = [
+  {
+    icon: Truck,
+    title: "Flotte & maintenance",
+    desc: "Suivi kilométrique, alertes de révision, historique de maintenance par véhicule. Anticipez les pannes.",
+    variant: "blue",
+    span: "lg:col-span-7",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Réservations & planning",
+    desc: "Réservations clients ou agences, affectation des véhicules et des chauffeurs, confirmation automatique.",
+    variant: "gold",
+    span: "lg:col-span-5",
+  },
+  {
+    icon: Receipt,
+    title: "Facturation & encaissements",
+    desc: "Factures générées à chaque prestation. Suivi des encaissements et relances automatiques sur les impayés.",
+    variant: "bluelight",
+    span: "lg:col-span-12",
   },
 ];
 
@@ -45,6 +70,14 @@ export default function TransportPage() {
       featuresEyebrow="Pour le secteur transport"
       featuresTitle="Ce qu'Odoo apporte au secteur transport"
       features={features}
+      featuresSlot={
+        <ProductBento
+          eyebrow="Pour le secteur transport"
+          title="Ce qu'Odoo apporte au secteur transport"
+          chipLabel="Odoo Transport"
+          cards={bentoCards}
+        />
+      }
       whySection={{
         title: "MSL-iTECH pour le transport au Maroc",
         desc: "Que vous opériez une flotte touristique, une activité de transfert ou de la logistique, Odoo s'adapte à votre modèle d'exploitation.",
