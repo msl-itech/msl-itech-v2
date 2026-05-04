@@ -256,8 +256,8 @@ function HeroShell({
 
               {/* Small white stat 1 */}
               <div
-                className="relative col-span-2 overflow-hidden rounded-[24px] border bg-brand-white p-5 md:col-span-1"
-                style={{ borderColor: "var(--grey-light)" }}
+                className="relative col-span-2 overflow-hidden rounded-[24px] border p-5 md:col-span-1"
+                style={{ borderColor: "var(--grey-light)", backgroundColor: "#e3eef1" }}
               >
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
                   Tarifs
