@@ -132,28 +132,27 @@ function HeroShell({
       />
 
       <div className="container">
-        <div className="grid items-stretch gap-8 lg:grid-cols-12">
-          {/* LEFT — Big card with title */}
-          <div
-            className="relative isolate overflow-hidden rounded-[28px] border bg-brand-white p-8 shadow-[0_30px_80px_-40px_rgba(18,77,90,0.25)] md:p-12 lg:col-span-7"
-            style={{ borderColor: "var(--grey-light)" }}
-          >
-            <div className="inline-flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-bg px-3 py-1.5">
+        <div className="grid items-stretch gap-6 lg:grid-cols-12">
+          {/* LEFT — Title + CTA (no card, plain background) */}
+          <div className="relative flex flex-col justify-center lg:col-span-6 lg:pr-6">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
               <Sparkles size={12} className="text-brand-blue" />
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
                 {eyebrow}
               </p>
             </div>
 
-            <h1 className="mt-7 font-heading text-4xl font-bold leading-[1.04] tracking-tight text-brand-black md:text-[56px]">
+            <h1 className="mt-7 font-heading text-4xl font-bold leading-[1.04] tracking-tight text-brand-black md:text-[60px]">
               {titleTop}{" "}
               <span className="block">
-                {accentHead && <span className="text-brand-blue italic font-light">{accentHead} </span>}
+                {accentHead && (
+                  <span className="text-brand-blue italic font-light">{accentHead} </span>
+                )}
                 <Mark>{accentTail}</Mark>
               </span>
             </h1>
 
-            <p className="mt-7 max-w-[560px] font-body text-base text-brand-grey md:text-lg">
+            <p className="mt-7 max-w-[520px] font-body text-base text-brand-grey md:text-lg">
               {description}
             </p>
 
@@ -168,62 +167,123 @@ function HeroShell({
               </Link>
               <Link
                 to="/realisations"
-                className="inline-flex items-center gap-2 rounded-full border-2 px-6 py-3.5 font-body text-sm font-semibold text-brand-black transition hover:bg-brand-bg"
+                className="group inline-flex items-center gap-2 rounded-full border-2 px-6 py-3.5 font-body text-sm font-semibold text-brand-black transition hover:bg-brand-white"
                 style={{ borderColor: "var(--blue)" }}
               >
+                <span
+                  className="flex h-7 w-7 items-center justify-center rounded-full"
+                  style={{ backgroundColor: "var(--blue)" }}
+                >
+                  <ArrowUpRight size={14} className="text-white" />
+                </span>
                 Voir nos réalisations
               </Link>
             </div>
-
-            {/* Sticker bottom-left */}
-            <div className="absolute bottom-6 right-6 hidden md:block">
-              <Sticker rotate={-8}>★ Partenaire Odoo</Sticker>
-            </div>
           </div>
 
-          {/* RIGHT — Image card + floating stat cards */}
-          <div className="relative lg:col-span-5">
-            <div
-              className="relative h-full min-h-[360px] overflow-hidden rounded-[28px] border shadow-[0_30px_80px_-40px_rgba(18,77,90,0.35)]"
-              style={{ borderColor: "var(--grey-light)", backgroundColor: "var(--blue)" }}
-            >
-              <img
-                src={bgImage}
-                alt=""
-                className="h-full w-full object-cover opacity-90"
-              />
+          {/* RIGHT — Bento grid (4 cols × 2 rows) */}
+          <div className="lg:col-span-6">
+            <div className="grid grid-cols-4 gap-3 md:gap-4">
+              {/* Big stat — blue card with avatars */}
               <div
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(18,77,90,0.0) 30%, rgba(10,45,54,0.55) 100%)",
-                }}
-              />
-            </div>
+                className="relative isolate col-span-4 overflow-hidden rounded-[24px] p-6 md:col-span-2 md:row-span-1 md:min-h-[260px]"
+                style={{ backgroundColor: "var(--blue)" }}
+              >
+                <div
+                  className="pointer-events-none absolute -bottom-16 -right-16 h-48 w-48 rounded-full opacity-30 blur-2xl"
+                  style={{ backgroundColor: "var(--gold)" }}
+                />
+                {/* avatar stack */}
+                <div className="flex -space-x-2">
+                  {[0, 1, 2].map((i) => (
+                    <div
+                      key={i}
+                      className="h-9 w-9 rounded-full border-2 border-white/90"
+                      style={{
+                        background: `linear-gradient(135deg, hsl(${40 + i * 30} 70% 70%), hsl(${
+                          200 + i * 20
+                        } 60% 55%))`,
+                      }}
+                    />
+                  ))}
+                </div>
+                <div className="mt-5 font-heading text-4xl font-bold text-white md:text-5xl">
+                  9+
+                </div>
+                <p className="mt-1 font-body text-sm text-white/85">
+                  références publiques vérifiables sur odoo.com
+                </p>
 
-            {/* Floating mini-card top */}
-            <div
-              className="absolute -top-5 -left-4 hidden w-[200px] rounded-2xl border bg-brand-white p-4 shadow-[0_18px_45px_-15px_rgba(18,77,90,0.3)] md:block"
-              style={{ borderColor: "var(--grey-light)", transform: "rotate(-3deg)" }}
-            >
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-                Références
-              </p>
-              <div className="mt-1 font-heading text-3xl font-bold text-brand-blue">9+</div>
-              <div className="font-body text-xs text-brand-grey">vérifiables sur odoo.com</div>
-            </div>
+                {/* video sticker badge */}
+                <div
+                  className="absolute -bottom-5 -right-5 hidden h-[88px] w-[88px] items-center justify-center rounded-full md:flex"
+                  style={{ backgroundColor: "var(--brand-black, #0a0a0a)" }}
+                >
+                  <div
+                    className="flex h-12 w-12 items-center justify-center rounded-full"
+                    style={{ backgroundColor: "var(--gold)" }}
+                  >
+                    <ArrowUpRight size={20} className="text-brand-black" />
+                  </div>
+                </div>
+              </div>
 
-            {/* Floating mini-card bottom */}
-            <div
-              className="absolute -bottom-6 -right-4 hidden w-[220px] rounded-2xl border bg-brand-white p-4 shadow-[0_18px_45px_-15px_rgba(18,77,90,0.3)] md:block"
-              style={{ borderColor: "var(--grey-light)", transform: "rotate(2deg)" }}
-            >
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-                Tarifs
-              </p>
-              <div className="mt-1 font-heading text-3xl font-bold text-brand-blue">20-50%</div>
-              <div className="font-body text-xs text-brand-grey">
-                plus accessibles vs marché belge
+              {/* Big image — portrait/team */}
+              <div
+                className="relative col-span-4 overflow-hidden rounded-[24px] border md:col-span-2 md:row-span-2 md:min-h-[540px]"
+                style={{ borderColor: "var(--grey-light)" }}
+              >
+                <img
+                  src={bgImage}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(18,77,90,0.0) 40%, rgba(10,45,54,0.55) 100%)",
+                  }}
+                />
+                <div className="absolute left-5 top-5">
+                  <Sticker rotate={-6}>★ Partenaire Odoo</Sticker>
+                </div>
+              </div>
+
+              {/* Small white stat 1 */}
+              <div
+                className="relative col-span-2 overflow-hidden rounded-[24px] border bg-brand-white p-5 md:col-span-1"
+                style={{ borderColor: "var(--grey-light)" }}
+              >
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+                  Tarifs
+                </p>
+                <div
+                  className="mt-2 font-heading text-3xl font-bold md:text-4xl"
+                  style={{ color: "var(--blue)" }}
+                >
+                  20-50%
+                </div>
+                <p className="mt-1 font-body text-xs text-brand-grey">
+                  plus accessibles
+                </p>
+              </div>
+
+              {/* Small white stat 2 */}
+              <div
+                className="relative col-span-2 overflow-hidden rounded-[24px] border bg-brand-white p-5 md:col-span-1"
+                style={{ borderColor: "var(--grey-light)" }}
+              >
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+                  Réponse
+                </p>
+                <div
+                  className="mt-2 font-heading text-3xl font-bold md:text-4xl"
+                  style={{ color: "var(--blue)" }}
+                >
+                  24-72h
+                </div>
+                <p className="mt-1 font-body text-xs text-brand-grey">ouvrables</p>
               </div>
             </div>
           </div>
