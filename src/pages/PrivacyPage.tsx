@@ -126,18 +126,6 @@ export default function PrivacyPage() {
           >
             <SectionCard id="responsable" number="01" title="Responsable du traitement">
               <Sec>
-        className="prose prose-neutral max-w-3xl font-body text-brand-black
-          prose-headings:font-heading prose-headings:text-brand-black
-          prose-h2:mt-12 prose-h2:text-2xl prose-h2:font-bold
-          prose-h3:mt-8 prose-h3:text-lg prose-h3:font-semibold
-          prose-p:text-brand-black/85
-          prose-li:text-brand-black/85
-          prose-a:text-brand-blue prose-a:no-underline hover:prose-a:underline
-          prose-strong:text-brand-black
-          prose-table:text-sm
-          prose-th:bg-brand-bg prose-th:text-brand-black
-          prose-td:align-top"
-      >
         <p>
           Les données personnelles collectées sur le site msl-itech.com sont
           traitées par :
