@@ -20,6 +20,12 @@ import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
+import photoMika from "@/assets/team/mika.webp";
+import photoHoussine from "@/assets/team/houssine.jpg";
+import photoRomeo from "@/assets/team/romeo.png";
+import photoArnaud from "@/assets/team/arnaud.jpg";
+import photoElohim from "@/assets/team/elohim.png";
+import photoManal from "@/assets/team/manal.jpg";
 
 /* ---------------- Highlight (marker brushstroke) ---------------- */
 function Mark({ children }: { children: React.ReactNode }) {
@@ -65,36 +71,42 @@ const team = [
     name: "Mika MUNSUGAYI",
     role: "Stratège & Direction",
     icon: Briefcase,
+    photo: photoMika,
     desc: "Fondateur et directeur de MSL-iTECH. Pilote la stratégie commerciale et financière du groupe et assure la cohérence entre les entités belges et marocaines.",
   },
   {
     name: "El Houssine BOUHMAIDA",
     role: "Consultant Odoo Senior",
     icon: Settings2,
+    photo: photoHoussine,
     desc: "Référent technique Odoo de l'équipe. Expert en paramétrage avancé, migrations de données et formations utilisateurs. Garant de la qualité de chaque implémentation.",
   },
   {
     name: "Romeo KAHOU",
     role: "Chef de Projet",
     icon: ClipboardList,
+    photo: photoRomeo,
     desc: "Chef d'orchestre des projets clients. Coordonne les équipes, garantit le respect des délais et reste l'interlocuteur privilégié des clients tout au long de l'implémentation.",
   },
   {
     name: "Arnaud AHOUO",
     role: "Expert Backend Odoo",
     icon: Code2,
+    photo: photoArnaud,
     desc: "Développeur backend Odoo avec une expertise profonde sur les modules de gestion opérationnelle. Traduit vos processus métier en configurations Odoo qui tiennent dans le temps.",
   },
   {
     name: "Elohim TAGNE",
     role: "Développeur Full Stack",
     icon: Layers,
+    photo: photoElohim,
     desc: "Polyvalent et rigoureux, Elohim intervient sur les développements spécifiques et les intégrations complexes. Profil technique couvrant Odoo, React et les API tierces.",
   },
   {
     name: "Manal AIT AYAD",
     role: "Machine Learning & Data",
     icon: Brain,
+    photo: photoManal,
     desc: "Experte en intelligence artificielle appliquée. Développe les capacités analytiques et prédictives des implémentations Odoo pour les besoins avancés en reporting et prédiction.",
   },
 ];
@@ -346,16 +358,40 @@ export default function AboutPage() {
                     </Sticker>
                   </div>
                   <div
-                    className="flex h-14 w-14 items-center justify-center rounded-2xl"
+                    className="relative aspect-square w-full overflow-hidden rounded-[18px]"
                     style={{
                       background:
                         "linear-gradient(135deg, var(--blue) 0%, #1a5f6e 100%)",
-                      color: "var(--gold)",
                     }}
                   >
-                    <Icon size={22} />
+                    <img
+                      src={m.photo}
+                      alt={`${m.name} — ${m.role} chez MSL-iTECH`}
+                      className="absolute inset-0 h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.04]"
+                      loading="lazy"
+                      decoding="async"
+                      width={600}
+                      height={600}
+                    />
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, rgba(10,30,38,0) 0%, rgba(10,30,38,0.55) 100%)",
+                      }}
+                    />
+                    <div
+                      className="absolute bottom-3 left-3 flex h-9 w-9 items-center justify-center rounded-xl backdrop-blur-sm"
+                      style={{
+                        backgroundColor: "rgba(255,221,87,0.92)",
+                        color: "var(--blue)",
+                      }}
+                    >
+                      <Icon size={16} />
+                    </div>
                   </div>
-                  <h3 className="mt-6 font-heading text-lg font-bold text-brand-black">
+                  <h3 className="mt-5 font-heading text-lg font-bold text-brand-black">
                     {m.name}
                   </h3>
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
