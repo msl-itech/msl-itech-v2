@@ -130,23 +130,7 @@ export const ProjectCTA = ({
             </div>
           </div>
 
-          {/* Tags mobile */}
-          <div className="container relative z-30 flex flex-wrap justify-center gap-1.5 px-4 pb-2 md:hidden">
-            {tags.slice(0, 6).map((t, idx) => (
-              <span
-                key={`m-${t.label}-${idx}`}
-                className="inline-flex items-center rounded-full border-2 px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.1em]"
-                style={{
-                  backgroundColor: t.accent ? "var(--gold)" : "var(--white)",
-                  borderColor: "var(--blue)",
-                  color: "var(--blue)",
-                  transform: `rotate(${t.r / 2}deg)`,
-                }}
-              >
-                {t.label}
-              </span>
-            ))}
-          </div>
+          {/* Tags mobile désactivés */}
 
       {/* Bandeau marquee */}
       <div
