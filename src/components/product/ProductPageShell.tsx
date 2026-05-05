@@ -567,10 +567,10 @@ function FinalCta({
         <p className="mx-auto mt-5 max-w-xl font-body text-base text-white/85">
           {ctaSubtitle}
         </p>
-        <div className="mt-9 flex flex-wrap justify-center gap-3">
+        <div className="relative z-10 mt-9 flex flex-wrap justify-center gap-3">
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-2 rounded-full px-7 py-3 font-body text-sm font-semibold shadow-[0_18px_50px_-15px_rgba(255,221,87,0.6)] transition hover:scale-[1.02]"
+            className="group cta-pulse-gold hover-shine inline-flex items-center gap-2 rounded-full px-7 py-3 font-body text-sm font-semibold transition hover:scale-[1.02]"
             style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
           >
             Réserver ma démo
