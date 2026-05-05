@@ -232,9 +232,9 @@ function HeroShell({
                 </Link>
               </div>
 
-              {/* Big image — portrait/team */}
+              {/* Big image — portrait/team (hidden on mobile to shorten hero) */}
               <div
-                className="relative col-span-4 aspect-[4/3] overflow-hidden rounded-[24px] border md:col-span-2 md:row-span-2 md:aspect-auto md:min-h-[540px]"
+                className="relative col-span-4 hidden aspect-[4/3] overflow-hidden rounded-[24px] border md:col-span-2 md:row-span-2 md:block md:aspect-auto md:min-h-[540px]"
                 style={{ borderColor: "var(--grey-light)" }}
               >
                 <img
