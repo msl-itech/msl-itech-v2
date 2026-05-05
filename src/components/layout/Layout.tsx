@@ -8,6 +8,8 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { RevealRoot } from "@/components/RevealRoot";
 import ChatBot from "@/components/ChatBot";
 import { initTracker, trackPageVisit } from "@/lib/visitor-tracker";
+import { CookieConsent } from "@/components/CookieConsent";
+import { initAnalytics } from "@/lib/analytics";
 
 export const Layout = () => {
   const { pathname } = useLocation();
@@ -15,6 +17,7 @@ export const Layout = () => {
 
   useEffect(() => {
     initTracker();
+    initAnalytics();
   }, []);
 
   useEffect(() => {
@@ -42,6 +45,7 @@ export const Layout = () => {
       </main>
       {!isAppointmentPage && <Footer />}
       {!isAppointmentPage && <ChatBot />}
+      <CookieConsent />
     </div>
   );
 };
