@@ -160,7 +160,7 @@ export const Footer = () => {
             >
               Test : {market === "BE" ? "🇧🇪 BE → 🇲🇦 MA" : "🇲🇦 MA → 🇧🇪 BE"}
             </button>
-            <Link to="/a-propos" className="hover:text-brand-white">
+            <Link to="/politique-de-confidentialite" className="hover:text-brand-white">
               Politique de confidentialité
             </Link>
           </div>
