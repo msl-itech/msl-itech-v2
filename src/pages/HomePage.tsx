@@ -341,7 +341,7 @@ function SocialProof() {
     <>
       ✓ Partenaire officiel{" "}
       <a
-        href="https://www.odoo.com/partners"
+        href="https://www.odoo.com/fr_FR/partners/country/maroc-132?search=msl-itech"
         target="_blank"
         rel="noreferrer"
         className="underline decoration-brand-gold underline-offset-4"

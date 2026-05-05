@@ -145,7 +145,7 @@ export default function ConsultantBePage() {
               officielle Odoo. Vérifiez notre statut et nos références directement à la source.
             </p>
             <a
-              href="https://www.odoo.com/partners"
+              href="https://www.odoo.com/fr_FR/partners/country/maroc-132?search=msl-itech"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-semibold transition hover:opacity-90"
