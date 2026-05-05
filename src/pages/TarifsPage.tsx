@@ -18,15 +18,26 @@ import { JsonLd, professionalServiceSchema } from "@/components/JsonLd";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
 
-type Currency = "EUR" | "MAD";
+type Currency = "EUR" | "MAD" | "USD" | "CAD";
 const EUR_TO_MAD = 11;
+const EUR_TO_USD = 1.1;
+const USD_TO_CAD = 1.5;
 
 const fmt = (eur: number, currency: Currency) => {
   if (currency === "EUR") {
     return `${eur.toLocaleString("fr-FR")} €`;
   }
-  const mad = eur * EUR_TO_MAD;
-  return `${mad.toLocaleString("fr-FR")} MAD`;
+  if (currency === "MAD") {
+    const mad = Math.round(eur * EUR_TO_MAD);
+    return `${mad.toLocaleString("fr-FR")} MAD`;
+  }
+  if (currency === "USD") {
+    const usd = Math.round(eur * EUR_TO_USD);
+    return `$${usd.toLocaleString("en-US")} USD`;
+  }
+  // CAD
+  const cad = Math.round(eur * EUR_TO_USD * USD_TO_CAD);
+  return `${cad.toLocaleString("en-CA")} CAD`;
 };
 
 /* ---------------- Highlight (marker brushstroke) ---------------- */
