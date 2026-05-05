@@ -968,6 +968,7 @@ function FinalCTA() {
           className="relative isolate overflow-hidden rounded-[32px] p-10 md:p-16"
           style={{ backgroundColor: "var(--blue)" }}
         >
+          <HeroCursorGlow color="rgba(255, 221, 87, 1)" size={620} intensity={0.55} radius="32px" />
           <div
             className="pointer-events-none absolute -top-32 right-1/4 h-96 w-96 rounded-full opacity-25 blur-3xl"
             style={{ backgroundColor: "var(--gold)" }}
@@ -1004,7 +1005,7 @@ function FinalCTA() {
             <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
               <Link
                 to="/contact"
-                className="group inline-flex items-center gap-2 rounded-full px-8 py-4 font-body text-base font-bold text-brand-black shadow-[0_20px_60px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+                className="group cta-pulse-gold hover-shine inline-flex items-center gap-2 rounded-full px-8 py-4 font-body text-base font-bold text-brand-black transition hover:scale-[1.02]"
                 style={{ backgroundColor: "var(--gold)" }}
               >
                 Réserver ma démo
