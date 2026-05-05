@@ -1,6 +1,6 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, ChevronRight } from "lucide-react";
 import logoDark from "@/assets/logo-msl-dark.png";
 
 const odooLinks = [
@@ -39,6 +39,7 @@ export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<null | "odoo" | "sectors">(null);
+  const [mobileSection, setMobileSection] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -51,12 +52,16 @@ export const Header = () => {
   useEffect(() => {
     setMobileOpen(false);
     setOpenMenu(null);
+    setMobileSection(null);
   }, [location.pathname]);
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `font-body text-sm transition-colors hover:text-brand-blue ${
       isActive ? "text-brand-blue font-medium" : "text-brand-black"
     }`;
+
+  const toggleSection = (id: string) =>
+    setMobileSection((s) => (s === id ? null : id));
 
   return (
     <header
@@ -207,63 +212,115 @@ export const Header = () => {
               <X size={26} />
             </button>
           </div>
-          <nav className="container flex-1 overflow-y-auto py-6">
-            <NavLink
-              to="/odoo-erp"
-              className="mb-2 block font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue"
-            >
-              Odoo ERP →
-            </NavLink>
-            <ul className="mb-6 space-y-1">
-              {odooLinks.map((l) => (
-                <li key={l.to}>
-                  <NavLink
-                    to={l.to}
-                    className="block py-2 font-body text-base text-brand-black"
-                  >
-                    {l.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-              Nos Secteurs
-            </p>
-            <ul className="mb-6 space-y-1">
-              {sectorLinks.map((l) => (
-                <li key={l.to}>
-                  <NavLink
-                    to={l.to}
-                    className="block py-2 font-body text-base text-brand-black"
-                  >
-                    {l.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-              Par profil
-            </p>
-            <ul className="mb-6 space-y-1">
-              {profileItems.map((p) => (
-                <li key={p.to}>
-                  <NavLink
-                    to={p.to}
-                    className="block py-2 font-body text-base text-brand-black"
-                  >
-                    {p.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-            <ul className="space-y-1 border-t border-brand-grey-light pt-4">
+          <nav className="container flex-1 overflow-y-auto py-4">
+            <ul className="divide-y divide-brand-grey-light/60">
+              {/* Odoo ERP — accordion */}
+              <li>
+                <button
+                  type="button"
+                  onClick={() => toggleSection("odoo")}
+                  aria-expanded={mobileSection === "odoo"}
+                  className="flex w-full items-center justify-between py-4 font-body text-base font-medium text-brand-black"
+                >
+                  Odoo ERP
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform ${mobileSection === "odoo" ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {mobileSection === "odoo" && (
+                  <ul className="mb-3 space-y-0.5 pl-3">
+                    <li>
+                      <NavLink
+                        to="/odoo-erp"
+                        className="block rounded-md px-3 py-2 font-body text-sm font-medium text-brand-blue"
+                      >
+                        Vue d'ensemble Odoo →
+                      </NavLink>
+                    </li>
+                    {odooLinks.map((l) => (
+                      <li key={l.to}>
+                        <NavLink
+                          to={l.to}
+                          className="block rounded-md px-3 py-2 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
+                        >
+                          {l.label}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+
+              {/* Secteurs — accordion */}
+              <li>
+                <button
+                  type="button"
+                  onClick={() => toggleSection("sectors")}
+                  aria-expanded={mobileSection === "sectors"}
+                  className="flex w-full items-center justify-between py-4 font-body text-base font-medium text-brand-black"
+                >
+                  Nos Secteurs
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform ${mobileSection === "sectors" ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {mobileSection === "sectors" && (
+                  <ul className="mb-3 space-y-0.5 pl-3">
+                    {sectorLinks.map((l) => (
+                      <li key={l.to}>
+                        <NavLink
+                          to={l.to}
+                          className="block rounded-md px-3 py-2 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
+                        >
+                          {l.label}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+
+              {/* Profils — accordion */}
+              <li>
+                <button
+                  type="button"
+                  onClick={() => toggleSection("profiles")}
+                  aria-expanded={mobileSection === "profiles"}
+                  className="flex w-full items-center justify-between py-4 font-body text-base font-medium text-brand-black"
+                >
+                  Par profil
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform ${mobileSection === "profiles" ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {mobileSection === "profiles" && (
+                  <ul className="mb-3 space-y-0.5 pl-3">
+                    {profileItems.map((p) => (
+                      <li key={p.to}>
+                        <NavLink
+                          to={p.to}
+                          className="block rounded-md px-3 py-2 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
+                        >
+                          {p.label}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+
+              {/* Liens simples */}
               {simpleLinks.map((l) => (
                 <li key={l.to}>
                   <NavLink
                     to={l.to}
-                    className="block py-2 font-body text-base font-medium text-brand-black"
+                    className="flex items-center justify-between py-4 font-body text-base font-medium text-brand-black"
                   >
                     {l.label}
+                    <ChevronRight size={16} className="text-brand-grey" />
                   </NavLink>
                 </li>
               ))}
@@ -271,7 +328,7 @@ export const Header = () => {
             <Link
               to="/contact"
               onClick={() => setMobileOpen(false)}
-              className="mt-8 block rounded-md px-4 py-3 text-center font-body text-sm font-medium text-brand-white"
+              className="mt-6 block rounded-md px-4 py-3 text-center font-body text-sm font-medium text-brand-white"
               style={{ backgroundColor: "var(--blue)" }}
             >
               Réserver une démo
