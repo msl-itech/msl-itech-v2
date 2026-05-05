@@ -337,10 +337,10 @@ export default function AboutPage() {
               return (
                 <article
                   key={m.name}
-                  className="group relative isolate overflow-hidden rounded-[24px] border bg-brand-bg p-7 transition hover:-translate-y-1 hover:shadow-xl"
+                  className="group relative rounded-[24px] border bg-brand-bg p-7 transition hover:-translate-y-1 hover:shadow-xl"
                   style={{ borderColor: "var(--grey-light)" }}
                 >
-                  <div className="absolute -top-3 right-5 z-10">
+                  <div className="absolute -top-4 right-5 z-20">
                     <Sticker rotate={idx % 2 === 0 ? -6 : 6}>
                       0{idx + 1}
                     </Sticker>
