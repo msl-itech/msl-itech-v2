@@ -522,9 +522,10 @@ function FinalCta({
 }: Pick<ProductPageShellProps, "ctaTitle" | "ctaSubtitle">) {
   return (
     <section
-      className="relative overflow-hidden py-24"
+      className="relative isolate overflow-hidden py-24"
       style={{ backgroundColor: "var(--blue)" }}
     >
+      <HeroCursorGlow color="rgba(255, 221, 87, 1)" size={620} intensity={0.55} />
       <div
         aria-hidden
         className="absolute inset-0"
