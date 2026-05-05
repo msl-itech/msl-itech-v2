@@ -257,7 +257,7 @@ export default function WebPage() {
       eyebrow="Création Web — Belgique & Maroc"
       title={
         <>
-          Votre site web doit travailler pour vous — pas se contenter{" "}
+          Votre site web doit <span className="whitespace-nowrap">travailler pour vous</span> — pas se contenter{" "}
           <span style={{ color: "var(--gold)" }}>d'exister</span>
         </>
       }
