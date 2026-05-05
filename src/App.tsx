@@ -32,6 +32,7 @@ import PmeStructurationPage from "./pages/PmeStructurationPage";
 import MultiSitesPage from "./pages/MultiSitesPage";
 import CroissanceRapidePage from "./pages/CroissanceRapidePage";
 import AppointmentPage from "./pages/AppointmentPage";
+import PrivacyPage from "./pages/PrivacyPage";
 import NotFound from "./pages/NotFound";
 import { retryPendingLeads } from "@/lib/leads";
 
@@ -79,6 +80,7 @@ const App = () => {
             <Route path="/blog" element={<BlogIndexPage />} />
             <Route path="/blog/:slug" element={<BlogPage />} />
             <Route path="/prendre-rendez-vous" element={<AppointmentPage />} />
+            <Route path="/politique-de-confidentialite" element={<PrivacyPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>
