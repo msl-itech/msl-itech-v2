@@ -1,16 +1,61 @@
+# robots.txt — msl-itech.com
+# Dernière mise à jour : Avril 2026
+
+# ── Bots généraux ──
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_lovable/
+Crawl-delay: 1
+
+# ── Google ──
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /
+
+# ── Google Extended (Gemini / Bard) ──
+User-agent: Google-Extended
+Allow: /
+
+# ── OpenAI / ChatGPT ──
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# ── Anthropic / Claude ──
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# ── Perplexity ──
+User-agent: PerplexityBot
+Allow: /
+
+# ── Meta AI ──
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# ── Apple ──
+User-agent: Applebot
+Allow: /
+
+# ── Microsoft Bing / Copilot ──
 User-agent: Bingbot
 Allow: /
 
-User-agent: Twitterbot
+User-agent: OAI-SearchBot
 Allow: /
 
-User-agent: facebookexternalhit
+# ── LovableHTML (pré-rendu) ──
+User-agent: LovableHTMLBot
 Allow: /
 
-User-agent: *
-Allow: /
-
+# ── Sitemap ──
 Sitemap: https://www.msl-itech.com/sitemap.xml
