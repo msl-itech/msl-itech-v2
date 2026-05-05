@@ -202,7 +202,6 @@ export default function TarifsPage() {
         if (cancelled || !data) return;
         const code = data.country_code as string | undefined;
         if (code === "CA") setCurrency("CAD");
-        else if (code === "US") setCurrency("USD");
         else if (code === "MA") setCurrency("MAD");
       })
       .catch(() => {
