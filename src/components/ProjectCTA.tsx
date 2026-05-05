@@ -1,5 +1,6 @@
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 
 type Tag = { label: string; ty: number; r: number; accent?: boolean };
 
@@ -55,6 +56,9 @@ export const ProjectCTA = ({
       className="relative isolate overflow-hidden"
       style={{ backgroundColor: "var(--blue)" }}
     >
+          {/* Lueur qui suit le curseur */}
+          <HeroCursorGlow color="rgba(255, 221, 87, 1)" size={620} intensity={0.55} />
+
           {/* Halo */}
           <div
             aria-hidden
