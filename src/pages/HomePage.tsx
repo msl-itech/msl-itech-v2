@@ -30,6 +30,7 @@ import sectorLogistics from "@/assets/home/sector-logistics.webp";
 import sectorFood from "@/assets/home/sector-food.webp";
 import caseBe from "@/assets/home/case-be.webp";
 import caseMa from "@/assets/home/case-ma.webp";
+import { JsonLd, professionalServiceSchema } from "@/components/JsonLd";
 
 /* ------------------------------ SEO ------------------------------ */
 function useSeo(market: "BE" | "MA") {
@@ -1030,6 +1031,7 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd id="ld-professional-service-home" data={professionalServiceSchema} />
       {market === "MA" ? <HeroMA /> : <HeroBE />}
       <SocialProof />
       <Pillars />

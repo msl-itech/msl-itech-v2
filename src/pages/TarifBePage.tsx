@@ -26,12 +26,29 @@ const comparison = [
   { vol: "200 heures", odoo: "16 830 €", msl: "8 500 €", gap: "-49%" },
 ];
 
+const faqs = [
+  {
+    q: "Combien coûte Odoo en Belgique en 2026 ?",
+    a: "MSL-iTECH propose 6 packs transparents de 400 € (4h) à 8 500 € (200h). Sur les volumes comparables, nos packs sont 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
+  },
+  {
+    q: "Que comprend le tarif d'implémentation Odoo ?",
+    a: "Selon le pack, le tarif inclut le paramétrage, la formation initiale, l'import de données, l'optimisation, la personnalisation des applications, l'automatisation et le développement sur mesure.",
+  },
+  {
+    q: "Les packs d'heures Odoo MSL-iTECH expirent-ils ?",
+    a: "Les heures sont valables 12 mois à compter de la date d'achat. Au-delà, un renouvellement au tarif en vigueur est proposé.",
+  },
+];
+
 export default function TarifBePage() {
   useProductSeo({
     title: "Tarif Odoo Belgique 2026 — Prix d'implémentation PME | MSL-iTECH",
     description:
       "Combien coûte Odoo en Belgique ? Grille tarifaire complète 2026. Packs 400€ à 8.500€. 20 à 50% plus accessibles que les Success Packs observés sur le marché belge. Démo gratuite.",
     path: "/tarif-odoo-belgique",
+    faqs,
+    ldId: "ld-faq-tarif-be",
   });
 
   return (

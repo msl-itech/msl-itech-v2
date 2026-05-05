@@ -14,6 +14,7 @@ import {
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import { useMarket } from "@/hooks/useMarket";
+import { JsonLd, professionalServiceSchema } from "@/components/JsonLd";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
 
@@ -186,6 +187,7 @@ export default function TarifsPage() {
 
   return (
     <>
+      <JsonLd id="ld-professional-service-tarifs" data={professionalServiceSchema} />
       {/* HERO — image overlay (style /realisations) */}
       <section className="bg-brand-bg pt-6 md:pt-8">
         <div className="container">
