@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 type Props = {
   /** Couleur de la lueur (CSS color). Par défaut: doré de la marque */
@@ -24,14 +24,27 @@ export function HeroCursorGlow({
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
 
-  const onMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+  // Attach listeners to the parent section so the overlay itself stays
+  // non-interactive (clicks & text selection pass through).
+  useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const rect = el.getBoundingClientRect();
-    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  }, []);
+    const parent = el.parentElement;
+    if (!parent) return;
 
-  const onLeave = useCallback(() => setPos(null), []);
+    const onMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    };
+    const onLeave = () => setPos(null);
+
+    parent.addEventListener("mousemove", onMove);
+    parent.addEventListener("mouseleave", onLeave);
+    return () => {
+      parent.removeEventListener("mousemove", onMove);
+      parent.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
 
   const half = size / 2;
   const visible = pos !== null;
@@ -39,10 +52,8 @@ export function HeroCursorGlow({
   return (
     <div
       ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
       aria-hidden
-      className="pointer-events-auto absolute inset-0 z-[1] overflow-hidden"
+      className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
       style={{ borderRadius: radius }}
     >
       <div
