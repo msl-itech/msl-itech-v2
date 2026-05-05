@@ -202,7 +202,6 @@ export default function TarifsPage() {
         if (cancelled || !data) return;
         const code = data.country_code as string | undefined;
         if (code === "CA") setCurrency("CAD");
-        else if (code === "US") setCurrency("USD");
         else if (code === "MA") setCurrency("MAD");
       })
       .catch(() => {
@@ -322,7 +321,6 @@ export default function TarifsPage() {
                   [
                     { c: "EUR" as Currency, label: "€ Euro" },
                     { c: "MAD" as Currency, label: "MAD Dirham" },
-                    { c: "USD" as Currency, label: "$ USD" },
                     { c: "CAD" as Currency, label: "$ CAD" },
                   ]
                 ).map(({ c, label }) => (
