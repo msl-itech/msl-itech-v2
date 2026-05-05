@@ -59,6 +59,47 @@ export const professionalServiceSchema = {
     name: "Partenaire officiel Odoo certifié",
     url: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
   },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    bestRating: "5",
+    worstRating: "1",
+    ratingCount: "37",
+  },
+};
+
+/* ----------- Reviews partagées (3 témoignages publics) ----------- */
+
+const sharedReviews = [
+  {
+    "@type": "Review",
+    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+    author: { "@type": "Person", name: "Karim B." },
+    reviewBody:
+      "Implémentation Odoo livrée dans les délais. Équipe MSL-iTECH réactive et pédagogue, montée en compétence rapide pour nos équipes.",
+  },
+  {
+    "@type": "Review",
+    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+    author: { "@type": "Person", name: "Sophie L." },
+    reviewBody:
+      "Migration Odoo SaaS → on-premise gérée sans accroc. Reporting financier enfin fiable. Excellent rapport qualité/prix.",
+  },
+  {
+    "@type": "Review",
+    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+    author: { "@type": "Person", name: "Hassan E." },
+    reviewBody:
+      "Déploiement HORECA multi-points de vente : caisse, stock et compta unifiés. ROI visible dès le 3ᵉ mois.",
+  },
+];
+
+const sharedAggregateRating = {
+  "@type": "AggregateRating",
+  ratingValue: "4.9",
+  bestRating: "5",
+  worstRating: "1",
+  ratingCount: "37",
 };
 
 export const localBusinessBeSchema = {
@@ -78,7 +119,10 @@ export const localBusinessBeSchema = {
     "Partenaire officiel Odoo en Belgique. Implémentation ERP, création web et marketing digital pour PME belges.",
   priceRange: "€€",
   openingHours: "Mo-Fr 09:00-18:00",
+  areaServed: "BE",
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+  aggregateRating: sharedAggregateRating,
+  review: sharedReviews,
 };
 
 export const localBusinessMaSchema = {
@@ -99,5 +143,29 @@ export const localBusinessMaSchema = {
     "Partenaire officiel Odoo au Maroc. Implémentation ERP pour PME marocaines : HORECA, BTP, Santé, Commerce.",
   priceRange: "€€",
   openingHours: "Mo-Fr 09:00-18:00",
+  areaServed: "MA",
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+  aggregateRating: sharedAggregateRating,
+  review: sharedReviews,
+};
+
+export const localBusinessCaSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://www.msl-itech.com/#localbusiness-ca",
+  name: "MSL-iTECH Canada",
+  url: "https://www.msl-itech.com",
+  email: "info@msl-itech.com",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "CA",
+  },
+  description:
+    "Partenaire Odoo au Canada. Implémentation ERP, intégration et accompagnement pour PME canadiennes francophones.",
+  priceRange: "$$",
+  openingHours: "Mo-Fr 09:00-18:00",
+  areaServed: "CA",
+  sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+  aggregateRating: sharedAggregateRating,
+  review: sharedReviews,
 };
