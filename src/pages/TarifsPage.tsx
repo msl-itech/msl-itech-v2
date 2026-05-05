@@ -315,33 +315,31 @@ export default function TarifsPage() {
 
               {/* Currency toggle */}
               <div
-                className="mt-8 inline-flex items-center gap-1 rounded-full p-1"
+                className="mt-8 inline-flex flex-wrap items-center justify-center gap-1 rounded-full p-1"
                 style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
               >
-                <button
-                  type="button"
-                  onClick={() => setCurrency("EUR")}
-                  aria-pressed={currency === "EUR"}
-                  className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
-                  style={{
-                    backgroundColor: currency === "EUR" ? "var(--gold)" : "transparent",
-                    color: currency === "EUR" ? "var(--blue)" : "white",
-                  }}
-                >
-                  € Euro
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setCurrency("MAD")}
-                  aria-pressed={currency === "MAD"}
-                  className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
-                  style={{
-                    backgroundColor: currency === "MAD" ? "var(--gold)" : "transparent",
-                    color: currency === "MAD" ? "var(--blue)" : "white",
-                  }}
-                >
-                  MAD Dirham
-                </button>
+                {(
+                  [
+                    { c: "EUR" as Currency, label: "€ Euro" },
+                    { c: "MAD" as Currency, label: "MAD Dirham" },
+                    { c: "USD" as Currency, label: "$ USD" },
+                    { c: "CAD" as Currency, label: "$ CAD" },
+                  ]
+                ).map(({ c, label }) => (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={() => pickCurrency(c)}
+                    aria-pressed={currency === c}
+                    className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
+                    style={{
+                      backgroundColor: currency === c ? "var(--gold)" : "transparent",
+                      color: currency === c ? "var(--blue)" : "white",
+                    }}
+                  >
+                    {label}
+                  </button>
+                ))}
               </div>
             </div>
 
