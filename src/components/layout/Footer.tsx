@@ -164,6 +164,15 @@ export const Footer = () => {
             <Link to="/politique-de-confidentialite" className="hover:text-brand-white">
               Politique de confidentialité
             </Link>
+            <Link to="/mentions-legales" className="hover:text-brand-white">
+              Mentions légales
+            </Link>
+            <Link to="/conditions-generales-de-vente" className="hover:text-brand-white">
+              CGV
+            </Link>
+            <Link to="/conformite-loi-09-08" className="hover:text-brand-white">
+              Loi 09-08
+            </Link>
             <button
               type="button"
               onClick={openConsentPreferences}

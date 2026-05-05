@@ -37,6 +37,9 @@ const MultiSitesPage = lazy(() => import("./pages/MultiSitesPage"));
 const CroissanceRapidePage = lazy(() => import("./pages/CroissanceRapidePage"));
 const AppointmentPage = lazy(() => import("./pages/AppointmentPage"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
+const CgvPage = lazy(() => import("./pages/CgvPage"));
+const MentionsLegalesPage = lazy(() => import("./pages/MentionsLegalesPage"));
+const Loi0908Page = lazy(() => import("./pages/Loi0908Page"));
 
 const queryClient = new QueryClient();
 
@@ -97,6 +100,9 @@ const App = () => {
             <Route path="/blog/:slug" element={<BlogPage />} />
             <Route path="/prendre-rendez-vous" element={<AppointmentPage />} />
             <Route path="/politique-de-confidentialite" element={<PrivacyPage />} />
+            <Route path="/conditions-generales-de-vente" element={<CgvPage />} />
+            <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
+            <Route path="/conformite-loi-09-08" element={<Loi0908Page />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>
