@@ -12,6 +12,8 @@ export default function BlogPage() {
     description:
       post?.metaDescription ?? "Articles, conseils et analyses Odoo par MSL-iTECH.",
     path: post ? `/blog/${post.slug}` : "/blog",
+    ogImage: post?.image,
+    ogType: "article",
     faqs: post?.faqs,
     ldId: post?.faqs ? `ld-faq-blog-${post.slug}` : undefined,
   });
