@@ -421,6 +421,7 @@ export default function BlogIndexPage() {
           alt=""
           className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30"
         loading="lazy" decoding="async"/>
+        <HeroCursorGlow color="rgba(255, 221, 87, 1)" size={620} intensity={0.55} />
         <div
           aria-hidden
           className="absolute inset-0 -z-10"

@@ -857,6 +857,7 @@ export default function TarifsPage() {
 
       {/* CTA */}
       <section className="relative isolate overflow-hidden bg-brand-black py-24 md:py-28">
+        <HeroCursorGlow color="rgba(255, 221, 87, 1)" size={620} intensity={0.55} />
         <img
           src={ctaBg}
           alt=""
