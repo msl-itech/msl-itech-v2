@@ -18,15 +18,26 @@ import { JsonLd, professionalServiceSchema } from "@/components/JsonLd";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
 
-type Currency = "EUR" | "MAD";
+type Currency = "EUR" | "MAD" | "USD" | "CAD";
 const EUR_TO_MAD = 11;
+const EUR_TO_USD = 1.1;
+const USD_TO_CAD = 1.5;
 
 const fmt = (eur: number, currency: Currency) => {
   if (currency === "EUR") {
     return `${eur.toLocaleString("fr-FR")} €`;
   }
-  const mad = eur * EUR_TO_MAD;
-  return `${mad.toLocaleString("fr-FR")} MAD`;
+  if (currency === "MAD") {
+    const mad = Math.round(eur * EUR_TO_MAD);
+    return `${mad.toLocaleString("fr-FR")} MAD`;
+  }
+  if (currency === "USD") {
+    const usd = Math.round(eur * EUR_TO_USD);
+    return `$${usd.toLocaleString("en-US")} USD`;
+  }
+  // CAD
+  const cad = Math.round(eur * EUR_TO_USD * USD_TO_CAD);
+  return `${cad.toLocaleString("en-CA")} CAD`;
 };
 
 /* ---------------- Highlight (marker brushstroke) ---------------- */
@@ -172,9 +183,40 @@ const faqs = [
 export default function TarifsPage() {
   const { market } = useMarket();
   const [currency, setCurrency] = useState<Currency>(market === "MA" ? "MAD" : "EUR");
+  const [userTouched, setUserTouched] = useState(false);
+
+  // Sync from useMarket (BE/MA via Cloudflare X-Market header)
   useEffect(() => {
+    if (userTouched) return;
     setCurrency(market === "MA" ? "MAD" : "EUR");
-  }, [market]);
+  }, [market, userTouched]);
+
+  // Geo-detect Canada / US via IP (only if user hasn't picked manually & not MA)
+  useEffect(() => {
+    if (userTouched) return;
+    if (market === "MA") return; // MAD already set
+    let cancelled = false;
+    fetch("https://ipapi.co/json/")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (cancelled || !data) return;
+        const code = data.country_code as string | undefined;
+        if (code === "CA") setCurrency("CAD");
+        else if (code === "US") setCurrency("USD");
+        else if (code === "MA") setCurrency("MAD");
+      })
+      .catch(() => {
+        /* keep default */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [market, userTouched]);
+
+  const pickCurrency = (c: Currency) => {
+    setUserTouched(true);
+    setCurrency(c);
+  };
 
   useProductSeo({
     title: "Tarifs Odoo Belgique & Maroc — Packs transparents | MSL-iTECH",
@@ -273,33 +315,31 @@ export default function TarifsPage() {
 
               {/* Currency toggle */}
               <div
-                className="mt-8 inline-flex items-center gap-1 rounded-full p-1"
+                className="mt-8 inline-flex flex-wrap items-center justify-center gap-1 rounded-full p-1"
                 style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
               >
-                <button
-                  type="button"
-                  onClick={() => setCurrency("EUR")}
-                  aria-pressed={currency === "EUR"}
-                  className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
-                  style={{
-                    backgroundColor: currency === "EUR" ? "var(--gold)" : "transparent",
-                    color: currency === "EUR" ? "var(--blue)" : "white",
-                  }}
-                >
-                  € Euro
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setCurrency("MAD")}
-                  aria-pressed={currency === "MAD"}
-                  className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
-                  style={{
-                    backgroundColor: currency === "MAD" ? "var(--gold)" : "transparent",
-                    color: currency === "MAD" ? "var(--blue)" : "white",
-                  }}
-                >
-                  MAD Dirham
-                </button>
+                {(
+                  [
+                    { c: "EUR" as Currency, label: "€ Euro" },
+                    { c: "MAD" as Currency, label: "MAD Dirham" },
+                    { c: "USD" as Currency, label: "$ USD" },
+                    { c: "CAD" as Currency, label: "$ CAD" },
+                  ]
+                ).map(({ c, label }) => (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={() => pickCurrency(c)}
+                    aria-pressed={currency === c}
+                    className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
+                    style={{
+                      backgroundColor: currency === c ? "var(--gold)" : "transparent",
+                      color: currency === c ? "var(--blue)" : "white",
+                    }}
+                  >
+                    {label}
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -494,7 +534,7 @@ export default function TarifsPage() {
                     >
                       Prix nouveau client
                       <span className="ml-2 font-mono text-[10px] font-normal uppercase tracking-[0.2em] text-brand-grey">
-                        {currency === "EUR" ? "HTVA" : "TTC"}
+                        {currency === "EUR" ? "HTVA" : currency === "MAD" ? "TTC" : "HT"}
                       </span>
                     </td>
                     {packs.map((p) => (
@@ -542,8 +582,8 @@ export default function TarifsPage() {
 
           <p className="mt-6 flex items-start gap-2 text-sm text-brand-grey">
             <Info size={14} className="mt-0.5 shrink-0" />
-            Prix € HTVA pour clients belges · Prix MAD TTC pour clients marocains ·
-            Conversion indicative 1 € ≈ {EUR_TO_MAD} MAD.
+            Prix € HTVA (Belgique) · MAD TTC (Maroc) · USD / CAD HT (Amérique du Nord). Conversions
+            indicatives : 1 € ≈ {EUR_TO_MAD} MAD · 1 € ≈ {EUR_TO_USD} USD · 1 USD ≈ {USD_TO_CAD} CAD.
           </p>
         </div>
       </section>
