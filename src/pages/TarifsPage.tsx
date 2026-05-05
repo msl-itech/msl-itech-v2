@@ -322,7 +322,6 @@ export default function TarifsPage() {
                   [
                     { c: "EUR" as Currency, label: "€ Euro" },
                     { c: "MAD" as Currency, label: "MAD Dirham" },
-                    { c: "USD" as Currency, label: "$ USD" },
                     { c: "CAD" as Currency, label: "$ CAD" },
                   ]
                 ).map(({ c, label }) => (
