@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -6,37 +6,52 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Layout } from "@/components/layout/Layout";
 import HomePage from "./pages/HomePage";
-import CrmPage from "./pages/CrmPage";
-import OdooErpPage from "./pages/OdooErpPage";
-import FinancePage from "./pages/FinancePage";
-import StockPage from "./pages/StockPage";
-import ProductionPage from "./pages/ProductionPage";
-import RhPage from "./pages/RhPage";
-import ServicesProPage from "./pages/ServicesProPage";
-import HorecaPage from "./pages/HorecaPage";
-import BtpPage from "./pages/BtpPage";
-import SantePage from "./pages/SantePage";
-import StockMarocPage from "./pages/StockMarocPage";
-import TransportPage from "./pages/TransportPage";
-import WebPage from "./pages/WebPage";
-import MarketingPage from "./pages/MarketingPage";
-import RealisationsPage from "./pages/RealisationsPage";
-import TarifsPage from "./pages/TarifsPage";
-import AboutPage from "./pages/AboutPage";
-import ContactPage from "./pages/ContactPage";
-import ConsultantBePage from "./pages/ConsultantBePage";
-import TarifBePage from "./pages/TarifBePage";
-import BlogPage from "./pages/BlogPage";
-import BlogIndexPage from "./pages/BlogIndexPage";
-import PmeStructurationPage from "./pages/PmeStructurationPage";
-import MultiSitesPage from "./pages/MultiSitesPage";
-import CroissanceRapidePage from "./pages/CroissanceRapidePage";
-import AppointmentPage from "./pages/AppointmentPage";
-import PrivacyPage from "./pages/PrivacyPage";
 import NotFound from "./pages/NotFound";
 import { retryPendingLeads } from "@/lib/leads";
 
+// Lazy-load all secondary routes — keeps the initial bundle (Home + Layout) lean.
+const CrmPage = lazy(() => import("./pages/CrmPage"));
+const OdooErpPage = lazy(() => import("./pages/OdooErpPage"));
+const FinancePage = lazy(() => import("./pages/FinancePage"));
+const StockPage = lazy(() => import("./pages/StockPage"));
+const ProductionPage = lazy(() => import("./pages/ProductionPage"));
+const RhPage = lazy(() => import("./pages/RhPage"));
+const ServicesProPage = lazy(() => import("./pages/ServicesProPage"));
+const HorecaPage = lazy(() => import("./pages/HorecaPage"));
+const BtpPage = lazy(() => import("./pages/BtpPage"));
+const SantePage = lazy(() => import("./pages/SantePage"));
+const StockMarocPage = lazy(() => import("./pages/StockMarocPage"));
+const TransportPage = lazy(() => import("./pages/TransportPage"));
+const WebPage = lazy(() => import("./pages/WebPage"));
+const MarketingPage = lazy(() => import("./pages/MarketingPage"));
+const RealisationsPage = lazy(() => import("./pages/RealisationsPage"));
+const TarifsPage = lazy(() => import("./pages/TarifsPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const ConsultantBePage = lazy(() => import("./pages/ConsultantBePage"));
+const TarifBePage = lazy(() => import("./pages/TarifBePage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogIndexPage = lazy(() => import("./pages/BlogIndexPage"));
+const PmeStructurationPage = lazy(() => import("./pages/PmeStructurationPage"));
+const MultiSitesPage = lazy(() => import("./pages/MultiSitesPage"));
+const CroissanceRapidePage = lazy(() => import("./pages/CroissanceRapidePage"));
+const AppointmentPage = lazy(() => import("./pages/AppointmentPage"));
+const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
+
 const queryClient = new QueryClient();
+
+function RouteFallback() {
+  return (
+    <div
+      className="flex min-h-[60vh] items-center justify-center"
+      role="status"
+      aria-live="polite"
+    >
+      <span className="sr-only">Chargement de la page…</span>
+      <span className="h-10 w-10 animate-spin rounded-full border-2 border-brand-blue/20 border-t-brand-blue" />
+    </div>
+  );
+}
 
 const App = () => {
   useEffect(() => {
@@ -51,6 +66,7 @@ const App = () => {
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <Suspense fallback={<RouteFallback />}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
@@ -85,6 +101,7 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
+        </Suspense>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
