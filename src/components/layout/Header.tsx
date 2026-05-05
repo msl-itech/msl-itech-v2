@@ -317,10 +317,10 @@ export const Header = () => {
                 <li key={l.to}>
                   <NavLink
                     to={l.to}
-                    className="flex items-center justify-between py-4 font-body text-base font-medium text-brand-black"
+                    onClick={() => setMobileOpen(false)}
+                    className="block py-4 font-body text-base font-medium text-brand-black"
                   >
                     {l.label}
-                    <ChevronRight size={16} className="text-brand-grey" />
                   </NavLink>
                 </li>
               ))}
