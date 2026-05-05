@@ -968,6 +968,7 @@ function FinalCTA() {
           className="relative isolate overflow-hidden rounded-[32px] p-10 md:p-16"
           style={{ backgroundColor: "var(--blue)" }}
         >
+          <HeroCursorGlow color="rgba(255, 221, 87, 1)" size={620} intensity={0.55} radius="32px" />
           <div
             className="pointer-events-none absolute -top-32 right-1/4 h-96 w-96 rounded-full opacity-25 blur-3xl"
             style={{ backgroundColor: "var(--gold)" }}
