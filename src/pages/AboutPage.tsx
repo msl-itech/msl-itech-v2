@@ -367,7 +367,7 @@ export default function AboutPage() {
                     <img
                       src={m.photo}
                       alt={`${m.name} — ${m.role} chez MSL-iTECH`}
-                      className="absolute inset-0 h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.04]"
+                      className="absolute inset-0 h-full w-full object-cover object-top grayscale transition duration-500 group-hover:scale-[1.04] group-hover:grayscale-0"
                       loading="lazy"
                       decoding="async"
                       width={600}
