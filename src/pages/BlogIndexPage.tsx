@@ -448,7 +448,7 @@ export default function BlogIndexPage() {
           </p>
           <Link
             to="/prendre-rendez-vous"
-            className="mt-9 inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+            className="mt-9 cta-pulse-gold hover-shine inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black transition hover:scale-[1.02]"
             style={{ backgroundColor: "var(--gold)" }}
           >
             Réserver ma démo <ArrowRight size={16} />
