@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -5,10 +6,20 @@ import { ScrollToTop } from "./ScrollToTop";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { RevealRoot } from "@/components/RevealRoot";
+import ChatBot from "@/components/ChatBot";
+import { initTracker, trackPageVisit } from "@/lib/visitor-tracker";
 
 export const Layout = () => {
   const { pathname } = useLocation();
   const isAppointmentPage = pathname === "/prendre-rendez-vous";
+
+  useEffect(() => {
+    initTracker();
+  }, []);
+
+  useEffect(() => {
+    trackPageVisit(pathname);
+  }, [pathname]);
 
   return (
     <div
@@ -30,6 +41,7 @@ export const Layout = () => {
         )}
       </main>
       {!isAppointmentPage && <Footer />}
+      {!isAppointmentPage && <ChatBot />}
     </div>
   );
 };
