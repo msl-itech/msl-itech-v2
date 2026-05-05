@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ═══ PAGES PRINCIPALES ═══ -->
+  <url>
+    <loc>https://www.msl-itech.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- ═══ MODULES ODOO ═══ -->
+  <url><loc>https://www.msl-itech.com/odoo-crm-ventes</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.msl-itech.com/odoo-finance-comptabilite</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.msl-itech.com/odoo-stock-inventaire</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.msl-itech.com/odoo-production-fabrication</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.msl-itech.com/odoo-rh-paie</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.msl-itech.com/odoo-services-professionnels</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ═══ PAGES SECTORIELLES MAROC ═══ -->
+  <url><loc>https://www.msl-itech.com/odoo-horeca-maroc</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.msl-itech.com/odoo-btp-maroc</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.msl-itech.com/odoo-sante-maroc</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.msl-itech.com/odoo-gestion-stock-maroc</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.msl-itech.com/odoo-transport-logistique-maroc</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ═══ SERVICES ═══ -->
+  <url><loc>https://www.msl-itech.com/creation-web</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.msl-itech.com/marketing-digital</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ═══ PAGES CORPORATIVES ═══ -->
+  <url><loc>https://www.msl-itech.com/realisations</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.msl-itech.com/tarifs</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.msl-itech.com/a-propos</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.msl-itech.com/contact</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ═══ PAGES SEO PILIERS BELGIQUE ═══ -->
+  <url><loc>https://www.msl-itech.com/consultant-odoo-belgique</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.msl-itech.com/tarif-odoo-belgique</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+
+  <!-- ═══ BLOG ═══ -->
+  <url><loc>https://www.msl-itech.com/blog</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.msl-itech.com/blog/cout-implementation-odoo-belgique-2026</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.msl-itech.com/blog/partenaire-odoo-certifie-vs-freelance</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.msl-itech.com/blog/gestion-stock-maroc-apres-1-5m-mad</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.msl-itech.com/blog/facturation-electronique-maroc-2026</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+</urlset>
