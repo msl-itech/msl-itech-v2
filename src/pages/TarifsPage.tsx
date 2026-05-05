@@ -534,7 +534,7 @@ export default function TarifsPage() {
                     >
                       Prix nouveau client
                       <span className="ml-2 font-mono text-[10px] font-normal uppercase tracking-[0.2em] text-brand-grey">
-                        {currency === "EUR" ? "HTVA" : "TTC"}
+                        {currency === "EUR" ? "HTVA" : currency === "MAD" ? "TTC" : "HT"}
                       </span>
                     </td>
                     {packs.map((p) => (
@@ -582,8 +582,8 @@ export default function TarifsPage() {
 
           <p className="mt-6 flex items-start gap-2 text-sm text-brand-grey">
             <Info size={14} className="mt-0.5 shrink-0" />
-            Prix € HTVA pour clients belges · Prix MAD TTC pour clients marocains ·
-            Conversion indicative 1 € ≈ {EUR_TO_MAD} MAD.
+            Prix € HTVA (Belgique) · MAD TTC (Maroc) · USD / CAD HT (Amérique du Nord). Conversions
+            indicatives : 1 € ≈ {EUR_TO_MAD} MAD · 1 € ≈ {EUR_TO_USD} USD · 1 USD ≈ {USD_TO_CAD} CAD.
           </p>
         </div>
       </section>
