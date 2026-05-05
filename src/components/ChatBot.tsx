@@ -154,6 +154,7 @@ export default function ChatBot() {
   const [isStreaming, setIsStreaming] = useState(false);
   const [proactiveSeen, setProactiveSeen] = useState(false);
   const [exitSeen, setExitSeen] = useState(false);
+  const [pulseHint, setPulseHint] = useState<string | null>(null);
   const [conversationalScore, setConversationalScore] = useState(0);
   const [emailCaptured, setEmailCaptured] = useState(false);
   const matchedKeysRef = useRef<Set<string>>(new Set());
@@ -176,38 +177,33 @@ export default function ChatBot() {
     }
   }, [messages, open]);
 
-  // Message proactif après 30s
+  // Indice proactif après 30s — n'ouvre PAS le chat, affiche juste une bulle + pulse
   useEffect(() => {
     if (proactiveSeen || open) return;
     const t = window.setTimeout(() => {
       setProactiveSeen(true);
-      setOpen(true);
-      setMessages((prev) =>
-        prev.length === 0
-          ? [{ role: "assistant", content: proactiveFor(pathname) }]
-          : prev,
-      );
+      setPulseHint(proactiveFor(pathname));
     }, 30000);
     return () => window.clearTimeout(t);
   }, [pathname, proactiveSeen, open]);
 
-  // Exit-intent (desktop)
+  // Exit-intent (desktop) — affiche un indice, n'ouvre pas le panneau
   useEffect(() => {
     if (exitSeen) return;
     const handler = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !exitSeen) {
+      if (e.clientY <= 0 && !exitSeen && !open) {
         setExitSeen(true);
-        setOpen(true);
-        setMessages((prev) =>
-          prev.length === 0
-            ? [{ role: "assistant", content: exitMsgFor(pathname) }]
-            : prev,
-        );
+        setPulseHint(exitMsgFor(pathname));
       }
     };
     document.addEventListener("mouseout", handler);
     return () => document.removeEventListener("mouseout", handler);
-  }, [pathname, exitSeen]);
+  }, [pathname, exitSeen, open]);
+
+  // Quand l'utilisateur ouvre le panneau, on cache l'indice
+  useEffect(() => {
+    if (open && pulseHint) setPulseHint(null);
+  }, [open, pulseHint]);
 
   // Capture infos depuis les messages utilisateur
   const captureFromMessage = useCallback(
@@ -394,16 +390,50 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* Bouton flottant */}
+      {/* Bulle d'indice (proactive / exit-intent) — n'ouvre PAS le chat tant qu'on ne clique pas */}
+      {!open && pulseHint && (
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(true);
+            setMessages((prev) =>
+              prev.length === 0
+                ? [{ role: "assistant", content: pulseHint }]
+                : prev,
+            );
+          }}
+          className="fixed bottom-24 right-5 z-[60] max-w-[280px] rounded-2xl border bg-white px-4 py-3 text-left text-sm text-brand-black shadow-xl animate-fade-in hover:shadow-2xl"
+          style={{ borderColor: "rgba(0,0,0,0.08)" }}
+          aria-label="Ouvrir le chat"
+        >
+          <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
+            Conseiller MSL-iTECH
+          </span>
+          <span className="mt-1 block">{pulseHint}</span>
+          <span
+            aria-hidden
+            onClick={(e) => {
+              e.stopPropagation();
+              setPulseHint(null);
+            }}
+            className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-brand-black text-white shadow-md cursor-pointer"
+          >
+            <X className="h-3 w-3" />
+          </span>
+        </button>
+      )}
+
+      {/* Bouton flottant — pulse en or pour attirer l'œil */}
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Fermer le chat" : "Ouvrir le chat"}
-        className="fixed bottom-5 right-5 z-[60] flex h-14 w-14 items-center justify-center rounded-full shadow-xl transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+        className={`fixed bottom-5 right-5 z-[60] flex h-14 w-14 items-center justify-center rounded-full shadow-xl transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+          open ? "" : "cta-pulse-gold"
+        }`}
         style={{
           backgroundColor: "var(--gold)",
           color: "var(--blue)",
-          boxShadow: "0 10px 30px -10px hsl(var(--ring) / 0.4), 0 0 0 1px rgba(0,0,0,0.05)",
         }}
       >
         {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
