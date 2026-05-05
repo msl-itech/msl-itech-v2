@@ -3,6 +3,7 @@ import { useMarket, setMarketOverride } from "@/hooks/useMarket";
 import logoWhite from "@/assets/logo-msl-white.png";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { openConsentPreferences } from "@/lib/consent";
 
 const odooCol = [
   { to: "/odoo-crm-ventes", label: "CRM & Ventes" },
@@ -163,6 +164,13 @@ export const Footer = () => {
             <Link to="/politique-de-confidentialite" className="hover:text-brand-white">
               Politique de confidentialité
             </Link>
+            <button
+              type="button"
+              onClick={openConsentPreferences}
+              className="hover:text-brand-white"
+            >
+              Gérer mes cookies
+            </button>
           </div>
         </div>
       </div>
