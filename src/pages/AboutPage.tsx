@@ -441,7 +441,7 @@ export default function AboutPage() {
               </div>
               <div className="flex justify-start lg:col-span-4 lg:justify-end">
                 <a
-                  href="https://www.odoo.com/partners"
+                  href="https://www.odoo.com/fr_FR/partners/country/maroc-132?search=msl-itech"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"

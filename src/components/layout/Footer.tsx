@@ -115,7 +115,7 @@ export const Footer = () => {
           <p className="mt-3 hidden max-w-md font-body text-xs text-brand-grey-light/70 sm:mt-4 sm:block">
             Partenaire officiel Odoo —{" "}
             <a
-              href="https://www.odoo.com/partners"
+              href="https://www.odoo.com/fr_FR/partners/country/maroc-132?search=msl-itech"
               target="_blank"
               rel="noreferrer noopener"
               className="underline hover:text-brand-white"
