@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useMarket, setMarketOverride } from "@/hooks/useMarket";
 import logoWhite from "@/assets/logo-msl-white.png";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const odooCol = [
   { to: "/odoo-crm-ventes", label: "CRM & Ventes" },
@@ -33,8 +35,57 @@ const COUNTRIES = {
   CA: "🇨🇦 Canada",
 } as const;
 
+type FooterColProps = {
+  id: string;
+  title: string;
+  links: { to: string; label: string }[];
+  openId: string | null;
+  setOpenId: (id: string | null) => void;
+  extra?: React.ReactNode;
+};
+
+function FooterCol({ id, title, links, openId, setOpenId, extra }: FooterColProps) {
+  const isOpen = openId === id;
+  return (
+    <div>
+      {/* Mobile: accordion trigger */}
+      <button
+        type="button"
+        onClick={() => setOpenId(isOpen ? null : id)}
+        aria-expanded={isOpen}
+        className="flex w-full items-center justify-between border-b border-brand-grey/30 py-3 text-left font-heading text-sm font-semibold uppercase tracking-wide sm:hidden"
+      >
+        {title}
+        <ChevronDown
+          size={16}
+          className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+        />
+      </button>
+      {/* Desktop: static heading */}
+      <h4 className="hidden font-heading text-sm font-semibold uppercase tracking-wide sm:block">
+        {title}
+      </h4>
+      <ul
+        className={`mt-4 space-y-2 font-body text-sm text-brand-grey-light/85 sm:block ${
+          isOpen ? "block" : "hidden"
+        }`}
+      >
+        {links.map((l) => (
+          <li key={l.to}>
+            <Link to={l.to} className="hover:text-brand-white">
+              {l.label}
+            </Link>
+          </li>
+        ))}
+        {extra}
+      </ul>
+    </div>
+  );
+}
+
 export const Footer = () => {
   const { market } = useMarket();
+  const [openId, setOpenId] = useState<string | null>(null);
 
   const order: (keyof typeof COUNTRIES)[] =
     market === "MA" ? ["MA", "BE", "CA"] : ["BE", "MA", "CA"];
@@ -46,7 +97,7 @@ export const Footer = () => {
 
   return (
     <footer className="bg-brand-black text-brand-white">
-      <div className="container grid gap-8 px-4 py-12 sm:grid-cols-2 sm:gap-10 sm:px-6 md:py-16 lg:grid-cols-4">
+      <div className="container grid gap-4 px-4 py-10 sm:grid-cols-2 sm:gap-10 sm:px-6 sm:py-12 md:py-16 lg:grid-cols-4">
         {/* Col 1 */}
         <div className="sm:col-span-2 lg:col-span-1">
           <Link to="/" aria-label="MSL-iTECH — accueil" className="inline-block">
@@ -57,10 +108,10 @@ export const Footer = () => {
               loading="lazy"
             />
           </Link>
-          <p className="mt-4 max-w-md font-body text-sm text-brand-grey-light/85">
+          <p className="mt-3 max-w-md font-body text-sm text-brand-grey-light/85 sm:mt-4">
             L'intégrateur Odoo qui structure, construit et accélère.
           </p>
-          <p className="mt-4 max-w-md font-body text-xs text-brand-grey-light/70">
+          <p className="mt-3 hidden max-w-md font-body text-xs text-brand-grey-light/70 sm:mt-4 sm:block">
             Partenaire officiel Odoo —{" "}
             <a
               href="https://www.odoo.com/partners"
@@ -71,63 +122,27 @@ export const Footer = () => {
               vérifiable sur odoo.com/partners
             </a>
           </p>
-          <p className="mt-5 font-mono text-[11px] text-brand-grey-light/80 sm:text-xs">
+          <p className="mt-3 font-mono text-[11px] text-brand-grey-light/80 sm:mt-5 sm:text-xs">
             {order.map((c) => COUNTRIES[c]).join(" · ")}
           </p>
         </div>
 
-        {/* Col 2 */}
-        <div>
-          <h4 className="font-heading text-sm font-semibold uppercase tracking-wide">
-            Odoo ERP
-          </h4>
-          <ul className="mt-4 space-y-2 font-body text-sm text-brand-grey-light/85">
-            {odooCol.map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} className="hover:text-brand-white">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Col 3 */}
-        <div>
-          <h4 className="font-heading text-sm font-semibold uppercase tracking-wide">
-            Secteurs
-          </h4>
-          <ul className="mt-4 space-y-2 font-body text-sm text-brand-grey-light/85">
-            {sectorsCol.map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} className="hover:text-brand-white">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Col 4 */}
-        <div>
-          <h4 className="font-heading text-sm font-semibold uppercase tracking-wide">
-            Entreprise
-          </h4>
-          <ul className="mt-4 space-y-2 font-body text-sm text-brand-grey-light/85">
-            {companyCol.map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} className="hover:text-brand-white">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
+        <FooterCol id="odoo" title="Odoo ERP" links={odooCol} openId={openId} setOpenId={setOpenId} />
+        <FooterCol id="sectors" title="Secteurs" links={sectorsCol} openId={openId} setOpenId={setOpenId} />
+        <FooterCol
+          id="company"
+          title="Entreprise"
+          links={companyCol}
+          openId={openId}
+          setOpenId={setOpenId}
+          extra={
             <li>
               <Link to="/contact" className="hover:text-brand-white">
                 Devenir partenaire
               </Link>
             </li>
-          </ul>
-        </div>
+          }
+        />
       </div>
 
       <div className="border-t border-brand-grey/30">
