@@ -3,10 +3,10 @@
  * Le fichier est généré dynamiquement au build (voir vite.config.ts) et
  * également servi en dev pour pouvoir le tester localement.
  *
- * Ajouter / retirer une route ici suffit — pas besoin de toucher au XML.
+ * Ce fichier ne doit avoir AUCUNE dépendance sur l'app (pas d'imports
+ * d'images, de hooks, d'alias `@/...`) pour pouvoir être consommé par
+ * Node lors du build. Les slugs blog sont déclarés ici explicitement.
  */
-import { blogPosts } from "@/content/blogPosts";
-
 export type SitemapEntry = {
   loc: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
@@ -59,8 +59,16 @@ const staticEntries: SitemapEntry[] = [
   { loc: "/blog", changefreq: "weekly", priority: 0.8 },
 ];
 
+/** Articles de blog — tenir à jour quand on en publie un nouveau. */
+const blogSlugs: { slug: string; publishedAt: string }[] = [
+  { slug: "facturation-electronique-maroc-2026", publishedAt: "2026-04-15" },
+  { slug: "gestion-stock-maroc-apres-1-5m-mad", publishedAt: "2026-03-20" },
+  { slug: "partenaire-odoo-certifie-vs-freelance", publishedAt: "2026-02-10" },
+  { slug: "cout-implementation-odoo-belgique-2026", publishedAt: "2026-01-22" },
+];
+
 export function buildSitemapEntries(): SitemapEntry[] {
-  const blogEntries: SitemapEntry[] = blogPosts.map((p) => ({
+  const blogEntries: SitemapEntry[] = blogSlugs.map((p) => ({
     loc: `/blog/${p.slug}`,
     changefreq: "monthly",
     priority: 0.85,
