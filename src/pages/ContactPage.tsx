@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -123,6 +123,7 @@ export default function ContactPage() {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
   const [data, setData] = useState<Partial<DemoForm>>({
     country: "BE",
   });
@@ -157,10 +158,25 @@ export default function ContactPage() {
     return !hasError;
   };
 
-  const handleNext = () => {
-    if (validateStep()) setStep((s) => Math.min(s + 1, stepLabels.length - 1));
+  const scrollToFormTop = () => {
+    // Wait for re-render so the new step is mounted before scrolling
+    requestAnimationFrame(() => {
+      const el = formRef.current;
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: "smooth" });
+    });
   };
-  const handleBack = () => setStep((s) => Math.max(0, s - 1));
+  const handleNext = () => {
+    if (validateStep()) {
+      setStep((s) => Math.min(s + 1, stepLabels.length - 1));
+      scrollToFormTop();
+    }
+  };
+  const handleBack = () => {
+    setStep((s) => Math.max(0, s - 1));
+    scrollToFormTop();
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -511,6 +527,7 @@ export default function ContactPage() {
           ) : (
             <form
               onSubmit={handleSubmit}
+              ref={formRef}
               className="relative mt-12 overflow-hidden rounded-[28px] border bg-brand-white p-7 shadow-[0_30px_80px_-30px_rgba(18,77,90,0.25)] md:p-10"
               style={{ borderColor: "var(--grey-light)" }}
               noValidate
