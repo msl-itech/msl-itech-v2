@@ -134,7 +134,7 @@ function Hero({
 
           {/* Sticker top-left */}
           <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
-            <Sticker rotate={-8}>★ Certifié Odoo 17+</Sticker>
+            <Sticker rotate={-8}>★ Odoo Ready Partner · v18 & v19</Sticker>
           </div>
 
           {/* Banner content */}

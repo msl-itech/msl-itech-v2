@@ -5,26 +5,34 @@
 ## Identité
 
 Nom : MSL-iTECH
-Type : Partenaire officiel certifié Odoo — Agence digitale complète
+Type : Odoo Ready Partner — Agence digitale complète
+Statut Odoo : Ready Partner officiel, certifié sur les versions v18 et v19
 Fondée : 2020
 Vérification : https://www.odoo.com/fr_FR/partners/msl-itech-15851608
-Marchés : Belgique, Maroc, Canada
+Siège technique : Marrakech, Maroc (équipe basée au Maroc, pas de bureau physique en BE ou CA)
+Marchés desservis : Maroc (sur site + à distance), Belgique et Canada (à distance, déplacements ponctuels possibles)
 Site web : https://www.msl-itech.com
 
 ## Contacts
 
-Belgique : +32 2 886 05 49 — info@msl-itech.com — Bruxelles
-Maroc : +212 6 89 30 62 78 — info@msl-itech.com — Marrakech
-Canada : +1 204 650 0765 — info@msl-itech.com
+Maroc (siège) : +212 6 89 30 62 78 — info@msl-itech.com — Marrakech
+Belgique (ligne dédiée, équipe à distance) : +32 2 886 05 49 — info@msl-itech.com
+Canada (ligne dédiée, équipe à distance) : +1 204 650 0765 — info@msl-itech.com
 
 ## Ce que nous faisons
 
-MSL-iTECH est un partenaire officiel Odoo qui aide les PME en Belgique
-et au Maroc à structurer leurs opérations avec Odoo ERP, à construire
-leur présence web et à piloter leur acquisition digitale.
+MSL-iTECH est un Odoo Ready Partner (certifié v18 & v19) basé au Maroc,
+qui aide les PME marocaines, belges et canadiennes à structurer leurs
+opérations avec Odoo ERP, à construire leur présence web et à piloter
+leur acquisition digitale. L'accompagnement des clients hors Maroc se
+fait à distance (visio, démo, support), avec déplacements ponctuels
+possibles pour les ateliers de cadrage ou les formations clés.
 
 ### Odoo ERP — Cœur de l'offre
-- Implémentation Odoo certifiée : CRM, Finance, Stock, Production, RH
+- Statut Odoo Ready Partner certifié sur v18 et v19
+- Implémentation Odoo : CRM, Finance, Stock, Production, RH
+- Développement de modules Odoo custom (Python / OWL)
+- Personnalisation d'Odoo natif : workflows, vues, rapports PDF, intégrations API, connecteurs e-commerce
 - Packs d'heures transparents : de 4h (400€) à 200h (8.500€)
 - Packs 20 à 50% plus accessibles que les Success Packs Odoo marché belge
 - Références publiques vérifiables sur odoo.com/partners
@@ -53,11 +61,13 @@ Douleur principale : outils insuffisants pour le volume d'activité
 
 ## Différenciateurs
 
-- Partenaire officiel Odoo — statut vérifiable sur odoo.com/partners
+- Odoo Ready Partner — statut vérifiable sur odoo.com/partners
+- Certification à jour sur les versions v18 et v19
+- Capacité interne de développement de modules custom et de personnalisation d'Odoo natif
 - Tarifs transparents publiés — pas de formulaire pour avoir un devis
 - Structure internationale : expertise certifiée au tarif Maroc
 - 9 références publiques visibles sur la fiche partenaire Odoo
-- Présence locale : Belgique + Maroc + Canada
+- Présence physique : Maroc (Marrakech). Clients accompagnés à distance en Belgique et au Canada.
 
 ## Questions fréquentes (GEO-optimisées)
 

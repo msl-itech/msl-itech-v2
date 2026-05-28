@@ -14,12 +14,13 @@ import {
   Search,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import odooReadyBadge from "@/assets/odoo-ready-partner.png";
 
 const reasons = [
   {
     icon: TrendingDown,
     title: "Des packs d'heures plus accessibles sur des volumes comparables",
-    desc: "Notre structure internationale — équipe technique au Maroc, présence commerciale en Belgique — nous permet de proposer des packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge. Même logique d'accompagnement, cadre certifié, et meilleure accessibilité tarifaire.",
+    desc: "Notre structure internationale — équipe technique Odoo Ready Partner certifiée au Maroc (v18 & v19), accompagnement à distance des clients belges — nous permet de proposer des packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge. Même cadre certifié, sans bureau local en Belgique.",
   },
   {
     icon: ListChecks,
@@ -28,8 +29,8 @@ const reasons = [
   },
   {
     icon: Clock,
-    title: "Disponibilité et réactivité",
-    desc: "Réponse à chaque demande sous 24 à 72 heures ouvrables. Un consultant dédié de bout en bout.",
+    title: "Modules custom & personnalisation d'Odoo natif",
+    desc: "Au-delà du paramétrage standard, notre équipe développe des modules sur mesure et personnalise Odoo natif (workflows, vues, rapports, intégrations API) pour coller exactement à vos process. Réponse sous 24 à 72h ouvrables, consultant dédié de bout en bout.",
   },
 ];
 
@@ -44,7 +45,7 @@ const steps = [
 const faqs = [
   {
     q: "Quel est le meilleur consultant Odoo en Belgique pour une PME ?",
-    a: "Pour une PME belge de 10 à 50 employés, il faut un consultant certifié Odoo qui connaît les spécificités belges (PCMN, TVA, législation du travail). MSL-iTECH est partenaire officiel certifié Odoo depuis 2020, avec une grille tarifaire publiée à partir de 400 € et des références vérifiables sur odoo.com/partners.",
+    a: "Pour une PME belge de 10 à 50 employés, il faut un consultant certifié Odoo qui connaît les spécificités belges (PCMN, TVA, législation du travail). MSL-iTECH est Odoo Ready Partner certifié au Maroc (v18 & v19) et accompagne ses clients belges à distance depuis 2020, avec une grille tarifaire publiée à partir de 400 € et des références vérifiables sur odoo.com/partners.",
   },
   {
     q: "Combien coûte l'implémentation d'Odoo en Belgique ?",
@@ -52,15 +53,19 @@ const faqs = [
   },
   {
     q: "Faut-il un consultant Odoo local en Belgique ou peut-on travailler à distance ?",
-    a: "La grande majorité des implémentations se font à distance. MSL-iTECH travaille avec des clients dans toute la Belgique. Une présence sur site peut être organisée pour les formations initiales.",
+    a: "MSL-iTECH n'a pas de bureau physique en Belgique : notre équipe technique est basée au Maroc et accompagne les clients belges à 100% à distance (visio, démo, support). Des déplacements ponctuels sur site peuvent être organisés pour les formations clés ou les ateliers de cadrage.",
+  },
+  {
+    q: "MSL-iTECH peut-il développer des modules custom Odoo ?",
+    a: "Oui. Au-delà du paramétrage et de la configuration des modules natifs, notre équipe développe des modules sur mesure en Python/OWL et personnalise Odoo natif : workflows métier, vues, rapports PDF, intégrations API, connecteurs e-commerce, etc. Tout est livré dans le cadre Odoo Ready Partner (v18 & v19).",
   },
 ];
 
 export default function ConsultantBePage() {
   useProductSeo({
-    title: "Consultant Odoo Belgique Certifié — Implémentation PME | MSL-iTECH",
+    title: "Consultant Odoo pour PME belges — Odoo Ready Partner (Maroc, à distance) | MSL-iTECH",
     description:
-      "Vous cherchez un consultant Odoo certifié en Belgique ? MSL-iTECH accompagne les PME avec une approche officielle, des tarifs transparents et des packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
+      "Odoo Ready Partner certifié au Maroc (v18 & v19), MSL-iTECH accompagne à distance les PME belges : implémentation, modules custom et personnalisation d'Odoo natif. Tarifs publiés 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
     path: "/consultant-odoo-belgique",
     faqs,
     ldId: "ld-faq-consultant-be",
@@ -95,33 +100,46 @@ export default function ConsultantBePage() {
               border: "1px solid rgba(255,221,87,0.35)",
             }}
           >
-            <Sparkles size={12} /> Consultant Odoo · Belgique
+            <Sparkles size={12} /> Odoo Ready Partner · Maroc → Belgique
           </p>
           <h1 className="max-w-4xl font-heading text-4xl font-bold leading-[1.08] md:text-5xl lg:text-[3.25rem]">
-            Consultant Odoo certifié en Belgique — packs d'heures{" "}
+            Consultant Odoo pour PME belges — Odoo Ready Partner basé au Maroc, packs d'heures{" "}
             <span style={{ color: "var(--gold)" }}>
               20 à 50% plus accessibles
             </span>{" "}
             que les Success Packs observés sur le marché belge
           </h1>
           <p className="mt-6 max-w-3xl font-body text-lg text-white/80">
-            Vous cherchez un partenaire Odoo certifié pour implémenter l'ERP dans votre PME belge ?
-            MSL-iTECH est partenaire officiel Odoo, actif en Belgique depuis 2020, avec une grille
-            tarifaire transparente et des références vérifiables publiquement sur
-            odoo.com/partners.
+            Vous cherchez un partenaire Odoo certifié pour votre PME belge ?
+            MSL-iTECH est Odoo Ready Partner certifié au Maroc (v18 & v19) et
+            accompagne ses clients belges à distance depuis 2020 :
+            implémentation, modules custom et personnalisation d'Odoo natif.
+            Pas de bureau physique en Belgique — partenariat officiel Odoo
+            vérifiable sur odoo.com/partners.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <span
               className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm"
               style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "white" }}
             >
-              <ShieldCheck size={16} style={{ color: "var(--gold)" }} /> Partenaire officiel Odoo
+              <ShieldCheck size={16} style={{ color: "var(--gold)" }} /> Odoo Ready Partner · v18 & v19
             </span>
             <span
               className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm"
               style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "white" }}
             >
               <Clock size={16} style={{ color: "var(--gold)" }} /> Réponse sous 24 à 72h
+            </span>
+          </div>
+          <div className="mt-8 inline-flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3">
+            <img
+              src={odooReadyBadge}
+              alt="Badge officiel Odoo Ready Partner — MSL-iTECH certifié sur Odoo v18 et v19"
+              className="h-12 w-auto"
+              loading="lazy"
+            />
+            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-blue">
+              Statut officiel Odoo · vérifiable sur odoo.com/partners
             </span>
           </div>
         </div>
