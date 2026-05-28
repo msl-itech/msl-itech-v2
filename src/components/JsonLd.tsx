@@ -29,11 +29,13 @@ export const professionalServiceSchema = {
   name: "MSL-iTECH — Implémentation Odoo & Services Digitaux",
   url: "https://www.msl-itech.com",
   description:
-    "Partenaire officiel Odoo. Implémentation ERP certifiée, création web React/WordPress et marketing digital pour PME en Belgique et au Maroc. Packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
+    "Odoo Ready Partner certifié au Maroc (v18 & v19). Implémentation ERP, développement de modules custom et personnalisation d'Odoo natif, création web React/WordPress et marketing digital. Accompagnement à distance des PME en Belgique, au Canada et à l'international. Packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
   provider: { "@id": "https://www.msl-itech.com/#organization" },
   areaServed: ["BE", "MA", "CA"],
   serviceType: [
     "Implémentation Odoo ERP",
+    "Développement de modules Odoo sur mesure",
+    "Personnalisation d'Odoo natif",
     "Création de sites web",
     "Marketing digital",
     "Référencement SEO",
@@ -56,7 +58,7 @@ export const professionalServiceSchema = {
   ],
   hasCredential: {
     "@type": "EducationalOccupationalCredential",
-    name: "Partenaire officiel Odoo certifié",
+    name: "Odoo Ready Partner — certifié v18 & v19",
     url: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
   },
   aggregateRating: {
@@ -104,21 +106,15 @@ const sharedAggregateRating = {
 
 export const localBusinessBeSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "Organization",
   "@id": "https://www.msl-itech.com/#localbusiness-be",
-  name: "MSL-iTECH Belgique",
+  name: "MSL-iTECH — Service Belgique (à distance)",
   url: "https://www.msl-itech.com",
   telephone: "+32-2-886-05-49",
   email: "info@msl-itech.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Bruxelles",
-    addressCountry: "BE",
-  },
   description:
-    "Partenaire officiel Odoo en Belgique. Implémentation ERP, création web et marketing digital pour PME belges.",
+    "Odoo Ready Partner certifié au Maroc (v18 & v19), accompagnement à distance des PME belges. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique en Belgique.",
   priceRange: "€€",
-  openingHours: "Mo-Fr 09:00-18:00",
   areaServed: "BE",
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
   aggregateRating: sharedAggregateRating,
@@ -140,7 +136,7 @@ export const localBusinessMaSchema = {
     addressCountry: "MA",
   },
   description:
-    "Partenaire officiel Odoo au Maroc. Implémentation ERP pour PME marocaines : HORECA, BTP, Santé, Commerce.",
+    "Odoo Ready Partner certifié (v18 & v19) basé à Marrakech. Implémentation ERP, modules custom et personnalisation d'Odoo natif pour PME marocaines : HORECA, BTP, Santé, Commerce. Accompagne également des clients en Belgique et au Canada à distance.",
   priceRange: "€€",
   openingHours: "Mo-Fr 09:00-18:00",
   areaServed: "MA",
@@ -151,19 +147,14 @@ export const localBusinessMaSchema = {
 
 export const localBusinessCaSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "Organization",
   "@id": "https://www.msl-itech.com/#localbusiness-ca",
-  name: "MSL-iTECH Canada",
+  name: "MSL-iTECH — Service Canada (à distance)",
   url: "https://www.msl-itech.com",
   email: "info@msl-itech.com",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "CA",
-  },
   description:
-    "Partenaire Odoo au Canada. Implémentation ERP, intégration et accompagnement pour PME canadiennes francophones.",
+    "Odoo Ready Partner certifié au Maroc (v18 & v19), accompagnement à distance des PME canadiennes francophones. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique au Canada.",
   priceRange: "$$",
-  openingHours: "Mo-Fr 09:00-18:00",
   areaServed: "CA",
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
   aggregateRating: sharedAggregateRating,
