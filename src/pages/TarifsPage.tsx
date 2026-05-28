@@ -381,11 +381,13 @@ export default function TarifsPage() {
               </h2>
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              Notre structure internationale — équipe technique certifiée au
-              Maroc, présence commerciale en Belgique — nous permet de proposer
-              des packs <strong className="text-brand-black">20 à 50% plus
+              Notre structure internationale — équipe technique Odoo Ready
+              Partner certifiée au Maroc (v18 & v19), accompagnement à distance
+              des clients belges et canadiens — nous permet de proposer des
+              packs <strong className="text-brand-black">20 à 50% plus
               accessibles</strong> que les Success Packs observés sur le marché
-              belge, à volume comparable.
+              belge, à volume comparable. Nous développons aussi des modules
+              custom et personnalisons Odoo natif selon vos process.
             </p>
           </div>
         </div>

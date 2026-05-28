@@ -37,12 +37,12 @@ function useSeo(market: "BE" | "MA") {
   useEffect(() => {
     const title =
       market === "MA"
-        ? "Intégration Odoo Maroc | ERP PME & Digital — MSL-iTECH"
-        : "Expert Odoo Belgique | Intégration ERP & Digital — MSL-iTECH";
+        ? "Odoo Ready Partner Maroc | ERP, modules custom & digital — MSL-iTECH"
+        : "Expert Odoo — Maroc, Belgique & Canada | ERP & modules sur mesure — MSL-iTECH";
     const desc =
       market === "MA"
-        ? "Intégrateur Odoo certifié au Maroc. Solutions ERP sur mesure pour HORECA, BTP, Santé et Commerce. À partir de 199 MAD/mois. Démo gratuite."
-        : "Partenaire officiel Odoo en Belgique. Implémentation ERP, création web et marketing digital pour PME. Packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge. Démo gratuite.";
+        ? "Odoo Ready Partner certifié au Maroc (v18 & v19). Implémentation ERP, modules custom et personnalisation d'Odoo natif pour HORECA, BTP, Santé et Commerce. À partir de 199 MAD/mois."
+        : "Odoo Ready Partner certifié au Maroc (v18 & v19) — accompagnement à distance des PME belges et canadiennes. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Packs 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.";
     document.title = title;
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
@@ -303,7 +303,7 @@ function HeroShell({
             <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Réponse sous 24-72h
           </span>
           <span className="flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Certifié Odoo 17+
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Odoo Ready Partner · v18 & v19
           </span>
         </div>
       </div>
@@ -315,10 +315,10 @@ function HeroBE() {
   return (
     <HeroShell
       bgImage={heroBeImg}
-      eyebrow="Partenaire officiel Odoo · Belgique"
-      titleTop="L'expertise d'un partenaire officiel certifié."
+      eyebrow="Odoo Ready Partner · Maroc → Belgique & Canada"
+      titleTop="L'expertise d'un Odoo Ready Partner certifié."
       titleAccent="Des tarifs repensés."
-      description="Votre PME mérite un ERP performant sans la lourdeur d'un grand cabinet. Profitez de packs d'heures 20 à 50% plus accessibles que les standards du marché belge, sans compromis sur la qualité."
+      description="Équipe technique certifiée au Maroc (v18 & v19), à votre service à distance en Belgique et au Canada. Implémentation, modules custom et personnalisation d'Odoo natif — sans la lourdeur d'un grand cabinet, avec des packs 20 à 50% plus accessibles que les standards du marché belge."
     />
   );
 }
@@ -349,7 +349,8 @@ function SocialProof() {
         Odoo
       </a>
     </>,
-    "✓ Certifié Odoo 17+",
+    "✓ Odoo Ready Partner · v18 & v19",
+    "✓ Modules custom & personnalisation d'Odoo natif",
     "✓ Belgique · Maroc · Canada",
     "✓ 9 références publiques vérifiées",
     "✓ Tarifs 20 à 50% plus compétitifs",
@@ -802,7 +803,7 @@ function CaseStudy({ market }: { market: "BE" | "MA" }) {
             "Une implémentation structurée et transparente. AIS figure parmi nos références publiques, vérifiables sur odoo.com.",
           metrics: [
             { k: "9", v: "références" },
-            { k: "V17", v: "certifié" },
+            { k: "v18·v19", v: "certifié" },
             { k: "100%", v: "vérifiable" },
           ],
           img: caseBe,

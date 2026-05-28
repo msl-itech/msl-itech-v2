@@ -125,8 +125,8 @@ export default function TarifBePage() {
               20 à 50% plus accessibles
             </strong>{" "}
             que les Success Packs observés sur le marché belge, grâce à notre structure
-            internationale — équipe technique certifiée au Maroc, présence commerciale en
-            Belgique.
+            internationale — équipe technique Odoo Ready Partner certifiée au Maroc (v18 & v19),
+            accompagnement à distance des clients belges (sans bureau local en Belgique).
           </p>
         </div>
       </section>
