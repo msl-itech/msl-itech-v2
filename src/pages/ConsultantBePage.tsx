@@ -14,6 +14,7 @@ import {
   Search,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
+import odooReadyBadge from "@/assets/odoo-ready-partner.png";
 
 const reasons = [
   {
@@ -121,13 +122,24 @@ export default function ConsultantBePage() {
               className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm"
               style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "white" }}
             >
-              <ShieldCheck size={16} style={{ color: "var(--gold)" }} /> Partenaire officiel Odoo
+              <ShieldCheck size={16} style={{ color: "var(--gold)" }} /> Odoo Ready Partner · v18 & v19
             </span>
             <span
               className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm"
               style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "white" }}
             >
               <Clock size={16} style={{ color: "var(--gold)" }} /> Réponse sous 24 à 72h
+            </span>
+          </div>
+          <div className="mt-8 inline-flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3">
+            <img
+              src={odooReadyBadge}
+              alt="Badge officiel Odoo Ready Partner — MSL-iTECH certifié sur Odoo v18 et v19"
+              className="h-12 w-auto"
+              loading="lazy"
+            />
+            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-blue">
+              Statut officiel Odoo · vérifiable sur odoo.com/partners
             </span>
           </div>
         </div>
