@@ -183,39 +183,33 @@ const faqs = [
 export default function TarifsPage() {
   const { market } = useMarket();
   const [currency, setCurrency] = useState<Currency>(market === "MA" ? "MAD" : "EUR");
-  const [userTouched, setUserTouched] = useState(false);
 
   // Sync from useMarket (BE/MA via Cloudflare X-Market header)
   useEffect(() => {
-    if (userTouched) return;
     setCurrency(market === "MA" ? "MAD" : "EUR");
-  }, [market, userTouched]);
+  }, [market]);
 
-  // Geo-detect Canada / US via IP (only if user hasn't picked manually & not MA)
+  // Geo-detect via IP and pick the right currency automatically.
+  // No manual override — affichage piloté à 100% par la géolocalisation.
   useEffect(() => {
-    if (userTouched) return;
-    if (market === "MA") return; // MAD already set
     let cancelled = false;
     fetch("https://ipapi.co/json/")
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (cancelled || !data) return;
         const code = data.country_code as string | undefined;
-        if (code === "CA") setCurrency("CAD");
-        else if (code === "MA") setCurrency("MAD");
+        if (code === "MA") setCurrency("MAD");
+        else if (code === "CA") setCurrency("CAD");
+        else if (code === "US") setCurrency("USD");
+        else setCurrency("EUR"); // BE / FR / reste du monde
       })
       .catch(() => {
-        /* keep default */
+        /* keep currency défini par useMarket */
       });
     return () => {
       cancelled = true;
     };
-  }, [market, userTouched]);
-
-  const pickCurrency = (c: Currency) => {
-    setUserTouched(true);
-    setCurrency(c);
-  };
+  }, []);
 
   useProductSeo({
     title: "Tarifs Odoo Belgique & Maroc — Packs transparents | MSL-iTECH",
