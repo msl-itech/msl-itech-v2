@@ -900,7 +900,7 @@ function Why() {
     {
       icon: Wallet,
       title: "Tarification optimisée",
-      desc: "Notre présence BeLux-Maroc nous permet de proposer des packs 20 à 50% plus accessibles, à qualité et volume équivalents.",
+      desc: "Notre structure internationale — équipe technique certifiée au Maroc, clients en BeLux et Canada accompagnés à distance — nous permet de proposer des packs 20 à 50% plus accessibles, à qualité et volume équivalents.",
     },
     {
       icon: Globe2,

@@ -62,7 +62,7 @@ export default function MentionsLegalesPage() {
               Téléphone : +212 (0)2 886 05 49
             </p>
           </div>
-          <p>Présence internationale :</p>
+          <p>Lignes de contact internationales (équipe basée au Maroc, accompagnement à distance) :</p>
           <ul>
             <li>Belgique : +32 2 886 05 49</li>
             <li>Canada : +1 204 650 0765</li>
