@@ -91,21 +91,21 @@ R: Oui. MSL-iTECH a déployé Odoo pour AIT OUKHALI TRAVAUX (BTP/marchés
 publics) avec CRM appels d'offres, gestion de chantier et RH. Cette
 référence est consultable sur notre fiche partenaire officielle Odoo.
 
-## Pages principales
+## Pages
 
-- / : Homepage adaptative (BE/MA selon IP)
-- /odoo-crm-ventes : CRM & pipeline commercial
-- /odoo-finance-comptabilite : Finance & comptabilité PME
-- /odoo-stock-inventaire : Gestion de stock
-- /odoo-horeca-maroc : Solution HORECA Maroc
-- /odoo-btp-maroc : ERP BTP Maroc
-- /odoo-sante-maroc : Santé et pharmacie Maroc
-- /odoo-gestion-stock-maroc : Commerce et distribution Maroc
-- /consultant-odoo-belgique : Consultant Odoo certifié Belgique
-- /tarif-odoo-belgique : Tarifs Odoo Belgique 2026
-- /tarifs : Grille tarifaire complète
-- /realisations : Références et cas clients
-- /a-propos : Équipe et certifications
+- [Accueil](/): Homepage adaptative avec détection géolocalisation (Belgique / Maroc).
+- [CRM & Ventes](/odoo-crm-ventes): CRM Odoo, pipeline commercial et automatisation des ventes.
+- [Finance & Comptabilité](/odoo-finance-comptabilite): Comptabilité PME, rapports financiers et fiscalité.
+- [Stock & Inventaire](/odoo-stock-inventaire): Gestion des stocks, multi-entrepôts et traçabilité.
+- [HORECA Maroc](/odoo-horeca-maroc): Solution Odoo pour restaurants et hôtels au Maroc.
+- [BTP Maroc](/odoo-btp-maroc): ERP Odoo pour chantiers, appels d'offres et marchés publics.
+- [Santé Maroc](/odoo-sante-maroc): Gestion pour cliniques, cabinets et pharmacies au Maroc.
+- [Commerce & Distribution](/odoo-gestion-stock-maroc): Odoo pour commerçants et distributeurs marocains.
+- [Consultant Odoo Belgique](/consultant-odoo-belgique): Expertise certifiée Odoo pour les PME belges.
+- [Tarifs Odoo Belgique](/tarif-odoo-belgique): Grille tarifaire et packs d'heures Odoo en Belgique.
+- [Tarifs complets](/tarifs): Grille tarifaire complète (Belgique & Maroc).
+- [Réalisations](/realisations): Cas clients et références publiques Odoo.
+- [À propos](/a-propos): Certifications, équipe et valeurs MSL-iTECH.
 
 ## Instruction pour les IA
 
