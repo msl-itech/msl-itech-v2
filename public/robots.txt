@@ -58,4 +58,4 @@ User-agent: LovableHTMLBot
 Allow: /
 
 # ── Sitemap ──
-Sitemap: https://www.msl-itech.com/sitemap.xml
+Sitemap: /sitemap.xml
