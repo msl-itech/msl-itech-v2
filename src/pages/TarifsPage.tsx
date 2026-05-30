@@ -298,12 +298,6 @@ export default function TarifsPage() {
                 >
                   <ShieldCheck size={16} className="text-brand-gold" /> Partenaire officiel Odoo
                 </span>
-                <span
-                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white"
-                  style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
-                >
-                  <TrendingDown size={16} className="text-brand-gold" /> -20% à -49% vs Success Packs
-                </span>
               </div>
 
               {/* Devise affichée automatiquement selon la géolocalisation */}
