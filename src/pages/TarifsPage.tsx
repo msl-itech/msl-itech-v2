@@ -306,33 +306,7 @@ export default function TarifsPage() {
                 </span>
               </div>
 
-              {/* Currency toggle */}
-              <div
-                className="mt-8 inline-flex flex-wrap items-center justify-center gap-1 rounded-full p-1"
-                style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
-              >
-                {(
-                  [
-                    { c: "EUR" as Currency, label: "€ Euro" },
-                    { c: "MAD" as Currency, label: "MAD Dirham" },
-                    { c: "CAD" as Currency, label: "$ CAD" },
-                  ]
-                ).map(({ c, label }) => (
-                  <button
-                    key={c}
-                    type="button"
-                    onClick={() => pickCurrency(c)}
-                    aria-pressed={currency === c}
-                    className="rounded-full px-4 py-1.5 text-sm font-semibold transition"
-                    style={{
-                      backgroundColor: currency === c ? "var(--gold)" : "transparent",
-                      color: currency === c ? "var(--blue)" : "white",
-                    }}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
+              {/* Devise affichée automatiquement selon la géolocalisation */}
             </div>
 
             {/* Breadcrumb pill */}
