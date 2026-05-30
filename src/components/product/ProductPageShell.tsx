@@ -229,10 +229,10 @@ function Hero({
               ))}
             </ul>
 
-            <div className="mt-9 flex flex-wrap items-center gap-3">
+            <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Link
                 to="/contact"
-                className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] sm:w-auto"
                 style={{ backgroundColor: "var(--gold)" }}
               >
                 Réserver ma démo gratuite
@@ -243,7 +243,7 @@ function Hero({
               </Link>
               <Link
                 to="/realisations"
-                className="group inline-flex items-center gap-2 rounded-full border-2 px-6 py-3.5 font-body text-sm font-semibold text-brand-black transition hover:bg-brand-white"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full border-2 px-6 py-3.5 font-body text-sm font-semibold text-brand-black transition hover:bg-brand-white sm:w-auto"
                 style={{ borderColor: "var(--blue)" }}
               >
                 <span
