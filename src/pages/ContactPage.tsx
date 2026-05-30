@@ -48,7 +48,7 @@ function Sticker({
 const offices = [
   {
     country: "Belgique",
-    address: "Bruxelles, Belgique",
+    address: "—",
     phone: "+32 2 886 05 49",
     email: "info@msl-itech.com",
   },
@@ -116,7 +116,7 @@ export default function ContactPage() {
   useProductSeo({
     title: "Réserver une Démo Odoo Gratuite — MSL-iTECH Belgique & Maroc",
     description:
-      "Contactez MSL-iTECH pour une démo Odoo personnalisée. Réponse sous 24 à 72h. Bureaux en Belgique, au Maroc et au Canada. Sans engagement.",
+      "Contactez MSL-iTECH pour une démo Odoo personnalisée. Réponse sous 24 à 72h. Équipe technique au Maroc, accompagnement à distance des clients en Belgique et au Canada. Sans engagement.",
     path: "/contact",
   });
 
@@ -372,7 +372,7 @@ export default function ContactPage() {
               Nos coordonnées
             </p>
             <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]">
-              Trois bureaux, un interlocuteur dédié
+              Trois lignes de contact, un interlocuteur dédié
             </h2>
           </div>
 
