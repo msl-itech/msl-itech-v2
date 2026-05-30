@@ -71,7 +71,7 @@ export default function ServicesProPage() {
       eyebrow="Odoo Services Professionnels"
       title={
         <>
-          Vos consultants travaillent mais vous ne savez pas combien vous avez{" "}
+          Vos consultants <span className="whitespace-nowrap">travaillent</span> mais vous ne savez pas combien vous avez{" "}
           <span style={{ color: "var(--gold)" }}>réellement facturé</span> ce
           mois-ci
         </>
