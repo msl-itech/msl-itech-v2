@@ -102,12 +102,12 @@ export const Footer = () => {
         {/* Col 1 */}
         <div className="sm:col-span-2 lg:col-span-1">
           <Link to="/" aria-label="MSL-iTECH — accueil" className="inline-block">
-            <img
-              src={logoWhite}
-              alt="MSL-iTECH"
-              className="h-9 w-auto"
-              loading="lazy"
-            />
+          <img
+            src={logoWhite}
+            alt="Logo MSL-iTECH"
+            className="h-9 w-auto"
+            loading="lazy"
+          />
           </Link>
           <p className="mt-3 max-w-md font-body text-sm text-brand-grey-light/85 sm:mt-4">
             L'intégrateur Odoo qui structure, construit et accélère.
