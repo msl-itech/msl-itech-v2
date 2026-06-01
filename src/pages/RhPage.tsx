@@ -58,12 +58,33 @@ const bentoCards: BentoCard[] = [
   },
 ];
 
+const faqs = [
+  {
+    q: "Odoo RH gère-t-il la paie marocaine (CNSS, IGR, AMO) ?",
+    a: "Oui. Odoo Paie est paramétrable pour la législation marocaine : calcul CNSS, AMO, IGR, CIMR, indemnités et primes. MSL-iTECH configure les règles de paie selon votre convention collective et fournit les bulletins conformes.",
+  },
+  {
+    q: "Combien de temps pour déployer Odoo RH et Paie ?",
+    a: "Un déploiement RH + Congés + Présences se fait en général en 3 à 6 semaines selon la taille de l'effectif et la complexité de la paie. La reprise de l'historique de paie et la formation des gestionnaires sont incluses dans nos packs.",
+  },
+  {
+    q: "Quel est le tarif d'une mise en place Odoo RH ?",
+    a: "L'implémentation Odoo RH s'inscrit dans les packs d'heures MSL-iTECH (de 400€ à 8 500€). Un périmètre RH + Paie + Congés tient généralement dans le pack Pro (40h, 1 700€) à Premium (80h, 3 400€). Tarifs détaillés sur msl-itech.com/tarifs.",
+  },
+  {
+    q: "Les salariés peuvent-ils faire leurs demandes depuis leur téléphone ?",
+    a: "Oui. L'application mobile Odoo permet aux salariés de poser leurs congés, déclarer leurs notes de frais, pointer leurs présences et consulter leurs bulletins de paie. Le manager valide depuis la même interface.",
+  },
+];
+
 export default function RhPage() {
   useProductSeo({
     title: "Odoo RH & Paie — Gestion des ressources humaines | MSL-iTECH",
     description:
       "Automatisez la paie, les congés, les évaluations et le recrutement avec Odoo RH. Implémentation certifiée par MSL-iTECH. Démo gratuite.",
     path: "/odoo-rh-paie",
+    faqs,
+    ldId: "ld-faq-rh",
   });
 
   return (
@@ -93,6 +114,7 @@ export default function RhPage() {
       }
       ctaTitle="Réserver ma démo gratuite — RH & Paie"
       ctaSubtitle="Voir Odoo RH configuré pour votre structure · Sans engagement"
+      faqs={faqs}
     />
   );
 }

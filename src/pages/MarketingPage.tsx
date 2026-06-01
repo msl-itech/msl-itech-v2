@@ -33,12 +33,33 @@ const features = [
   },
 ];
 
+const faqs = [
+  {
+    q: "Qu'est-ce que le GEO (Generative Engine Optimization) ?",
+    a: "Le GEO — aussi appelé AEO (Answer Engine Optimization) — est l'optimisation d'un site pour être cité et recommandé par les moteurs IA : ChatGPT, Perplexity, Claude, Gemini. Concrètement : contenu structuré en questions/réponses, données factuelles datées, balisage JSON-LD FAQPage, fichier llms.txt à la racine.",
+  },
+  {
+    q: "Quel est le tarif d'un accompagnement SEO ou GEO chez MSL-iTECH ?",
+    a: "Nos prestations marketing démarrent par un audit digital gratuit. Les missions récurrentes (SEO, GEO, contenu) s'organisent en forfaits mensuels adaptés à la taille du site et au volume de mots-clés visés. Devis sous 24 à 72h après audit.",
+  },
+  {
+    q: "Combien de temps avant de voir des résultats SEO ?",
+    a: "Sur des requêtes longue-traîne peu concurrentielles, les premiers gains de positions arrivent en 4 à 8 semaines. Sur des mots-clés concurrentiels (ex. \"intégrateur Odoo Belgique\"), il faut compter 4 à 6 mois de production de contenu et de signaux pour stabiliser la première page.",
+  },
+  {
+    q: "Le GEO remplace-t-il le SEO classique ?",
+    a: "Non, il le complète. Les LLM s'appuient en partie sur les pages bien classées dans Google : un bon SEO reste la base. Le GEO ajoute une couche (FAQ structurées, llms.txt, citations factuelles) qui rend le contenu plus facilement réutilisable par les moteurs IA.",
+  },
+];
+
 export default function MarketingPage() {
   useProductSeo({
     title: "Marketing Digital Belgique & Maroc — SEO, GEO & Acquisition | MSL-iTECH",
     description:
       "Audit digital, SEO, référencement IA et campagnes d'acquisition pour PME. MSL-iTECH pilote votre croissance en ligne. Audit gratuit.",
     path: "/marketing-digital",
+    faqs,
+    ldId: "ld-faq-marketing",
   });
 
   return (
@@ -140,6 +161,7 @@ export default function MarketingPage() {
       }}
       ctaTitle="Demander mon audit digital gratuit"
       ctaSubtitle="Analyse de votre présence en ligne · Recommandations concrètes · Réponse sous 24 à 72h"
+      faqs={faqs}
     />
   );
 }

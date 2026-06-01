@@ -32,6 +32,84 @@ import caseBe from "@/assets/home/case-be.webp";
 import caseMa from "@/assets/home/case-ma.webp";
 import { JsonLd, professionalServiceSchema } from "@/components/JsonLd";
 
+/* ============================== FAQ (AEO) ============================== */
+const homeFaqs: { q: string; a: string }[] = [
+  {
+    q: "MSL-iTECH est-il un partenaire Odoo officiel ?",
+    a: "Oui. MSL-iTECH est Odoo Ready Partner, certifié sur les versions v18 et v19. Notre fiche partenaire est vérifiable sur odoo.com/partners avec 9 références publiques.",
+  },
+  {
+    q: "Combien coûte une implémentation Odoo chez MSL-iTECH ?",
+    a: "Les packs MSL-iTECH vont de 400€ (4h, Essentiel) à 8 500€ (200h, Elite). Sur les volumes comparables, ils sont 20 à 50% plus accessibles que les Success Packs Odoo observés sur le marché belge. Tarifs publiés sur msl-itech.com/tarifs.",
+  },
+  {
+    q: "MSL-iTECH intervient dans quels pays ?",
+    a: "Notre équipe est basée à Marrakech, au Maroc. Nous accompagnons les PME marocaines sur site et à distance, ainsi que les PME belges et canadiennes à distance, avec déplacements ponctuels possibles pour les ateliers de cadrage ou les formations clés.",
+  },
+  {
+    q: "En combien de temps une implémentation Odoo est-elle opérationnelle ?",
+    a: "Un périmètre essentiel (CRM, Vente, Facturation) est en général opérationnel en 2 à 4 semaines. Un déploiement multi-modules avec reprise de données et formation prend 6 à 12 semaines selon la taille de l'entreprise.",
+  },
+  {
+    q: "Quelles versions d'Odoo MSL-iTECH déploie-t-il ?",
+    a: "MSL-iTECH est certifié Ready Partner sur Odoo v18 et v19. Les nouveaux projets sont déployés sur v18 ou v19 selon les modules tiers nécessaires. Les migrations depuis v15/v16/v17 font partie de notre catalogue.",
+  },
+];
+
+const homeFaqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: homeFaqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+function HomeFaq() {
+  return (
+    <section className="py-24" style={{ backgroundColor: "var(--bg)" }}>
+      <div className="container max-w-3xl">
+        <div className="text-center">
+          <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+            <span className="inline-block h-px w-8 bg-brand-blue" />
+            Questions fréquentes
+          </p>
+          <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]">
+            Tout ce qu'il faut savoir avant de démarrer
+          </h2>
+        </div>
+        <div className="mt-12 grid gap-4">
+          {homeFaqs.map((f, i) => (
+            <details
+              key={f.q}
+              className="group rounded-2xl border bg-white p-6 transition hover:border-[var(--blue)]/40"
+              style={{ borderColor: "var(--grey-light)" }}
+              open={i === 0}
+            >
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-4">
+                <h3 className="font-heading text-lg font-semibold text-brand-black md:text-xl">
+                  {f.q}
+                </h3>
+                <span
+                  aria-hidden
+                  className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-mono text-sm font-bold transition group-open:rotate-45"
+                  style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-4 font-body text-base leading-relaxed text-brand-grey">
+                {f.a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ------------------------------ SEO ------------------------------ */
 function useSeo(market: "BE" | "MA") {
   useEffect(() => {
@@ -1034,12 +1112,14 @@ export default function HomePage() {
   return (
     <>
       <JsonLd id="ld-professional-service-home" data={professionalServiceSchema} />
+      <JsonLd id="ld-faq-home" data={homeFaqJsonLd} />
       {market === "MA" ? <HeroMA /> : <HeroBE />}
       <SocialProof />
       <Pillars />
       <Sectors market={market} />
       <CaseStudy market={market} />
       <Why />
+      <HomeFaq />
       <FinalCTA />
     </>
   );

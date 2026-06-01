@@ -58,12 +58,33 @@ const bentoCards: BentoCard[] = [
   },
 ];
 
+const faqs = [
+  {
+    q: "Odoo Production convient-il à une PME industrielle de 10 à 50 personnes ?",
+    a: "Oui. Odoo MRP est conçu pour les PME : nomenclatures multi-niveaux, ordres de fabrication, planification de capacité, contrôle qualité et maintenance. C'est exactement le segment où nous le déployons (PME 10 à 50 salariés, CA 500K€ à 5M€+).",
+  },
+  {
+    q: "Combien coûte une implémentation Odoo Production ?",
+    a: "Un déploiement Production complet (MRP + PLM + Qualité + Maintenance) s'inscrit généralement entre le pack Premium (80h, 3 400€) et le pack Elite (200h, 8 500€) selon la complexité des nomenclatures et le nombre de postes de travail. Les packs MSL-iTECH sont 20 à 50% plus accessibles que les Success Packs Odoo marché belge.",
+  },
+  {
+    q: "Peut-on lier les commandes clients aux ordres de fabrication automatiquement ?",
+    a: "Oui. Odoo génère automatiquement les ordres de fabrication depuis les commandes clients dès qu'une référence est marquée \"à produire\". La traçabilité va de la commande à la livraison, en passant par les besoins composants et les achats.",
+  },
+  {
+    q: "Quelle version d'Odoo pour la production ?",
+    a: "MSL-iTECH déploie Odoo Production sur les versions v18 et v19, sur lesquelles nous sommes certifiés Ready Partner. La v18 apporte une refonte du planning MRP et des écrans atelier optimisés tablette.",
+  },
+];
+
 export default function ProductionPage() {
   useProductSeo({
     title: "Odoo Production & Fabrication PME — MSL-iTECH",
     description:
       "Planifiez votre production, gérez vos ordres de fabrication et contrôlez la qualité avec Odoo. Implémentation certifiée MSL-iTECH.",
     path: "/odoo-production-fabrication",
+    faqs,
+    ldId: "ld-faq-production",
   });
 
   return (
@@ -94,6 +115,7 @@ export default function ProductionPage() {
       }
       ctaTitle="Réserver ma démo gratuite — Production & Fabrication"
       ctaSubtitle="Voir Odoo Production configuré pour votre atelier · Sans engagement"
+      faqs={faqs}
     />
   );
 }
