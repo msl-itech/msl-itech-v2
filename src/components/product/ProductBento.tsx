@@ -1,9 +1,9 @@
-import type { LucideIcon } from "lucide-react";
+import type { ComponentType } from "react";
 
 export type BentoVariant = "blue" | "gold" | "white" | "bluelight";
 
 export type BentoCard = {
-  icon: LucideIcon;
+  icon: ComponentType<{ size?: number | string; className?: string }>;
   title: string;
   desc: string;
   variant: BentoVariant;
