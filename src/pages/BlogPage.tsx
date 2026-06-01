@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Sparkles, Clock, Calendar, ExternalLink } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { getPostBySlug } from "@/content/blogPosts";
+import { JsonLd } from "@/components/JsonLd";
 
 export default function BlogPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -36,8 +37,44 @@ export default function BlogPage() {
     );
   }
 
+  const articleUrl = `https://www.msl-itech.com/blog/${post.slug}`;
+  const articleImage = post.image
+    ? post.image.startsWith("http")
+      ? post.image
+      : `https://www.msl-itech.com${post.image.startsWith("/") ? post.image : "/" + post.image}`
+    : "https://www.msl-itech.com/og-default.jpg";
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    image: articleImage,
+    articleSection: post.category,
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: "MSL-iTECH",
+      url: "https://www.msl-itech.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "MSL-iTECH",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.msl-itech.com/icon-192.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+  };
+
   return (
     <>
+      <JsonLd id="ld-article-blog" data={articleSchema} />
       {/* HERO */}
       <section className="relative overflow-hidden" style={{ backgroundColor: "#0F3F4A" }}>
         <div
