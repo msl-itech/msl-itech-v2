@@ -392,7 +392,7 @@ const modules = [
     label: "CRM & Ventes",
     eyebrow: "01 — Conversion",
     desc: "Pipeline visuel, devis en 2 clics, signatures électroniques. Vos commerciaux ferment plus vite.",
-    icon: Users,
+    icon: OdooCrm,
     img: crmImg,
     big: true,
   },
@@ -401,7 +401,7 @@ const modules = [
     label: "Finance & Comptabilité",
     eyebrow: "02 — Pilotage",
     desc: "Comptabilité automatisée, rapprochements bancaires, conformité locale.",
-    icon: Wallet,
+    icon: OdooAccountant,
     img: financeImg,
   },
   {
@@ -409,7 +409,7 @@ const modules = [
     label: "Stock & Inventaire",
     eyebrow: "03 — Logistique",
     desc: "Multi-dépôts, codes-barres, traçabilité par lot. Inventaire toujours juste.",
-    icon: Boxes,
+    icon: OdooStock,
     img: stockImg,
   },
   {
@@ -417,7 +417,7 @@ const modules = [
     label: "Production",
     eyebrow: "04 — Atelier",
     desc: "Ordres de fabrication, MRP, gammes opératoires. De la matière au produit fini.",
-    icon: Factory,
+    icon: OdooMrp,
     img: productionImg,
   },
   {
@@ -425,7 +425,7 @@ const modules = [
     label: "RH & Paie",
     eyebrow: "05 — Humain",
     desc: "Congés en self-service, paie automatisée, suivi du temps par projet.",
-    icon: UserCog,
+    icon: OdooHr,
     img: rhImg,
   },
   {
@@ -433,7 +433,7 @@ const modules = [
     label: "Services Professionnels",
     eyebrow: "06 — Mission",
     desc: "Time-tracking, refacturation, rentabilité par mission en un clic.",
-    icon: Briefcase,
+    icon: OdooProject,
     img: servicesImg,
   },
 ];
