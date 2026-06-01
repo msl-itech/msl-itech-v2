@@ -1,4 +1,9 @@
-import { Boxes, BellRing, ScanLine, ClipboardCheck } from "lucide-react";
+import {
+  OdooStock,
+  OdooMassMailing,
+  OdooStockBarcode,
+  OdooQualityControl,
+} from "@/components/icons/odoo";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
