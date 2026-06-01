@@ -37,12 +37,12 @@ function useSeo(market: "BE" | "MA") {
   useEffect(() => {
     const title =
       market === "MA"
-        ? "Odoo Ready Partner Maroc | ERP, modules custom & digital — MSL-iTECH"
-        : "Expert Odoo — Maroc, Belgique & Canada | ERP & modules sur mesure — MSL-iTECH";
+        ? "Odoo Partner Maroc | ERP & digital — MSL-iTECH"
+        : "Expert Odoo Belgique & Canada — MSL-iTECH";
     const desc =
       market === "MA"
-        ? "Odoo Ready Partner certifié au Maroc (v18 & v19). Implémentation ERP, modules custom et personnalisation d'Odoo natif pour HORECA, BTP, Santé et Commerce. À partir de 199 MAD/mois."
-        : "Odoo Ready Partner certifié au Maroc (v18 & v19) — accompagnement à distance des PME belges et canadiennes. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Packs 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.";
+        ? "Odoo Ready Partner Maroc (v18 & v19). Implémentation ERP, modules custom et personnalisation d'Odoo natif pour HORECA, BTP, Santé et Commerce."
+        : "Odoo Ready Partner. Accompagnement à distance PME belges et canadiennes. ERP, modules custom et personnalisation d'Odoo natif.";
     document.title = title;
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
