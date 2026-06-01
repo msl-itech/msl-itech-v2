@@ -1,4 +1,4 @@
-import { CalendarDays, Banknote, Clock, UserPlus } from "lucide-react";
+import { OdooHolidays, OdooPayroll, OdooAttendance, OdooRecruitment } from "@/components/icons/odoo";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
@@ -6,22 +6,22 @@ import rhHero from "@/assets/rh-hero.webp";
 
 const features = [
   {
-    icon: CalendarDays,
+    icon: OdooHolidays,
     title: "Congés et absences en libre-service",
     desc: "Vos collaborateurs soumettent leurs demandes depuis leur téléphone. Le responsable valide en un clic. Les soldes se mettent à jour automatiquement.",
   },
   {
-    icon: Banknote,
+    icon: OdooPayroll,
     title: "Paie fiable et conforme",
     desc: "Odoo calcule les fiches de paie en tenant compte des absences, heures supplémentaires et notes de frais. La paie est produite en quelques minutes.",
   },
   {
-    icon: Clock,
+    icon: OdooAttendance,
     title: "Suivi du temps par projet",
     desc: "Vos collaborateurs enregistrent leur temps par projet depuis Odoo Timesheet. Vous visualisez la rentabilité réelle de chaque projet.",
   },
   {
-    icon: UserPlus,
+    icon: OdooRecruitment,
     title: "Recrutement structuré",
     desc: "Diffusez vos offres d'emploi, recevez les candidatures dans Odoo, programmez les entretiens et suivez l'avancement de chaque candidat.",
   },
@@ -29,28 +29,28 @@ const features = [
 
 const bentoCards: BentoCard[] = [
   {
-    icon: CalendarDays,
+    icon: OdooHolidays,
     title: "Congés en libre-service",
     desc: "Demandes depuis le mobile, validation en un clic, soldes mis à jour automatiquement. Fini les tableurs partagés.",
     variant: "blue",
     span: "lg:col-span-7",
   },
   {
-    icon: Banknote,
+    icon: OdooPayroll,
     title: "Paie fiable & conforme",
     desc: "Fiches de paie calculées avec absences, heures sup et notes de frais — produites en quelques minutes.",
     variant: "gold",
     span: "lg:col-span-5",
   },
   {
-    icon: Clock,
+    icon: OdooAttendance,
     title: "Suivi du temps par projet",
     desc: "Timesheet par projet pour visualiser la rentabilité réelle, en direct.",
     variant: "white",
     span: "lg:col-span-5",
   },
   {
-    icon: UserPlus,
+    icon: OdooRecruitment,
     title: "Recrutement structuré",
     desc: "Diffusion d'offres, candidatures centralisées, entretiens planifiés et avancement suivi par candidat.",
     variant: "bluelight",
