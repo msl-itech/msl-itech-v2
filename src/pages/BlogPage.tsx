@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Sparkles, Clock, Calendar, ExternalLink } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { getPostBySlug } from "@/content/blogPosts";
+import { JsonLd } from "@/components/JsonLd";
 
 export default function BlogPage() {
   const { slug } = useParams<{ slug: string }>();
