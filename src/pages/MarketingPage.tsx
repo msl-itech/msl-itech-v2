@@ -1,4 +1,4 @@
-import { Search, Sparkles, Megaphone } from "lucide-react";
+import { OdooWebsite, OdooMarketingAutomation, OdooMassMailing } from "@/components/icons/odoo";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import marketingHero from "@/assets/marketing-hero.webp";
@@ -8,7 +8,7 @@ import marketingAds from "@/assets/marketing-ads.jpg";
 
 const features = [
   {
-    icon: Search,
+    icon: OdooWebsite,
     title: "SEO — Être trouvé sur Google",
     desc: "Audit technique, stratégie de mots-clés, création de pages piliers et de contenus optimisés. Nous ciblons les requêtes à forte intention commerciale pour votre marché.",
     image: marketingSeo,
@@ -16,7 +16,7 @@ const features = [
     badge: "SEO",
   },
   {
-    icon: Sparkles,
+    icon: OdooMarketingAutomation,
     title: "GEO — Être cité par les IA",
     desc: "Le GEO (Generative Engine Optimization) est le référencement de demain. Nous structurons vos contenus pour être cités par ChatGPT, Perplexity, Claude et Gemini.",
     image: marketingGeo,
@@ -24,7 +24,7 @@ const features = [
     badge: "GEO",
   },
   {
-    icon: Megaphone,
+    icon: OdooMassMailing,
     title: "Campagnes d'acquisition",
     desc: "Google Ads, Meta Ads, LinkedIn Ads selon votre cible. Nous gérons vos campagnes de A à Z avec reporting mensuel clair.",
     image: marketingAds,
