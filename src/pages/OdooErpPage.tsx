@@ -4,16 +4,18 @@ import {
   ArrowRight,
   ArrowUpRight,
   Sparkles,
-  Users,
-  Wallet,
-  Boxes,
-  Factory,
-  UserCog,
-  Briefcase,
   CheckCircle2,
   LineChart,
   ShieldCheck,
 } from "lucide-react";
+import {
+  OdooCrm,
+  OdooAccountant,
+  OdooStock,
+  OdooMrp,
+  OdooHr,
+  OdooProject,
+} from "@/components/icons/odoo";
 
 import erpHero from "@/assets/home/pillar-erp.webp";
 import crmImg from "@/assets/crm-hero.webp";
