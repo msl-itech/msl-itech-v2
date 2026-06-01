@@ -46,12 +46,33 @@ const bentoCards: BentoCard[] = [
   },
 ];
 
+const faqs = [
+  {
+    q: "Odoo est-il adapté au transport touristique au Maroc ?",
+    a: "Oui. Odoo Fleet, combiné aux modules Vente, Planning et Facturation, couvre les opérations de transferts, excursions et location avec chauffeur. MSL-iTECH a déployé cette configuration pour plusieurs opérateurs touristiques marocains.",
+  },
+  {
+    q: "Combien coûte une implémentation Odoo Transport ?",
+    a: "Un projet transport (flotte + planning chauffeurs + facturation) tient généralement dans le pack Premium (80h, 3 400€) à Elite (200h, 8 500€). Les abonnements mensuels Odoo (par utilisateur) s'ajoutent. Tarifs détaillés sur msl-itech.com/tarifs.",
+  },
+  {
+    q: "Peut-on calculer la rentabilité par véhicule ?",
+    a: "Oui. Chaque véhicule est traité comme un centre de coût : carburant, entretien, assurance, leasing, chauffeur sont imputés. Les recettes des courses sont rattachées au véhicule, ce qui donne une marge nette par véhicule, par mois.",
+  },
+  {
+    q: "Combien de temps pour mettre en place la solution ?",
+    a: "Une mise en route opérationnelle d'Odoo pour une flotte de 5 à 20 véhicules prend 4 à 8 semaines : import du parc, paramétrage des tarifs, formation des plannings et bascule de la facturation.",
+  },
+];
+
 export default function TransportPage() {
   useProductSeo({
     title: "ERP Transport & Logistique Maroc — Odoo | MSL-iTECH",
     description:
       "Gérez votre flotte, vos réservations et votre facturation avec Odoo. Transport touristique et logistique au Maroc. Implémentation certifiée MSL-iTECH.",
     path: "/odoo-transport-logistique-maroc",
+    faqs,
+    ldId: "ld-faq-transport",
   });
 
   return (
@@ -90,6 +111,7 @@ export default function TransportPage() {
       }}
       ctaTitle="Réserver ma démo Transport gratuite"
       ctaSubtitle="Démo adaptée à votre activité · Réponse sous 24 à 72h"
+      faqs={faqs}
     />
   );
 }

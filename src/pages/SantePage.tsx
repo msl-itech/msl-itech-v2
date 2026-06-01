@@ -46,6 +46,25 @@ const bentoCards: BentoCard[] = [
   },
 ];
 
+const faqs = [
+  {
+    q: "Odoo est-il adapté à une pharmacie au Maroc ?",
+    a: "Oui. Odoo Inventaire avec gestion des lots et dates d'expiration couvre les besoins d'une pharmacie : traçabilité produit, alertes péremption, multi-fournisseurs, facturation comptoir. MSL-iTECH adapte le paramétrage aux contraintes du secteur.",
+  },
+  {
+    q: "Combien coûte une implémentation Odoo pour une clinique ou un cabinet ?",
+    a: "Un déploiement Santé (dossier patient, ordonnances, facturation assurance, stock médicaments) s'inscrit entre le pack Premium (80h, 3 400€) et le pack Elite (200h, 8 500€). Les structures multi-sites ou avec intégration assurance dépassent souvent le pack Elite.",
+  },
+  {
+    q: "Odoo gère-t-il la facturation CNOPS, CNSS et assurances privées ?",
+    a: "Oui, via du paramétrage et, selon les compagnies, des connecteurs ou exports dédiés. MSL-iTECH a déjà implémenté ces flux pour des structures de santé marocaines (3 clients actifs dans la santé, l'aide sociale et le pharmaceutique).",
+  },
+  {
+    q: "Combien de temps pour rendre la solution opérationnelle ?",
+    a: "Le périmètre essentiel (stock + facturation + dossier patient simple) est opérationnel en 4 à 6 semaines. L'intégration aux organismes payeurs et la reprise d'historique allongent le projet de quelques semaines.",
+  },
+];
+
 export default function SantePage() {
   useProductSeo({
     title:
@@ -53,6 +72,8 @@ export default function SantePage() {
     description:
       "Gestion des stocks médicamenteux, facturation, traçabilité et conformité pour le secteur santé marocain. Implémentation Odoo certifiée. Démo gratuite.",
     path: "/odoo-sante-maroc",
+    faqs,
+    ldId: "ld-faq-sante",
   });
 
   return (
@@ -92,6 +113,7 @@ export default function SantePage() {
       }}
       ctaTitle="Réserver ma démo Santé gratuite"
       ctaSubtitle="Démo adaptée à votre type de structure · Réponse sous 24 à 72h"
+      faqs={faqs}
     />
   );
 }

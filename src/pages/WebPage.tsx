@@ -245,11 +245,32 @@ function TechShowcase() {
 }
 
 export default function WebPage() {
+  const faqs = [
+    {
+      q: "Combien coûte un site web professionnel chez MSL-iTECH ?",
+      a: "Nos sites vont de 900€ (site WordPress basique) à 7 500€ (site React/JavaScript entreprise avec pré-rendu). Le tarif dépend du nombre de pages, des intégrations (formulaire, CRM, paiement) et du niveau de personnalisation graphique.",
+    },
+    {
+      q: "Quelle différence entre un site React et un site WordPress ?",
+      a: "WordPress est rapide à déployer et facile à mettre à jour pour des sites éditoriaux ou vitrines (à partir de 900€). React/Lovable offre des performances supérieures, une animation plus fine et un pré-rendu LovableHTML optimal pour le SEO (à partir de 3 500€), idéal pour les sites produit ou SaaS.",
+    },
+    {
+      q: "En combien de temps mon site sera-t-il en ligne ?",
+      a: "Un site WordPress vitrine se livre en 2 à 4 semaines. Un site React complet avec contenus rédigés et SEO optimisé prend 4 à 8 semaines selon la complexité et la réactivité côté contenus client.",
+    },
+    {
+      q: "Mon site sera-t-il optimisé pour Google et les moteurs IA ?",
+      a: "Oui. Chaque site MSL-iTECH est livré avec balises title/description par page, JSON-LD Organization/LocalBusiness/FAQPage, sitemap.xml, robots.txt et fichier llms.txt. Les sites React sont pré-rendus pour garantir l'indexation côté Googlebot et les crawlers IA.",
+    },
+  ];
+
   useProductSeo({
     title: "Création Site Web Professionnel — React & WordPress | MSL-iTECH",
     description:
       "Sites web React haute performance ou WordPress rapides. Conçus pour convertir et optimisés pour être trouvés. Belgique & Maroc. Devis gratuit.",
     path: "/creation-web",
+    faqs,
+    ldId: "ld-faq-web",
   });
 
   return (
@@ -281,6 +302,7 @@ export default function WebPage() {
       }}
       ctaTitle="Démarrer mon projet web"
       ctaSubtitle="Devis gratuit · Réponse sous 24 à 72h ouvrables · Sans engagement · Belgique & Maroc"
+      faqs={faqs}
     />
   );
 }
