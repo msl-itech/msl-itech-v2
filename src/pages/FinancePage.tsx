@@ -1,4 +1,4 @@
-import { Calculator, FileText, Receipt, Wallet } from "lucide-react";
+import { OdooAccountant, OdooAccount, OdooBatchPayment, OdooPayment } from "@/components/icons/odoo";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
@@ -6,22 +6,22 @@ import financeHero from "@/assets/finance-hero.webp";
 
 const features = [
   {
-    icon: Calculator,
+    icon: OdooAccountant,
     title: "Comptabilité automatisée",
     desc: "Chaque vente et chaque achat génère automatiquement les écritures comptables correspondantes. Votre plan comptable est toujours à jour, sans ressaisie manuelle.",
   },
   {
-    icon: FileText,
+    icon: OdooAccount,
     title: "Facturation professionnelle",
     desc: "Créez des factures personnalisées, envoyez-les par email avec suivi d'ouverture, et proposez le paiement en ligne. Odoo génère automatiquement les rappels pour les impayés.",
   },
   {
-    icon: Receipt,
+    icon: OdooBatchPayment,
     title: "Notes de frais sans friction",
     desc: "Vos collaborateurs photographient leurs justificatifs depuis leur téléphone. Les notes de frais sont validées en ligne, comptabilisées automatiquement et remboursées à la prochaine paie.",
   },
   {
-    icon: Wallet,
+    icon: OdooPayment,
     title: "Trésorerie en temps réel",
     desc: "Tableau de bord trésorerie actualisé en permanence, prévisions de flux, rapprochement bancaire automatique. Vous savez à tout moment ce que vous avez en banque.",
   },
@@ -30,28 +30,28 @@ const features = [
 /* Bento — charte MSL : blue, gold, blue-light, bg, white */
 const bentoCards: BentoCard[] = [
   {
-    icon: Calculator,
+    icon: OdooAccountant,
     title: "Comptabilité automatisée",
     desc: "Chaque vente et chaque achat génère automatiquement les écritures comptables. Votre plan comptable est toujours à jour, sans ressaisie.",
     variant: "blue", // dark blue card, gold accent
     span: "lg:col-span-7",
   },
   {
-    icon: FileText,
+    icon: OdooAccount,
     title: "Facturation pro",
     desc: "Factures personnalisées, suivi d'ouverture, paiement en ligne et rappels d'impayés automatiques.",
     variant: "gold", // gold tinted
     span: "lg:col-span-5",
   },
   {
-    icon: Receipt,
+    icon: OdooBatchPayment,
     title: "Notes de frais",
     desc: "Photo du justificatif, validation en ligne, comptabilisation et remboursement automatiques.",
     variant: "white", // white card with blue border
     span: "lg:col-span-5",
   },
   {
-    icon: Wallet,
+    icon: OdooPayment,
     title: "Trésorerie temps réel",
     desc: "Dashboard actualisé, prévisions de flux et rapprochement bancaire automatique.",
     variant: "bluelight", // blue-light tinted

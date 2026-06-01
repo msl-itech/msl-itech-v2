@@ -1,11 +1,12 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, CheckCircle2, LucideIcon, Sparkles } from "lucide-react";
+import type { ComponentType } from "react";
+import { ArrowRight, ArrowUpRight, Check, CheckCircle2, Sparkles } from "lucide-react";
 import ProjectCTA from "@/components/ProjectCTA";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 
 export type Feature = {
-  icon: LucideIcon;
+  icon: ComponentType<{ size?: number | string; className?: string }>;
   title: string;
   desc: string;
 };

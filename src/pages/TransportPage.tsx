@@ -1,4 +1,4 @@
-import { Truck, CalendarCheck, Receipt } from "lucide-react";
+import { OdooFleet, OdooPlanning, OdooBatchPayment } from "@/components/icons/odoo";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
@@ -6,17 +6,17 @@ import transportHero from "@/assets/transport-hero.webp";
 
 const features = [
   {
-    icon: Truck,
+    icon: OdooFleet,
     title: "Gestion de flotte et maintenance préventive",
     desc: "Suivi kilométrique, alertes de révision, historique de maintenance par véhicule. Vous planifiez les entretiens avant les pannes.",
   },
   {
-    icon: CalendarCheck,
+    icon: OdooPlanning,
     title: "Réservations et planning",
     desc: "Gestion des réservations clients ou agences partenaires, affectation des véhicules et des chauffeurs, confirmation automatique.",
   },
   {
-    icon: Receipt,
+    icon: OdooBatchPayment,
     title: "Facturation clients et agences",
     desc: "Génération automatique des factures à l'issue de chaque prestation. Suivi des encaissements, relances automatiques sur les impayés.",
   },
@@ -24,21 +24,21 @@ const features = [
 
 const bentoCards: BentoCard[] = [
   {
-    icon: Truck,
+    icon: OdooFleet,
     title: "Flotte & maintenance",
     desc: "Suivi kilométrique, alertes de révision, historique de maintenance par véhicule. Anticipez les pannes.",
     variant: "blue",
     span: "lg:col-span-7",
   },
   {
-    icon: CalendarCheck,
+    icon: OdooPlanning,
     title: "Réservations & planning",
     desc: "Réservations clients ou agences, affectation des véhicules et des chauffeurs, confirmation automatique.",
     variant: "gold",
     span: "lg:col-span-5",
   },
   {
-    icon: Receipt,
+    icon: OdooBatchPayment,
     title: "Facturation & encaissements",
     desc: "Factures générées à chaque prestation. Suivi des encaissements et relances automatiques sur les impayés.",
     variant: "bluelight",

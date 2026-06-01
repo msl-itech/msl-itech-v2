@@ -1,9 +1,9 @@
 import {
-  Users,
-  BellRing,
-  FileText,
-  BarChart3,
-} from "lucide-react";
+  OdooCrm,
+  OdooMassMailing,
+  OdooSale,
+  OdooSpreadsheetDashboard,
+} from "@/components/icons/odoo";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import crmHero from "@/assets/crm-hero.webp";
@@ -14,22 +14,22 @@ import bentoReporting from "@/assets/crm/bento-reporting.jpg";
 
 const features = [
   {
-    icon: Users,
+    icon: OdooCrm,
     title: "Pipeline centralisé et visible",
     desc: "Chaque opportunité commerciale a une fiche complète : contact, historique, valeur estimée, prochaine action. Votre direction voit le pipeline consolidé en temps réel. Vos commerciaux savent exactement quoi faire chaque matin.",
   },
   {
-    icon: BellRing,
+    icon: OdooMassMailing,
     title: "Relances automatisées, zéro oubli",
     desc: "Odoo génère automatiquement des rappels de relance selon les règles que vous définissez. Plus jamais un prospect oublié après un premier contact positif.",
   },
   {
-    icon: FileText,
+    icon: OdooSale,
     title: "Devis professionnels en 2 clics",
     desc: "Créez des devis personnalisés depuis la fiche opportunité, envoyez-les directement par email et suivez leur ouverture. Vos clients signent et paient en ligne via des plateformes sécurisées.",
   },
   {
-    icon: BarChart3,
+    icon: OdooSpreadsheetDashboard,
     title: "Reporting commercial en temps réel",
     desc: "Taux de conversion par commercial, valeur du pipeline par secteur, délai moyen de signature : tous vos indicateurs clés disponibles sans exporter la moindre donnée.",
   },
@@ -37,7 +37,7 @@ const features = [
 
 const bentoCards = [
   {
-    icon: Users,
+    icon: OdooCrm,
     title: "Pipeline centralisé et visible",
     desc: "Chaque opportunité a une fiche complète : contact, historique, valeur estimée, prochaine action. Direction et commerciaux voient le pipeline consolidé en temps réel.",
     img: bentoPipeline,
@@ -45,7 +45,7 @@ const bentoCards = [
     tag: "Pipeline",
   },
   {
-    icon: BellRing,
+    icon: OdooMassMailing,
     title: "Relances automatisées",
     desc: "Rappels générés automatiquement selon vos règles. Plus aucun prospect oublié.",
     img: bentoRelances,
@@ -53,7 +53,7 @@ const bentoCards = [
     tag: "Automation",
   },
   {
-    icon: FileText,
+    icon: OdooSale,
     title: "Devis en 2 clics",
     desc: "Devis personnalisés depuis la fiche opportunité. Envoi, suivi d'ouverture, signature et paiement en ligne.",
     img: bentoDevis,
@@ -61,7 +61,7 @@ const bentoCards = [
     tag: "Devis",
   },
   {
-    icon: BarChart3,
+    icon: OdooSpreadsheetDashboard,
     title: "Reporting commercial en temps réel",
     desc: "Taux de conversion par commercial, valeur du pipeline par secteur, délai moyen de signature — tous vos KPI sans aucun export.",
     img: bentoReporting,

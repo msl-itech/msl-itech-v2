@@ -1,4 +1,9 @@
-import { Boxes, BellRing, ScanLine, ClipboardCheck } from "lucide-react";
+import {
+  OdooStock,
+  OdooMassMailing,
+  OdooStockBarcode,
+  OdooQualityControl,
+} from "@/components/icons/odoo";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
@@ -6,22 +11,22 @@ import stockHero from "@/assets/stock-hero.webp";
 
 const features = [
   {
-    icon: Boxes,
+    icon: OdooStock,
     title: "Inventaire en temps réel sur tous les entrepôts",
     desc: "Chaque entrée et chaque sortie de stock est tracée en temps réel. Vous savez exactement ce que vous avez, où c'est, et ce qui est réservé pour des commandes en cours.",
   },
   {
-    icon: BellRing,
+    icon: OdooMassMailing,
     title: "Alertes de réapprovisionnement automatiques",
     desc: "Définissez des seuils minimum par produit. Odoo génère automatiquement les bons de commande fournisseur quand le stock descend sous ce seuil.",
   },
   {
-    icon: ScanLine,
+    icon: OdooStockBarcode,
     title: "Traçabilité lot par lot",
     desc: "Pour les secteurs qui l'exigent (pharmaceutique, agroalimentaire, médical), Odoo gère la traçabilité complète par numéro de lot et date d'expiration.",
   },
   {
-    icon: ClipboardCheck,
+    icon: OdooQualityControl,
     title: "Inventaire physique simplifié",
     desc: "Vos équipes réalisent l'inventaire physique depuis une tablette ou un scanner. Les écarts sont détectés et validés automatiquement.",
   },
@@ -29,28 +34,28 @@ const features = [
 
 const bentoCards: BentoCard[] = [
   {
-    icon: Boxes,
+    icon: OdooStock,
     title: "Inventaire temps réel",
     desc: "Chaque entrée et sortie tracée en direct sur tous vos entrepôts. Vous savez ce que vous avez, où, et ce qui est réservé.",
     variant: "blue",
     span: "lg:col-span-7",
   },
   {
-    icon: BellRing,
+    icon: OdooMassMailing,
     title: "Réappro automatique",
     desc: "Seuils min par produit. Bons de commande fournisseur générés dès que le stock descend.",
     variant: "gold",
     span: "lg:col-span-5",
   },
   {
-    icon: ScanLine,
+    icon: OdooStockBarcode,
     title: "Traçabilité par lot",
     desc: "Numéros de lot, dates d'expiration, rappels ciblés — pour pharma, agro ou médical.",
     variant: "white",
     span: "lg:col-span-5",
   },
   {
-    icon: ClipboardCheck,
+    icon: OdooQualityControl,
     title: "Inventaire physique simplifié",
     desc: "Vos équipes scannent depuis tablette ou douchette. Écarts détectés et validés automatiquement.",
     variant: "bluelight",

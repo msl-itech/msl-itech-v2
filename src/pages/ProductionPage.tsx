@@ -1,4 +1,4 @@
-import { Factory, ListTree, ShieldCheck, Wrench } from "lucide-react";
+import { OdooMrp, OdooMrpPlm, OdooQualityControl, OdooMrpMaintenance } from "@/components/icons/odoo";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
@@ -6,22 +6,22 @@ import productionHero from "@/assets/production-hero.webp";
 
 const features = [
   {
-    icon: Factory,
+    icon: OdooMrp,
     title: "Ordres de fabrication automatiques",
     desc: "Dès qu'une commande client est validée, Odoo génère automatiquement l'ordre de fabrication correspondant avec les quantités, les nomenclatures et le planning.",
   },
   {
-    icon: ListTree,
+    icon: OdooMrpPlm,
     title: "Gestion des nomenclatures (BoM)",
     desc: "Définissez vos recettes de fabrication une seule fois. Odoo calcule automatiquement les besoins en matières premières et alerte si un composant manque.",
   },
   {
-    icon: ShieldCheck,
+    icon: OdooQualityControl,
     title: "Suivi qualité intégré",
     desc: "Points de contrôle qualité à chaque étape de production. Non-conformités détectées avant l'expédition. Traçabilité complète des lots produits.",
   },
   {
-    icon: Wrench,
+    icon: OdooMrpMaintenance,
     title: "Maintenance préventive",
     desc: "Planifiez la maintenance de vos équipements, suivez leur historique et recevez des alertes avant les pannes prévues.",
   },
@@ -29,28 +29,28 @@ const features = [
 
 const bentoCards: BentoCard[] = [
   {
-    icon: Factory,
+    icon: OdooMrp,
     title: "Ordres de fabrication automatiques",
     desc: "Dès la commande client validée, l'OF est généré : quantités, nomenclatures et planning, sans ressaisie.",
     variant: "blue",
     span: "lg:col-span-7",
   },
   {
-    icon: ListTree,
+    icon: OdooMrpPlm,
     title: "Nomenclatures (BoM)",
     desc: "Définissez vos recettes une fois. Besoins en composants calculés, alertes en cas de manque.",
     variant: "gold",
     span: "lg:col-span-5",
   },
   {
-    icon: ShieldCheck,
+    icon: OdooQualityControl,
     title: "Qualité intégrée",
     desc: "Points de contrôle à chaque étape, non-conformités détectées avant l'expédition, lots tracés.",
     variant: "white",
     span: "lg:col-span-5",
   },
   {
-    icon: Wrench,
+    icon: OdooMrpMaintenance,
     title: "Maintenance préventive",
     desc: "Maintenance planifiée, historique équipements et alertes avant pannes prévues.",
     variant: "bluelight",
