@@ -37,12 +37,12 @@ export default function BlogPage() {
     );
   }
 
-  const articleUrl = `https://www.msl-itech.com/blog/${post.slug}`;
+  const articleUrl = `https://msl-itech-v2.lovable.app/blog/${post.slug}`;
   const articleImage = post.image
     ? post.image.startsWith("http")
       ? post.image
-      : `https://www.msl-itech.com${post.image.startsWith("/") ? post.image : "/" + post.image}`
-    : "https://www.msl-itech.com/og-default.jpg";
+      : `https://msl-itech-v2.lovable.app${post.image.startsWith("/") ? post.image : "/" + post.image}`
+    : "https://msl-itech-v2.lovable.app/og-default.jpg";
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -56,14 +56,14 @@ export default function BlogPage() {
     author: {
       "@type": "Organization",
       name: "MSL-iTECH",
-      url: "https://www.msl-itech.com",
+      url: "https://msl-itech-v2.lovable.app",
     },
     publisher: {
       "@type": "Organization",
       name: "MSL-iTECH",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.msl-itech.com/icon-192.png",
+        url: "https://msl-itech-v2.lovable.app/icon-192.png",
       },
     },
     mainEntityOfPage: {

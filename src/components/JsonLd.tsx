@@ -25,12 +25,12 @@ export function JsonLd({ id, data }: { id: string; data: Record<string, unknown>
 export const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "@id": "https://www.msl-itech.com/#service",
+  "@id": "https://msl-itech-v2.lovable.app/#service",
   name: "MSL-iTECH — Implémentation Odoo & Services Digitaux",
-  url: "https://www.msl-itech.com",
+  url: "https://msl-itech-v2.lovable.app",
   description:
     "Odoo Ready Partner certifié au Maroc (v18 & v19). Implémentation ERP, développement de modules custom et personnalisation d'Odoo natif, création web React/WordPress et marketing digital. Accompagnement à distance des PME en Belgique, au Canada et à l'international. Packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
-  provider: { "@id": "https://www.msl-itech.com/#organization" },
+  provider: { "@id": "https://msl-itech-v2.lovable.app/#organization" },
   areaServed: ["BE", "MA", "CA"],
   serviceType: [
     "Implémentation Odoo ERP",
@@ -107,9 +107,9 @@ const sharedAggregateRating = {
 export const localBusinessBeSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://www.msl-itech.com/#localbusiness-be",
+  "@id": "https://msl-itech-v2.lovable.app/#localbusiness-be",
   name: "MSL-iTECH — Service Belgique (à distance)",
-  url: "https://www.msl-itech.com",
+  url: "https://msl-itech-v2.lovable.app",
   telephone: "+32-2-886-05-49",
   email: "info@msl-itech.com",
   description:
@@ -124,9 +124,9 @@ export const localBusinessBeSchema = {
 export const localBusinessMaSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://www.msl-itech.com/#localbusiness-ma",
+  "@id": "https://msl-itech-v2.lovable.app/#localbusiness-ma",
   name: "MSL-iTECH Maroc",
-  url: "https://www.msl-itech.com",
+  url: "https://msl-itech-v2.lovable.app",
   telephone: "+212-6-89-30-62-78",
   email: "info@msl-itech.com",
   address: {
@@ -148,9 +148,9 @@ export const localBusinessMaSchema = {
 export const localBusinessCaSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://www.msl-itech.com/#localbusiness-ca",
+  "@id": "https://msl-itech-v2.lovable.app/#localbusiness-ca",
   name: "MSL-iTECH — Service Canada (à distance)",
-  url: "https://www.msl-itech.com",
+  url: "https://msl-itech-v2.lovable.app",
   email: "info@msl-itech.com",
   description:
     "Odoo Ready Partner certifié au Maroc (v18 & v19), accompagnement à distance des PME canadiennes francophones. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique au Canada.",
