@@ -57,6 +57,12 @@ const staticEntries: SitemapEntry[] = [
 
   // Blog index
   { loc: "/blog", changefreq: "weekly", priority: 0.8 },
+
+  // Pages légales
+  { loc: "/politique-de-confidentialite", changefreq: "yearly", priority: 0.3 },
+  { loc: "/conditions-generales-de-vente", changefreq: "yearly", priority: 0.3 },
+  { loc: "/mentions-legales", changefreq: "yearly", priority: 0.3 },
+  { loc: "/conformite-loi-09-08", changefreq: "yearly", priority: 0.3 },
 ];
 
 /** Articles de blog — tenir à jour quand on en publie un nouveau. */
