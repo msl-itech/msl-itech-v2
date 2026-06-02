@@ -1,4 +1,4 @@
-# robots.txt — msl-itech.com
+# robots.txt — msl-itech-v2.lovable.app
 # Dernière mise à jour : Avril 2026
 
 # ── Bots généraux ──
