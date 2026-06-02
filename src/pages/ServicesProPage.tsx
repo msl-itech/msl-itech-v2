@@ -64,6 +64,12 @@ export default function ServicesProPage() {
     description:
       "Pilotez vos projets, facturez au temps passé et optimisez vos ressources avec Odoo. Pour cabinets, ESN et sociétés de services. MSL-iTECH.",
     path: "/odoo-services-professionnels",
+    service: {
+      name: "Implémentation Odoo Services Professionnels",
+      description:
+        "Déploiement d'Odoo Project, Timesheets et Facturation pour cabinets, ESN et sociétés de services : suivi de projet, facturation au temps passé et rentabilité par MSL-iTECH.",
+      serviceType: ["Odoo Project", "Timesheets & facturation", "Pilotage de cabinet"],
+    },
   });
 
   return (

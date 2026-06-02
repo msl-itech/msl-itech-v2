@@ -77,6 +77,13 @@ export default function BtpPage() {
     path: "/odoo-btp-maroc",
     faqs,
     ldId: "ld-faq-btp",
+    service: {
+      name: "Implémentation Odoo BTP",
+      description:
+        "ERP Odoo pour entreprises du BTP au Maroc : appels d'offres, gestion de chantiers, sous-traitance, facturation et marchés publics par MSL-iTECH.",
+      serviceType: ["ERP BTP", "Gestion de chantier", "Marchés publics"],
+      areaServed: ["MA"],
+    },
   });
 
   return (

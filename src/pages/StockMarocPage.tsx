@@ -78,6 +78,13 @@ export default function StockMarocPage() {
     path: "/odoo-gestion-stock-maroc",
     faqs,
     ldId: "ld-faq-stock-maroc",
+    service: {
+      name: "Logiciel de gestion de stock Maroc — Odoo",
+      description:
+        "Mise en place d'Odoo Inventaire pour commerce de gros, distribution, agroalimentaire et logistique au Maroc : traçabilité, multi-dépôts et alertes par MSL-iTECH.",
+      serviceType: ["Odoo Inventaire", "Gestion de stock Maroc", "Distribution & logistique"],
+      areaServed: ["MA"],
+    },
   });
 
   return (

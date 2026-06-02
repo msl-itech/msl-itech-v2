@@ -73,6 +73,13 @@ export default function TransportPage() {
     path: "/odoo-transport-logistique-maroc",
     faqs,
     ldId: "ld-faq-transport",
+    service: {
+      name: "Implémentation Odoo Transport & Logistique",
+      description:
+        "Mise en place d'Odoo Fleet, Planning et Facturation pour opérateurs de transport et de logistique au Maroc : flotte, chauffeurs, prestations et rentabilité par véhicule.",
+      serviceType: ["Odoo Fleet", "Gestion logistique", "Planning transport"],
+      areaServed: ["MA"],
+    },
   });
 
   return (

@@ -85,6 +85,12 @@ export default function RhPage() {
     path: "/odoo-rh-paie",
     faqs,
     ldId: "ld-faq-rh",
+    service: {
+      name: "Implémentation Odoo RH & Paie",
+      description:
+        "Mise en place d'Odoo RH, Congés, Présences, Recrutement et Paie (Maroc, Belgique) : automatisation des bulletins, validation des absences et suivi du temps par MSL-iTECH.",
+      serviceType: ["Odoo RH", "Paie & bulletins", "Gestion des congés"],
+    },
   });
 
   return (

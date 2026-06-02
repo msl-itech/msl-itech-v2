@@ -271,6 +271,12 @@ export default function WebPage() {
     path: "/creation-web",
     faqs,
     ldId: "ld-faq-web",
+    service: {
+      name: "Création de sites web React & WordPress",
+      description:
+        "Conception et développement de sites web performants (React/Vite ou WordPress) optimisés conversion et SEO, par MSL-iTECH. Belgique, Maroc, international.",
+      serviceType: ["Développement web React", "Sites WordPress", "Optimisation SEO technique"],
+    },
   });
 
   return (

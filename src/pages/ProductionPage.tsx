@@ -85,6 +85,12 @@ export default function ProductionPage() {
     path: "/odoo-production-fabrication",
     faqs,
     ldId: "ld-faq-production",
+    service: {
+      name: "Implémentation Odoo Fabrication (MRP)",
+      description:
+        "Déploiement d'Odoo MRP, Qualité, Maintenance et PLM : ordres de fabrication, nomenclatures, planification d'atelier et contrôle qualité par MSL-iTECH.",
+      serviceType: ["Odoo MRP", "Gestion de production", "Qualité & maintenance"],
+    },
   });
 
   return (
