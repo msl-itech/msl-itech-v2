@@ -13,8 +13,8 @@ export type SeoService = {
 };
 export type SeoBreadcrumb = { name: string; url: string };
 
-const DEFAULT_OG_IMAGE = "https://www.msl-itech.com/og-default.jpg";
-const SITE_ORIGIN = "https://www.msl-itech.com";
+const DEFAULT_OG_IMAGE = "/og-default.jpg";
+const SITE_ORIGIN = typeof window !== "undefined" ? window.location.origin : "";
 
 /* ----- Sitewide LocalBusiness schemas (injected on every page using the hook) ----- */
 const LOCAL_BUSINESS_MA = {
