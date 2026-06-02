@@ -1,8 +1,53 @@
 import { useEffect } from "react";
 
 export type SeoFaq = { q: string; a: string };
+export type SeoService = {
+  /** Service display name, e.g. "Implémentation Odoo CRM & Ventes" */
+  name: string;
+  /** 1–2 sentence description used in the JSON-LD `description`. */
+  description: string;
+  /** e.g. ["Odoo CRM", "Automatisation commerciale"] */
+  serviceType: string[];
+  /** ISO country codes. Defaults to ["MA", "BE", "CA"]. */
+  areaServed?: string[];
+};
+export type SeoBreadcrumb = { name: string; url: string };
 
 const DEFAULT_OG_IMAGE = "https://www.msl-itech.com/og-default.jpg";
+const SITE_ORIGIN = "https://www.msl-itech.com";
+
+/* ----- Sitewide LocalBusiness schemas (injected on every page using the hook) ----- */
+const LOCAL_BUSINESS_MA = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${SITE_ORIGIN}/#localbusiness-ma`,
+  name: "MSL-iTECH Maroc",
+  url: SITE_ORIGIN,
+  telephone: "+212-6-89-30-62-78",
+  email: "info@msl-itech.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "951 Q.I. Al Massar N°2, Route de Safi",
+    addressLocality: "Marrakech",
+    addressCountry: "MA",
+  },
+  priceRange: "€€",
+  openingHours: "Mo-Fr 09:00-18:00",
+  areaServed: ["MA", "BE", "CA"],
+  sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+};
+const LOCAL_BUSINESS_BE = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${SITE_ORIGIN}/#localbusiness-be`,
+  name: "MSL-iTECH — Service Belgique (à distance)",
+  url: SITE_ORIGIN,
+  telephone: "+32-2-886-05-49",
+  email: "info@msl-itech.com",
+  priceRange: "€€",
+  areaServed: "BE",
+  sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+};
 
 function upsertMeta(attr: "name" | "property", key: string, content: string) {
   let el = document.head.querySelector<HTMLMetaElement>(
@@ -16,6 +61,15 @@ function upsertMeta(attr: "name" | "property", key: string, content: string) {
   el.setAttribute("content", content);
 }
 
+function upsertJsonLd(id: string, data: unknown) {
+  document.getElementById(id)?.remove();
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.id = id;
+  script.text = JSON.stringify(data);
+  document.head.appendChild(script);
+}
+
 export function useProductSeo(opts: {
   title: string;
   description: string;
@@ -25,6 +79,10 @@ export function useProductSeo(opts: {
   ogType?: "website" | "article";
   faqs?: SeoFaq[];
   ldId?: string;
+  /** Emits a Service JSON-LD with provider=Organization. */
+  service?: SeoService;
+  /** Emits a BreadcrumbList JSON-LD. Defaults to [Accueil → {title}]. */
+  breadcrumbs?: SeoBreadcrumb[];
 }) {
   useEffect(() => {
     const url = window.location.origin + opts.path;
@@ -65,11 +123,7 @@ export function useProductSeo(opts: {
     upsertMeta("name", "twitter:image", ogImage);
 
     if (opts.faqs && opts.faqs.length > 0 && opts.ldId) {
-      document.getElementById(opts.ldId)?.remove();
-      const script = document.createElement("script");
-      script.type = "application/ld+json";
-      script.id = opts.ldId;
-      script.text = JSON.stringify({
+      upsertJsonLd(opts.ldId, {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         mainEntity: opts.faqs.map((f) => ({
@@ -78,7 +132,50 @@ export function useProductSeo(opts: {
           acceptedAnswer: { "@type": "Answer", text: f.a },
         })),
       });
-      document.head.appendChild(script);
+    }
+
+    // Sitewide LocalBusiness (MA + BE) — needed on every route, not only the home.
+    upsertJsonLd("ld-localbusiness-ma", LOCAL_BUSINESS_MA);
+    upsertJsonLd("ld-localbusiness-be", LOCAL_BUSINESS_BE);
+
+    // BreadcrumbList — default to [Accueil → current page] if not provided.
+    const breadcrumbs: SeoBreadcrumb[] =
+      opts.breadcrumbs && opts.breadcrumbs.length > 0
+        ? opts.breadcrumbs
+        : opts.path === "/"
+          ? []
+          : [
+              { name: "Accueil", url: SITE_ORIGIN + "/" },
+              { name: opts.title.split("—")[0].trim() || opts.title, url },
+            ];
+    if (breadcrumbs.length > 0) {
+      upsertJsonLd("ld-breadcrumb", {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbs.map((b, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: b.name,
+          item: b.url.startsWith("http") ? b.url : SITE_ORIGIN + b.url,
+        })),
+      });
+    }
+
+    // Per-route Service schema
+    if (opts.service) {
+      upsertJsonLd("ld-service", {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": url + "#service",
+        name: opts.service.name,
+        description: opts.service.description,
+        serviceType: opts.service.serviceType,
+        provider: { "@id": `${SITE_ORIGIN}/#organization` },
+        areaServed: opts.service.areaServed ?? ["MA", "BE", "CA"],
+        url,
+      });
+    } else {
+      document.getElementById("ld-service")?.remove();
     }
   }, [
     opts.title,
@@ -87,5 +184,7 @@ export function useProductSeo(opts: {
     opts.ogImage,
     opts.ogType,
     opts.ldId,
+    JSON.stringify(opts.service),
+    JSON.stringify(opts.breadcrumbs),
   ]);
 }
