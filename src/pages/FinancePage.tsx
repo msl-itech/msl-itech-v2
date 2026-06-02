@@ -82,6 +82,12 @@ export default function FinancePage() {
     path: "/odoo-finance-comptabilite",
     faqs,
     ldId: "ld-faq-finance",
+    service: {
+      name: "Implémentation Odoo Finance & Comptabilité",
+      description:
+        "Déploiement d'Odoo Comptabilité et Trésorerie pour PME : plan comptable localisé, rapprochements bancaires, TVA, reporting financier — par MSL-iTECH.",
+      serviceType: ["Odoo Comptabilité", "Gestion financière PME", "Reporting & trésorerie"],
+    },
   });
 
   return (

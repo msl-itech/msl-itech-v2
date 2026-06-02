@@ -82,6 +82,13 @@ export default function HorecaPage() {
     path: "/odoo-horeca-maroc",
     faqs,
     ldId: "ld-faq-horeca",
+    service: {
+      name: "Implémentation Odoo HORECA",
+      description:
+        "Solution Odoo pour restaurants, cafés et hôtels au Maroc : point de vente (POS), stocks, recettes, personnel et facturation par MSL-iTECH.",
+      serviceType: ["Odoo POS", "Gestion restaurant", "Gestion hôtelière"],
+      areaServed: ["MA"],
+    },
   });
 
   return (

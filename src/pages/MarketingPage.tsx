@@ -60,6 +60,12 @@ export default function MarketingPage() {
     path: "/marketing-digital",
     faqs,
     ldId: "ld-faq-marketing",
+    service: {
+      name: "Marketing digital, SEO & GEO",
+      description:
+        "Audit digital, référencement naturel (SEO), optimisation pour les moteurs IA (GEO/AEO) et campagnes d'acquisition pour PME en Belgique et au Maroc par MSL-iTECH.",
+      serviceType: ["SEO", "Référencement IA (GEO/AEO)", "Acquisition digitale"],
+    },
   });
 
   return (

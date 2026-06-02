@@ -90,6 +90,12 @@ export default function StockPage() {
     path: "/odoo-stock-inventaire",
     faqs,
     ldId: "ld-faq-stock",
+    service: {
+      name: "Implémentation Odoo Stock & Inventaire",
+      description:
+        "Mise en place d'Odoo Inventaire : traçabilité lots/séries, multi-entrepôts, code-barres, alertes de réapprovisionnement et inventaire en temps réel par MSL-iTECH.",
+      serviceType: ["Odoo Inventaire", "Gestion d'entrepôt (WMS)", "Traçabilité stock"],
+    },
   });
 
   return (
