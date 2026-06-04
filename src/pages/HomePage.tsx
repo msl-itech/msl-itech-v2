@@ -396,7 +396,7 @@ function HeroBE() {
       eyebrow="Odoo Ready Partner · Maroc → Belgique & Canada"
       titleTop="L'expertise d'un Odoo Ready Partner certifié."
       titleAccent="Des tarifs repensés."
-      description="Équipe technique certifiée au Maroc (v18 & v19), à votre service à distance en Belgique et au Canada. Implémentation, modules custom et personnalisation d'Odoo natif sans la lourdeur d'un grand cabinet, avec des packs 20 à 50% plus accessibles que les standards du marché belge."
+      description="Équipe technique au Maroc — consultants certifiés v18 & v19 — à votre service à distance en Belgique et au Canada. Implémentation, modules custom et personnalisation d'Odoo natif sans la lourdeur d'un grand cabinet, avec des packs 20 à 50% plus accessibles que les standards du marché belge."
     />
   );
 }
