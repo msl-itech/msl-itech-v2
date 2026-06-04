@@ -57,7 +57,7 @@ const faqs = [
   },
   {
     q: "Combien de temps pour rendre la solution opérationnelle ?",
-    a: "Le périmètre essentiel (stock + facturation + dossier patient simple) est opérationnel en 4 à 6 semaines. L'intégration aux organismes payeurs et la reprise d'historique allongent le projet de quelques semaines.",
+    a: "Le périmètre essentiel (stock + facturation + dossier patient simple) est opérationnel en 4 à 6 semaines. La reprise d'historique et la paramétration multi-sites allongent le projet de quelques semaines.",
   },
 ];
 
