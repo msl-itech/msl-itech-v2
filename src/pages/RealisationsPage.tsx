@@ -98,6 +98,156 @@ const odooCases = [
     result:
       "Référence publiquement consultable sur notre fiche partenaire officielle Odoo.",
   },
+  {
+    icon: ShoppingBag,
+    name: "EDGE SPORT MAROC",
+    sector: "Vente en gros / Vente au détail — Maroc",
+    image: sectorWholesale,
+    context:
+      "Distributeur d'articles de sport. Gestion du flux commercial, stocks multi-dépôts et suivi des ventes B2B et B2C.",
+    modules: ["Ventes", "Achats", "Stock", "Comptabilité", "CRM"],
+    result: "Visibilité en temps réel sur les stocks et les commandes. Circuit commercial entièrement intégré.",
+  },
+  {
+    icon: ShoppingBag,
+    name: "Hamimi Export",
+    sector: "Vente en gros / Vente au détail — Maroc",
+    image: sectorWholesale,
+    context:
+      "Société d'export et de distribution. Pilotage des commandes internationales, logistique et trésorerie.",
+    modules: ["Ventes", "Achats", "Stock", "Comptabilité", "CRM"],
+    result: "Suivi des exports simplifié et contrôle financier renforcé.",
+  },
+  {
+    icon: Church,
+    name: "ICC DOUALA",
+    sector: "Extraterritorial — Cameroun",
+    image: pillarErp,
+    context:
+      "Église évangélique charismatique à Douala, Cameroun. Gestion des membres, dons, événements et ressources humaines.",
+    modules: ["CRM", "Site web", "Événements", "Comptabilité", "RH"],
+    result: "Administration communautaire centralisée et transparence financière assurée.",
+  },
+  {
+    icon: Hammer,
+    name: "JCD RENOV",
+    sector: "Construction et Rénovation — Maroc",
+    image: sectorBtp,
+    context:
+      "Entreprise de construction et rénovation. Suivi de chantiers, devis, facturation et gestion des approvisionnements.",
+    modules: ["Projet", "Ventes", "Achats", "Comptabilité", "RH"],
+    result: "Chantiers pilotés de bout en bout avec une marge maîtrisée en temps réel.",
+  },
+  {
+    icon: Baby,
+    name: "LES TITIS BOUT'CHOUX",
+    sector: "Éducation — Belgique",
+    image: sectorHr,
+    context:
+      "Crèche à Uccle, Bruxelles. Gestion des inscriptions, planning du personnel, facturation familles et communication parents.",
+    modules: ["CRM", "Ventes", "RH", "Comptabilité", "Site web"],
+    result: "Gestion administrative simplifiée et suivi familial personnalisé.",
+  },
+  {
+    icon: HeartPulse,
+    name: "LOUVE SOINS SRL",
+    sector: "Santé / Aide sociale / Pharmaceutique — Belgique",
+    image: sectorHealth,
+    context:
+      "Structure de soins et services de santé. Coordination des interventions, gestion des stocks et facturation.",
+    modules: ["CRM", "Stock", "Ventes", "Comptabilité", "RH"],
+    result: "Parcours patient fluidifié et stocks médicaux optimisés.",
+  },
+  {
+    icon: Briefcase,
+    name: "MC Avocat",
+    sector: "Finance / Assurance — Belgique",
+    image: sectorServices,
+    context:
+      "Cabinet d'avocats. Gestion des dossiers clients, temps passé, facturation et conformité.",
+    modules: ["CRM", "Projet", "Comptabilité", "RH", "Facturation"],
+    result: "Productivité du cabinet augmentée grâce au suivi centralisé des affaires.",
+  },
+  {
+    icon: ShoppingBag,
+    name: "Phazz4",
+    sector: "Vente en gros / Vente au détail — Maroc",
+    image: sectorWholesale,
+    context:
+      "Distributeur multi-marques. Pilotage des commandes fournisseurs, inventaires et ventes omnicanal.",
+    modules: ["Ventes", "Achats", "Stock", "Comptabilité", "CRM"],
+    result: "Rotation de stock optimisée et commandes automatisées.",
+  },
+  {
+    icon: Truck,
+    name: "SARL Maroc Destination Santé",
+    sector: "Transport / Logistique — Maroc",
+    image: sectorLogistics,
+    context:
+      "Transport sanitaire et logistique médicale au Maroc. Planification des tournées, suivi des véhicules et facturation.",
+    modules: ["Flotte", "Stock", "Ventes", "Comptabilité", "Maintenance"],
+    result: "Tournées optimisées et maintenance préventive planifiée.",
+  },
+  {
+    icon: Factory,
+    name: "STE CUCO DES MATERIAUX DE CONSTRUCTION",
+    sector: "Construction et Rénovation — Maroc",
+    image: sectorBtp,
+    context:
+      "Société de matériaux de construction. Gestion des stocks, approvisionnements, ventes et livraisons.",
+    modules: ["Stock", "Ventes", "Achats", "Comptabilité", "Projet"],
+    result: "Disponibilité des matériaux garantie et circuits d'achat accélérés.",
+  },
+  {
+    icon: Zap,
+    name: "Sd Maintenance",
+    sector: "Services publics / Énergie / Distribution d'eau — Maroc",
+    image: sectorEngineering,
+    context:
+      "Société de maintenance et distribution d'eau. Gestion des interventions, planning et stocks de pièces.",
+    modules: ["Maintenance", "Projet", "Stock", "Comptabilité", "RH"],
+    result: "Interventions planifiées et pièces de rechange toujours disponibles.",
+  },
+  {
+    icon: Landmark,
+    name: "Studely Finance Cameroun",
+    sector: "Finance / Assurance — Cameroun",
+    image: sectorServices,
+    context:
+      "Cabinet de conseil financier au Cameroun. Gestion des dossiers clients, conformité et reporting.",
+    modules: ["CRM", "Comptabilité", "Projet", "RH", "Site web"],
+    result: "Processus financiers structurés et reporting client automatisé.",
+  },
+  {
+    icon: Truck,
+    name: "TPMR Maroc",
+    sector: "Transport / Logistique — Maroc",
+    image: sectorLogistics,
+    context:
+      "Transport de personnes à mobilité réduite au Maroc. Planification, suivi des courses et facturation.",
+    modules: ["Flotte", "Ventes", "Comptabilité", "RH", "Maintenance"],
+    result: "Courses sécurisées et facturation simplifiée pour les partenaires institutionnels.",
+  },
+  {
+    icon: ShoppingBag,
+    name: "Wam Lek Faya, LLC — The Perfect Kick",
+    sector: "Vente en gros / Vente au détail — Maroc",
+    image: sectorWholesale,
+    context:
+      "Commerce de chaussures et articles de mode. Gestion des collections, stocks et ventes en ligne et en magasin.",
+    modules: ["Ventes", "Stock", "eCommerce", "Comptabilité", "CRM"],
+    result: "Présence omnicanale synchronisée avec gestion des collections en temps réel.",
+  },
+  {
+    icon: Leaf,
+    name: "Les Clés du Sahara",
+    sector: "Agriculture — Maroc",
+    image: sectorFood,
+    context:
+      "Ferme hydroponique produisant des salades bio. Gestion de la production, traçabilité, ventes et opérations.",
+    modules: ["Production (MRP)", "Stock", "Ventes", "Achats", "Comptabilité", "Qualité"],
+    result: "Traçabilité complète des cultures et qualité constante garantie.",
+  },
 ];
 
 const webProjects = [
