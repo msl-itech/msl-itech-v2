@@ -111,7 +111,7 @@ export default function ConsultantBePage() {
           </h1>
           <p className="mt-6 max-w-3xl font-body text-lg text-white/80">
             Vous cherchez un partenaire Odoo certifié pour votre PME belge ?
-            MSL-iTECH est Odoo Ready Partner certifié au Maroc (v18 & v19) et
+            MSL-iTECH est Odoo Ready Partner au Maroc — consultants certifiés v18 & v19 — et
             accompagne ses clients belges à distance depuis 2020 :
             implémentation, modules custom et personnalisation d'Odoo natif.
             Pas de bureau physique en Belgique — partenariat officiel Odoo
