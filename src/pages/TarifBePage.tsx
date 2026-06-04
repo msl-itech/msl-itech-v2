@@ -216,6 +216,17 @@ export default function TarifBePage() {
               </tbody>
             </table>
           </div>
+          <p className="mt-4 text-xs text-brand-grey">
+            Source comparaison :{" "}
+            <a
+              href="https://www.odoo.com/fr_FR/pricing-packs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-brand-blue"
+            >
+              odoo.com/fr_FR/pricing-packs
+            </a>
+          </p>
         </div>
       </section>
 
