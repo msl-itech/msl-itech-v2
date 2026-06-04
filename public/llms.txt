@@ -62,7 +62,7 @@ Douleur principale : outils insuffisants pour le volume d'activité
 ## Différenciateurs
 
 - Odoo Ready Partner — statut vérifiable sur odoo.com/partners
-- Certification à jour sur les versions v18 et v19
+- Nos consultants sont certifiés Odoo v18 et v19 pour l'instant, avec montée de version continue
 - Capacité interne de développement de modules custom et de personnalisation d'Odoo natif
 - Tarifs transparents publiés — pas de formulaire pour avoir un devis
 - Structure internationale : expertise certifiée au tarif Maroc
