@@ -134,7 +134,7 @@ export default function ConsultantBePage() {
           <div className="mt-8 inline-flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3">
             <img
               src={odooReadyBadge}
-              alt="Badge officiel Odoo Ready Partner — MSL-iTECH certifié sur Odoo v18 et v19"
+              alt="Badge officiel Odoo Ready Partner — MSL-iTECH consultants certifiés Odoo v18 et v19"
               className="h-12 w-auto"
               loading="lazy"
             />
