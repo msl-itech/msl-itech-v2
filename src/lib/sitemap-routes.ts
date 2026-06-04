@@ -34,6 +34,7 @@ const staticEntries: SitemapEntry[] = [
   { loc: "/odoo-sante-maroc", changefreq: "monthly", priority: 0.95 },
   { loc: "/odoo-gestion-stock-maroc", changefreq: "monthly", priority: 0.95 },
   { loc: "/odoo-transport-logistique-maroc", changefreq: "monthly", priority: 0.8 },
+  { loc: "/odoo-tourisme-maroc", changefreq: "monthly", priority: 0.9 },
 
   // Pages cibles structure
   { loc: "/pme-en-structuration", changefreq: "monthly", priority: 0.85 },

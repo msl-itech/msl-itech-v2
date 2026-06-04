@@ -22,6 +22,7 @@ const BtpPage = lazy(() => import("./pages/BtpPage"));
 const SantePage = lazy(() => import("./pages/SantePage"));
 const StockMarocPage = lazy(() => import("./pages/StockMarocPage"));
 const TransportPage = lazy(() => import("./pages/TransportPage"));
+const TourismePage = lazy(() => import("./pages/TourismePage"));
 const WebPage = lazy(() => import("./pages/WebPage"));
 const MarketingPage = lazy(() => import("./pages/MarketingPage"));
 const RealisationsPage = lazy(() => import("./pages/RealisationsPage"));
@@ -85,6 +86,7 @@ const App = () => {
             <Route path="/odoo-sante-maroc" element={<SantePage />} />
             <Route path="/odoo-gestion-stock-maroc" element={<StockMarocPage />} />
             <Route path="/odoo-transport-logistique-maroc" element={<TransportPage />} />
+            <Route path="/odoo-tourisme-maroc" element={<TourismePage />} />
             <Route path="/creation-web" element={<WebPage />} />
             <Route path="/marketing-digital" element={<MarketingPage />} />
             <Route path="/realisations" element={<RealisationsPage />} />
