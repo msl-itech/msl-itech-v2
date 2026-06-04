@@ -17,8 +17,8 @@ const features = [
   },
   {
     icon: ShieldCheck,
-    title: "Facturation assurance et mutuelles",
-    desc: "Intégration des tarifs CNOPS, CNSS et assurances privées. Génération automatique des feuilles de soins et suivi des remboursements.",
+    title: "Conformité et traçabilité",
+    desc: "Alertes péremption, traçabilité des lots et conformité aux exigences réglementaires du secteur santé marocain.",
   },
 ];
 
