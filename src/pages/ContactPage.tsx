@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { z } from "zod";
 import { toast } from "sonner";
 import {
@@ -124,6 +124,8 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const [searchParams] = useSearchParams();
+  const sujet = searchParams.get("sujet") ?? "";
   const [data, setData] = useState<Partial<DemoForm>>({
     country: "BE",
   });
@@ -213,6 +215,7 @@ export default function ContactPage() {
 
     const descParts = [
       `<h3>Demande de démo Odoo</h3>`,
+      sujet ? `<p><strong>Sujet:</strong> ${sujet}</p>` : "",
       `<p><strong>Nom complet:</strong> ${v.fullName}</p>`,
       `<p><strong>Email:</strong> ${v.email}</p>`,
       `<p><strong>Téléphone:</strong> ${v.phone}</p>`,

@@ -142,7 +142,7 @@ function WebsitePromoSection() {
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
-                to="/contact"
+                to="/contact?sujet=pack-site-marketing"
                 className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-bold transition hover:scale-[1.02]"
                 style={{ backgroundColor: "var(--blue)", color: "var(--white)" }}
               >
@@ -189,7 +189,7 @@ function WebsitePromoSection() {
             </ul>
 
             <Link
-              to="/contact"
+              to="/contact?sujet=devis-sur-mesure"
               className="mt-7 inline-flex items-center gap-2 font-body text-sm font-semibold text-brand-blue underline-offset-4 hover:underline"
             >
               Demander un devis sur-mesure
