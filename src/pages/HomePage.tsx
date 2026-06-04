@@ -381,7 +381,7 @@ function HeroShell({
             <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Réponse sous 24-72h
           </span>
           <span className="flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Odoo Ready Partner · v18 & v19
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Consultants certifiés v18 & v19
           </span>
         </div>
       </div>
