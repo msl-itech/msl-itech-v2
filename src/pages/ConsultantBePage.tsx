@@ -65,7 +65,7 @@ export default function ConsultantBePage() {
   useProductSeo({
     title: "Consultant Odoo pour PME belges — Odoo Ready Partner (Maroc, à distance) | MSL-iTECH",
     description:
-      "Odoo Ready Partner certifié au Maroc (v18 & v19), MSL-iTECH accompagne à distance les PME belges : implémentation, modules custom et personnalisation d'Odoo natif. Tarifs publiés 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
+      "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. MSL-iTECH accompagne à distance les PME belges : implémentation, modules custom et personnalisation d'Odoo natif. Tarifs publiés 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
     path: "/consultant-odoo-belgique",
     faqs,
     ldId: "ld-faq-consultant-be",
