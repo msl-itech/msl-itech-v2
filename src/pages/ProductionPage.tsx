@@ -73,7 +73,7 @@ const faqs = [
   },
   {
     q: "Quelle version d'Odoo pour la production ?",
-    a: "MSL-iTECH déploie Odoo Production sur les versions v18 et v19, sur lesquelles nous sommes certifiés Ready Partner. La v18 apporte une refonte du planning MRP et des écrans atelier optimisés tablette.",
+    a: "Nos consultants sont certifiés Odoo v18 et v19 pour l'instant. Nous déployons Odoo Production sur v18 ou v19 selon le projet, et montons en version au fil des sorties d'Odoo. La v18 apporte notamment une refonte du planning MRP et des écrans atelier optimisés tablette.",
   },
 ];
 
