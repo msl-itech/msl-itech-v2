@@ -56,10 +56,6 @@ const faqs = [
     a: "Un déploiement Santé (dossier patient, ordonnances, facturation assurance, stock médicaments) s'inscrit entre le pack Premium (80h, 3 400€) et le pack Elite (200h, 8 500€). Les structures multi-sites ou avec intégration assurance dépassent souvent le pack Elite.",
   },
   {
-    q: "Odoo gère-t-il la facturation CNOPS, CNSS et assurances privées ?",
-    a: "Oui, via du paramétrage et, selon les compagnies, des connecteurs ou exports dédiés. MSL-iTECH a déjà implémenté ces flux pour des structures de santé marocaines (3 clients actifs dans la santé, l'aide sociale et le pharmaceutique).",
-  },
-  {
     q: "Combien de temps pour rendre la solution opérationnelle ?",
     a: "Le périmètre essentiel (stock + facturation + dossier patient simple) est opérationnel en 4 à 6 semaines. L'intégration aux organismes payeurs et la reprise d'historique allongent le projet de quelques semaines.",
   },
