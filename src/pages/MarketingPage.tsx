@@ -4,33 +4,24 @@ import { ArrowRight, Check, Sparkles, X } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import marketingHero from "@/assets/marketing-hero.webp";
-import marketingSeo from "@/assets/marketing-seo.jpg";
-import marketingGeo from "@/assets/marketing-geo.jpg";
-import marketingAds from "@/assets/marketing-ads.jpg";
 
 const features = [
   {
     icon: OdooWebsite,
     title: "SEO — Être trouvé sur Google",
     desc: "Audit technique, stratégie de mots-clés, création de pages piliers et de contenus optimisés. Nous ciblons les requêtes à forte intention commerciale pour votre marché.",
-    image: marketingSeo,
-    imageAlt: "Illustration SEO — référencement Google",
     badge: "SEO",
   },
   {
     icon: OdooMarketingAutomation,
     title: "GEO — Être cité par les IA",
     desc: "Le GEO (Generative Engine Optimization) est le référencement de demain. Nous structurons vos contenus pour être cités par ChatGPT, Perplexity, Claude et Gemini.",
-    image: marketingGeo,
-    imageAlt: "Illustration GEO — citation par les IA",
     badge: "GEO",
   },
   {
     icon: OdooMassMailing,
     title: "Campagnes d'acquisition",
     desc: "Google Ads, Meta Ads, LinkedIn Ads selon votre cible. Nous gérons vos campagnes de A à Z avec reporting mensuel clair.",
-    image: marketingAds,
-    imageAlt: "Illustration campagnes d'acquisition payantes",
     badge: "ADS",
   },
 ];
