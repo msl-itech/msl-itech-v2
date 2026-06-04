@@ -28,6 +28,7 @@ import sectorHealth from "@/assets/home/sector-health.webp";
 import sectorWholesale from "@/assets/home/sector-wholesale.webp";
 import sectorLogistics from "@/assets/home/sector-logistics.webp";
 import sectorFood from "@/assets/home/sector-food.webp";
+import sectorTourism from "@/assets/home/sector-tourism.webp";
 import caseBe from "@/assets/home/case-be.webp";
 import caseMa from "@/assets/home/case-ma.webp";
 import { JsonLd, professionalServiceSchema } from "@/components/JsonLd";
@@ -664,6 +665,7 @@ const sectorsBE = [
   { label: "Santé & Pharma", desc: "Cliniques, distribution", img: sectorHealth, to: "/odoo-sante-maroc" },
   { label: "Commerce & Stock", desc: "Multi-dépôts, e-commerce", img: sectorWholesale, to: "/odoo-gestion-stock-maroc" },
   { label: "Transport & Logistique", desc: "Flotte, expéditions", img: sectorLogistics, to: "/odoo-transport-logistique-maroc" },
+  { label: "Tourisme", desc: "Agences, hôtels, DMC", img: sectorTourism, to: "/odoo-tourisme-maroc" },
 ];
 
 const sectorsMA = [
@@ -672,6 +674,7 @@ const sectorsMA = [
   { label: "Santé & Pharma", to: "/odoo-sante-maroc", desc: "Cliniques, distribution", img: sectorHealth },
   { label: "Commerce de gros", to: "/odoo-gestion-stock-maroc", desc: "Multi-dépôts, e-commerce", img: sectorWholesale },
   { label: "Logistique", to: "/odoo-transport-logistique-maroc", desc: "Flotte, expéditions", img: sectorLogistics },
+  { label: "Tourisme", to: "/odoo-tourisme-maroc", desc: "Agences, hôtels, DMC", img: sectorTourism },
   { label: "Agroalimentaire", to: null as string | null, desc: "Production, traçabilité", img: sectorFood },
 ];
 
