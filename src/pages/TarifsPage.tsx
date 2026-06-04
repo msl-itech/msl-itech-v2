@@ -23,13 +23,13 @@ const EUR_TO_MAD = 11;
 const EUR_TO_USD = 1.1;
 const USD_TO_CAD = 1.5;
 
-const fmt = (eur: number, currency: Currency) => {
+const fmt = (eur: number, currency: Currency, mad?: number) => {
   if (currency === "EUR") {
     return `${eur.toLocaleString("fr-FR")} €`;
   }
   if (currency === "MAD") {
-    const mad = Math.round(eur * EUR_TO_MAD);
-    return `${mad.toLocaleString("fr-FR")} MAD`;
+    const madVal = mad !== undefined ? mad : Math.round(eur * EUR_TO_MAD);
+    return `${madVal.toLocaleString("fr-FR")} MAD`;
   }
   if (currency === "USD") {
     const usd = Math.round(eur * EUR_TO_USD);
@@ -85,6 +85,8 @@ const packs = [
     hours: "4h",
     priceNew: 400,
     priceOld: 400,
+    madNew: 1539,
+    madOld: 1811,
     for: "Support fondamental",
     incl: "Paramétrage, formation initiale",
     color: "#E26B3F",
@@ -94,6 +96,8 @@ const packs = [
     hours: "10h",
     priceNew: 900,
     priceOld: 900,
+    madNew: 3825,
+    madOld: 4500,
     for: "Découvrir Odoo",
     incl: "Paramétrage, formation, assistance",
     color: "#5C5E8A",
@@ -103,6 +107,8 @@ const packs = [
     hours: "25h",
     priceNew: 2000,
     priceOld: 2000,
+    madNew: 7914,
+    madOld: 9315,
     for: "Booster votre activité",
     incl: "+ Import données, optimisation",
     highlight: true,
@@ -113,6 +119,8 @@ const packs = [
     hours: "50h",
     priceNew: 3500,
     priceOld: 3500,
+    madNew: 15422,
+    madOld: 18144,
     for: "Solutions sur mesure",
     incl: "+ Personnalisation apps, automatisation",
     color: "#22A892",
@@ -122,6 +130,8 @@ const packs = [
     hours: "100h",
     priceNew: 5400,
     priceOld: 6000,
+    madNew: 27540,
+    madOld: 32400,
     for: "Performance optimale",
     incl: "+ Développement sur mesure",
     color: "#5E8AA0",
@@ -131,6 +141,8 @@ const packs = [
     hours: "200h",
     priceNew: 8500,
     priceOld: 10000,
+    madNew: 51000,
+    madOld: 60000,
     for: "Vision 360",
     incl: "Pack complet toutes fonctionnalités",
     color: "#2E3A4A",
@@ -154,11 +166,11 @@ const features: { label: string; values: boolean[] }[] = [
 ];
 
 const comparison = [
-  { vol: "4 heures", odoo: 499, msl: 400, gap: "-20%", level: "Essentiel" },
-  { vol: "25 heures", odoo: 2635, msl: 2000, gap: "-24%", level: "Avancé" },
-  { vol: "50 heures", odoo: 4675, msl: 3500, gap: "-25%", level: "Premium" },
-  { vol: "100 heures", odoo: 8415, msl: 5400, gap: "-36%", level: "VIP" },
-  { vol: "200 heures", odoo: 16830, msl: 8500, gap: "-49%", level: "Elite" },
+  { vol: "4 heures", odoo: 499, odooMad: 5489, msl: 400, mslMad: 1539, gap: "-20%", level: "Essentiel" },
+  { vol: "25 heures", odoo: 2635, odooMad: 28985, msl: 2000, mslMad: 7914, gap: "-24%", level: "Avancé" },
+  { vol: "50 heures", odoo: 4675, odooMad: 51425, msl: 3500, mslMad: 15422, gap: "-25%", level: "Premium" },
+  { vol: "100 heures", odoo: 8415, odooMad: 92565, msl: 5400, mslMad: 27540, gap: "-36%", level: "VIP" },
+  { vol: "200 heures", odoo: 16830, odooMad: 185130, msl: 8500, mslMad: 51000, gap: "-49%", level: "Elite" },
 ];
 
 const faqs = [
@@ -483,7 +495,7 @@ export default function TarifsPage() {
                         className="border-t px-3 py-5 text-center font-heading text-sm font-bold"
                         style={{ borderColor: "var(--grey-light)", color: p.color }}
                       >
-                        {fmt(p.priceOld, currency)}
+                        {fmt(p.priceOld, currency, p.madOld)}
                       </td>
                     ))}
                   </tr>
@@ -499,27 +511,31 @@ export default function TarifsPage() {
                         {currency === "EUR" ? "HTVA" : currency === "MAD" ? "TTC" : "HT"}
                       </span>
                     </td>
-                    {packs.map((p) => (
-                      <td
-                        key={p.name}
-                        className="border-t px-3 py-6 text-center align-middle"
-                        style={{ borderColor: "var(--grey-light)" }}
-                      >
-                        <div
-                          className="mx-auto inline-flex min-w-[110px] flex-col items-center rounded-2xl px-3 py-3 text-white shadow-[0_10px_24px_-12px_rgba(0,0,0,0.35)]"
-                          style={{ backgroundColor: p.color }}
+                    {packs.map((p) => {
+                      const newVal = currency === "MAD" && p.madNew !== undefined ? p.madNew : p.priceNew;
+                      const oldVal = currency === "MAD" && p.madOld !== undefined ? p.madOld : p.priceOld;
+                      return (
+                        <td
+                          key={p.name}
+                          className="border-t px-3 py-6 text-center align-middle"
+                          style={{ borderColor: "var(--grey-light)" }}
                         >
-                          <span className="font-heading text-base font-bold leading-tight">
-                            {fmt(p.priceNew, currency)}
-                          </span>
-                          {p.priceOld !== p.priceNew && (
-                            <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.2em] opacity-85">
-                              Économie {Math.round((1 - p.priceNew / p.priceOld) * 100)}%
+                          <div
+                            className="mx-auto inline-flex min-w-[110px] flex-col items-center rounded-2xl px-3 py-3 text-white shadow-[0_10px_24px_-12px_rgba(0,0,0,0.35)]"
+                            style={{ backgroundColor: p.color }}
+                          >
+                            <span className="font-heading text-base font-bold leading-tight">
+                              {fmt(p.priceNew, currency, p.madNew)}
                             </span>
-                          )}
-                        </div>
-                      </td>
-                    ))}
+                            {oldVal !== newVal && (
+                              <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.2em] opacity-85">
+                                Économie {Math.round((1 - newVal / oldVal) * 100)}%
+                              </span>
+                            )}
+                          </div>
+                        </td>
+                      );
+                    })}
                   </tr>
                 </tbody>
               </table>
@@ -610,7 +626,9 @@ export default function TarifsPage() {
                 </thead>
                 <tbody>
                   {comparison.map((r, i) => {
-                    const savedPct = Math.round((1 - r.msl / r.odoo) * 100);
+                    const mslVal = currency === "MAD" && r.mslMad !== undefined ? r.mslMad : r.msl;
+                    const odooVal = currency === "MAD" && r.odooMad !== undefined ? r.odooMad : r.odoo;
+                    const savedPct = Math.round((1 - mslVal / odooVal) * 100);
                     return (
                       <tr
                         key={r.vol}
@@ -643,7 +661,7 @@ export default function TarifsPage() {
                             }}
                           >
                             <span className="font-body text-sm text-brand-grey line-through">
-                              {fmt(r.odoo, currency)}
+                              {fmt(r.odoo, currency, r.odooMad)}
                             </span>
                           </span>
                         </td>
@@ -660,7 +678,7 @@ export default function TarifsPage() {
                           >
                             <Zap size={14} />
                             <span className="font-heading text-base font-bold">
-                              {fmt(r.msl, currency)}
+                              {fmt(r.msl, currency, r.mslMad)}
                             </span>
                           </span>
                         </td>
@@ -677,7 +695,7 @@ export default function TarifsPage() {
                               }}
                             >
                               <TrendingDown size={12} />
-                              {r.gap}
+                              -{savedPct}%
                             </span>
                             <div
                               className="hidden h-1.5 w-24 overflow-hidden rounded-full md:block"
