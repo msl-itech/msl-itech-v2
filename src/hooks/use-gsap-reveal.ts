@@ -77,17 +77,26 @@ export function useGsapReveal<T extends HTMLElement>(
           if (node.nodeType === Node.TEXT_NODE) {
             const txt = node.textContent ?? "";
             const frag = document.createDocumentFragment();
-            for (const ch of txt) {
-              if (ch === " ") {
-                frag.appendChild(document.createTextNode(" "));
-              } else {
+            // Split into words to prevent mid-word line breaks.
+            const tokens = txt.split(/(\s+)/);
+            tokens.forEach((tok) => {
+              if (tok === "") return;
+              if (/^\s+$/.test(tok)) {
+                frag.appendChild(document.createTextNode(tok));
+                return;
+              }
+              const wordWrap = document.createElement("span");
+              wordWrap.style.display = "inline-block";
+              wordWrap.style.whiteSpace = "nowrap";
+              for (const ch of tok) {
                 const s = document.createElement("span");
                 s.style.display = "inline-block";
                 s.textContent = ch;
-                frag.appendChild(s);
+                wordWrap.appendChild(s);
                 out.push(s);
               }
-            }
+              frag.appendChild(wordWrap);
+            });
             (node as ChildNode).replaceWith(frag);
           } else if (node.nodeType === Node.ELEMENT_NODE) {
             Array.from(node.childNodes).forEach((c) => walk(c, out));
