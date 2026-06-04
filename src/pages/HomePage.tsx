@@ -881,7 +881,7 @@ function CaseStudy({ market }: { market: "BE" | "MA" }) {
             "Une implémentation structurée et transparente. AIS figure parmi nos références publiques, vérifiables sur odoo.com.",
           metrics: [
             { k: "9", v: "références" },
-            { k: "v18·v19", v: "certifié" },
+            { k: "v18·v19", v: "certifiés" },
             { k: "100%", v: "vérifiable" },
           ],
           img: caseBe,
