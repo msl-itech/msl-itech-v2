@@ -109,7 +109,7 @@ export default function SantePage() {
         desc: "Avec 3 clients actifs dans la santé, l'aide sociale et le pharmaceutique, MSL-iTECH a une expérience concrète des contraintes de ce secteur.",
         points: [
           "Traçabilité lots et péremptions",
-          "Intégration CNOPS, CNSS et assurances privées",
+          "Facturation comptoir et gestion des tiers",
           "Suivi patients et ordonnances",
           "Conformité aux exigences sectorielles",
         ],
