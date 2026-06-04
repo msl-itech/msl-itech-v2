@@ -122,7 +122,7 @@ export default function ConsultantBePage() {
               className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm"
               style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "white" }}
             >
-              <ShieldCheck size={16} style={{ color: "var(--gold)" }} /> Odoo Ready Partner · v18 & v19
+              <ShieldCheck size={16} style={{ color: "var(--gold)" }} /> Consultants certifiés v18 & v19
             </span>
             <span
               className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm"
