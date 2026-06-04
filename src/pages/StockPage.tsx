@@ -78,7 +78,7 @@ const faqs = [
   },
   {
     q: "Quelles versions d'Odoo MSL-iTECH déploie-t-il ?",
-    a: "MSL-iTECH est Odoo Ready Partner certifié sur les versions v18 et v19. Les nouveaux projets sont déployés sur v18 ou v19 selon les modules tiers nécessaires. Les migrations depuis les versions antérieures (v15, v16, v17) font partie de notre catalogue.",
+    a: "Nos consultants sont certifiés Odoo v18 et v19 pour l'instant. Nous déployons les nouveaux projets sur v18 ou v19 selon les modules tiers nécessaires, et assurons les migrations depuis les versions antérieures (v15, v16, v17). Notre équipe monte en version au fil des sorties d'Odoo.",
   },
 ];
 
