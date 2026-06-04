@@ -511,27 +511,31 @@ export default function TarifsPage() {
                         {currency === "EUR" ? "HTVA" : currency === "MAD" ? "TTC" : "HT"}
                       </span>
                     </td>
-                    {packs.map((p) => (
-                      <td
-                        key={p.name}
-                        className="border-t px-3 py-6 text-center align-middle"
-                        style={{ borderColor: "var(--grey-light)" }}
-                      >
-                        <div
-                          className="mx-auto inline-flex min-w-[110px] flex-col items-center rounded-2xl px-3 py-3 text-white shadow-[0_10px_24px_-12px_rgba(0,0,0,0.35)]"
-                          style={{ backgroundColor: p.color }}
+                    {packs.map((p) => {
+                      const newVal = currency === "MAD" && p.madNew !== undefined ? p.madNew : p.priceNew;
+                      const oldVal = currency === "MAD" && p.madOld !== undefined ? p.madOld : p.priceOld;
+                      return (
+                        <td
+                          key={p.name}
+                          className="border-t px-3 py-6 text-center align-middle"
+                          style={{ borderColor: "var(--grey-light)" }}
                         >
-                          <span className="font-heading text-base font-bold leading-tight">
-                            {fmt(p.priceNew, currency)}
-                          </span>
-                          {p.priceOld !== p.priceNew && (
-                            <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.2em] opacity-85">
-                              Économie {Math.round((1 - p.priceNew / p.priceOld) * 100)}%
+                          <div
+                            className="mx-auto inline-flex min-w-[110px] flex-col items-center rounded-2xl px-3 py-3 text-white shadow-[0_10px_24px_-12px_rgba(0,0,0,0.35)]"
+                            style={{ backgroundColor: p.color }}
+                          >
+                            <span className="font-heading text-base font-bold leading-tight">
+                              {fmt(p.priceNew, currency, p.madNew)}
                             </span>
-                          )}
-                        </div>
-                      </td>
-                    ))}
+                            {oldVal !== newVal && (
+                              <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.2em] opacity-85">
+                                Économie {Math.round((1 - newVal / oldVal) * 100)}%
+                              </span>
+                            )}
+                          </div>
+                        </td>
+                      );
+                    })}
                   </tr>
                 </tbody>
               </table>
