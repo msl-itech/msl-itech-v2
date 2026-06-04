@@ -29,7 +29,7 @@ export const professionalServiceSchema = {
   name: "MSL-iTECH — Implémentation Odoo & Services Digitaux",
   url: "https://msl-itech-v2.lovable.app",
   description:
-    "Odoo Ready Partner certifié au Maroc (v18 & v19). Implémentation ERP, développement de modules custom et personnalisation d'Odoo natif, création web React/WordPress et marketing digital. Accompagnement à distance des PME en Belgique, au Canada et à l'international. Packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
+    "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. Implémentation ERP, développement de modules custom et personnalisation d'Odoo natif, création web React/WordPress et marketing digital. Accompagnement à distance des PME en Belgique, au Canada et à l'international. Packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
   provider: { "@id": "https://msl-itech-v2.lovable.app/#organization" },
   areaServed: ["BE", "MA", "CA"],
   serviceType: [
