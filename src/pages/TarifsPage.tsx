@@ -23,13 +23,13 @@ const EUR_TO_MAD = 11;
 const EUR_TO_USD = 1.1;
 const USD_TO_CAD = 1.5;
 
-const fmt = (eur: number, currency: Currency) => {
+const fmt = (eur: number, currency: Currency, mad?: number) => {
   if (currency === "EUR") {
     return `${eur.toLocaleString("fr-FR")} €`;
   }
   if (currency === "MAD") {
-    const mad = Math.round(eur * EUR_TO_MAD);
-    return `${mad.toLocaleString("fr-FR")} MAD`;
+    const madVal = mad !== undefined ? mad : Math.round(eur * EUR_TO_MAD);
+    return `${madVal.toLocaleString("fr-FR")} MAD`;
   }
   if (currency === "USD") {
     const usd = Math.round(eur * EUR_TO_USD);
