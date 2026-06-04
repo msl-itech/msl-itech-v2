@@ -74,7 +74,7 @@ export default function SantePage() {
       name: "Implémentation Odoo Santé & Pharmacie",
       description:
         "Solution Odoo pour pharmacies, cliniques et centres de santé au Maroc : traçabilité des lots, ordonnances, dossier patient et facturation comptoir par MSL-iTECH.",
-      serviceType: ["ERP Santé", "Gestion pharmacie", "Facturation assurance"],
+      serviceType: ["ERP Santé", "Gestion pharmacie", "Facturation comptoir"],
       areaServed: ["MA"],
     },
   });
