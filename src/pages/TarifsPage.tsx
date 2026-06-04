@@ -356,9 +356,9 @@ export default function TarifsPage() {
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
               Notre structure internationale — équipe technique Odoo Ready
-              Partner au Maroc (consultants certifiés v18 et v19 pour l'instant), accompagnement à distance
+              Partner au Maroc (consultants certifiés v18 & v19), accompagnement à distance
               des clients belges et canadiens — nous permet de proposer des
-              packs <strong className="text-brand-black">10 à 20% plus
+              packs <strong className="text-brand-black">20 à 50% plus
               accessibles</strong> que les Success Packs observés sur le marché
               belge, à volume comparable. Nous développons aussi des modules
               custom et personnalisons Odoo natif selon vos process.
