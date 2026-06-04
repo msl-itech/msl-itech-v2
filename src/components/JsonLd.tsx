@@ -113,7 +113,7 @@ export const localBusinessBeSchema = {
   telephone: "+32-2-886-05-49",
   email: "info@msl-itech.com",
   description:
-    "Odoo Ready Partner certifié au Maroc (v18 & v19), accompagnement à distance des PME belges. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique en Belgique.",
+    "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. Accompagnement à distance des PME belges. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique en Belgique.",
   priceRange: "€€",
   areaServed: "BE",
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
