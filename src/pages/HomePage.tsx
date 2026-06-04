@@ -427,7 +427,7 @@ function SocialProof() {
         Odoo
       </a>
     </>,
-    "✓ Odoo Ready Partner · v18 & v19",
+    "✓ Consultants certifiés v18 & v19",
     "✓ Modules custom & personnalisation d'Odoo natif",
     "✓ Belgique · Maroc · Canada",
     "✓ 9 références publiques vérifiées",
