@@ -9,12 +9,32 @@ import {
   ExternalLink,
   CheckCircle2,
   Star,
+  ShoppingBag,
+  Church,
+  Hammer,
+  Baby,
+  HeartPulse,
+  Briefcase,
+  Truck,
+  Zap,
+  Landmark,
+  Leaf,
+  Factory,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import caseBe from "@/assets/home/case-be.webp";
 import caseMa from "@/assets/home/case-ma.webp";
 import pillarWeb from "@/assets/home/pillar-web.webp";
+import pillarErp from "@/assets/home/pillar-erp.webp";
+import sectorWholesale from "@/assets/home/sector-wholesale.webp";
+import sectorBtp from "@/assets/home/sector-btp.webp";
+import sectorHealth from "@/assets/home/sector-health.webp";
+import sectorServices from "@/assets/home/sector-services.webp";
+import sectorLogistics from "@/assets/home/sector-logistics.webp";
+import sectorEngineering from "@/assets/home/sector-engineering.webp";
+import sectorHr from "@/assets/home/sector-hr.webp";
+import sectorFood from "@/assets/home/sector-food.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
 
 /* ---------------- Highlight (marker brushstroke) ---------------- */
