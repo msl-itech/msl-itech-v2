@@ -233,12 +233,12 @@ const odooCases = [
   {
     icon: ShoppingBag,
     name: "Wam Lek Faya, LLC — The Perfect Kick",
-    sector: "Vente en gros / Vente au détail — Maroc",
-    image: sectorWholesale,
+    sector: "Vente en gros / Vente au détail — Épices & sauces piquantes",
+    image: sectorFood,
     context:
-      "Commerce de chaussures et articles de mode. Gestion des collections, stocks et ventes en ligne et en magasin.",
+      "Marque d'épices et sauces piquantes artisanales. Gestion des recettes, lots de production, stocks et ventes en ligne et en magasin.",
     modules: ["Ventes", "Stock", "eCommerce", "Comptabilité", "CRM"],
-    result: "Présence omnicanale synchronisée avec gestion des collections en temps réel.",
+    result: "Présence omnicanale synchronisée avec traçabilité des lots en temps réel.",
   },
   {
     icon: Leaf,
