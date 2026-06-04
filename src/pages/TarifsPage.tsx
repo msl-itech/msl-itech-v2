@@ -495,7 +495,7 @@ export default function TarifsPage() {
                         className="border-t px-3 py-5 text-center font-heading text-sm font-bold"
                         style={{ borderColor: "var(--grey-light)", color: p.color }}
                       >
-                        {fmt(p.priceOld, currency)}
+                        {fmt(p.priceOld, currency, p.madOld)}
                       </td>
                     ))}
                   </tr>
