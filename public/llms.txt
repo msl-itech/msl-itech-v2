@@ -29,7 +29,7 @@ fait à distance (visio, démo, support), avec déplacements ponctuels
 possibles pour les ateliers de cadrage ou les formations clés.
 
 ### Odoo ERP — Cœur de l'offre
-- Statut Odoo Ready Partner certifié sur v18 et v19
+- Statut Odoo Ready Partner — nos consultants sont certifiés Odoo v18 et v19 pour l'instant
 - Implémentation Odoo : CRM, Finance, Stock, Production, RH
 - Développement de modules Odoo custom (Python / OWL)
 - Personnalisation d'Odoo natif : workflows, vues, rapports PDF, intégrations API, connecteurs e-commerce
