@@ -57,7 +57,7 @@ const faqs = [
   },
   {
     q: "MSL-iTECH peut-il développer des modules custom Odoo ?",
-    a: "Oui. Au-delà du paramétrage et de la configuration des modules natifs, notre équipe développe des modules sur mesure en Python/OWL et personnalise Odoo natif : workflows métier, vues, rapports PDF, intégrations API, connecteurs e-commerce, etc. Tout est livré dans le cadre Odoo Ready Partner (v18 & v19).",
+    a: "Oui. Au-delà du paramétrage et de la configuration des modules natifs, notre équipe développe des modules sur mesure en Python/OWL et personnalise Odoo natif : workflows métier, vues, rapports PDF, intégrations API, connecteurs e-commerce, etc. Tout est livré dans le cadre Odoo Ready Partner (consultants certifiés v18 & v19). ",
   },
 ];
 
