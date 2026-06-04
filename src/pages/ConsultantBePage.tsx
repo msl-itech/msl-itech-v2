@@ -45,7 +45,7 @@ const steps = [
 const faqs = [
   {
     q: "Quel est le meilleur consultant Odoo en Belgique pour une PME ?",
-    a: "Pour une PME belge de 10 à 50 employés, il faut un consultant certifié Odoo qui connaît les spécificités belges (PCMN, TVA, législation du travail). MSL-iTECH est Odoo Ready Partner certifié au Maroc (v18 & v19) et accompagne ses clients belges à distance depuis 2020, avec une grille tarifaire publiée à partir de 400 € et des références vérifiables sur odoo.com/partners.",
+    a: "Pour une PME belge de 10 à 50 employés, il faut un consultant certifié Odoo qui connaît les spécificités belges (PCMN, TVA, législation du travail). MSL-iTECH est Odoo Ready Partner au Maroc — nos consultants sont certifiés v18 & v19 — et accompagne ses clients belges à distance depuis 2020, avec une grille tarifaire publiée à partir de 400 € et des références vérifiables sur odoo.com/partners.",
   },
   {
     q: "Combien coûte l'implémentation d'Odoo en Belgique ?",
