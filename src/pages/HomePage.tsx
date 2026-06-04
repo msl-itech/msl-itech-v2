@@ -161,21 +161,38 @@ function Sticker({
   children,
   rotate = -6,
   className = "",
+  href,
 }: {
   children: React.ReactNode;
   rotate?: number;
   className?: string;
+  href?: string;
 }) {
+  const style = {
+    backgroundColor: "var(--gold)",
+    borderColor: "var(--blue)",
+    color: "var(--blue)",
+    transform: `rotate(${rotate}deg)`,
+  } as React.CSSProperties;
+
+  const classes = `inline-flex items-center gap-1.5 rounded-2xl border-2 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] ${className}`;
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={classes}
+        style={style}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <span
-      className={`inline-flex items-center gap-1.5 rounded-2xl border-2 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] ${className}`}
-      style={{
-        backgroundColor: "var(--gold)",
-        borderColor: "var(--blue)",
-        color: "var(--blue)",
-        transform: `rotate(${rotate}deg)`,
-      }}
-    >
+    <span className={classes} style={style}>
       {children}
     </span>
   );
@@ -328,7 +345,12 @@ function HeroShell({
                   }}
                 />
                 <div className="absolute left-5 top-5">
-                  <Sticker rotate={-6}>★ Partenaire Odoo</Sticker>
+                  <Sticker
+                    rotate={-6}
+                    href="https://www.odoo.com/fr_FR/partners/msl-itech-15851608?country_id=132"
+                  >
+                    ★ Partenaire Odoo
+                  </Sticker>
                 </div>
                 <HeroCursorGlow radius="24px" />
               </div>
