@@ -1,4 +1,6 @@
 import { OdooWebsite, OdooMarketingAutomation, OdooMassMailing } from "@/components/icons/odoo";
+import { Link } from "react-router-dom";
+import { ArrowRight, Check, Sparkles, X } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import marketingHero from "@/assets/marketing-hero.webp";
@@ -52,6 +54,163 @@ const faqs = [
   },
 ];
 
+function WebsitePromoSection() {
+  const included = [
+    "Site vitrine 4 à 5 pages au design sur-mesure",
+    "Optimisation SEO & GEO dès la conception",
+    "100% responsive, performance et accessibilité soignées",
+    "Formulaire de contact + analytics + RGPD",
+    "3 mois de suivi marketing digital offerts",
+  ];
+  const excluded = [
+    "E-commerce, paiement en ligne, gestion de stock",
+    "Calculateurs, simulateurs, outils métier complexes",
+    "Espace client, intégrations ERP/CRM avancées",
+  ];
+
+  return (
+    <section className="py-24" style={{ backgroundColor: "var(--white)" }}>
+      <div className="container">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+            <span className="inline-block h-px w-8 bg-brand-blue" />
+            Offre site web + marketing
+            <span className="inline-block h-px w-8 bg-brand-blue" />
+          </p>
+          <h2 className="font-heading text-3xl font-bold leading-[1.1] text-brand-black md:text-[2.5rem]">
+            Votre site vitrine à{" "}
+            <span className="relative inline-block">
+              <span
+                aria-hidden
+                className="absolute inset-x-[-4px] bottom-[8%] -z-0 h-[38%] -rotate-[1.5deg] rounded-[6px]"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+              <span className="relative z-10">1 300 €</span>
+            </span>{" "}
+            — 3 mois de suivi marketing offerts
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl font-body text-base text-brand-grey">
+            Un site clair, rapide et bien référencé — pensé pour convertir dès le premier mois. Et pour ne pas vous laisser seul après la mise en ligne, on pilote votre marketing digital pendant 3 mois.
+          </p>
+        </div>
+
+        <div className="mx-auto mt-14 grid max-w-5xl gap-6 lg:grid-cols-[1.4fr_1fr]">
+          {/* Carte principale — offre */}
+          <article
+            className="relative overflow-hidden rounded-3xl border bg-white p-8 md:p-10"
+            style={{ borderColor: "var(--grey-light)" }}
+          >
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -top-16 -right-16 h-56 w-56 rounded-full opacity-25 blur-3xl"
+              style={{ backgroundColor: "var(--gold)" }}
+            />
+
+            <div className="flex flex-wrap items-center gap-3">
+              <span
+                className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.18em]"
+                style={{
+                  borderColor: "var(--blue)",
+                  backgroundColor: "var(--gold)",
+                  color: "var(--blue)",
+                }}
+              >
+                <Sparkles size={10} />
+                Promo lancement
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey">
+                Pack site + marketing
+              </span>
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-end gap-4">
+              <p className="font-heading text-5xl font-bold text-brand-black md:text-6xl">
+                1 300 €
+              </p>
+              <p className="pb-2 font-body text-sm text-brand-grey">
+                HTVA · paiement en 2 fois possible
+              </p>
+            </div>
+            <p className="mt-2 font-body text-sm font-semibold" style={{ color: "var(--blue)" }}>
+              + 3 mois de suivi marketing digital offerts
+            </p>
+
+            <ul className="mt-7 space-y-3 border-t pt-6" style={{ borderColor: "var(--grey-light)" }}>
+              {included.map((b) => (
+                <li key={b} className="flex items-start gap-3 font-body text-sm text-brand-black">
+                  <span
+                    className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
+                    style={{ backgroundColor: "var(--blue)", color: "var(--gold)" }}
+                  >
+                    <Check size={12} strokeWidth={3} />
+                  </span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-bold transition hover:scale-[1.02]"
+                style={{ backgroundColor: "var(--blue)", color: "var(--white)" }}
+              >
+                Je veux ce pack
+                <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/creation-web"
+                className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-blue/5"
+                style={{ borderColor: "var(--blue)" }}
+              >
+                En savoir plus sur nos sites
+              </Link>
+            </div>
+          </article>
+
+          {/* Carte secondaire — exclusions / sur-devis */}
+          <article
+            className="relative overflow-hidden rounded-3xl border p-8 md:p-10"
+            style={{ borderColor: "var(--grey-light)", backgroundColor: "var(--bg)" }}
+          >
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey">
+              Hors pack — sur devis
+            </p>
+            <h3 className="mt-2 font-heading text-2xl font-bold text-brand-black">
+              Projets plus complexes
+            </h3>
+            <p className="mt-3 font-body text-sm text-brand-grey">
+              Certains projets demandent un cadrage spécifique. On les chiffre au cas par cas pour ne facturer que le juste nécessaire.
+            </p>
+
+            <ul className="mt-6 space-y-3">
+              {excluded.map((b) => (
+                <li key={b} className="flex items-start gap-3 font-body text-sm text-brand-black">
+                  <span
+                    className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border"
+                    style={{ borderColor: "var(--grey-light)", color: "var(--blue)" }}
+                  >
+                    <X size={12} strokeWidth={3} />
+                  </span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+
+            <Link
+              to="/contact"
+              className="mt-7 inline-flex items-center gap-2 font-body text-sm font-semibold text-brand-blue underline-offset-4 hover:underline"
+            >
+              Demander un devis sur-mesure
+              <ArrowRight size={14} />
+            </Link>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function MarketingPage() {
   useProductSeo({
     title: "Marketing Digital Belgique & Maroc — SEO, GEO & Acquisition | MSL-iTECH",
@@ -85,6 +244,7 @@ export default function MarketingPage() {
       featuresTitle="SEO, GEO et campagnes d'acquisition"
       features={features}
       featuresSlot={
+        <>
         <section className="py-24" style={{ backgroundColor: "var(--bg)" }}>
           <div className="container">
             <div className="mx-auto max-w-2xl text-center">
@@ -154,6 +314,8 @@ export default function MarketingPage() {
             </div>
           </div>
         </section>
+        <WebsitePromoSection />
+        </>
       }
       whySection={{
         title: "Pourquoi MSL-iTECH pour votre croissance digitale",
