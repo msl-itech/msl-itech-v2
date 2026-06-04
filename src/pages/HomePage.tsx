@@ -36,7 +36,7 @@ import { JsonLd, professionalServiceSchema } from "@/components/JsonLd";
 const homeFaqs: { q: string; a: string }[] = [
   {
     q: "MSL-iTECH est-il un partenaire Odoo officiel ?",
-    a: "Oui. MSL-iTECH est Odoo Ready Partner, certifié sur les versions v18 et v19. Notre fiche partenaire est vérifiable sur odoo.com/partners avec 9 références publiques.",
+    a: "Oui. MSL-iTECH est Odoo Ready Partner. Nos consultants sont certifiés Odoo v18 et v19 pour l'instant, avec montée en version continue. Notre fiche partenaire est vérifiable sur odoo.com/partners avec 9 références publiques.",
   },
   {
     q: "Combien coûte une implémentation Odoo chez MSL-iTECH ?",
@@ -52,7 +52,7 @@ const homeFaqs: { q: string; a: string }[] = [
   },
   {
     q: "Quelles versions d'Odoo MSL-iTECH déploie-t-il ?",
-    a: "MSL-iTECH est certifié Ready Partner sur Odoo v18 et v19. Les nouveaux projets sont déployés sur v18 ou v19 selon les modules tiers nécessaires. Les migrations depuis v15/v16/v17 font partie de notre catalogue.",
+    a: "Nos consultants sont certifiés Odoo v18 et v19 pour l'instant. Les nouveaux projets sont déployés sur v18 ou v19 selon les modules tiers nécessaires, et nous assurons les migrations depuis v15/v16/v17. Notre équipe monte en version au fil des sorties d'Odoo.",
   },
 ];
 
@@ -119,7 +119,7 @@ function useSeo(market: "BE" | "MA") {
         : "Expert Odoo Belgique & Canada — MSL-iTECH";
     const desc =
       market === "MA"
-        ? "Odoo Ready Partner Maroc (v18 & v19). Implémentation ERP, modules custom et personnalisation d'Odoo natif pour HORECA, BTP, Santé et Commerce."
+        ? "Odoo Ready Partner Maroc — consultants certifiés v18 & v19. Implémentation ERP, modules custom et personnalisation d'Odoo natif pour HORECA, BTP, Santé et Commerce."
         : "Odoo Ready Partner. Accompagnement à distance PME belges et canadiennes. ERP, modules custom et personnalisation d'Odoo natif.";
     document.title = title;
     let meta = document.querySelector('meta[name="description"]');
@@ -381,7 +381,7 @@ function HeroShell({
             <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Réponse sous 24-72h
           </span>
           <span className="flex items-center gap-2 rounded-full border border-brand-grey-light bg-brand-white px-3 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Odoo Ready Partner · v18 & v19
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" /> Consultants certifiés v18 & v19
           </span>
         </div>
       </div>
@@ -396,7 +396,7 @@ function HeroBE() {
       eyebrow="Odoo Ready Partner · Maroc → Belgique & Canada"
       titleTop="L'expertise d'un Odoo Ready Partner certifié."
       titleAccent="Des tarifs repensés."
-      description="Équipe technique certifiée au Maroc (v18 & v19), à votre service à distance en Belgique et au Canada. Implémentation, modules custom et personnalisation d'Odoo natif sans la lourdeur d'un grand cabinet, avec des packs 20 à 50% plus accessibles que les standards du marché belge."
+      description="Équipe technique au Maroc — consultants certifiés v18 & v19 — à votre service à distance en Belgique et au Canada. Implémentation, modules custom et personnalisation d'Odoo natif sans la lourdeur d'un grand cabinet, avec des packs 20 à 50% plus accessibles que les standards du marché belge."
     />
   );
 }
@@ -427,7 +427,7 @@ function SocialProof() {
         Odoo
       </a>
     </>,
-    "✓ Odoo Ready Partner · v18 & v19",
+    "✓ Consultants certifiés v18 & v19",
     "✓ Modules custom & personnalisation d'Odoo natif",
     "✓ Belgique · Maroc · Canada",
     "✓ 9 références publiques vérifiées",
@@ -881,7 +881,7 @@ function CaseStudy({ market }: { market: "BE" | "MA" }) {
             "Une implémentation structurée et transparente. AIS figure parmi nos références publiques, vérifiables sur odoo.com.",
           metrics: [
             { k: "9", v: "références" },
-            { k: "v18·v19", v: "certifié" },
+            { k: "v18·v19", v: "certifiés" },
             { k: "100%", v: "vérifiable" },
           ],
           img: caseBe,

@@ -29,7 +29,7 @@ export const professionalServiceSchema = {
   name: "MSL-iTECH — Implémentation Odoo & Services Digitaux",
   url: "https://msl-itech-v2.lovable.app",
   description:
-    "Odoo Ready Partner certifié au Maroc (v18 & v19). Implémentation ERP, développement de modules custom et personnalisation d'Odoo natif, création web React/WordPress et marketing digital. Accompagnement à distance des PME en Belgique, au Canada et à l'international. Packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
+    "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. Implémentation ERP, développement de modules custom et personnalisation d'Odoo natif, création web React/WordPress et marketing digital. Accompagnement à distance des PME en Belgique, au Canada et à l'international. Packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
   provider: { "@id": "https://msl-itech-v2.lovable.app/#organization" },
   areaServed: ["BE", "MA", "CA"],
   serviceType: [
@@ -58,7 +58,7 @@ export const professionalServiceSchema = {
   ],
   hasCredential: {
     "@type": "EducationalOccupationalCredential",
-    name: "Odoo Ready Partner — certifié v18 & v19",
+    name: "Odoo Ready Partner — consultants certifiés v18 & v19",
     url: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
   },
   aggregateRating: {
@@ -113,7 +113,7 @@ export const localBusinessBeSchema = {
   telephone: "+32-2-886-05-49",
   email: "info@msl-itech.com",
   description:
-    "Odoo Ready Partner certifié au Maroc (v18 & v19), accompagnement à distance des PME belges. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique en Belgique.",
+    "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. Accompagnement à distance des PME belges. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique en Belgique.",
   priceRange: "€€",
   areaServed: "BE",
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
@@ -136,7 +136,7 @@ export const localBusinessMaSchema = {
     addressCountry: "MA",
   },
   description:
-    "Odoo Ready Partner certifié (v18 & v19) basé à Marrakech. Implémentation ERP, modules custom et personnalisation d'Odoo natif pour PME marocaines : HORECA, BTP, Santé, Commerce. Accompagne également des clients en Belgique et au Canada à distance.",
+    "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19 — basé à Marrakech. Implémentation ERP, modules custom et personnalisation d'Odoo natif pour PME marocaines : HORECA, BTP, Santé, Commerce. Accompagne également des clients en Belgique et au Canada à distance.",
   priceRange: "€€",
   openingHours: "Mo-Fr 09:00-18:00",
   areaServed: "MA",
@@ -153,7 +153,7 @@ export const localBusinessCaSchema = {
   url: "https://msl-itech-v2.lovable.app",
   email: "info@msl-itech.com",
   description:
-    "Odoo Ready Partner certifié au Maroc (v18 & v19), accompagnement à distance des PME canadiennes francophones. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique au Canada.",
+    "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. Accompagnement à distance des PME canadiennes francophones. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique au Canada.",
   priceRange: "$$",
   areaServed: "CA",
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",

@@ -161,7 +161,7 @@ function Hero() {
 
           {/* Sticker top-left (overflows freely) */}
           <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
-            <Sticker rotate={-8}>★ Odoo Ready Partner · v18 & v19</Sticker>
+            <Sticker rotate={-8}>★ Consultants certifiés v18 & v19</Sticker>
           </div>
 
           {/* Content */}
@@ -754,7 +754,7 @@ function CaseStudy() {
             <div className="mt-10 grid grid-cols-3 gap-4">
               {[
                 { k: "9", v: "références" },
-                { k: "v18·v19", v: "certifié" },
+                { k: "v18·v19", v: "certifiés" },
                 { k: "100%", v: "vérifiable" },
               ].map((m) => (
                 <div
@@ -909,7 +909,7 @@ function FinalCTA() {
             <div className="mt-8 flex flex-wrap items-center gap-4 font-body text-sm text-white/70">
               <span className="flex items-center gap-2">
                 <ShieldCheck size={16} className="text-brand-gold" />
-                Odoo Ready Partner · v18 & v19
+                Consultants certifiés v18 & v19
               </span>
               <span className="flex items-center gap-2">
                 <CheckCircle2 size={16} className="text-brand-gold" />

@@ -20,7 +20,7 @@ const reasons = [
   {
     icon: TrendingDown,
     title: "Des packs d'heures plus accessibles sur des volumes comparables",
-    desc: "Notre structure internationale — équipe technique Odoo Ready Partner certifiée au Maroc (v18 & v19), accompagnement à distance des clients belges — nous permet de proposer des packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge. Même cadre certifié, sans bureau local en Belgique.",
+    desc: "Notre structure internationale — équipe technique Odoo Ready Partner au Maroc (consultants certifiés v18 & v19), accompagnement à distance des clients belges — nous permet de proposer des packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge. Même cadre certifié, sans bureau local en Belgique.",
   },
   {
     icon: ListChecks,
@@ -45,7 +45,7 @@ const steps = [
 const faqs = [
   {
     q: "Quel est le meilleur consultant Odoo en Belgique pour une PME ?",
-    a: "Pour une PME belge de 10 à 50 employés, il faut un consultant certifié Odoo qui connaît les spécificités belges (PCMN, TVA, législation du travail). MSL-iTECH est Odoo Ready Partner certifié au Maroc (v18 & v19) et accompagne ses clients belges à distance depuis 2020, avec une grille tarifaire publiée à partir de 400 € et des références vérifiables sur odoo.com/partners.",
+    a: "Pour une PME belge de 10 à 50 employés, il faut un consultant certifié Odoo qui connaît les spécificités belges (PCMN, TVA, législation du travail). MSL-iTECH est Odoo Ready Partner au Maroc — nos consultants sont certifiés v18 & v19 — et accompagne ses clients belges à distance depuis 2020, avec une grille tarifaire publiée à partir de 400 € et des références vérifiables sur odoo.com/partners.",
   },
   {
     q: "Combien coûte l'implémentation d'Odoo en Belgique ?",
@@ -57,7 +57,7 @@ const faqs = [
   },
   {
     q: "MSL-iTECH peut-il développer des modules custom Odoo ?",
-    a: "Oui. Au-delà du paramétrage et de la configuration des modules natifs, notre équipe développe des modules sur mesure en Python/OWL et personnalise Odoo natif : workflows métier, vues, rapports PDF, intégrations API, connecteurs e-commerce, etc. Tout est livré dans le cadre Odoo Ready Partner (v18 & v19).",
+    a: "Oui. Au-delà du paramétrage et de la configuration des modules natifs, notre équipe développe des modules sur mesure en Python/OWL et personnalise Odoo natif : workflows métier, vues, rapports PDF, intégrations API, connecteurs e-commerce, etc. Tout est livré dans le cadre Odoo Ready Partner (consultants certifiés v18 & v19). ",
   },
 ];
 
@@ -65,7 +65,7 @@ export default function ConsultantBePage() {
   useProductSeo({
     title: "Consultant Odoo pour PME belges — Odoo Ready Partner (Maroc, à distance) | MSL-iTECH",
     description:
-      "Odoo Ready Partner certifié au Maroc (v18 & v19), MSL-iTECH accompagne à distance les PME belges : implémentation, modules custom et personnalisation d'Odoo natif. Tarifs publiés 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
+      "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. MSL-iTECH accompagne à distance les PME belges : implémentation, modules custom et personnalisation d'Odoo natif. Tarifs publiés 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
     path: "/consultant-odoo-belgique",
     faqs,
     ldId: "ld-faq-consultant-be",
@@ -111,7 +111,7 @@ export default function ConsultantBePage() {
           </h1>
           <p className="mt-6 max-w-3xl font-body text-lg text-white/80">
             Vous cherchez un partenaire Odoo certifié pour votre PME belge ?
-            MSL-iTECH est Odoo Ready Partner certifié au Maroc (v18 & v19) et
+            MSL-iTECH est Odoo Ready Partner au Maroc — consultants certifiés v18 & v19 — et
             accompagne ses clients belges à distance depuis 2020 :
             implémentation, modules custom et personnalisation d'Odoo natif.
             Pas de bureau physique en Belgique — partenariat officiel Odoo
@@ -122,7 +122,7 @@ export default function ConsultantBePage() {
               className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm"
               style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "white" }}
             >
-              <ShieldCheck size={16} style={{ color: "var(--gold)" }} /> Odoo Ready Partner · v18 & v19
+              <ShieldCheck size={16} style={{ color: "var(--gold)" }} /> Consultants certifiés v18 & v19
             </span>
             <span
               className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm"
@@ -134,7 +134,7 @@ export default function ConsultantBePage() {
           <div className="mt-8 inline-flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3">
             <img
               src={odooReadyBadge}
-              alt="Badge officiel Odoo Ready Partner — MSL-iTECH certifié sur Odoo v18 et v19"
+              alt="Badge officiel Odoo Ready Partner — MSL-iTECH consultants certifiés Odoo v18 et v19"
               className="h-12 w-auto"
               loading="lazy"
             />
