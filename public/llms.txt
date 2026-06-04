@@ -6,7 +6,7 @@
 
 Nom : MSL-iTECH
 Type : Odoo Ready Partner — Agence digitale complète
-Statut Odoo : Ready Partner officiel, certifié sur les versions v18 et v19
+Statut Odoo : Ready Partner officiel — nos consultants sont certifiés Odoo v18 et v19 pour l'instant
 Fondée : 2020
 Vérification : https://www.odoo.com/fr_FR/partners/msl-itech-15851608
 Siège technique : Marrakech, Maroc (équipe basée au Maroc, pas de bureau physique en BE ou CA)
