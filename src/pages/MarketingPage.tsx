@@ -1,4 +1,6 @@
 import { OdooWebsite, OdooMarketingAutomation, OdooMassMailing } from "@/components/icons/odoo";
+import { Link } from "react-router-dom";
+import { ArrowRight, Check, Sparkles, X } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import marketingHero from "@/assets/marketing-hero.webp";
@@ -85,6 +87,7 @@ export default function MarketingPage() {
       featuresTitle="SEO, GEO et campagnes d'acquisition"
       features={features}
       featuresSlot={
+        <>
         <section className="py-24" style={{ backgroundColor: "var(--bg)" }}>
           <div className="container">
             <div className="mx-auto max-w-2xl text-center">
@@ -154,6 +157,8 @@ export default function MarketingPage() {
             </div>
           </div>
         </section>
+        <WebsitePromoSection />
+        </>
       }
       whySection={{
         title: "Pourquoi MSL-iTECH pour votre croissance digitale",
