@@ -328,14 +328,18 @@ function HeroShell({
               </div>
 
               {/* Big image — portrait/team (hidden on mobile to shorten hero) */}
-              <div
-                className="relative col-span-4 hidden aspect-[4/3] overflow-hidden rounded-[24px] border md:col-span-2 md:row-span-2 md:block md:aspect-auto md:min-h-[540px]"
+              <a
+                href="https://www.odoo.com/fr_FR/partners/msl-itech-15851608?country_id=132"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Voir notre fiche partenaire Odoo"
+                className="group relative col-span-4 hidden aspect-[4/3] overflow-hidden rounded-[24px] border md:col-span-2 md:row-span-2 md:block md:aspect-auto md:min-h-[540px]"
                 style={{ borderColor: "var(--grey-light)" }}
               >
                 <img
                   src={bgImage}
                   alt=""
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
                 loading="eager" fetchPriority="high" decoding="async"/>
                 <div
                   className="pointer-events-none absolute inset-0"
@@ -353,7 +357,7 @@ function HeroShell({
                   </Sticker>
                 </div>
                 <HeroCursorGlow radius="24px" />
-              </div>
+              </a>
 
               {/* Small white stat 1 */}
               <div
