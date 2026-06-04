@@ -215,6 +215,7 @@ export default function ContactPage() {
 
     const descParts = [
       `<h3>Demande de démo Odoo</h3>`,
+      sujet ? `<p><strong>Sujet:</strong> ${sujet}</p>` : "",
       `<p><strong>Nom complet:</strong> ${v.fullName}</p>`,
       `<p><strong>Email:</strong> ${v.email}</p>`,
       `<p><strong>Téléphone:</strong> ${v.phone}</p>`,
