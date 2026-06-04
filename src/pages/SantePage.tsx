@@ -89,7 +89,7 @@ export default function SantePage() {
           <span style={{ color: "var(--gold)" }}>patients et votre licence</span>
         </>
       }
-      intro="Le secteur de la santé fait face à des exigences de traçabilité que les outils généralistes ne couvrent pas. Dates d'expiration, numéros de lot, ordonnances, facturation assurance : chaque erreur a des conséquences réelles."
+      intro="Le secteur de la santé fait face à des exigences de traçabilité que les outils généralistes ne couvrent pas. Dates d'expiration, numéros de lot, ordonnances, facturation comptoir : chaque erreur a des conséquences réelles."
       heroImage={santeHero}
       heroImageAlt="Pharmacie marocaine équipée d'Odoo Santé"
       metaNote="Démo adaptée à votre type de structure · Réponse sous 24 à 72h"
