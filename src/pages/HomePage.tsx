@@ -345,7 +345,12 @@ function HeroShell({
                   }}
                 />
                 <div className="absolute left-5 top-5">
-                  <Sticker rotate={-6}>★ Partenaire Odoo</Sticker>
+                  <Sticker
+                    rotate={-6}
+                    href="https://www.odoo.com/fr_FR/partners/msl-itech-15851608?country_id=132"
+                  >
+                    ★ Partenaire Odoo
+                  </Sticker>
                 </div>
                 <HeroCursorGlow radius="24px" />
               </div>
