@@ -754,7 +754,7 @@ function CaseStudy() {
             <div className="mt-10 grid grid-cols-3 gap-4">
               {[
                 { k: "9", v: "références" },
-                { k: "v18·v19", v: "certifié" },
+                { k: "v18·v19", v: "certifiés" },
                 { k: "100%", v: "vérifiable" },
               ].map((m) => (
                 <div
