@@ -55,6 +55,8 @@ const faqs = [
 ];
 
 export default function MarketingPage() {
+  // ensure component is defined
+  void WebsitePromoSection;
   useProductSeo({
     title: "Marketing Digital Belgique & Maroc — SEO, GEO & Acquisition | MSL-iTECH",
     description:
