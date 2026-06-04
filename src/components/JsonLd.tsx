@@ -153,7 +153,7 @@ export const localBusinessCaSchema = {
   url: "https://msl-itech-v2.lovable.app",
   email: "info@msl-itech.com",
   description:
-    "Odoo Ready Partner certifié au Maroc (v18 & v19), accompagnement à distance des PME canadiennes francophones. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique au Canada.",
+    "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. Accompagnement à distance des PME canadiennes francophones. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique au Canada.",
   priceRange: "$$",
   areaServed: "CA",
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
