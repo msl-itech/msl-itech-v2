@@ -17,8 +17,8 @@ const features = [
   },
   {
     icon: ShieldCheck,
-    title: "Facturation assurance et mutuelles",
-    desc: "Intégration des tarifs CNOPS, CNSS et assurances privées. Génération automatique des feuilles de soins et suivi des remboursements.",
+    title: "Conformité et traçabilité",
+    desc: "Alertes péremption, traçabilité des lots et conformité aux exigences réglementaires du secteur santé marocain.",
   },
 ];
 
@@ -39,8 +39,8 @@ const bentoCards: BentoCard[] = [
   },
   {
     icon: ShieldCheck,
-    title: "Assurance & mutuelles",
-    desc: "Tarifs CNOPS, CNSS et assurances privées. Feuilles de soins et suivi des remboursements automatisés.",
+    title: "Conformité et traçabilité",
+    desc: "Alertes péremption, traçabilité des lots et conformité aux exigences réglementaires du secteur santé marocain.",
     variant: "bluelight",
     span: "lg:col-span-12",
   },
@@ -53,15 +53,11 @@ const faqs = [
   },
   {
     q: "Combien coûte une implémentation Odoo pour une clinique ou un cabinet ?",
-    a: "Un déploiement Santé (dossier patient, ordonnances, facturation assurance, stock médicaments) s'inscrit entre le pack Premium (80h, 3 400€) et le pack Elite (200h, 8 500€). Les structures multi-sites ou avec intégration assurance dépassent souvent le pack Elite.",
-  },
-  {
-    q: "Odoo gère-t-il la facturation CNOPS, CNSS et assurances privées ?",
-    a: "Oui, via du paramétrage et, selon les compagnies, des connecteurs ou exports dédiés. MSL-iTECH a déjà implémenté ces flux pour des structures de santé marocaines (3 clients actifs dans la santé, l'aide sociale et le pharmaceutique).",
+    a: "Un déploiement Santé (dossier patient, ordonnances, facturation comptoir, stock médicaments) s'inscrit entre le pack Premium (80h, 3 400€) et le pack Elite (200h, 8 500€). Les structures multi-sites ou avec reprise d'historique dépassent souvent le pack Elite.",
   },
   {
     q: "Combien de temps pour rendre la solution opérationnelle ?",
-    a: "Le périmètre essentiel (stock + facturation + dossier patient simple) est opérationnel en 4 à 6 semaines. L'intégration aux organismes payeurs et la reprise d'historique allongent le projet de quelques semaines.",
+    a: "Le périmètre essentiel (stock + facturation + dossier patient simple) est opérationnel en 4 à 6 semaines. La reprise d'historique et la paramétration multi-sites allongent le projet de quelques semaines.",
   },
 ];
 
@@ -77,8 +73,8 @@ export default function SantePage() {
     service: {
       name: "Implémentation Odoo Santé & Pharmacie",
       description:
-        "Solution Odoo pour pharmacies, cliniques et centres de santé au Maroc : traçabilité des lots, ordonnances, dossier patient et facturation assurance par MSL-iTECH.",
-      serviceType: ["ERP Santé", "Gestion pharmacie", "Facturation assurance"],
+        "Solution Odoo pour pharmacies, cliniques et centres de santé au Maroc : traçabilité des lots, ordonnances, dossier patient et facturation comptoir par MSL-iTECH.",
+      serviceType: ["ERP Santé", "Gestion pharmacie", "Facturation comptoir"],
       areaServed: ["MA"],
     },
   });
@@ -93,7 +89,7 @@ export default function SantePage() {
           <span style={{ color: "var(--gold)" }}>patients et votre licence</span>
         </>
       }
-      intro="Le secteur de la santé fait face à des exigences de traçabilité que les outils généralistes ne couvrent pas. Dates d'expiration, numéros de lot, ordonnances, facturation assurance : chaque erreur a des conséquences réelles."
+      intro="Le secteur de la santé fait face à des exigences de traçabilité que les outils généralistes ne couvrent pas. Dates d'expiration, numéros de lot, ordonnances, facturation comptoir : chaque erreur a des conséquences réelles."
       heroImage={santeHero}
       heroImageAlt="Pharmacie marocaine équipée d'Odoo Santé"
       metaNote="Démo adaptée à votre type de structure · Réponse sous 24 à 72h"
@@ -113,7 +109,7 @@ export default function SantePage() {
         desc: "Avec 3 clients actifs dans la santé, l'aide sociale et le pharmaceutique, MSL-iTECH a une expérience concrète des contraintes de ce secteur.",
         points: [
           "Traçabilité lots et péremptions",
-          "Intégration CNOPS, CNSS et assurances privées",
+          "Facturation comptoir et gestion des tiers",
           "Suivi patients et ordonnances",
           "Conformité aux exigences sectorielles",
         ],
