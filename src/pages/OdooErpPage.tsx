@@ -909,7 +909,7 @@ function FinalCTA() {
             <div className="mt-8 flex flex-wrap items-center gap-4 font-body text-sm text-white/70">
               <span className="flex items-center gap-2">
                 <ShieldCheck size={16} className="text-brand-gold" />
-                Odoo Ready Partner · v18 & v19
+                Consultants certifiés v18 & v19
               </span>
               <span className="flex items-center gap-2">
                 <CheckCircle2 size={16} className="text-brand-gold" />
