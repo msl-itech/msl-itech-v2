@@ -136,7 +136,7 @@ export const localBusinessMaSchema = {
     addressCountry: "MA",
   },
   description:
-    "Odoo Ready Partner certifié (v18 & v19) basé à Marrakech. Implémentation ERP, modules custom et personnalisation d'Odoo natif pour PME marocaines : HORECA, BTP, Santé, Commerce. Accompagne également des clients en Belgique et au Canada à distance.",
+    "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19 — basé à Marrakech. Implémentation ERP, modules custom et personnalisation d'Odoo natif pour PME marocaines : HORECA, BTP, Santé, Commerce. Accompagne également des clients en Belgique et au Canada à distance.",
   priceRange: "€€",
   openingHours: "Mo-Fr 09:00-18:00",
   areaServed: "MA",
