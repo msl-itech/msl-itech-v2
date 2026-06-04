@@ -256,59 +256,54 @@ export default function MarketingPage() {
                 SEO, GEO et campagnes d'acquisition
               </h2>
             </div>
-            <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {features.map((f, i) => (
                 <article
                   key={f.title}
-                  className="group relative flex flex-col overflow-hidden rounded-3xl border bg-white transition hover:-translate-y-1 hover:border-[var(--blue)]/30 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.28)]"
+                  className="group relative flex flex-col rounded-3xl border bg-white p-8 transition hover:-translate-y-1 hover:border-[var(--gold)] hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.22)] md:p-10"
                   style={{ borderColor: "var(--grey-light)" }}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden" style={{ backgroundColor: "var(--blue)" }}>
-                    <img
-                      src={f.image}
-                      alt={f.imageAlt}
-                      loading="lazy"
-                      width={1024}
-                      height={768}
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
-                    />
+                  <div className="flex items-start justify-between gap-4">
                     <span
-                      className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border-2 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.18em]"
+                      className="font-heading text-5xl font-bold leading-none tracking-tight"
+                      style={{ color: "var(--gold)" }}
+                    >
+                      0{i + 1}
+                    </span>
+                    <span
+                      className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.18em]"
                       style={{
-                        backgroundColor: "var(--gold)",
                         borderColor: "var(--blue)",
+                        backgroundColor: "var(--blue-light)",
                         color: "var(--blue)",
                       }}
                     >
+                      <f.icon size={12} />
                       {f.badge}
                     </span>
-                    <div
-                      className="absolute bottom-4 right-4 flex h-14 w-14 items-center justify-center rounded-2xl border-2 shadow-[0_12px_30px_-10px_rgba(0,0,0,0.45)]"
-                      style={{
-                        backgroundColor: "var(--blue)",
-                        color: "var(--gold)",
-                        borderColor: "var(--gold)",
-                      }}
-                    >
-                      <f.icon size={24} />
-                    </div>
                   </div>
-                  <div className="flex flex-1 flex-col p-7">
-                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey">
-                      0{i + 1}
-                    </p>
-                    <h3 className="mt-1 font-heading text-xl font-bold text-brand-black">
-                      {f.title}
-                    </h3>
-                    <p className="mt-4 font-body text-base leading-relaxed text-brand-grey">
-                      {f.desc}
-                    </p>
-                  </div>
+
+                  <div
+                    className="mt-8 h-px w-full"
+                    style={{ backgroundColor: "var(--grey-light)" }}
+                  />
+
+                  <h3 className="mt-6 font-heading text-2xl font-bold leading-tight text-brand-black">
+                    {f.title}
+                  </h3>
+                  <p className="mt-4 font-body text-base leading-relaxed text-brand-grey">
+                    {f.desc}
+                  </p>
+
                   <div
                     aria-hidden
-                    className="absolute bottom-0 left-0 right-0 h-[2px] origin-left scale-x-0 transition group-hover:scale-x-100"
-                    style={{ backgroundColor: "var(--gold)" }}
-                  />
+                    className="mt-auto pt-8"
+                  >
+                    <span
+                      className="block h-[2px] origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
+                      style={{ backgroundColor: "var(--gold)" }}
+                    />
+                  </div>
                 </article>
               ))}
             </div>
