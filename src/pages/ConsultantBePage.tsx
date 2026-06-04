@@ -20,7 +20,7 @@ const reasons = [
   {
     icon: TrendingDown,
     title: "Des packs d'heures plus accessibles sur des volumes comparables",
-    desc: "Notre structure internationale — équipe technique Odoo Ready Partner certifiée au Maroc (v18 & v19), accompagnement à distance des clients belges — nous permet de proposer des packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge. Même cadre certifié, sans bureau local en Belgique.",
+    desc: "Notre structure internationale — équipe technique Odoo Ready Partner au Maroc (consultants certifiés v18 & v19), accompagnement à distance des clients belges — nous permet de proposer des packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge. Même cadre certifié, sans bureau local en Belgique.",
   },
   {
     icon: ListChecks,
