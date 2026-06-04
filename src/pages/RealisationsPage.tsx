@@ -35,6 +35,10 @@ import sectorLogistics from "@/assets/home/sector-logistics.webp";
 import sectorEngineering from "@/assets/home/sector-engineering.webp";
 import sectorHr from "@/assets/home/sector-hr.webp";
 import sectorFood from "@/assets/home/sector-food.webp";
+import sectorB2b from "@/assets/home/sector-b2b.webp";
+import sectorScaleup from "@/assets/home/sector-scaleup.webp";
+import caseChurch from "@/assets/home/case-church.webp";
+import caseDaycare from "@/assets/home/case-daycare.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
 
 /* ---------------- Highlight (marker brushstroke) ---------------- */
@@ -112,7 +116,7 @@ const odooCases = [
     icon: ShoppingBag,
     name: "Hamimi Export",
     sector: "Vente en gros / Vente au détail — Maroc",
-    image: sectorWholesale,
+    image: sectorB2b,
     context:
       "Société d'export et de distribution. Pilotage des commandes internationales, logistique et trésorerie.",
     modules: ["Ventes", "Achats", "Stock", "Comptabilité", "CRM"],
@@ -122,7 +126,7 @@ const odooCases = [
     icon: Church,
     name: "ICC DOUALA",
     sector: "Extraterritorial — Cameroun",
-    image: pillarErp,
+    image: caseChurch,
     context:
       "Église évangélique charismatique à Douala, Cameroun. Gestion des membres, dons, événements et ressources humaines.",
     modules: ["CRM", "Site web", "Événements", "Comptabilité", "RH"],
@@ -142,7 +146,7 @@ const odooCases = [
     icon: Baby,
     name: "LES TITIS BOUT'CHOUX",
     sector: "Éducation — Belgique",
-    image: sectorHr,
+    image: caseDaycare,
     context:
       "Crèche à Uccle, Bruxelles. Gestion des inscriptions, planning du personnel, facturation familles et communication parents.",
     modules: ["CRM", "Ventes", "RH", "Comptabilité", "Site web"],
@@ -212,7 +216,7 @@ const odooCases = [
     icon: Landmark,
     name: "Studely Finance Cameroun",
     sector: "Finance / Assurance — Cameroun",
-    image: sectorServices,
+    image: sectorScaleup,
     context:
       "Cabinet de conseil financier au Cameroun. Gestion des dossiers clients, conformité et reporting.",
     modules: ["CRM", "Comptabilité", "Projet", "RH", "Site web"],
