@@ -626,7 +626,9 @@ export default function TarifsPage() {
                 </thead>
                 <tbody>
                   {comparison.map((r, i) => {
-                    const savedPct = Math.round((1 - r.msl / r.odoo) * 100);
+                    const mslVal = currency === "MAD" && r.mslMad !== undefined ? r.mslMad : r.msl;
+                    const odooVal = currency === "MAD" && r.odooMad !== undefined ? r.odooMad : r.odoo;
+                    const savedPct = Math.round((1 - mslVal / odooVal) * 100);
                     return (
                       <tr
                         key={r.vol}
@@ -659,7 +661,7 @@ export default function TarifsPage() {
                             }}
                           >
                             <span className="font-body text-sm text-brand-grey line-through">
-                              {fmt(r.odoo, currency)}
+                              {fmt(r.odoo, currency, r.odooMad)}
                             </span>
                           </span>
                         </td>
@@ -676,7 +678,7 @@ export default function TarifsPage() {
                           >
                             <Zap size={14} />
                             <span className="font-heading text-base font-bold">
-                              {fmt(r.msl, currency)}
+                              {fmt(r.msl, currency, r.mslMad)}
                             </span>
                           </span>
                         </td>
@@ -693,7 +695,7 @@ export default function TarifsPage() {
                               }}
                             >
                               <TrendingDown size={12} />
-                              {r.gap}
+                              -{savedPct}%
                             </span>
                             <div
                               className="hidden h-1.5 w-24 overflow-hidden rounded-full md:block"
