@@ -36,7 +36,7 @@ import { JsonLd, professionalServiceSchema } from "@/components/JsonLd";
 const homeFaqs: { q: string; a: string }[] = [
   {
     q: "MSL-iTECH est-il un partenaire Odoo officiel ?",
-    a: "Oui. MSL-iTECH est Odoo Ready Partner, certifié sur les versions v18 et v19. Notre fiche partenaire est vérifiable sur odoo.com/partners avec 9 références publiques.",
+    a: "Oui. MSL-iTECH est Odoo Ready Partner. Nos consultants sont certifiés Odoo v18 et v19 pour l'instant, avec montée en version continue. Notre fiche partenaire est vérifiable sur odoo.com/partners avec 9 références publiques.",
   },
   {
     q: "Combien coûte une implémentation Odoo chez MSL-iTECH ?",
