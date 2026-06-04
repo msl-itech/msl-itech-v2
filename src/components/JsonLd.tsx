@@ -58,7 +58,7 @@ export const professionalServiceSchema = {
   ],
   hasCredential: {
     "@type": "EducationalOccupationalCredential",
-    name: "Odoo Ready Partner — certifié v18 & v19",
+    name: "Odoo Ready Partner — consultants certifiés v18 & v19",
     url: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
   },
   aggregateRating: {
