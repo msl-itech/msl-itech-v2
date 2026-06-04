@@ -39,8 +39,8 @@ const bentoCards: BentoCard[] = [
   },
   {
     icon: ShieldCheck,
-    title: "Assurance & mutuelles",
-    desc: "Tarifs CNOPS, CNSS et assurances privées. Feuilles de soins et suivi des remboursements automatisés.",
+    title: "Conformité et traçabilité",
+    desc: "Alertes péremption, traçabilité des lots et conformité aux exigences réglementaires du secteur santé marocain.",
     variant: "bluelight",
     span: "lg:col-span-12",
   },
