@@ -124,6 +124,8 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const [searchParams] = useSearchParams();
+  const sujet = searchParams.get("sujet") ?? "";
   const [data, setData] = useState<Partial<DemoForm>>({
     country: "BE",
   });
