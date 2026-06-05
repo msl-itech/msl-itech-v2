@@ -226,7 +226,7 @@ export default function TarifsPage() {
   useProductSeo({
     title: "Tarifs Odoo Belgique & Maroc — Packs transparents | MSL-iTECH",
     description:
-      "Tarifs d'implémentation Odoo transparents. Packs de 4h à 200h. Sur volumes comparables, nos packs sont 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
+      "Tarifs d'implémentation Odoo transparents. Packs de 4h à 200h. Comparez nos packs avec les Success Packs Odoo pour clients existants.",
     path: "/tarifs",
     faqs,
     ldId: "ld-faq-tarifs",
