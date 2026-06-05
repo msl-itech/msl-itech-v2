@@ -686,23 +686,32 @@ export default function TarifsPage() {
                             <span
                               className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-mono text-xs font-bold"
                               style={{
-                                backgroundColor: "rgba(26,122,74,0.12)",
-                                color: "var(--green)",
+                                backgroundColor: savedPct >= 0 ? "rgba(26,122,74,0.12)" : "rgba(200,50,50,0.12)",
+                                color: savedPct >= 0 ? "var(--green)" : "#c83232",
                               }}
                             >
-                              <TrendingDown size={12} />
-                              -{savedPct}%
+                              {savedPct >= 0 ? (
+                                <>
+                                  <TrendingDown size={12} />
+                                  −{savedPct}%
+                                </>
+                              ) : (
+                                <>
+                                  <TrendingDown size={12} style={{ transform: "rotate(180deg)" }} />
+                                  +{Math.abs(savedPct)}%
+                                </>
+                              )}
                             </span>
                             <div
                               className="hidden h-1.5 w-24 overflow-hidden rounded-full md:block"
-                              style={{ backgroundColor: "rgba(26,122,74,0.12)" }}
+                              style={{ backgroundColor: savedPct >= 0 ? "rgba(26,122,74,0.12)" : "rgba(200,50,50,0.12)" }}
                               aria-hidden
                             >
                               <div
                                 className="h-full rounded-full transition-all"
                                 style={{
-                                  width: `${savedPct}%`,
-                                  backgroundColor: "var(--green)",
+                                  width: `${Math.min(Math.abs(savedPct), 100)}%`,
+                                  backgroundColor: savedPct >= 0 ? "var(--green)" : "#c83232",
                                 }}
                               />
                             </div>
