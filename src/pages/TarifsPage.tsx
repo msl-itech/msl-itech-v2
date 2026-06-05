@@ -166,11 +166,11 @@ const features: { label: string; values: boolean[] }[] = [
 ];
 
 const comparison = [
-  { vol: "4 heures", odoo: 499, odooMad: 5489, msl: 400, mslMad: 1539, gap: "-20%", level: "Essentiel" },
-  { vol: "25 heures", odoo: 2635, odooMad: 28985, msl: 2000, mslMad: 7914, gap: "-24%", level: "Avancé" },
-  { vol: "50 heures", odoo: 4675, odooMad: 51425, msl: 3500, mslMad: 15422, gap: "-25%", level: "Premium" },
-  { vol: "100 heures", odoo: 8415, odooMad: 92565, msl: 5400, mslMad: 27540, gap: "-36%", level: "VIP" },
-  { vol: "200 heures", odoo: 16830, odooMad: 185130, msl: 8500, mslMad: 51000, gap: "-49%", level: "Elite" },
+  { vol: "4 heures", odoo: 223.53, odooMad: 2459, msl: 400, mslMad: 1539, gap: "+79%", level: "Essentiel" },
+  { vol: "25 heures", odoo: 1150, odooMad: 12650, msl: 2000, mslMad: 7914, gap: "+74%", level: "Avancé" },
+  { vol: "50 heures", odoo: 2240, odooMad: 24640, msl: 3500, mslMad: 15422, gap: "+56%", level: "Premium" },
+  { vol: "100 heures", odoo: 4000, odooMad: 44000, msl: 5400, mslMad: 27540, gap: "+35%", level: "VIP" },
+  { vol: "200 heures", odoo: 8000, odooMad: 88000, msl: 8500, mslMad: 51000, gap: "+6%", level: "Elite" },
 ];
 
 const faqs = [
@@ -226,7 +226,7 @@ export default function TarifsPage() {
   useProductSeo({
     title: "Tarifs Odoo Belgique & Maroc — Packs transparents | MSL-iTECH",
     description:
-      "Tarifs d'implémentation Odoo transparents. Packs de 4h à 200h. Sur volumes comparables, nos packs sont 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
+      "Tarifs d'implémentation Odoo transparents. Packs de 4h à 200h. Comparez nos packs avec les Success Packs Odoo pour clients existants.",
     path: "/tarifs",
     faqs,
     ldId: "ld-faq-tarifs",
@@ -358,9 +358,7 @@ export default function TarifsPage() {
               Notre structure internationale — équipe technique Odoo Ready
               Partner au Maroc (consultants certifiés v18 & v19), accompagnement à distance
               des clients belges et canadiens — nous permet de proposer des
-              packs <strong className="text-brand-black">20 à 50% plus
-              accessibles</strong> que les Success Packs observés sur le marché
-              belge, à volume comparable. Nous développons aussi des modules
+              packs compétitifs à volume comparable. Nous développons aussi des modules
               custom et personnalisons Odoo natif selon vos process.
             </p>
           </div>
@@ -582,10 +580,8 @@ export default function TarifsPage() {
               </h2>
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              Sur des volumes comparables, nos packs ressortent à un niveau de
-              prix significativement plus accessible que les Success Packs
-              observés pour nouveaux clients. L'écart varie de 20% à près de 50%
-              selon le volume.
+              Sur des volumes comparables, voici le positionnement de nos packs
+              face aux tarifs Success Packs Odoo pour clients existants.
             </p>
           </div>
 
@@ -617,7 +613,7 @@ export default function TarifsPage() {
                       </span>
                     </th>
                     <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
-                      Économie
+                      Différence
                     </th>
                     <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
                       Niveau
@@ -690,23 +686,32 @@ export default function TarifsPage() {
                             <span
                               className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-mono text-xs font-bold"
                               style={{
-                                backgroundColor: "rgba(26,122,74,0.12)",
-                                color: "var(--green)",
+                                backgroundColor: savedPct >= 0 ? "rgba(26,122,74,0.12)" : "rgba(200,50,50,0.12)",
+                                color: savedPct >= 0 ? "var(--green)" : "#c83232",
                               }}
                             >
-                              <TrendingDown size={12} />
-                              -{savedPct}%
+                              {savedPct >= 0 ? (
+                                <>
+                                  <TrendingDown size={12} />
+                                  −{savedPct}%
+                                </>
+                              ) : (
+                                <>
+                                  <TrendingDown size={12} style={{ transform: "rotate(180deg)" }} />
+                                  +{Math.abs(savedPct)}%
+                                </>
+                              )}
                             </span>
                             <div
                               className="hidden h-1.5 w-24 overflow-hidden rounded-full md:block"
-                              style={{ backgroundColor: "rgba(26,122,74,0.12)" }}
+                              style={{ backgroundColor: savedPct >= 0 ? "rgba(26,122,74,0.12)" : "rgba(200,50,50,0.12)" }}
                               aria-hidden
                             >
                               <div
                                 className="h-full rounded-full transition-all"
                                 style={{
-                                  width: `${savedPct}%`,
-                                  backgroundColor: "var(--green)",
+                                  width: `${Math.min(Math.abs(savedPct), 100)}%`,
+                                  backgroundColor: savedPct >= 0 ? "var(--green)" : "#c83232",
                                 }}
                               />
                             </div>
@@ -743,18 +748,18 @@ export default function TarifsPage() {
             >
               <div>
                 <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
-                  Économie minimale
+                  Différence minimale
                 </p>
                 <p className="mt-1 font-heading text-xl font-bold text-brand-black">
-                  -20%
+                  +6%
                 </p>
               </div>
               <div>
                 <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
-                  Économie maximale
+                  Différence maximale
                 </p>
-                <p className="mt-1 font-heading text-xl font-bold" style={{ color: "var(--green)" }}>
-                  -49%
+                <p className="mt-1 font-heading text-xl font-bold" style={{ color: "#c83232" }}>
+                  +79%
                 </p>
               </div>
               <div>
