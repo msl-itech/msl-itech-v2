@@ -166,11 +166,11 @@ const features: { label: string; values: boolean[] }[] = [
 ];
 
 const comparison = [
-  { vol: "4 heures", odoo: 499, odooMad: 5489, msl: 400, mslMad: 1539, gap: "-20%", level: "Essentiel" },
-  { vol: "25 heures", odoo: 2635, odooMad: 28985, msl: 2000, mslMad: 7914, gap: "-24%", level: "Avancé" },
-  { vol: "50 heures", odoo: 4675, odooMad: 51425, msl: 3500, mslMad: 15422, gap: "-25%", level: "Premium" },
-  { vol: "100 heures", odoo: 8415, odooMad: 92565, msl: 5400, mslMad: 27540, gap: "-36%", level: "VIP" },
-  { vol: "200 heures", odoo: 16830, odooMad: 185130, msl: 8500, mslMad: 51000, gap: "-49%", level: "Elite" },
+  { vol: "4 heures", odoo: 223.53, odooMad: 2459, msl: 400, mslMad: 1539, gap: "+79%", level: "Essentiel" },
+  { vol: "25 heures", odoo: 1150, odooMad: 12650, msl: 2000, mslMad: 7914, gap: "+74%", level: "Avancé" },
+  { vol: "50 heures", odoo: 2240, odooMad: 24640, msl: 3500, mslMad: 15422, gap: "+56%", level: "Premium" },
+  { vol: "100 heures", odoo: 4000, odooMad: 44000, msl: 5400, mslMad: 27540, gap: "+35%", level: "VIP" },
+  { vol: "200 heures", odoo: 8000, odooMad: 88000, msl: 8500, mslMad: 51000, gap: "+6%", level: "Elite" },
 ];
 
 const faqs = [
