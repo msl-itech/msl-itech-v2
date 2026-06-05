@@ -748,18 +748,18 @@ export default function TarifsPage() {
             >
               <div>
                 <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
-                  Économie minimale
+                  Différence minimale
                 </p>
                 <p className="mt-1 font-heading text-xl font-bold text-brand-black">
-                  -20%
+                  +6%
                 </p>
               </div>
               <div>
                 <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
-                  Économie maximale
+                  Différence maximale
                 </p>
-                <p className="mt-1 font-heading text-xl font-bold" style={{ color: "var(--green)" }}>
-                  -49%
+                <p className="mt-1 font-heading text-xl font-bold" style={{ color: "#c83232" }}>
+                  +79%
                 </p>
               </div>
               <div>
