@@ -613,7 +613,7 @@ export default function TarifsPage() {
                       </span>
                     </th>
                     <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
-                      Économie
+                      Différence
                     </th>
                     <th className="px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em]">
                       Niveau
