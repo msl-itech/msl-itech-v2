@@ -580,10 +580,8 @@ export default function TarifsPage() {
               </h2>
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              Sur des volumes comparables, nos packs ressortent à un niveau de
-              prix significativement plus accessible que les Success Packs
-              observés pour nouveaux clients. L'écart varie de 20% à près de 50%
-              selon le volume.
+              Sur des volumes comparables, voici le positionnement de nos packs
+              face aux tarifs Success Packs Odoo pour clients existants.
             </p>
           </div>
 
