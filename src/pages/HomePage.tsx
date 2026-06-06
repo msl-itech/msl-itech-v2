@@ -13,6 +13,21 @@ import { useMarket } from "@/hooks/useMarket";
 
 import heroBeImg from "@/assets/hero-be.webp";
 import heroMaImg from "@/assets/hero-ma.webp";
+
+// Preload LCP hero images as early as possible (module-load side effect)
+// to eliminate the resource-load delay on the homepage.
+if (typeof document !== "undefined") {
+  for (const href of [heroBeImg, heroMaImg]) {
+    if (document.head.querySelector(`link[rel="preload"][href="${href}"]`)) continue;
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = href;
+    link.fetchPriority = "high";
+    document.head.appendChild(link);
+  }
+}
+
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import pillarWeb from "@/assets/home/pillar-web.webp";
