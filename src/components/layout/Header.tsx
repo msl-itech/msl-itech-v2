@@ -81,6 +81,8 @@ export const Header = () => {
             src={logoDark}
             alt="Logo MSL-iTECH"
             className="h-8 w-auto"
+            width="288"
+            height="120"
             loading="eager"
           />
         </Link>
