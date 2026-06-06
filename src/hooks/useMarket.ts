@@ -33,10 +33,35 @@ export function useMarket(): { market: Market } {
         const header = res.headers.get("X-Market");
         if (!cancelled && (header === "BE" || header === "MA")) {
           setMarket(header);
+          return;
         }
+        // Fallback: géolocalisation IP côté client (Worker absent / hors prod)
+        if (cancelled) return;
+        fetch("https://ipapi.co/country/")
+          .then((r) => r.text())
+          .then((country) => {
+            if (cancelled) return;
+            const code = (country || "").trim().toUpperCase();
+            if (code === "MA") setMarket("MA");
+            else if (code === "BE") setMarket("BE");
+          })
+          .catch(() => {
+            /* keep default 'BE' */
+          });
       })
       .catch(() => {
-        /* keep default 'BE' */
+        // HEAD a échoué : tenter quand même la géoloc IP
+        if (cancelled) return;
+        fetch("https://ipapi.co/country/")
+          .then((r) => r.text())
+          .then((country) => {
+            if (cancelled) return;
+            const code = (country || "").trim().toUpperCase();
+            if (code === "MA") setMarket("MA");
+          })
+          .catch(() => {
+            /* keep default 'BE' */
+          });
       });
     return () => {
       cancelled = true;
