@@ -125,8 +125,8 @@ const values = [
     desc: "Notre statut, nos certifications et nos clients sont publics sur odoo.com/partners. Aucune promesse en l'air.",
   },
   {
-    title: "Proximité francophone",
-    desc: "Équipe technique basée au Maroc, à votre service en français dans votre fuseau horaire — visio, démo et support à distance pour la Belgique et le Canada.",
+    title: "Proximité & disponibilité",
+    desc: "Équipe technique basée au Maroc, à votre service en français dans votre fuseau horaire — visio, démo et support à distance, où que vous soyez.",
   },
   {
     title: "Tarifs PME",
@@ -289,11 +289,10 @@ export default function AboutPage() {
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
               MSL-iTECH a été fondée avec une vision claire : faire bénéficier
-              les PME francophones de l'expertise d'une équipe Odoo Ready
-              Partner certifiée au Maroc. Pas de bureau physique en Belgique
-              ni au Canada — nos consultants accompagnent les clients
-              intégralement à distance (visio, démo, support) avec, ponctuellement,
-              des déplacements sur site pour les formations et ateliers clés.
+              les PME de l'expertise d'une équipe Odoo Ready Partner certifiée
+              au Maroc. Nos consultants accompagnent les clients intégralement
+              à distance (visio, démo, support) avec, ponctuellement, des
+              déplacements sur site pour les formations et ateliers clés.
             </p>
           </div>
 
