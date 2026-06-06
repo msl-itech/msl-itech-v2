@@ -108,6 +108,8 @@ export const Footer = () => {
             src={logoWhite}
             alt="Logo MSL-iTECH"
             className="h-9 w-auto"
+            width="288"
+            height="120"
             loading="lazy"
           />
           </Link>
