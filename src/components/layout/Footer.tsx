@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useMarket, setMarketOverride } from "@/hooks/useMarket";
+import { useMarket } from "@/hooks/useMarket";
 import logoWhite from "@/assets/logo-msl-white.png";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
@@ -91,10 +91,12 @@ export const Footer = () => {
   const order: (keyof typeof COUNTRIES)[] =
     market === "MA" ? ["MA", "BE", "CA"] : ["BE", "MA", "CA"];
 
+  /* QA market toggle — hidden in production
   const toggleMarket = () => {
     setMarketOverride(market === "BE" ? "MA" : "BE");
     window.location.reload();
   };
+  */
 
   return (
     <footer className="bg-brand-black text-brand-white">
@@ -153,6 +155,7 @@ export const Footer = () => {
             +32 2 886 05 49 · +212 6 89 30 62 78 · info@msl-itech.com
           </span>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:justify-end">
+            {/* QA button — hidden in production
             <button
               type="button"
               onClick={toggleMarket}
@@ -161,6 +164,7 @@ export const Footer = () => {
             >
               Test : {market === "BE" ? "🇧🇪 BE → 🇲🇦 MA" : "🇲🇦 MA → 🇧🇪 BE"}
             </button>
+            */}
             <Link to="/politique-de-confidentialite" className="hover:text-brand-white">
               Politique de confidentialité
             </Link>
