@@ -112,8 +112,8 @@ const team = [
 ];
 
 const stats = [
-  { value: "2020", label: "Année de fondation", icon: Calendar },
-  { value: "7", label: "Experts dédiés", icon: Users },
+  { value: "2024", label: "Année de fondation", icon: Calendar },
+  { value: "6", label: "Experts dédiés", icon: Users },
   { value: "3", label: "Pays présents", icon: MapPin },
   { value: "100%", label: "Partenaire Odoo certifié", icon: ShieldCheck },
 ];
