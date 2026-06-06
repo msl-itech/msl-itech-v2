@@ -21,7 +21,7 @@ import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
 import photoMika from "@/assets/team/mika.webp";
-import photoHoussine from "@/assets/team/houssine.jpg";
+import photoHoussine from "@/assets/team/houssine-new.png.asset.json";
 import photoRomeo from "@/assets/team/romeo.png";
 import photoArnaud from "@/assets/team/arnaud.jpg";
 import photoElohim from "@/assets/team/elohim.png";
