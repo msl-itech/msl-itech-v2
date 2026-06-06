@@ -68,11 +68,11 @@ function Sticker({
 
 const team = [
   {
-    name: "Mika MUNSUGAYI",
+    name: "Mika MUSUNGAYI",
     role: "Stratège & Direction",
     icon: Briefcase,
     photo: photoMika,
-    desc: "Fondateur et directeur de MSL-iTECH. Pilote la stratégie commerciale et financière du groupe et assure la cohérence entre les entités belges et marocaines.",
+    desc: "Co-fondateur et expert-comptable de MSL-iTECH. Pilote la stratégie commerciale et financière du groupe et assure la cohérence entre les entités belges et marocaines.",
   },
   {
     name: "El Houssine BOUHMAIDA",
@@ -90,10 +90,10 @@ const team = [
   },
   {
     name: "Arnaud AHOUO",
-    role: "Expert Backend Odoo",
+    role: "Architecture de solutions",
     icon: Code2,
     photo: photoArnaud,
-    desc: "Développeur backend Odoo avec une expertise profonde sur les modules de gestion opérationnelle. Traduit vos processus métier en configurations Odoo qui tiennent dans le temps.",
+    desc: "Co-fondateur et directeur des technologies de MSL-iTECH. Conçoit l'architecture des solutions Odoo et traduit les processus métier en implémentations solides et durables.",
   },
   {
     name: "Elohim TAGNE",
