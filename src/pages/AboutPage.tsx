@@ -68,32 +68,11 @@ function Sticker({
 
 const team = [
   {
-    name: "Mika MUSUNGAYI",
-    role: "Stratège & Direction",
-    icon: Briefcase,
-    photo: photoMika,
-    desc: "Co-fondateur et expert-comptable de MSL-iTECH. Pilote la stratégie commerciale et financière du groupe et assure la cohérence entre les entités belges et marocaines.",
-  },
-  {
     name: "El Houssine BOUHMAIDA",
     role: "Consultant Odoo Senior",
     icon: Settings2,
     photo: photoHoussine,
     desc: "Référent technique Odoo de l'équipe. Expert en paramétrage avancé, migrations de données et formations utilisateurs. Garant de la qualité de chaque implémentation.",
-  },
-  {
-    name: "Romeo KAHOU",
-    role: "Chef de Projet",
-    icon: ClipboardList,
-    photo: photoRomeo,
-    desc: "Chef d'orchestre des projets clients. Coordonne les équipes, garantit le respect des délais et reste l'interlocuteur privilégié des clients tout au long de l'implémentation.",
-  },
-  {
-    name: "Arnaud AHOUO",
-    role: "Architecture de solutions",
-    icon: Code2,
-    photo: photoArnaud,
-    desc: "Co-fondateur et directeur des technologies de MSL-iTECH. Conçoit l'architecture des solutions Odoo et traduit les processus métier en implémentations solides et durables.",
   },
   {
     name: "Elohim TAGNE",
@@ -108,6 +87,27 @@ const team = [
     icon: Brain,
     photo: photoManal,
     desc: "Experte en intelligence artificielle appliquée. Développe les capacités analytiques et prédictives des implémentations Odoo pour les besoins avancés en reporting et prédiction.",
+  },
+  {
+    name: "Mika MUSUNGAYI",
+    role: "Stratège & Direction",
+    icon: Briefcase,
+    photo: photoMika,
+    desc: "Co-fondateur et expert-comptable de MSL-iTECH. Pilote la stratégie commerciale et financière du groupe et assure la cohérence entre les entités belges et marocaines.",
+  },
+  {
+    name: "Arnaud AHOUO",
+    role: "Architecture de solutions",
+    icon: Code2,
+    photo: photoArnaud,
+    desc: "Co-fondateur et directeur des technologies de MSL-iTECH. Conçoit l'architecture des solutions Odoo et traduit les processus métier en implémentations solides et durables.",
+  },
+  {
+    name: "Romeo KAHOU",
+    role: "Chef de Projet",
+    icon: ClipboardList,
+    photo: photoRomeo,
+    desc: "Chef d'orchestre des projets clients. Coordonne les équipes, garantit le respect des délais et reste l'interlocuteur privilégié des clients tout au long de l'implémentation.",
   },
 ];
 
