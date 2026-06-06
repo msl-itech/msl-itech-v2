@@ -339,7 +339,7 @@ export default function AboutPage() {
               </h2>
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              7 experts au service de votre transformation digitale. Stratégie,
+              6 spécialistes au service de votre transformation digitale. Stratégie,
               technique, projet, IA — chacun joue son rôle, ensemble.
             </p>
           </div>
