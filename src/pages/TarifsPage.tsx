@@ -322,7 +322,7 @@ export default function TarifsPage() {
               return (
                 <article
                   key={p.name}
-                  className={`group relative overflow-hidden rounded-[28px] border p-8 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(13,13,13,0.2)] md:p-10 ${
+                  className={`group relative rounded-[28px] border p-8 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(13,13,13,0.2)] md:p-10 ${
                     p.highlight
                       ? "ring-2 ring-brand-blue"
                       : ""
@@ -330,7 +330,7 @@ export default function TarifsPage() {
                   style={{ borderColor: "var(--grey-light)" }}
                 >
                   {p.highlight && (
-                    <div className="absolute -top-3 right-6">
+                    <div className="absolute -top-3 right-6 z-10">
                       <Sticker rotate={6}>★ Le plus demandé</Sticker>
                     </div>
                   )}
@@ -338,7 +338,7 @@ export default function TarifsPage() {
                   {/* Colored accent bar */}
                   <div
                     aria-hidden
-                    className="absolute left-0 top-0 h-full w-[4px] origin-top scale-y-0 transition-transform duration-300 group-hover:scale-y-100"
+                    className="absolute left-0 top-0 h-full w-[4px] origin-top scale-y-0 rounded-l-[28px] transition-transform duration-300 group-hover:scale-y-100"
                     style={{ backgroundColor: p.color }}
                   />
 
