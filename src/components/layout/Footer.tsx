@@ -25,7 +25,7 @@ const sectorsCol = [
 const companyCol = [
   { to: "/a-propos", label: "À Propos" },
   { to: "/realisations", label: "Réalisations" },
-  { to: "/tarifs", label: "Notre approche" },
+  { to: "/notre-approche", label: "Notre approche" },
   { to: "/blog/cout-implementation-odoo-belgique-2026", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ];

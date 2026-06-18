@@ -151,7 +151,7 @@ export default function TarifsPage() {
     title: "Tarification sur mesure Odoo — Devis adapté à votre projet | MSL-iTECH",
     description:
       "Chaque projet Odoo est unique. MSL-iTECH propose une tarification 100% adaptée à votre périmètre, votre complexité et vos objectifs. Partenaire Odoo certifié. Devis personnalisé sous 48h.",
-    path: "/tarifs",
+    path: "/notre-approche",
     faqs,
     ldId: "ld-faq-tarifs",
   });

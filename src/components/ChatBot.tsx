@@ -23,7 +23,7 @@ const VALID_ROUTES = new Set([
   "/odoo-stock-inventaire", "/odoo-production-fabrication", "/odoo-rh-paie",
   "/odoo-services-professionnels", "/odoo-horeca-maroc", "/odoo-btp-maroc",
   "/odoo-sante-maroc", "/odoo-gestion-stock-maroc", "/odoo-transport-logistique-maroc",
-  "/creation-web", "/marketing-digital", "/realisations", "/tarifs", "/a-propos",
+  "/creation-web", "/marketing-digital", "/realisations", "/notre-approche", "/a-propos",
   "/contact", "/consultant-odoo-belgique", "/tarif-odoo-belgique",
   "/pme-en-structuration", "/entreprise-multi-sites", "/structure-en-croissance",
   "/blog", "/prendre-rendez-vous",
@@ -44,7 +44,7 @@ const PROFANITY = /\b(connard|salope|merde|fdp|encul|putain|pute)\b/i;
 
 const PROACTIVE_MESSAGES: Record<string, string> = {
   "/": "Bonjour 👋 Une question sur Odoo, votre site ou votre stratégie marketing ?",
-  "/tarifs": "Vous explorez notre approche ? Je peux vous aider à cadrer votre projet en 2 minutes.",
+  "/notre-approche": "Vous explorez notre approche ? Je peux vous aider à cadrer votre projet en 2 minutes.",
   "/odoo-erp": "Curieux d'Odoo pour votre PME ? Dites-moi votre secteur, je vous oriente.",
   "/creation-web": "Un projet de site web ? Je peux vous chiffrer ça rapidement.",
   "/marketing-digital": "Vous voulez plus de leads ? On peut auditer votre acquisition gratuitement.",
@@ -62,7 +62,7 @@ const SUGGESTIONS: Record<string, string[]> = {
     "Je veux refaire mon site web",
     "Booster mon SEO",
   ],
-  "/tarifs": [
+  "/notre-approche": [
     "Quelle est votre approche sur-mesure ?",
     "Comment se déroule un projet ?",
     "Réserver un cadrage gratuit",
@@ -90,7 +90,7 @@ const SUGGESTIONS: Record<string, string[]> = {
 };
 
 const EXIT_MESSAGES: Record<string, string> = {
-  "/tarifs": "Avant de partir — un cadrage gratuit de 30 min pour affiner votre projet ?",
+  "/notre-approche": "Avant de partir — un cadrage gratuit de 30 min pour affiner votre projet ?",
   "/creation-web": "Un projet web ? Je peux vous chiffrer ça en 2 minutes.",
   default: "Avant de partir — une question rapide ? Je suis là.",
 };

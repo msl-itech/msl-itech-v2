@@ -227,7 +227,7 @@ export default function ConsultantBePage() {
           </div>
 
           <Link
-            to="/tarifs"
+            to="/notre-approche"
             className="mt-10 inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 font-body text-sm font-semibold text-brand-black transition hover:border-brand-blue hover:shadow-sm"
           >
             Découvrir notre approche <ArrowRight size={16} />

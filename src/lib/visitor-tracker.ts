@@ -112,7 +112,7 @@ export function computeBehaviorScore(): number {
   const pages = session.pages;
 
   // Pages à fort signal d'achat
-  if (pages.some((p) => p.startsWith("/tarifs") || p.startsWith("/tarif-"))) score += 3;
+  if (pages.some((p) => p.startsWith("/notre-approche") || p.startsWith("/tarif-"))) score += 3;
   if (pages.some((p) => p.startsWith("/prendre-rendez-vous"))) score += 4;
   if (pages.some((p) => p.startsWith("/contact"))) score += 3;
   if (pages.some((p) => p.startsWith("/realisations"))) score += 1;

@@ -90,11 +90,11 @@ const App = () => {
             <Route path="/creation-web" element={<WebPage />} />
             <Route path="/marketing-digital" element={<MarketingPage />} />
             <Route path="/realisations" element={<RealisationsPage />} />
-            <Route path="/tarifs" element={<TarifsPage />} />
+            <Route path="/notre-approche" element={<TarifsPage />} />
             <Route path="/a-propos" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/consultant-odoo-belgique" element={<ConsultantBePage />} />
-            <Route path="/tarif-odoo-belgique" element={<TarifBePage />} />
+            {/* <Route path="/tarif-odoo-belgique" element={<TarifBePage />} /> */}
             <Route path="/pme-en-structuration" element={<PmeStructurationPage />} />
             <Route path="/entreprise-multi-sites" element={<MultiSitesPage />} />
             <Route path="/structure-en-croissance" element={<CroissanceRapidePage />} />

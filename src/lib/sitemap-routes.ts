@@ -47,7 +47,7 @@ const staticEntries: SitemapEntry[] = [
 
   // Pages corporate
   { loc: "/realisations", changefreq: "monthly", priority: 0.85 },
-  { loc: "/tarifs", changefreq: "monthly", priority: 0.9 },
+  { loc: "/notre-approche", changefreq: "monthly", priority: 0.9 },
   { loc: "/a-propos", changefreq: "monthly", priority: 0.7 },
   { loc: "/contact", changefreq: "monthly", priority: 0.8 },
   { loc: "/prendre-rendez-vous", changefreq: "monthly", priority: 0.7 },
@@ -68,6 +68,11 @@ const staticEntries: SitemapEntry[] = [
 
 /** Articles de blog — tenir à jour quand on en publie un nouveau. */
 const blogSlugs: { slug: string; publishedAt: string }[] = [
+  { slug: "cout-erp-odoo-maroc-2026", publishedAt: "2026-06-18" },
+  { slug: "odoo-vs-sap-vs-sage-comparatif-cout-pme-2026", publishedAt: "2026-06-11" },
+  { slug: "couts-caches-projet-erp-2026", publishedAt: "2026-06-04" },
+  { slug: "budget-erp-horeca-maroc-2026", publishedAt: "2026-05-28" },
+  { slug: "roi-erp-pme-economies-2026", publishedAt: "2026-05-21" },
   { slug: "facturation-electronique-maroc-2026", publishedAt: "2026-04-15" },
   { slug: "gestion-stock-maroc-apres-1-5m-mad", publishedAt: "2026-03-20" },
   { slug: "partenaire-odoo-certifie-vs-freelance", publishedAt: "2026-02-10" },

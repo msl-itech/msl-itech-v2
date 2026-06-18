@@ -578,7 +578,7 @@ function FinalCta({
             <ArrowRight size={16} className="transition group-hover:translate-x-0.5" />
           </Link>
           <Link
-            to="/tarifs"
+            to="/notre-approche"
             className="inline-flex items-center gap-2 rounded-full border border-white/30 px-7 py-3 font-body text-sm font-semibold text-white transition hover:bg-white/10"
           >
             Découvrir notre approche
