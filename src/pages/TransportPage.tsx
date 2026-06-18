@@ -53,7 +53,7 @@ const faqs = [
   },
   {
     q: "Combien coûte une implémentation Odoo Transport ?",
-    a: "Un projet transport (flotte + planning chauffeurs + facturation) tient généralement dans le pack Premium (80h, 3 400€) à Elite (200h, 8 500€). Les abonnements mensuels Odoo (par utilisateur) s'ajoutent. Tarifs détaillés sur msl-itech.com/tarifs.",
+    a: "Un projet transport (flotte + planning chauffeurs + facturation) est chiffré sur mesure selon la complexité de vos opérations. Les abonnements mensuels Odoo (par utilisateur) s'ajoutent. Nos tarifs sont 20 à 50% plus accessibles que le marché belge. Devis après cadrage gratuit.",
   },
   {
     q: "Peut-on calculer la rentabilité par véhicule ?",

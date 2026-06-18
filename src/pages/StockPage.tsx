@@ -66,7 +66,7 @@ const bentoCards: BentoCard[] = [
 const faqs = [
   {
     q: "Combien coûte une implémentation Odoo Stock pour une PME ?",
-    a: "Les packs MSL-iTECH d'implémentation Odoo vont de 400€ (4h, pack Essentiel) à 8 500€ (200h, pack Elite). Un déploiement Stock seul démarre généralement entre le pack Confort et le pack Pro. Les tarifs sont publiés sur msl-itech.com/tarifs et restent 20 à 50% plus accessibles que les Success Packs Odoo observés sur le marché belge.",
+    a: "Chaque projet est chiffré sur mesure en fonction du périmètre fonctionnel. Un déploiement Stock seul est l'un de nos périmètres les plus courants. Nos tarifs restent 20 à 50% plus accessibles que les Success Packs Odoo observés sur le marché belge.",
   },
   {
     q: "En combien de temps Odoo Stock est-il opérationnel ?",

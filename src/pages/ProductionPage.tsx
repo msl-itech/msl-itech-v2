@@ -65,7 +65,7 @@ const faqs = [
   },
   {
     q: "Combien coûte une implémentation Odoo Production ?",
-    a: "Un déploiement Production complet (MRP + PLM + Qualité + Maintenance) s'inscrit généralement entre le pack Premium (80h, 3 400€) et le pack Elite (200h, 8 500€) selon la complexité des nomenclatures et le nombre de postes de travail. Les packs MSL-iTECH sont 20 à 50% plus accessibles que les Success Packs Odoo marché belge.",
+    a: "Un déploiement Production complet (MRP + PLM + Qualité + Maintenance) est chiffré sur mesure selon la complexité des nomenclatures et le nombre de postes de travail. Nos tarifs sont 20 à 50% plus accessibles que les Success Packs Odoo observés sur le marché belge. Devis détaillé après cadrage gratuit.",
   },
   {
     q: "Peut-on lier les commandes clients aux ordres de fabrication automatiquement ?",

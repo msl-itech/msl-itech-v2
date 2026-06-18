@@ -24,8 +24,8 @@ const reasons = [
   },
   {
     icon: ListChecks,
-    title: "Une grille tarifaire transparente et publiée",
-    desc: "Nos tarifs d'implémentation commencent à 400 € pour un pack de 4 heures et montent jusqu'à 8 500 € pour un pack Elite de 200 heures. Tout est publié sur notre page tarifs.",
+    title: "Une tarification transparente et sur mesure",
+    desc: "Tarification adaptée à chaque projet, devis détaillé sur mesure. Notre structure internationale nous permet de proposer des tarifs 20 à 50% plus accessibles que le marché belge. Consultez notre page approche.",
   },
   {
     icon: Clock,
@@ -45,11 +45,11 @@ const steps = [
 const faqs = [
   {
     q: "Quel est le meilleur consultant Odoo en Belgique pour une PME ?",
-    a: "Pour une PME belge de 10 à 50 employés, il faut un consultant certifié Odoo qui connaît les spécificités belges (PCMN, TVA, législation du travail). MSL-iTECH est Odoo Ready Partner au Maroc — nos consultants sont certifiés v18 & v19 — et accompagne ses clients belges à distance depuis 2020, avec une grille tarifaire publiée à partir de 400 € et des références vérifiables sur odoo.com/partners.",
+    a: "Pour une PME belge de 10 à 50 employés, il faut un consultant certifié Odoo qui connaît les spécificités belges (PCMN, TVA, législation du travail). MSL-iTECH est Odoo Ready Partner au Maroc — nos consultants sont certifiés v18 & v19 — et accompagne ses clients belges à distance depuis 2020, avec des tarifs 20 à 50% plus accessibles et des références vérifiables sur odoo.com/partners.",
   },
   {
     q: "Combien coûte l'implémentation d'Odoo en Belgique ?",
-    a: "MSL-iTECH propose une grille de 6 packs transparents de 400 € à 8 500 €. Sur les volumes comparables, nos packs sont 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
+    a: "Chaque projet est chiffré sur mesure après cadrage. Sur les volumes comparables, nos tarifs sont 20 à 50% plus accessibles que les Success Packs observés sur le marché belge, grâce à notre structure internationale Belgique-Maroc.",
   },
   {
     q: "Faut-il un consultant Odoo local en Belgique ou peut-on travailler à distance ?",
@@ -65,7 +65,7 @@ export default function ConsultantBePage() {
   useProductSeo({
     title: "Consultant Odoo pour PME belges — Odoo Ready Partner (Maroc, à distance) | MSL-iTECH",
     description:
-      "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. MSL-iTECH accompagne à distance les PME belges : implémentation, modules custom et personnalisation d'Odoo natif. Tarifs publiés 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
+      "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. MSL-iTECH accompagne à distance les PME belges : implémentation, modules custom et personnalisation d'Odoo natif. Tarifs sur mesure, 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
     path: "/consultant-odoo-belgique",
     faqs,
     ldId: "ld-faq-consultant-be",
@@ -230,7 +230,7 @@ export default function ConsultantBePage() {
             to="/tarifs"
             className="mt-10 inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 font-body text-sm font-semibold text-brand-black transition hover:border-brand-blue hover:shadow-sm"
           >
-            Voir la grille tarifaire complète <ArrowRight size={16} />
+            Découvrir notre approche <ArrowRight size={16} />
           </Link>
         </div>
       </section>

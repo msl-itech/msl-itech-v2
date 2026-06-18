@@ -581,7 +581,7 @@ function FinalCta({
             to="/tarifs"
             className="inline-flex items-center gap-2 rounded-full border border-white/30 px-7 py-3 font-body text-sm font-semibold text-white transition hover:bg-white/10"
           >
-            Voir nos tarifs
+            Découvrir notre approche
           </Link>
         </div>
         <p className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">

@@ -53,7 +53,7 @@ const faqs = [
   },
   {
     q: "Combien coûte une implémentation Odoo pour une clinique ou un cabinet ?",
-    a: "Un déploiement Santé (dossier patient, ordonnances, facturation comptoir, stock médicaments) s'inscrit entre le pack Premium (80h, 3 400€) et le pack Elite (200h, 8 500€). Les structures multi-sites ou avec reprise d'historique dépassent souvent le pack Elite.",
+    a: "Un déploiement Santé (dossier patient, ordonnances, facturation comptoir, stock médicaments) est chiffré sur mesure selon la complexité de votre structure. Nos tarifs sont 20 à 50% plus accessibles que les Success Packs Odoo observés sur le marché belge. Les structures multi-sites nécessitent un cadrage approfondi.",
   },
   {
     q: "Combien de temps pour rendre la solution opérationnelle ?",

@@ -22,7 +22,7 @@ const quickLinks = [
   { to: "/odoo-erp", label: "Odoo ERP", desc: "Notre offre ERP complète" },
   { to: "/realisations", label: "Réalisations", desc: "Nos clients & projets" },
   { to: "/blog", label: "Blog", desc: "Conseils & analyses Odoo" },
-  { to: "/tarifs", label: "Tarifs", desc: "Packs & grille horaire" },
+  { to: "/tarifs", label: "Notre approche", desc: "Tarification sur mesure" },
   { to: "/contact", label: "Contact", desc: "Parler à un consultant" },
 ];
 

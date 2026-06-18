@@ -74,7 +74,7 @@ const homeFaqs: { q: string; a: string }[] = [
   },
   {
     q: "Combien coûte une implémentation Odoo chez MSL-iTECH ?",
-    a: "Les packs MSL-iTECH vont de 400€ (4h, Essentiel) à 8 500€ (200h, Elite). Sur les volumes comparables, ils sont 20 à 50% plus accessibles que les Success Packs Odoo observés sur le marché belge. Tarifs publiés sur msl-itech.com/tarifs.",
+    a: "Chaque projet est chiffré sur mesure après un cadrage gratuit de 30 minutes. Sur les volumes comparables, nos tarifs sont 20 à 50% plus accessibles que les Success Packs Odoo observés sur le marché belge. Devis détaillé sous 48h.",
   },
   {
     q: "MSL-iTECH intervient dans quels pays ?",

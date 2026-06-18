@@ -468,7 +468,7 @@ export default function RealisationsPage() {
       </section>
 
       {/* WEB PROJECTS */}
-      <section className="bg-brand-white py-24 md:py-28">
+      <section id="sites-plateformes" className="bg-brand-white py-24 md:py-28">
         <div className="container">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-7">

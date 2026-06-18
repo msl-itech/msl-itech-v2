@@ -44,7 +44,7 @@ const PROFANITY = /\b(connard|salope|merde|fdp|encul|putain|pute)\b/i;
 
 const PROACTIVE_MESSAGES: Record<string, string> = {
   "/": "Bonjour 👋 Une question sur Odoo, votre site ou votre stratégie marketing ?",
-  "/tarifs": "Vous comparez nos packs ? Je peux vous aider à choisir le bon en 2 minutes.",
+  "/tarifs": "Vous explorez notre approche ? Je peux vous aider à cadrer votre projet en 2 minutes.",
   "/odoo-erp": "Curieux d'Odoo pour votre PME ? Dites-moi votre secteur, je vous oriente.",
   "/creation-web": "Un projet de site web ? Je peux vous chiffrer ça rapidement.",
   "/marketing-digital": "Vous voulez plus de leads ? On peut auditer votre acquisition gratuitement.",
@@ -58,39 +58,39 @@ const PROACTIVE_MESSAGES: Record<string, string> = {
 
 const SUGGESTIONS: Record<string, string[]> = {
   "/": [
-    "Combien coûte Odoo pour une PME ?",
+    "Comment Odoo peut aider ma PME ?",
     "Je veux refaire mon site web",
     "Booster mon SEO",
   ],
   "/tarifs": [
-    "Quel pack pour 10 salariés ?",
-    "Différence entre les packs ?",
-    "Réserver un échange",
+    "Quelle est votre approche sur-mesure ?",
+    "Comment se déroule un projet ?",
+    "Réserver un cadrage gratuit",
   ],
   "/odoo-erp": [
     "Combien de temps pour déployer Odoo ?",
     "Migration depuis Excel ?",
-    "Voir les tarifs",
+    "Découvrir l'approche MSL-iTECH",
   ],
   "/creation-web": [
-    "Combien coûte un site React ?",
-    "Délai de livraison ?",
+    "Quel est le délai de livraison ?",
+    "Comment se passe une refonte ?",
     "Différence React vs WordPress",
   ],
   "/marketing-digital": [
     "C'est quoi le GEO ?",
     "Audit SEO gratuit ?",
-    "Combien coûte une campagne ?",
+    "Comment obtenir plus de leads ?",
   ],
   default: [
     "Présentez-moi MSL-iTECH",
-    "Voir les tarifs",
+    "Quelle est votre approche ?",
     "Réserver un échange",
   ],
 };
 
 const EXIT_MESSAGES: Record<string, string> = {
-  "/tarifs": "Avant de partir — un échange 30 min pour valider le bon pack ?",
+  "/tarifs": "Avant de partir — un cadrage gratuit de 30 min pour affiner votre projet ?",
   "/creation-web": "Un projet web ? Je peux vous chiffrer ça en 2 minutes.",
   default: "Avant de partir — une question rapide ? Je suis là.",
 };

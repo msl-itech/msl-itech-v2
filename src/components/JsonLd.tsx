@@ -40,22 +40,6 @@ export const professionalServiceSchema = {
     "Marketing digital",
     "Référencement SEO",
   ],
-  offers: [
-    {
-      "@type": "Offer",
-      name: "Pack Essentiel Odoo",
-      price: "400",
-      priceCurrency: "EUR",
-      description: "Pack 4 heures — Support fondamental Odoo",
-    },
-    {
-      "@type": "Offer",
-      name: "Pack Elite Odoo",
-      price: "8500",
-      priceCurrency: "EUR",
-      description: "Pack 200 heures — Vision 360, solution complète",
-    },
-  ],
   hasCredential: {
     "@type": "EducationalOccupationalCredential",
     name: "Odoo Ready Partner — consultants certifiés v18 & v19",

@@ -69,7 +69,7 @@ const faqs = [
   },
   {
     q: "Quel est le tarif d'une mise en place Odoo RH ?",
-    a: "L'implémentation Odoo RH s'inscrit dans les packs d'heures MSL-iTECH (de 400€ à 8 500€). Un périmètre RH + Paie + Congés tient généralement dans le pack Pro (40h, 1 700€) à Premium (80h, 3 400€). Tarifs détaillés sur msl-itech.com/tarifs.",
+    a: "L'implémentation Odoo RH est chiffrée sur mesure en fonction de votre périmètre (Paie, Congés, Recrutement…). Nos tarifs restent 20 à 50% plus accessibles que les Success Packs Odoo observés sur le marché belge. Devis détaillé après cadrage gratuit.",
   },
   {
     q: "Les salariés peuvent-ils faire leurs demandes depuis leur téléphone ?",

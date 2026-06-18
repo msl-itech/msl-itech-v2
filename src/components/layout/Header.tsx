@@ -30,7 +30,7 @@ const simpleLinks = [
   { to: "/creation-web", label: "Création Web" },
   { to: "/marketing-digital", label: "Marketing" },
   { to: "/realisations", label: "Réalisations" },
-  { to: "/tarifs", label: "Tarifs" },
+  { to: "/tarifs", label: "Notre approche" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ];

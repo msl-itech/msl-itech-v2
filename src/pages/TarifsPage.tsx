@@ -1,43 +1,23 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import {
   ArrowRight,
   Sparkles,
   CheckCircle2,
   ShieldCheck,
-  Info,
-  Star,
-  Minus,
-  
+  Layers,
+  Target,
+  Rocket,
+  Building2,
+  MessageSquareText,
+  Handshake,
+  TrendingUp,
+  FileText,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
-import { useMarket } from "@/hooks/useMarket";
 import { JsonLd, professionalServiceSchema } from "@/components/JsonLd";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
-
-type Currency = "EUR" | "MAD" | "USD" | "CAD";
-const EUR_TO_MAD = 11;
-const EUR_TO_USD = 1.1;
-const USD_TO_CAD = 1.5;
-
-const fmt = (eur: number, currency: Currency, mad?: number) => {
-  if (currency === "EUR") {
-    return `${eur.toLocaleString("fr-FR")} €`;
-  }
-  if (currency === "MAD") {
-    const madVal = mad !== undefined ? mad : Math.round(eur * EUR_TO_MAD);
-    return `${madVal.toLocaleString("fr-FR")} MAD`;
-  }
-  if (currency === "USD") {
-    const usd = Math.round(eur * EUR_TO_USD);
-    return `$${usd.toLocaleString("en-US")} USD`;
-  }
-  // CAD
-  const cad = Math.round(eur * EUR_TO_USD * USD_TO_CAD);
-  return `${cad.toLocaleString("en-CA")} CAD`;
-};
 
 /* ---------------- Highlight (marker brushstroke) ---------------- */
 function Mark({ children }: { children: React.ReactNode }) {
@@ -78,147 +58,99 @@ function Sticker({
   );
 }
 
-const packs = [
+/* ---------------- Paliers d'engagement ---------------- */
+const paliers = [
   {
-    name: "Essentiel",
-    hours: "4h",
-    priceNew: 400,
-    priceOld: 400,
-    madNew: 1539,
-    madOld: 1811,
-    for: "Support fondamental",
-    incl: "Paramétrage, formation initiale",
+    icon: Target,
+    name: "Support ponctuel",
+    tagline: "Réactivité immédiate",
+    desc: "Corrections, questions techniques, assistance post-déploiement. Vous avez besoin d'un expert disponible — pas d'un projet entier.",
+    includes: ["Expert dédié", "Assistance multicanal", "Réponse sous 24-72h"],
     color: "#E26B3F",
   },
   {
-    name: "Standard",
-    hours: "10h",
-    priceNew: 900,
-    priceOld: 900,
-    madNew: 3825,
-    madOld: 4500,
-    for: "Découvrir Odoo",
-    incl: "Paramétrage, formation, assistance",
+    icon: Rocket,
+    name: "Déploiement ciblé",
+    tagline: "Premiers pas structurés",
+    desc: "2 à 3 modules Odoo pour démarrer proprement. Idéal pour une PME qui lance son premier ERP ou qui migre depuis Excel.",
+    includes: ["Paramétrage", "Formation initiale", "Import de données", "Support post-démarrage"],
     color: "#5C5E8A",
   },
   {
-    name: "Avancé",
-    hours: "25h",
-    priceNew: 2000,
-    priceOld: 2000,
-    madNew: 7914,
-    madOld: 9315,
-    for: "Booster votre activité",
-    incl: "+ Import données, optimisation",
+    icon: Layers,
+    name: "Programme structuré",
+    tagline: "Croissance maîtrisée",
     highlight: true,
+    desc: "ERP multi-modules avec migration de données, formation approfondie et gestion de projet dédiée. Le socle pour une PME de 15 à 80 personnes.",
+    includes: ["Gestion de projet", "Migration de données", "Formation multi-profils", "Optimisation des processus", "Support continu"],
     color: "#E8867A",
   },
   {
-    name: "Premium",
-    hours: "50h",
-    priceNew: 3500,
-    priceOld: 3500,
-    madNew: 15422,
-    madOld: 18144,
-    for: "Solutions sur mesure",
-    incl: "+ Personnalisation apps, automatisation",
+    icon: Building2,
+    name: "Transformation complète",
+    tagline: "Vision 360°",
+    desc: "Multi-sociétés, multi-devises, développement sur mesure, intégrations tierces. Accompagnement long terme pour les organisations ambitieuses.",
+    includes: ["Développement sur mesure", "Automatisation avancée", "Personnalisation apps", "Architecture multi-entités", "Accompagnement stratégique"],
     color: "#22A892",
   },
-  {
-    name: "VIP",
-    hours: "100h",
-    priceNew: 5400,
-    priceOld: 6000,
-    madNew: 27540,
-    madOld: 32400,
-    for: "Performance optimale",
-    incl: "+ Développement sur mesure",
-    color: "#5E8AA0",
-  },
-  {
-    name: "Elite",
-    hours: "200h",
-    priceNew: 8500,
-    priceOld: 10000,
-    madNew: 51000,
-    madOld: 60000,
-    for: "Vision 360",
-    incl: "Pack complet toutes fonctionnalités",
-    color: "#2E3A4A",
-  },
 ];
 
-/* Feature matrix — order matches the legend image. true = inclus, false = non inclus */
-const features: { label: string; values: boolean[] }[] = [
-  // [Essentiel, Standard, Avancé, Premium, VIP, Elite]
-  { label: "Expert dédié", values: [true, true, true, true, true, true] },
-  { label: "Assistance multicanal (E-mail & Téléphone)", values: [true, true, true, true, true, true] },
-  { label: "Formation à l'outil", values: [false, true, true, true, true, true] },
-  { label: "Paramétrage", values: [false, true, true, true, true, true] },
-  { label: "Gestion de Projet", values: [false, false, true, true, true, true] },
-  { label: "Assistance à l'importation de données", values: [false, false, true, true, true, true] },
-  { label: "Optimisation et structuration des données", values: [false, false, true, true, true, true] },
-  { label: "Personnalisation des Applications", values: [false, false, false, true, true, true] },
-  { label: "Automatisation", values: [false, false, false, true, true, true] },
-  { label: "Développement sur-mesure", values: [false, false, false, false, true, true] },
-  { label: "Offre d'adhésion", values: [false, false, false, true, true, true] },
+/* ---------------- Différenciateurs ---------------- */
+const differentiateurs = [
+  {
+    icon: Handshake,
+    title: "Partenaire, pas prestataire",
+    desc: "Nous ne vendons pas des heures. Nous structurons votre projet pour qu'il réussisse — au bon périmètre, au bon rythme.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Tarification compétitive",
+    desc: "Notre structure internationale — consultants certifiés au Maroc, clients accompagnés à distance en Belgique et au Canada — nous permet de proposer des tarifs 20 à 50% plus accessibles que le marché belge.",
+  },
+  {
+    icon: FileText,
+    title: "Devis transparent et détaillé",
+    desc: "Chaque proposition est ventilée par module, par phase et par livrable. Vous savez exactement ce que vous payez et pourquoi.",
+  },
+  {
+    icon: MessageSquareText,
+    title: "Cadrage gratuit de 30 minutes",
+    desc: "Avant tout devis, un échange pour comprendre votre contexte, évaluer la complexité réelle et vous recommander le bon niveau d'engagement.",
+  },
 ];
-
 
 const faqs = [
   {
-    q: "Les heures achetées peuvent-elles expirer ?",
-    a: "Les heures sont valables 12 mois à compter de la date d'achat. Au-delà, un renouvellement au tarif en vigueur est proposé.",
+    q: "Comment est calculé le prix d'un projet Odoo chez MSL-iTECH ?",
+    a: "Chaque projet est unique. Le prix dépend du nombre de modules, du volume de données à migrer, de la complexité de vos processus et du niveau de personnalisation souhaité. Après un cadrage gratuit de 30 minutes, nous vous remettons un devis détaillé ventilé par phase et par livrable.",
   },
   {
-    q: "Peut-on combiner plusieurs packs ?",
-    a: "Oui. Vous pouvez acheter un pack initial et le compléter avec un pack supplémentaire à tout moment. Les tarifs « ancien client » s'appliquent à partir du deuxième achat.",
+    q: "Pourquoi ne publiez-vous pas de grille tarifaire fixe ?",
+    a: "Parce qu'une grille fixe ne reflète jamais la réalité d'un projet. Un déploiement CRM pour 5 commerciaux n'a rien à voir avec un ERP complet multi-sociétés. Publier des prix fixes reviendrait à sous-estimer ou surestimer systématiquement votre projet. Notre approche sur mesure garantit un prix juste, adapté à votre complexité réelle.",
   },
   {
-    q: "Quel pack pour une PME de 15 à 25 personnes qui part de zéro ?",
-    a: "Pour une première implémentation Odoo couvrant CRM, Finance et Stock, le pack Avancé (25h) est généralement le bon point de départ. Pour un périmètre incluant la Production ou les RH, le pack Premium (50h) est recommandé. Nous affinons cette estimation lors de la démo gratuite.",
+    q: "Combien coûte une implémentation Odoo en Belgique en général ?",
+    a: "Les prix du marché varient énormément selon l'intégrateur et le périmètre. Les taux horaires observés en Belgique vont de 80 € à 200 €/heure. Un projet CRM simple peut démarrer autour de 2 000 €, un ERP complet pour une PME de 30 personnes peut atteindre 15 000 € à 25 000 €. Consultez notre guide complet des coûts du marché pour des fourchettes détaillées.",
   },
   {
-    q: "La TVA belge est-elle incluse dans les prix affichés ?",
-    a: "Les prix affichés sont hors TVA. La TVA belge (21%) s'applique pour les clients belges assujettis. Pour les clients marocains, les prix sont affichés en MAD TTC.",
+    q: "Êtes-vous compétitifs par rapport aux autres intégrateurs belges ?",
+    a: "Oui. Grâce à notre structure internationale — équipe technique certifiée Odoo v18 & v19 au Maroc, accompagnement à distance des clients en Belgique et au Canada — nos tarifs sont 20 à 50% plus accessibles que les Success Packs observés sur le marché belge, à qualité et périmètre équivalents.",
+  },
+  {
+    q: "Y a-t-il des frais cachés ?",
+    a: "Non. Notre devis détaille chaque ligne : paramétrage, migration, formation, support post-démarrage. Les licences Odoo (facturées par Odoo SA directement) et l'hébergement sont indiqués séparément. Aucune surprise en cours de projet.",
+  },
+  {
+    q: "Puis-je obtenir une estimation rapide avant le cadrage complet ?",
+    a: "Oui. En nous décrivant brièvement votre périmètre (modules souhaités, nombre d'utilisateurs, données à migrer), nous pouvons vous donner une fourchette indicative sous 48h. Le cadrage gratuit de 30 minutes permet ensuite d'affiner cette estimation.",
   },
 ];
 
 export default function TarifsPage() {
-  const { market } = useMarket();
-  const [currency, setCurrency] = useState<Currency>(market === "MA" ? "MAD" : "EUR");
-
-  // Sync from useMarket (BE/MA via Cloudflare X-Market header)
-  useEffect(() => {
-    setCurrency(market === "MA" ? "MAD" : "EUR");
-  }, [market]);
-
-  // Geo-detect via IP and pick the right currency automatically.
-  // No manual override — affichage piloté à 100% par la géolocalisation.
-  useEffect(() => {
-    let cancelled = false;
-    fetch("https://ipapi.co/json/")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => {
-        if (cancelled || !data) return;
-        const code = data.country_code as string | undefined;
-        if (code === "MA") setCurrency("MAD");
-        else if (code === "CA") setCurrency("CAD");
-        else if (code === "US") setCurrency("USD");
-        else setCurrency("EUR"); // BE / FR / reste du monde
-      })
-      .catch(() => {
-        /* keep currency défini par useMarket */
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
   useProductSeo({
-    title: "Tarifs Odoo Belgique & Maroc — Packs transparents | MSL-iTECH",
+    title: "Tarification sur mesure Odoo — Devis adapté à votre projet | MSL-iTECH",
     description:
-      "Tarifs d'implémentation Odoo transparents. Packs de 4h à 200h. Comparez nos packs avec les Success Packs Odoo pour clients existants.",
+      "Chaque projet Odoo est unique. MSL-iTECH propose une tarification 100% adaptée à votre périmètre, votre complexité et vos objectifs. Partenaire Odoo certifié. Devis personnalisé sous 48h.",
     path: "/tarifs",
     faqs,
     ldId: "ld-faq-tarifs",
@@ -227,16 +159,18 @@ export default function TarifsPage() {
   return (
     <>
       <JsonLd id="ld-professional-service-tarifs" data={professionalServiceSchema} />
-      {/* HERO — image overlay (style /realisations) */}
+
+      {/* HERO */}
       <section className="bg-brand-bg pt-6 md:pt-8">
         <div className="container">
           <div className="relative isolate rounded-[28px] md:rounded-[36px]">
             <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
               <img
                 src={pillarErp}
-                alt="Tarifs MSL-iTECH"
+                alt="Approche MSL-iTECH"
                 className="absolute inset-0 h-full w-full object-cover"
-              loading="eager" fetchPriority="high" decoding="async"/>
+                loading="eager" fetchPriority="high" decoding="async"
+              />
               <div
                 aria-hidden
                 className="absolute inset-0"
@@ -269,30 +203,29 @@ export default function TarifsPage() {
             <HeroCursorGlow radius="inherit" />
 
             <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
-              <Sticker rotate={-8}>★ Tarifs transparents</Sticker>
+              <Sticker rotate={-8}>★ Partenaire officiel Odoo</Sticker>
             </div>
 
             <div className="relative flex min-h-[460px] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[560px] md:py-28">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
                 <Sparkles size={12} className="text-brand-gold" />
                 <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
-                  Tarifs · MSL-iTECH
+                  Notre approche · MSL-iTECH
                 </p>
               </div>
 
               <h1 className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[60px] lg:text-[72px]">
-                Des tarifs{" "}
+                Un partenaire,{" "}
                 <span className="italic font-light text-brand-gold">
-                  transparents
+                  pas un compteur
                 </span>
-                ,<br className="hidden md:block" /> un partenaire{" "}
-                <Mark>vérifiable.</Mark>
+                <br className="hidden md:block" /> d'heures. <Mark>Du sur-mesure.</Mark>
               </h1>
 
               <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
-                Nos tarifs sont affichés et notre statut de partenaire officiel
-                Odoo est consultable publiquement. Évaluez-nous avant même de
-                réserver un rendez-vous.
+                Chaque projet est unique. Votre tarification devrait l'être
+                aussi. Nous adaptons notre accompagnement à votre périmètre, 
+                votre complexité et vos objectifs — pas l'inverse.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -300,11 +233,15 @@ export default function TarifsPage() {
                   className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white"
                   style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
                 >
-                  <ShieldCheck size={16} className="text-brand-gold" /> Partenaire officiel Odoo
+                  <ShieldCheck size={16} className="text-brand-gold" /> Consultants certifiés v18 & v19
+                </span>
+                <span
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white"
+                  style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)" }}
+                >
+                  <CheckCircle2 size={16} className="text-brand-gold" /> Devis détaillé sous 48h
                 </span>
               </div>
-
-              {/* Devise affichée automatiquement selon la géolocalisation */}
             </div>
 
             {/* Breadcrumb pill */}
@@ -321,7 +258,7 @@ export default function TarifsPage() {
                 </Link>
                 <ArrowRight size={14} className="text-brand-gold" />
                 <span className="font-body text-sm font-semibold text-brand-blue">
-                  Tarifs
+                  Notre approche
                 </span>
               </div>
             </div>
@@ -329,7 +266,7 @@ export default function TarifsPage() {
         </div>
       </section>
 
-      {/* WHY COMPETITIVE */}
+      {/* PHILOSOPHIE */}
       <section className="bg-brand-bg py-24 md:py-28">
         <div className="container">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
@@ -337,27 +274,27 @@ export default function TarifsPage() {
               <div className="mb-4 inline-flex items-center gap-2">
                 <span className="h-px w-10 bg-brand-blue" />
                 <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-                  Notre structure
+                  Notre philosophie
                 </p>
               </div>
               <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
-                Compétitifs,
+                Le bon prix,
                 <br />
-                <Mark>par construction.</Mark>
+                <Mark>pour le bon projet.</Mark>
               </h2>
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              Notre structure internationale — équipe technique Odoo Ready
-              Partner au Maroc (consultants certifiés v18 & v19), accompagnement à distance
-              des clients belges et canadiens — nous permet de proposer des
-              packs compétitifs à volume comparable. Nous développons aussi des modules
-              custom et personnalisons Odoo natif selon vos process.
+              Les grilles tarifaires figent la réalité. Un déploiement CRM pour
+              5 commerciaux n'a rien à voir avec un ERP complet multi-sociétés.
+              C'est pourquoi chaque proposition MSL-iTECH est construite sur
+              mesure — ventilée par module, par phase et par livrable. Vous
+              savez exactement ce que vous payez et pourquoi.
             </p>
           </div>
         </div>
       </section>
 
-      {/* PACKS TABLE */}
+      {/* PALIERS D'ENGAGEMENT */}
       <section className="bg-brand-white py-24 md:py-28">
         <div className="container">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
@@ -365,199 +302,147 @@ export default function TarifsPage() {
               <div className="mb-4 inline-flex items-center gap-2">
                 <span className="h-px w-10 bg-brand-blue" />
                 <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-                  Packs d'implémentation
+                  Niveaux d'engagement
                 </p>
               </div>
               <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
-                Choisissez votre <Mark>palier.</Mark>
+                Quatre paliers. <Mark>Zéro rigidité.</Mark>
               </h2>
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              Six paliers d'engagement, du support fondamental à la vision 360.
-              Tous nos packs incluent paramétrage, formation et assistance —
-              sans heures cachées.
+              De l'assistance ponctuelle à la transformation complète de votre
+              organisation. Chaque palier est adapté à votre réalité — nous
+              construisons le devis ensemble, après avoir compris votre contexte.
             </p>
           </div>
 
-          <div
-            className="relative mt-14 overflow-hidden rounded-[28px] border bg-brand-white shadow-[0_30px_80px_-40px_rgba(13,13,13,0.25)]"
-            style={{ borderColor: "var(--grey-light)" }}
-          >
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[960px] border-separate border-spacing-0 text-left text-sm">
-                {/* Header row — colored pack chips */}
-                <thead>
-                  <tr>
-                    <th className="sticky left-0 z-10 bg-brand-white px-6 py-6 align-bottom">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
-                        Comparatif
-                      </p>
-                      <p className="mt-2 font-heading text-base font-bold text-brand-black">
-                        Fonctionnalités
-                      </p>
-                    </th>
-                    {packs.map((p) => (
-                      <th
-                        key={p.name}
-                        className="px-3 pb-4 pt-6 align-bottom text-center"
-                      >
-                        <div className="relative mx-auto flex w-full max-w-[140px] flex-col items-center">
-                          {p.highlight && (
-                            <span
-                              className="mb-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em]"
-                              style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
-                            >
-                              <Star size={10} fill="currentColor" /> Recommandé
-                            </span>
-                          )}
-                          <div
-                            className="flex w-full flex-col items-center rounded-2xl px-3 py-3 text-white shadow-[0_10px_24px_-12px_rgba(0,0,0,0.35)]"
-                            style={{ backgroundColor: p.color }}
-                          >
-                            <span className="font-heading text-base font-bold leading-tight">
-                              {p.name}
-                            </span>
-                            <span className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] opacity-90">
-                              {p.hours}
-                            </span>
-                          </div>
-                          <span className="mt-2 font-body text-[11px] leading-snug text-brand-grey">
-                            {p.for}
-                          </span>
-                        </div>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {paliers.map((p) => {
+              const Icon = p.icon;
+              return (
+                <article
+                  key={p.name}
+                  className={`group relative overflow-hidden rounded-[28px] border p-8 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(13,13,13,0.2)] md:p-10 ${
+                    p.highlight
+                      ? "ring-2 ring-brand-blue"
+                      : ""
+                  }`}
+                  style={{ borderColor: "var(--grey-light)" }}
+                >
+                  {p.highlight && (
+                    <div className="absolute -top-3 right-6">
+                      <Sticker rotate={6}>★ Le plus demandé</Sticker>
+                    </div>
+                  )}
 
-                <tbody>
-                  {features.map((f, ri) => (
-                    <tr key={f.label}>
-                      <td
-                        className="sticky left-0 z-10 border-t bg-brand-white px-6 py-4 font-body text-sm text-brand-black"
-                        style={{
-                          borderColor: "var(--grey-light)",
-                          backgroundColor: ri % 2 ? "rgba(229,227,220,0.25)" : "white",
-                        }}
-                      >
-                        {f.label}
-                      </td>
-                      {f.values.map((v, ci) => (
-                        <td
-                          key={ci}
-                          className="border-t px-3 py-4 text-center"
-                          style={{
-                            borderColor: "var(--grey-light)",
-                            backgroundColor: ri % 2 ? "rgba(229,227,220,0.18)" : "transparent",
-                          }}
-                        >
-                          {v ? (
-                            <span
-                              className="inline-flex h-7 w-7 items-center justify-center rounded-full"
-                              style={{
-                                backgroundColor: `${packs[ci].color}1A`,
-                                color: packs[ci].color,
-                              }}
-                            >
-                              <CheckCircle2 size={16} />
-                            </span>
-                          ) : (
-                            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-bg text-brand-grey/50">
-                              <Minus size={14} />
-                            </span>
-                          )}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
+                  {/* Colored accent bar */}
+                  <div
+                    aria-hidden
+                    className="absolute left-0 top-0 h-full w-[4px] origin-top scale-y-0 transition-transform duration-300 group-hover:scale-y-100"
+                    style={{ backgroundColor: p.color }}
+                  />
 
-                  {/* Prix ancien client */}
-                  <tr>
-                    <td
-                      className="sticky left-0 z-10 border-t bg-brand-white px-6 py-5 font-heading text-sm font-bold text-brand-black"
-                      style={{ borderColor: "var(--grey-light)" }}
+                  {/* Glow */}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -top-20 -right-20 h-48 w-48 rounded-full opacity-0 blur-3xl transition-opacity group-hover:opacity-20"
+                    style={{ backgroundColor: p.color }}
+                  />
+
+                  <div className="flex items-start gap-4">
+                    <div
+                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition group-hover:scale-105"
+                      style={{ backgroundColor: p.color, color: "white" }}
                     >
-                      Prix ancien client
-                    </td>
-                    {packs.map((p) => (
-                      <td
-                        key={p.name}
-                        className="border-t px-3 py-5 text-center font-heading text-sm font-bold"
-                        style={{ borderColor: "var(--grey-light)", color: p.color }}
-                      >
-                        {fmt(p.priceOld, currency, p.madOld)}
-                      </td>
+                      <Icon size={24} />
+                    </div>
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+                        {p.tagline}
+                      </p>
+                      <h3 className="mt-1 font-heading text-xl font-bold text-brand-black md:text-2xl">
+                        {p.name}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <p className="mt-5 font-body text-base leading-relaxed text-brand-grey">
+                    {p.desc}
+                  </p>
+
+                  <ul className="mt-6 space-y-2">
+                    {p.includes.map((item) => (
+                      <li key={item} className="flex items-center gap-2 font-body text-sm text-brand-black">
+                        <CheckCircle2 size={16} className="shrink-0" style={{ color: p.color }} />
+                        {item}
+                      </li>
                     ))}
-                  </tr>
-
-                  {/* Prix nouveau client */}
-                  <tr>
-                    <td
-                      className="sticky left-0 z-10 border-t bg-brand-white px-6 py-6 font-heading text-base font-bold text-brand-black"
-                      style={{ borderColor: "var(--grey-light)" }}
-                    >
-                      Prix nouveau client
-                      <span className="ml-2 font-mono text-[10px] font-normal uppercase tracking-[0.2em] text-brand-grey">
-                        {currency === "EUR" ? "HTVA" : currency === "MAD" ? "TTC" : "HT"}
-                      </span>
-                    </td>
-                    {packs.map((p) => {
-                      const newVal = currency === "MAD" && p.madNew !== undefined ? p.madNew : p.priceNew;
-                      const oldVal = currency === "MAD" && p.madOld !== undefined ? p.madOld : p.priceOld;
-                      return (
-                        <td
-                          key={p.name}
-                          className="border-t px-3 py-6 text-center align-middle"
-                          style={{ borderColor: "var(--grey-light)" }}
-                        >
-                          <div
-                            className="mx-auto inline-flex min-w-[110px] flex-col items-center rounded-2xl px-3 py-3 text-white shadow-[0_10px_24px_-12px_rgba(0,0,0,0.35)]"
-                            style={{ backgroundColor: p.color }}
-                          >
-                            <span className="font-heading text-base font-bold leading-tight">
-                              {fmt(p.priceNew, currency, p.madNew)}
-                            </span>
-                            {oldVal !== newVal && (
-                              <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.2em] opacity-85">
-                                Économie {Math.round((1 - newVal / oldVal) * 100)}%
-                              </span>
-                            )}
-                          </div>
-                        </td>
-                      );
-                    })}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                  </ul>
+                </article>
+              );
+            })}
           </div>
-
-          {/* Legend */}
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-brand-grey">
-            <span className="inline-flex items-center gap-2">
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue">
-                <CheckCircle2 size={12} />
-              </span>
-              Inclus dans le pack
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand-bg text-brand-grey/50">
-                <Minus size={12} />
-              </span>
-              Non inclus
-            </span>
-          </div>
-
-          <p className="mt-6 flex items-start gap-2 text-sm text-brand-grey">
-            <Info size={14} className="mt-0.5 shrink-0" />
-            Prix € HTVA (Belgique) · MAD TTC (Maroc) · USD / CAD HT (Amérique du Nord). Conversions
-            indicatives : 1 € ≈ {EUR_TO_MAD} MAD · 1 € ≈ {EUR_TO_USD} USD · 1 USD ≈ {USD_TO_CAD} CAD.
-          </p>
         </div>
       </section>
 
+      {/* DIFFÉRENCIATEURS */}
+      <section className="bg-brand-bg py-24 md:py-28">
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2">
+              <span className="h-px w-8 bg-brand-blue" />
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+                Pourquoi MSL-iTECH
+              </p>
+              <span className="h-px w-8 bg-brand-blue" />
+            </div>
+            <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-5xl">
+              Ce qui nous <Mark>différencie.</Mark>
+            </h2>
+          </div>
 
-      {/* INCLUDED + CONDITIONS */}
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {differentiateurs.map((d) => {
+              const Icon = d.icon;
+              return (
+                <article
+                  key={d.title}
+                  className="group relative overflow-hidden rounded-[24px] border bg-brand-white p-8 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.2)]"
+                  style={{ borderColor: "var(--grey-light)" }}
+                >
+                  <div
+                    aria-hidden
+                    className="absolute right-0 top-0 h-32 w-32 -translate-y-10 translate-x-10 rounded-full opacity-0 transition group-hover:opacity-100"
+                    style={{
+                      background:
+                        "radial-gradient(closest-side, rgba(255,221,87,0.4), transparent)",
+                    }}
+                  />
+                  <div
+                    className="flex h-12 w-12 items-center justify-center rounded-xl"
+                    style={{ backgroundColor: "var(--blue)", color: "var(--gold)" }}
+                  >
+                    <Icon size={22} />
+                  </div>
+                  <h3 className="mt-5 font-heading text-lg font-bold text-brand-black">
+                    {d.title}
+                  </h3>
+                  <p className="mt-3 font-body text-base leading-relaxed text-brand-grey">
+                    {d.desc}
+                  </p>
+                  <div
+                    aria-hidden
+                    className="absolute bottom-0 left-0 right-0 h-[2px] origin-left scale-x-0 transition group-hover:scale-x-100"
+                    style={{ backgroundColor: "var(--gold)" }}
+                  />
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* COMPRENDRE LES COÛTS — lien vers la page marché */}
       <section className="bg-brand-white py-24 md:py-28">
         <div className="container">
           <div className="grid gap-6 lg:grid-cols-2">
@@ -570,19 +455,32 @@ export default function TarifsPage() {
                 style={{ backgroundColor: "var(--gold)" }}
               />
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
-                Ce qui est inclus
+                Comprendre les coûts
               </p>
               <h3 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-3xl">
-                Tout, dans chaque pack.
+                Combien coûte Odoo sur le marché ?
               </h3>
               <p className="mt-4 font-body text-base text-brand-grey">
-                Analyse de vos besoins, paramétrage Odoo selon votre activité,
-                migration des données existantes (selon le palier), formation
-                des équipes et support post-déploiement.
+                Avant de demander un devis, comprenez les fourchettes de prix du
+                marché belge : licences, hébergement, taux horaires consultants.
+                Nous avons compilé un guide complet et transparent.
               </p>
-              <p className="mt-4 font-body text-sm font-semibold text-brand-black">
-                Pas d'heures cachées, pas de facturation surprise.
-              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  to="/tarif-odoo-belgique"
+                  className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-semibold text-brand-black transition hover:scale-[1.02]"
+                  style={{ backgroundColor: "var(--gold)" }}
+                >
+                  Guide des coûts Odoo 2026 <ArrowRight size={16} />
+                </Link>
+                <Link
+                  to="/blog/cout-implementation-odoo-belgique-2026"
+                  className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-white"
+                  style={{ borderColor: "var(--blue)" }}
+                >
+                  Article : coûts d'implémentation
+                </Link>
+              </div>
             </article>
 
             <article
@@ -590,24 +488,25 @@ export default function TarifsPage() {
               style={{ borderColor: "var(--grey-light)" }}
             >
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
-                Conditions
+                Ce qui est inclus
               </p>
               <h3 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-3xl">
-                Cadre clair & engagé.
+                Dans chaque engagement.
               </h3>
               <ul className="mt-4 space-y-3 font-body text-base text-brand-grey">
-                <li className="flex gap-2">
-                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-brand-blue" />
-                  Heures valables 12 mois à compter de la date d'achat.
-                </li>
-                <li className="flex gap-2">
-                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-brand-blue" />
-                  Packs cumulables ; toute heure entamée est due.
-                </li>
-                <li className="flex gap-2">
-                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-brand-blue" />
-                  Compte-rendu mensuel d'utilisation sur Avancé, Premium, VIP et Elite.
-                </li>
+                {[
+                  "Analyse de vos besoins et cadrage du périmètre",
+                  "Paramétrage Odoo selon votre activité",
+                  "Migration des données existantes",
+                  "Formation des équipes",
+                  "Support post-déploiement",
+                  "Devis ventilé par module et par livrable",
+                ].map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-brand-blue" />
+                    {item}
+                  </li>
+                ))}
               </ul>
             </article>
           </div>
@@ -622,7 +521,7 @@ export default function TarifsPage() {
               <div className="mb-4 inline-flex items-center gap-2">
                 <span className="h-px w-10 bg-brand-blue" />
                 <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-                  FAQ Tarifs
+                  FAQ
                 </p>
               </div>
               <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
@@ -658,7 +557,8 @@ export default function TarifsPage() {
           src={ctaBg}
           alt=""
           className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30"
-        loading="lazy" decoding="async"/>
+          loading="lazy" decoding="async"
+        />
         <div
           aria-hidden
           className="absolute inset-0 -z-10"
@@ -671,24 +571,24 @@ export default function TarifsPage() {
           <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
             <Sparkles size={12} className="text-brand-gold" />
             <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
-              Prêt à démarrer ?
+              Prochaine étape
             </p>
           </div>
           <h2 className="mx-auto mt-6 max-w-3xl font-heading text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
-            Réservez votre démo,{" "}
+            Parlez-nous de votre projet,{" "}
             <span className="italic font-light text-brand-gold">
-              choisissez votre pack ensuite.
+              nous construisons le devis ensemble.
             </span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl font-body text-base text-white/80 md:text-lg">
-            Sans engagement · Conseil personnalisé · Réponse sous 24 à 72h ouvrables.
+            Cadrage gratuit de 30 minutes · Devis détaillé sous 48h · Sans engagement.
           </p>
           <Link
             to="/prendre-rendez-vous"
             className="mt-9 cta-pulse-gold hover-shine inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black transition hover:scale-[1.02]"
             style={{ backgroundColor: "var(--gold)" }}
           >
-            Réserver ma démo gratuite <ArrowRight size={16} />
+            Réserver mon cadrage gratuit <ArrowRight size={16} />
           </Link>
         </div>
       </section>

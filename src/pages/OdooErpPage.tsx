@@ -782,7 +782,7 @@ function CaseStudy() {
 const faqs = [
   {
     q: "Combien coûte une implémentation Odoo avec MSL-iTECH ?",
-    a: "Nos packs d'heures démarrent à partir de quelques milliers d'euros pour une PME. Nous proposons des tarifs 20 à 50% plus accessibles que les Success Packs observés sur le marché belge, à qualité équivalente. Devis sur mesure après cadrage.",
+    a: "Chaque projet est chiffré sur mesure après un cadrage gratuit de 30 minutes. Nos tarifs sont 20 à 50% plus accessibles que les Success Packs observés sur le marché belge, à qualité équivalente. Devis détaillé sous 48h.",
   },
   {
     q: "Combien de temps avant d'être en production ?",
@@ -902,7 +902,7 @@ function FinalCTA() {
                 to="/tarifs"
                 className="inline-flex items-center gap-2 rounded-full border border-white/30 px-7 py-3.5 font-body text-sm font-semibold text-white transition hover:bg-white/10"
               >
-                Voir nos tarifs
+                Découvrir notre approche
               </Link>
             </div>
 

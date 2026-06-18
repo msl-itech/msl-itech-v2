@@ -293,7 +293,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h3", text: "3. Le taux horaire de l'intégrateur" },
       {
         type: "p",
-        text: "En Belgique, les taux horaires des consultants Odoo varient entre 80 € et 200 €/heure. Un cabinet établi à Bruxelles facture généralement entre 120 € et 180 €/heure. MSL-iTECH propose des packs d'heures 20 à 50 % plus accessibles que les Success Packs observés sur le marché belge, grâce à notre structure internationale.",
+        text: "En Belgique, les taux horaires des consultants Odoo varient entre 80 € et 200 €/heure. Un cabinet établi à Bruxelles facture généralement entre 120 € et 180 €/heure. Les intégrateurs à structure internationale (comme ceux disposant d'équipes techniques au Maghreb ou en Europe de l'Est) peuvent proposer des tarifs 20 à 50 % inférieurs, à qualité équivalente.",
       },
       { type: "h2", text: "La grille de prix réelle pour une PME belge en 2026" },
       {
@@ -313,7 +313,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "Quel pack choisir selon la taille de votre PME ?" },
       {
         type: "p",
-        text: "Pour une PME de moins de 10 salariés, un pack 10 à 25 heures (900 € à 2 000 €) est généralement suffisant pour démarrer. Pour une PME de 15 à 30 salariés avec plusieurs modules, comptez un pack 25 à 50 heures (2 000 € à 3 500 €).",
+        text: "Pour une PME de moins de 10 salariés, un périmètre CRM + Facturation (10 à 25 heures de prestation) est généralement suffisant pour démarrer. Pour une PME de 15 à 30 salariés avec plusieurs modules, comptez 25 à 50 heures de prestation.",
       },
       {
         type: "p",
@@ -359,7 +359,7 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "Quel est le prix d'une implémentation Odoo en Belgique en 2026 ?",
-        a: "Pour une PME belge type, comptez 800 € à 2 500 € pour un projet CRM + Facturation, 2 000 € à 5 000 € pour CRM + Finance + Stock, et 5 000 € à 15 000 € pour un ERP complet (CRM, Finance, Stock, RH, Production). Ces prix concernent l'implémentation par un partenaire certifié et n'incluent pas les licences Odoo.",
+        a: "Pour une PME belge type, les fourchettes du marché observées sont : 800 € à 5 000 € pour un projet CRM + Facturation, 2 000 € à 8 000 € pour CRM + Finance + Stock, et 5 000 € à 25 000 € pour un ERP complet (CRM, Finance, Stock, RH, Production). Ces prix concernent l'implémentation par un partenaire certifié et n'incluent pas les licences Odoo.",
       },
       {
         q: "Combien coûte la licence Odoo Enterprise par utilisateur ?",
@@ -367,7 +367,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Quel taux horaire pour un consultant Odoo certifié en Belgique ?",
-        a: "Les taux horaires des consultants Odoo en Belgique varient entre 80 € et 200 €/heure. Un cabinet établi à Bruxelles facture généralement entre 120 € et 180 €/heure. MSL-iTECH propose des packs 20 à 50 % plus accessibles grâce à sa structure internationale Belgique-Maroc.",
+        a: "Les taux horaires des consultants Odoo en Belgique varient entre 80 € et 200 €/heure. Un cabinet établi à Bruxelles facture généralement entre 120 € et 180 €/heure. Les intégrateurs à structure internationale proposent des tarifs 20 à 50 % inférieurs.",
       },
       {
         q: "Quels sont les coûts cachés d'un projet Odoo ?",
