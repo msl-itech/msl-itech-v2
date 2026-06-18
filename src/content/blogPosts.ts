@@ -27,6 +27,11 @@ import facturationElectroniqueMarocImg from "@/assets/blog/facturation-electroni
 import gestionStockMarocImg from "@/assets/blog/gestion-stock-maroc.jpg";
 import partenaireVsFreelanceImg from "@/assets/blog/partenaire-vs-freelance.jpg";
 import coutOdooBelgiqueImg from "@/assets/blog/cout-odoo-belgique.jpg";
+import coutErpOdooMarocImg from "@/assets/blog/cout-erp-odoo-maroc.jpg";
+import odooVsSapVsSageImg from "@/assets/blog/odoo-vs-sap-vs-sage.jpg";
+import coutsCachesErpImg from "@/assets/blog/couts-caches-erp.jpg";
+import budgetErpHorecaMarocImg from "@/assets/blog/budget-erp-horeca-maroc.jpg";
+import roiErpPmeImg from "@/assets/blog/roi-erp-pme.jpg";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -238,6 +243,7 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "8 min",
     publishedAt: "2026-06-18",
+    image: coutErpOdooMarocImg,
     intent: "Transactionnelle · Décision",
     relatedPath: "/contact",
     relatedLabel: "Demander une estimation personnalisée",
@@ -363,6 +369,7 @@ export const blogPosts: BlogPost[] = [
     region: "INT",
     readingTime: "9 min",
     publishedAt: "2026-06-11",
+    image: odooVsSapVsSageImg,
     intent: "Transactionnelle · Comparaison",
     relatedPath: "/odoo-erp",
     relatedLabel: "Découvrir les modules Odoo ERP",
@@ -495,6 +502,7 @@ export const blogPosts: BlogPost[] = [
     region: "INT",
     readingTime: "7 min",
     publishedAt: "2026-06-04",
+    image: coutsCachesErpImg,
     intent: "Informationnelle · Funnel moyen",
     relatedPath: "/contact",
     relatedLabel: "Demander un devis transparent et détaillé",
@@ -620,6 +628,7 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "7 min",
     publishedAt: "2026-05-28",
+    image: budgetErpHorecaMarocImg,
     intent: "Transactionnelle · Sectoriel",
     relatedPath: "/odoo-horeca-maroc",
     relatedLabel: "Découvrir Odoo pour l'HORECA au Maroc",
@@ -750,6 +759,7 @@ export const blogPosts: BlogPost[] = [
     region: "INT",
     readingTime: "7 min",
     publishedAt: "2026-05-21",
+    image: roiErpPmeImg,
     intent: "Informationnelle · Funnel moyen",
     relatedPath: "/prendre-rendez-vous",
     relatedLabel: "Calculez votre ROI avec un expert MSL-iTECH",
