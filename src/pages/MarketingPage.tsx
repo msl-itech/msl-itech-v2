@@ -15,10 +15,10 @@ import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import marketingHero from "@/assets/marketing-hero.webp";
-import webHero from "@/assets/web-hero.webp";
-import marketingSeo from "@/assets/marketing-seo.jpg";
-import marketingGeo from "@/assets/marketing-geo.jpg";
-import marketingAds from "@/assets/marketing-ads.jpg";
+import stepAudit from "@/assets/marketing-step-audit.jpg";
+import stepStrategy from "@/assets/marketing-step-strategy.jpg";
+import stepExecution from "@/assets/marketing-step-execution.jpg";
+import stepReporting from "@/assets/marketing-step-reporting.jpg";
 
 /* ─── Features (3 leviers) ─── */
 const features = [
@@ -78,7 +78,7 @@ const processSteps = [
     title: "Audit digital gratuit",
     desc: "Nous analysons votre site, vos positions Google, votre visibilité dans les IA et vos canaux d'acquisition. Vous recevez un diagnostic complet sous 24 à 72h.",
     highlight: "Gratuit & sans engagement",
-    image: webHero,
+    image: stepAudit,
   },
   {
     icon: Target,
@@ -86,7 +86,7 @@ const processSteps = [
     title: "Stratégie personnalisée",
     desc: "Sur base de l'audit, nous construisons un plan d'action adapté à vos objectifs, votre budget et votre marché. Pas de template — chaque stratégie est unique.",
     highlight: "100% sur-mesure",
-    image: marketingSeo,
+    image: stepStrategy,
   },
   {
     icon: Rocket,
@@ -94,7 +94,7 @@ const processSteps = [
     title: "Mise en œuvre",
     desc: "Nos experts déploient la stratégie : optimisations techniques, création de contenus, configuration des campagnes, structuration GEO. Vous êtes informé à chaque étape.",
     highlight: "Exécution par des experts",
-    image: marketingGeo,
+    image: stepExecution,
   },
   {
     icon: BarChart3,
@@ -102,7 +102,7 @@ const processSteps = [
     title: "Suivi & optimisation",
     desc: "Chaque mois, vous recevez un reporting clair avec les résultats obtenus et les ajustements prévus. On optimise en continu pour maximiser votre ROI.",
     highlight: "Reporting mensuel",
-    image: marketingAds,
+    image: stepReporting,
   },
 ];
 
