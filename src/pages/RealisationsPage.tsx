@@ -80,6 +80,28 @@ function Sticker({
 
 const odooCases = [
   {
+    icon: Landmark,
+    name: "NASLI HOLDING",
+    sector: "Holding & Investissement — Maroc",
+    image: sectorScaleup,
+    context:
+      "Groupe d'investissement marocain basé à Marrakech (M Business Center, M Avenue), fondé par Nabil Slitine. Société holding (SA) qui investit dans l'hôtellerie, l'enseignement et la santé, et porte des projets d'immobilier de prestige multifonctionnels — dont M Avenue, rue piétonne premium réunissant boutiques, restauration, loisirs et clinique privée, concept à dupliquer dans d'autres capitales africaines (Togo, Côte d'Ivoire, Gabon).",
+    modules: ["RH", "Gestion du personnel", "Digitalisation des processus RH"],
+    result:
+      "Mise en place de la gestion RH sur Odoo : structuration des données du personnel, suivi des collaborateurs et digitalisation des processus de ressources humaines.",
+  },
+  {
+    icon: Home,
+    name: "DOWNTOWN HOTEL CORPORATION (DHC)",
+    sector: "Hôtellerie & Immobilier — Maroc",
+    image: caseMa,
+    context:
+      "Société hôtelière, filiale du groupe Nasli Holding, en charge de l'exploitation hôtelière et de la gestion immobilière et locative de ses actifs.",
+    modules: ["État Locatif", "Abonnements", "Comptabilité"],
+    result:
+      "État locatif : centralisation des biens loués, calcul automatique des échéances et révisions de loyers, reporting dédié au parc immobilier. Abonnements : gestion et facturation des contrats récurrents. Comptabilité : mise en place et suivi de la gestion comptable.",
+  },
+  {
     icon: Building2,
     name: "AIT OUKHALI TRAVAUX",
     sector: "BTP & Marchés Publics — Maroc",
