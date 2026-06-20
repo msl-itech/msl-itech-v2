@@ -85,7 +85,7 @@ const odooCases = [
     sector: "Holding & Investissement — Maroc",
     image: sectorScaleup,
     context:
-      "Groupe d'investissement marocain basé à Marrakech (M Business Center, M Avenue), fondé par Nabil Slitine. Société holding (SA) qui investit dans l'hôtellerie, l'enseignement et la santé, et porte des projets d'immobilier de prestige multifonctionnels — dont M Avenue, rue piétonne premium réunissant boutiques, restauration, loisirs et clinique privée, concept à dupliquer dans d'autres capitales africaines (Togo, Côte d'Ivoire, Gabon).",
+      "Groupe d'investissement marocain basé à Marrakech. Société holding (SA) active dans l'hôtellerie, l'enseignement, la santé et l'immobilier de prestige, dont le projet M Avenue.",
     modules: ["RH", "Gestion du personnel", "Digitalisation des processus RH"],
     result:
       "Mise en place de la gestion RH sur Odoo : structuration des données du personnel, suivi des collaborateurs et digitalisation des processus de ressources humaines.",
