@@ -268,16 +268,16 @@ function HeroShell({
                 style={{ borderColor: "var(--grey-light)", backgroundColor: "#e3eef1" }}
               >
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-                  Tarifs
+                  Approche
                 </p>
                 <div
                   className="mt-2 font-heading text-3xl font-bold md:text-4xl"
                   style={{ color: "var(--blue)" }}
                 >
-                  20-50%
+                  Sur mesure
                 </div>
                 <p className="mt-1 font-body text-xs text-brand-grey">
-                  plus accessibles
+                  devis adapté à votre projet
                 </p>
               </div>
 
