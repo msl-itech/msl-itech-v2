@@ -291,13 +291,19 @@ const sectorsMA = [
 
 function Sectors({ market }: { market: "BE" | "MA" }) {
   const items = market === "MA" ? sectorsMA : sectorsBE;
-  const layout = [
+  const layoutBase = [
     "lg:col-span-3 lg:row-span-2",
     "lg:col-span-3 lg:row-span-1",
     "lg:col-span-1 lg:row-span-1",
     "lg:col-span-2 lg:row-span-1",
     "lg:col-span-6 lg:row-span-1",
   ];
+  // Quand la grille a 7 items (MA), les deux derniers partagent une ligne 50/50
+  // pour éviter une dernière rangée déséquilibrée.
+  const layout =
+    items.length === 7
+      ? [...layoutBase, "lg:col-span-3 lg:row-span-1", "lg:col-span-3 lg:row-span-1"]
+      : layoutBase;
   return (
     <section className="relative overflow-hidden bg-brand-white">
       <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(var(--blue) 1px, transparent 1px)", backgroundSize: "26px 26px" }} />
@@ -332,7 +338,7 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
         <div className="relative mt-14 grid auto-rows-[230px] gap-4 sm:grid-cols-2 lg:grid-cols-6 md:gap-5">
           {items.map((s, i) => {
             const isClickable = !!s.to;
-            const span = layout[i % layout.length];
+            const span = layout[i] ?? layout[i % layoutBase.length];
             const isFeature = i === 0;
             const Card = (
               <div className="group relative isolate flex h-full flex-col justify-end overflow-hidden rounded-[28px] ring-1 ring-black/5 shadow-[0_18px_45px_-22px_rgba(13,13,13,0.4)] transition-shadow duration-500 hover:shadow-[0_30px_70px_-25px_rgba(18,77,90,0.55)]">
