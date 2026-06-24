@@ -7,7 +7,7 @@ import { blogPosts } from "@/content/blogPosts";
 import pillarMarketing from "@/assets/home/pillar-marketing.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
 
-type Filter = "ALL" | "BE" | "MA";
+type Filter = string; // "ALL" or a category name
 
 /* ---------------- Highlight (marker brushstroke) ---------------- */
 function Mark({ children }: { children: React.ReactNode }) {
@@ -58,19 +58,29 @@ export default function BlogIndexPage() {
     path: "/blog",
   });
 
+  const sortedPosts = useMemo(
+    () =>
+      [...blogPosts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)),
+    []
+  );
+
+  const categories = useMemo(() => {
+    const set = new Set<string>();
+    sortedPosts.forEach((p) => set.add(p.category));
+    return Array.from(set).sort((a, b) => a.localeCompare(b, "fr"));
+  }, [sortedPosts]);
+
   const posts = useMemo(() => {
-    const sorted = [...blogPosts].sort((a, b) =>
-      b.publishedAt.localeCompare(a.publishedAt)
-    );
-    if (filter === "ALL") return sorted;
-    return sorted.filter((p) => p.region === filter);
-  }, [filter]);
+    if (filter === "ALL") return sortedPosts;
+    return sortedPosts.filter((p) => p.category === filter);
+  }, [filter, sortedPosts]);
 
   const featured = posts[0];
   const rest = posts.slice(1);
 
   const tabs: { key: Filter; label: string }[] = [
     { key: "ALL", label: "Tous les articles" },
+    ...categories.map((c) => ({ key: c, label: c })),
   ];
 
   const fmtDate = (s: string) =>
