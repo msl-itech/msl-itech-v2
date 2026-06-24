@@ -71,7 +71,6 @@ export default function BlogIndexPage() {
 
   const tabs: { key: Filter; label: string }[] = [
     { key: "ALL", label: "Tous" },
-    { key: "BE", label: "🇧🇪 Belgique" },
     { key: "MA", label: "🇲🇦 Maroc" },
   ];
 
