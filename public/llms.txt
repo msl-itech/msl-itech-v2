@@ -101,9 +101,7 @@ référence est consultable sur notre fiche partenaire officielle Odoo.
 - [BTP Maroc](/odoo-btp-maroc): ERP Odoo pour chantiers, appels d'offres et marchés publics.
 - [Santé Maroc](/odoo-sante-maroc): Gestion pour cliniques, cabinets et pharmacies au Maroc.
 - [Commerce & Distribution](/odoo-gestion-stock-maroc): Odoo pour commerçants et distributeurs marocains.
-- [Consultant Odoo Belgique](/consultant-odoo-belgique): Expertise certifiée Odoo pour les PME belges.
-- [Tarifs Odoo Belgique](/tarif-odoo-belgique): Grille tarifaire et packs d'heures Odoo en Belgique.
-- [Notre approche](/notre-approche): Méthodologie et approche tarifaire sur mesure (Belgique & Maroc).
+- [Notre approche](/notre-approche): Méthodologie et approche tarifaire sur mesure au Maroc.
 - [Réalisations](/realisations): Cas clients et références publiques Odoo.
 - [À propos](/a-propos): Certifications, équipe et valeurs MSL-iTECH.
 

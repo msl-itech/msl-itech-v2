@@ -101,16 +101,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://msl-itech-v2.lovable.app/consultant-odoo-belgique</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://msl-itech-v2.lovable.app/tarif-odoo-belgique</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://msl-itech-v2.lovable.app/pme-en-structuration</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
