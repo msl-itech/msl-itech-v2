@@ -30,8 +30,196 @@ import odooVsSapVsSageImg from "@/assets/blog/odoo-vs-sap-vs-sage.jpg";
 import coutsCachesErpImg from "@/assets/blog/couts-caches-erp.jpg";
 import budgetErpHorecaMarocImg from "@/assets/blog/budget-erp-horeca-maroc.jpg";
 import roiErpPmeImg from "@/assets/blog/roi-erp-pme.jpg";
+import facturationDgi2026Img from "@/assets/blog/facturation-dgi-2026-pdf-ubl.jpg";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "facturation-electronique-dgi-maroc-2026-pdf-ubl",
+    title: "Le PDF n'est plus une facture : ce que la DGI exige vraiment en 2026",
+    metaTitle: "Facturation électronique DGI 2026 : PDF ou format structuré ?",
+    metaDescription:
+      "La DGI n'accepte plus n'importe quel PDF comme facture valide. Découvrez ce qu'exige vraiment la réglementation marocaine en 2026 et comment vous y conformer.",
+    excerpt:
+      "PDF signé, UBL, CII : ce que la DGI marocaine exige vraiment en 2026 et comment mettre votre facturation en conformité sans rupture.",
+    category: "Réglementation & conformité",
+    region: "MA",
+    readingTime: "8 min",
+    publishedAt: "2026-06-24",
+    image: facturationDgi2026Img,
+    intent: "Réglementaire · Page pilier conformité DGI",
+    relatedPath: "/odoo-finance-comptabilite",
+    relatedLabel: "Voir Odoo Finance & Comptabilité",
+    cta: {
+      title: "Votre système de facturation est-il prêt pour la DGI 2026 ?",
+      subtitle:
+        "Diagnostic de conformité en 30 min · Sans engagement · Réponse sous 24h",
+    },
+    body: [
+      {
+        type: "p",
+        text: "Votre comptable vous envoie un PDF par email. Votre client l'imprime, le tamponne, le classe. Vous pensez être en conformité. Vous avez tort.",
+      },
+      {
+        type: "p",
+        text: "Depuis la Loi de Finances 2024 et les circulaires d'application progressives de la Direction Générale des Impôts (DGI), la notion même de « facture valide » a changé au Maroc. Un PDF — même signé numériquement — n'est pas un format structuré. Et cette distinction, en 2026, peut vous coûter cher : redressements fiscaux, refus de déduction de TVA, amendes.",
+      },
+      {
+        type: "p",
+        text: "Cet article vous explique précisément ce que la DGI exige, la différence entre un PDF et un format structuré comme l'UBL ou le CII, et ce que cela implique concrètement pour votre entreprise.",
+      },
+
+      { type: "h2", text: "Qu'est-ce qu'une facture électronique selon la DGI marocaine ?" },
+      {
+        type: "p",
+        text: "Facture électronique (DGI Maroc) : un document fiscal émis, transmis et conservé sous forme numérique, dans un format structuré et lisible par machine, permettant un traitement automatisé sans intervention humaine.",
+      },
+      {
+        type: "p",
+        text: "Cette définition exclut explicitement les PDF classiques. Un PDF est une image numérique d'un document papier — il n'est pas « structuré » au sens fiscal du terme, même s'il contient les bonnes informations visuellement.",
+      },
+      {
+        type: "p",
+        text: "La DGI marocaine s'aligne progressivement sur les standards internationaux de facturation électronique déjà en vigueur dans l'Union Européenne (directive 2014/55/UE) et adoptés par plusieurs pays africains pionniers comme la Tunisie et le Sénégal. L'objectif : traçabilité fiscale complète, réduction de la fraude à la TVA, et interopérabilité entre systèmes comptables.",
+      },
+
+      { type: "h2", text: "PDF signé vs format structuré : quelle différence concrète ?" },
+      {
+        type: "p",
+        text: "La confusion vient d'une idée répandue : « si mon PDF porte une signature électronique, il est conforme. » Ce n'est pas exact.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Lisible par un humain : PDF ✅ — Format structuré (UBL/CII) ✅",
+          "Traitement automatisé par un ERP : PDF ❌ — UBL/CII ✅",
+          "Extraction automatique des données TVA : PDF ❌ — UBL/CII ✅",
+          "Interopérabilité entre systèmes : PDF ❌ — UBL/CII ✅",
+          "Conformité DGI format structuré : PDF ❌ — UBL/CII ✅",
+          "Archivage fiscal probant : PDF ⚠️ partiel — UBL/CII ✅ complet",
+        ],
+      },
+      {
+        type: "p",
+        text: "Bottom line : un PDF signé prouve que vous avez émis le document — il ne prouve pas que les données qu'il contient sont structurées, extractibles et vérifiables par les systèmes de la DGI.",
+      },
+
+      { type: "h2", text: "UBL et CII : les deux formats que la DGI reconnaît" },
+      { type: "h3", text: "Universal Business Language (UBL)" },
+      {
+        type: "p",
+        text: "UBL (Universal Business Language) : standard international de facturation électronique basé sur le langage XML, développé par l'OASIS. Il structure chaque champ de la facture (émetteur, destinataire, lignes de produits, taux de TVA, totaux) dans un format que n'importe quel système informatique peut lire et traiter automatiquement.",
+      },
+      {
+        type: "p",
+        text: "L'UBL est le standard le plus répandu en Afrique et au Moyen-Orient. Il est utilisé au Maroc, en Tunisie, en Arabie Saoudite et dans de nombreux pays d'Afrique subsaharienne qui ont lancé leurs réformes de facturation électronique.",
+      },
+      { type: "h3", text: "CII — Cross Industry Invoice" },
+      {
+        type: "p",
+        text: "Le CII est le standard équivalent développé par l'UN/CEFACT, davantage utilisé en Europe continentale. Il offre les mêmes garanties structurelles que l'UBL : données extractibles, traitement automatisé, archivage probant.",
+      },
+      {
+        type: "p",
+        text: "Pour les PME marocaines, la recommandation pratique est l'UBL — c'est le format nativement supporté par les ERP les plus déployés au Maroc, dont Odoo, et celui que les intégrateurs locaux maîtrisent le mieux.",
+      },
+
+      { type: "h2", text: "Quelles entreprises sont concernées et à partir de quand ?" },
+      {
+        type: "p",
+        text: "La réforme de facturation électronique au Maroc s'applique de façon progressive selon la taille de l'entreprise.",
+      },
+      {
+        type: "p",
+        text: "La DGI marocaine a confirmé une approche par vagues : les grandes entreprises (chiffre d'affaires supérieur à 50 millions de dirhams) sont concernées en premier, suivies des PME dans une deuxième vague, puis des TPE. La Loi de Finances 2024 a posé le cadre légal ; les circulaires d'application précisent les modalités secteur par secteur.",
+      },
+      {
+        type: "p",
+        text: "Ce que cela signifie concrètement : si vous faites partie des fournisseurs ou clients d'une grande entreprise déjà soumise à la réforme, vous recevrez des demandes de facturation structurée de leur part — même si vous n'êtes pas encore directement concerné par la réglementation. Ne pas s'y préparer aujourd'hui, c'est risquer de perdre des marchés demain.",
+      },
+
+      { type: "h2", text: "Comment mettre votre système de facturation en conformité" },
+      {
+        type: "p",
+        text: "Mettre son système de facturation en conformité DGI 2026 se fait en 4 étapes structurées, sans tout réinventer.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Auditer votre flux de facturation actuel — Excel, logiciel comptable ou ERP : chaque point de rupture est un risque.",
+          "Vérifier si votre outil supporte le format structuré — UBL ou CII nativement. La plupart des logiciels locaux anciens ne le font pas. Les ERP modernes comme Odoo le font nativement.",
+          "Connecter votre facturation à la plateforme de la DGI — votre ERP doit pouvoir s'y connecter via API.",
+          "Former vos équipes et mettre à jour vos procédures — commerciaux, comptables et achats doivent comprendre ce qui change.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Résultat attendu : un flux de facturation conforme DGI, sans rupture de productivité, avec une traçabilité complète que vos auditeurs et vos clients apprécieront.",
+      },
+
+      { type: "h2", text: "Pourquoi Odoo est la réponse naturelle à cette réforme au Maroc" },
+      {
+        type: "p",
+        text: "La conformité DGI n'est pas un problème à résoudre une fois pour toutes — c'est un flux continu à maintenir.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Odoo génère nativement des factures en format UBL 2.1, standard reconnu par la DGI marocaine, depuis la version 16.",
+          "La localisation marocaine d'Odoo (maintenue par des partenaires certifiés dont MSL-iTECH) intègre le plan comptable marocain, les taux de TVA locaux et les formats d'archivage conformes.",
+          "L'API Odoo permet une connexion directe au portail DGI pour l'envoi automatisé des factures, sans double saisie ni risque d'erreur humaine.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Conclusion actionnable : si vous utilisez encore Excel, Sage Classic ou un logiciel qui ne supporte pas l'UBL, chaque mois qui passe vous rapproche d'un problème de conformité. La migration vers un ERP certifié comme Odoo n'est pas une dépense — c'est une protection.",
+      },
+
+      { type: "h2", text: "Les risques concrets de la non-conformité" },
+      {
+        type: "p",
+        text: "Ne pas se conformer aux exigences de facturation électronique de la DGI expose votre entreprise à plusieurs risques cumulables :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Refus de déduction de TVA sur les factures non conformes reçues ou émises, avec impact direct sur votre trésorerie.",
+          "Redressements fiscaux lors des contrôles, avec pénalités et intérêts de retard calculés sur les montants en question.",
+          "Perte de marchés B2B avec les grandes entreprises déjà soumises à la réforme, qui exigeront des factures structurées de leurs fournisseurs.",
+          "Image de non-sérieux vis-à-vis de vos partenaires et clients institutionnels, pour qui la conformité fiscale est un critère de sélection.",
+        ],
+      },
+      {
+        type: "p",
+        text: "La réforme marocaine suit le même chemin que la réforme française (e-facture) ou saoudienne (ZATCA) — dans les deux cas, les entreprises qui ont attendu ont payé le prix fort. Les entreprises qui ont anticipé ont transformé une contrainte en avantage compétitif.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Mon logiciel de facturation génère des PDF avec signature numérique. Est-ce suffisant pour la DGI ?",
+        a: "Non. Une signature numérique sur un PDF garantit l'authenticité du document mais ne le rend pas structuré au sens de la DGI. La réglementation marocaine exige un format structuré (UBL ou CII) dans lequel chaque champ de la facture est codé en XML et exploitable automatiquement. Un PDF signé reste un PDF — il ne suffit plus.",
+      },
+      {
+        q: "Qu'est-ce que l'UBL exactement ?",
+        a: "L'UBL (Universal Business Language) est un format de fichier XML standardisé internationalement qui encode toutes les informations d'une facture (émetteur, destinataire, lignes de produits, TVA, totaux) de façon structurée et lisible par machine. C'est le format le plus utilisé au Maroc et en Afrique du Nord pour la facturation électronique conforme aux exigences fiscales locales.",
+      },
+      {
+        q: "Odoo supporte-t-il la facturation électronique conforme DGI ?",
+        a: "Oui. Odoo génère nativement des factures en format UBL depuis la version 16. La localisation marocaine d'Odoo, disponible auprès de partenaires certifiés comme MSL-iTECH, inclut le plan comptable marocain, les taux de TVA locaux et les adaptations nécessaires pour la conformité DGI. La connexion au portail DGI est configurable via l'API native d'Odoo.",
+      },
+      {
+        q: "Ma PME est-elle concernée maintenant ou plus tard ?",
+        a: "La réforme s'applique par vagues selon la taille de l'entreprise. Les grandes entreprises (CA > 50 millions MAD) sont concernées en premier. Les PME suivront dans une deuxième vague. Cependant, si vous êtes fournisseur d'une grande entreprise déjà soumise, celle-ci peut exiger des factures structurées de votre part dès maintenant — indépendamment de votre taille.",
+      },
+      {
+        q: "Combien coûte une migration vers la facturation électronique conforme ?",
+        a: "Le coût dépend de votre situation de départ : si vous utilisez déjà un ERP moderne comme Odoo, l'activation de la facturation UBL est une configuration, pas une refonte. Si vous partez d'Excel ou d'un logiciel non compatible, le coût inclut la migration de votre système. Chez MSL-iTECH, nous proposons un diagnostic gratuit pour estimer précisément votre cas.",
+      },
+      {
+        q: "Que risque-t-on concrètement si on ne se conforme pas ?",
+        a: "Les risques principaux sont : le refus de déduction de TVA sur les factures non conformes, des redressements fiscaux lors des contrôles DGI, et la perte de marchés avec des clients qui exigent déjà la facturation structurée. La non-conformité a un coût financier direct et un coût commercial indirect.",
+      },
+    ],
+  },
   {
     slug: "facturation-electronique-maroc-2026",
     title:
