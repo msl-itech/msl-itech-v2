@@ -64,6 +64,7 @@ const staticEntries: SitemapEntry[] = [
 
 /** Articles de blog — tenir à jour quand on en publie un nouveau. */
 const blogSlugs: { slug: string; publishedAt: string }[] = [
+  { slug: "copilote-conversationnel-odoo-ia-maroc", publishedAt: "2026-06-24" },
   { slug: "agents-ia-odoo-pme-maroc-2026", publishedAt: "2026-06-24" },
   { slug: "donnees-propres-erp-avant-ia-odoo-maroc", publishedAt: "2026-06-24" },
   { slug: "facturation-electronique-transformation-digitale-maroc", publishedAt: "2026-06-24" },
