@@ -41,8 +41,257 @@ import facturationTransformationImg from "@/assets/blog/facturation-transformati
 import donneesProprresErpImg from "@/assets/blog/donnees-propres-erp-avant-ia.jpg";
 import agentsIaOdooImg from "@/assets/blog/agents-ia-odoo-pme.jpg";
 import copiloteConversationnelOdooImg from "@/assets/blog/copilote-conversationnel-odoo.jpg";
+import facturationElectroniqueObligatoireImg from "@/assets/blog/facturation-electronique-obligatoire-maroc.jpg";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "facturation-electronique-obligatoire-maroc-2026-erp",
+    title:
+      "Facturation électronique obligatoire au Maroc : pourquoi le papier ne suffit plus — et comment basculer sereinement vers un ERP",
+    metaTitle:
+      "Facturation électronique obligatoire Maroc 2026 : passer du papier à l'ERP",
+    metaDescription:
+      "La DGI rend la facture électronique obligatoire au Maroc. Fini le papier et Excel : voici les vrais points de douleur et comment MSL-iTECH x Odoo vous met en conformité.",
+    excerpt:
+      "Le Maroc rejoint la Belgique, la France et l'Italie : la facturation électronique devient obligatoire. Carnets à souches, factures Word et Excel ne passeront plus. Ce que ça change pour votre PME, et comment basculer sans casser votre activité.",
+    category: "Conformité & DGI",
+    region: "MA",
+    readingTime: "11 min",
+    publishedAt: "2026-06-25",
+    image: facturationElectroniqueObligatoireImg,
+    intent: "Top-funnel · Urgence conformité",
+    relatedPath: "/contact",
+    relatedLabel: "Diagnostic conformité facturation — gratuit",
+    faqs: [
+      {
+        q: "La facturation électronique est-elle vraiment obligatoire au Maroc ?",
+        a: "Oui. La DGI a engagé la généralisation de la facturation électronique pour toutes les entreprises assujetties, avec un calendrier progressif par taille et secteur. À terme, toute facture B2B devra être émise dans un format structuré (XML/UBL) et transmise via une plateforme conforme. Le papier, le PDF non-structuré et les factures Word/Excel ne seront plus acceptés comme preuve fiscale.",
+      },
+      {
+        q: "Qu'est-ce qui change concrètement pour une PME qui facture encore sur papier ou Excel ?",
+        a: "Trois changements majeurs : (1) la facture doit être générée par un logiciel certifié capable d'émettre un format structuré, (2) elle doit être transmise et archivée selon les exigences de la DGI, (3) chaque facture reçoit un identifiant unique horodaté. Concrètement : les carnets à souches, les modèles Word et les classeurs Excel ne suffisent plus. Il faut un ERP ou un logiciel de facturation conforme.",
+      },
+      {
+        q: "Combien de temps faut-il pour se mettre en conformité avec Odoo ?",
+        a: "Pour une PME standard (moins de 50 salariés, un seul site), MSL-iTECH déploie Odoo Facturation et Comptabilité conforme DGI en 4 à 8 semaines : audit, paramétrage de la localisation marocaine, reprise du fichier clients/produits, formation des utilisateurs, mise en production. Pour les structures multi-sites ou multi-entités, comptez 8 à 12 semaines.",
+      },
+      {
+        q: "Que se passe-t-il si je ne me mets pas en conformité dans les délais ?",
+        a: "Les sanctions prévues incluent des amendes par facture non conforme, le rejet de la déductibilité TVA côté client (vos clients risquent de refuser vos factures non électroniques), et un risque de redressement en cas de contrôle fiscal. Au-delà de l'amende, c'est votre relation commerciale qui est en jeu : un client en conformité refusera vos factures papier.",
+      },
+      {
+        q: "Pourquoi choisir Odoo plutôt qu'un simple logiciel de facturation ?",
+        a: "Un logiciel de facturation seul vous met en conformité… mais laisse vos stocks sur Excel, vos relances sur post-it et votre comptabilité chez l'expert-comptable en fin de mois. Odoo intègre dans un seul outil la facturation conforme DGI + ventes + stocks + comptabilité + relances automatiques. Le coût d'un ERP est rarement supérieur à celui d'un logiciel de facturation + 3 outils annexes — et le gain de temps est sans commune mesure.",
+      },
+    ],
+    cta: {
+      title: "Diagnostic conformité facturation électronique — offert",
+      subtitle:
+        "30 minutes avec un consultant MSL-iTECH pour évaluer votre exposition à l'obligation DGI, votre échéance réelle et le chemin le plus court vers la conformité avec Odoo. Sans engagement.",
+    },
+    body: [
+      {
+        type: "p",
+        text: "Depuis 2024, le Maroc a engagé une réforme silencieuse mais profonde : la généralisation de la facturation électronique obligatoire, à l'image de ce qu'ont déjà fait la Belgique, la France, l'Italie ou l'Espagne. La DGI ne demande plus seulement de tenir une comptabilité — elle exige désormais que chaque facture soit émise, transmise et archivée dans un format structuré, lisible par machine, tracé et horodaté.",
+      },
+      {
+        type: "p",
+        text: "Pour des milliers de PME marocaines qui facturent encore sur carnet à souches, sur un modèle Word ou via un classeur Excel, c'est un séisme. Le papier ne suffit plus. Le PDF imprimable non plus. Et cette obligation n'est pas une option qu'on pourra repousser indéfiniment.",
+      },
+      {
+        type: "h2",
+        text: "Pourquoi le Maroc impose la facturation électronique maintenant",
+      },
+      {
+        type: "p",
+        text: "Trois raisons convergent : la lutte contre la sous-déclaration et la TVA non collectée, l'alignement sur les standards des pays partenaires commerciaux du Royaume (UE notamment), et la modernisation administrative qui doit accompagner la transformation digitale de l'économie marocaine.",
+      },
+      {
+        type: "p",
+        text: "La logique de la DGI est simple : si chaque facture est émise dans un format structuré et transmise via une plateforme conforme, l'administration fiscale peut croiser automatiquement vos ventes avec les achats de vos clients. La fraude par fausse facturation devient quasi impossible. Et au passage, vos déclarations TVA sont pré-remplies.",
+      },
+      {
+        type: "h2",
+        text: "Les 5 vrais points de douleur des PME qui facturent encore à l'ancienne",
+      },
+      {
+        type: "h3",
+        text: "1. Le carnet à souches qu'on perd, qu'on rature, qu'on oublie",
+      },
+      {
+        type: "p",
+        text: "Pas de double propre, pas de recherche possible (« où est passée la facture de M. X de février ? »), pas de relance automatique. Et surtout : aucun format structuré transmissible à la DGI. Le carnet à souches sortira purement et simplement du paysage légal.",
+      },
+      {
+        type: "h3",
+        text: "2. Le modèle Word / Excel qu'on duplique à chaque vente",
+      },
+      {
+        type: "p",
+        text: "Vous numérotez à la main, vous recopiez les coordonnées du client, vous risquez les doublons de numéro de facture (interdit), vous oubliez d'enregistrer la version finale. Pire : le PDF généré n'est pas une facture électronique au sens DGI — c'est juste une image de facture. Aucune donnée structurée à l'intérieur.",
+      },
+      {
+        type: "h3",
+        text: "3. Le logiciel de facturation isolé, déconnecté du reste",
+      },
+      {
+        type: "p",
+        text: "Vous avez un outil pour facturer, un autre pour le stock, un troisième pour la comptabilité chez l'expert-comptable. Chaque mois, vous ressaisissez les mêmes données trois fois. Une vente correspond à trois saisies dans trois systèmes qui ne se parlent pas.",
+      },
+      {
+        type: "h3",
+        text: "4. Les relances impayés qui se font (ou pas) à la main",
+      },
+      {
+        type: "p",
+        text: "Sans système intégré, personne ne sait précisément quelle facture est en retard, de combien, et depuis quand. Les relances se font à la mémoire de la personne au comptoir — donc partiellement, donc trop tard.",
+      },
+      {
+        type: "h3",
+        text: "5. La peur du contrôle fiscal",
+      },
+      {
+        type: "p",
+        text: "Avec la facturation électronique, un contrôle DGI ne demande plus vos classeurs : il interroge directement la plateforme. Si vos factures n'y sont pas, dans le bon format, avec les bons identifiants — vous ne pouvez plus rattraper après coup. La conformité doit être en place avant le contrôle, pas après.",
+      },
+      {
+        type: "h2",
+        text: "Ce que la facture électronique conforme DGI exige réellement",
+      },
+      {
+        type: "ul",
+        items: [
+          "Un format structuré (XML / UBL ou équivalent reconnu par la DGI) — pas un simple PDF",
+          "Un identifiant unique de facture, horodaté, non modifiable a posteriori",
+          "Une transmission via une plateforme conforme (PDP ou équivalent marocain)",
+          "Un archivage électronique conservant l'intégrité du document pendant la durée légale",
+          "La traçabilité complète : émission, transmission, accusé de réception, paiement",
+        ],
+      },
+      {
+        type: "p",
+        text: "Aucune de ces exigences n'est réalisable avec un carnet, Word, Excel ou un PDF généré à la main. Il faut un logiciel — et autant choisir un logiciel qui fait plus que facturer.",
+      },
+      {
+        type: "h2",
+        text: "La solution MSL-iTECH × Odoo : conformité + gestion complète, sans surcoût absurde",
+      },
+      {
+        type: "p",
+        text: "Plutôt que d'acheter un logiciel de facturation conforme DGI (et de continuer à gérer le reste à côté), MSL-iTECH déploie Odoo configuré pour la conformité marocaine. Vous obtenez en un seul outil :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Facturation électronique au format structuré, conforme aux exigences DGI",
+          "Numérotation automatique sécurisée, sans doublon possible",
+          "Transmission et archivage selon le calendrier d'obligation applicable à votre entreprise",
+          "Gestion des ventes, devis, bons de commande connectés à la facturation",
+          "Stocks, achats et comptabilité intégrés — fini la triple saisie",
+          "Relances impayés automatiques par email, à J+7, J+15, J+30",
+          "Tableaux de bord temps réel : CA, encours clients, créances, TVA",
+        ],
+      },
+      {
+        type: "p",
+        text: "Le tout déployé en 4 à 8 semaines pour une PME standard, avec formation des équipes et reprise de votre fichier clients existant. Et à un coût qui reste accessible aux PME marocaines — pas les tarifs d'un cabinet international.",
+      },
+      {
+        type: "h2",
+        text: "La méthode MSL-iTECH en 4 étapes",
+      },
+      {
+        type: "h3",
+        text: "Étape 1 — Diagnostic conformité (1 semaine)",
+      },
+      {
+        type: "p",
+        text: "Audit de votre situation actuelle : volume de factures, profil clients (B2B / B2C), secteur d'activité, échéance d'obligation applicable, outils en place. Livrable : feuille de route conformité claire avec votre vraie date butoir.",
+      },
+      {
+        type: "h3",
+        text: "Étape 2 — Paramétrage Odoo localisé Maroc (2 à 3 semaines)",
+      },
+      {
+        type: "p",
+        text: "Configuration de la localisation marocaine d'Odoo : plan comptable, taux TVA, formats de facture, numérotation, mentions légales DGI. Reprise de votre fichier clients et catalogue produits.",
+      },
+      {
+        type: "h3",
+        text: "Étape 3 — Formation et bascule (1 à 2 semaines)",
+      },
+      {
+        type: "p",
+        text: "Formation de vos équipes commerciale, administrative et comptable. Émission des premières factures en double (ancien système + Odoo) pour sécuriser la bascule, puis passage en production complète.",
+      },
+      {
+        type: "h3",
+        text: "Étape 4 — Suivi et optimisation (en continu)",
+      },
+      {
+        type: "p",
+        text: "Support post-mise en production, ajustements selon vos retours terrain, accompagnement à l'activation progressive des modules connexes (CRM, stock, RH) quand vous êtes prêts.",
+      },
+      {
+        type: "h2",
+        text: "Combien ça coûte vraiment de NE PAS s'y mettre",
+      },
+      {
+        type: "p",
+        text: "Beaucoup de dirigeants reportent la décision en attendant « le dernier moment ». C'est un calcul dangereux. Le coût de l'inaction se mesure en trois postes :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Amendes DGI par facture non conforme — applicables dès le passage à l'obligation",
+          "Refus de vos factures par vos clients déjà en conformité — perte de CA immédiate",
+          "Rush de déploiement à la dernière minute, avec des prestataires saturés et des tarifs qui explosent",
+        ],
+      },
+      {
+        type: "p",
+        text: "Un déploiement Odoo serein, planifié 3 à 6 mois avant votre échéance, coûte 2 à 3 fois moins cher (et stresse 10 fois moins) qu'un déploiement en urgence un mois avant la deadline.",
+      },
+      {
+        type: "h2",
+        text: "Pourquoi MSL-iTECH pour ce chantier précisément",
+      },
+      {
+        type: "ul",
+        items: [
+          "Partenaire Odoo officiel, consultants certifiés v18 et v19",
+          "Équipe basée au Maroc — connaissance fine du contexte fiscal et des évolutions DGI",
+          "Expérience double Maroc / Belgique — nous avons déjà accompagné des dizaines de bascules vers la facturation électronique en Europe",
+          "Approche sur mesure : pas de package « one size fits all », chaque déploiement est calibré sur votre réalité",
+          "Tarification PME : ni les prix d'un cabinet international, ni la fragilité d'un freelance isolé",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Et après la conformité ?",
+      },
+      {
+        type: "p",
+        text: "L'obligation DGI est l'occasion parfaite de faire d'une pierre deux coups. Une fois Odoo en place pour la facturation, l'extension aux autres modules (CRM, stock, achats, RH) se fait progressivement, sans nouveau projet d'envergure. Vous passez d'une obligation subie à un véritable levier de transformation digitale — ce que nos clients appellent souvent « le déclic ERP ».",
+      },
+      {
+        type: "p",
+        text: "Pour aller plus loin sur ce sujet, nous vous recommandons nos analyses détaillées : la différence entre PDF et UBL pour la DGI, la méthode pour migrer d'Excel vers Odoo, et notre dossier complet sur la facturation comme porte d'entrée de la transformation digitale.",
+      },
+      {
+        type: "h2",
+        text: "En résumé",
+      },
+      {
+        type: "p",
+        text: "La facturation électronique obligatoire au Maroc n'est plus une rumeur, c'est un calendrier. Les PME qui anticipent y gagnent en sérénité, en coût, et en capacité de transformation. Celles qui attendent paieront — en amendes, en clients perdus et en stress de dernière minute.",
+      },
+      {
+        type: "p",
+        text: "MSL-iTECH × Odoo, c'est le chemin le plus court entre votre situation actuelle (papier, Excel, logiciel isolé) et une PME conforme, digitalisée, pilotée en temps réel. Le diagnostic est gratuit — autant savoir où vous en êtes.",
+      },
+    ],
+  },
   {
     slug: "copilote-conversationnel-odoo-ia-maroc",
     title:
