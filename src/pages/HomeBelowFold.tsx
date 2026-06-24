@@ -70,7 +70,7 @@ function Sticker({
 const homeFaqs: { q: string; a: string }[] = [
   {
     q: "MSL-iTECH est-il un partenaire Odoo officiel ?",
-    a: "Oui. MSL-iTECH est Odoo Ready Partner. Nos consultants sont certifiés Odoo v18 et v19 pour l'instant, avec montée en version continue. Notre fiche partenaire est vérifiable sur odoo.com/partners avec 9 références publiques.",
+    a: "Oui. MSL-iTECH est Odoo Ready Partner. Nos consultants sont certifiés Odoo v18 et v19 pour l'instant, avec montée en version continue. Notre fiche partenaire est vérifiable sur odoo.com/partners avec plus de 20 références publiques.",
   },
   {
     q: "Combien coûte une implémentation Odoo chez MSL-iTECH ?",
@@ -150,7 +150,7 @@ function SocialProof() {
     "✓ Consultants certifiés v18 & v19",
     "✓ Modules custom & personnalisation d'Odoo natif",
     "✓ Belgique · Maroc · Canada",
-    "✓ 9 références publiques vérifiées",
+    "✓ 20+ références publiques vérifiées",
     "✓ Tarifs 20 à 50% plus compétitifs",
     "✓ Réponse sous 24 à 72h ouvrables",
   ];
@@ -414,7 +414,7 @@ function CaseStudy({ market }: { market: "BE" | "MA" }) {
           name: "AIS Hector Denis",
           quote: "Une implémentation structurée et transparente. AIS figure parmi nos références publiques, vérifiables sur odoo.com.",
           metrics: [
-            { k: "9", v: "références" },
+            { k: "20+", v: "références" },
             { k: "v18·v19", v: "certifiés" },
             { k: "100%", v: "vérifiable" },
           ],
