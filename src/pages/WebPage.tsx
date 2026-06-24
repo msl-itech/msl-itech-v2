@@ -274,14 +274,14 @@ export default function WebPage() {
     service: {
       name: "Création de sites web React & WordPress",
       description:
-        "Conception et développement de sites web performants (React/Vite ou WordPress) optimisés conversion et SEO, par MSL-iTECH. Belgique, Maroc, international.",
+        "Conception et développement de sites web performants (React/Vite ou WordPress) optimisés conversion et SEO, par MSL-iTECH au Maroc.",
       serviceType: ["Développement web React", "Sites WordPress", "Optimisation SEO technique"],
     },
   });
 
   return (
     <ProductPageShell
-      eyebrow="Création Web — Belgique & Maroc"
+      eyebrow="Création Web — Maroc"
       title={
         <>
           Votre site web doit <span className="whitespace-nowrap">travailler pour vous</span> — pas se contenter{" "}
@@ -307,7 +307,7 @@ export default function WebPage() {
         ],
       }}
       ctaTitle="Démarrer mon projet web"
-      ctaSubtitle="Devis gratuit · Réponse sous 24h · Sans engagement · Belgique & Maroc"
+      ctaSubtitle="Devis gratuit · Réponse sous 24h · Sans engagement · Maroc"
       faqs={faqs}
     />
   );

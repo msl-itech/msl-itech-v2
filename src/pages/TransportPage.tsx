@@ -53,7 +53,7 @@ const faqs = [
   },
   {
     q: "Combien coûte une implémentation Odoo Transport ?",
-    a: "Un projet transport (flotte + planning chauffeurs + facturation) est chiffré sur mesure selon la complexité de vos opérations. Les abonnements mensuels Odoo (par utilisateur) s'ajoutent. Nos tarifs sont 20 à 50% plus accessibles que le marché belge. Devis après cadrage gratuit.",
+    a: "Un projet transport (flotte + planning chauffeurs + facturation) est chiffré sur mesure selon la complexité de vos opérations. Les abonnements mensuels Odoo (par utilisateur) s'ajoutent. Nos tarifs sont 20 à 50% plus accessibles que ceux des grands cabinets d'intégration. Devis après cadrage gratuit.",
   },
   {
     q: "Peut-on calculer la rentabilité par véhicule ?",

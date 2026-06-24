@@ -74,11 +74,11 @@ const homeFaqs: { q: string; a: string }[] = [
   },
   {
     q: "Combien coûte une implémentation Odoo chez MSL-iTECH ?",
-    a: "Chaque projet est chiffré sur mesure après un cadrage gratuit de 30 minutes. Sur les volumes comparables, nos tarifs sont 20 à 50% plus accessibles que les Success Packs Odoo observés sur le marché belge. Devis détaillé sous 48h.",
+    a: "Chaque projet est chiffré sur mesure après un cadrage gratuit de 30 minutes. Sur les volumes comparables, nos tarifs sont 20 à 50% plus accessibles que ceux pratiqués par les grands cabinets d'intégration. Devis détaillé sous 48h.",
   },
   {
     q: "MSL-iTECH intervient dans quels pays ?",
-    a: "Notre équipe est basée à Marrakech, au Maroc. Nous accompagnons les PME marocaines sur site et à distance, ainsi que les PME belges et canadiennes à distance, avec déplacements ponctuels possibles pour les ateliers de cadrage ou les formations clés.",
+    a: "Notre équipe est basée à Marrakech, au Maroc. Nous accompagnons les PME marocaines sur site et à distance dans tout le royaume.",
   },
   {
     q: "En combien de temps une implémentation Odoo est-elle opérationnelle ?",
@@ -149,7 +149,7 @@ function SocialProof() {
     </>,
     "✓ Consultants certifiés v18 & v19",
     "✓ Modules custom & personnalisation d'Odoo natif",
-    "✓ Belgique · Maroc · Canada",
+    "✓ Maroc — équipe basée à Marrakech",
     "✓ 20+ références publiques vérifiées",
     "✓ Tarifs 20 à 50% plus compétitifs",
     "✓ Réponse sous 24h",

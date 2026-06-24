@@ -156,7 +156,7 @@ export default function BlogIndexPage() {
               <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
                 Des analyses concrètes pour décider : tarifs, partenaires
                 certifiés, gestion de stock, facturation électronique — pour
-                PME belges et marocaines.
+                les PME marocaines.
               </p>
             </div>
 
