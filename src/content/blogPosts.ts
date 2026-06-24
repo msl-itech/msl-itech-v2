@@ -36,8 +36,199 @@ import migrationExcelOdooImg from "@/assets/blog/migration-excel-odoo-maroc.jpg"
 import erpAgentiqueOdooImg from "@/assets/blog/erp-agentique-odoo-relances-stock.jpg";
 import dafMarocainOdooImg from "@/assets/blog/daf-marocain-pilotage-odoo.jpg";
 import devisEncaissementOdooImg from "@/assets/blog/devis-encaissement-odoo-roi.jpg";
+import odooSaasOnpremiseImg from "@/assets/blog/odoo-saas-onpremise-hybride.jpg";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "odoo-saas-on-premise-hybride-maroc-2026",
+    title:
+      "Odoo SaaS, on-premise ou hybride : que choisir pour votre PME marocaine en 2026 ?",
+    metaTitle: "Odoo SaaS ou on-premise au Maroc : que choisir en 2026 ?",
+    metaDescription:
+      "SaaS, on-premise ou hybride : chaque modèle a ses avantages et ses pièges pour une PME marocaine. Coûts réels, souveraineté des données, contraintes DGI — le guide complet.",
+    excerpt:
+      "SaaS, on-premise ou hybride : critères de décision, coûts complets sur 3 ans et recommandation honnête selon votre profil de PME marocaine.",
+    category: "Architecture & hébergement",
+    region: "MA",
+    readingTime: "10 min",
+    publishedAt: "2026-06-24",
+    image: odooSaasOnpremiseImg,
+    intent: "Mid-funnel · Décision architecture",
+    relatedPath: "/contact",
+    relatedLabel: "Demander mon diagnostic d'architecture Odoo",
+    faqs: [
+      {
+        q: "Peut-on passer du SaaS Odoo à l'on-premise plus tard si nos besoins évoluent ?",
+        a: "Oui. La migration d'une instance Odoo SaaS vers un hébergement on-premise est techniquement possible — Odoo fournit des outils d'export et d'import de données. Cependant, la migration implique une intervention technique et un coût de mise en œuvre. Il est préférable de bien choisir dès le départ, ou de prévoir cette migration dans la feuille de route technique initiale.",
+      },
+      {
+        q: "Le SaaS Odoo est-il conforme à la réglementation DGI marocaine ?",
+        a: "Oui. La conformité DGI (facturation électronique UBL, TVA marocaine, plan comptable CGNC) est une question de configuration et de localisation, pas d'hébergement. Que votre Odoo soit en SaaS ou on-premise, la conformité DGI dépend des modules de localisation installés et configurés — ce que MSL-iTECH réalise dans tous ses déploiements.",
+      },
+      {
+        q: "Quelle est la disponibilité garantie du SaaS Odoo ?",
+        a: "Odoo SA garantit une disponibilité de 99,9 % (SLA standard) sur son infrastructure SaaS, avec des plages de maintenance annoncées. En pratique, les interruptions sont rares et de courte durée. Si votre activité est critique (production industrielle, e-commerce intensif), un hébergement on-premise avec redondance locale peut être préférable.",
+      },
+      {
+        q: "Y a-t-il des datacenters Odoo au Maroc ?",
+        a: "À ce jour, Odoo SA n'opère pas de datacenter au Maroc. L'infrastructure SaaS Odoo est hébergée en Europe (Belgique principalement). Pour un hébergement des données au Maroc, l'option on-premise avec un prestataire local (Maroc Telecom Cloud, OVH Maroc, Inwi Business Cloud) est la solution. MSL-iTECH accompagne ses clients dans la sélection et la configuration de ces hébergements locaux.",
+      },
+    ],
+    cta: {
+      title: "Vous ne savez pas encore quel modèle correspond à votre situation ?",
+      subtitle:
+        "Diagnostic d'architecture gratuit · 45 min · Recommandation claire avec coûts associés",
+    },
+    body: [
+      {
+        type: "p",
+        text: "C'est l'une des premières questions que pose tout décideur marocain avant de signer un projet Odoo. Et c'est souvent la question sur laquelle les commerciaux ERP sont les moins transparents — parce que la réponse dépend de votre situation, pas de leur marge.",
+      },
+      {
+        type: "p",
+        text: "SaaS : vos données sont hébergées dans le cloud Odoo, vous payez un abonnement mensuel, vous n'avez rien à maintenir. Simple, rapide à déployer, mais vous dépendez de la connexion internet et de la politique d'Odoo SA.",
+      },
+      {
+        type: "p",
+        text: "On-premise : Odoo est installé sur vos propres serveurs (ou ceux d'un hébergeur marocain), vous contrôlez tout, mais vous assumez la maintenance, les mises à jour et la sécurité.",
+      },
+      {
+        type: "p",
+        text: "Hybride : une architecture mixte où certains modules sont en cloud et d'autres restent locaux — souvent la meilleure réponse pour les PME marocaines avec des contraintes de souveraineté des données.",
+      },
+      {
+        type: "p",
+        text: "Ce guide vous donne les critères de décision réels, les coûts complets, et la recommandation honnête selon votre profil.",
+      },
+
+      { type: "h2", text: "Les trois modèles expliqués clairement" },
+      { type: "h3", text: "Odoo SaaS (Software as a Service)" },
+      {
+        type: "p",
+        text: "Odoo est hébergé sur les serveurs d'Odoo SA (infrastructure AWS/OVH en Europe). Vous accédez à votre ERP via navigateur ou application mobile. Aucune installation locale, mises à jour automatiques, support inclus dans l'abonnement. Limitation principale : personnalisations avancées restreintes, données hébergées hors du Maroc.",
+      },
+      { type: "h3", text: "Odoo On-Premise" },
+      {
+        type: "p",
+        text: "Odoo est installé sur des serveurs que vous contrôlez — en interne, dans un datacenter marocain, ou chez un hébergeur local (Maroc Telecom Cloud, OVH Maroc, Inwi Business). Contrôle total sur les données, personnalisation sans limite, mais responsabilité technique complète : maintenance, sauvegardes, mises à jour, sécurité.",
+      },
+      { type: "h3", text: "Odoo Hybride" },
+      {
+        type: "p",
+        text: "Architecture mixte configurée par le partenaire. Exemple typique : les modules métier (CRM, ventes, achats) en SaaS pour la mobilité et la facilité d'accès, le module comptable et les données financières en on-premise au Maroc pour la conformité et la souveraineté. C'est le modèle le plus flexible mais aussi celui qui nécessite le plus d'expertise pour être bien architecturé.",
+      },
+
+      { type: "h2", text: "Comparatif complet — 8 critères pour votre décision" },
+      {
+        type: "p",
+        text: "Pour chaque critère clé, voici comment se comparent les trois modèles :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Coût initial — SaaS : faible (abonnement mensuel). On-premise : élevé (serveurs + déploiement). Hybride : moyen.",
+          "Coût total sur 3 ans — SaaS : moyen (abonnement × 36 mois). On-premise : variable (amortissement infra). Hybride : moyen-élevé.",
+          "Délai de déploiement — SaaS : 2-8 semaines. On-premise : 2-6 mois. Hybride : 2-4 mois.",
+          "Personnalisation — SaaS : limitée. On-premise : sans limite. Hybride : selon architecture.",
+          "Localisation des données — SaaS : hors Maroc (UE). On-premise : Maroc. Hybride : partiellement Maroc.",
+          "Conformité DGI — compatible dans les trois modèles via la configuration de la localisation marocaine.",
+          "Disponibilité offline — SaaS : non. On-premise : oui (réseau local). Hybride : partielle.",
+          "Maintenance — SaaS : incluse (Odoo SA). On-premise : à votre charge. Hybride : partagée.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Bottom line : pour une PME marocaine standard sans contrainte réglementaire spécifique sur la localisation des données, le SaaS est souvent le meilleur rapport simplicité/coût pour démarrer. Pour une PME avec des données sensibles, des clients institutionnels ou des exigences de contrôle strict, l'on-premise ou l'hybride s'impose.",
+      },
+
+      { type: "h2", text: "La question de la souveraineté des données — pourquoi elle compte au Maroc" },
+      {
+        type: "p",
+        text: "La souveraineté des données est un sujet que les DSI marocains posent de plus en plus souvent — et avec raison. En mode SaaS standard, vos données Odoo sont hébergées sur des serveurs d'Odoo SA localisés en Europe (Belgique, Allemagne). Aucune loi marocaine n'interdit actuellement cet hébergement pour les données commerciales standard. Cependant, deux situations imposent une réflexion différente :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Clients institutionnels ou publics : certains marchés publics marocains ou contrats avec des institutions financières imposent que les données soient hébergées sur le territoire marocain. Si votre PME adresse ce marché, l'on-premise dans un datacenter marocain certifié est souvent une condition contractuelle.",
+          "Données personnelles et conformité loi 09-08 : la loi marocaine 09-08 sur la protection des données personnelles impose des conditions strictes sur le transfert de données hors du Maroc. Si votre ERP contient des données personnelles de salariés, de clients particuliers ou de prospects, votre DPO doit valider l'architecture d'hébergement.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Implication concrète : avant de choisir SaaS vs on-premise, posez cette question à votre équipe juridique : avons-nous des engagements contractuels ou réglementaires sur la localisation de nos données ? Si la réponse est oui même partiellement, MSL-iTECH vous accompagne dans la conception d'une architecture hybride adaptée.",
+      },
+
+      { type: "h2", text: "Analyse des coûts réels sur 3 ans — PME de 15 utilisateurs" },
+      {
+        type: "p",
+        text: "Le coût affiché d'un ERP est rarement le coût réel. Voici une estimation honnête pour une PME marocaine de 15 utilisateurs Odoo Enterprise.",
+      },
+      { type: "h3", text: "Scénario SaaS" },
+      {
+        type: "ul",
+        items: [
+          "Abonnement Odoo Enterprise (15 users × 3 ans) : 108 000 – 135 000 MAD.",
+          "Déploiement et configuration MSL-iTECH : 40 000 – 70 000 MAD.",
+          "Formation des équipes : 10 000 – 20 000 MAD.",
+          "Support annuel MSL-iTECH (optionnel) : 15 000 – 30 000 MAD/an.",
+          "Total 3 ans : 208 000 – 315 000 MAD.",
+        ],
+      },
+      { type: "h3", text: "Scénario On-Premise (datacenter marocain)" },
+      {
+        type: "ul",
+        items: [
+          "Serveur dédié ou VPS hébergé au Maroc (3 ans) : 30 000 – 60 000 MAD.",
+          "Licence Odoo Enterprise (15 users × 3 ans) : 108 000 – 135 000 MAD.",
+          "Déploiement, configuration et personnalisation : 60 000 – 100 000 MAD.",
+          "Maintenance et mises à jour annuelles : 20 000 – 40 000 MAD/an.",
+          "Total 3 ans : 258 000 – 415 000 MAD.",
+        ],
+      },
+      { type: "h3", text: "Scénario Hybride" },
+      {
+        type: "p",
+        text: "Le coût hybride se situe entre les deux, avec une prime pour la complexité architecturale. Il est justifié quand les contraintes de souveraineté des données représentent un risque financier supérieur au surcoût technique.",
+      },
+      {
+        type: "p",
+        text: "Lecture de ce tableau : le SaaS est moins cher sur 3 ans pour la majorité des PME marocaines sans contrainte réglementaire. L'on-premise devient compétitif à partir de 5 ans et pour des configurations avec de nombreux utilisateurs ou des personnalisations importantes.",
+      },
+
+      { type: "h2", text: "La recommandation MSL-iTECH selon votre profil" },
+      { type: "h3", text: "Choisissez le SaaS si :" },
+      {
+        type: "ul",
+        items: [
+          "Vous démarrez votre premier ERP et voulez un délai de déploiement rapide.",
+          "Vos équipes sont mobiles et ont besoin d'accéder à Odoo depuis plusieurs sites.",
+          "Vous n'avez pas d'équipe IT interne pour gérer un serveur.",
+          "Votre budget initial est contraint et vous préférez étaler les coûts.",
+          "Vous n'avez pas de contraintes contractuelles sur la localisation des données.",
+        ],
+      },
+      { type: "h3", text: "Choisissez l'on-premise si :" },
+      {
+        type: "ul",
+        items: [
+          "Vous avez des données sensibles (financières, RH, contractuelles) que vous souhaitez garder au Maroc.",
+          "Vos clients institutionnels ou publics imposent une localisation marocaine des données.",
+          "Vous avez une équipe IT interne capable de gérer la maintenance et les sauvegardes.",
+          "Vous prévoyez des personnalisations importantes qui dépassent ce que le SaaS permet.",
+          "Votre infrastructure réseau interne est stable et bien sécurisée.",
+        ],
+      },
+      { type: "h3", text: "Choisissez le hybride si :" },
+      {
+        type: "ul",
+        items: [
+          "Certains modules (CRM, mobilité commerciale) doivent être accessibles en déplacement, mais les données financières doivent rester au Maroc.",
+          "Vous avez une partie de votre activité soumise à des contraintes réglementaires et une autre non.",
+          "Vous êtes en transition et voulez migrer progressivement vers un modèle cible.",
+        ],
+      },
+    ],
+  },
   {
     slug: "devis-encaissement-odoo-automatisation-roi-maroc",
     title:
