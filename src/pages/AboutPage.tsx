@@ -140,9 +140,9 @@ const values = [
 
 export default function AboutPage() {
   useProductSeo({
-    title: "À Propos de MSL-iTECH — Équipe & Expertise Odoo | Belgique & Maroc",
+    title: "À Propos de MSL-iTECH — Équipe & Expertise Odoo au Maroc",
     description:
-      "Découvrez MSL-iTECH, Odoo Ready Partner au Maroc — consultants certifiés v18 & v19 depuis 2020. Équipe technique basée à Marrakech, accompagnement à distance des clients en Belgique et au Canada. Références publiques vérifiables sur odoo.com/partners.",
+      "Découvrez MSL-iTECH, Odoo Ready Partner au Maroc — consultants certifiés v18 & v19 depuis 2020. Équipe technique basée à Marrakech au service des PME marocaines. Références publiques vérifiables sur odoo.com/partners.",
     path: "/a-propos",
   });
 
