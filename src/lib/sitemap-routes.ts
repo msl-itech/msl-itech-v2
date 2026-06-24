@@ -52,10 +52,6 @@ const staticEntries: SitemapEntry[] = [
   { loc: "/contact", changefreq: "monthly", priority: 0.8 },
   { loc: "/prendre-rendez-vous", changefreq: "monthly", priority: 0.7 },
 
-  // Piliers SEO Belgique
-  { loc: "/consultant-odoo-belgique", changefreq: "monthly", priority: 0.95 },
-  { loc: "/tarif-odoo-belgique", changefreq: "monthly", priority: 0.95 },
-
   // Blog index
   { loc: "/blog", changefreq: "weekly", priority: 0.8 },
 

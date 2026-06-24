@@ -116,8 +116,6 @@ export function computeBehaviorScore(): number {
   if (pages.some((p) => p.startsWith("/prendre-rendez-vous"))) score += 4;
   if (pages.some((p) => p.startsWith("/contact"))) score += 3;
   if (pages.some((p) => p.startsWith("/realisations"))) score += 1;
-  if (pages.some((p) => p.startsWith("/consultant-odoo-belgique"))) score += 2;
-
   if (pages.length > 3) score += 1;
   if (tracker.visitCount >= 2) score += 3;
   if (tracker.diagnosticDone) score += 4;

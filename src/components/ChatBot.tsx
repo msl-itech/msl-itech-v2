@@ -24,7 +24,7 @@ const VALID_ROUTES = new Set([
   "/odoo-services-professionnels", "/odoo-horeca-maroc", "/odoo-btp-maroc",
   "/odoo-sante-maroc", "/odoo-gestion-stock-maroc", "/odoo-transport-logistique-maroc",
   "/creation-web", "/marketing-digital", "/realisations", "/notre-approche", "/a-propos",
-  "/contact", "/consultant-odoo-belgique", "/tarif-odoo-belgique",
+  "/contact",
   "/pme-en-structuration", "/entreprise-multi-sites", "/structure-en-croissance",
   "/blog", "/prendre-rendez-vous",
 ]);
@@ -53,7 +53,6 @@ const PROACTIVE_MESSAGES: Record<string, string> = {
   "/contact": "Avant d'envoyer un message — je peux peut-être répondre tout de suite ?",
   "/odoo-horeca-maroc": "Restaurant, hôtel, café ? Je vous décris la solution HORECA en 2 min.",
   "/odoo-btp-maroc": "Chantier, marchés publics, RH ? Notre solution BTP est éprouvée.",
-  "/consultant-odoo-belgique": "Vous cherchez un consultant Odoo certifié en Belgique ?",
 };
 
 const SUGGESTIONS: Record<string, string[]> = {
