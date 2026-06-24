@@ -104,8 +104,8 @@ const differentiateurs = [
   },
   {
     icon: TrendingUp,
-    title: "Tarification compétitive",
-    desc: "Notre structure internationale — consultants certifiés au Maroc, clients accompagnés à distance en Belgique et au Canada — nous permet de proposer des tarifs 20 à 50% plus accessibles que le marché belge.",
+    title: "Tarification adaptée au Maroc",
+    desc: "Notre équipe technique certifiée Odoo basée au Maroc nous permet de proposer une tarification sur mesure, alignée sur la réalité économique des PME marocaines.",
   },
   {
     icon: FileText,
@@ -129,12 +129,12 @@ const faqs = [
     a: "Parce qu'une grille fixe ne reflète jamais la réalité d'un projet. Un déploiement CRM pour 5 commerciaux n'a rien à voir avec un ERP complet multi-sociétés. Publier des prix fixes reviendrait à sous-estimer ou surestimer systématiquement votre projet. Notre approche sur mesure garantit un prix juste, adapté à votre complexité réelle.",
   },
   {
-    q: "Combien coûte une implémentation Odoo en Belgique en général ?",
-    a: "Les prix du marché varient énormément selon l'intégrateur et le périmètre. Les taux horaires observés en Belgique vont de 80 € à 200 €/heure. Un projet CRM simple peut démarrer autour de 2 000 €, un ERP complet pour une PME de 30 personnes peut atteindre 15 000 € à 25 000 €. Consultez notre guide complet des coûts du marché pour des fourchettes détaillées.",
+    q: "Comment obtenir une estimation pour mon projet ?",
+    a: "Le plus simple est de réserver un cadrage gratuit de 30 minutes. Nous échangeons sur votre activité, vos processus actuels et vos objectifs, puis nous vous remettons un devis détaillé adapté à votre périmètre réel.",
   },
   {
-    q: "Êtes-vous compétitifs par rapport aux autres intégrateurs belges ?",
-    a: "Oui. Grâce à notre structure internationale — équipe technique certifiée Odoo v18 & v19 au Maroc, accompagnement à distance des clients en Belgique et au Canada — nos tarifs sont 20 à 50% plus accessibles que les Success Packs observés sur le marché belge, à qualité et périmètre équivalents.",
+    q: "Travaillez-vous avec des PME marocaines de toutes tailles ?",
+    a: "Oui. Nous accompagnons aussi bien des TPE en structuration que des PME établies et des groupes multi-sociétés au Maroc. Notre approche s'adapte à votre taille, votre secteur (HORECA, BTP, santé, commerce, services) et votre rythme.",
   },
   {
     q: "Y a-t-il des frais cachés ?",
