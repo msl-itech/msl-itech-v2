@@ -8,7 +8,7 @@ export type SeoService = {
   description: string;
   /** e.g. ["Odoo CRM", "Automatisation commerciale"] */
   serviceType: string[];
-  /** ISO country codes. Defaults to ["MA", "BE", "CA"]. */
+  /** ISO country codes. Defaults to ["MA"]. */
   areaServed?: string[];
 };
 export type SeoBreadcrumb = { name: string; url: string };
@@ -33,19 +33,7 @@ const LOCAL_BUSINESS_MA = {
   },
   priceRange: "€€",
   openingHours: "Mo-Fr 09:00-18:00",
-  areaServed: ["MA", "BE", "CA"],
-  sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
-};
-const LOCAL_BUSINESS_BE = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": `${SITE_ORIGIN}/#localbusiness-be`,
-  name: "MSL-iTECH — Service Belgique (à distance)",
-  url: SITE_ORIGIN,
-  telephone: "+32-2-886-05-49",
-  email: "info@msl-itech.com",
-  priceRange: "€€",
-  areaServed: "BE",
+  areaServed: ["MA"],
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
 };
 
@@ -134,9 +122,9 @@ export function useProductSeo(opts: {
       });
     }
 
-    // Sitewide LocalBusiness (MA + BE) — needed on every route, not only the home.
+    // Sitewide LocalBusiness (Maroc) — needed on every route, not only la home.
     upsertJsonLd("ld-localbusiness-ma", LOCAL_BUSINESS_MA);
-    upsertJsonLd("ld-localbusiness-be", LOCAL_BUSINESS_BE);
+    document.getElementById("ld-localbusiness-be")?.remove();
 
     // BreadcrumbList — default to [Accueil → current page] if not provided.
     const breadcrumbs: SeoBreadcrumb[] =
@@ -171,7 +159,7 @@ export function useProductSeo(opts: {
         description: opts.service.description,
         serviceType: opts.service.serviceType,
         provider: { "@id": `${SITE_ORIGIN}/#organization` },
-        areaServed: opts.service.areaServed ?? ["MA", "BE", "CA"],
+        areaServed: opts.service.areaServed ?? ["MA"],
         url,
       });
     } else {
