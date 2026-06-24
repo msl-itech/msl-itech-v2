@@ -70,7 +70,7 @@ export default function BlogIndexPage() {
   const rest = posts.slice(1);
 
   const tabs: { key: Filter; label: string }[] = [
-    { key: "ALL", label: "Tous" },
+    { key: "ALL", label: "Tous les articles" },
     { key: "MA", label: "🇲🇦 Maroc" },
   ];
 
