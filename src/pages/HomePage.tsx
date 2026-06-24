@@ -208,7 +208,7 @@ function HeroShell({
                   ))}
                 </div>
                 <div className="mt-5 font-heading text-4xl font-bold text-white md:text-5xl">
-                  9+
+                  20+
                 </div>
                 <p className="mt-1 font-body text-sm text-white/85">
                   références publiques vérifiables sur odoo.com
