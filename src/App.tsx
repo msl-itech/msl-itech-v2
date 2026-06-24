@@ -29,8 +29,6 @@ const RealisationsPage = lazy(() => import("./pages/RealisationsPage"));
 const TarifsPage = lazy(() => import("./pages/TarifsPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
-const ConsultantBePage = lazy(() => import("./pages/ConsultantBePage"));
-const TarifBePage = lazy(() => import("./pages/TarifBePage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogIndexPage = lazy(() => import("./pages/BlogIndexPage"));
 const PmeStructurationPage = lazy(() => import("./pages/PmeStructurationPage"));
@@ -93,8 +91,6 @@ const App = () => {
             <Route path="/notre-approche" element={<TarifsPage />} />
             <Route path="/a-propos" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/consultant-odoo-belgique" element={<ConsultantBePage />} />
-            {/* <Route path="/tarif-odoo-belgique" element={<TarifBePage />} /> */}
             <Route path="/pme-en-structuration" element={<PmeStructurationPage />} />
             <Route path="/entreprise-multi-sites" element={<MultiSitesPage />} />
             <Route path="/structure-en-croissance" element={<CroissanceRapidePage />} />
