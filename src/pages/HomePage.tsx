@@ -292,9 +292,9 @@ function HeroShell({
                   className="mt-2 font-heading text-3xl font-bold md:text-4xl"
                   style={{ color: "var(--blue)" }}
                 >
-                  24-72h
+                  &lt; 24h
                 </div>
-                <p className="mt-1 font-body text-xs text-brand-grey">ouvrables</p>
+                <p className="mt-1 font-body text-xs text-brand-grey">réponse quasi instantanée</p>
               </div>
             </div>
           </div>
