@@ -31,8 +31,224 @@ import coutsCachesErpImg from "@/assets/blog/couts-caches-erp.jpg";
 import budgetErpHorecaMarocImg from "@/assets/blog/budget-erp-horeca-maroc.jpg";
 import roiErpPmeImg from "@/assets/blog/roi-erp-pme.jpg";
 import facturationDgi2026Img from "@/assets/blog/facturation-dgi-2026-pdf-ubl.jpg";
+import sageVsOdooMarocImg from "@/assets/blog/sage-vs-odoo-maroc.jpg";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "sage-vs-odoo-maroc-comparatif-2026",
+    title: "Sage vs Odoo au Maroc : le comparatif que les éditeurs n'osent pas faire",
+    metaTitle: "Sage vs Odoo au Maroc : le comparatif honnête en 2026",
+    metaDescription:
+      "Licence, localisation, support local, conformité DGI : on compare Sage et Odoo sans langue de bois pour les PME marocaines. Lequel choisir vraiment ?",
+    excerpt:
+      "Licence, localisation CGNC, conformité DGI 2026, support local, coût total : Sage et Odoo passés au crible pour une PME marocaine.",
+    category: "Comparatifs ERP",
+    region: "MA",
+    readingTime: "10 min",
+    publishedAt: "2026-06-22",
+    image: sageVsOdooMarocImg,
+    intent: "Comparatif · Décision d'achat",
+    relatedPath: "/odoo-erp",
+    relatedLabel: "Découvrir Odoo ERP avec MSL-iTECH",
+    cta: {
+      title: "Vous utilisez Sage et vous vous posez des questions sur Odoo ?",
+      subtitle:
+        "20 min de consultation, sans pression commerciale · Réponse sous 24h",
+    },
+    body: [
+      {
+        type: "p",
+        text: "Si vous êtes dirigeant ou DAF d'une PME marocaine et que vous évaluez un ERP, vous avez inévitablement entendu parler des deux. Sage — l'acteur historique, présent au Maroc depuis les années 1990. Odoo — le challenger open source qui a conquis l'Afrique du Nord en moins de dix ans.",
+      },
+      {
+        type: "p",
+        text: "Les deux ont des commerciaux convaincants. Les deux ont des arguments solides. Et aucun des deux ne vous dira spontanément où l'autre est meilleur.",
+      },
+      {
+        type: "p",
+        text: "Ce comparatif, nous l'avons construit en partenaires Odoo certifiés qui ont vu des dizaines de migrations depuis Sage au Maroc. Nous connaissons les forces de Sage — certains de nos clients y sont encore pour des raisons valides. Mais nous connaissons aussi ses limites, et c'est précisément ce que cet article va couvrir sans détour.",
+      },
+
+      { type: "h2", text: "Pourquoi ce comparatif est difficile à trouver ailleurs" },
+      {
+        type: "p",
+        text: "Les comparatifs Sage vs Odoo qui existent en ligne souffrent tous du même problème : ils sont écrits soit par des revendeurs Sage (qui minimisent Odoo), soit par des intégrateurs Odoo (qui chargent Sage). Les guides « neutres » des agrégateurs sont souvent basés sur des données françaises ou belges, sans aucune considération pour les spécificités marocaines : plan comptable CGNC, TVA marocaine, conformité DGI, réalités du support local.",
+      },
+      {
+        type: "p",
+        text: "Ce que vous lisez ici est fondé sur notre expérience de terrain au Maroc, depuis Casablanca jusqu'à Marrakech, avec des PME de 5 à 200 employés.",
+      },
+
+      { type: "h2", text: "Comparatif Sage vs Odoo — 7 critères décisifs pour une PME marocaine" },
+      {
+        type: "ul",
+        items: [
+          "Modèle de licence — Sage : propriétaire, licence annuelle par utilisateur, coût fixe élevé. Odoo : open source, SaaS ou on-premise, coût modulaire.",
+          "Localisation marocaine — Sage : CGNC et TVA intégrés. Odoo : CGNC via module maintenu par partenaires certifiés locaux.",
+          "Conformité DGI 2026 — Sage : support partiel selon version/revendeur. Odoo : UBL natif depuis v16, API DGI configurable.",
+          "Support local au Maroc — Sage : réseau historique, qualité variable. Odoo : partenaires certifiés en croissance (MSL-iTECH à Casablanca et Marrakech).",
+          "Couverture fonctionnelle — Sage : excellente sur finance, limitée sur RH/CRM/e-commerce. Odoo : suite intégrée complète.",
+          "Coût total sur 3 ans (PME 20 users) — Sage : 150 000 à 300 000 MAD. Odoo : 60 000 à 150 000 MAD selon déploiement.",
+          "Adaptabilité — Sage : personnalisation coûteuse et lente. Odoo : modules open source, personnalisation accessible.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Bottom line : Sage domine sur la maturité comptable et la solidité de son réseau historique. Odoo domine sur le rapport coût/fonctionnalités, la couverture métier complète et l'adaptabilité aux exigences DGI 2026.",
+      },
+
+      { type: "h2", text: "Le modèle de licence — là où la différence de coût devient structurelle" },
+      {
+        type: "p",
+        text: "C'est souvent le premier choc pour un dirigeant marocain qui évalue les deux solutions.",
+      },
+      {
+        type: "p",
+        text: "Sage fonctionne sur un modèle de licence propriétaire : vous payez un droit d'accès annuel par utilisateur, auquel s'ajoutent les frais de maintenance, les mises à jour majeures (souvent facturées séparément) et les coûts d'intégration des modules complémentaires. Pour une PME de 20 utilisateurs, l'enveloppe annuelle dépasse régulièrement 80 000 à 120 000 MAD, sans compter les développements spécifiques.",
+      },
+      {
+        type: "p",
+        text: "Odoo propose un modèle radicalement différent : la version Community est open source et gratuite, la version Enterprise (avec support officiel Odoo SA) est facturée par utilisateur à un tarif significativement inférieur à Sage. Pour la même PME de 20 utilisateurs, le coût total de possession sur 3 ans est généralement 40 à 60 % inférieur à Sage selon les configurations.",
+      },
+      {
+        type: "p",
+        text: "Cette différence de structure de coûts est le premier argument que nous entendons de nos clients anciens utilisateurs de Sage.",
+      },
+
+      { type: "h2", text: "La localisation marocaine — mythe et réalité" },
+      { type: "h3", text: "Ce que Sage fait bien sur la localisation" },
+      {
+        type: "p",
+        text: "Il faut être honnête : Sage a une longueur d'avance historique sur la localisation marocaine. Le plan comptable CGNC, les déclarations fiscales (TVA, IS, IR), les formats de liasse fiscale — tout cela est intégré depuis longtemps dans les versions marocaines de Sage. Les revendeurs Sage marocains connaissent ces spécificités par cœur.",
+      },
+      {
+        type: "p",
+        text: "Si vous avez une comptabilité complexe, un cabinet d'expert-comptable partenaire Sage, et que votre priorité absolue est la conformité fiscale marocaine sur des périmètres très spécifiques, Sage a des arguments réels.",
+      },
+      { type: "h3", text: "Ce qu'Odoo offre sur la localisation marocaine en 2026" },
+      {
+        type: "p",
+        text: "La localisation Odoo au Maroc a considérablement mûri. Les partenaires certifiés comme MSL-iTECH maintiennent un module de localisation marocaine couvrant le CGNC, la TVA marocaine à tous ses taux, les déclarations fiscales périodiques et — point crucial pour 2026 — la facturation électronique UBL conforme DGI.",
+      },
+      {
+        type: "p",
+        text: "La différence : là où Sage offre une localisation packagée et figée, Odoo permet une localisation évolutive que le partenaire certifié adapte à chaque mise à jour réglementaire. Quand la DGI change ses règles, le module est mis à jour — sans attendre une nouvelle version payante.",
+      },
+
+      { type: "h2", text: "Conformité DGI 2026 — le critère qui change la donne" },
+      {
+        type: "p",
+        text: "La réforme de facturation électronique imposée par la DGI marocaine est le critère sur lequel la différence entre les deux solutions est la plus marquée en 2026.",
+      },
+      {
+        type: "p",
+        text: "Odoo supporte nativement le format UBL (Universal Business Language) depuis la version 16 — le standard structuré que la DGI exige pour la facturation électronique. La connexion au portail DGI est configurable via l'API REST native d'Odoo, sans développement spécifique lourd.",
+      },
+      {
+        type: "p",
+        text: "Sage, selon les versions et les revendeurs, propose des solutions de conformité DGI qui varient en maturité. Les versions récentes de Sage X3 et Sage 100cloud intègrent des modules de facturation électronique, mais leur niveau de conformité au format exact exigé par la DGI marocaine dépend du revendeur local et des mises à jour contractuelles.",
+      },
+      {
+        type: "p",
+        text: "Implication concrète : si la conformité DGI 2026 est votre priorité immédiate, Odoo offre une trajectoire plus lisible et moins dépendante de votre revendeur.",
+      },
+
+      { type: "h2", text: "Le support local — la vraie question à poser avant de signer" },
+      {
+        type: "p",
+        text: "Un ERP n'est jamais une boîte que l'on installe et que l'on oublie. La qualité du support local est souvent ce qui détermine si un projet ERP est un succès ou un désastre.",
+      },
+      { type: "h3", text: "Le réseau Sage au Maroc" },
+      {
+        type: "p",
+        text: "Sage dispose d'un réseau de revendeurs marocains historiquement dense, principalement concentré à Casablanca, Rabat et Marrakech. Ces revendeurs connaissent bien le marché local et les spécificités marocaines. La contrepartie : la qualité de support varie fortement d'un revendeur à l'autre, et les délais d'intervention peuvent être longs pour les PME situées hors des grandes métropoles.",
+      },
+      { type: "h3", text: "Le réseau Odoo au Maroc en 2026" },
+      {
+        type: "p",
+        text: "Le réseau de partenaires Odoo certifiés au Maroc s'est considérablement étoffé depuis 2020. Les partenaires certifiés Odoo sont soumis à des critères stricts de compétence et de satisfaction client — une certification qui se renouvelle annuellement. MSL-iTECH, partenaire certifié opérant au Maroc, accompagne les PME marocaines de la phase d'analyse jusqu'au support post-déploiement, avec une équipe disponible localement.",
+      },
+      {
+        type: "p",
+        text: "La différence clé : chez Odoo, vous choisissez votre partenaire comme vous choisissez un avocat ou un expert-comptable — sur la base de références vérifiables et d'un engagement contractuel clair.",
+      },
+
+      { type: "h2", text: "Couverture fonctionnelle — quand votre ERP doit aller au-delà de la comptabilité" },
+      {
+        type: "p",
+        text: "C'est souvent l'argument décisif pour les dirigeants de PME marocaines en croissance.",
+      },
+      {
+        type: "p",
+        text: "Sage est fondamentalement un logiciel de gestion financière et comptable, auquel ont été ajoutés des modules complémentaires au fil du temps. Son point fort est la rigueur comptable. Ses limites apparaissent dès que vous avez besoin d'intégrer CRM, gestion des ventes, gestion de stock, RH et e-commerce dans un seul système cohérent.",
+      },
+      {
+        type: "p",
+        text: "Odoo est conçu dès l'origine comme une suite intégrée couvrant l'ensemble du cycle de l'entreprise : de la prospection commerciale (CRM) jusqu'à la livraison (logistique), en passant par la facturation, la comptabilité, la paie et la gestion de projets. Tout communique dans un seul système, avec une seule base de données.",
+      },
+      {
+        type: "p",
+        text: "Pour une PME marocaine dont l'ambition est de digitaliser l'ensemble de ses opérations — pas seulement sa comptabilité — Odoo offre une couverture que Sage ne peut pas égaler sans multiplier les licences et les intégrations.",
+      },
+
+      { type: "h2", text: "Pour qui Sage reste le bon choix ?" },
+      {
+        type: "p",
+        text: "Reconnaître les cas où Sage est la bonne réponse, c'est ce qui donne de la crédibilité à cette comparaison. Sage est potentiellement le bon choix si :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Votre cabinet d'expert-comptable travaille exclusivement avec Sage et vous impose son format d'export.",
+          "Votre entreprise a des besoins comptables très spécifiques déjà couverts par une configuration Sage existante.",
+          "Vous avez une équipe IT interne formée sur Sage depuis des années et un coût de changement humain très élevé.",
+          "Vous n'avez besoin que de la fonction comptable — pas de CRM, pas de stock, pas de RH intégrée.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Dans ces cas précis, la migration vers Odoo n'est pas forcément justifiée à court terme. La stabilité d'un système en place, même imparfait, a une valeur réelle.",
+      },
+
+      { type: "h2", text: "Pour qui Odoo est le choix naturel ?" },
+      {
+        type: "p",
+        text: "Odoo est le choix naturel pour une PME marocaine si :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Vous pilotez encore sur Excel et cherchez votre premier ERP structuré.",
+          "Vous utilisez Sage pour la comptabilité mais des outils séparés pour le CRM, le stock ou la RH — et vous voulez tout unifier.",
+          "La conformité DGI 2026 est une priorité opérationnelle pour votre entreprise.",
+          "Votre budget ERP est contraint et vous cherchez le meilleur rapport fonctionnalités/coût.",
+          "Votre entreprise est en croissance et vous anticipez des besoins qui évoluent — Odoo s'adapte, Sage moins.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Peut-on migrer de Sage vers Odoo sans perdre son historique comptable ?",
+        a: "Oui. La migration de Sage vers Odoo comprend l'import des données historiques : clients, fournisseurs, articles, transactions comptables passées. Chez MSL-iTECH, nous avons développé une méthodologie de migration en 4 phases qui garantit la continuité de l'historique. La période la plus délicate est la bascule entre les deux systèmes, que nous planifions pour minimiser l'impact opérationnel.",
+      },
+      {
+        q: "Odoo est-il vraiment gratuit ?",
+        a: "La version Community d'Odoo est open source et gratuite — vous pouvez l'installer et l'utiliser sans licence. La version Enterprise, qui inclut le support officiel d'Odoo SA et des modules plus avancés, est facturée par utilisateur. Pour une PME marocaine, nous recommandons généralement la version Enterprise avec un partenaire certifié local — le coût reste significativement inférieur à Sage pour des fonctionnalités équivalentes ou supérieures.",
+      },
+      {
+        q: "Odoo a-t-il une localisation marocaine officielle ?",
+        a: "Oui. La localisation marocaine d'Odoo couvre le plan comptable CGNC, les taux de TVA marocains, les déclarations fiscales périodiques et la facturation électronique UBL conforme DGI. Cette localisation est maintenue par des partenaires certifiés comme MSL-iTECH, qui l'adaptent à chaque évolution réglementaire de la DGI.",
+      },
+      {
+        q: "Quel est le délai moyen de déploiement d'Odoo pour une PME marocaine ?",
+        a: "Pour une PME de 10 à 50 utilisateurs avec des besoins standard (comptabilité, ventes, stock), le déploiement prend généralement de 3 à 6 mois selon la complexité des processus existants et la disponibilité des équipes internes. Une migration depuis Sage prend souvent 1 à 2 mois de plus pour la reprise des données historiques.",
+      },
+      {
+        q: "Sage X3 est-il vraiment plus puissant qu'Odoo pour les grandes entreprises ?",
+        a: "Sage X3 est positionné pour les entreprises de taille intermédiaire (ETI) avec des processus industriels complexes. Pour une PME marocaine standard (jusqu'à 200 employés), Odoo Enterprise couvre l'ensemble des besoins sans les complexités ni les coûts de Sage X3. La question pertinente n'est pas « lequel est plus puissant » mais « lequel est dimensionné pour mes besoins réels aujourd'hui et dans 3 ans ».",
+      },
+    ],
+  },
   {
     slug: "facturation-electronique-dgi-maroc-2026-pdf-ubl",
     title: "Le PDF n'est plus une facture : ce que la DGI exige vraiment en 2026",
