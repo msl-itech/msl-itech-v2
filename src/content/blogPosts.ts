@@ -33,8 +33,199 @@ import roiErpPmeImg from "@/assets/blog/roi-erp-pme.jpg";
 import facturationDgi2026Img from "@/assets/blog/facturation-dgi-2026-pdf-ubl.jpg";
 import sageVsOdooMarocImg from "@/assets/blog/sage-vs-odoo-maroc.jpg";
 import migrationExcelOdooImg from "@/assets/blog/migration-excel-odoo-maroc.jpg";
+import erpAgentiqueOdooImg from "@/assets/blog/erp-agentique-odoo-relances-stock.jpg";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "erp-odoo-relances-automatiques-ruptures-stock-ia-maroc",
+    title:
+      "Votre ERP qui vous envoie chaque matin les clients à relancer et les ruptures de stock à venir — ce que l'IA agentique change concrètement",
+    metaTitle: "Odoo qui relance vos clients et alerte sur les stocks : comment ?",
+    metaDescription:
+      "Et si votre ERP vous envoyait chaque matin la liste des clients à relancer et les ruptures à venir ? Voici ce que l'IA agentique dans Odoo change concrètement.",
+    excerpt:
+      "Relances clients, alertes de rupture, briefing du matin : ce que l'IA agentique dans Odoo change concrètement pour les PME marocaines.",
+    category: "ERP & Automatisation",
+    region: "MA",
+    readingTime: "8 min",
+    publishedAt: "2026-06-24",
+    image: erpAgentiqueOdooImg,
+    intent: "Mid-funnel · Automatisation Odoo",
+    relatedPath: "/odoo-erp",
+    relatedLabel: "Découvrir notre déploiement Odoo au Maroc",
+    faqs: [
+      {
+        q: "L'automatisation des relances dans Odoo remplace-t-elle le commercial ?",
+        a: "Non. L'automatisation prend en charge la surveillance et le déclenchement des rappels — les tâches répétitives à faible valeur ajoutée. Le commercial reçoit une alerte avec le contexte et décide de l'action : appeler, envoyer un message personnalisé, accorder un délai. La décision humaine reste centrale ; c'est le filtrage et la priorisation qui sont automatisés.",
+      },
+      {
+        q: "Ces fonctionnalités sont-elles disponibles dans Odoo Community (version gratuite) ?",
+        a: "Les automatisations avancées (règles d'action, emails automatiques planifiés, alertes de stock intelligentes) sont disponibles dans Odoo Enterprise. La version Community offre des automatisations basiques. Pour des PME marocaines avec de vrais besoins de relance et de prédiction de stock, nous recommandons Odoo Enterprise — le coût de la licence est largement couvert par la réduction des impayés et des ruptures.",
+      },
+      {
+        q: "Combien de temps pour configurer ces automatisations dans un Odoo existant ?",
+        a: "Pour une PME avec Odoo déjà déployé et des données de qualité correcte, la configuration des relances automatiques et des alertes de stock prend généralement 2 à 5 jours ouvrés. Le tableau de bord du matin personnalisé par profil nécessite une journée supplémentaire. La condition principale : des données propres en entrée.",
+      },
+      {
+        q: "Odoo peut-il envoyer des alertes automatiques sur WhatsApp ?",
+        a: "Oui, via un connecteur WhatsApp Business disponible sur l'Odoo App Store. L'intégration permet l'envoi de notifications automatiques (relances, alertes de stock, confirmations de commande) directement sur le WhatsApp professionnel de vos équipes ou de vos clients. MSL-iTECH a déployé cette intégration pour plusieurs clients marocains.",
+      },
+    ],
+    cta: {
+      title: "Voyez à quoi ressemble le briefing du matin pour votre entreprise",
+      subtitle:
+        "Démo personnalisée 45 min · Sur vos données réelles · Estimation concrète du gain de temps",
+    },
+    body: [
+      {
+        type: "p",
+        text: "Il est 8h00. Avant même d'ouvrir votre messagerie, vous recevez un message de votre ERP.",
+      },
+      {
+        type: "p",
+        text: "Pas une notification générique. Pas un rapport de 40 pages que personne ne lit. Un message précis, actionnable, personnalisé pour ce jour-là : « 3 clients n'ont pas réglé leur facture depuis plus de 30 jours — voici les relances suggérées. 2 références produits passeront sous le seuil critique d'ici 5 jours selon votre cadence de vente actuelle. »",
+      },
+      {
+        type: "p",
+        text: "Vous prenez vos décisions en 10 minutes. Le reste de la journée, vous gérez votre entreprise au lieu de la chercher dans des tableaux.",
+      },
+      {
+        type: "p",
+        text: "Ce scénario n'est pas une promesse commerciale. C'est ce que des PME marocaines utilisent déjà avec Odoo et ses fonctionnalités d'automatisation intelligente. Cet article vous explique comment ça fonctionne, ce que ça coûte réellement, et ce que ça change dans le quotidien de vos équipes.",
+      },
+
+      { type: "h2", text: "Qu'est-ce que l'IA agentique dans un ERP ?" },
+      {
+        type: "p",
+        text: "IA agentique dans un ERP : un système capable d'exécuter des actions autonomes à partir de données en temps réel, sans intervention humaine pour chaque décision. Dans un ERP comme Odoo, cela signifie que le système surveille en continu vos données (paiements, stocks, commandes, comportements clients) et déclenche des actions ou des alertes selon des règles que vous avez définies.",
+      },
+      {
+        type: "p",
+        text: "La différence avec l'automatisation classique est importante : une automatisation classique suit un script fixe (« si facture impayée > 30 jours, envoyer email »). L'IA agentique analyse le contexte — le profil du client, son historique, la saisonnalité, le risque de rupture calculé sur les tendances — et adapte sa recommandation en conséquence.",
+      },
+      {
+        type: "p",
+        text: "Pour une PME marocaine, cela se traduit par deux gains immédiats : moins de tâches de surveillance manuelle pour les équipes, et des décisions mieux informées pour les managers.",
+      },
+
+      { type: "h2", text: "Cas d'usage 1 — La relance client automatisée et intelligente" },
+      { type: "h3", text: "Le problème que toute PME marocaine reconnaît" },
+      {
+        type: "p",
+        text: "Votre commercial a 80 clients actifs. Il sait que certains ont des factures en retard, mais entre les nouveaux devis à envoyer, les visites terrain et les réunions internes, la relance glisse toujours au lendemain. Résultat : des impayés qui s'accumulent, une trésorerie qui se tend, et des relances faites trop tard ou sur un ton maladroit parce que la relation s'est déjà dégradée.",
+      },
+      { type: "h3", text: "Ce que fait Odoo avec l'automatisation intelligente" },
+      {
+        type: "p",
+        text: "Odoo surveille en continu les échéances de paiement de tous vos clients. Il ne se contente pas de détecter le retard — il analyse le profil du client pour adapter la réponse :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Client premium avec historique de paiement solide et retard inhabituel → alerte discrète au commercial, suggestion d'appel téléphonique avant toute relance écrite.",
+          "Client récurrent avec retards fréquents → relance automatique par email à J+5, escalade à J+15, alerte manager à J+30.",
+          "Client nouveau avec premier retard → message de rappel courtois, automatiquement généré dans le ton et la langue de votre modèle de communication.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Chaque matin, votre responsable commercial reçoit un récapitulatif : les 3 clients à appeler aujourd'hui, le montant en jeu, le contexte de la relation. Pas besoin d'ouvrir Odoo, de filtrer les rapports, de croiser les données. L'ERP fait le tri. Le commercial fait le travail à valeur ajoutée.",
+      },
+      { type: "h3", text: "Le résultat mesurable" },
+      {
+        type: "p",
+        text: "Dans les missions MSL-iTECH où cette automatisation a été déployée, les entreprises constatent une réduction du délai moyen de recouvrement de 20 à 35 % dans les 3 premiers mois suivant l'activation. L'impact trésorerie est visible dès le premier trimestre.",
+      },
+
+      { type: "h2", text: "Cas d'usage 2 — La gestion prédictive des ruptures de stock" },
+      { type: "h3", text: "Le coût réel d'une rupture de stock non anticipée" },
+      {
+        type: "p",
+        text: "Une rupture de stock, ce n'est pas juste une vente perdue. C'est un client qui appelle pour confirmer sa commande et repart chez le concurrent. C'est un commercial qui promet une livraison impossible. C'est un bon de commande fournisseur passé en urgence, avec un surcoût de 10 à 20 % sur le prix standard. Pour une PME marocaine avec des délais fournisseurs de 2 à 6 semaines, anticiper les ruptures n'est pas un luxe — c'est une protection directe de la marge.",
+      },
+      { type: "h3", text: "Comment Odoo prédit les ruptures avant qu'elles arrivent" },
+      {
+        type: "p",
+        text: "Odoo croise en temps réel quatre sources de données pour calculer le risque de rupture de chaque référence :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Le stock actuel — quantité disponible dans chaque entrepôt ou point de vente.",
+          "Les commandes clients confirmées — ce qui est déjà vendu et doit être livré.",
+          "La cadence de vente historique — votre vitesse de consommation moyenne par référence, par mois et par saison.",
+          "Les délais fournisseurs enregistrés — le temps réel entre la commande et la réception.",
+        ],
+      },
+      {
+        type: "p",
+        text: "À partir de ces quatre données, Odoo calcule une projection sur les 7, 14 et 30 prochains jours. Quand une référence va passer sous son seuil de sécurité avant la prochaine livraison possible, une alerte est générée automatiquement — avec une suggestion de bon de commande pré-rempli prêt à valider en un clic.",
+      },
+      {
+        type: "p",
+        text: "Résultat attendu : vos équipes achats ne gèrent plus les urgences. Elles valident des propositions intelligentes, au bon moment, avec les bonnes quantités.",
+      },
+
+      { type: "h2", text: "Cas d'usage 3 — Le tableau de bord du matin envoyé sans demande" },
+      {
+        type: "p",
+        text: "Au-delà des relances et du stock, l'automatisation intelligente dans Odoo peut générer chaque matin un briefing opérationnel personnalisé par profil :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Dirigeant : chiffre d'affaires de la veille vs objectif du mois, taux de recouvrement de la semaine, top 3 des alertes prioritaires du jour.",
+          "Responsable commercial : pipeline des devis à relancer ce jour, clients à appeler, objectif mensuel et écart.",
+          "Responsable logistique : commandes à préparer, alertes de stock critique, retards fournisseurs signalés.",
+          "Comptable : factures à émettre, paiements reçus la veille à rapprocher, déclarations fiscales à venir dans les 7 jours.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Chaque message est envoyé par email ou sur WhatsApp Business selon votre configuration. Personne n'a besoin d'ouvrir Odoo pour savoir ce qu'il doit faire. Odoo vient à eux.",
+      },
+
+      { type: "h2", text: "Ce que ça nécessite pour fonctionner" },
+      {
+        type: "p",
+        text: "L'automatisation intelligente dans Odoo n'est pas magique — elle est aussi bonne que la qualité des données qu'elle traite. Trois conditions sont nécessaires pour que ces fonctionnalités délivrent leur plein potentiel :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Des données clients propres : si votre base clients contient des doublons, des adresses email invalides ou des conditions de paiement non renseignées, les relances automatiques ne peuvent pas fonctionner correctement.",
+          "Un stock réellement tenu à jour dans Odoo : si vos mouvements de stock sont saisis avec un jour de décalage, les prédictions de rupture sont faussées. La synchronisation en temps réel est un pré-requis.",
+          "Des règles métier définies et validées : les seuils de relance, les délais, les escalades, les seuils de stock — tout cela doit être configuré en accord avec vos processus réels, pas juste activé avec les paramètres par défaut.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Avant d'activer l'automatisation, l'étape critique est la qualité de votre donnée. C'est le travail que MSL-iTECH réalise en phase 1 de tout déploiement Odoo — et c'est précisément ce qui détermine si votre ERP vous aide ou vous noie dans de fausses alertes.",
+      },
+
+      { type: "h2", text: "Pour quelle taille d'entreprise et quel budget ?" },
+      {
+        type: "p",
+        text: "Ces fonctionnalités d'automatisation sont disponibles dans Odoo Enterprise à partir de la version 16. Elles ne nécessitent pas de module IA externe coûteux — elles sont incluses dans la licence standard.",
+      },
+      {
+        type: "p",
+        text: "Pour une PME marocaine de 5 à 50 utilisateurs :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Les relances automatiques et alertes de stock sont configurables sans développement spécifique, dans le cadre d'un déploiement Odoo standard.",
+          "Le tableau de bord du matin personnalisé par profil nécessite une configuration dédiée — comptez une journée de prestation pour paramétrer les modèles d'email et les règles d'envoi.",
+          "L'intégration WhatsApp Business nécessite un connecteur tiers (disponible sur l'Odoo App Store, coût mensuel modéré).",
+        ],
+      },
+      {
+        type: "p",
+        text: "L'investissement supplémentaire pour activer ces fonctionnalités dans un déploiement Odoo existant est généralement compris entre 5 000 et 15 000 MAD selon la complexité des règles métier à configurer.",
+      },
+    ],
+  },
   {
     slug: "migration-excel-vers-odoo-maroc-methode",
     title:
