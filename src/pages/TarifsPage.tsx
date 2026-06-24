@@ -473,13 +473,6 @@ export default function TarifsPage() {
                 >
                   Guide des coûts Odoo 2026 <ArrowRight size={16} />
                 </Link>
-                <Link
-                  to="/blog/cout-implementation-odoo-belgique-2026"
-                  className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-white"
-                  style={{ borderColor: "var(--blue)" }}
-                >
-                  Article : coûts d'implémentation
-                </Link>
               </div>
             </article>
 
