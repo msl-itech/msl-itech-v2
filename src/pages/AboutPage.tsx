@@ -126,7 +126,7 @@ const values = [
   },
   {
     title: "Proximité & disponibilité",
-    desc: "Équipe technique basée au Maroc, à votre service en français dans votre fuseau horaire — visio, démo et support à distance, où que vous soyez.",
+    desc: "Équipe technique basée au Maroc, à votre service en français et en anglais dans votre fuseau horaire — visio, démo et support à distance, où que vous soyez.",
   },
   {
     title: "Tarifs PME",
