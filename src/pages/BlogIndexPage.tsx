@@ -71,7 +71,6 @@ export default function BlogIndexPage() {
 
   const tabs: { key: Filter; label: string }[] = [
     { key: "ALL", label: "Tous les articles" },
-    { key: "MA", label: "🇲🇦 Maroc" },
   ];
 
   const fmtDate = (s: string) =>
