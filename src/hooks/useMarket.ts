@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 export type Market = "BE" | "MA";
 
 const STORAGE_KEY = "market-override";
