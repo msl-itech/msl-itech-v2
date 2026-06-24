@@ -455,23 +455,23 @@ export default function TarifsPage() {
                 style={{ backgroundColor: "var(--gold)" }}
               />
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
-                Comprendre les coûts
+                Voir notre travail
               </p>
               <h3 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-3xl">
-                Combien coûte Odoo sur le marché ?
+                Nos réalisations au Maroc
               </h3>
               <p className="mt-4 font-body text-base text-brand-grey">
-                Avant de demander un devis, comprenez les fourchettes de prix du
-                marché belge : licences, hébergement, taux horaires consultants.
-                Nous avons compilé un guide complet et transparent.
+                Avant de demander un devis, découvrez les projets déjà livrés
+                pour des PME marocaines : HORECA, BTP, santé, commerce, services
+                et groupes multi-sociétés.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
-                  to="/tarif-odoo-belgique"
+                  to="/realisations"
                   className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-semibold text-brand-black transition hover:scale-[1.02]"
                   style={{ backgroundColor: "var(--gold)" }}
                 >
-                  Guide des coûts Odoo 2026 <ArrowRight size={16} />
+                  Voir nos réalisations <ArrowRight size={16} />
                 </Link>
               </div>
             </article>
