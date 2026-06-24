@@ -86,7 +86,7 @@ function Hero({
       : [
           "Partenaire officiel Odoo certifié",
           "Déploiement par blocs fonctionnels",
-          "Réponse sous 24 à 72h ouvrables",
+          "Réponse sous 24h",
           "Sans engagement · Démo personnalisée",
         ];
 

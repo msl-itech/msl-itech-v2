@@ -65,7 +65,7 @@ const paliers = [
     name: "Support ponctuel",
     tagline: "Réactivité immédiate",
     desc: "Corrections, questions techniques, assistance post-déploiement. Vous avez besoin d'un expert disponible — pas d'un projet entier.",
-    includes: ["Expert dédié", "Assistance multicanal", "Réponse sous 24-72h"],
+    includes: ["Expert dédié", "Assistance multicanal", "Réponse sous 24h"],
     color: "#E26B3F",
   },
   {

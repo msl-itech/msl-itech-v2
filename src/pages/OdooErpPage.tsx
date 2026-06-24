@@ -913,7 +913,7 @@ function FinalCTA() {
               </span>
               <span className="flex items-center gap-2">
                 <CheckCircle2 size={16} className="text-brand-gold" />
-                Réponse sous 24-72h
+                Réponse sous 24h
               </span>
             </div>
           </div>

@@ -94,7 +94,7 @@ export default function TransportPage() {
       intro="Dans le transport touristique ou la logistique, la rentabilité se joue dans les détails. Sans outil centralisé, ces données se perdent dans des carnets de bord et des factures en retard."
       heroImage={transportHero}
       heroImageAlt="Flotte de véhicules de transport au Maroc gérée avec Odoo"
-      metaNote="Démo adaptée à votre activité · Réponse sous 24 à 72h"
+      metaNote="Démo adaptée à votre activité · Réponse sous 24h"
       featuresEyebrow="Pour le secteur transport"
       featuresTitle="Ce qu'Odoo apporte au secteur transport"
       features={features}
@@ -117,7 +117,7 @@ export default function TransportPage() {
         ],
       }}
       ctaTitle="Réserver ma démo Transport gratuite"
-      ctaSubtitle="Démo adaptée à votre activité · Réponse sous 24 à 72h"
+      ctaSubtitle="Démo adaptée à votre activité · Réponse sous 24h"
       faqs={faqs}
     />
   );

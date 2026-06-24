@@ -102,7 +102,7 @@ export default function TourismePage() {
       intro="Un opérateur touristique marocain non digitalisé perd selon les études sectorielles jusqu'à 35 % de son chiffre d'affaires potentiel par manque de suivi des devis, de relance automatisée et de gestion centralisée des réservations. S'y ajoutent la comptabilité manuelle chronophage, la dispersion des informations clients entre WhatsApp, email et tableurs, et la pression croissante de l'évolution de la facturation électronique. Odoo structure ces flux de bout en bout — et MSL-iTECH le déploie selon votre périmètre, la taille de votre structure et les modules retenus."
       heroImage={tourismeHero}
       heroImageAlt="Agence de voyages marocaine équipée d'Odoo"
-      metaNote="Démo sur site ou à distance · Réponse sous 24 à 72h · +212 6 89 30 62 78"
+      metaNote="Démo sur site ou à distance · Réponse sous 24h · +212 6 89 30 62 78"
       featuresEyebrow="Dans votre agence ou établissement"
       featuresTitle="Ce qu'Odoo change dans votre structure"
       features={features}
@@ -126,7 +126,7 @@ export default function TourismePage() {
       }}
       faqs={faqs}
       ctaTitle="Réserver ma démo Tourisme gratuite"
-      ctaSubtitle="Démo sur site ou à distance · Réponse sous 24 à 72h · +212 6 89 30 62 78"
+      ctaSubtitle="Démo sur site ou à distance · Réponse sous 24h · +212 6 89 30 62 78"
     />
   );
 }

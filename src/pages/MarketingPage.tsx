@@ -62,7 +62,7 @@ const faqs = [
   },
   {
     q: "Qu'est-ce qui est inclus dans l'audit digital gratuit ?",
-    a: "L'audit couvre : l'analyse technique de votre site (vitesse, mobile, Core Web Vitals), votre positionnement sur Google pour vos mots-clés stratégiques, votre présence dans les réponses des IA génératives, et une revue de vos canaux d'acquisition actuels. Vous recevez un document de recommandations actionnable sous 24 à 72h.",
+    a: "L'audit couvre : l'analyse technique de votre site (vitesse, mobile, Core Web Vitals), votre positionnement sur Google pour vos mots-clés stratégiques, votre présence dans les réponses des IA génératives, et une revue de vos canaux d'acquisition actuels. Vous recevez un document de recommandations actionnables sous 24h.",
   },
   {
     q: "Pourquoi une approche sur-mesure plutôt qu'un forfait standard ?",
@@ -76,7 +76,7 @@ const processSteps = [
     icon: Search,
     step: "01",
     title: "Audit digital gratuit",
-    desc: "Nous analysons votre site, vos positions Google, votre visibilité dans les IA et vos canaux d'acquisition. Vous recevez un diagnostic complet sous 24 à 72h.",
+    desc: "Nous analysons votre site, vos positions Google, votre visibilité dans les IA et vos canaux d'acquisition. Vous recevez un diagnostic complet sous 24h.",
     highlight: "Gratuit & sans engagement",
     image: stepAudit,
   },
@@ -108,7 +108,7 @@ const processSteps = [
 
 /* ─── Chiffres clés (social proof) ─── */
 const stats = [
-  { value: "24–72h", label: "Délai de réponse" },
+  { value: "sous 24h", label: "Délai de réponse" },
   { value: "100%", label: "Stratégies sur-mesure" },
   { value: "3", label: "Pays couverts" },
 ];
@@ -269,7 +269,7 @@ function ProcessSection() {
               className="mr-2 inline-block h-1.5 w-1.5 rounded-full align-middle"
               style={{ backgroundColor: "var(--gold)" }}
             />
-            Sans engagement · Réponse sous 24 à 72h
+            Sans engagement · Réponse sous 24h
           </p>
         </div>
       </div>
@@ -438,7 +438,7 @@ export default function MarketingPage() {
         "SEO + GEO + Acquisition combinés",
         "Reporting mensuel transparent",
       ]}
-      metaNote="Audit offert · Stratégie personnalisée · Réponse sous 24 à 72h"
+      metaNote="Audit offert · Stratégie personnalisée · Réponse sous 24h"
       proposalEyebrow="Le constat"
       proposalTitle={
         <>
@@ -544,7 +544,7 @@ export default function MarketingPage() {
         ],
       }}
       ctaTitle="Demander mon audit digital gratuit"
-      ctaSubtitle="Analyse complète de votre présence en ligne · Recommandations concrètes et actionnables · Réponse sous 24 à 72h"
+      ctaSubtitle="Analyse complète de votre présence en ligne · Recommandations concrètes et actionnables · Réponse sous 24h"
       faqs={faqs}
     />
   );

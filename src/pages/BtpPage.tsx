@@ -99,7 +99,7 @@ export default function BtpPage() {
       intro="Dans le BTP marocain, les entreprises qui gèrent plusieurs chantiers en parallèle sans ERP font face aux mêmes problèmes : suivi des coûts approximatif, retards sur les appels d'offres, facturation à l'avancement manuelle. Odoo centralise tout — et MSL-iTECH l'a déjà implémenté pour des entreprises BTP marocaines."
       heroImage={btpHero}
       heroImageAlt="Chantier BTP marocain piloté avec Odoo"
-      metaNote="Voir Odoo configuré pour le BTP marocain · Réponse sous 24 à 72h"
+      metaNote="Voir Odoo configuré pour le BTP marocain · Réponse sous 24h"
       featuresEyebrow="Cas client AIT OUKHALI TRAVAUX"
       featuresTitle="Ce que MSL-iTECH a déployé pour AIT OUKHALI TRAVAUX"
       features={features}
@@ -123,7 +123,7 @@ export default function BtpPage() {
       }}
       faqs={faqs}
       ctaTitle="Réserver ma démo BTP gratuite"
-      ctaSubtitle="Voir Odoo configuré pour le BTP marocain · Réponse sous 24 à 72h"
+      ctaSubtitle="Voir Odoo configuré pour le BTP marocain · Réponse sous 24h"
     />
   );
 }

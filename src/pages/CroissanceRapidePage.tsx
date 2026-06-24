@@ -96,7 +96,7 @@ export default function CroissanceRapidePage() {
       intro="Vous recrutez, vous ouvrez de nouveaux marchés, vos volumes augmentent. Et en parallèle : vos processus craquent, vos équipes improvisent, et chaque nouvelle embauche révèle un peu plus les limites de votre organisation actuelle. La croissance rapide sans infrastructure adaptée transforme une opportunité en crise opérationnelle."
       heroImage={heroImg}
       heroImageAlt="Odoo ERP pour entreprise en forte croissance"
-      metaNote="Cadrage 30 minutes · Sans engagement · Réponse sous 24-72h"
+      metaNote="Cadrage 30 minutes · Sans engagement · Réponse sous 24h"
       featuresEyebrow="Odoo comme infrastructure de croissance"
       featuresTitle="Une infrastructure pensée pour absorber votre croissance"
       features={features}
@@ -116,13 +116,13 @@ export default function CroissanceRapidePage() {
           "Déploiement par sprints — valeur opérationnelle à chaque étape",
           "Architecture conçue pour absorber la croissance sans refonte",
           "Formation adaptée aux équipes en mouvement",
-          "Support prioritaire — réponse sous 24 à 72h ouvrables",
+          "Support prioritaire — réponse sous 24h",
           "Partenaire officiel Odoo — vérifiable sur odoo.com/partners",
         ],
       }}
       faqs={faqs}
       ctaTitle="Réserver ma démo gratuite — Structure en croissance"
-      ctaSubtitle="Cadrage de votre projet · 30 minutes · Sans engagement · Réponse sous 24 à 72h ouvrables"
+      ctaSubtitle="Cadrage de votre projet · 30 minutes · Sans engagement · Réponse sous 24h"
     />
   );
 }

@@ -630,7 +630,7 @@ export default function RealisationsPage() {
             Votre projet est <Mark>le prochain.</Mark>
           </h2>
           <p className="mx-auto mt-6 max-w-xl font-body text-base text-white/80 md:text-lg">
-            Réponse sous 24 à 72h · Consultant dédié · Sans engagement
+            Réponse sous 24h · Consultant dédié · Sans engagement
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Link
