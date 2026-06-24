@@ -38,8 +38,154 @@ import dafMarocainOdooImg from "@/assets/blog/daf-marocain-pilotage-odoo.jpg";
 import devisEncaissementOdooImg from "@/assets/blog/devis-encaissement-odoo-roi.jpg";
 import odooSaasOnpremiseImg from "@/assets/blog/odoo-saas-onpremise-hybride.jpg";
 import facturationTransformationImg from "@/assets/blog/facturation-transformation-digitale.jpg";
+import donneesProprresErpImg from "@/assets/blog/donnees-propres-erp-avant-ia.jpg";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "donnees-propres-erp-avant-ia-odoo-maroc",
+    title:
+      "Avant l'IA dans votre ERP : pourquoi vos données doivent être propres — et comment les préparer",
+    metaTitle: "Avant l'IA dans votre ERP : pourquoi vos données doivent être propres",
+    metaDescription:
+      "L'IA dans votre ERP ne vaut que ce que valent vos données. Si votre base est sale, l'IA amplifie vos erreurs. Voici comment évaluer et préparer vos données avant de vous lancer.",
+    excerpt:
+      "L'IA dans Odoo n'a de valeur que si vos données sont propres. 5 indicateurs de santé et une méthode Data Readiness en 3 étapes pour préparer votre ERP avant l'IA.",
+    category: "Données & IA",
+    region: "MA",
+    readingTime: "9 min",
+    publishedAt: "2026-06-24",
+    image: donneesProprresErpImg,
+    intent: "Mid-funnel · Préparation données",
+    relatedPath: "/contact",
+    relatedLabel: "Demander mon audit Data Readiness",
+    faqs: [
+      {
+        q: "Peut-on améliorer la qualité des données après avoir activé l'IA dans Odoo ?",
+        a: "Oui, mais c'est beaucoup plus coûteux et complexe qu'avant. Une fois les automatisations actives, les données de mauvaise qualité se propagent dans les workflows, les alertes et les rapports. Il faut alors corriger à la fois les données sources et tous les enregistrements générés par les automatisations. Le principe est simple : nettoyez avant d'activer, pas après.",
+      },
+      {
+        q: "Combien de temps prend un audit de qualité des données pour une PME marocaine ?",
+        a: "Pour une PME avec 500 à 5 000 fiches clients et un catalogue de 100 à 1 000 références, l'audit de qualité des données prend généralement 3 à 5 jours ouvrés avec les outils MSL-iTECH. La phase de nettoyage et validation métier qui suit prend 2 à 4 semaines supplémentaires selon le volume d'anomalies identifiées.",
+      },
+      {
+        q: "La qualité des données s'améliore-t-elle automatiquement avec le temps dans Odoo ?",
+        a: "Partiellement. Odoo dispose de contrôles natifs (champs obligatoires, unicité des références) qui préviennent certaines erreurs à la saisie. Mais ces contrôles ne corrigent pas les données historiques importées et ne remplacent pas des règles de gouvernance définies et communiquées aux équipes. La qualité des données est un processus continu, pas un état acquis une fois pour toutes.",
+      },
+      {
+        q: "Quelle est la différence entre un audit de données et une migration de données ?",
+        a: "L'audit évalue la qualité de vos données actuelles et identifie les problèmes. La migration les déplace d'un système vers un autre. Ces deux phases sont distinctes mais liées : dans un projet de migration Excel → Odoo, l'audit précède toujours la migration — on ne migre que des données auditées et nettoyées.",
+      },
+    ],
+    cta: {
+      title: "Vos données ERP sont-elles prêtes pour l'IA ?",
+      subtitle:
+        "MSL-iTECH propose un audit de Data Readiness en 5 indicateurs : en 2 heures de diagnostic, nous évaluons la santé de vos données actuelles et vous donnons un plan de nettoyage priorisé.",
+    },
+    body: [
+      {
+        type: "p",
+        text: "L'intelligence artificielle dans les ERP fait beaucoup parler. Des prédictions de stock en temps réel. Des relances clients autonomes. Des tableaux de bord qui anticipent vos problèmes avant qu'ils n'arrivent. Des copilotes qui répondent à vos questions en langage naturel.",
+      },
+      {
+        type: "p",
+        text: "Tout cela est réel. Tout cela fonctionne. Mais il y a une vérité que personne ne dit clairement dans les présentations commerciales : l'IA dans votre ERP est aussi bonne que les données qu'elle traite. Et si vos données sont mauvaises, l'IA ne corrige pas les erreurs — elle les amplifie, à grande vitesse, à grande échelle.",
+      },
+      {
+        type: "p",
+        text: "Un ERP avec de mauvaises données et une IA par-dessus, ce n'est pas une transformation digitale. C'est une machine à produire de mauvaises décisions, plus vite qu'avant.",
+      },
+      {
+        type: "p",
+        text: "Cet article vous aide à comprendre ce que « données propres » signifie concrètement dans un ERP, à évaluer votre niveau de maturité actuel, et à prendre les bonnes mesures avant d'activer les fonctionnalités IA d'Odoo.",
+      },
+      { type: "h2", text: "Qu'est-ce que des « données propres » dans un ERP ?" },
+      {
+        type: "p",
+        text: "Données propres dans un ERP : des données complètes, cohérentes, non dupliquées et à jour, qui reflètent fidèlement la réalité opérationnelle de l'entreprise. Dans le contexte d'un ERP, cela signifie que chaque enregistrement (client, fournisseur, produit, transaction) existe une seule fois, sous une forme standardisée, avec tous les champs obligatoires renseignés, et qu'il n'y a pas de contradictions entre les différents modules.",
+      },
+      {
+        type: "p",
+        text: "La « saleté » des données se manifeste sous quatre formes principales : les doublons (le même client sous deux noms différents), les incomplétudes (des champs obligatoires vides), les incohérences (un prix de vente inférieur au prix de revient), et les obsolescences (des clients inactifs depuis 3 ans toujours marqués « actif »).",
+      },
+      { type: "h2", text: "Pourquoi l'IA amplifie les erreurs plutôt que de les corriger" },
+      {
+        type: "p",
+        text: "C'est le paradoxe que beaucoup de PME découvrent trop tard, après avoir investi dans des fonctionnalités IA sans avoir préparé leurs données. Trois exemples concrets tirés de la réalité des PME marocaines :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Prédiction de stock sur données de mouvement incomplètes : si vos mouvements de stock ne sont pas saisis en temps réel, l'algorithme calcule des niveaux de réapprovisionnement faussés. Résultat : des commandes fournisseurs en trop ou en insuffisance.",
+          "Relances automatiques sur base clients avec doublons : si le même client existe sous deux fiches, le système traite les deux comme distinctes. Un client peut recevoir deux relances contradictoires le même jour pour la même facture.",
+          "Tableau de bord DAF avec prix incohérents : si votre catalogue contient des prix de revient non mis à jour depuis 2 ans, votre marge calculée en temps réel par l'IA sera systématiquement fausse — et le DAF prendra des décisions de pricing sur une rentabilité fictive.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Conclusion actionnable : avant d'activer les fonctionnalités IA d'Odoo, réalisez un audit de la qualité de vos données. C'est un investissement de 1 à 3 semaines qui conditionne le retour sur investissement de tout ce qui vient ensuite.",
+      },
+      { type: "h2", text: "Les 5 indicateurs de santé de vos données ERP" },
+      {
+        type: "p",
+        text: "Comment savoir si vos données sont « prêtes » pour l'IA ? Voici les 5 indicateurs que MSL-iTECH mesure systématiquement avant tout déploiement de fonctionnalités intelligentes.",
+      },
+      { type: "h3", text: "1 — Taux de complétude des fiches clients" },
+      {
+        type: "p",
+        text: "Quel pourcentage de vos fiches clients ont l'ICE renseigné ? L'email principal ? Les conditions de paiement ? Un taux de complétude inférieur à 80 % sur ces champs critiques indique un risque élevé de dysfonctionnements dans les automatisations. Seuil acceptable : supérieur à 90 % pour les champs critiques (ICE, email, conditions de paiement).",
+      },
+      { type: "h3", text: "2 — Taux de doublons dans la base clients/fournisseurs" },
+      {
+        type: "p",
+        text: "Un doublon, c'est deux fiches pour la même entité réelle. Dans les bases Excel migrées, le taux de doublons peut dépasser 15 à 20 %. Au-delà de 5 %, les automatisations de relance et les analyses de concentration client sont inexploitables. Seuil acceptable : moins de 3 % de doublons confirmés.",
+      },
+      { type: "h3", text: "3 — Cohérence prix de revient vs prix de vente" },
+      {
+        type: "p",
+        text: "Avez-vous des articles dont le prix de vente catalogue est inférieur ou égal au prix de revient ? Cela arrive plus souvent qu'on ne le croit, suite à des hausses fournisseurs non répercutées. Toute IA de pricing ou de calcul de marge travaillant sur ces données produira des recommandations erronées. Seuil acceptable : 0 article avec prix de vente inférieur ou égal au prix de revient.",
+      },
+      { type: "h3", text: "4 — Fraîcheur des mouvements de stock" },
+      {
+        type: "p",
+        text: "Les mouvements de stock de votre ERP reflètent-ils la réalité physique de votre entrepôt dans un délai de 24 heures ? Si vos équipes logistiques saisissent les mouvements avec plusieurs jours de retard, vos prédictions de rupture seront structurellement fausses. Seuil acceptable : écart inférieur à 24h entre mouvement physique et saisie ERP.",
+      },
+      { type: "h3", text: "5 — Normalisation des références produits" },
+      {
+        type: "p",
+        text: "Un même produit est-il toujours désigné de la même façon dans votre ERP ? Les variantes (taille, couleur, conditionnement) sont-elles correctement structurées comme variantes d'un même article parent, ou comme des articles indépendants ? Une nomenclature produit non standardisée rend l'analyse des ventes par famille impossible. Seuil acceptable : nomenclature hiérarchisée cohérente, sans doublons entre variantes.",
+      },
+      { type: "h2", text: "La méthode MSL-iTECH — Data Readiness en 3 étapes" },
+      {
+        type: "p",
+        text: "La préparation des données avant activation des fonctionnalités IA se fait en 3 étapes séquentielles. Cette phase dure généralement 2 à 4 semaines selon le volume et la complexité des données.",
+      },
+      {
+        type: "ul",
+        items: [
+          "1. Audit de qualité des données — analyse de vos données actuelles (Excel, ERP existant ou Odoo déjà déployé) selon les 5 indicateurs. Vous disposez d'un rapport précis : taux de complétude par module, doublons identifiés, incohérences de pricing, retards de saisie. C'est votre baseline.",
+          "2. Nettoyage guidé et validation métier — le nettoyage technique (déduplication automatique, standardisation) est réalisé par MSL-iTECH. La validation métier — décider quelle fiche client garder, quel prix de revient est correct — est réalisée par vos équipes. Comptez 3 à 5 jours de travail interne sur 2 semaines.",
+          "3. Mise en place des règles de gouvernance — nous configurons les contrôles de qualité dans Odoo : champs obligatoires, alertes sur doublons potentiels, workflows de validation pour les nouveaux articles et fiches clients. La gouvernance n'est pas une option : c'est ce qui protège votre investissement sur la durée.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Résultat attendu : à l'issue des 3 étapes, vos données ERP sont dans un état de maturité suffisant pour que les fonctionnalités IA d'Odoo délivrent leurs promesses — et pour que les alertes générées soient fiables.",
+      },
+      { type: "h2", text: "La Data Readiness comme positionnement stratégique de MSL-iTECH" },
+      {
+        type: "p",
+        text: "Chez MSL-iTECH, nous avons fait de la qualité des données un axe central de notre accompagnement. Pas parce que c'est à la mode — parce que c'est ce qui détermine réellement si un projet ERP réussit ou échoue à 18 mois.",
+      },
+      {
+        type: "p",
+        text: "La plupart des déploiements ERP qui déçoivent ne déçoivent pas à cause du logiciel. Ils déçoivent parce que les données qui y ont été injectées étaient mauvaises, ou parce que les équipes n'ont pas adopté les nouveaux processus de saisie. Le logiciel n'est que l'amplificateur — bon ou mauvais selon ce qu'on lui donne.",
+      },
+      {
+        type: "p",
+        text: "Notre approche systématique : avant d'activer une fonctionnalité avancée (IA, prédiction, automatisation), nous vérifions que la fondation est solide. Cette rigueur prend du temps au départ. Elle évite les désillusions à l'arrivée. C'est aussi pourquoi nous recommandons de traiter la qualité des données avant toute migration Excel vers Odoo et avant tout déploiement d'IA agentique dans Odoo.",
+      },
+    ],
+  },
   {
     slug: "facturation-electronique-transformation-digitale-maroc",
     title:
