@@ -66,7 +66,7 @@ const faqs = [
   },
   {
     q: "Combien coûte la solution HORECA ?",
-    a: "Notre pack HORECA Essentiel commence à 199 MAD/mois, le pack Pro à 299 MAD/mois et le pack Premium à 449 MAD/mois. Tous incluent l'installation et la formation. Sans engagement.",
+    a: "Nous proposons une approche sur mesure adaptée à votre type d'établissement (restaurant, café, hôtel), à son volume et aux modules retenus. Après un échange de cadrage gratuit, nous vous remettons un devis détaillé.",
   },
   {
     q: "En combien de temps la solution est-elle opérationnelle ?",
@@ -78,7 +78,7 @@ export default function HorecaPage() {
   useProductSeo({
     title: "Solution HORECA Maroc — Odoo pour Restaurants & Hôtels | MSL-iTECH",
     description:
-      "Digitalisez votre restaurant ou hôtel avec Odoo. Gestion des stocks, facturation, personnel. À partir de 199 MAD/mois. Démo gratuite MSL-iTECH.",
+      "Digitalisez votre restaurant ou hôtel avec Odoo. Gestion des stocks, facturation, personnel. Approche sur mesure adaptée à votre établissement. Démo gratuite MSL-iTECH.",
     path: "/odoo-horeca-maroc",
     faqs,
     ldId: "ld-faq-horeca",
@@ -118,7 +118,7 @@ export default function HorecaPage() {
       }
       whySection={{
         title: "Impacts constatés",
-        desc: "Trois niveaux de packs adaptés à votre type d'établissement. À partir de 199 MAD/mois, sans engagement, avec installation et formation incluses.",
+        desc: "Une approche sur mesure adaptée à votre type d'établissement, sans engagement, avec installation et formation incluses.",
         points: [
           "Réduction des pertes liées au stock",
           "Gain de temps administratif",
