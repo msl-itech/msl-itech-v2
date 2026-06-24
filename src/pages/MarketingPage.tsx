@@ -54,7 +54,7 @@ const faqs = [
   },
   {
     q: "Combien de temps avant de voir des résultats SEO ?",
-    a: "Sur des requêtes longue-traîne peu concurrentielles, les premiers gains de positions arrivent en 4 à 8 semaines. Sur des mots-clés concurrentiels (ex. \"intégrateur Odoo Belgique\"), il faut compter 4 à 6 mois de production de contenu et de signaux pour stabiliser la première page.",
+    a: "Sur des requêtes longue-traîne peu concurrentielles, les premiers gains de positions arrivent en 4 à 8 semaines. Sur des mots-clés concurrentiels (ex. \"intégrateur Odoo Maroc\"), il faut compter 4 à 6 mois de production de contenu et de signaux pour stabiliser la première page.",
   },
   {
     q: "Le GEO remplace-t-il le SEO classique ?",
@@ -413,14 +413,14 @@ export default function MarketingPage() {
     service: {
       name: "Marketing digital sur-mesure, SEO & GEO",
       description:
-        "Stratégie marketing digitale sur-mesure, audit digital, référencement naturel (SEO), optimisation pour les moteurs IA (GEO/AEO) et campagnes d'acquisition pour PME en Belgique et au Maroc par MSL-iTECH.",
+        "Stratégie marketing digitale sur-mesure, audit digital, référencement naturel (SEO), optimisation pour les moteurs IA (GEO/AEO) et campagnes d'acquisition pour PME marocaines par MSL-iTECH.",
       serviceType: ["SEO", "Référencement IA (GEO/AEO)", "Acquisition digitale", "Stratégie marketing sur-mesure"],
     },
   });
 
   return (
     <ProductPageShell
-      eyebrow="Marketing Digital — Belgique & Maroc"
+      eyebrow="Marketing Digital — Maroc"
       title={
         <>
           Vos concurrents captent vos prospects en ligne —{" "}

@@ -66,7 +66,7 @@ const bentoCards: BentoCard[] = [
 const faqs = [
   {
     q: "Combien coûte une implémentation Odoo Stock pour une PME ?",
-    a: "Chaque projet est chiffré sur mesure en fonction du périmètre fonctionnel. Un déploiement Stock seul est l'un de nos périmètres les plus courants. Nos tarifs restent 20 à 50% plus accessibles que les Success Packs Odoo observés sur le marché belge.",
+    a: "Chaque projet est chiffré sur mesure en fonction du périmètre fonctionnel. Un déploiement Stock seul est l'un de nos périmètres les plus courants. Nos tarifs restent 20 à 50% plus accessibles que ceux des grands cabinets d'intégration.",
   },
   {
     q: "En combien de temps Odoo Stock est-il opérationnel ?",
