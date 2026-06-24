@@ -116,7 +116,7 @@ export default function ContactPage() {
   useProductSeo({
     title: "Réserver une Démo Odoo Gratuite — MSL-iTECH Maroc",
     description:
-      "Contactez MSL-iTECH pour une démo Odoo personnalisée. Réponse sous 24 à 72h. Équipe technique basée à Marrakech au service des PME marocaines. Sans engagement.",
+      "Contactez MSL-iTECH pour une démo Odoo personnalisée. Réponse sous 24h. Équipe technique basée à Marrakech au service des PME marocaines. Sans engagement.",
     path: "/contact",
   });
 
@@ -246,7 +246,7 @@ export default function ContactPage() {
       const res = await submitLead(payload);
       setSubmitted(true);
       if (res.message === "ok") {
-        toast.success("Demande envoyée — nous revenons vers vous sous 24 à 72h.");
+        toast.success("Demande envoyée — nous revenons vers vous sous 24h.");
       } else {
         toast.success(
           "Demande enregistrée — elle sera transmise dès que la connexion sera stable."
@@ -306,7 +306,7 @@ export default function ContactPage() {
 
             {/* Sticker top-left */}
             <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
-              <Sticker rotate={-8}>★ Réponse sous 24–72h</Sticker>
+              <Sticker rotate={-8}>★ Réponse sous 24h</Sticker>
             </div>
 
             {/* Hero content */}
@@ -498,7 +498,7 @@ export default function ContactPage() {
             </h2>
             <p className="mt-4 font-body text-base text-brand-grey">
               Vous remplissez ; un consultant prépare la démo avec vos données
-              et revient vers vous sous 24 à 72h ouvrables.
+              et revient vers vous sous 24h.
             </p>
           </div>
 
@@ -516,7 +516,7 @@ export default function ContactPage() {
                 Merci, votre demande est partie !
               </h3>
               <p className="mt-3 font-body text-base text-brand-grey">
-                Un consultant MSL-iTECH revient vers vous sous 24 à 72h ouvrables pour fixer le
+                Un consultant MSL-iTECH revient vers vous sous 24h pour fixer le
                 créneau et préparer la démo.
               </p>
               <Link
@@ -855,7 +855,7 @@ export default function ContactPage() {
               </div>
 
               <p className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-brand-grey">
-                <ShieldCheck size={12} /> Sans engagement · Réponse sous 24 à 72h · Politique de
+                <ShieldCheck size={12} /> Sans engagement · Réponse sous 24h · Politique de
                 confidentialité
               </p>
               </div>

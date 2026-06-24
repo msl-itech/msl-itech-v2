@@ -53,7 +53,7 @@ export const blogPosts: BlogPost[] = [
     cta: {
       title: "Préparez votre conformité avec MSL-iTECH",
       subtitle:
-        "Démo Odoo Finance · Expertise réglementaire marocaine · Réponse sous 24 à 72h",
+        "Démo Odoo Finance · Expertise réglementaire marocaine · Réponse sous 24h",
     },
     body: [
       {
@@ -116,7 +116,7 @@ export const blogPosts: BlogPost[] = [
     relatedLabel: "Découvrir Odoo Gestion de Stock pour le Maroc",
     cta: {
       title: "Voir Odoo Inventaire configuré pour votre activité",
-      subtitle: "Démo gratuite · Réponse sous 24 à 72h · +212 6 89 30 62 78",
+      subtitle: "Démo gratuite · Réponse sous 24h · +212 6 89 30 62 78",
     },
     body: [
       {
@@ -185,7 +185,7 @@ export const blogPosts: BlogPost[] = [
     cta: {
       title: "Recevez une estimation adaptée à votre activité",
       subtitle:
-        "Appel découverte gratuit · Devis sur mesure · Réponse sous 24 à 72h",
+        "Appel découverte gratuit · Devis sur mesure · Réponse sous 24h",
     },
     body: [
       {

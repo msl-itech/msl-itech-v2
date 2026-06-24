@@ -291,7 +291,7 @@ export default function WebPage() {
       intro="Un site web qui ne génère pas de leads est un coût. Un site web qui convertit est un investissement. MSL-iTECH conçoit des sites professionnels qui répondent à une question simple : est-ce que votre visiteur comprend ce que vous faites en moins de 10 secondes ?"
       heroImage={webHero}
       heroImageAlt="Création de site web professionnel React et WordPress par MSL-iTECH"
-      metaNote="Devis gratuit · Réponse sous 24 à 72h ouvrables · Sans engagement"
+      metaNote="Devis gratuit · Réponse sous 24h · Sans engagement"
       featuresEyebrow="Deux technologies, deux cas d'usage"
       featuresTitle="Combien d'opportunités perdez-vous chaque mois ?"
       features={features}
@@ -307,7 +307,7 @@ export default function WebPage() {
         ],
       }}
       ctaTitle="Démarrer mon projet web"
-      ctaSubtitle="Devis gratuit · Réponse sous 24 à 72h ouvrables · Sans engagement · Belgique & Maroc"
+      ctaSubtitle="Devis gratuit · Réponse sous 24h · Sans engagement · Belgique & Maroc"
       faqs={faqs}
     />
   );

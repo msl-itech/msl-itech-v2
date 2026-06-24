@@ -152,7 +152,7 @@ function SocialProof() {
     "✓ Belgique · Maroc · Canada",
     "✓ 20+ références publiques vérifiées",
     "✓ Tarifs 20 à 50% plus compétitifs",
-    "✓ Réponse sous 24 à 72h ouvrables",
+    "✓ Réponse sous 24h",
   ];
   const doubled = [...items, ...items, ...items];
   return (
@@ -472,7 +472,7 @@ function Why() {
     { icon: ShieldCheck, title: "Vérifiable publiquement", desc: "Certifications et références clients directement visibles sur la fiche officielle odoo.com/partners. La transparence avant tout." },
     { icon: Wallet, title: "Tarification optimisée", desc: "Notre structure internationale — équipe technique certifiée au Maroc, clients en BeLux et Canada accompagnés à distance — nous permet de proposer des packs 20 à 50% plus accessibles, à qualité et volume équivalents." },
     { icon: Globe2, title: "Un interlocuteur unique", desc: "ERP, création web et stratégie d'acquisition. Une seule équipe qui comprend votre business dans sa globalité." },
-    { icon: Clock, title: "Réactivité cadrée", desc: "Réponse experte sous 24 à 72h. Pas de commerciaux génériques — vous parlez directement à des consultants qui comprennent votre métier." },
+    { icon: Clock, title: "Réactivité cadrée", desc: "Réponse experte sous 24h. Pas de commerciaux génériques — vous parlez directement à des consultants qui comprennent votre métier." },
   ];
   return (
     <section className="bg-brand-bg">

@@ -95,7 +95,7 @@ export default function MultiSitesPage() {
       intro="Deux entrepôts qui ne se voient pas. Des filiales avec leurs propres tableaux Excel. Un siège qui attend les reportings de chaque site pour avoir une vision consolidée. Odoo unifie tout — stock, comptabilité, RH, CRM — en temps réel, quel que soit le nombre de sites."
       heroImage={heroImg}
       heroImageAlt="Architecture Odoo multi-sites et multi-sociétés"
-      metaNote="Cadrage 30 minutes · Sans engagement · Réponse sous 24-72h"
+      metaNote="Cadrage 30 minutes · Sans engagement · Réponse sous 24h"
       featuresEyebrow="L'architecture Odoo multi-sites"
       featuresTitle="L'architecture Odoo pour les structures multi-sites"
       features={features}
@@ -121,7 +121,7 @@ export default function MultiSitesPage() {
       }}
       faqs={faqs}
       ctaTitle="Réserver ma démo gratuite — Entreprise multi-sites"
-      ctaSubtitle="Cadrage de votre architecture · 30 minutes · Sans engagement · Réponse sous 24 à 72h ouvrables"
+      ctaSubtitle="Cadrage de votre architecture · 30 minutes · Sans engagement · Réponse sous 24h"
     />
   );
 }

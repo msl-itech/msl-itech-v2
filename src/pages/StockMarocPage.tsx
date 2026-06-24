@@ -101,7 +101,7 @@ export default function StockMarocPage() {
       intro="Pour un négociant, un distributeur ou un grossiste, le stock c'est la trésorerie immobilisée. Un stock mal géré, c'est des ruptures qui font fuir les clients et des surstocks qui plombent la trésorerie."
       heroImage={stockMarocHero}
       heroImageAlt="Entrepôt de distribution piloté avec Odoo au Maroc"
-      metaNote="Démo adaptée à votre volume et votre secteur · Réponse sous 24 à 72h"
+      metaNote="Démo adaptée à votre volume et votre secteur · Réponse sous 24h"
       featuresEyebrow="Pour les entreprises à gros volume"
       featuresTitle="Ce qu'Odoo change pour les entreprises à gros volume"
       features={features}
@@ -115,7 +115,7 @@ export default function StockMarocPage() {
       }
       faqs={faqs}
       ctaTitle="Réserver ma démo Stock gratuite"
-      ctaSubtitle="Démo adaptée à votre volume et votre secteur · Réponse sous 24 à 72h"
+      ctaSubtitle="Démo adaptée à votre volume et votre secteur · Réponse sous 24h"
     />
   );
 }

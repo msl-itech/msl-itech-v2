@@ -92,7 +92,7 @@ export default function SantePage() {
       intro="Le secteur de la santé fait face à des exigences de traçabilité que les outils généralistes ne couvrent pas. Dates d'expiration, numéros de lot, ordonnances, facturation comptoir : chaque erreur a des conséquences réelles."
       heroImage={santeHero}
       heroImageAlt="Pharmacie marocaine équipée d'Odoo Santé"
-      metaNote="Démo adaptée à votre type de structure · Réponse sous 24 à 72h"
+      metaNote="Démo adaptée à votre type de structure · Réponse sous 24h"
       featuresEyebrow="Pour le secteur santé"
       featuresTitle="Ce qu'Odoo apporte au secteur santé"
       features={features}
@@ -115,7 +115,7 @@ export default function SantePage() {
         ],
       }}
       ctaTitle="Réserver ma démo Santé gratuite"
-      ctaSubtitle="Démo adaptée à votre type de structure · Réponse sous 24 à 72h"
+      ctaSubtitle="Démo adaptée à votre type de structure · Réponse sous 24h"
       faqs={faqs}
     />
   );

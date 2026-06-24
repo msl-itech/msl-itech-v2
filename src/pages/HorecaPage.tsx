@@ -104,7 +104,7 @@ export default function HorecaPage() {
       intro="Un établissement HORECA marocain non digitalisé perd selon les études sectorielles jusqu'à 30% de ses aliments faute de gestion des stocks précise. S'y ajoutent les erreurs de caisse, la comptabilité manuelle chronophage et la pression de l'évolution de la facturation électronique. Odoo aide à structurer ces flux, et MSL-iTECH le déploie selon le périmètre, la taille de l'établissement et les modules retenus."
       heroImage={horecaHero}
       heroImageAlt="Restaurant marocain équipé d'une caisse Odoo"
-      metaNote="Démo sur site ou à distance · Réponse sous 24 à 72h · +212 6 89 30 62 78"
+      metaNote="Démo sur site ou à distance · Réponse sous 24h · +212 6 89 30 62 78"
       featuresEyebrow="Dans votre établissement"
       featuresTitle="Ce qu'Odoo change dans votre établissement"
       features={features}
@@ -128,7 +128,7 @@ export default function HorecaPage() {
       }}
       faqs={faqs}
       ctaTitle="Réserver ma démo HORECA gratuite"
-      ctaSubtitle="Démo sur site ou à distance · Réponse sous 24 à 72h · +212 6 89 30 62 78"
+      ctaSubtitle="Démo sur site ou à distance · Réponse sous 24h · +212 6 89 30 62 78"
     />
   );
 }

@@ -100,7 +100,7 @@ export default function PmeStructurationPage() {
       intro="Vous gérez entre 5 et 50 personnes. Vos processus tiennent encore — mais à quel prix. Chaque semaine, des heures perdues à consolider des données éparpillées entre Excel, emails et outils déconnectés. Votre croissance mérite une infrastructure qui suit le rythme, pas qui le freine."
       heroImage={heroImg}
       heroImageAlt="Odoo ERP pour PME en structuration"
-      metaNote="Diagnostic 30 minutes · Sans engagement · Réponse sous 24-72h"
+      metaNote="Diagnostic 30 minutes · Sans engagement · Réponse sous 24h"
       featuresEyebrow="Le seuil critique que vous avez atteint"
       featuresTitle="Ce qu'Odoo change pour une PME de votre taille"
       features={features}
@@ -120,13 +120,13 @@ export default function PmeStructurationPage() {
           "Déploiement des modules prioritaires selon votre cycle d'activité",
           "Migration de vos données existantes (Excel, ancien logiciel)",
           "Formation de vos équipes sur votre instance",
-          "Support réactif — réponse sous 24 à 72h ouvrables",
+          "Support réactif — réponse sous 24h",
           "Partenaire officiel Odoo — vérifiable sur odoo.com/partners",
         ],
       }}
       faqs={faqs}
       ctaTitle="Réserver ma démo gratuite — PME en structuration"
-      ctaSubtitle="Diagnostic de vos besoins · 30 minutes · Sans engagement · Réponse sous 24 à 72h ouvrables"
+      ctaSubtitle="Diagnostic de vos besoins · 30 minutes · Sans engagement · Réponse sous 24h"
     />
   );
 }
