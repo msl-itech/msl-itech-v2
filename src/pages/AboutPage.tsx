@@ -142,7 +142,7 @@ export default function AboutPage() {
   useProductSeo({
     title: "À Propos de MSL-iTECH — Équipe & Expertise Odoo au Maroc",
     description:
-      "Découvrez MSL-iTECH, Odoo Ready Partner au Maroc — consultants certifiés v18 & v19 depuis 2020. Équipe technique basée à Marrakech au service des PME marocaines. Références publiques vérifiables sur odoo.com/partners.",
+      "Découvrez MSL-iTECH, Odoo Ready Partner au Maroc — consultants certifiés v18 & v19 depuis 2024. Équipe technique basée à Marrakech au service des PME marocaines. Références publiques vérifiables sur odoo.com/partners.",
     path: "/a-propos",
   });
 
@@ -193,7 +193,7 @@ export default function AboutPage() {
             <HeroCursorGlow radius="inherit" />
 
             <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
-              <Sticker rotate={-8}>★ Depuis 2020</Sticker>
+              <Sticker rotate={-8}>★ Depuis 2024</Sticker>
             </div>
 
             <div className="relative flex min-h-[420px] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[520px] md:py-28">
