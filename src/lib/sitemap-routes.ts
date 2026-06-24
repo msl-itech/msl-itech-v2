@@ -64,6 +64,7 @@ const staticEntries: SitemapEntry[] = [
 
 /** Articles de blog — tenir à jour quand on en publie un nouveau. */
 const blogSlugs: { slug: string; publishedAt: string }[] = [
+  { slug: "facturation-electronique-transformation-digitale-maroc", publishedAt: "2026-06-24" },
   { slug: "odoo-saas-on-premise-hybride-maroc-2026", publishedAt: "2026-06-24" },
   { slug: "devis-encaissement-odoo-automatisation-roi-maroc", publishedAt: "2026-06-24" },
   { slug: "daf-marocain-pilotage-strategique-odoo-2026", publishedAt: "2026-06-24" },
