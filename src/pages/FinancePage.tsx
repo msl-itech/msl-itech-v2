@@ -78,7 +78,7 @@ export default function FinancePage() {
   useProductSeo({
     title: "Odoo Finance & Comptabilité PME — MSL-iTECH",
     description:
-      "Pilotez votre trésorerie et automatisez votre comptabilité avec Odoo. Implémentation certifiée MSL-iTECH. Belgique & Maroc. Démo gratuite.",
+      "Pilotez votre trésorerie et automatisez votre comptabilité avec Odoo. Implémentation certifiée MSL-iTECH au Maroc. Démo gratuite.",
     path: "/odoo-finance-comptabilite",
     faqs,
     ldId: "ld-faq-finance",

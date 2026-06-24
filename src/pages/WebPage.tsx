@@ -265,9 +265,9 @@ export default function WebPage() {
   ];
 
   useProductSeo({
-    title: "Création Site Web Professionnel — React & WordPress | MSL-iTECH",
+    title: "Création Site Web Professionnel au Maroc — React & WordPress | MSL-iTECH",
     description:
-      "Sites web React haute performance ou WordPress rapides. Conçus pour convertir et optimisés pour être trouvés. Belgique & Maroc. Devis gratuit.",
+      "Sites web React haute performance ou WordPress rapides pour les PME marocaines. Conçus pour convertir et optimisés pour être trouvés. Devis gratuit.",
     path: "/creation-web",
     faqs,
     ldId: "ld-faq-web",

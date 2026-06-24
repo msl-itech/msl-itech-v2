@@ -174,7 +174,7 @@ export default function CrmPage() {
   useProductSeo({
     title: "Odoo CRM & Ventes — Pilotez vos commerciaux | MSL-iTECH",
     description:
-      "Centralisez votre pipeline commercial avec Odoo CRM. Implémentation certifiée par MSL-iTECH. Belgique, Maroc, Canada. Démo gratuite.",
+      "Centralisez votre pipeline commercial avec Odoo CRM. Implémentation certifiée par MSL-iTECH au Maroc. Démo gratuite.",
     path: "/odoo-crm-ventes",
     faqs,
     ldId: "ld-faq-crm",

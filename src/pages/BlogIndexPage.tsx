@@ -54,7 +54,7 @@ export default function BlogIndexPage() {
   useProductSeo({
     title: "Blog Odoo — Conseils, prix et conformité | MSL-iTECH",
     description:
-      "Articles MSL-iTECH sur Odoo en Belgique et au Maroc : prix d'implémentation, partenaires certifiés, gestion de stock, facturation électronique.",
+      "Articles MSL-iTECH sur Odoo au Maroc : implémentation, ROI, gestion de stock, facturation électronique, secteurs HORECA, BTP et santé.",
     path: "/blog",
   });
 
