@@ -214,8 +214,8 @@ export default function AboutPage() {
 
               <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
                 Une équipe Odoo Ready Partner certifiée au Maroc, qui accompagne
-                à distance les PME belges et canadiennes — avec la conviction
-                qu'elles méritent les mêmes outils que les grandes entreprises.
+                les PME marocaines — avec la conviction qu'elles méritent les
+                mêmes outils que les grandes entreprises.
               </p>
             </div>
 
