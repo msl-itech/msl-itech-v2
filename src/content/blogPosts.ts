@@ -32,8 +32,201 @@ import budgetErpHorecaMarocImg from "@/assets/blog/budget-erp-horeca-maroc.jpg";
 import roiErpPmeImg from "@/assets/blog/roi-erp-pme.jpg";
 import facturationDgi2026Img from "@/assets/blog/facturation-dgi-2026-pdf-ubl.jpg";
 import sageVsOdooMarocImg from "@/assets/blog/sage-vs-odoo-maroc.jpg";
+import migrationExcelOdooImg from "@/assets/blog/migration-excel-odoo-maroc.jpg";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "migration-excel-vers-odoo-maroc-methode",
+    title:
+      "Migrer d'Excel vers Odoo sans perdre votre historique : la méthode des PME marocaines qui l'ont fait",
+    metaTitle: "Migrer d'Excel vers Odoo au Maroc : méthode complète 2026",
+    metaDescription:
+      "Excel freine votre croissance et vous fait peur à migrer. Voici la méthode MSL-iTECH pour basculer vers Odoo sans perdre un seul chiffre de votre historique.",
+    excerpt:
+      "La méthode MSL-iTECH en 4 phases pour basculer d'Excel vers Odoo sans perdre votre historique clients, factures et stock.",
+    category: "Migration & implémentation",
+    region: "MA",
+    readingTime: "9 min",
+    publishedAt: "2026-06-20",
+    image: migrationExcelOdooImg,
+    intent: "Mid-funnel · Décision migration",
+    relatedPath: "/contact",
+    relatedLabel: "Planifier mon diagnostic de migration",
+    cta: {
+      title: "Vous avez des données Excel à migrer ?",
+      subtitle:
+        "Diagnostic 30 min · Volume, délai, budget · Sans engagement · Réponse sous 24h",
+    },
+    body: [
+      {
+        type: "p",
+        text: "Il y a un moment que chaque dirigeant de PME marocaine reconnaît. C'est quand le fichier Excel s'ouvre et met 45 secondes à charger. Quand vous avez 12 onglets et que personne ne sait lequel est à jour. Quand vous recrutez un nouveau commercial et passez une semaine à lui expliquer « le système ». Quand votre expert-comptable vous demande les chiffres du trimestre et que vous lui envoyez un PDF exporté d'un tableau qui contient peut-être une erreur.",
+      },
+      {
+        type: "p",
+        text: "Ce moment-là, vous savez qu'il faut passer à un ERP. Mais une autre peur s'installe immédiatement : et si on perd tout ? Cinq ans de données clients. Trois ans de stock. Deux ans de facturation. Tout ce que vous avez construit, ligne par ligne, dans des fichiers que vous connaissez par cœur.",
+      },
+      {
+        type: "p",
+        text: "Bonne nouvelle : cette peur est légitime, mais elle est surmontable. Cet article vous explique comment des PME marocaines ont migré d'Excel vers Odoo sans perdre un seul chiffre de leur historique — et comment vous pouvez faire pareil.",
+      },
+
+      { type: "h2", text: "Pourquoi Excel reste si répandu dans les PME marocaines" },
+      {
+        type: "p",
+        text: "Avant de parler migration, comprenons pourquoi Excel est encore l'outil dominant dans les PME marocaines — même en 2026.",
+      },
+      {
+        type: "p",
+        text: "Excel est familier. Il ne nécessite pas de formation. Il est flexible : vous pouvez créer exactement la structure dont vous avez besoin, sans payer un consultant. Il fonctionne hors ligne. Et il est déjà là — sur chaque poste, depuis des années.",
+      },
+      {
+        type: "p",
+        text: "Le problème n'est pas Excel lui-même. Le problème, c'est la façon dont Excel est utilisé à l'échelle : plusieurs versions du même fichier, pas d'accès simultané, pas de traçabilité des modifications, pas d'automatisation des processus, pas d'intégration entre les départements. Ce qui fonctionne pour une équipe de 3 personnes devient ingérable à 15, et bloque la croissance à 30.",
+      },
+      {
+        type: "p",
+        text: "La migration vers un ERP comme Odoo n'est pas un choix idéologique — c'est une réponse à un problème de scalabilité réel.",
+      },
+
+      { type: "h2", text: "Les 3 données historiques les plus critiques à préserver" },
+      {
+        type: "p",
+        text: "Avant de définir une méthode, identifiez ce que vous ne pouvez pas vous permettre de perdre. Dans 95 % des migrations Excel → Odoo que nous avons réalisées au Maroc, trois catégories de données sont identifiées comme absolument critiques.",
+      },
+      { type: "h3", text: "1. Le fichier client et fournisseur" },
+      {
+        type: "p",
+        text: "C'est votre capital relationnel. Noms, ICE, adresses, conditions de paiement, historique de commandes, encours. Un client perdu dans la migration n'est pas juste une ligne de base de données manquante — c'est une relation commerciale potentiellement fragilisée.",
+      },
+      {
+        type: "p",
+        text: "Comment le préserver : exporter votre base depuis Excel dans un format CSV propre, avec des colonnes standardisées (nom, ICE, adresse, email, téléphone, conditions de paiement). MSL-iTECH dispose de templates d'import prêts à l'emploi pour Odoo qui correspondent exactement à ce format.",
+      },
+      { type: "h3", text: "2. L'historique de facturation" },
+      {
+        type: "p",
+        text: "Vos factures passées ont une valeur fiscale et opérationnelle. Elles servent à calculer les encours, les statistiques de chiffre d'affaires, les performances par client, les révisions de prix. La perte de cet historique force votre équipe à jongler entre deux systèmes pendant des mois.",
+      },
+      {
+        type: "p",
+        text: "Comment le préserver : les factures historiques peuvent être importées dans Odoo soit comme transactions comptables (débit/crédit) soit comme documents PDF archivés liés à chaque fiche client. La stratégie dépend de votre profondeur d'historique souhaitée — nous recommandons généralement les 24 derniers mois en transactions, le reste en archive.",
+      },
+      { type: "h3", text: "3. Le stock et les données produits" },
+      {
+        type: "p",
+        text: "Références, unités de mesure, prix de revient, prix de vente, fournisseurs associés — c'est la colonne vertébrale de votre activité commerciale. Une erreur sur les prix de revient a des conséquences directes sur votre rentabilité dès le premier jour après la migration.",
+      },
+      {
+        type: "p",
+        text: "Comment le préserver : l'import des produits est l'étape la plus exigeante en termes de nettoyage de données. Comptez 1 à 2 semaines de travail collaboratif entre votre équipe et nos consultants pour valider chaque référence avant l'import.",
+      },
+
+      { type: "h2", text: "La méthode MSL-iTECH en 4 phases pour migrer sans perdre l'historique" },
+      {
+        type: "p",
+        text: "Migrer d'Excel vers Odoo sans perte de données se fait en suivant une méthode en 4 phases séquentielles, avec des points de validation à chaque étape.",
+      },
+      { type: "h3", text: "Phase 1 — Cartographie et nettoyage (semaines 1–3)" },
+      {
+        type: "p",
+        text: "Avant d'importer quoi que ce soit dans Odoo, on nettoie les données Excel. C'est l'étape que la plupart des entreprises veulent sauter — et c'est celle qui détermine 80 % du succès de la migration.",
+      },
+      {
+        type: "p",
+        text: "Concrètement : identifier les doublons dans votre base clients, standardiser les formats (ICE à 15 chiffres, codes postaux, noms des villes), éliminer les références produits obsolètes, réconcilier les différentes versions d'un même fichier. Un outil de validation développé par MSL-iTECH permet d'identifier automatiquement les anomalies les plus fréquentes.",
+      },
+      { type: "h3", text: "Phase 2 — Configuration Odoo à vide (semaines 3–5)" },
+      {
+        type: "p",
+        text: "Pendant que les données sont nettoyées, nous configurons votre instance Odoo : plan comptable CGNC, taux de TVA marocains, utilisateurs et droits d'accès, workflows d'approbation, séquences de facturation. Cette phase se fait en parallèle de la phase 1 pour gagner du temps.",
+      },
+      { type: "h3", text: "Phase 3 — Import en environnement de test (semaines 5–7)" },
+      {
+        type: "p",
+        text: "Toutes les données nettoyées sont importées dans un environnement de test — une copie exacte de votre Odoo de production, mais sans conséquence opérationnelle. Vos équipes valident : les fiches clients correspondent-elles à la réalité ? Les prix produits sont-ils corrects ? L'historique de facturation est-il cohérent ?",
+      },
+      {
+        type: "p",
+        text: "C'est la phase de validation humaine. Aucun consultant ne peut se substituer à votre comptable qui connaît chaque ligne, ou à votre commercial qui identifie immédiatement qu'un client est mal catégorisé.",
+      },
+      { type: "h3", text: "Phase 4 — Bascule en production et accompagnement (semaines 7–10)" },
+      {
+        type: "p",
+        text: "La bascule est planifiée sur un weekend ou en fin de mois pour minimiser l'impact. Le lundi matin, votre équipe travaille sur Odoo — avec toutes leurs données, leur historique, et une formation dispensée dans la semaine précédant la bascule. MSL-iTECH assure un support renforcé les 30 premiers jours post-migration.",
+      },
+      {
+        type: "p",
+        text: "Résultat attendu : à l'issue de la phase 4, votre entreprise est opérationnelle sur Odoo avec 100 % de l'historique critique préservé et des équipes formées.",
+      },
+
+      { type: "h2", text: "Les erreurs les plus fréquentes lors d'une migration Excel → Odoo" },
+      {
+        type: "p",
+        text: "Après des dizaines de migrations au Maroc, voici les 4 erreurs que nous voyons le plus souvent.",
+      },
+      { type: "h3", text: "Erreur 1 — Vouloir migrer 100 % des données historiques" },
+      {
+        type: "p",
+        text: "Plus vous remontez loin dans l'historique, plus la migration est complexe et coûteuse. La réalité opérationnelle : votre équipe n'a jamais besoin des données de plus de 3 ans au quotidien. Définissez un horizon raisonnable (24 à 36 mois) et archivez le reste en PDF lié aux fiches concernées.",
+      },
+      { type: "h3", text: "Erreur 2 — Migrer sans nettoyer les données d'abord" },
+      {
+        type: "p",
+        text: "« On nettoiera après dans Odoo » est la phrase que nous entendons régulièrement — et qui garantit 6 mois de galère post-migration. Si vos données Excel sont sales, votre Odoo sera sale. La qualité des données dans l'ERP est exactement la qualité des données que vous avez importées.",
+      },
+      { type: "h3", text: "Erreur 3 — Former les utilisateurs trop tôt ou trop tard" },
+      {
+        type: "p",
+        text: "Former votre équipe 3 mois avant la bascule, c'est perdre la formation. Former la veille du go-live, c'est paniquer. Le timing optimal : 2 à 3 semaines avant la bascule, avec des sessions sur l'environnement de test pour que chacun puisse pratiquer sur ses propres données.",
+      },
+      { type: "h3", text: "Erreur 4 — Ne pas avoir de plan de retour arrière" },
+      {
+        type: "p",
+        text: "Aussi bien préparée soit-elle, une migration peut révéler des problèmes imprévus. Avoir un plan de retour arrière documenté — comment repasser temporairement sur Excel si Odoo rencontre un problème critique les premiers jours — est une assurance que chaque chef de projet responsable doit avoir préparée.",
+      },
+
+      { type: "h2", text: "Ce que la migration vous permet de faire après — et que vous ne pouviez pas faire avec Excel" },
+      {
+        type: "p",
+        text: "La migration n'est pas une fin en soi. Ce qui change concrètement le lendemain du go-live :",
+      },
+      {
+        type: "p",
+        text: "Votre équipe commerciale voit en temps réel le stock disponible avant d'envoyer un devis — sans appeler le magasinier. Votre comptable génère la déclaration de TVA en 3 clics au lieu d'une journée de consolidation. Votre DAF a un tableau de bord financier live, sans attendre les exports Excel du vendredi soir. Et quand la DGI demande vos factures de l'année, vous générez un export structuré en 5 minutes.",
+      },
+      {
+        type: "p",
+        text: "Excel vous a permis de construire votre entreprise. Odoo vous permet de la faire grandir.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Combien de temps prend une migration Excel → Odoo pour une PME marocaine ?",
+        a: "Pour une PME de 10 à 50 utilisateurs avec une base de données de taille standard, la migration prend généralement entre 8 et 12 semaines de la cartographie initiale à la bascule en production. Ce délai inclut le nettoyage des données, la configuration d'Odoo, les tests et la formation des utilisateurs. Les migrations plus complexes (volume élevé de références produits, historique étendu, intégrations avec d'autres systèmes) peuvent prendre jusqu'à 6 mois.",
+      },
+      {
+        q: "Peut-on continuer à utiliser Excel pendant la migration ?",
+        a: "Oui, et c'est même recommandé. Pendant toute la durée de la migration, votre équipe continue de travailler sur Excel. La bascule vers Odoo se fait en une seule fois, à une date planifiée — généralement un weekend ou en fin de mois comptable. Il n'y a pas de période de double saisie, sauf si vous choisissez une phase de parallèle courte (2 à 4 semaines) pour les équipes les plus prudentes.",
+      },
+      {
+        q: "Odoo peut-il importer directement depuis Excel ?",
+        a: "Oui. Odoo dispose de fonctionnalités d'import natif depuis des fichiers CSV (exportés depuis Excel). Pour les données standards (clients, fournisseurs, produits), l'import direct est possible avec nos templates. Pour les données plus complexes (transactions comptables historiques, stock multi-entrepôt), nous utilisons des scripts d'import développés et testés par MSL-iTECH pour garantir l'intégrité des données.",
+      },
+      {
+        q: "Que se passe-t-il si on découvre des erreurs après la migration ?",
+        a: "C'est précisément pour ça que nous prévoyons une phase de test sur un environnement séparé avant la bascule en production. Les erreurs identifiées dans la phase de test sont corrigées avant le go-live. Après la bascule, MSL-iTECH assure un support renforcé les 30 premiers jours pour traiter rapidement tout problème résiduel.",
+      },
+      {
+        q: "La migration est-elle possible si nos données Excel sont désorganisées ?",
+        a: "Oui — mais avec un travail préparatoire plus important. Des données Excel désorganisées (doublons, formats inconsistants, fichiers multiples non réconciliés) nécessitent une phase de nettoyage plus longue. C'est le travail que nous faisons en Phase 1. Des données propres à l'entrée garantissent un Odoo propre à la sortie.",
+      },
+      {
+        q: "Quel est le coût d'une migration Excel vers Odoo ?",
+        a: "Le coût dépend de trois facteurs : le volume de données à migrer, la complexité de votre activité (mono ou multi-société, mono ou multi-entrepôt, intégrations tierces), et la version Odoo choisie (Community gratuite ou Enterprise). Pour une PME marocaine standard, l'investissement se situe entre 30 000 et 80 000 MAD tout compris (licence, migration, formation, support). Contactez-nous pour un chiffrage personnalisé.",
+      },
+    ],
+  },
   {
     slug: "sage-vs-odoo-maroc-comparatif-2026",
     title: "Sage vs Odoo au Maroc : le comparatif que les éditeurs n'osent pas faire",
