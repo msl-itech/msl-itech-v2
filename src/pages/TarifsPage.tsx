@@ -104,8 +104,8 @@ const differentiateurs = [
   },
   {
     icon: TrendingUp,
-    title: "Tarification compétitive",
-    desc: "Notre structure internationale — consultants certifiés au Maroc, clients accompagnés à distance en Belgique et au Canada — nous permet de proposer des tarifs 20 à 50% plus accessibles que le marché belge.",
+    title: "Tarification adaptée au Maroc",
+    desc: "Notre équipe technique certifiée Odoo basée au Maroc nous permet de proposer une tarification sur mesure, alignée sur la réalité économique des PME marocaines.",
   },
   {
     icon: FileText,
@@ -129,12 +129,12 @@ const faqs = [
     a: "Parce qu'une grille fixe ne reflète jamais la réalité d'un projet. Un déploiement CRM pour 5 commerciaux n'a rien à voir avec un ERP complet multi-sociétés. Publier des prix fixes reviendrait à sous-estimer ou surestimer systématiquement votre projet. Notre approche sur mesure garantit un prix juste, adapté à votre complexité réelle.",
   },
   {
-    q: "Combien coûte une implémentation Odoo en Belgique en général ?",
-    a: "Les prix du marché varient énormément selon l'intégrateur et le périmètre. Les taux horaires observés en Belgique vont de 80 € à 200 €/heure. Un projet CRM simple peut démarrer autour de 2 000 €, un ERP complet pour une PME de 30 personnes peut atteindre 15 000 € à 25 000 €. Consultez notre guide complet des coûts du marché pour des fourchettes détaillées.",
+    q: "Comment obtenir une estimation pour mon projet ?",
+    a: "Le plus simple est de réserver un cadrage gratuit de 30 minutes. Nous échangeons sur votre activité, vos processus actuels et vos objectifs, puis nous vous remettons un devis détaillé adapté à votre périmètre réel.",
   },
   {
-    q: "Êtes-vous compétitifs par rapport aux autres intégrateurs belges ?",
-    a: "Oui. Grâce à notre structure internationale — équipe technique certifiée Odoo v18 & v19 au Maroc, accompagnement à distance des clients en Belgique et au Canada — nos tarifs sont 20 à 50% plus accessibles que les Success Packs observés sur le marché belge, à qualité et périmètre équivalents.",
+    q: "Travaillez-vous avec des PME marocaines de toutes tailles ?",
+    a: "Oui. Nous accompagnons aussi bien des TPE en structuration que des PME établies et des groupes multi-sociétés au Maroc. Notre approche s'adapte à votre taille, votre secteur (HORECA, BTP, santé, commerce, services) et votre rythme.",
   },
   {
     q: "Y a-t-il des frais cachés ?",
@@ -455,23 +455,23 @@ export default function TarifsPage() {
                 style={{ backgroundColor: "var(--gold)" }}
               />
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
-                Comprendre les coûts
+                Voir notre travail
               </p>
               <h3 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-3xl">
-                Combien coûte Odoo sur le marché ?
+                Nos réalisations au Maroc
               </h3>
               <p className="mt-4 font-body text-base text-brand-grey">
-                Avant de demander un devis, comprenez les fourchettes de prix du
-                marché belge : licences, hébergement, taux horaires consultants.
-                Nous avons compilé un guide complet et transparent.
+                Avant de demander un devis, découvrez les projets déjà livrés
+                pour des PME marocaines : HORECA, BTP, santé, commerce, services
+                et groupes multi-sociétés.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
-                  to="/tarif-odoo-belgique"
+                  to="/realisations"
                   className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-semibold text-brand-black transition hover:scale-[1.02]"
                   style={{ backgroundColor: "var(--gold)" }}
                 >
-                  Guide des coûts Odoo 2026 <ArrowRight size={16} />
+                  Voir nos réalisations <ArrowRight size={16} />
                 </Link>
               </div>
             </article>
