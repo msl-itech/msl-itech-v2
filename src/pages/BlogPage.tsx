@@ -232,44 +232,7 @@ export default function BlogPage() {
             </div>
           )}
 
-          {post.relatedPath && (
-            <div
-              className="mt-14 rounded-2xl border border-border p-6 lg:p-8"
-              style={{ backgroundColor: "rgba(15,63,74,0.04)" }}
-            >
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand-blue">
-                Pour aller plus loin
-              </p>
-              <h3 className="mt-2 font-heading text-lg font-bold text-brand-black">
-                {post.relatedLabel ?? "En savoir plus"}
-              </h3>
-              <Link
-                to={post.relatedPath}
-                className="mt-4 inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-semibold transition hover:opacity-90"
-                style={{ backgroundColor: "#0F3F4A", color: "white" }}
-              >
-                Consulter la page <ExternalLink size={14} />
-              </Link>
-            </div>
-          )}
         </article>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20" style={{ backgroundColor: "#0F3F4A" }}>
-        <div className="container text-center text-white">
-          <h2 className="mx-auto max-w-3xl font-heading text-3xl font-bold md:text-4xl">
-            {post.cta.title}
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl font-body text-white/80">{post.cta.subtitle}</p>
-          <Link
-            to="/contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-semibold transition hover:opacity-90"
-            style={{ backgroundColor: "var(--gold)", color: "#0F3F4A" }}
-          >
-            Réserver ma démo <ArrowRight size={16} />
-          </Link>
-        </div>
       </section>
     </>
   );
