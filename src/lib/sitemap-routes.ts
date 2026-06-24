@@ -75,8 +75,6 @@ const blogSlugs: { slug: string; publishedAt: string }[] = [
   { slug: "roi-erp-pme-economies-2026", publishedAt: "2026-05-21" },
   { slug: "facturation-electronique-maroc-2026", publishedAt: "2026-04-15" },
   { slug: "gestion-stock-maroc-apres-1-5m-mad", publishedAt: "2026-03-20" },
-  { slug: "partenaire-odoo-certifie-vs-freelance", publishedAt: "2026-02-10" },
-  { slug: "cout-implementation-odoo-belgique-2026", publishedAt: "2026-01-22" },
 ];
 
 export function buildSitemapEntries(): SitemapEntry[] {
