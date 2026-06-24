@@ -114,9 +114,9 @@ const stepLabels = [
 
 export default function ContactPage() {
   useProductSeo({
-    title: "Réserver une Démo Odoo Gratuite — MSL-iTECH Belgique & Maroc",
+    title: "Réserver une Démo Odoo Gratuite — MSL-iTECH Maroc",
     description:
-      "Contactez MSL-iTECH pour une démo Odoo personnalisée. Réponse sous 24 à 72h. Équipe technique au Maroc, accompagnement à distance des clients en Belgique et au Canada. Sans engagement.",
+      "Contactez MSL-iTECH pour une démo Odoo personnalisée. Réponse sous 24 à 72h. Équipe technique basée à Marrakech au service des PME marocaines. Sans engagement.",
     path: "/contact",
   });
 

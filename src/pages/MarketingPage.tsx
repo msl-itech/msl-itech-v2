@@ -404,7 +404,7 @@ function SocialProofSection() {
 export default function MarketingPage() {
   useProductSeo({
     title:
-      "Marketing Digital Sur-Mesure Belgique & Maroc — SEO, GEO & Acquisition | MSL-iTECH",
+      "Marketing Digital Sur-Mesure au Maroc — SEO, GEO & Acquisition | MSL-iTECH",
     description:
       "Stratégie marketing digitale sur-mesure pour PME : audit gratuit, SEO, référencement IA (GEO) et campagnes d'acquisition. MSL-iTECH pilote votre croissance en ligne.",
     path: "/marketing-digital",

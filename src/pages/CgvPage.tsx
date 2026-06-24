@@ -27,7 +27,7 @@ export default function CgvPage() {
   useProductSeo({
     title: "Conditions Générales de Vente — MSL-iTECH",
     description:
-      "CGV MSL-iTECH : services Odoo, web et marketing digital. Tarifs, paiement, délais, propriété intellectuelle et juridiction (Belgique & Maroc).",
+      "CGV MSL-iTECH : services Odoo, web et marketing digital. Tarifs, paiement, délais, propriété intellectuelle et juridiction (Maroc).",
     path: "/conditions-generales-de-vente",
   });
 

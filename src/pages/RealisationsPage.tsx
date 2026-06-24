@@ -285,7 +285,7 @@ export default function RealisationsPage() {
   useProductSeo({
     title: "Nos Réalisations Odoo & Web — Cas Clients MSL-iTECH",
     description:
-      "Découvrez les projets Odoo et sites web réalisés par MSL-iTECH. BTP, HORECA, immobilier, services. Belgique & Maroc. Références vérifiables sur odoo.com/partners.",
+      "Découvrez les projets Odoo et sites web réalisés par MSL-iTECH au Maroc. BTP, HORECA, immobilier, services. Références vérifiables sur odoo.com/partners.",
     path: "/realisations",
   });
 
