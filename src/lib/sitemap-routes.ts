@@ -64,6 +64,7 @@ const staticEntries: SitemapEntry[] = [
 
 /** Articles de blog — tenir à jour quand on en publie un nouveau. */
 const blogSlugs: { slug: string; publishedAt: string }[] = [
+  { slug: "sage-vs-odoo-maroc-comparatif-2026", publishedAt: "2026-06-22" },
   { slug: "facturation-electronique-dgi-maroc-2026-pdf-ubl", publishedAt: "2026-06-24" },
   { slug: "cout-erp-odoo-maroc-2026", publishedAt: "2026-06-18" },
   { slug: "odoo-vs-sap-vs-sage-comparatif-cout-pme-2026", publishedAt: "2026-06-11" },
