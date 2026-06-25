@@ -9,11 +9,13 @@ import { RevealRoot } from "@/components/RevealRoot";
 import ChatBot from "@/components/ChatBot";
 import { initTracker, trackPageVisit } from "@/lib/visitor-tracker";
 import { CookieConsent } from "@/components/CookieConsent";
+import { FeaturedArticlePopup } from "@/components/FeaturedArticlePopup";
 import { initAnalytics } from "@/lib/analytics";
 
 export const Layout = () => {
   const { pathname } = useLocation();
   const isAppointmentPage = pathname === "/prendre-rendez-vous";
+  const isHome = pathname === "/";
 
   useEffect(() => {
     initTracker();
@@ -46,6 +48,7 @@ export const Layout = () => {
       {!isAppointmentPage && <Footer />}
       {!isAppointmentPage && <ChatBot />}
       <CookieConsent />
+      {isHome && <FeaturedArticlePopup />}
     </div>
   );
 };
