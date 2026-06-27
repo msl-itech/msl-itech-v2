@@ -1,8 +1,121 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowRight, ArrowLeft, Sparkles, Clock, Calendar, ExternalLink } from "lucide-react";
+import { ArrowRight, ArrowLeft, Sparkles, Clock, Calendar, ExternalLink, Wrench } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { getPostBySlug } from "@/content/blogPosts";
 import { JsonLd } from "@/components/JsonLd";
+
+/**
+ * Maillage interne contextuel : chaque article pertinent renvoie vers
+ * l'outil interactif exact correspondant à la douleur traitée.
+ * Règle absolue : jamais de redirection vers l'accueil.
+ */
+const ARTICLE_TO_TOOL: Record<
+  string,
+  { path: string; label: string; description: string }
+> = {
+  "facturation-electronique-obligatoire-maroc-2026-erp": {
+    path: "/outils/conformite-dgi",
+    label: "Simulateur de conformité DGI",
+    description:
+      "En 2 minutes, mesurez votre risque de non-conformité à la réforme DGI et recevez votre fenêtre conseillée.",
+  },
+  "facturation-electronique-dgi-maroc-2026-pdf-ubl": {
+    path: "/outils/conformite-dgi",
+    label: "Simulateur de conformité DGI",
+    description:
+      "Évaluez votre exposition à l'obligation PDF/UBL et obtenez votre plan de mise en conformité.",
+  },
+  "facturation-electronique-transformation-digitale-maroc": {
+    path: "/outils/diagnostic-digital",
+    label: "Diagnostic maturité digitale",
+    description:
+      "Situez votre PME sur l'échelle Conformité → Intégration → Automatisation → Intelligence.",
+  },
+  "facturation-electronique-maroc-2026": {
+    path: "/outils/conformite-dgi",
+    label: "Simulateur de conformité DGI",
+    description: "Mesurez votre exposition à la réforme et obtenez votre plan d'action.",
+  },
+  "sage-vs-odoo-maroc-comparatif-2026": {
+    path: "/outils/comparateur-sage-odoo",
+    label: "Comparateur Sage vs Odoo",
+    description:
+      "Coût 3 ans, couverture fonctionnelle, conformité DGI : obtenez la comparaison adaptée à votre cas.",
+  },
+  "odoo-vs-sap-vs-sage-comparatif-cout-pme-2026": {
+    path: "/outils/comparateur-sage-odoo",
+    label: "Comparateur Sage vs Odoo",
+    description: "Affinez la comparaison Sage vs Odoo pour votre PME.",
+  },
+  "migration-excel-vers-odoo-maroc-methode": {
+    path: "/outils/roi-erp",
+    label: "Calculateur ROI ERP",
+    description:
+      "Estimez le gain 12 mois d'un passage d'Excel à Odoo pour votre PME marocaine.",
+  },
+  "roi-erp-pme-economies-2026": {
+    path: "/outils/roi-erp",
+    label: "Calculateur ROI ERP",
+    description: "Estimez en 2 minutes les gains 12 mois d'un déploiement Odoo.",
+  },
+  "cout-erp-odoo-maroc-2026": {
+    path: "/outils/roi-erp",
+    label: "Calculateur ROI ERP",
+    description: "Confrontez le coût Odoo au gain potentiel sur 12 mois.",
+  },
+  "couts-caches-projet-erp-2026": {
+    path: "/outils/roi-erp",
+    label: "Calculateur ROI ERP",
+    description: "Mesurez le gain net après prise en compte des coûts cachés.",
+  },
+  "devis-encaissement-odoo-automatisation-roi-maroc": {
+    path: "/outils/roi-erp",
+    label: "Calculateur ROI ERP",
+    description: "Quantifiez le gain d'un cycle devis → encaissement automatisé.",
+  },
+  "erp-odoo-relances-automatiques-ruptures-stock-ia-maroc": {
+    path: "/outils/diagnostic-digital",
+    label: "Diagnostic maturité digitale",
+    description:
+      "Identifiez votre prochain palier de digitalisation (relances, stock, IA).",
+  },
+  "agents-ia-odoo-pme-maroc-2026": {
+    path: "/outils/diagnostic-digital",
+    label: "Diagnostic maturité digitale",
+    description: "Êtes-vous prêt pour l'IA agentique ? Mesurez votre niveau.",
+  },
+  "copilote-conversationnel-odoo-ia-maroc": {
+    path: "/outils/diagnostic-digital",
+    label: "Diagnostic maturité digitale",
+    description: "Évaluez votre maturité avant d'ajouter un copilote IA à votre ERP.",
+  },
+  "donnees-propres-erp-avant-ia-odoo-maroc": {
+    path: "/outils/diagnostic-digital",
+    label: "Diagnostic maturité digitale",
+    description:
+      "Vos données sont-elles prêtes pour l'IA ? Mesurez votre niveau de Data Readiness.",
+  },
+  "odoo-saas-on-premise-hybride-maroc-2026": {
+    path: "/outils/roi-erp",
+    label: "Calculateur ROI ERP",
+    description: "Comparez le coût 12 mois d'un déploiement SaaS, on-premise ou hybride.",
+  },
+  "daf-marocain-pilotage-strategique-odoo-2026": {
+    path: "/outils/diagnostic-digital",
+    label: "Diagnostic maturité digitale",
+    description: "Le diagnostic conçu pour les DAF qui pilotent par la donnée.",
+  },
+  "budget-erp-horeca-maroc-2026": {
+    path: "/outils/roi-erp",
+    label: "Calculateur ROI ERP",
+    description: "Budget ERP HORECA : confrontez l'investissement au gain estimé.",
+  },
+  "gestion-stock-maroc-apres-1-5m-mad": {
+    path: "/outils/diagnostic-digital",
+    label: "Diagnostic maturité digitale",
+    description: "Mesurez votre maturité gestion de stock et identifiez les leviers prioritaires.",
+  },
+};
 
 export default function BlogPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -36,6 +149,8 @@ export default function BlogPage() {
       </section>
     );
   }
+
+  const relatedTool = ARTICLE_TO_TOOL[post.slug];
 
   const articleUrl = `https://msl-itech-v2.lovable.app/blog/${post.slug}`;
   const articleImage = post.image
@@ -229,6 +344,30 @@ export default function BlogPage() {
                   </details>
                 ))}
               </div>
+            </div>
+          )}
+
+          {relatedTool && (
+            <div
+              className="mt-14 rounded-[24px] border-2 p-6 md:p-8"
+              style={{ borderColor: "var(--gold)", backgroundColor: "rgba(255,221,87,0.08)" }}
+            >
+              <p className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
+                <Wrench size={12} /> Outil gratuit lié à cet article
+              </p>
+              <h2 className="mt-3 font-heading text-2xl font-bold text-brand-black">
+                {relatedTool.label}
+              </h2>
+              <p className="mt-2 font-body text-base text-brand-grey">
+                {relatedTool.description}
+              </p>
+              <Link
+                to={relatedTool.path}
+                className="mt-5 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold text-brand-black shadow-[0_18px_40px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
+                style={{ backgroundColor: "var(--gold)" }}
+              >
+                Lancer l'outil <ArrowRight size={16} />
+              </Link>
             </div>
           )}
 
