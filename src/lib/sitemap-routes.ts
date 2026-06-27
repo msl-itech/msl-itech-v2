@@ -45,6 +45,12 @@ const staticEntries: SitemapEntry[] = [
   { loc: "/creation-web", changefreq: "monthly", priority: 0.8 },
   { loc: "/marketing-digital", changefreq: "monthly", priority: 0.8 },
 
+  // Outils interactifs (tunnel de conversion)
+  { loc: "/outils/conformite-dgi", changefreq: "monthly", priority: 0.9 },
+  { loc: "/outils/roi-erp", changefreq: "monthly", priority: 0.9 },
+  { loc: "/outils/diagnostic-digital", changefreq: "monthly", priority: 0.9 },
+  { loc: "/outils/comparateur-sage-odoo", changefreq: "monthly", priority: 0.9 },
+
   // Pages corporate
   { loc: "/realisations", changefreq: "monthly", priority: 0.85 },
   { loc: "/notre-approche", changefreq: "monthly", priority: 0.9 },
