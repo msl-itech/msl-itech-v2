@@ -30,6 +30,13 @@ const companyCol = [
   { to: "/contact", label: "Contact" },
 ];
 
+const toolsCol = [
+  { to: "/outils/conformite-dgi", label: "Simulateur conformité DGI" },
+  { to: "/outils/roi-erp", label: "Calculateur ROI ERP" },
+  { to: "/outils/diagnostic-digital", label: "Diagnostic maturité digitale" },
+  { to: "/outils/comparateur-sage-odoo", label: "Comparateur Sage vs Odoo" },
+];
+
 const COUNTRIES = {
   BE: "🇧🇪 Belgique",
   MA: "🇲🇦 Maroc",
@@ -100,7 +107,7 @@ export const Footer = () => {
 
   return (
     <footer className="bg-brand-black text-brand-white">
-      <div className="container grid gap-4 px-4 py-10 sm:grid-cols-2 sm:gap-10 sm:px-6 sm:py-12 md:py-16 lg:grid-cols-4">
+      <div className="container grid gap-4 px-4 py-10 sm:grid-cols-2 sm:gap-10 sm:px-6 sm:py-12 md:py-16 lg:grid-cols-5">
         {/* Col 1 */}
         <div className="sm:col-span-2 lg:col-span-1">
           <Link to="/" aria-label="MSL-iTECH — accueil" className="inline-block">
@@ -134,6 +141,7 @@ export const Footer = () => {
 
         <FooterCol id="odoo" title="Odoo ERP" links={odooCol} openId={openId} setOpenId={setOpenId} />
         <FooterCol id="sectors" title="Secteurs" links={sectorsCol} openId={openId} setOpenId={setOpenId} />
+        <FooterCol id="tools" title="Outils gratuits" links={toolsCol} openId={openId} setOpenId={setOpenId} />
         <FooterCol
           id="company"
           title="Entreprise"
