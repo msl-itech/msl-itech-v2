@@ -39,6 +39,10 @@ const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const CgvPage = lazy(() => import("./pages/CgvPage"));
 const MentionsLegalesPage = lazy(() => import("./pages/MentionsLegalesPage"));
 const Loi0908Page = lazy(() => import("./pages/Loi0908Page"));
+const ConformiteDgiToolPage = lazy(() => import("./pages/outils/ConformiteDgiPage"));
+const RoiErpToolPage = lazy(() => import("./pages/outils/RoiErpPage"));
+const DiagnosticDigitalToolPage = lazy(() => import("./pages/outils/DiagnosticDigitalPage"));
+const ComparateurSageOdooToolPage = lazy(() => import("./pages/outils/ComparateurSageOdooPage"));
 
 const queryClient = new QueryClient();
 
@@ -101,6 +105,10 @@ const App = () => {
             <Route path="/conditions-generales-de-vente" element={<CgvPage />} />
             <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
             <Route path="/conformite-loi-09-08" element={<Loi0908Page />} />
+            <Route path="/outils/conformite-dgi" element={<ConformiteDgiToolPage />} />
+            <Route path="/outils/roi-erp" element={<RoiErpToolPage />} />
+            <Route path="/outils/diagnostic-digital" element={<DiagnosticDigitalToolPage />} />
+            <Route path="/outils/comparateur-sage-odoo" element={<ComparateurSageOdooToolPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>
