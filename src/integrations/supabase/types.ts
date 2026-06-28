@@ -14,7 +14,107 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      lead_sequence_sends: {
+        Row: {
+          error: string | null
+          id: string
+          kind: string
+          recipient: string
+          sent_at: string
+          sequence_id: string | null
+          status: string
+          step: number
+          subject: string | null
+        }
+        Insert: {
+          error?: string | null
+          id?: string
+          kind: string
+          recipient: string
+          sent_at?: string
+          sequence_id?: string | null
+          status?: string
+          step: number
+          subject?: string | null
+        }
+        Update: {
+          error?: string | null
+          id?: string
+          kind?: string
+          recipient?: string
+          sent_at?: string
+          sequence_id?: string | null
+          status?: string
+          step?: number
+          subject?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_sequence_sends_sequence_id_fkey"
+            columns: ["sequence_id"]
+            isOneToOne: false
+            referencedRelation: "lead_sequences"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_sequences: {
+        Row: {
+          company: string | null
+          current_step: number
+          email: string
+          id: string
+          lead_name: string | null
+          next_send_at: string | null
+          phone: string | null
+          score: number
+          segment: string
+          started_at: string
+          status: string
+          template_data: Json
+          tool_slug: string
+          unsubscribe_token: string
+          unsubscribed_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          current_step?: number
+          email: string
+          id?: string
+          lead_name?: string | null
+          next_send_at?: string | null
+          phone?: string | null
+          score?: number
+          segment: string
+          started_at?: string
+          status?: string
+          template_data?: Json
+          tool_slug: string
+          unsubscribe_token?: string
+          unsubscribed_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          current_step?: number
+          email?: string
+          id?: string
+          lead_name?: string | null
+          next_send_at?: string | null
+          phone?: string | null
+          score?: number
+          segment?: string
+          started_at?: string
+          status?: string
+          template_data?: Json
+          tool_slug?: string
+          unsubscribe_token?: string
+          unsubscribed_at?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
