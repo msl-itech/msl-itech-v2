@@ -1,24 +1,5 @@
-// SMTP sender shared helper — uses Office 365 / generic SMTP via denomailer.
-import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
-
-let client: SMTPClient | null = null;
-
-function getClient(): SMTPClient {
-  if (client) return client;
-  const hostname = Deno.env.get("SMTP_HOST")!;
-  const port = Number(Deno.env.get("SMTP_PORT") ?? "587");
-  const username = Deno.env.get("SMTP_USERNAME")!;
-  const password = Deno.env.get("SMTP_PASSWORD")!;
-  client = new SMTPClient({
-    connection: {
-      hostname,
-      port,
-      tls: port === 465,
-      auth: { username, password },
-    },
-  });
-  return client;
-}
+// SMTP sender shared helper — uses Office 365 / generic SMTP via nodemailer.
+import nodemailer from "npm:nodemailer@6.9.16";
 
 export type SendArgs = {
   to: string | string[];
@@ -29,14 +10,27 @@ export type SendArgs = {
 };
 
 export async function sendMail(args: SendArgs): Promise<void> {
+  const host = Deno.env.get("SMTP_HOST")!;
+  const port = Number(Deno.env.get("SMTP_PORT") ?? "587");
+  const user = Deno.env.get("SMTP_USERNAME")!;
+  const pass = Deno.env.get("SMTP_PASSWORD")!;
   const from = Deno.env.get("SMTP_FROM")!;
   const fromName = Deno.env.get("SMTP_FROM_NAME") ?? "MSL-iTECH";
-  const c = getClient();
-  await c.send({
+
+  const transporter = nodemailer.createTransport({
+    host,
+    port,
+    secure: port === 465, // true SSL on 465, STARTTLS on 587
+    requireTLS: port === 587,
+    auth: { user, pass },
+    tls: { ciphers: "TLSv1.2", minVersion: "TLSv1.2" },
+  });
+
+  await transporter.sendMail({
     from: `${fromName} <${from}>`,
-    to: args.to,
+    to: Array.isArray(args.to) ? args.to.join(",") : args.to,
     subject: args.subject,
-    content: args.text ?? "Veuillez ouvrir cet email au format HTML.",
+    text: args.text ?? "Veuillez ouvrir cet email au format HTML.",
     html: args.html,
     replyTo: args.replyTo,
   });
