@@ -43,6 +43,7 @@ const ConformiteDgiToolPage = lazy(() => import("./pages/outils/ConformiteDgiPag
 const RoiErpToolPage = lazy(() => import("./pages/outils/RoiErpPage"));
 const DiagnosticDigitalToolPage = lazy(() => import("./pages/outils/DiagnosticDigitalPage"));
 const ComparateurSageOdooToolPage = lazy(() => import("./pages/outils/ComparateurSageOdooPage"));
+const EmailUnsubscribePage = lazy(() => import("./pages/EmailUnsubscribePage"));
 
 const queryClient = new QueryClient();
 
@@ -109,6 +110,7 @@ const App = () => {
             <Route path="/outils/roi-erp" element={<RoiErpToolPage />} />
             <Route path="/outils/diagnostic-digital" element={<DiagnosticDigitalToolPage />} />
             <Route path="/outils/comparateur-sage-odoo" element={<ComparateurSageOdooToolPage />} />
+            <Route path="/email/desinscription" element={<EmailUnsubscribePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>
