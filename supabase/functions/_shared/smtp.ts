@@ -1,23 +1,25 @@
 // SMTP sender shared helper — uses Office 365 / generic SMTP via denomailer.
 import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
-let client: SMTPClient | null = null;
-
-function getClient(): SMTPClient {
-  if (client) return client;
+function newClient(): SMTPClient {
   const hostname = Deno.env.get("SMTP_HOST")!;
   const port = Number(Deno.env.get("SMTP_PORT") ?? "587");
   const username = Deno.env.get("SMTP_USERNAME")!;
   const password = Deno.env.get("SMTP_PASSWORD")!;
-  client = new SMTPClient({
+  // Office 365 quirks with denomailer:
+  //  - port 587 = STARTTLS (tls: false at connect, then upgrade)
+  //  - disable pooling and pipelining (O365 rejects)
+  return new SMTPClient({
     connection: {
       hostname,
       port,
       tls: port === 465,
       auth: { username, password },
     },
+    pool: false,
+    debug: { log: false, allowUnsecure: false, encodeLB: false, noStartTLS: false },
+    client: { warning: "log", preserveTimestamps: false },
   });
-  return client;
 }
 
 export type SendArgs = {
@@ -31,15 +33,19 @@ export type SendArgs = {
 export async function sendMail(args: SendArgs): Promise<void> {
   const from = Deno.env.get("SMTP_FROM")!;
   const fromName = Deno.env.get("SMTP_FROM_NAME") ?? "MSL-iTECH";
-  const c = getClient();
-  await c.send({
-    from: `${fromName} <${from}>`,
-    to: args.to,
-    subject: args.subject,
-    content: args.text ?? "Veuillez ouvrir cet email au format HTML.",
-    html: args.html,
-    replyTo: args.replyTo,
-  });
+  const c = newClient();
+  try {
+    await c.send({
+      from: `${fromName} <${from}>`,
+      to: args.to,
+      subject: args.subject,
+      content: args.text ?? "Veuillez ouvrir cet email au format HTML.",
+      html: args.html,
+      replyTo: args.replyTo,
+    });
+  } finally {
+    try { await c.close(); } catch { /* ignore */ }
+  }
 }
 
 export function wrapHtml(opts: {
