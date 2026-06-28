@@ -1,26 +1,5 @@
-// SMTP sender shared helper — uses Office 365 / generic SMTP via denomailer.
-import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
-
-function newClient(): SMTPClient {
-  const hostname = Deno.env.get("SMTP_HOST")!;
-  const port = Number(Deno.env.get("SMTP_PORT") ?? "587");
-  const username = Deno.env.get("SMTP_USERNAME")!;
-  const password = Deno.env.get("SMTP_PASSWORD")!;
-  // Office 365 quirks with denomailer:
-  //  - port 587 = STARTTLS (tls: false at connect, then upgrade)
-  //  - disable pooling and pipelining (O365 rejects)
-  return new SMTPClient({
-    connection: {
-      hostname,
-      port,
-      tls: port === 465,
-      auth: { username, password },
-    },
-    pool: false,
-    debug: { log: false, allowUnsecure: false, encodeLB: false, noStartTLS: false },
-    client: { warning: "log", preserveTimestamps: false },
-  });
-}
+// SMTP sender shared helper — uses Office 365 / generic SMTP via nodemailer.
+import nodemailer from "npm:nodemailer@6.9.16";
 
 export type SendArgs = {
   to: string | string[];
@@ -31,21 +10,30 @@ export type SendArgs = {
 };
 
 export async function sendMail(args: SendArgs): Promise<void> {
+  const host = Deno.env.get("SMTP_HOST")!;
+  const port = Number(Deno.env.get("SMTP_PORT") ?? "587");
+  const user = Deno.env.get("SMTP_USERNAME")!;
+  const pass = Deno.env.get("SMTP_PASSWORD")!;
   const from = Deno.env.get("SMTP_FROM")!;
   const fromName = Deno.env.get("SMTP_FROM_NAME") ?? "MSL-iTECH";
-  const c = newClient();
-  try {
-    await c.send({
-      from: `${fromName} <${from}>`,
-      to: args.to,
-      subject: args.subject,
-      content: args.text ?? "Veuillez ouvrir cet email au format HTML.",
-      html: args.html,
-      replyTo: args.replyTo,
-    });
-  } finally {
-    try { await c.close(); } catch { /* ignore */ }
-  }
+
+  const transporter = nodemailer.createTransport({
+    host,
+    port,
+    secure: port === 465, // true SSL on 465, STARTTLS on 587
+    requireTLS: port === 587,
+    auth: { user, pass },
+    tls: { ciphers: "TLSv1.2", minVersion: "TLSv1.2" },
+  });
+
+  await transporter.sendMail({
+    from: `${fromName} <${from}>`,
+    to: Array.isArray(args.to) ? args.to.join(",") : args.to,
+    subject: args.subject,
+    text: args.text ?? "Veuillez ouvrir cet email au format HTML.",
+    html: args.html,
+    replyTo: args.replyTo,
+  });
 }
 
 export function wrapHtml(opts: {
