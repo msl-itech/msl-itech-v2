@@ -13,7 +13,6 @@ const ODOO_HEADERS: Record<string, string> = {
   "x-signature":
     "196b63f5e878f2df528b484da7e6db0a923a8ab497d53b5977166af3b0e6068f",
   "x-client-id": "client_mslitech",
-  "x-company-id": "3",
 };
 
 interface PendingLead {
