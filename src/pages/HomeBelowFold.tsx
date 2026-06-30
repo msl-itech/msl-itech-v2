@@ -82,7 +82,7 @@ const homeFaqs: { q: string; a: string }[] = [
   },
   {
     q: "En combien de temps une implémentation Odoo est-elle opérationnelle ?",
-    a: "Un périmètre essentiel (CRM, Vente, Facturation) est en général opérationnel en 2 à 4 semaines. Un déploiement multi-modules avec reprise de données et formation prend 6 à 12 semaines selon la taille de l'entreprise.",
+    a: "Le délai dépend fortement du périmètre et de la complexité de votre projet. À titre indicatif, un périmètre essentiel (CRM, Vente, Facturation) peut être opérationnel en quelques semaines, tandis qu'un déploiement multi-modules avec reprise de données et formation s'étend généralement sur plusieurs semaines à quelques mois. Nous établissons un planning précis après analyse de vos besoins.",
   },
   {
     q: "Quelles versions d'Odoo MSL-iTECH déploie-t-il ?",
