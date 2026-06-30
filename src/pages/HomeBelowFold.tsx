@@ -86,7 +86,7 @@ const homeFaqs: { q: string; a: string }[] = [
   },
   {
     q: "Quelles versions d'Odoo MSL-iTECH déploie-t-il ?",
-    a: "Nos consultants sont certifiés Odoo v18 et v19 pour l'instant. Les nouveaux projets sont déployés sur v18 ou v19 selon les modules tiers nécessaires, et nous assurons les migrations depuis v15/v16/v17. Notre équipe monte en version au fil des sorties d'Odoo.",
+    a: "Nos consultants sont certifiés Odoo v18 et v19, et nous maîtrisons l'ensemble des versions d'Odoo. Les nouveaux projets sont déployés sur v18 ou v19 selon les modules tiers nécessaires, et nous assurons les migrations depuis les versions antérieures. Notre équipe monte en version au fil des sorties d'Odoo.",
   },
 ];
 
