@@ -2443,12 +2443,24 @@ export const blogPosts: BlogPost[] = [
       { type: "h3", text: "1. La licence Odoo Enterprise" },
       {
         type: "p",
-        text: "Odoo facture sa licence Enterprise à environ 24,90 €/utilisateur/mois en formule Standard (tarifs Odoo SA 2026, convertis au taux en vigueur). Pour une PME marocaine de 8 utilisateurs, cela représente environ 24 000 MAD/an. Odoo Community est gratuit mais ne bénéficie ni du support officiel ni de certains modules clés (comptabilité marocaine, localisation fiscale). La plupart des PME structurées choisissent Enterprise.",
+        text: "Odoo publie ses tarifs en dollars américains (US$) — nous reprenons cette devise pour éviter les écarts liés au taux de change MAD/EUR/USD. Au Maroc, l'abonnement est facturé en US$ par Odoo SA, puis converti par votre banque le jour du prélèvement. Trois plans existent (source : page Tarification officielle d'Odoo, odoo.com/pricing) :",
+      },
+      {
+        type: "ul",
+        items: [
+          "Une App Gratuite : US$ 0 — une seule application, utilisateurs illimités, hébergement Odoo Online uniquement.",
+          "Standard : US$ 7,25 /utilisateur/mois (engagement annuel) ou US$ 9,10 /utilisateur/mois (mensuel) — toutes les apps, Odoo Online uniquement.",
+          "Personnalisé (Custom) : US$ 10,90 /utilisateur/mois (annuel) ou US$ 13,60 /utilisateur/mois (mensuel) — toutes les apps, Odoo Online / Odoo.sh / On-premise, Odoo Studio, multi-sociétés, API externes.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Pour une PME marocaine de 8 utilisateurs sur le plan Personnalisé annuel, cela représente environ US$ 1 046 /an de licence (≈ 10 500 MAD/an au taux indicatif de juin 2026). Odoo Community reste gratuit mais ne donne accès ni au support officiel, ni à la localisation marocaine maintenue, ni à Studio. La majorité des PME structurées choisissent le plan Personnalisé pour conserver la liberté d'hébergement et le multi-sociétés.",
       },
       { type: "h3", text: "2. L'hébergement" },
       {
         type: "p",
-        text: "Trois options : Odoo Online (inclus dans la licence), Odoo.sh (à partir de 72 €/mois pour un serveur dédié) ou auto-hébergement sur VPS marocain ou international (300 à 1 500 MAD/mois selon les performances). Pour une PME de moins de 20 utilisateurs, Odoo Online suffit dans la majorité des cas.",
+        text: "Trois options selon votre besoin. Odoo Online est inclus dans la licence (SaaS multi-tenant, pas d'accès serveur, pas de modules custom). Odoo.sh est une plateforme PaaS dédiée : son tarif n'est pas une enveloppe fermée — il dépend de la configuration choisie (workers, RAM, stockage, base de données dédiée ou mutualisée, environnements de staging, sauvegardes étendues). Le prix se calcule via le configurateur officiel Odoo.sh en fonction de votre charge réelle. Enfin, l'auto-hébergement (On-premise) sur VPS marocain ou international se situe en général entre 300 et 1 500 MAD/mois selon les performances. Pour une PME de moins de 20 utilisateurs sans développements lourds, Odoo Online suffit dans la majorité des cas.",
       },
       { type: "h3", text: "3. L'implémentation par un intégrateur" },
       {
@@ -2459,9 +2471,13 @@ export const blogPosts: BlogPost[] = [
       { type: "h3", text: "Taux journalier des consultants Odoo au Maroc" },
       {
         type: "p",
-        text: "Le marché marocain présente une fourchette large : 800 à 2 500 MAD/jour pour un consultant junior, 2 500 à 5 000 MAD/jour pour un consultant senior ou un chef de projet. Les cabinets certifiés Odoo Ready ou Silver facturent en général entre 1 500 et 4 000 MAD/jour. Un freelance non certifié peut descendre sous les 1 000 MAD/jour — mais sans les garanties de méthodologie et de continuité.",
+        text: "Les fourchettes ci-dessous proviennent de l'observation directe du marché par MSL-iTECH (devis comparés, recrutements, appels d'offres PME marocaines sur 2024-2026) — il n'existe pas de barème officiel publié par Odoo SA pour les TJM partenaires. À titre indicatif : 800 à 2 500 MAD/jour pour un consultant junior, 2 500 à 5 000 MAD/jour pour un consultant senior ou un chef de projet. Les cabinets référencés Odoo (Ready / Silver / Gold) facturent en général entre 1 500 et 4 000 MAD/jour. Un freelance non certifié peut descendre sous les 1 000 MAD/jour — sans les garanties de méthodologie, de continuité et de support.",
       },
       { type: "h3", text: "Fourchettes d'implémentation selon le périmètre" },
+      {
+        type: "p",
+        text: "Ces fourchettes sont issues de notre retour d'expérience d'intégrateur sur des projets PME marocaines (10 à 80 utilisateurs) et recoupées avec les devis publics que nous voyons passer chez les prospects. Elles servent de repère de cadrage — votre devis final dépend du périmètre exact, du volume de données et du niveau de personnalisation.",
+      },
       {
         type: "ul",
         items: [
@@ -2528,7 +2544,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "La licence Odoo Community est-elle suffisante pour une PME au Maroc ?",
-        a: "Odoo Community est gratuit mais ne dispose pas de la localisation comptable marocaine complète ni du support officiel. Pour une PME structurée avec des obligations fiscales, la licence Enterprise est recommandée (environ 24,90 €/utilisateur/mois).",
+        a: "Odoo Community est gratuit mais ne dispose pas de la localisation comptable marocaine maintenue, ni du support officiel, ni de Studio. Pour une PME structurée avec des obligations fiscales, la licence Enterprise est recommandée : Standard à US$ 7,25 /utilisateur/mois (annuel) ou Personnalisé à US$ 10,90 /utilisateur/mois (annuel), facturée en dollars américains par Odoo SA.",
       },
     ],
   },
