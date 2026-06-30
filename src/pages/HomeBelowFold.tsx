@@ -82,7 +82,7 @@ const homeFaqs: { q: string; a: string }[] = [
   },
   {
     q: "En combien de temps une implémentation Odoo est-elle opérationnelle ?",
-    a: "Le délai dépend du périmètre, des modules choisis et surtout du niveau de personnalisation requis. Un projet standard sans développement spécifique peut avancer vite, mais dès qu'il y a des adaptations sur-mesure, des reprises de données ou des intégrations tierces, le calendrier s'allonge proportionnellement. Nous établissons un planning précis et réaliste après analyse complète de vos besoins, sans engagement de délais figés à l'avance.",
+    a: "Le délai dépend fortement du périmètre et de la complexité de votre projet. À titre indicatif, un périmètre essentiel (CRM, Vente, Facturation) peut être opérationnel en quelques semaines, tandis qu'un déploiement multi-modules avec reprise de données et formation s'étend généralement sur plusieurs semaines à quelques mois. Nous établissons un planning précis après analyse de vos besoins.",
   },
   {
     q: "Quelles versions d'Odoo MSL-iTECH déploie-t-il ?",
