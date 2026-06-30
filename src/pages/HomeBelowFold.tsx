@@ -77,8 +77,8 @@ const homeFaqs: { q: string; a: string }[] = [
     a: "Chaque projet est chiffré sur mesure après un cadrage gratuit de 30 minutes. Sur les volumes comparables, nos tarifs sont 20 à 50% plus accessibles que ceux pratiqués par les grands cabinets d'intégration. Devis détaillé sous 48h.",
   },
   {
-    q: "MSL-iTECH intervient dans quels pays ?",
-    a: "Notre équipe est basée à Marrakech, au Maroc. Nous accompagnons les PME marocaines sur site et à distance dans tout le royaume.",
+    q: "MSL-ITECH intervient dans quel pays ?",
+    a: "Notre équipe est basée à Marrakech, au Maroc. Nous accompagnons les entreprises sur site comme à distance, au Maroc et à l'international, avec une exigence de qualité et un niveau de service aux standards occidentaux.",
   },
   {
     q: "En combien de temps une implémentation Odoo est-elle opérationnelle ?",
