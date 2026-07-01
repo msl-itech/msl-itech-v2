@@ -2473,25 +2473,6 @@ export const blogPosts: BlogPost[] = [
         type: "p",
         text: "Les fourchettes ci-dessous proviennent de l'observation directe du marché par MSL-iTECH (devis comparés, recrutements, appels d'offres PME marocaines sur 2024-2026) — il n'existe pas de barème officiel publié par Odoo SA pour les TJM partenaires. À titre indicatif : 800 à 2 500 MAD/jour pour un consultant junior, 2 500 à 5 000 MAD/jour pour un consultant senior ou un chef de projet. Les cabinets référencés Odoo (Ready / Silver / Gold) facturent en général entre 1 500 et 4 000 MAD/jour. Un freelance non certifié peut descendre sous les 1 000 MAD/jour — sans les garanties de méthodologie, de continuité et de support.",
       },
-      { type: "h3", text: "Fourchettes d'implémentation selon le périmètre" },
-      {
-        type: "p",
-        text: "Ces fourchettes sont issues de notre retour d'expérience d'intégrateur sur des projets PME marocaines (10 à 80 utilisateurs) et recoupées avec les devis publics que nous voyons passer chez les prospects. Elles servent de repère de cadrage — votre devis final dépend du périmètre exact, du volume de données et du niveau de personnalisation.",
-      },
-      {
-        type: "ul",
-        items: [
-          "CRM + Facturation seuls : 15 000 à 40 000 MAD",
-          "CRM + Comptabilité + Stock : 40 000 à 100 000 MAD",
-          "ERP complet (CRM, Finance, Stock, RH, Production) : 100 000 à 300 000 MAD",
-          "Multi-sociétés ou multi-sites : ajouter 30 à 50 % au périmètre équivalent",
-          "Développements spécifiques (modules custom) : 1 500 à 4 000 MAD/jour en sus",
-        ],
-      },
-      {
-        type: "p",
-        text: "Ces fourchettes reflètent les prix pratiqués par des intégrateurs certifiés au Maroc en 2026. Elles incluent le paramétrage, la formation de base et un accompagnement post-démarrage. La migration de données historiques et les développements spécifiques sont généralement facturés en supplément.",
-      },
       { type: "h2", text: "Pourquoi le prix varie autant d'un projet à l'autre" },
       {
         type: "p",
@@ -2532,7 +2513,7 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "Combien coûte Odoo au Maroc pour une PME en 2026 ?",
-        a: "Le coût total dépend du périmètre. Pour une PME marocaine type (8 utilisateurs, 3 modules), le TCO sur 3 ans se situe entre 120 000 et 250 000 MAD, incluant licence, hébergement, implémentation et support. Un projet CRM + Facturation seul démarre à partir de 15 000 MAD d'implémentation.",
+        a: "Le coût total dépend du périmètre. Pour une PME marocaine type (8 utilisateurs, 3 modules), le TCO sur 3 ans se situe entre 120 000 et 250 000 MAD, incluant licence, hébergement, implémentation et support. Le coût d'implémentation est le poste le plus variable : il dépend du nombre de modules, du volume de données à migrer et du niveau de personnalisation requis.",
       },
       {
         q: "Quel est le tarif d'un consultant Odoo au Maroc ?",
