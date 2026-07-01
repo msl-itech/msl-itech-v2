@@ -2513,7 +2513,7 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "Combien coûte Odoo au Maroc pour une PME en 2026 ?",
-        a: "Le coût total dépend du périmètre. Pour une PME marocaine type (8 utilisateurs, 3 modules), le TCO sur 3 ans se situe entre 120 000 et 250 000 MAD, incluant licence, hébergement, implémentation et support. Un projet CRM + Facturation seul démarre à partir de 15 000 MAD d'implémentation.",
+        a: "Le coût total dépend du périmètre. Pour une PME marocaine type (8 utilisateurs, 3 modules), le TCO sur 3 ans se situe entre 120 000 et 250 000 MAD, incluant licence, hébergement, implémentation et support. Le coût d'implémentation est le poste le plus variable : il dépend du nombre de modules, du volume de données à migrer et du niveau de personnalisation requis.",
       },
       {
         q: "Quel est le tarif d'un consultant Odoo au Maroc ?",
