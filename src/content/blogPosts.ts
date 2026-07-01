@@ -2474,7 +2474,6 @@ export const blogPosts: BlogPost[] = [
         text: "Les fourchettes ci-dessous proviennent de l'observation directe du marché par MSL-iTECH (devis comparés, recrutements, appels d'offres PME marocaines sur 2024-2026) — il n'existe pas de barème officiel publié par Odoo SA pour les TJM partenaires. À titre indicatif : 800 à 2 500 MAD/jour pour un consultant junior, 2 500 à 5 000 MAD/jour pour un consultant senior ou un chef de projet. Les cabinets référencés Odoo (Ready / Silver / Gold) facturent en général entre 1 500 et 4 000 MAD/jour. Un freelance non certifié peut descendre sous les 1 000 MAD/jour — sans les garanties de méthodologie, de continuité et de support.",
       },
       { type: "h2", text: "Pourquoi le prix varie autant d'un projet à l'autre" },
-      { type: "h2", text: "Pourquoi le prix varie autant d'un projet à l'autre" },
       {
         type: "p",
         text: "Deux PME marocaines du même secteur avec le même chiffre d'affaires peuvent avoir des budgets ERP très différents. Les facteurs déterminants :",
