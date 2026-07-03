@@ -1,4 +1,5 @@
-import { Briefcase, Users, Receipt, LineChart } from "lucide-react";
+import { Briefcase, Users, Receipt, LineChart, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
@@ -127,6 +128,47 @@ export default function TourismePage() {
       faqs={faqs}
       ctaTitle="Réserver ma démo Tourisme gratuite"
       ctaSubtitle="Démo sur site ou à distance · Réponse sous 24h · +212 6 89 30 62 78"
+      extraSection={
+        <section className="bg-white py-20">
+          <div className="container">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+                <span className="inline-block h-px w-8 bg-brand-blue" />
+                Aller plus loin
+              </p>
+              <h2 className="font-heading text-3xl font-bold text-brand-black md:text-4xl">
+                Ressources et secteurs connexes
+              </h2>
+              <p className="mt-4 font-body text-base text-brand-grey">
+                Les acteurs du tourisme marocain combinent souvent hébergement, restauration et opérations multi-sites. Explorez les pages associées pour préparer votre déploiement Odoo.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {[
+                { to: "/odoo-horeca-maroc", title: "Odoo HORECA Maroc", desc: "Hôtels, restaurants et cafés : caisse, stock, F&B et facturation intégrés." },
+                { to: "/odoo-crm-ventes", title: "Odoo CRM & Ventes", desc: "Pipeline commercial, devis structurés et relances automatiques pour vos voyageurs." },
+                { to: "/odoo-finance-comptabilite", title: "Odoo Finance & Comptabilité", desc: "Facturation, acomptes et clôture comptable conformes à la réglementation marocaine." },
+                { to: "/entreprise-multi-sites", title: "Entreprise multi-sites", desc: "Piloter plusieurs agences, hôtels ou points de vente depuis un ERP unique." },
+                { to: "/realisations", title: "Nos réalisations", desc: "Cas concrets de PME marocaines transformées par MSL-iTECH." },
+                { to: "/blog/budget-erp-horeca-maroc-2026", title: "Budget ERP HORECA 2026", desc: "Repères de coût et ROI transposables aux structures touristiques." },
+              ].map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  className="group rounded-2xl border bg-white p-6 transition hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-[0_20px_50px_-20px_rgba(18,77,90,0.3)]"
+                  style={{ borderColor: "var(--grey-light)" }}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="font-heading text-lg font-bold text-brand-black">{l.title}</h3>
+                    <ArrowUpRight size={18} className="shrink-0 text-brand-gold transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </div>
+                  <p className="mt-2 font-body text-sm text-brand-grey">{l.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      }
     />
   );
 }
