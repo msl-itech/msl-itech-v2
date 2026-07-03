@@ -342,7 +342,7 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
             const isFeature = i === 0;
             const Card = (
               <div className="group relative isolate flex h-full flex-col justify-end overflow-hidden rounded-[28px] ring-1 ring-black/5 shadow-[0_18px_45px_-22px_rgba(13,13,13,0.4)] transition-shadow duration-500 hover:shadow-[0_30px_70px_-25px_rgba(18,77,90,0.55)]">
-                <img src={s.img} alt={s.label} loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.08]" />
+                <img src={s.img} alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover transition duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.08]" />
                 <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-brand-black via-brand-black/80 via-45% to-brand-black/20" />
                 <div aria-hidden className="absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(420px 220px at 50% 100%, rgba(255,221,87,0.35), transparent 70%)" }} />
                 <div className="absolute inset-x-5 top-5 flex items-start justify-between gap-3">
@@ -447,7 +447,7 @@ function CaseStudy({ market }: { market: "BE" | "MA" }) {
       <div className="grid gap-5 lg:grid-cols-5">
         <div className="relative lg:col-span-3">
           <div className="relative h-full min-h-[420px] overflow-hidden rounded-[28px] border shadow-[0_30px_80px_-30px_rgba(18,77,90,0.3)]" style={{ borderColor: "var(--grey-light)" }}>
-            <img src={data.img} alt={data.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+            <img src={data.img} alt={`Référence Odoo — projet réalisé pour ${data.name}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute left-6 top-6"><Sticker rotate={-6}>Référence vérifiée</Sticker></div>
           </div>
         </div>
