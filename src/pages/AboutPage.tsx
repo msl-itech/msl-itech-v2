@@ -155,7 +155,7 @@ export default function AboutPage() {
             <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
               <img
                 src={pillarErp}
-                alt="MSL-iTECH — équipe & expertise Odoo"
+                alt="Équipe de consultants Odoo certifiés MSL-iTECH réunie autour d'un tableau de bord ERP au Maroc"
                 className="absolute inset-0 h-full w-full object-cover"
                 loading="eager"
                 fetchPriority="high"

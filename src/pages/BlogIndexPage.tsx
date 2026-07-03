@@ -99,7 +99,7 @@ export default function BlogIndexPage() {
             <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
               <img
                 src={pillarMarketing}
-                alt="Blog MSL-iTECH"
+                alt="Bureau de travail avec ordinateur affichant des articles sur Odoo, l'ERP et la transformation digitale des PME marocaines"
                 className="absolute inset-0 h-full w-full object-cover"
               loading="eager" fetchPriority="high" decoding="async"/>
               <div
@@ -213,7 +213,7 @@ export default function BlogIndexPage() {
                 {featured.image ? (
                   <img
                     src={featured.image}
-                    alt={featured.title}
+                    alt={`Illustration de l'article de blog : ${featured.title}`}
                     className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     loading="lazy"
                     width={1280}
@@ -351,7 +351,7 @@ export default function BlogIndexPage() {
                   {p.image ? (
                     <img
                       src={p.image}
-                      alt={p.title}
+                      alt={`Illustration de l'article de blog : ${p.title}`}
                       className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                       loading="lazy"
                       width={1280}
