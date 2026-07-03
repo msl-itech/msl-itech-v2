@@ -11,6 +11,7 @@ import { initTracker, trackPageVisit } from "@/lib/visitor-tracker";
 import { CookieConsent } from "@/components/CookieConsent";
 import { FeaturedArticlePopup } from "@/components/FeaturedArticlePopup";
 import { initAnalytics } from "@/lib/analytics";
+import { GlobalSEO } from "@/hooks/useProductSeo";
 
 export const Layout = () => {
   const { pathname } = useLocation();
@@ -32,6 +33,7 @@ export const Layout = () => {
         isAppointmentPage ? "h-dvh overflow-hidden" : "min-h-screen"
       }`}
     >
+      <GlobalSEO />
       <ScrollToTop />
       {!isAppointmentPage && <SmoothScroll />}
       {!isAppointmentPage && <ScrollProgress />}
