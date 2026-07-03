@@ -39,13 +39,13 @@ describe("useProductSeo", () => {
   });
 
   it("sets title, description, canonical, OG and Twitter tags", async () => {
-    await renderSeo({
+    renderSeo({
       title: "Test Page — MSL",
       description: "Une description test pour le SEO.",
       path: "/test-path",
     });
 
-    expect(document.title).toBe("Test Page — MSL");
+    await waitFor(() => expect(document.title).toBe("Test Page — MSL"));
     expect(meta('meta[name="description"]')).toBe(
       "Une description test pour le SEO."
     );
@@ -61,33 +61,37 @@ describe("useProductSeo", () => {
   });
 
   it("supports a custom ogImage", async () => {
-    await renderSeo({
+    renderSeo({
       title: "Article",
       description: "Article description",
       path: "/blog/x",
       ogImage: "/custom.jpg",
       ogType: "article",
     });
-    expect(meta('meta[property="og:image"]')).toContain("/custom.jpg");
+    await waitFor(() =>
+      expect(meta('meta[property="og:image"]')).toContain("/custom.jpg"),
+    );
   });
 
   it("emits a FAQPage JSON-LD when faqs are provided", async () => {
-    await renderSeo({
+    renderSeo({
       title: "FAQ page",
       description: "...",
       path: "/faq",
       ldId: "ld-faq-test",
       faqs: [{ q: "Q1?", a: "A1." }],
     });
-    const scripts = Array.from(
-      document.head.querySelectorAll<HTMLScriptElement>(
-        'script[type="application/ld+json"]',
-      ),
-    );
-    const faq = scripts
-      .map((s) => JSON.parse(s.textContent ?? "{}"))
-      .find((j) => j["@type"] === "FAQPage");
-    expect(faq).toBeTruthy();
-    expect(faq.mainEntity[0].name).toBe("Q1?");
+    await waitFor(() => {
+      const scripts = Array.from(
+        document.head.querySelectorAll<HTMLScriptElement>(
+          'script[type="application/ld+json"]',
+        ),
+      );
+      const faq = scripts
+        .map((s) => JSON.parse(s.textContent ?? "{}"))
+        .find((j) => j["@type"] === "FAQPage");
+      expect(faq).toBeTruthy();
+      expect(faq.mainEntity[0].name).toBe("Q1?");
+    });
   });
 });
