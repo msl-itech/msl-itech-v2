@@ -167,7 +167,7 @@ export default function TarifsPage() {
             <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
               <img
                 src={pillarErp}
-                alt="Approche MSL-iTECH"
+                alt="Consultants MSL-iTECH présentant la méthodologie d'implémentation Odoo — cadrage, paramétrage et accompagnement des PME"
                 className="absolute inset-0 h-full w-full object-cover"
                 loading="eager" fetchPriority="high" decoding="async"
               />

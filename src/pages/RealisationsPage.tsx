@@ -298,7 +298,7 @@ export default function RealisationsPage() {
             <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
               <img
                 src={pillarWeb}
-                alt="Réalisations MSL-iTECH"
+                alt="Aperçu de projets Odoo déployés par MSL-iTECH pour des PME marocaines — interfaces ERP, CRM et gestion de stock"
                 className="absolute inset-0 h-full w-full object-cover"
               loading="eager" fetchPriority="high" decoding="async"/>
               <div
@@ -416,7 +416,7 @@ export default function RealisationsPage() {
                   <div className="relative h-56 overflow-hidden md:h-64">
                     <img
                       src={c.image}
-                      alt={c.name}
+                      alt={`Projet Odoo réalisé par MSL-iTECH pour ${c.name}`}
                       className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     loading="lazy" decoding="async"/>
                     <div

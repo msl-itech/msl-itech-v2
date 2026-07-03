@@ -263,7 +263,7 @@ export default function BlogPage() {
             >
               <img
                 src={post.image}
-                alt={post.title}
+                alt={`Illustration principale de l'article : ${post.title}`}
                 className="block aspect-[16/9] w-full object-cover"
                 width={1280}
                 height={720}
