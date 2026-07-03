@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -6,6 +6,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useMarket } from "@/hooks/useMarket";
+import { useProductSeo } from "@/hooks/useProductSeo";
 
 import heroBeImg from "@/assets/hero-be.webp";
 import heroMaImg from "@/assets/hero-ma.webp";
@@ -35,31 +36,15 @@ const HomeFaqJsonLd = lazy(() =>
 
 /* ------------------------------ SEO ------------------------------ */
 function useSeo(market: "BE" | "MA") {
-  useEffect(() => {
-    const title =
-      market === "MA"
-        ? "Odoo Partner Maroc | ERP & digital — MSL-iTECH"
-        : "Expert Odoo Belgique & Canada — MSL-iTECH";
-    const desc =
-      market === "MA"
-        ? "Odoo Ready Partner Maroc — consultants certifiés v18 & v19. Implémentation ERP, modules custom et personnalisation d'Odoo natif pour HORECA, BTP, Santé et Commerce."
-        : "Odoo Ready Partner. Accompagnement à distance PME belges et canadiennes. ERP, modules custom et personnalisation d'Odoo natif.";
-    document.title = title;
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "description");
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", desc);
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = window.location.origin + "/";
-  }, [market]);
+  const title =
+    market === "MA"
+      ? "Odoo Partner Maroc | ERP & digital — MSL-iTECH"
+      : "Expert Odoo Belgique & Canada — MSL-iTECH";
+  const description =
+    market === "MA"
+      ? "Odoo Ready Partner Maroc — consultants certifiés v18 & v19. Implémentation ERP, modules custom et personnalisation d'Odoo natif pour HORECA, BTP, Santé et Commerce."
+      : "Odoo Ready Partner. Accompagnement à distance PME belges et canadiennes. ERP, modules custom et personnalisation d'Odoo natif.";
+  useProductSeo({ title, description, path: "/" });
 }
 
 /* ------------------- Highlight (marker brushstroke) ------------------- */
