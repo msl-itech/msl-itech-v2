@@ -31,6 +31,7 @@ export interface ProductPageShellProps {
   heroBullets?: string[];
   proposalEyebrow?: string;
   proposalTitle?: ReactNode;
+  extraSection?: ReactNode;
 }
 
 /* Sticker — same visual language as the homepage / Odoo ERP page */
@@ -625,6 +626,7 @@ export function ProductPageShell(props: ProductPageShellProps) {
         />
       )}
       {props.faqs && props.faqs.length > 0 && <FaqBlock faqs={props.faqs} />}
+      {props.extraSection}
       <ProjectCTA
         eyebrow={props.ctaSubtitle ? "Démarrons ensemble" : "Démarrons ensemble"}
         titleStart={props.ctaTitle}

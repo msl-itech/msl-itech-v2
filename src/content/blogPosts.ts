@@ -3059,3 +3059,27 @@ export const blogPosts: BlogPost[] = [
 
 export const getPostBySlug = (slug: string) =>
   blogPosts.find((p) => p.slug === slug);
+
+/**
+ * Renvoie jusqu'à `limit` articles pertinents pour renforcer le maillage
+ * interne : priorité à la même catégorie, puis à la même région, puis
+ * complétion par les articles les plus récents.
+ */
+export const getRelatedPosts = (slug: string, limit = 3): BlogPost[] => {
+  const current = getPostBySlug(slug);
+  if (!current) return [];
+  const others = blogPosts.filter((p) => p.slug !== slug);
+  const score = (p: BlogPost) => {
+    let s = 0;
+    if (p.category === current.category) s += 3;
+    if (p.region === current.region) s += 1;
+    return s;
+  };
+  return [...others]
+    .sort((a, b) => {
+      const d = score(b) - score(a);
+      if (d !== 0) return d;
+      return (b.publishedAt ?? "").localeCompare(a.publishedAt ?? "");
+    })
+    .slice(0, limit);
+};

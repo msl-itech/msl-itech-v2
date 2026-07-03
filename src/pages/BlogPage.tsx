@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Sparkles, Clock, Calendar, ExternalLink, Wrench } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
-import { getPostBySlug } from "@/content/blogPosts";
+import { getPostBySlug, getRelatedPosts } from "@/content/blogPosts";
 import { JsonLd } from "@/components/JsonLd";
 
 /**
@@ -151,6 +151,7 @@ export default function BlogPage() {
   }
 
   const relatedTool = ARTICLE_TO_TOOL[post.slug];
+  const relatedPosts = getRelatedPosts(post.slug, 3);
 
   const articleUrl = `https://msl-itech-v2.lovable.app/blog/${post.slug}`;
   const articleImage = post.image
@@ -373,6 +374,63 @@ export default function BlogPage() {
 
         </article>
       </section>
+
+      {relatedPosts.length > 0 && (
+        <section className="bg-white py-20 border-t" style={{ borderColor: "var(--grey-light)" }}>
+          <div className="container max-w-6xl">
+            <div className="flex items-end justify-between gap-6 flex-wrap">
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand-blue">
+                  Poursuivre la lecture
+                </p>
+                <h2 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-3xl">
+                  Articles liés
+                </h2>
+              </div>
+              <Link
+                to="/blog"
+                className="inline-flex items-center gap-2 font-body text-sm font-semibold text-brand-blue hover:opacity-80"
+              >
+                Voir tout le blog <ArrowRight size={14} />
+              </Link>
+            </div>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {relatedPosts.map((rp) => (
+                <Link
+                  key={rp.slug}
+                  to={`/blog/${rp.slug}`}
+                  className="group flex flex-col overflow-hidden rounded-2xl border bg-white transition hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-[0_20px_50px_-20px_rgba(18,77,90,0.3)]"
+                  style={{ borderColor: "var(--grey-light)" }}
+                >
+                  {rp.image && (
+                    <img
+                      src={rp.image}
+                      alt={`Illustration de l'article ${rp.title}`}
+                      className="aspect-[16/9] w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                  <div className="flex flex-1 flex-col p-5">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
+                      {rp.category}
+                    </p>
+                    <h3 className="mt-2 font-heading text-lg font-bold leading-snug text-brand-black">
+                      {rp.title}
+                    </h3>
+                    <p className="mt-2 line-clamp-3 font-body text-sm text-brand-grey">
+                      {rp.excerpt}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 font-body text-sm font-semibold text-brand-blue">
+                      Lire l'article <ArrowRight size={14} className="transition group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }
