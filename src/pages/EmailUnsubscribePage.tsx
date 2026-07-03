@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { useProductSeo } from "@/hooks/useProductSeo";
 
 type Status = "loading" | "ready" | "confirmed" | "already" | "invalid";
 
@@ -10,8 +11,15 @@ export default function EmailUnsubscribePage() {
   const [status, setStatus] = useState<Status>("loading");
   const [email, setEmail] = useState<string>("");
 
+  useProductSeo({
+    title: "Désinscription · MSL-iTECH",
+    description:
+      "Confirmez votre désinscription des communications email MSL-iTECH.",
+    path: "/email/desinscription",
+    noIndex: true,
+  });
+
   useEffect(() => {
-    document.title = "Désinscription · MSL-iTECH";
     if (!token) {
       setStatus("invalid");
       return;
