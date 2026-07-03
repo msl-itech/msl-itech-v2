@@ -15,7 +15,6 @@ import { GlobalSEO } from "@/hooks/useProductSeo";
 
 export const Layout = () => {
   const { pathname } = useLocation();
-  const isAppointmentPage = pathname === "/prendre-rendez-vous";
   const isHome = pathname === "/";
 
   useEffect(() => {
@@ -28,27 +27,19 @@ export const Layout = () => {
   }, [pathname]);
 
   return (
-    <div
-      className={`flex flex-col bg-brand-bg text-brand-black ${
-        isAppointmentPage ? "h-dvh overflow-hidden" : "min-h-screen"
-      }`}
-    >
+    <div className="flex min-h-screen flex-col bg-brand-bg text-brand-black">
       <GlobalSEO />
       <ScrollToTop />
-      {!isAppointmentPage && <SmoothScroll />}
-      {!isAppointmentPage && <ScrollProgress />}
+      <SmoothScroll />
+      <ScrollProgress />
       <Header />
-      <main className={isAppointmentPage ? "min-h-0 flex-1 overflow-hidden" : undefined}>
-        {isAppointmentPage ? (
+      <main>
+        <RevealRoot>
           <Outlet />
-        ) : (
-          <RevealRoot>
-            <Outlet />
-          </RevealRoot>
-        )}
+        </RevealRoot>
       </main>
-      {!isAppointmentPage && <Footer />}
-      {!isAppointmentPage && <ChatBot />}
+      <Footer />
+      <ChatBot />
       <CookieConsent />
       {isHome && <FeaturedArticlePopup />}
     </div>
