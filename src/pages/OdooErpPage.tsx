@@ -26,31 +26,18 @@ import rhImg from "@/assets/rh-hero.webp";
 import servicesImg from "@/assets/services-hero.webp";
 import caseBe from "@/assets/home/case-be.webp";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
+import { useProductSeo } from "@/hooks/useProductSeo";
 
 /* ---------------- SEO ---------------- */
 function useErpSeo() {
+  useProductSeo({
+    title: "Odoo ERP — La plateforme qui structure votre PME | MSL-iTECH",
+    description:
+      "Odoo ERP par MSL-iTECH : Finance, CRM, Stock, Production, RH et Services. Une seule plateforme pour piloter toute votre PME. Démo gratuite.",
+    path: "/odoo-erp",
+    ogImage: erpHero,
+  });
   useEffect(() => {
-    document.title =
-      "Odoo ERP — La plateforme qui structure votre PME | MSL-iTECH";
-    const desc =
-      "Odoo ERP par MSL-iTECH : Finance, CRM, Stock, Production, RH et Services. Une seule plateforme pour piloter toute votre PME. Démo gratuite.";
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "description");
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", desc);
-    let canonical = document.querySelector(
-      'link[rel="canonical"]',
-    ) as HTMLLinkElement | null;
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = window.location.origin + "/odoo-erp";
-
     // Preload module images so they're ready when user scrolls
     const preloads = [
       erpHero,

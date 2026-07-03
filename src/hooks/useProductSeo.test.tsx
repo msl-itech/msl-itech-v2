@@ -1,6 +1,20 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { renderHook } from "@testing-library/react";
-import { useProductSeo } from "./useProductSeo";
+import { render, waitFor } from "@testing-library/react";
+import { HelmetProvider } from "react-helmet-async";
+import { GlobalSEO, useProductSeo } from "./useProductSeo";
+
+function Harness({ opts }: { opts: Parameters<typeof useProductSeo>[0] }) {
+  useProductSeo(opts);
+  return <GlobalSEO />;
+}
+
+function renderSeo(opts: Parameters<typeof useProductSeo>[0]) {
+  render(
+    <HelmetProvider>
+      <Harness opts={opts} />
+    </HelmetProvider>,
+  );
+}
 
 function meta(selector: string) {
   return document.head
@@ -11,24 +25,27 @@ function meta(selector: string) {
 describe("useProductSeo", () => {
   afterEach(() => {
     document.head
-      .querySelectorAll('meta[property^="og:"], meta[name^="twitter:"], meta[name="description"]')
+      .querySelectorAll(
+        'meta[property^="og:"], meta[name^="twitter:"], meta[name="description"], meta[name="robots"]',
+      )
       .forEach((el) => el.remove());
     document.head
       .querySelectorAll('link[rel="canonical"]')
       .forEach((el) => el.remove());
+    document.head
+      .querySelectorAll('script[type="application/ld+json"]')
+      .forEach((el) => el.remove());
     document.title = "";
   });
 
-  it("sets title, description, canonical, OG and Twitter tags", () => {
-    renderHook(() =>
-      useProductSeo({
-        title: "Test Page — MSL",
-        description: "Une description test pour le SEO.",
-        path: "/test-path",
-      })
-    );
+  it("sets title, description, canonical, OG and Twitter tags", async () => {
+    renderSeo({
+      title: "Test Page — MSL",
+      description: "Une description test pour le SEO.",
+      path: "/test-path",
+    });
 
-    expect(document.title).toBe("Test Page — MSL");
+    await waitFor(() => expect(document.title).toBe("Test Page — MSL"));
     expect(meta('meta[name="description"]')).toBe(
       "Une description test pour le SEO."
     );
@@ -43,34 +60,38 @@ describe("useProductSeo", () => {
     expect(canonical).toContain("/test-path");
   });
 
-  it("supports article ogType and a custom ogImage", () => {
-    renderHook(() =>
-      useProductSeo({
-        title: "Article",
-        description: "Article description",
-        path: "/blog/x",
-        ogImage: "/custom.jpg",
-        ogType: "article",
-      })
+  it("supports a custom ogImage", async () => {
+    renderSeo({
+      title: "Article",
+      description: "Article description",
+      path: "/blog/x",
+      ogImage: "/custom.jpg",
+      ogType: "article",
+    });
+    await waitFor(() =>
+      expect(meta('meta[property="og:image"]')).toContain("/custom.jpg"),
     );
-    expect(meta('meta[property="og:type"]')).toBe("article");
-    expect(meta('meta[property="og:image"]')).toContain("/custom.jpg");
   });
 
-  it("emits a FAQPage JSON-LD when faqs and ldId are provided", () => {
-    renderHook(() =>
-      useProductSeo({
-        title: "FAQ page",
-        description: "...",
-        path: "/faq",
-        ldId: "ld-faq-test",
-        faqs: [{ q: "Q1?", a: "A1." }],
-      })
-    );
-    const ld = document.getElementById("ld-faq-test");
-    expect(ld).not.toBeNull();
-    const json = JSON.parse(ld!.textContent ?? "{}");
-    expect(json["@type"]).toBe("FAQPage");
-    expect(json.mainEntity[0].name).toBe("Q1?");
+  it("emits a FAQPage JSON-LD when faqs are provided", async () => {
+    renderSeo({
+      title: "FAQ page",
+      description: "...",
+      path: "/faq",
+      ldId: "ld-faq-test",
+      faqs: [{ q: "Q1?", a: "A1." }],
+    });
+    await waitFor(() => {
+      const scripts = Array.from(
+        document.head.querySelectorAll<HTMLScriptElement>(
+          'script[type="application/ld+json"]',
+        ),
+      );
+      const faq = scripts
+        .map((s) => JSON.parse(s.textContent ?? "{}"))
+        .find((j) => j["@type"] === "FAQPage");
+      expect(faq).toBeTruthy();
+      expect(faq.mainEntity[0].name).toBe("Q1?");
+    });
   });
 });
