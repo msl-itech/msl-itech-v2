@@ -1,4 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
+import type { SEOHeadProps } from "@/components/SEOHead";
+import { SEOHead } from "@/components/SEOHead";
 
 export type SeoFaq = { q: string; a: string };
 export type SeoService = {
@@ -37,25 +39,38 @@ const LOCAL_BUSINESS_MA = {
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
 };
 
-function upsertMeta(attr: "name" | "property", key: string, content: string) {
-  let el = document.head.querySelector<HTMLMetaElement>(
-    `meta[${attr}="${key}"]`
-  );
-  if (!el) {
-    el = document.createElement("meta");
-    el.setAttribute(attr, key);
-    document.head.appendChild(el);
-  }
-  el.setAttribute("content", content);
+/* ------------------------------------------------------------------ *
+ * SEO store — the hook pushes per-page SEO data into this store; the
+ * <GlobalSEO /> component (mounted in <Layout />) subscribes and
+ * renders a single <SEOHead /> for the currently active page.
+ * ------------------------------------------------------------------ */
+let currentSeo: SEOHeadProps | null = null;
+const listeners = new Set<() => void>();
+
+function setCurrentSeo(next: SEOHeadProps) {
+  currentSeo = next;
+  listeners.forEach((l) => l());
 }
 
-function upsertJsonLd(id: string, data: unknown) {
-  document.getElementById(id)?.remove();
-  const script = document.createElement("script");
-  script.type = "application/ld+json";
-  script.id = id;
-  script.text = JSON.stringify(data);
-  document.head.appendChild(script);
+function subscribe(l: () => void) {
+  listeners.add(l);
+  return () => {
+    listeners.delete(l);
+  };
+}
+
+function getSnapshot() {
+  return currentSeo;
+}
+
+/**
+ * Central SEO renderer — mounted once inside <Layout />.
+ * Reads the SEO store and renders <SEOHead /> for the current page.
+ */
+export function GlobalSEO() {
+  const seo = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
+  if (!seo) return null;
+  return <SEOHead {...seo} />;
 }
 
 export function useProductSeo(opts: {
@@ -71,47 +86,19 @@ export function useProductSeo(opts: {
   service?: SeoService;
   /** Emits a BreadcrumbList JSON-LD. Defaults to [Accueil → {title}]. */
   breadcrumbs?: SeoBreadcrumb[];
+  /** If true, emits <meta name="robots" content="noindex, nofollow">. */
+  noIndex?: boolean;
 }) {
   useEffect(() => {
-    const url = window.location.origin + opts.path;
-    const ogImage = opts.ogImage
-      ? opts.ogImage.startsWith("http")
-        ? opts.ogImage
-        : window.location.origin + opts.ogImage
-      : DEFAULT_OG_IMAGE;
+    const origin = window.location.origin;
+    const url = origin + opts.path;
+    const ogImage = opts.ogImage ?? DEFAULT_OG_IMAGE;
 
-    document.title = opts.title;
+    // Assemble JSON-LD schemas for this page.
+    const schemas: Record<string, unknown>[] = [];
 
-    upsertMeta("name", "description", opts.description);
-
-    // Canonical
-    let canonical = document.querySelector<HTMLLinkElement>(
-      'link[rel="canonical"]'
-    );
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute("href", url);
-
-    // Open Graph
-    upsertMeta("property", "og:title", opts.title);
-    upsertMeta("property", "og:description", opts.description);
-    upsertMeta("property", "og:type", opts.ogType ?? "website");
-    upsertMeta("property", "og:url", url);
-    upsertMeta("property", "og:image", ogImage);
-    upsertMeta("property", "og:site_name", "MSL-iTECH");
-    upsertMeta("property", "og:locale", "fr_FR");
-
-    // Twitter Card
-    upsertMeta("name", "twitter:card", "summary_large_image");
-    upsertMeta("name", "twitter:title", opts.title);
-    upsertMeta("name", "twitter:description", opts.description);
-    upsertMeta("name", "twitter:image", ogImage);
-
-    if (opts.faqs && opts.faqs.length > 0 && opts.ldId) {
-      upsertJsonLd(opts.ldId, {
+    if (opts.faqs && opts.faqs.length > 0) {
+      schemas.push({
         "@context": "https://schema.org",
         "@type": "FAQPage",
         mainEntity: opts.faqs.map((f) => ({
@@ -122,49 +109,54 @@ export function useProductSeo(opts: {
       });
     }
 
-    // Sitewide LocalBusiness (Maroc) — needed on every route, not only la home.
-    upsertJsonLd("ld-localbusiness-ma", LOCAL_BUSINESS_MA);
-    document.getElementById("ld-localbusiness-be")?.remove();
+    // Sitewide LocalBusiness (Maroc) — every route.
+    schemas.push({ ...LOCAL_BUSINESS_MA, "@id": `${origin}/#localbusiness-ma`, url: origin });
 
-    // BreadcrumbList — default to [Accueil → current page] if not provided.
+    // BreadcrumbList — default to [Accueil → current page].
     const breadcrumbs: SeoBreadcrumb[] =
       opts.breadcrumbs && opts.breadcrumbs.length > 0
         ? opts.breadcrumbs
         : opts.path === "/"
           ? []
           : [
-              { name: "Accueil", url: SITE_ORIGIN + "/" },
+              { name: "Accueil", url: origin + "/" },
               { name: opts.title.split("—")[0].trim() || opts.title, url },
             ];
     if (breadcrumbs.length > 0) {
-      upsertJsonLd("ld-breadcrumb", {
+      schemas.push({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: breadcrumbs.map((b, i) => ({
           "@type": "ListItem",
           position: i + 1,
           name: b.name,
-          item: b.url.startsWith("http") ? b.url : SITE_ORIGIN + b.url,
+          item: b.url.startsWith("http") ? b.url : origin + b.url,
         })),
       });
     }
 
-    // Per-route Service schema
     if (opts.service) {
-      upsertJsonLd("ld-service", {
+      schemas.push({
         "@context": "https://schema.org",
         "@type": "Service",
         "@id": url + "#service",
         name: opts.service.name,
         description: opts.service.description,
         serviceType: opts.service.serviceType,
-        provider: { "@id": `${SITE_ORIGIN}/#organization` },
+        provider: { "@id": `${origin}/#organization` },
         areaServed: opts.service.areaServed ?? ["MA"],
         url,
       });
-    } else {
-      document.getElementById("ld-service")?.remove();
     }
+
+    setCurrentSeo({
+      title: opts.title,
+      description: opts.description,
+      canonical: url,
+      ogImage,
+      noIndex: opts.noIndex,
+      schemaJson: schemas,
+    });
   }, [
     opts.title,
     opts.description,
@@ -172,7 +164,9 @@ export function useProductSeo(opts: {
     opts.ogImage,
     opts.ogType,
     opts.ldId,
+    opts.noIndex,
     JSON.stringify(opts.service),
     JSON.stringify(opts.breadcrumbs),
+    JSON.stringify(opts.faqs),
   ]);
 }
