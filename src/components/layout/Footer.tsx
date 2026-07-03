@@ -70,9 +70,9 @@ function FooterCol({ id, title, links, openId, setOpenId, extra }: FooterColProp
         />
       </button>
       {/* Desktop: static heading */}
-      <h4 className="hidden font-heading text-sm font-semibold uppercase tracking-wide sm:block">
+      <h2 className="hidden font-heading text-sm font-semibold uppercase tracking-wide sm:block">
         {title}
-      </h4>
+      </h2>
       <ul
         className={`mt-4 space-y-2 font-body text-sm text-brand-grey-light/85 sm:block ${
           isOpen ? "block" : "hidden"
