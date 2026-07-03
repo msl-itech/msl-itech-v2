@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { act, render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import { GlobalSEO, useProductSeo } from "./useProductSeo";
 
@@ -8,16 +8,12 @@ function Harness({ opts }: { opts: Parameters<typeof useProductSeo>[0] }) {
   return <GlobalSEO />;
 }
 
-async function renderSeo(opts: Parameters<typeof useProductSeo>[0]) {
-  await act(async () => {
-    render(
-      <HelmetProvider>
-        <Harness opts={opts} />
-      </HelmetProvider>,
-    );
-  });
-  // Let react-helmet-async flush to document.head.
-  await new Promise((r) => setTimeout(r, 0));
+function renderSeo(opts: Parameters<typeof useProductSeo>[0]) {
+  render(
+    <HelmetProvider>
+      <Harness opts={opts} />
+    </HelmetProvider>,
+  );
 }
 
 function meta(selector: string) {
