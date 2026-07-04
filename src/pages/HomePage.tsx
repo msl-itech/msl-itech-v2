@@ -224,7 +224,7 @@ function HeroShell({
               >
                 <img
                   src={bgImage}
-                  alt=""
+                  alt="MSL-iTECH, partenaire officiel Odoo au Maroc"
                   className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
                   loading="eager"
                   fetchPriority="high"

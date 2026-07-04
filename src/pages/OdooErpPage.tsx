@@ -466,7 +466,7 @@ function Modules() {
               <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[28px]">
                 <img
                   src={m.img}
-                  alt=""
+                  alt={`Module Odoo ${m.label}`}
                   loading="eager"
                   decoding="async"
                   fetchPriority="high"
