@@ -3,6 +3,7 @@ import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import heroImg from "@/assets/services-hero.webp";
+import { RelatedResources } from "@/components/product/RelatedResources";
 
 const features = [
   {
@@ -123,6 +124,44 @@ export default function CroissanceRapidePage() {
       faqs={faqs}
       ctaTitle="Réserver ma démo gratuite — Structure en croissance"
       ctaSubtitle="Cadrage de votre projet · 30 minutes · Sans engagement · Réponse sous 24h"
+      extraSection={
+        <RelatedResources
+          title="Ressources croissance & structuration"
+          intro="Les leviers concrets pour absorber la croissance : sortir d'Excel, choisir la bonne architecture Odoo et fluidifier le cycle commercial."
+          links={[
+            {
+              to: "/blog/migration-excel-vers-odoo-maroc-methode",
+              title: "Migration Excel vers Odoo — la méthode",
+              desc: "Le plan concret pour sortir d'Excel sans casser l'activité en pleine croissance.",
+            },
+            {
+              to: "/blog/odoo-saas-on-premise-hybride-maroc-2026",
+              title: "SaaS, on-premise ou hybride ?",
+              desc: "Le choix d'architecture qui conditionne votre capacité à scaler vite.",
+            },
+            {
+              to: "/blog/devis-encaissement-odoo-automatisation-roi-maroc",
+              title: "Devis → encaissement : automatiser le cycle",
+              desc: "Réduire le temps de traitement commercial-comptable quand les volumes explosent.",
+            },
+            {
+              to: "/blog/erp-odoo-relances-automatiques-ruptures-stock-ia-maroc",
+              title: "Relances & ruptures de stock par IA",
+              desc: "Fiabiliser opérations et recouvrement pendant les phases de forte croissance.",
+            },
+            {
+              to: "/entreprise-multi-sites",
+              title: "Entreprise multi-sites",
+              desc: "Anticiper l'architecture multi-entités quand une deuxième filiale se profile.",
+            },
+            {
+              to: "/outils/roi-erp",
+              title: "Calculateur ROI ERP",
+              desc: "Chiffrer le gain 12 mois d'un déploiement Odoo dans votre contexte.",
+            },
+          ]}
+        />
+      }
     />
   );
 }

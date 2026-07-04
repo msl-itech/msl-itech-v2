@@ -3,6 +3,7 @@ import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import financeHero from "@/assets/finance-hero.webp";
+import { RelatedResources } from "@/components/product/RelatedResources";
 
 const features = [
   {
@@ -129,6 +130,44 @@ export default function FinancePage() {
       faqs={faqs}
       ctaTitle="Réserver ma démo gratuite — Finance & Comptabilité"
       ctaSubtitle="Voir Odoo Finance configuré pour votre structure · 30 minutes · Sans engagement"
+      extraSection={
+        <RelatedResources
+          title="Ressources Finance & Conformité"
+          intro="Approfondissez les enjeux DAF, cycle devis-encaissement, facturation électronique et choix d'ERP au Maroc."
+          links={[
+            {
+              to: "/blog/daf-marocain-pilotage-strategique-odoo-2026",
+              title: "DAF marocain : piloter par la donnée avec Odoo",
+              desc: "Ce que la fonction Finance change quand elle pilote sur des données temps réel plutôt que sur des exports mensuels.",
+            },
+            {
+              to: "/blog/devis-encaissement-odoo-automatisation-roi-maroc",
+              title: "Devis → encaissement : automatiser le cycle",
+              desc: "Quantifier le ROI d'un cycle commercial-comptable unifié dans Odoo pour une PME marocaine.",
+            },
+            {
+              to: "/blog/facturation-electronique-transformation-digitale-maroc",
+              title: "Facturation électronique & transformation digitale",
+              desc: "Comment la réforme DGI devient un levier pour structurer toute la chaîne financière.",
+            },
+            {
+              to: "/blog/sage-vs-odoo-maroc-comparatif-2026",
+              title: "Sage vs Odoo au Maroc — comparatif 2026",
+              desc: "Comparaison factuelle : couverture comptable, TCO 3 ans et conformité DGI.",
+            },
+            {
+              to: "/outils/conformite-dgi",
+              title: "Simulateur de conformité DGI",
+              desc: "Mesurez en 2 minutes votre exposition à la réforme et obtenez votre plan d'action.",
+            },
+            {
+              to: "/outils/comparateur-sage-odoo",
+              title: "Comparateur Sage vs Odoo",
+              desc: "Comparaison coût 3 ans et couverture fonctionnelle, adaptée à votre PME.",
+            },
+          ]}
+        />
+      }
     />
   );
 }
