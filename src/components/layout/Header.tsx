@@ -79,7 +79,7 @@ export const Header = () => {
         >
           <img
             src={logoDark}
-            alt="Logo MSL-iTECH"
+            alt="MSL-iTECH"
             className="h-8 w-auto"
             width="288"
             height="120"
