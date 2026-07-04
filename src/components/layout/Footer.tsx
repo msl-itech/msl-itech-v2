@@ -20,6 +20,8 @@ const sectorsCol = [
   { to: "/odoo-sante-maroc", label: "Santé" },
   { to: "/odoo-gestion-stock-maroc", label: "Commerce" },
   { to: "/odoo-transport-logistique-maroc", label: "Transport" },
+  { to: "/odoo-tourisme-maroc", label: "Tourisme" },
+  { to: "/entreprise-multi-sites", label: "Multi-sites" },
 ];
 
 const companyCol = [
