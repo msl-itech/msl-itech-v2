@@ -3,6 +3,7 @@ import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import stockMarocHero from "@/assets/stock-maroc-hero.webp";
+import { RelatedResources } from "@/components/product/RelatedResources";
 
 const features = [
   {
@@ -116,6 +117,44 @@ export default function StockMarocPage() {
       faqs={faqs}
       ctaTitle="Réserver ma démo Stock gratuite"
       ctaSubtitle="Démo adaptée à votre volume et votre secteur · Réponse sous 24h"
+      extraSection={
+        <RelatedResources
+          title="Ressources Stock, ERP & IA"
+          intro="Comprendre les paliers de gestion de stock au Maroc et anticiper la prochaine étape ERP."
+          links={[
+            {
+              to: "/blog/gestion-stock-maroc-apres-1-5m-mad",
+              title: "Gestion de stock après 1,5 M MAD",
+              desc: "Les signaux qui indiquent qu'un tableur ne suffit plus et le seuil à partir duquel un ERP devient rentable.",
+            },
+            {
+              to: "/blog/erp-odoo-relances-automatiques-ruptures-stock-ia-maroc",
+              title: "Relances automatiques & ruptures de stock par IA",
+              desc: "Comment Odoo et l'IA agentique réduisent les ruptures et fluidifient les relances côté client.",
+            },
+            {
+              to: "/blog/migration-excel-vers-odoo-maroc-methode",
+              title: "Migration Excel vers Odoo — la méthode",
+              desc: "Le plan concret pour sortir d'Excel sans casser l'activité pendant la bascule.",
+            },
+            {
+              to: "/entreprise-multi-sites",
+              title: "Entreprise multi-sites",
+              desc: "Consolider stock, comptabilité et pilotage entre plusieurs dépôts ou entités.",
+            },
+            {
+              to: "/odoo-transport-logistique-maroc",
+              title: "Odoo Transport & Logistique",
+              desc: "Flux amont-aval, WMS et tournées coordonnés avec votre ERP.",
+            },
+            {
+              to: "/outils/roi-erp",
+              title: "Calculateur ROI ERP",
+              desc: "Estimez le gain 12 mois d'un passage à Odoo pour votre activité.",
+            },
+          ]}
+        />
+      }
     />
   );
 }
