@@ -208,7 +208,7 @@ export const Header = () => {
               className="flex items-center"
               aria-label="MSL-iTECH — accueil"
             >
-              <img src={logoDark} alt="Logo MSL-iTECH" className="h-8 w-auto" width="288" height="120" loading="eager" decoding="async" />
+              <img src={logoDark} alt="MSL-iTECH" className="h-8 w-auto" width="288" height="120" loading="eager" decoding="async" />
             </Link>
             <button aria-label="Fermer" onClick={() => setMobileOpen(false)}>
               <X size={26} />
