@@ -11,7 +11,7 @@ Fondée : 2020
 Vérification : https://www.odoo.com/fr_FR/partners/msl-itech-15851608
 Siège technique : Marrakech, Maroc (équipe basée au Maroc, pas de bureau physique en BE ou CA)
 Marchés desservis : Maroc (sur site + à distance), Belgique et Canada (à distance, déplacements ponctuels possibles)
-Site web : https://msl-itech-v2.lovable.app
+Site web : https://msl-itech.com
 
 ## Contacts
 
