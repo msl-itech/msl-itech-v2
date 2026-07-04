@@ -113,7 +113,7 @@ export const Footer = () => {
           <Link to="/" aria-label="MSL-iTECH — accueil" className="inline-block">
           <img
             src={logoWhite}
-            alt="Logo MSL-iTECH"
+            alt="MSL-iTECH"
             className="h-9 w-auto"
             width="288"
             height="120"
