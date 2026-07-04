@@ -3,6 +3,7 @@ import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import heroImg from "@/assets/transport-hero.webp";
+import { RelatedResources } from "@/components/product/RelatedResources";
 
 const features = [
   {
@@ -122,6 +123,44 @@ export default function MultiSitesPage() {
       faqs={faqs}
       ctaTitle="Réserver ma démo gratuite — Entreprise multi-sites"
       ctaSubtitle="Cadrage de votre architecture · 30 minutes · Sans engagement · Réponse sous 24h"
+      extraSection={
+        <RelatedResources
+          title="Ressources multi-sites & architecture Odoo"
+          intro="Choisir la bonne architecture (SaaS, on-premise, hybride) et préparer un déploiement multi-entités serein."
+          links={[
+            {
+              to: "/blog/odoo-saas-on-premise-hybride-maroc-2026",
+              title: "Odoo SaaS, on-premise ou hybride ?",
+              desc: "Comparatif des trois modes de déploiement pour les groupes multi-sites au Maroc.",
+            },
+            {
+              to: "/blog/gestion-stock-maroc-apres-1-5m-mad",
+              title: "Gestion de stock au-delà de 1,5 M MAD",
+              desc: "Pourquoi la consolidation multi-dépôts devient critique après un certain seuil de volume.",
+            },
+            {
+              to: "/blog/daf-marocain-pilotage-strategique-odoo-2026",
+              title: "DAF marocain — piloter un groupe par la donnée",
+              desc: "Reporting consolidé et gouvernance financière multi-entités dans Odoo.",
+            },
+            {
+              to: "/odoo-tourisme-maroc",
+              title: "Odoo Tourisme Maroc",
+              desc: "Agences, hôtels et DMC multi-sites : réservations, CRM et facturation unifiés.",
+            },
+            {
+              to: "/odoo-gestion-stock-maroc",
+              title: "Odoo Stock & Distribution",
+              desc: "Stock temps réel et transferts inter-dépôts pour les réseaux commerciaux.",
+            },
+            {
+              to: "/realisations",
+              title: "Nos réalisations",
+              desc: "Cas concrets de déploiements Odoo multi-sites accompagnés par MSL-iTECH.",
+            },
+          ]}
+        />
+      }
     />
   );
 }
