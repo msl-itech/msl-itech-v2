@@ -14,7 +14,7 @@ export type SitemapEntry = {
   lastmod?: string;
 };
 
-const SITE = "https://msl-itech-v2.lovable.app";
+const SITE = "https://msl-itech.com";
 
 const staticEntries: SitemapEntry[] = [
   { loc: "/", changefreq: "weekly", priority: 1.0 },

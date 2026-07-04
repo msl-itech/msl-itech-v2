@@ -1,4 +1,4 @@
-# robots.txt — msl-itech-v2.lovable.app
+# robots.txt — msl-itech.com
 # Dernière mise à jour : Avril 2026
 
 # ── Bots généraux ──
@@ -58,4 +58,4 @@ User-agent: LovableHTMLBot
 Allow: /
 
 # ── Sitemap ──
-Sitemap: https://msl-itech-v2.lovable.app/sitemap.xml
+Sitemap: https://msl-itech.com/sitemap.xml
