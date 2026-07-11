@@ -2,7 +2,6 @@ import { FileSignature, Mail, Phone, Scale } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import {
-  BrandTable,
   LegalHero,
   LegalLayout,
   SectionCard,
