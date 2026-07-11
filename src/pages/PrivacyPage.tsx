@@ -456,7 +456,7 @@ export default function PrivacyPage() {
           Pour toute question relative à cette politique ou à l'exercice de vos
           droits :
         </p>
-        <div className="not-prose my-6 rounded-2xl border-2 border-brand-blue/15 bg-brand-blue p-6 text-brand-white">
+        <div className="not-prose my-6 rounded-2xl border-2 border-brand-blue/15 bg-brand-blue p-6 text-brand-white [&_a]:!text-brand-white hover:[&_a]:!text-brand-gold">
           <p className="font-heading text-lg font-bold">MSL-iTECH — Responsable des données</p>
           <div className="mt-3 space-y-2 font-body text-sm text-brand-white/85">
             <p className="flex items-center gap-2">
