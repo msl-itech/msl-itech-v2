@@ -38,7 +38,7 @@ export default function MentionsLegalesPage() {
         badges={[
           { icon: Building2, label: "MSL-iTECH SARL" },
           { icon: Server, label: "Cloudflare · Supabase" },
-          { icon: Globe, label: "BE · MA · CA" },
+          { icon: Globe, label: "MA · CA" },
         ]}
       />
 
@@ -62,9 +62,8 @@ export default function MentionsLegalesPage() {
               Téléphone : +212 (0)2 886 05 49
             </p>
           </div>
-          <p>Lignes de contact internationales (équipe basée au Maroc, accompagnement à distance) :</p>
+          <p>Ligne de contact internationale (équipe basée au Maroc, accompagnement à distance) :</p>
           <ul>
-            <li>Belgique : +32 2 886 05 49</li>
             <li>Canada : +1 204 650 0765</li>
           </ul>
         </SectionCard>
@@ -179,10 +178,8 @@ export default function MentionsLegalesPage() {
 
         <SectionCard id="droit" number="08" title="Droit applicable">
           <p>
-            Les présentes mentions légales sont régies par le droit marocain pour
-            ce qui concerne MSL-iTECH SARL. Pour les utilisateurs belges et
-            européens, les dispositions du droit européen applicables (notamment
-            le RGPD) s'appliquent en complément.
+            Les présentes mentions légales sont régies par le droit marocain
+            pour ce qui concerne MSL-iTECH SARL.
           </p>
         </SectionCard>
 
@@ -198,7 +195,7 @@ export default function MentionsLegalesPage() {
                 </a>
               </p>
               <p className="font-mono text-[11px] uppercase tracking-[0.12em]">
-                BE +32 2 886 05 49 · MA +212 (0)2 886 05 49
+                MA +212 (0)2 886 05 49
               </p>
             </div>
             <Link
