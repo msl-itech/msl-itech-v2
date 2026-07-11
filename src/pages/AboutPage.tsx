@@ -103,18 +103,11 @@ const team = [
     photo: photoArnaud,
     desc: "Co-fondateur et directeur des technologies de MSL-iTECH. Conçoit l'architecture des solutions Odoo et traduit les processus métier en implémentations solides et durables.",
   },
-  {
-    name: "Romeo KAHOU",
-    role: "Chef de Projet",
-    icon: ClipboardList,
-    photo: photoRomeo,
-    desc: "Chef d'orchestre des projets clients. Coordonne les équipes, garantit le respect des délais et reste l'interlocuteur privilégié des clients tout au long de l'implémentation.",
-  },
 ];
 
 const stats = [
   { value: "2024", label: "Année de fondation", icon: Calendar },
-  { value: "6", label: "Spécialistes dédiés", icon: Users },
+  { value: "5", label: "Spécialistes dédiés", icon: Users },
   { value: "3", label: "Pays présents", icon: MapPin },
   { value: "100%", label: "Partenaire Odoo certifié", icon: ShieldCheck },
 ];
@@ -339,7 +332,7 @@ export default function AboutPage() {
               </h2>
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              6 spécialistes au service de votre transformation digitale. Stratégie,
+              5 spécialistes au service de votre transformation digitale. Stratégie,
               technique, projet, IA — chacun joue son rôle, ensemble.
             </p>
           </div>
