@@ -319,16 +319,17 @@ export default function ContactPage() {
               </div>
 
               <h1 className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[60px] lg:text-[68px]">
-                Réservez votre démo Odoo —{" "}
+                Réservez votre appel de qualification —{" "}
                 <span className="italic font-light text-brand-gold">
-                  préparée
+                  démo personnalisée
                 </span>{" "}
-                selon vos besoins réels
+                à la clé
               </h1>
 
               <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
-                Pas une démo générique : un consultant MSL-iTECH configure
-                Odoo avec vos données et vos problématiques métier avant l'appel.
+                Tout commence par un appel de qualification avec un consultant
+                MSL-iTECH : nous comprenons vos besoins et vos données, puis
+                nous préparons une démo Odoo adaptée à votre réalité métier.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-white/70">
