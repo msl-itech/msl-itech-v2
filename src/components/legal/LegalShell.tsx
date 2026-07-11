@@ -114,7 +114,9 @@ export function LegalLayout({
           className="prose prose-neutral max-w-none font-body text-brand-black
             prose-headings:font-heading prose-headings:text-brand-black
             prose-h2:hidden
-            prose-h3:mt-8 prose-h3:text-lg prose-h3:font-semibold
+            prose-h3:mt-10 prose-h3:mb-3 prose-h3:text-lg prose-h3:font-bold
+            prose-h3:text-brand-blue prose-h3:uppercase prose-h3:tracking-wide
+            prose-h3:pl-3 prose-h3:border-l-4 prose-h3:border-brand-gold
             prose-p:text-brand-black/80
             prose-li:text-brand-black/80
             prose-a:text-brand-blue prose-a:font-medium prose-a:no-underline hover:prose-a:underline
