@@ -70,10 +70,10 @@ function Sticker({
 const team = [
   {
     name: "El Houssine BOUHMAIDA",
-    role: "Consultant Odoo Senior",
+    role: "Business Analyst & Chef de Projet",
     icon: Settings2,
     photo: photoHoussine,
-    desc: "Référent technique Odoo de l'équipe. Expert en paramétrage avancé, migrations de données et formations utilisateurs. Garant de la qualité de chaque implémentation.",
+    desc: "Pilote de projets Odoo de bout en bout. Expert en analyse des besoins, cadrage fonctionnel et conduite du changement. Garant du respect des délais, du budget et de la réussite de chaque implémentation.",
   },
   {
     name: "Elohim TAGNE",
@@ -84,10 +84,10 @@ const team = [
   },
   {
     name: "Manal AIT AYAD",
-    role: "Machine Learning & Data",
+    role: "Responsable Développeur Python",
     icon: Brain,
     photo: photoManal,
-    desc: "Experte en intelligence artificielle appliquée. Développe les capacités analytiques et prédictives des implémentations Odoo pour les besoins avancés en reporting et prédiction.",
+    desc: "Pilote le développement des solutions Odoo sur mesure. Experte Python et architecture ORM, elle encadre la qualité du code et transforme les besoins métier en modules robustes et performants.",
   },
   {
     name: "Mika MUSUNGAYI",
