@@ -146,7 +146,7 @@ export default function PrivacyPage() {
           </p>
           <p className="flex items-center gap-2 font-body text-sm text-brand-black/75">
             <Phone className="h-4 w-4 text-brand-blue" />
-            BE +32 2 886 05 49 · MA +212 (0)2 886 05 49 · CA +1 204 650 0765
+            MA +212 (0)2 886 05 49 · CA +1 204 650 0765
           </p>
         </div>
         <p>
@@ -157,7 +157,7 @@ export default function PrivacyPage() {
           <li>
             <strong>Règlement Général sur la Protection des Données (RGPD)</strong>{" "}
             — Règlement UE 2016/679, applicable aux résidents de l'Union
-            Européenne et de Belgique
+            Européenne
           </li>
           <li>
             <strong>Loi marocaine n°09-08</strong> relative à la protection des
@@ -318,7 +318,7 @@ export default function PrivacyPage() {
           headers={["Sous-traitant", "Finalité", "Localisation"]}
           rows={[
             ["Google LLC (Google Analytics)", "Analyse d'audience", "USA — accord DPA RGPD"],
-            ["Odoo S.A.", "Gestion CRM et rendez-vous", "Belgique"],
+            ["Odoo S.A.", "Gestion CRM et rendez-vous", "Union Européenne"],
             ["Prestataire d'hébergement (Cloudflare)", "Infrastructure et sécurité", "USA — accord DPA RGPD"],
           ]}
         />
@@ -360,19 +360,9 @@ export default function PrivacyPage() {
           <strong>30 jours calendaires</strong>.
         </p>
         <p>
-          Vous avez également le droit d'introduire une réclamation auprès de l'
-          <strong>Autorité de Protection des Données (APD) belge</strong> :
-          <br />
-          Site :{" "}
-          <a
-            href="https://www.autoriteprotectiondonnees.be"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            www.autoriteprotectiondonnees.be
-          </a>
-          <br />
-          Adresse : Rue de la Presse 35, 1000 Bruxelles
+          Vous avez également le droit d'introduire une réclamation auprès de
+          l'autorité de contrôle compétente de votre pays de résidence dans
+          l'Union Européenne.
         </p>
         <h3>En tant que résident du Maroc (Loi 09-08)</h3>
         <p>
@@ -477,7 +467,7 @@ export default function PrivacyPage() {
             </p>
             <p className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-brand-gold" />
-              BE +32 2 886 05 49 · MA +212 (0)2 886 05 49
+              MA +212 (0)2 886 05 49
             </p>
           </div>
           <Link
