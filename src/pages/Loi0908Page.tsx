@@ -206,7 +206,7 @@ export default function Loi0908Page() {
               ["Google LLC (Google Analytics)", "États-Unis", "Accord de traitement des données (DPA) conforme RGPD"],
               ["Cloudflare, Inc.", "États-Unis", "DPA conforme RGPD — Clauses contractuelles types"],
               ["Supabase", "États-Unis", "DPA conforme RGPD"],
-              ["Odoo S.A.", "Belgique", "Pays à protection adéquate (UE)"],
+              ["Odoo S.A.", "Union Européenne", "Pays à protection adéquate (UE)"],
             ]}
           />
         </SectionCard>

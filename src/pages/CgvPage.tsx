@@ -40,7 +40,7 @@ export default function CgvPage() {
         description="Cadre contractuel applicable à toute commande de services MSL-iTECH — intégration Odoo, création web et marketing digital."
         badges={[
           { icon: FileSignature, label: "Paiement à l'avance" },
-          { icon: Scale, label: "Droit BE & MA" },
+          { icon: Scale, label: "Droit marocain" },
           { icon: Mail, label: "info@msl-itech.com" },
         ]}
       />
@@ -61,7 +61,7 @@ export default function CgvPage() {
             </p>
             <p className="flex items-center gap-2 font-body text-sm text-brand-black/75">
               <Phone className="h-4 w-4 text-brand-blue" />
-              MA +212 (0)2 886 05 49 · BE +32 2 886 05 49 · CA +1 204 650 0765
+              MA +212 (0)2 886 05 49 · CA +1 204 650 0765
             </p>
             <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-brand-black/60">
               msl-itech.com
@@ -154,23 +154,14 @@ export default function CgvPage() {
           </p>
           <h3>5.3 Retard de paiement</h3>
           <p>
-            <strong>Marché belge :</strong> Conformément à la loi belge du 2 août
-            2002 relative à la lutte contre le retard de paiement, tout retard de
-            paiement entraîne de plein droit et sans mise en demeure préalable
-            l'application d'un intérêt de retard au taux légal majoré de 8 points,
-            ainsi qu'une indemnité forfaitaire de 40 € pour frais de recouvrement.
-          </p>
-          <p>
-            <strong>Marché marocain :</strong> Tout retard de paiement au-delà de
-            30 jours à compter de la date d'échéance entraîne l'application d'une
-            pénalité de retard de 1,5 % par mois de retard, calculée sur le montant
-            TTC impayé.
+            Tout retard de paiement au-delà de 30 jours à compter de la date
+            d'échéance entraîne l'application d'une pénalité de retard de 1,5 %
+            par mois de retard, calculée sur le montant TTC impayé.
           </p>
           <h3>5.4 Devise</h3>
           <p>
-            Les factures émises pour les clients belges et européens sont libellées
-            en euros (€). Les factures pour les clients marocains sont libellées en
-            dirhams marocains (MAD) ou en euros selon accord préalable.
+            Les factures sont libellées en dirhams marocains (MAD) ou en euros
+            (€) selon accord préalable avec le client.
           </p>
         </SectionCard>
 
@@ -284,25 +275,6 @@ export default function CgvPage() {
         </SectionCard>
 
         <SectionCard id="droit" number="12" title="Droit applicable et juridiction compétente">
-          <h3>12.1 Clients belges et européens</h3>
-          <p>
-            Les présentes CGV sont soumises au droit belge. En cas de litige, les
-            parties s'engagent à rechercher une solution amiable avant tout recours
-            judiciaire. À défaut d'accord amiable dans un délai de 30 jours, les
-            tribunaux de Bruxelles (Belgique) seront seuls compétents.
-          </p>
-          <p>
-            Les consommateurs belges disposent également du droit de recourir à la
-            plateforme européenne de résolution des litiges en ligne :{" "}
-            <a
-              href="https://ec.europa.eu/consumers/odr"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              ec.europa.eu/consumers/odr
-            </a>
-          </p>
-          <h3>12.2 Clients marocains</h3>
           <p>
             Les présentes CGV sont soumises au droit marocain. En cas de litige,
             les parties s'engagent à rechercher une solution amiable avant tout
