@@ -156,10 +156,14 @@ export function SectionCard({
         </h2>
       </div>
       <div
-        className="prose prose-neutral max-w-none
-          prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-base prose-h3:font-bold
-          prose-h3:uppercase prose-h3:tracking-wide prose-h3:text-brand-blue
-          prose-h3:pl-3 prose-h3:border-l-4 prose-h3:border-brand-gold"
+        className="legal-section-content font-body text-brand-black/80
+          [&_p]:my-3 [&_p]:leading-relaxed
+          [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:my-1
+          [&_a]:text-brand-blue [&_a]:font-medium hover:[&_a]:underline
+          [&_strong]:text-brand-black [&_strong]:font-semibold
+          [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-base [&_h3]:font-bold
+          [&_h3]:uppercase [&_h3]:tracking-wide [&_h3]:text-brand-blue
+          [&_h3]:pl-3 [&_h3]:border-l-4 [&_h3]:border-brand-gold"
       >
         {children}
       </div>
