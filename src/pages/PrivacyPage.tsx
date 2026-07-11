@@ -526,7 +526,23 @@ function SectionCard({
 }
 
 function Sec({ children }: { children: React.ReactNode }) {
-  return <div className="prose prose-neutral max-w-none">{children}</div>;
+  return (
+    <div
+      className="font-body text-[15px] leading-relaxed text-brand-black/80
+        [&_p]:my-4 [&_p]:leading-relaxed
+        [&_strong]:font-semibold [&_strong]:text-brand-black
+        [&_a]:font-medium [&_a]:text-brand-blue [&_a]:underline [&_a]:decoration-brand-gold [&_a]:decoration-2 [&_a]:underline-offset-4 hover:[&_a]:text-brand-black
+        [&_h3]:mt-10 [&_h3]:mb-4 [&_h3]:pl-4 [&_h3]:border-l-4 [&_h3]:border-brand-gold
+        [&_h3]:font-heading [&_h3]:text-[13px] [&_h3]:font-bold [&_h3]:uppercase [&_h3]:tracking-[0.15em] [&_h3]:text-brand-blue
+        [&_ul]:my-5 [&_ul]:space-y-2 [&_ul]:pl-0 [&_ul]:list-none
+        [&_ul>li]:relative [&_ul>li]:pl-6 [&_ul>li]:leading-relaxed
+        [&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:top-[0.6em]
+        [&_ul>li]:before:h-1.5 [&_ul>li]:before:w-1.5 [&_ul>li]:before:rounded-full [&_ul>li]:before:bg-brand-gold
+      "
+    >
+      {children}
+    </div>
+  );
 }
 
 function BrandTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
