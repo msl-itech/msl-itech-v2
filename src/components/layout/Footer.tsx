@@ -150,13 +150,6 @@ export const Footer = () => {
           links={companyCol}
           openId={openId}
           setOpenId={setOpenId}
-          extra={
-            <li>
-              <Link to="/contact" className="hover:text-brand-white">
-                Devenir partenaire
-              </Link>
-            </li>
-          }
         />
       </div>
 
