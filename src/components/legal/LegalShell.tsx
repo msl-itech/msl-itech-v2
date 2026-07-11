@@ -155,7 +155,14 @@ export function SectionCard({
           {title}
         </h2>
       </div>
-      <div className="prose prose-neutral max-w-none">{children}</div>
+      <div
+        className="prose prose-neutral max-w-none
+          prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-base prose-h3:font-bold
+          prose-h3:uppercase prose-h3:tracking-wide prose-h3:text-brand-blue
+          prose-h3:pl-3 prose-h3:border-l-4 prose-h3:border-brand-gold"
+      >
+        {children}
+      </div>
     </section>
   );
 }
