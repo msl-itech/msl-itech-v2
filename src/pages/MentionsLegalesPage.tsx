@@ -190,7 +190,7 @@ export default function MentionsLegalesPage() {
             <div className="mt-3 space-y-2 font-body text-sm text-brand-white/85">
               <p className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-brand-gold" />
-                <a className="text-brand-gold hover:underline" href="mailto:info@msl-itech.com">
+                <a className="text-brand-white underline decoration-brand-gold decoration-2 underline-offset-4 hover:text-brand-gold" href="mailto:info@msl-itech.com">
                   info@msl-itech.com
                 </a>
               </p>
