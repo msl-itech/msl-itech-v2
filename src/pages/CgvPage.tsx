@@ -2,7 +2,6 @@ import { FileSignature, Mail, Phone, Scale } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import {
-  BrandTable,
   LegalHero,
   LegalLayout,
   SectionCard,
@@ -40,7 +39,7 @@ export default function CgvPage() {
         titleAccent="de vente"
         description="Cadre contractuel applicable à toute commande de services MSL-iTECH — intégration Odoo, création web et marketing digital."
         badges={[
-          { icon: FileSignature, label: "Devis & acompte 40 %" },
+          { icon: FileSignature, label: "Paiement à l'avance" },
           { icon: Scale, label: "Droit BE & MA" },
           { icon: Mail, label: "info@msl-itech.com" },
         ]}
@@ -141,31 +140,19 @@ export default function CgvPage() {
             vigueur au moment de la facturation, selon la localisation du client et
             la réglementation fiscale applicable.
           </p>
-          <h3>5.2 Packs d'heures Odoo</h3>
-          <BrandTable
-            headers={["Pack", "Heures", "Prix HT (nouveau client)"]}
-            rows={[
-              ["Essentiel", "4h", "400 €"],
-              ["Standard", "10h", "900 €"],
-              ["Avancé", "25h", "2 000 €"],
-              ["Premium", "50h", "3 500 €"],
-              ["VIP", "100h", "5 400 €"],
-              ["Elite", "200h", "8 500 €"],
-            ]}
-          />
+          <h3>5.2 Conditions de paiement</h3>
           <p>
-            Les prix en MAD sont disponibles sur demande pour les clients basés au
-            Maroc. Les packs d'heures MSL-iTECH sont 20 à 50 % plus accessibles que
-            les Success Packs observés sur le marché belge pour des volumes
-            comparables.
+            Les prestations et packs d'heures MSL-iTECH sont réglés intégralement à
+            l'avance, à la commande, avant démarrage des travaux. Les tarifs
+            détaillés sont communiqués dans le devis remis au client.
           </p>
-          <h3>5.3 Conditions de paiement</h3>
-          <ul>
-            <li>Acompte de 40 % à la signature du devis</li>
-            <li>Solde de 60 % à la livraison finale ou à la mise en production</li>
-            <li>Pour les packs d'heures : paiement intégral à la commande</li>
-          </ul>
-          <h3>5.4 Retard de paiement</h3>
+          <p>
+            À titre exceptionnel et sur accord écrit préalable, un échéancier avec
+            acompte à la signature et solde à la livraison peut être convenu pour
+            certains projets particuliers (périmètre étendu, déploiement en
+            plusieurs phases). Les modalités sont alors précisées dans le devis.
+          </p>
+          <h3>5.3 Retard de paiement</h3>
           <p>
             <strong>Marché belge :</strong> Conformément à la loi belge du 2 août
             2002 relative à la lutte contre le retard de paiement, tout retard de
@@ -179,7 +166,7 @@ export default function CgvPage() {
             pénalité de retard de 1,5 % par mois de retard, calculée sur le montant
             TTC impayé.
           </p>
-          <h3>5.5 Devise</h3>
+          <h3>5.4 Devise</h3>
           <p>
             Les factures émises pour les clients belges et européens sont libellées
             en euros (€). Les factures pour les clients marocains sont libellées en
