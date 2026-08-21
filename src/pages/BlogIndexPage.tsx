@@ -213,7 +213,7 @@ export default function BlogIndexPage() {
               <div className="relative h-72 overflow-hidden lg:col-span-7 lg:h-auto">
                 {blogImageBySlug[featured.slug] ? (
                   <img
-                    src={featured.image}
+                    src={blogImageBySlug[featured.slug]}
                     alt={`Illustration de l'article de blog : ${featured.title}`}
                     className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     loading="lazy"
