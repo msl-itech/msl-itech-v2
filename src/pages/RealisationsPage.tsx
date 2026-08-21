@@ -404,19 +404,19 @@ export default function RealisationsPage() {
           </div>
 
           <div className="mt-16 grid gap-6 lg:grid-cols-2">
-            {odooCases.map((c, idx) => {
-              const Icon = c.icon;
+            {caseStudies.map((c, idx) => {
+              const Icon = caseIcons[c.iconKey] ?? Building2;
               return (
                 <article
-                  key={c.name}
+                  key={c.slug}
                   className="group relative isolate overflow-hidden rounded-[28px] border bg-brand-white shadow-sm transition hover:shadow-xl"
                   style={{ borderColor: "var(--grey-light)" }}
                 >
-                  {/* Image header */}
+                  {/* Image header — illustration sectorielle */}
                   <div className="relative h-56 overflow-hidden md:h-64">
                     <img
-                      src={c.image}
-                      alt={`Projet Odoo réalisé par MSL-iTECH pour ${c.name}`}
+                      src={caseImageByKey[c.imageKey]}
+                      alt={caseImageAlt(c.sector, c.imageIsIllustration, c.name)}
                       className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     loading="lazy" decoding="async"/>
                     <div
@@ -431,9 +431,14 @@ export default function RealisationsPage() {
                         Cas {String(idx + 1).padStart(2, "0")}
                       </Sticker>
                     </div>
+                    {c.imageIsIllustration && (
+                      <span className="absolute right-4 top-5 rounded-full bg-black/45 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.15em] text-white/85 backdrop-blur-sm">
+                        Illustration sectorielle
+                      </span>
+                    )}
                     <div className="absolute bottom-5 left-5 right-5">
                       <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-gold">
-                        {c.sector}
+                        {c.sector} — {c.country}
                       </p>
                       <h3 className="mt-2 font-heading text-2xl font-bold text-white md:text-3xl">
                         {c.name}
@@ -481,11 +486,20 @@ export default function RealisationsPage() {
                       />
                       <p className="font-body text-sm text-brand-black">{c.result}</p>
                     </div>
+
+                    <Link
+                      to={`/realisations/${c.slug}`}
+                      className="mt-6 inline-flex items-center gap-2 font-body text-sm font-bold text-brand-blue"
+                    >
+                      Lire le cas client
+                      <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+                    </Link>
                   </div>
                 </article>
               );
             })}
           </div>
+
         </div>
       </section>
 
