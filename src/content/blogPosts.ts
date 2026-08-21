@@ -28,25 +28,6 @@ export type BlogPost = {
   body: BlogSection[];
 };
 
-import facturationElectroniqueMarocImg from "@/assets/blog/facturation-electronique-maroc.jpg";
-import gestionStockMarocImg from "@/assets/blog/gestion-stock-maroc.jpg";
-import coutErpOdooMarocImg from "@/assets/blog/cout-erp-odoo-maroc.jpg";
-import odooVsSapVsSageImg from "@/assets/blog/odoo-vs-sap-vs-sage.jpg";
-import coutsCachesErpImg from "@/assets/blog/couts-caches-erp.jpg";
-import budgetErpHorecaMarocImg from "@/assets/blog/budget-erp-horeca-maroc.jpg";
-import roiErpPmeImg from "@/assets/blog/roi-erp-pme.jpg";
-import facturationDgi2026Img from "@/assets/blog/facturation-dgi-2026-pdf-ubl.jpg";
-import sageVsOdooMarocImg from "@/assets/blog/sage-vs-odoo-maroc.jpg";
-import migrationExcelOdooImg from "@/assets/blog/migration-excel-odoo-maroc.jpg";
-import erpAgentiqueOdooImg from "@/assets/blog/erp-agentique-odoo-relances-stock.jpg";
-import dafMarocainOdooImg from "@/assets/blog/daf-marocain-pilotage-odoo.jpg";
-import devisEncaissementOdooImg from "@/assets/blog/devis-encaissement-odoo-roi.jpg";
-import odooSaasOnpremiseImg from "@/assets/blog/odoo-saas-onpremise-hybride.jpg";
-import facturationTransformationImg from "@/assets/blog/facturation-transformation-digitale.jpg";
-import donneesProprresErpImg from "@/assets/blog/donnees-propres-erp-avant-ia.jpg";
-import agentsIaOdooImg from "@/assets/blog/agents-ia-odoo-pme.jpg";
-import copiloteConversationnelOdooImg from "@/assets/blog/copilote-conversationnel-odoo.jpg";
-import facturationElectroniqueObligatoireImg from "@/assets/blog/facturation-electronique-obligatoire-maroc.jpg";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -63,7 +44,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "11 min",
     publishedAt: "2026-06-25",
-    image: facturationElectroniqueObligatoireImg,
     intent: "Top-funnel · Urgence conformité",
     relatedPath: "/contact",
     relatedLabel: "Diagnostic conformité facturation — gratuit",
@@ -310,7 +290,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-24",
-    image: copiloteConversationnelOdooImg,
     intent: "Mid-funnel · Démo IA",
     relatedPath: "/contact",
     relatedLabel: "Réserver ma démo copilote Odoo",
@@ -490,7 +469,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-24",
-    image: agentsIaOdooImg,
     intent: "Mid-funnel · Évaluation IA",
     relatedPath: "/contact",
     relatedLabel: "Identifier mes 3 quick wins IA dans Odoo",
@@ -639,7 +617,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "9 min",
     publishedAt: "2026-06-24",
-    image: donneesProprresErpImg,
     intent: "Mid-funnel · Préparation données",
     relatedPath: "/contact",
     relatedLabel: "Demander mon audit Data Readiness",
@@ -784,7 +761,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-24",
-    image: facturationTransformationImg,
     intent: "Top-funnel · Vision stratégique",
     relatedPath: "/contact",
     relatedLabel: "Démarrer mon diagnostic de transformation digitale",
@@ -963,7 +939,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-24",
-    image: odooSaasOnpremiseImg,
     intent: "Mid-funnel · Décision architecture",
     relatedPath: "/contact",
     relatedLabel: "Demander mon diagnostic d'architecture Odoo",
@@ -1153,7 +1128,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-24",
-    image: devisEncaissementOdooImg,
     intent: "Bottom-funnel · ROI Odoo",
     relatedPath: "/contact",
     relatedLabel: "Calculer mon ROI Odoo avec MSL-iTECH",
@@ -1336,7 +1310,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "9 min",
     publishedAt: "2026-06-24",
-    image: dafMarocainOdooImg,
     intent: "Mid-funnel · DAF / RAF PME",
     relatedPath: "/odoo-finance-comptabilite",
     relatedLabel: "Découvrir Odoo Finance & Comptabilité",
@@ -1509,7 +1482,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "8 min",
     publishedAt: "2026-06-24",
-    image: erpAgentiqueOdooImg,
     intent: "Mid-funnel · Automatisation Odoo",
     relatedPath: "/odoo-erp",
     relatedLabel: "Découvrir notre déploiement Odoo au Maroc",
@@ -1699,7 +1671,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "9 min",
     publishedAt: "2026-06-20",
-    image: migrationExcelOdooImg,
     intent: "Mid-funnel · Décision migration",
     relatedPath: "/contact",
     relatedLabel: "Planifier mon diagnostic de migration",
@@ -1890,7 +1861,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-22",
-    image: sageVsOdooMarocImg,
     intent: "Comparatif · Décision d'achat",
     relatedPath: "/odoo-erp",
     relatedLabel: "Découvrir Odoo ERP avec MSL-iTECH",
@@ -2105,7 +2075,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "8 min",
     publishedAt: "2026-06-24",
-    image: facturationDgi2026Img,
     intent: "Réglementaire · Page pilier conformité DGI",
     relatedPath: "/odoo-finance-comptabilite",
     relatedLabel: "Voir Odoo Finance & Comptabilité",
@@ -2294,7 +2263,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "6 min",
     publishedAt: "2026-02-05",
-    image: facturationElectroniqueMarocImg,
     intent: "Réglementaire · Urgence réelle",
     relatedPath: "/odoo-finance",
     relatedLabel: "Voir Odoo Finance & Comptabilité",
@@ -2358,7 +2326,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "6 min",
     publishedAt: "2026-01-29",
-    image: gestionStockMarocImg,
     intent: "Informationnelle · Funnel haut",
     relatedPath: "/odoo-gestion-stock-maroc",
     relatedLabel: "Découvrir Odoo Gestion de Stock pour le Maroc",
@@ -2426,7 +2393,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "8 min",
     publishedAt: "2026-06-18",
-    image: coutErpOdooMarocImg,
     intent: "Transactionnelle · Décision",
     relatedPath: "/contact",
     relatedLabel: "Demander une estimation personnalisée",
@@ -2549,7 +2515,6 @@ export const blogPosts: BlogPost[] = [
     region: "INT",
     readingTime: "9 min",
     publishedAt: "2026-06-11",
-    image: odooVsSapVsSageImg,
     intent: "Transactionnelle · Comparaison",
     relatedPath: "/odoo-erp",
     relatedLabel: "Découvrir les modules Odoo ERP",
@@ -2682,7 +2647,6 @@ export const blogPosts: BlogPost[] = [
     region: "INT",
     readingTime: "7 min",
     publishedAt: "2026-06-04",
-    image: coutsCachesErpImg,
     intent: "Informationnelle · Funnel moyen",
     relatedPath: "/contact",
     relatedLabel: "Demander un devis transparent et détaillé",
@@ -2808,7 +2772,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "7 min",
     publishedAt: "2026-05-28",
-    image: budgetErpHorecaMarocImg,
     intent: "Transactionnelle · Sectoriel",
     relatedPath: "/odoo-horeca-maroc",
     relatedLabel: "Découvrir Odoo pour l'HORECA au Maroc",
@@ -2939,7 +2902,6 @@ export const blogPosts: BlogPost[] = [
     region: "INT",
     readingTime: "7 min",
     publishedAt: "2026-05-21",
-    image: roiErpPmeImg,
     intent: "Informationnelle · Funnel moyen",
     relatedPath: "/prendre-rendez-vous",
     relatedLabel: "Calculez votre ROI avec un expert MSL-iTECH",
