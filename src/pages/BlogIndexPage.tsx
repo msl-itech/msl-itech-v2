@@ -351,7 +351,7 @@ export default function BlogIndexPage() {
                 <div className="relative aspect-[16/10] overflow-hidden">
                   {blogImageBySlug[p.slug] ? (
                     <img
-                      src={p.image}
+                      src={blogImageBySlug[p.slug]}
                       alt={`Illustration de l'article de blog : ${p.title}`}
                       className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                       loading="lazy"
