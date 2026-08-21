@@ -84,8 +84,14 @@ export function buildSitemapEntries(): SitemapEntry[] {
     priority: 0.85,
     lastmod: p.updatedAt ?? p.publishedAt,
   }));
-  return [...staticEntries, ...blogEntries];
+  const caseEntries: SitemapEntry[] = caseStudies.map((c) => ({
+    loc: `/realisations/${c.slug}`,
+    changefreq: "monthly" as const,
+    priority: 0.8,
+  }));
+  return [...staticEntries, ...blogEntries, ...caseEntries];
 }
+
 
 export function renderSitemapXml(entries: SitemapEntry[] = buildSitemapEntries()): string {
   const today = new Date().toISOString().slice(0, 10);
