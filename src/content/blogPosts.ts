@@ -1189,7 +1189,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "Le coût caché d'un cycle commercial fragmenté" },
       {
         type: "p",
-        text: "Le vrai problème des cycles non automatisés n'est pas visible dans votre comptabilité. Il se cache dans le temps perdu, les erreurs de saisie et les opportunités manquées. Voici ce que nous observons systématiquement dans les PME marocaines avant leur migration vers Odoo :",
+        text: "Le vrai problème des cycles non automatisés n'est pas visible dans votre comptabilité. Il se cache dans le temps perdu, les erreurs de saisie et les opportunités manquées. Les ordres de grandeur ci-dessous sont issus du même échantillon de 14 PME marocaines (mesure avant migration vs. 6-12 mois après go-live) :",
       },
       {
         type: "ul",
