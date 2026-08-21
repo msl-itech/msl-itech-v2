@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Sparkles, Clock, Calendar, ExternalLink, Wrench } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { getPostBySlug, getRelatedPosts } from "@/content/blogPosts";
+import { blogImageBySlug } from "@/lib/blog-images";
 import { JsonLd } from "@/components/JsonLd";
 
 /**
@@ -155,10 +156,11 @@ export default function BlogPage() {
 
   const SITE = "https://msl-itech.com";
   const articleUrl = `${SITE}/blog/${post.slug}`;
-  const articleImage = post.image
-    ? post.image.startsWith("http")
-      ? post.image
-      : `${SITE}${post.image.startsWith("/") ? post.image : "/" + post.image}`
+  const postImage = blogImageBySlug[post.slug];
+  const articleImage = postImage
+    ? postImage.startsWith("http")
+      ? postImage
+      : `${SITE}${postImage.startsWith("/") ? postImage : "/" + postImage}`
     : `${SITE}/og-default.jpg`;
 
   const articleSchema = {
@@ -256,7 +258,7 @@ export default function BlogPage() {
       </section>
 
       {/* COVER IMAGE */}
-      {post.image && (
+      {blogImageBySlug[post.slug] && (
         <section className="bg-background pt-10">
           <div className="container max-w-5xl">
             <div
@@ -264,7 +266,7 @@ export default function BlogPage() {
               style={{ borderColor: "var(--grey-light)" }}
             >
               <img
-                src={post.image}
+                src={blogImageBySlug[post.slug]}
                 alt={`Illustration principale de l'article : ${post.title}`}
                 className="block aspect-[16/9] w-full object-cover"
                 width={1280}

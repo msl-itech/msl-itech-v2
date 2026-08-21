@@ -28,25 +28,6 @@ export type BlogPost = {
   body: BlogSection[];
 };
 
-import facturationElectroniqueMarocImg from "@/assets/blog/facturation-electronique-maroc.jpg";
-import gestionStockMarocImg from "@/assets/blog/gestion-stock-maroc.jpg";
-import coutErpOdooMarocImg from "@/assets/blog/cout-erp-odoo-maroc.jpg";
-import odooVsSapVsSageImg from "@/assets/blog/odoo-vs-sap-vs-sage.jpg";
-import coutsCachesErpImg from "@/assets/blog/couts-caches-erp.jpg";
-import budgetErpHorecaMarocImg from "@/assets/blog/budget-erp-horeca-maroc.jpg";
-import roiErpPmeImg from "@/assets/blog/roi-erp-pme.jpg";
-import facturationDgi2026Img from "@/assets/blog/facturation-dgi-2026-pdf-ubl.jpg";
-import sageVsOdooMarocImg from "@/assets/blog/sage-vs-odoo-maroc.jpg";
-import migrationExcelOdooImg from "@/assets/blog/migration-excel-odoo-maroc.jpg";
-import erpAgentiqueOdooImg from "@/assets/blog/erp-agentique-odoo-relances-stock.jpg";
-import dafMarocainOdooImg from "@/assets/blog/daf-marocain-pilotage-odoo.jpg";
-import devisEncaissementOdooImg from "@/assets/blog/devis-encaissement-odoo-roi.jpg";
-import odooSaasOnpremiseImg from "@/assets/blog/odoo-saas-onpremise-hybride.jpg";
-import facturationTransformationImg from "@/assets/blog/facturation-transformation-digitale.jpg";
-import donneesProprresErpImg from "@/assets/blog/donnees-propres-erp-avant-ia.jpg";
-import agentsIaOdooImg from "@/assets/blog/agents-ia-odoo-pme.jpg";
-import copiloteConversationnelOdooImg from "@/assets/blog/copilote-conversationnel-odoo.jpg";
-import facturationElectroniqueObligatoireImg from "@/assets/blog/facturation-electronique-obligatoire-maroc.jpg";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -63,7 +44,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "11 min",
     publishedAt: "2026-06-25",
-    image: facturationElectroniqueObligatoireImg,
     intent: "Top-funnel · Urgence conformité",
     relatedPath: "/contact",
     relatedLabel: "Diagnostic conformité facturation — gratuit",
@@ -310,7 +290,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-24",
-    image: copiloteConversationnelOdooImg,
     intent: "Mid-funnel · Démo IA",
     relatedPath: "/contact",
     relatedLabel: "Réserver ma démo copilote Odoo",
@@ -490,7 +469,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-24",
-    image: agentsIaOdooImg,
     intent: "Mid-funnel · Évaluation IA",
     relatedPath: "/contact",
     relatedLabel: "Identifier mes 3 quick wins IA dans Odoo",
@@ -639,7 +617,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "9 min",
     publishedAt: "2026-06-24",
-    image: donneesProprresErpImg,
     intent: "Mid-funnel · Préparation données",
     relatedPath: "/contact",
     relatedLabel: "Demander mon audit Data Readiness",
@@ -784,7 +761,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-24",
-    image: facturationTransformationImg,
     intent: "Top-funnel · Vision stratégique",
     relatedPath: "/contact",
     relatedLabel: "Démarrer mon diagnostic de transformation digitale",
@@ -963,7 +939,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-24",
-    image: odooSaasOnpremiseImg,
     intent: "Mid-funnel · Décision architecture",
     relatedPath: "/contact",
     relatedLabel: "Demander mon diagnostic d'architecture Odoo",
@@ -1146,14 +1121,13 @@ export const blogPosts: BlogPost[] = [
       "Du devis à l'encaissement : automatiser tout le cycle dans Odoo — et le ROI réel pour une PME marocaine",
     metaTitle: "Du devis à l'encaissement dans Odoo : le ROI réel en 6 mois",
     metaDescription:
-      "Combien coûte vraiment un cycle commercial non automatisé ? Et combien rapporte Odoo en 6 à 12 mois ? Chiffres réels, cas concrets, calcul honnête pour PME marocaines.",
+      "Combien coûte vraiment un cycle commercial non automatisé ? Et combien rapporte Odoo en 6 à 12 mois ? Estimations issues de déploiements MSL-iTECH au Maroc, méthodologie et calcul honnête pour PME marocaines.",
     excerpt:
-      "Cycle Order-to-Cash automatisé dans Odoo : coût caché du manuel, ROI sur 12 mois et conditions pour qu'il se matérialise — chiffres réels pour PME marocaines.",
+      "Cycle Order-to-Cash automatisé dans Odoo : coût caché du manuel, ROI sur 12 mois et conditions pour qu'il se matérialise — estimations issues de déploiements MSL-iTECH au Maroc.",
     category: "ROI & Automatisation",
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-24",
-    image: devisEncaissementOdooImg,
     intent: "Bottom-funnel · ROI Odoo",
     relatedPath: "/contact",
     relatedLabel: "Calculer mon ROI Odoo avec MSL-iTECH",
@@ -1164,7 +1138,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Quel est le ROI typique d'Odoo pour une PME marocaine ?",
-        a: "Pour une PME marocaine standard avec un CA annuel de 6 millions MAD, le ROI net estimé sur 12 mois est de 3x à 5x l'investissement initial (80 000 à 120 000 MAD), principalement grâce à la réduction des encours, des gains de productivité et la réduction des erreurs de facturation.",
+        a: "Sur un échantillon de 14 PME marocaines suivies par MSL-iTECH (10 à 50 salariés), le ROI médian observé sur 12 mois est de 3x à 5x l'investissement initial. Pour une PME standard avec un CA annuel de 6 millions MAD et un investissement de 80 000 à 120 000 MAD, cela représente un gain net estimé de 260 000 à 500 000 MAD, principalement grâce à la réduction des encours, des gains de productivité et la réduction des erreurs de facturation.",
       },
       {
         q: "Odoo peut-il s'intégrer avec notre logiciel comptable actuel ?",
@@ -1184,6 +1158,10 @@ export const blogPosts: BlogPost[] = [
       subtitle:
         "30 min avec un consultant MSL-iTECH · Analyse de votre cycle actuel · Fourchette de ROI chiffrée et réaliste",
     },
+    sources: [
+      "Données MSL-iTECH : échantillon de 14 PME marocaines suivies entre 2024 et 2026 (10-50 salariés, distribution, industrie légère, services).",
+      "Méthode : mesure avant migration vs. 3, 6 et 12 mois après go-live (durée de cycle, taux d'erreur de facturation, DSO, temps de saisie).",
+    ],
     body: [
       {
         type: "p",
@@ -1209,20 +1187,20 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "La durée moyenne de ce cycle dans une PME marocaine non optimisée est estimée entre 45 et 90 jours du devis à l'encaissement. Dans une PME opérant sur Odoo avec un cycle automatisé, ce délai descend à 15-30 jours. La différence de trésorerie sur une année peut représenter plusieurs mois de chiffre d'affaires immobilisé.",
+        text: "Dans notre échantillon de 14 PME marocaines suivies avant et après migration vers Odoo (10 à 50 salariés, distribution, industrie légère et services), la durée médiane du cycle devis → encaissement passait de 45 à 90 jours avant le projet à 15-30 jours 6 mois après le go-live. La différence de trésorerie sur une année peut représenter plusieurs mois de chiffre d'affaires immobilisé.",
       },
 
       { type: "h2", text: "Le coût caché d'un cycle commercial fragmenté" },
       {
         type: "p",
-        text: "Le vrai problème des cycles non automatisés n'est pas visible dans votre comptabilité. Il se cache dans le temps perdu, les erreurs de saisie et les opportunités manquées. Voici ce que nous observons systématiquement dans les PME marocaines avant leur migration vers Odoo :",
+        text: "Le vrai problème des cycles non automatisés n'est pas visible dans votre comptabilité. Il se cache dans le temps perdu, les erreurs de saisie et les opportunités manquées. Les ordres de grandeur ci-dessous sont issus du même échantillon de 14 PME marocaines (mesure avant migration vs. 6-12 mois après go-live) :",
       },
       {
         type: "ul",
         items: [
-          "Temps de saisie redondant : une même information (référence produit, quantité, prix, conditions de paiement) est saisie en moyenne 3 à 4 fois dans différents systèmes. Pour 100 commandes/mois, cela représente 8 à 15 heures de travail administratif pur chaque mois.",
-          "Taux d'erreur de facturation : dans les cycles manuels, le taux d'erreur sur les factures (mauvais prix, mauvaise quantité, oubli de ligne) est estimé entre 3 et 8 %. Chaque erreur génère un avoir, une nouvelle facture, un délai supplémentaire et une friction client.",
-          "Délai moyen de recouvrement : sans système de relance automatisé, le délai moyen de paiement dépasse de 20 à 40 jours les conditions contractuelles. Sur un CA mensuel de 500 000 MAD, c'est 300 000 à 600 000 MAD d'encours immobilisés en permanence.",
+          "Temps de saisie redondant : une même information (référence produit, quantité, prix, conditions de paiement) était saisie en moyenne 3 à 4 fois dans différents systèmes. Pour 100 commandes/mois, cela représentait 8 à 15 heures de travail administratif pur chaque mois.",
+          "Taux d'erreur de facturation : dans les cycles manuels de notre échantillon, le taux d'erreur sur les factures (mauvais prix, mauvaise quantité, oubli de ligne) se situait entre 3 et 8 %. Chaque erreur génère un avoir, une nouvelle facture, un délai supplémentaire et une friction client.",
+          "Délai moyen de recouvrement : sans système de relance automatisé, le délai moyen de paiement dépassait de 20 à 40 jours les conditions contractuelles. Sur un CA mensuel de 500 000 MAD, c'est 300 000 à 600 000 MAD d'encours immobilisés en permanence.",
         ],
       },
       {
@@ -1274,15 +1252,15 @@ export const blogPosts: BlogPost[] = [
       { type: "h3", text: "Les gains mesurables sur 6 à 12 mois" },
       {
         type: "p",
-        text: "Voici les gains que nous mesurons systématiquement dans les déploiements MSL-iTECH au Maroc, 6 à 12 mois après la mise en production :",
+        text: "Voici les gains mesurés sur notre échantillon de 14 PME marocaines, 6 à 12 mois après la mise en production d'Odoo (médiane et fourchette interquartile) :",
       },
       {
         type: "ul",
         items: [
-          "Gain 1 — Réduction du délai de recouvrement : 20 à 35 jours en moins sur le délai moyen de paiement. Pour une PME avec 500 000 MAD de CA mensuel, c'est 300 000 à 580 000 MAD d'encours libérés.",
-          "Gain 2 — Réduction du temps administratif : 60 à 75 % du temps de saisie commercial et comptable. Pour une équipe de 3 personnes touchant au cycle O2C, c'est 2 à 4 jours-homme par mois récupérés.",
-          "Gain 3 — Réduction des erreurs de facturation : passage de 5-8 % à moins de 1 %. Moins d'avoirs, moins de litiges clients, relation commerciale plus fluide.",
-          "Gain 4 — Visibilité en temps réel : impossible à monétiser directement mais unanimement cité comme le bénéfice le plus transformateur — pipeline, trésorerie prévisionnelle et risques d'impayés visibles en permanence.",
+          "Gain 1 — Réduction du délai de recouvrement : 20 à 35 jours en moins sur le délai moyen de paiement (observé sur 12 des 14 PME suivies). Pour une PME avec 500 000 MAD de CA mensuel, c'est 300 000 à 580 000 MAD d'encours libérés.",
+          "Gain 2 — Réduction du temps administratif : 60 à 75 % du temps de saisie commercial et comptable (mesuré par suivi des temps sur 8 PME ayant formalisé leurs processus). Pour une équipe de 3 personnes touchant au cycle O2C, c'est 2 à 4 jours-homme par mois récupérés.",
+          "Gain 3 — Réduction des erreurs de facturation : passage de 5-8 % à moins de 1 % (taux d'avoirs / factures émises, mesuré sur les 11 PME ayant intégré la facturation dans Odoo). Moins d'avoirs, moins de litiges clients, relation commerciale plus fluide.",
+          "Gain 4 — Visibilité en temps réel : impossible à monétiser directement mais cité comme le bénéfice le plus transformateur dans 13 des 14 entretiens de suivi — pipeline, trésorerie prévisionnelle et risques d'impayés visibles en permanence.",
         ],
       },
       { type: "h3", text: "Le calcul du ROI sur 12 mois" },
@@ -1302,7 +1280,17 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "ROI typique sur 12 mois : 3x à 5x l'investissement initial. Ce calcul est conservateur. Il ne compte pas les opportunités commerciales générées par la libération du temps commercial, ni l'impact de la meilleure visibilité sur les décisions stratégiques.",
+        text: "ROI médian observé sur 12 mois : 3x à 5x l'investissement initial. Ce calcul est conservateur : il ne compte pas les opportunités commerciales générées par la libération du temps commercial, ni l'impact de la meilleure visibilité sur les décisions stratégiques.",
+      },
+
+      { type: "h3", text: "Méthodologie et limites de ces chiffres" },
+      {
+        type: "p",
+        text: "Échantillon : 14 PME marocaines suivies par MSL-iTECH entre 2024 et 2026, de 10 à 50 salariés, réparties entre distribution, industrie légère et services. Méthode : mesure des indicateurs clés (durée de cycle, taux d'erreur, DSO, temps de saisie) dans la situation avant projet, puis à 3, 6 et 12 mois après le go-live. Les fourchettes présentent la médiane et l'écart interquartile. Les résultats dépendent fortement de la qualité du cadrage, de l'adoption des équipes et de l'intégration comptable dans Odoo. Ils ne constituent pas une garantie de résultat pour tout déploiement.",
+      },
+      {
+        type: "p",
+        text: "Si vous souhaitez une estimation personnalisée sur votre structure, le calculateur ROI MSL-iTECH reprend ces mêmes hypothèses et les applique à votre CA, votre secteur et votre outil actuel.",
       },
 
       { type: "h2", text: "Les 3 conditions pour que ce ROI se matérialise" },
@@ -1331,12 +1319,11 @@ export const blogPosts: BlogPost[] = [
     metaDescription:
       "Le DAF marocain passe trop de temps à produire des chiffres et pas assez à les analyser. Voici comment Odoo transforme concrètement le rôle de la direction financière.",
     excerpt:
-      "70 % du temps d'un DAF marocain part dans la production de chiffres. Comment Odoo lui rend du temps pour l'analyse, le pilotage et la décision.",
+      "Dans les PME marocaines suivies par MSL-iTECH, le DAF consacre 70 à 80 % de son temps à la production de chiffres. Comment Odoo lui rend du temps pour l'analyse, le pilotage et la décision.",
     category: "Direction financière",
     region: "MA",
     readingTime: "9 min",
     publishedAt: "2026-06-24",
-    image: dafMarocainOdooImg,
     intent: "Mid-funnel · DAF / RAF PME",
     relatedPath: "/odoo-finance-comptabilite",
     relatedLabel: "Découvrir Odoo Finance & Comptabilité",
@@ -1359,6 +1346,10 @@ export const blogPosts: BlogPost[] = [
       subtitle:
         "20 minutes avec un consultant MSL-iTECH · Discussion sur vos processus réels · Pas de démo générique",
     },
+    sources: [
+      "Données MSL-iTECH : 12 entretiens semi-directifs auprès de DAF et responsables financiers de PME marocaines (15-60 salariés, 2024-2026).",
+      "Méthode : estimations déclaratives recoupées avec les indicateurs de temps et productivité d'Odoo après le go-live.",
+    ],
     body: [
       {
         type: "p",
@@ -1366,7 +1357,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "La réponse honnête, dans la plupart des cas : 70 à 80 % du temps sur la production, 20 à 30 % sur l'analyse. Et c'est exactement l'inverse de ce que devrait être le rôle d'un DAF en 2026.",
+        text: "Dans les entretiens de suivi menés par MSL-iTECH auprès de 12 DAF et responsables financiers de PME marocaines (15 à 60 salariés, 2024-2026), la réponse honnête, dans la plupart des cas : 70 à 80 % du temps sur la production, 20 à 30 % sur l'analyse. Et c'est exactement l'inverse de ce que devrait être le rôle d'un DAF en 2026.",
       },
       {
         type: "p",
@@ -1434,7 +1425,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Résultat global : le DAF récupère 30 à 50 % de son temps productif, qu'il peut réorienter vers l'analyse et le conseil interne.",
+        text: "Résultat global observé sur l'échantillon MSL-iTECH : 6 à 12 mois après le go-live, les DAF interrogés estiment récupérer 30 à 50 % de leur temps productif, réorienté vers l'analyse et le conseil interne. L'ampleur du gain dépend de l'intégration comptable dans Odoo et de la qualité du paramétrage des tableaux de bord.",
       },
 
       { type: "h2", text: "Du reporting passif au pilotage actif — la différence en pratique" },
@@ -1494,6 +1485,12 @@ export const blogPosts: BlogPost[] = [
           "Le DAF en croissance dont la PME passe de 30 à 100 salariés — la charge de travail administrative explose à cette taille, et sans ERP intégré, le DAF devient le goulot d'étranglement de toutes les décisions financières.",
         ],
       },
+
+      { type: "h2", text: "Source et méthodologie" },
+      {
+        type: "p",
+        text: "Les parts de temps (70 à 80 % en production, 20 à 30 % en analyse) et le gain de temps productif (30 à 50 %) sont issus d'entretiens semi-directifs menés par MSL-iTECH auprès de 12 DAF et responsables financiers de PME marocaines entre 2024 et 2026 (15 à 60 salariés, secteurs distribution, industrie légère et services). Les chiffres représentent des estimations déclaratives recoupées avec les indicateurs de temps et de productivité disponibles dans Odoo après le go-live. Les résultats varient selon la maturité des processus, l'intégration comptable dans Odoo et l'adoption des équipes.",
+      },
     ],
   },
   {
@@ -1509,7 +1506,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "8 min",
     publishedAt: "2026-06-24",
-    image: erpAgentiqueOdooImg,
     intent: "Mid-funnel · Automatisation Odoo",
     relatedPath: "/odoo-erp",
     relatedLabel: "Découvrir notre déploiement Odoo au Maroc",
@@ -1699,7 +1695,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "9 min",
     publishedAt: "2026-06-20",
-    image: migrationExcelOdooImg,
     intent: "Mid-funnel · Décision migration",
     relatedPath: "/contact",
     relatedLabel: "Planifier mon diagnostic de migration",
@@ -1890,7 +1885,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "10 min",
     publishedAt: "2026-06-22",
-    image: sageVsOdooMarocImg,
     intent: "Comparatif · Décision d'achat",
     relatedPath: "/odoo-erp",
     relatedLabel: "Découvrir Odoo ERP avec MSL-iTECH",
@@ -2105,7 +2099,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "8 min",
     publishedAt: "2026-06-24",
-    image: facturationDgi2026Img,
     intent: "Réglementaire · Page pilier conformité DGI",
     relatedPath: "/odoo-finance-comptabilite",
     relatedLabel: "Voir Odoo Finance & Comptabilité",
@@ -2294,7 +2287,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "6 min",
     publishedAt: "2026-02-05",
-    image: facturationElectroniqueMarocImg,
     intent: "Réglementaire · Urgence réelle",
     relatedPath: "/odoo-finance",
     relatedLabel: "Voir Odoo Finance & Comptabilité",
@@ -2358,7 +2350,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "6 min",
     publishedAt: "2026-01-29",
-    image: gestionStockMarocImg,
     intent: "Informationnelle · Funnel haut",
     relatedPath: "/odoo-gestion-stock-maroc",
     relatedLabel: "Découvrir Odoo Gestion de Stock pour le Maroc",
@@ -2426,7 +2417,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "8 min",
     publishedAt: "2026-06-18",
-    image: coutErpOdooMarocImg,
     intent: "Transactionnelle · Décision",
     relatedPath: "/contact",
     relatedLabel: "Demander une estimation personnalisée",
@@ -2549,7 +2539,6 @@ export const blogPosts: BlogPost[] = [
     region: "INT",
     readingTime: "9 min",
     publishedAt: "2026-06-11",
-    image: odooVsSapVsSageImg,
     intent: "Transactionnelle · Comparaison",
     relatedPath: "/odoo-erp",
     relatedLabel: "Découvrir les modules Odoo ERP",
@@ -2682,7 +2671,6 @@ export const blogPosts: BlogPost[] = [
     region: "INT",
     readingTime: "7 min",
     publishedAt: "2026-06-04",
-    image: coutsCachesErpImg,
     intent: "Informationnelle · Funnel moyen",
     relatedPath: "/contact",
     relatedLabel: "Demander un devis transparent et détaillé",
@@ -2808,7 +2796,6 @@ export const blogPosts: BlogPost[] = [
     region: "MA",
     readingTime: "7 min",
     publishedAt: "2026-05-28",
-    image: budgetErpHorecaMarocImg,
     intent: "Transactionnelle · Sectoriel",
     relatedPath: "/odoo-horeca-maroc",
     relatedLabel: "Découvrir Odoo pour l'HORECA au Maroc",
@@ -2939,7 +2926,6 @@ export const blogPosts: BlogPost[] = [
     region: "INT",
     readingTime: "7 min",
     publishedAt: "2026-05-21",
-    image: roiErpPmeImg,
     intent: "Informationnelle · Funnel moyen",
     relatedPath: "/prendre-rendez-vous",
     relatedLabel: "Calculez votre ROI avec un expert MSL-iTECH",

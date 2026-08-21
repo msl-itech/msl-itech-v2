@@ -4,6 +4,7 @@ import { ArrowRight, Calendar, Clock, Sparkles } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import { blogPosts } from "@/content/blogPosts";
+import { blogImageBySlug } from "@/lib/blog-images";
 import pillarMarketing from "@/assets/home/pillar-marketing.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
 
@@ -210,9 +211,9 @@ export default function BlogIndexPage() {
               style={{ borderColor: "var(--grey-light)" }}
             >
               <div className="relative h-72 overflow-hidden lg:col-span-7 lg:h-auto">
-                {featured.image ? (
+                {blogImageBySlug[featured.slug] ? (
                   <img
-                    src={featured.image}
+                    src={blogImageBySlug[featured.slug]}
                     alt={`Illustration de l'article de blog : ${featured.title}`}
                     className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     loading="lazy"
@@ -348,9 +349,9 @@ export default function BlogIndexPage() {
                 style={{ borderColor: "var(--grey-light)" }}
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
-                  {p.image ? (
+                  {blogImageBySlug[p.slug] ? (
                     <img
-                      src={p.image}
+                      src={blogImageBySlug[p.slug]}
                       alt={`Illustration de l'article de blog : ${p.title}`}
                       className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                       loading="lazy"
