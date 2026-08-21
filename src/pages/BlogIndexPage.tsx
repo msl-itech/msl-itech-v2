@@ -211,7 +211,7 @@ export default function BlogIndexPage() {
               style={{ borderColor: "var(--grey-light)" }}
             >
               <div className="relative h-72 overflow-hidden lg:col-span-7 lg:h-auto">
-                {featured.image ? (
+                {blogImageBySlug[featured.slug] ? (
                   <img
                     src={featured.image}
                     alt={`Illustration de l'article de blog : ${featured.title}`}
