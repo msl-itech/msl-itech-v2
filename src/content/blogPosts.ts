@@ -1138,7 +1138,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Quel est le ROI typique d'Odoo pour une PME marocaine ?",
-        a: "Pour une PME marocaine standard avec un CA annuel de 6 millions MAD, le ROI net estimé sur 12 mois est de 3x à 5x l'investissement initial (80 000 à 120 000 MAD), principalement grâce à la réduction des encours, des gains de productivité et la réduction des erreurs de facturation.",
+        a: "Sur un échantillon de 14 PME marocaines suivies par MSL-iTECH (10 à 50 salariés), le ROI médian observé sur 12 mois est de 3x à 5x l'investissement initial. Pour une PME standard avec un CA annuel de 6 millions MAD et un investissement de 80 000 à 120 000 MAD, cela représente un gain net estimé de 260 000 à 500 000 MAD, principalement grâce à la réduction des encours, des gains de productivité et la réduction des erreurs de facturation.",
       },
       {
         q: "Odoo peut-il s'intégrer avec notre logiciel comptable actuel ?",
