@@ -266,7 +266,7 @@ export default function BlogPage() {
               style={{ borderColor: "var(--grey-light)" }}
             >
               <img
-                src={post.image}
+                src={blogImageBySlug[post.slug]}
                 alt={`Illustration principale de l'article : ${post.title}`}
                 className="block aspect-[16/9] w-full object-cover"
                 width={1280}
