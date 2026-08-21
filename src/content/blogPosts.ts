@@ -1146,9 +1146,9 @@ export const blogPosts: BlogPost[] = [
       "Du devis à l'encaissement : automatiser tout le cycle dans Odoo — et le ROI réel pour une PME marocaine",
     metaTitle: "Du devis à l'encaissement dans Odoo : le ROI réel en 6 mois",
     metaDescription:
-      "Combien coûte vraiment un cycle commercial non automatisé ? Et combien rapporte Odoo en 6 à 12 mois ? Chiffres réels, cas concrets, calcul honnête pour PME marocaines.",
+      "Combien coûte vraiment un cycle commercial non automatisé ? Et combien rapporte Odoo en 6 à 12 mois ? Estimations issues de déploiements MSL-iTECH au Maroc, méthodologie et calcul honnête pour PME marocaines.",
     excerpt:
-      "Cycle Order-to-Cash automatisé dans Odoo : coût caché du manuel, ROI sur 12 mois et conditions pour qu'il se matérialise — chiffres réels pour PME marocaines.",
+      "Cycle Order-to-Cash automatisé dans Odoo : coût caché du manuel, ROI sur 12 mois et conditions pour qu'il se matérialise — estimations issues de déploiements MSL-iTECH au Maroc.",
     category: "ROI & Automatisation",
     region: "MA",
     readingTime: "10 min",
