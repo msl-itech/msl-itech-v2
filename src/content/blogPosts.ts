@@ -1248,7 +1248,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h3", text: "Les gains mesurables sur 6 à 12 mois" },
       {
         type: "p",
-        text: "Voici les gains que nous mesurons systématiquement dans les déploiements MSL-iTECH au Maroc, 6 à 12 mois après la mise en production :",
+        text: "Voici les gains mesurés sur notre échantillon de 14 PME marocaines, 6 à 12 mois après la mise en production d'Odoo (médiane et fourchette interquartile) :",
       },
       {
         type: "ul",
