@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -44,6 +44,9 @@ const RoiErpToolPage = lazy(() => import("./pages/outils/RoiErpPage"));
 const DiagnosticDigitalToolPage = lazy(() => import("./pages/outils/DiagnosticDigitalPage"));
 const ComparateurSageOdooToolPage = lazy(() => import("./pages/outils/ComparateurSageOdooPage"));
 const EmailUnsubscribePage = lazy(() => import("./pages/EmailUnsubscribePage"));
+const IntegrateurOdooMarocPage = lazy(() => import("./pages/IntegrateurOdooMarocPage"));
+const IntegrateurOdooMarrakechPage = lazy(() => import("./pages/IntegrateurOdooMarrakechPage"));
+const IntegrateurOdooCasablancaPage = lazy(() => import("./pages/IntegrateurOdooCasablancaPage"));
 
 const queryClient = new QueryClient();
 
@@ -111,6 +114,16 @@ const App = () => {
             <Route path="/outils/diagnostic-digital" element={<DiagnosticDigitalToolPage />} />
             <Route path="/outils/comparateur-sage-odoo" element={<ComparateurSageOdooToolPage />} />
             <Route path="/email/desinscription" element={<EmailUnsubscribePage />} />
+            {/* Keyword landing pages */}
+            <Route path="/integrateur-odoo-maroc" element={<IntegrateurOdooMarocPage />} />
+            <Route path="/integrateur-odoo-marrakech" element={<IntegrateurOdooMarrakechPage />} />
+            <Route path="/integrateur-odoo-casablanca" element={<IntegrateurOdooCasablancaPage />} />
+            {/* Legacy URL redirects (old site) — prevents soft-404 cannibalisation */}
+            <Route path="/serviceOdoo" element={<Navigate to="/odoo-erp" replace />} />
+            <Route path="/ventes" element={<Navigate to="/odoo-crm-ventes" replace />} />
+            <Route path="/about" element={<Navigate to="/a-propos" replace />} />
+            <Route path="/tarif-Odoo" element={<Navigate to="/notre-approche" replace />} />
+            <Route path="/tarif-odoo" element={<Navigate to="/notre-approche" replace />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>

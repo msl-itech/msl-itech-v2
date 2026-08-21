@@ -1,33 +1,35 @@
 /**
- * Conditional Google Analytics loader.
- * GA is loaded ONLY after the user grants the "analytics" consent.
- * IP anonymization is forced (anonymize_ip / IP Anonymization is default in
- * GA4, but we keep the flag explicit for transparency).
+ * Conditional analytics loaders — Google Analytics 4 + Microsoft Clarity.
+ * Both are loaded ONLY after the user grants the "analytics" consent.
  *
- * To activate: set VITE_GA_MEASUREMENT_ID in your environment, e.g. "G-XXXXXX".
- * Without it, this module is a no-op (safe in dev / preview).
+ * GA4: set VITE_GA_MEASUREMENT_ID in your environment (e.g. "G-XXXXXX").
+ *      Without it the GA loader is a no-op (safe in dev / preview).
+ * Clarity: tag ID is hardcoded (xrf313hs67) — public by design, no secret.
  */
 
 import { getConsent, onConsentChange } from "./consent";
 
 const GA_ID = (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined) || "";
-const SCRIPT_ID = "ga4-loader";
+const CLARITY_ID = "xrf313hs67";
 
 declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
+    clarity?: (...args: unknown[]) => void;
   }
 }
 
-let loaded = false;
+/* ── Google Analytics 4 ─────────────────────────────────────────── */
+
+let gaLoaded = false;
 
 function loadGa() {
-  if (loaded || !GA_ID || typeof document === "undefined") return;
-  loaded = true;
+  if (gaLoaded || !GA_ID || typeof document === "undefined") return;
+  gaLoaded = true;
 
   const s = document.createElement("script");
-  s.id = SCRIPT_ID;
+  s.id = "ga4-loader";
   s.async = true;
   s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
   document.head.appendChild(s);
@@ -45,14 +47,46 @@ function loadGa() {
   });
 }
 
+/* ── Microsoft Clarity ──────────────────────────────────────────── */
+
+let clarityLoaded = false;
+
+function loadClarity() {
+  if (clarityLoaded || typeof document === "undefined") return;
+  clarityLoaded = true;
+
+  // Minimal Clarity snippet — identical to the official tag, injected on demand.
+  const c = window as Window & { clarity?: (...args: unknown[]) => void };
+  c.clarity =
+    c.clarity ||
+    function (...args: unknown[]) {
+      ((c.clarity as unknown as { q?: unknown[][] }).q =
+        (c.clarity as unknown as { q?: unknown[][] }).q || []).push(args);
+    };
+
+  const s = document.createElement("script");
+  s.id = "clarity-loader";
+  s.async = true;
+  s.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
+  document.head.appendChild(s);
+}
+
+/* ── Boot ───────────────────────────────────────────────────────── */
+
 /**
  * Initialise listeners. Call once at app boot.
- * Loads GA if consent is already granted, otherwise waits for the event.
+ * Loads GA4 + Clarity if consent is already granted, otherwise waits for the event.
  */
 export function initAnalytics() {
   if (typeof window === "undefined") return;
-  if (getConsent().categories.analytics) loadGa();
+  if (getConsent().categories.analytics) {
+    loadGa();
+    loadClarity();
+  }
   onConsentChange((s) => {
-    if (s.categories.analytics) loadGa();
+    if (s.categories.analytics) {
+      loadGa();
+      loadClarity();
+    }
   });
 }

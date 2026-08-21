@@ -3,10 +3,14 @@
  * Le fichier est généré dynamiquement au build (voir vite.config.ts) et
  * également servi en dev pour pouvoir le tester localement.
  *
- * Ce fichier ne doit avoir AUCUNE dépendance sur l'app (pas d'imports
- * d'images, de hooks, d'alias `@/...`) pour pouvoir être consommé par
- * Node lors du build. Les slugs blog sont déclarés ici explicitement.
+ * Contraintes : pas d'imports d'images, de hooks React, ni d'alias `@/`.
+ * Les imports relatifs vers des fichiers de pure data sont autorisés —
+ * ils sont transpilés par Vite sans dépendance navigateur.
+ *
+ * Les articles de blog sont lus directement depuis blogPosts.ts :
+ * publier un article suffit pour qu'il apparaisse dans le sitemap au build suivant.
  */
+import { blogPosts } from "../content/blogPosts";
 export type SitemapEntry = {
   loc: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
@@ -35,6 +39,11 @@ const staticEntries: SitemapEntry[] = [
   { loc: "/odoo-gestion-stock-maroc", changefreq: "monthly", priority: 0.95 },
   { loc: "/odoo-transport-logistique-maroc", changefreq: "monthly", priority: 0.8 },
   { loc: "/odoo-tourisme-maroc", changefreq: "monthly", priority: 0.9 },
+
+  // Pages de positionnement intégrateur (SEO commercial)
+  { loc: "/integrateur-odoo-maroc", changefreq: "monthly", priority: 0.95 },
+  { loc: "/integrateur-odoo-marrakech", changefreq: "monthly", priority: 0.9 },
+  { loc: "/integrateur-odoo-casablanca", changefreq: "monthly", priority: 0.9 },
 
   // Pages cibles structure
   { loc: "/pme-en-structuration", changefreq: "monthly", priority: 0.85 },
@@ -68,35 +77,12 @@ const staticEntries: SitemapEntry[] = [
   { loc: "/conformite-loi-09-08", changefreq: "yearly", priority: 0.3 },
 ];
 
-/** Articles de blog — tenir à jour quand on en publie un nouveau. */
-const blogSlugs: { slug: string; publishedAt: string }[] = [
-  { slug: "facturation-electronique-obligatoire-maroc-2026-erp", publishedAt: "2026-06-25" },
-  { slug: "copilote-conversationnel-odoo-ia-maroc", publishedAt: "2026-06-24" },
-  { slug: "agents-ia-odoo-pme-maroc-2026", publishedAt: "2026-06-24" },
-  { slug: "donnees-propres-erp-avant-ia-odoo-maroc", publishedAt: "2026-06-24" },
-  { slug: "facturation-electronique-transformation-digitale-maroc", publishedAt: "2026-06-24" },
-  { slug: "odoo-saas-on-premise-hybride-maroc-2026", publishedAt: "2026-06-24" },
-  { slug: "devis-encaissement-odoo-automatisation-roi-maroc", publishedAt: "2026-06-24" },
-  { slug: "daf-marocain-pilotage-strategique-odoo-2026", publishedAt: "2026-06-24" },
-  { slug: "erp-odoo-relances-automatiques-ruptures-stock-ia-maroc", publishedAt: "2026-06-24" },
-  { slug: "migration-excel-vers-odoo-maroc-methode", publishedAt: "2026-06-20" },
-  { slug: "sage-vs-odoo-maroc-comparatif-2026", publishedAt: "2026-06-22" },
-  { slug: "facturation-electronique-dgi-maroc-2026-pdf-ubl", publishedAt: "2026-06-24" },
-  { slug: "cout-erp-odoo-maroc-2026", publishedAt: "2026-06-18" },
-  { slug: "odoo-vs-sap-vs-sage-comparatif-cout-pme-2026", publishedAt: "2026-06-11" },
-  { slug: "couts-caches-projet-erp-2026", publishedAt: "2026-06-04" },
-  { slug: "budget-erp-horeca-maroc-2026", publishedAt: "2026-05-28" },
-  { slug: "roi-erp-pme-economies-2026", publishedAt: "2026-05-21" },
-  { slug: "facturation-electronique-maroc-2026", publishedAt: "2026-04-15" },
-  { slug: "gestion-stock-maroc-apres-1-5m-mad", publishedAt: "2026-03-20" },
-];
-
 export function buildSitemapEntries(): SitemapEntry[] {
-  const blogEntries: SitemapEntry[] = blogSlugs.map((p) => ({
+  const blogEntries: SitemapEntry[] = blogPosts.map((p) => ({
     loc: `/blog/${p.slug}`,
-    changefreq: "monthly",
+    changefreq: "monthly" as const,
     priority: 0.85,
-    lastmod: p.publishedAt,
+    lastmod: p.updatedAt ?? p.publishedAt,
   }));
   return [...staticEntries, ...blogEntries];
 }

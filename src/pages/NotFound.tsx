@@ -34,6 +34,7 @@ const NotFound = () => {
     description:
       "Cette page n'existe pas ou a été déplacée. Retrouvez nos offres Odoo, notre blog et nos réalisations depuis l'accueil MSL-iTECH.",
     path: location.pathname,
+    noIndex: true,
   });
 
   useEffect(() => {

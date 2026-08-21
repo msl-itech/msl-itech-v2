@@ -79,9 +79,9 @@ export function CookieConsent() {
                   </p>
                   <p className="mt-1 font-body text-sm leading-relaxed text-brand-black/75">
                     Nous utilisons des cookies essentiels au fonctionnement du site et,
-                    avec votre accord, des cookies de mesure d'audience (Google Analytics)
-                    pour améliorer votre expérience. Aucun cookie analytique ou marketing
-                    n'est déposé sans votre consentement.{" "}
+                    avec votre accord, des cookies de mesure d'audience (Google Analytics,
+                    Microsoft Clarity) pour améliorer votre expérience. Aucun cookie analytique
+                    ou marketing n'est déposé sans votre consentement.{" "}
                     <Link
                       to="/politique-de-confidentialite"
                       className="font-medium text-brand-blue hover:underline"
@@ -177,7 +177,7 @@ export function CookieConsent() {
               <Category
                 icon={BarChart3}
                 title="Mesure d'audience"
-                description="Google Analytics — anonymisation IP activée. Nous aide à comprendre l'usage du site."
+                description="Google Analytics (anonymisation IP) + Microsoft Clarity (enregistrements de session). Nous aident à comprendre l'usage du site et améliorer l'expérience."
                 checked={analytics}
                 onChange={setAnalytics}
               />

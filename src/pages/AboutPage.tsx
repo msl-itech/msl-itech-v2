@@ -23,10 +23,10 @@ import ctaBg from "@/assets/home/cta-bg.webp";
 import photoMika from "@/assets/team/mika.webp";
 import photoHoussineAsset from "@/assets/team/houssine-new.png.asset.json";
 const photoHoussine = photoHoussineAsset.url;
-import photoRomeo from "@/assets/team/romeo.png";
+import photoRomeo from "@/assets/team/romeo.webp";
 import photoArnaud from "@/assets/team/arnaud.jpg";
-import photoElohim from "@/assets/team/elohim.png";
-import photoManal from "@/assets/team/manal.jpg";
+import photoElohim from "@/assets/team/elohim.webp";
+import photoManal from "@/assets/team/manal.webp";
 
 /* ---------------- Highlight (marker brushstroke) ---------------- */
 function Mark({ children }: { children: React.ReactNode }) {

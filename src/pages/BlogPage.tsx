@@ -153,12 +153,13 @@ export default function BlogPage() {
   const relatedTool = ARTICLE_TO_TOOL[post.slug];
   const relatedPosts = getRelatedPosts(post.slug, 3);
 
-  const articleUrl = `https://msl-itech-v2.lovable.app/blog/${post.slug}`;
+  const SITE = "https://msl-itech.com";
+  const articleUrl = `${SITE}/blog/${post.slug}`;
   const articleImage = post.image
     ? post.image.startsWith("http")
       ? post.image
-      : `https://msl-itech-v2.lovable.app${post.image.startsWith("/") ? post.image : "/" + post.image}`
-    : "https://msl-itech-v2.lovable.app/og-default.jpg";
+      : `${SITE}${post.image.startsWith("/") ? post.image : "/" + post.image}`
+    : `${SITE}/og-default.jpg`;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -168,18 +169,18 @@ export default function BlogPage() {
     image: articleImage,
     articleSection: post.category,
     datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    dateModified: post.updatedAt ?? post.publishedAt,
     author: {
       "@type": "Organization",
       name: "MSL-iTECH",
-      url: "https://msl-itech-v2.lovable.app",
+      url: SITE,
     },
     publisher: {
       "@type": "Organization",
       name: "MSL-iTECH",
       logo: {
         "@type": "ImageObject",
-        url: "https://msl-itech-v2.lovable.app/icon-192.png",
+        url: `${SITE}/icon-192.png`,
       },
     },
     mainEntityOfPage: {

@@ -7,7 +7,6 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 Disallow: /_lovable/
-Crawl-delay: 1
 
 # ── Google ──
 User-agent: Googlebot

@@ -16,18 +16,14 @@
     <meta name="application-name" content="MSL-iTECH" />
     <meta name="apple-mobile-web-app-title" content="MSL-iTECH" />
 
-    <!-- hreflang — Maroc + Belgique + Canada (fr) -->
-    <link rel="alternate" hreflang="fr-ma" href="https://msl-itech.com/" />
-    <link rel="alternate" hreflang="fr-be" href="https://msl-itech.com/" />
-    <link rel="alternate" hreflang="fr-ca" href="https://msl-itech.com/" />
-    <link rel="alternate" hreflang="x-default" href="https://msl-itech.com/" />
+    <!-- hreflang injectés dynamiquement par SEOHead.tsx sur chaque page -->
 
     <!-- Open Graph — fallback statique (Helmet surcharge par page) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="MSL-iTECH" />
     <meta property="og:locale" content="fr_MA" />
     <meta property="og:title" content="MSL-iTECH — Odoo Ready Partner | Maroc, Belgique, Canada" />
-    <meta property="og:description" content="Implémentation Odoo ERP pour PME marocaines, belges et canadiennes. Consultants certifiés v18 & v19. Tarifs transparents, packs à partir de 400€." />
+    <meta property="og:description" content="Implémentation Odoo ERP pour PME marocaines, belges et canadiennes. Intégrateur et partenaire Odoo certifié Ready Partner — consultants v18 & v19." />
     <meta property="og:url" content="https://msl-itech.com/" />
     <meta property="og:image" content="https://msl-itech.com/og-default.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -37,7 +33,7 @@
     <!-- Twitter Card — fallback statique -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="MSL-iTECH — Odoo Ready Partner | Maroc, Belgique, Canada" />
-    <meta name="twitter:description" content="Implémentation Odoo ERP pour PME. Consultants certifiés v18 & v19. Tarifs transparents." />
+    <meta name="twitter:description" content="Intégrateur Odoo Maroc certifié Ready Partner. Consultants v18 & v19. Devis gratuit sous 48h." />
     <meta name="twitter:image" content="https://msl-itech.com/og-default.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,14 +99,7 @@
     }
     </script>
 
-    <!-- Microsoft Clarity (defer pour ne pas bloquer le parsing HTML) -->
-    <script defer type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "xrf313hs67");
-    </script>
+    <!-- Microsoft Clarity est chargé conditionnellement via analytics.ts après consentement -->
 </head>
 
   <body>

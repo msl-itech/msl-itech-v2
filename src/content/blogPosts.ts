@@ -14,6 +14,11 @@ export type BlogPost = {
   region: "BE" | "MA" | "INT";
   readingTime: string;
   publishedAt: string;
+  updatedAt?: string;
+  /** Nom affiché de l'auteur (ex: "Équipe MSL-iTECH" ou "Houssine Abba"). */
+  author?: string;
+  /** URLs ou citations des sources externes utilisées dans l'article. */
+  sources?: string[];
   image?: string;
   intent?: string;
   relatedPath?: string;

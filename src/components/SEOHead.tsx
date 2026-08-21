@@ -5,6 +5,7 @@ export interface SEOHeadProps {
   description: string;
   canonical: string;
   ogImage?: string;
+  ogType?: "website" | "article";
   noIndex?: boolean;
   /**
    * One JSON-LD object or an array of them. Each is rendered as a
@@ -32,6 +33,7 @@ export function SEOHead({
   description,
   canonical,
   ogImage,
+  ogType = "website",
   noIndex = false,
   schemaJson,
 }: SEOHeadProps) {
@@ -66,10 +68,16 @@ export function SEOHead({
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       )}
 
+      {/* hreflang — même URL pour tous les marchés francophones */}
+      <link rel="alternate" hreflang="fr-ma" href={absCanonical} />
+      <link rel="alternate" hreflang="fr-be" href={absCanonical} />
+      <link rel="alternate" hreflang="fr-ca" href={absCanonical} />
+      <link rel="alternate" hreflang="x-default" href={absCanonical} />
+
       {/* Open Graph */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       <meta property="og:url" content={absCanonical} />
       <meta property="og:image" content={absOgImage} />
       <meta property="og:image:width" content="1200" />

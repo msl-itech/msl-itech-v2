@@ -38,11 +38,11 @@ const HomeFaqJsonLd = lazy(() =>
 function useSeo(market: "BE" | "MA") {
   const title =
     market === "MA"
-      ? "Odoo Partner Maroc | ERP & digital — MSL-iTECH"
+      ? "Intégrateur Odoo Maroc | Partenaire certifié — MSL-iTECH"
       : "Expert Odoo Belgique & Canada — MSL-iTECH";
   const description =
     market === "MA"
-      ? "Odoo Ready Partner Maroc — consultants certifiés v18 & v19. Implémentation ERP, modules custom et personnalisation d'Odoo natif pour HORECA, BTP, Santé et Commerce."
+      ? "MSL-iTECH, intégrateur et partenaire Odoo certifié au Maroc. Consultants v18 & v19 — implémentation ERP, modules custom pour HORECA, BTP, Santé et Commerce."
       : "Odoo Ready Partner. Accompagnement à distance PME belges et canadiennes. ERP, modules custom et personnalisation d'Odoo natif.";
   useProductSeo({ title, description, path: "/" });
 }

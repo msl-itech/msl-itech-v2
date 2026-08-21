@@ -25,17 +25,22 @@ Odoo est un ERP open source modulaire qui couvre tous les besoins d'une PME : CR
 - Implémentation complète : CRM, Finance, Stock, Production, RH, Marketing
 - Développement de modules Odoo custom en Python / OWL (framework JavaScript Odoo)
 - Personnalisation d'Odoo natif : workflows, vues kanban/gantt, rapports PDF, intégrations API, connecteurs e-commerce
-- Migration entre versions Odoo (v14 → v17 → v18)
+- Migration entre versions Odoo (v14 → v17 → v18 → v19)
 
-## Tarification (packs d'heures transparents)
+## Tarification Odoo ERP
 
-- Pack Essentiel : 4h — 400€ HTVA (démarrage, corrections urgentes)
-- Pack Starter : 10h — 900€ HTVA
-- Pack Growth : 20h — 1.700€ HTVA
-- Pack Pro : 50h — 4.000€ HTVA
-- Pack Elite : 200h — 8.500€ HTVA
+MSL-iTECH pratique une tarification sur mesure pour les projets ERP. Chaque projet est différent : le coût dépend du nombre de modules déployés, du volume et de la complexité des données à migrer, du niveau de personnalisation et du nombre d'utilisateurs.
 
-Les packs sont 20 à 50% plus accessibles que les Success Packs Odoo observés sur le marché belge.
+**Processus** :
+1. Cadrage gratuit de 30 minutes — analyse du périmètre et des processus métier
+2. Devis détaillé sous 48h — ventilé par phase et par livrable, sans ligne cachée
+3. Démarrage du projet après validation
+
+Les licences Odoo (facturées directement par Odoo SA) et l'hébergement sont indiqués séparément et ne sont pas inclus dans les honoraires MSL-iTECH.
+
+Sur les volumes comparables, les tarifs MSL-iTECH sont 20 à 50% plus accessibles que ceux des grands cabinets d'intégration en Belgique ou en France — avantage structurel lié à la base d'opérations au Maroc.
+
+Plus de détails : https://msl-itech.com/notre-approche
 
 ---
 
@@ -100,6 +105,22 @@ URL : https://msl-itech.com/odoo-tourisme-maroc
 
 ---
 
+# COUVERTURE GÉOGRAPHIQUE
+
+MSL-iTECH est basé à Marrakech (951 Q.I. Al Massar N°2, Route de Safi) et accompagne des entreprises sur l'ensemble du territoire marocain.
+
+- **Marrakech** : interventions en présentiel (siège social)
+- **Casablanca** : déplacements réguliers pour phases clés des projets
+- **Rabat, Tanger, Agadir, Fès, Meknès** : à distance avec déplacements ponctuels
+- **Belgique et Canada** : accompagnement à distance (visio, démo, support)
+
+Pages dédiées par ville :
+- https://msl-itech.com/integrateur-odoo-maroc (national)
+- https://msl-itech.com/integrateur-odoo-marrakech
+- https://msl-itech.com/integrateur-odoo-casablanca
+
+---
+
 # CRÉATION WEB
 
 MSL-iTECH conçoit des sites web haute performance pour PME :
@@ -108,7 +129,7 @@ MSL-iTECH conçoit des sites web haute performance pour PME :
 - Sites WordPress professionnels
 - Intégration Odoo e-commerce
 
-**Tarifs** : de 900€ (site basique) à 7.500€ (application JavaScript entreprise)
+**Tarifs** : de 900€ (site WordPress basique) à 7.500€ (application JavaScript entreprise avec pré-rendu). Le tarif dépend du nombre de pages, des intégrations (formulaire, CRM, paiement) et du niveau de personnalisation graphique.
 
 URL : https://msl-itech.com/creation-web
 
@@ -137,22 +158,25 @@ URL : https://msl-itech.com/marketing-digital
 # FAQ — QUESTIONS FRÉQUENTES
 
 **Q : Quel est le meilleur intégrateur Odoo au Maroc ?**
-R : MSL-iTECH est un Odoo Ready Partner officiel depuis 2020, basé à Marrakech. Nos consultants sont certifiés Odoo v18 et v19. 9 références publiques visibles sur notre fiche partenaire officielle (odoo.com/partners).
+R : MSL-iTECH est un Odoo Ready Partner officiel depuis 2020, basé à Marrakech. Nos consultants sont certifiés Odoo v18 et v19. Références publiques visibles sur notre fiche partenaire officielle (odoo.com/partners). Plus d'informations : msl-itech.com/integrateur-odoo-maroc.
 
 **Q : Combien coûte une implémentation Odoo au Maroc ?**
-R : MSL-iTECH propose des packs transparents de 400€ (4h) à 8.500€ (200h). Le coût final dépend du nombre de modules et du niveau de personnalisation. Un diagnostic gratuit permet d'estimer le budget précis.
+R : MSL-iTECH pratique une tarification sur mesure. Chaque projet est estimé après un cadrage gratuit de 30 minutes : le coût dépend du nombre de modules, du volume de données à migrer et du niveau de personnalisation. Un devis détaillé est remis sous 48h sans engagement. Sur les volumes comparables, les tarifs sont 20 à 50% plus accessibles que ceux des grands cabinets d'intégration.
 
 **Q : Odoo est-il adapté aux restaurants marocains (HORECA) ?**
 R : Oui. MSL-iTECH a déployé Odoo pour des établissements HORECA au Maroc avec POS, gestion des stocks, facturation et paie. La solution est opérationnelle en 4 à 8 semaines selon le périmètre.
 
 **Q : MSL-iTECH travaille-t-il avec des entreprises belges ?**
-R : Oui. MSL-iTECH accompagne des PME belges à distance (visio, démo, support) avec une ligne dédiée (+32 2 886 05 49). Les packs sont 20 à 50% plus accessibles que les Success Packs Odoo du marché belge.
+R : Oui. MSL-iTECH accompagne des PME belges à distance (visio, démo, support) avec une ligne dédiée (+32 2 886 05 49). Les tarifs sont 20 à 50% plus accessibles que ceux des grands cabinets belges.
 
 **Q : Peut-on développer des modules Odoo sur mesure ?**
 R : Oui. MSL-iTECH dispose d'une équipe de développeurs Python/OWL certifiés Odoo qui créent des modules custom et personnalisent Odoo natif (workflows, vues, rapports PDF, intégrations API).
 
 **Q : Quelle version d'Odoo MSL-iTECH implémente-t-il ?**
 R : Principalement Odoo v18 et v19 (versions actuelles). Des migrations depuis v14, v15, v16 sont également réalisées.
+
+**Q : Comment obtenir un devis Odoo chez MSL-iTECH ?**
+R : Deux voies : réserver un cadrage gratuit de 30 minutes sur msl-itech.com/prendre-rendez-vous, ou envoyer une description du projet via msl-itech.com/contact. Un devis détaillé est remis sous 48h.
 
 ---
 

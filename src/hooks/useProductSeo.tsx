@@ -16,7 +16,7 @@ export type SeoService = {
 export type SeoBreadcrumb = { name: string; url: string };
 
 const DEFAULT_OG_IMAGE = "/og-default.jpg";
-const SITE_ORIGIN = typeof window !== "undefined" ? window.location.origin : "";
+const SITE_ORIGIN = "https://msl-itech.com";
 
 /* ----- Sitewide LocalBusiness schemas (injected on every page using the hook) ----- */
 const LOCAL_BUSINESS_MA = {
@@ -90,7 +90,7 @@ export function useProductSeo(opts: {
   noIndex?: boolean;
 }) {
   useEffect(() => {
-    const origin = window.location.origin;
+    const origin = SITE_ORIGIN;
     const url = origin + opts.path;
     const ogImage = opts.ogImage ?? DEFAULT_OG_IMAGE;
 
@@ -154,6 +154,7 @@ export function useProductSeo(opts: {
       description: opts.description,
       canonical: url,
       ogImage,
+      ogType: opts.ogType,
       noIndex: opts.noIndex,
       schemaJson: schemas,
     });
