@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Sparkles, Clock, Calendar, ExternalLink, Wrench } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { getPostBySlug, getRelatedPosts } from "@/content/blogPosts";
+import { blogImageBySlug } from "@/lib/blog-images";
 import { JsonLd } from "@/components/JsonLd";
 
 /**
