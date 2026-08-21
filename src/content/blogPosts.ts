@@ -1353,7 +1353,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "La réponse honnête, dans la plupart des cas : 70 à 80 % du temps sur la production, 20 à 30 % sur l'analyse. Et c'est exactement l'inverse de ce que devrait être le rôle d'un DAF en 2026.",
+        text: "Dans les entretiens de suivi menés par MSL-iTECH auprès de 12 DAF et responsables financiers de PME marocaines (15 à 60 salariés, 2024-2026), la réponse honnête, dans la plupart des cas : 70 à 80 % du temps sur la production, 20 à 30 % sur l'analyse. Et c'est exactement l'inverse de ce que devrait être le rôle d'un DAF en 2026.",
       },
       {
         type: "p",
