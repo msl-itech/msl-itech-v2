@@ -11,6 +11,8 @@
  * publier un article suffit pour qu'il apparaisse dans le sitemap au build suivant.
  */
 import { blogPosts } from "../content/blogPosts";
+import { caseStudies } from "../content/caseStudies";
+
 export type SitemapEntry = {
   loc: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
