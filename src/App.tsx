@@ -26,6 +26,8 @@ const TourismePage = lazy(() => import("./pages/TourismePage"));
 const WebPage = lazy(() => import("./pages/WebPage"));
 const MarketingPage = lazy(() => import("./pages/MarketingPage"));
 const RealisationsPage = lazy(() => import("./pages/RealisationsPage"));
+const CaseStudyPage = lazy(() => import("./pages/CaseStudyPage"));
+
 const TarifsPage = lazy(() => import("./pages/TarifsPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
