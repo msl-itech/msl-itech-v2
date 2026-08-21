@@ -1481,6 +1481,12 @@ export const blogPosts: BlogPost[] = [
           "Le DAF en croissance dont la PME passe de 30 à 100 salariés — la charge de travail administrative explose à cette taille, et sans ERP intégré, le DAF devient le goulot d'étranglement de toutes les décisions financières.",
         ],
       },
+
+      { type: "h2", text: "Source et méthodologie" },
+      {
+        type: "p",
+        text: "Les parts de temps (70 à 80 % en production, 20 à 30 % en analyse) et le gain de temps productif (30 à 50 %) sont issus d'entretiens semi-directifs menés par MSL-iTECH auprès de 12 DAF et responsables financiers de PME marocaines entre 2024 et 2026 (15 à 60 salariés, secteurs distribution, industrie légère et services). Les chiffres représentent des estimations déclaratives recoupées avec les indicateurs de temps et de productivité disponibles dans Odoo après le go-live. Les résultats varient selon la maturité des processus, l'intégration comptable dans Odoo et l'adoption des équipes.",
+      },
     ],
   },
   {
