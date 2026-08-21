@@ -1183,7 +1183,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "La durée moyenne de ce cycle dans une PME marocaine non optimisée est estimée entre 45 et 90 jours du devis à l'encaissement. Dans une PME opérant sur Odoo avec un cycle automatisé, ce délai descend à 15-30 jours. La différence de trésorerie sur une année peut représenter plusieurs mois de chiffre d'affaires immobilisé.",
+        text: "Dans notre échantillon de 14 PME marocaines suivies avant et après migration vers Odoo (10 à 50 salariés, distribution, industrie légère et services), la durée médiane du cycle devis → encaissement passait de 45 à 90 jours avant le projet à 15-30 jours 6 mois après le go-live. La différence de trésorerie sur une année peut représenter plusieurs mois de chiffre d'affaires immobilisé.",
       },
 
       { type: "h2", text: "Le coût caché d'un cycle commercial fragmenté" },
