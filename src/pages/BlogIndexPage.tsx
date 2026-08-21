@@ -4,6 +4,7 @@ import { ArrowRight, Calendar, Clock, Sparkles } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import { blogPosts } from "@/content/blogPosts";
+import { blogImageBySlug } from "@/lib/blog-images";
 import pillarMarketing from "@/assets/home/pillar-marketing.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
 
