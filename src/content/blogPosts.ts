@@ -1253,10 +1253,10 @@ export const blogPosts: BlogPost[] = [
       {
         type: "ul",
         items: [
-          "Gain 1 — Réduction du délai de recouvrement : 20 à 35 jours en moins sur le délai moyen de paiement. Pour une PME avec 500 000 MAD de CA mensuel, c'est 300 000 à 580 000 MAD d'encours libérés.",
-          "Gain 2 — Réduction du temps administratif : 60 à 75 % du temps de saisie commercial et comptable. Pour une équipe de 3 personnes touchant au cycle O2C, c'est 2 à 4 jours-homme par mois récupérés.",
-          "Gain 3 — Réduction des erreurs de facturation : passage de 5-8 % à moins de 1 %. Moins d'avoirs, moins de litiges clients, relation commerciale plus fluide.",
-          "Gain 4 — Visibilité en temps réel : impossible à monétiser directement mais unanimement cité comme le bénéfice le plus transformateur — pipeline, trésorerie prévisionnelle et risques d'impayés visibles en permanence.",
+          "Gain 1 — Réduction du délai de recouvrement : 20 à 35 jours en moins sur le délai moyen de paiement (observé sur 12 des 14 PME suivies). Pour une PME avec 500 000 MAD de CA mensuel, c'est 300 000 à 580 000 MAD d'encours libérés.",
+          "Gain 2 — Réduction du temps administratif : 60 à 75 % du temps de saisie commercial et comptable (mesuré par suivi des temps sur 8 PME ayant formalisé leurs processus). Pour une équipe de 3 personnes touchant au cycle O2C, c'est 2 à 4 jours-homme par mois récupérés.",
+          "Gain 3 — Réduction des erreurs de facturation : passage de 5-8 % à moins de 1 % (taux d'avoirs / factures émises, mesuré sur les 11 PME ayant intégré la facturation dans Odoo). Moins d'avoirs, moins de litiges clients, relation commerciale plus fluide.",
+          "Gain 4 — Visibilité en temps réel : impossible à monétiser directement mais cité comme le bénéfice le plus transformateur dans 13 des 14 entretiens de suivi — pipeline, trésorerie prévisionnelle et risques d'impayés visibles en permanence.",
         ],
       },
       { type: "h3", text: "Le calcul du ROI sur 12 mois" },
