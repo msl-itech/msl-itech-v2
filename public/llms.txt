@@ -93,17 +93,26 @@ référence est consultable sur notre fiche partenaire officielle Odoo.
 
 ## Pages
 
-- [Accueil](/): Homepage adaptative avec détection géolocalisation (Belgique / Maroc).
-- [CRM & Ventes](/odoo-crm-ventes): CRM Odoo, pipeline commercial et automatisation des ventes.
-- [Finance & Comptabilité](/odoo-finance-comptabilite): Comptabilité PME, rapports financiers et fiscalité.
-- [Stock & Inventaire](/odoo-stock-inventaire): Gestion des stocks, multi-entrepôts et traçabilité.
-- [HORECA Maroc](/odoo-horeca-maroc): Solution Odoo pour restaurants et hôtels au Maroc.
-- [BTP Maroc](/odoo-btp-maroc): ERP Odoo pour chantiers, appels d'offres et marchés publics.
-- [Santé Maroc](/odoo-sante-maroc): Gestion pour cliniques, cabinets et pharmacies au Maroc.
-- [Commerce & Distribution](/odoo-gestion-stock-maroc): Odoo pour commerçants et distributeurs marocains.
-- [Notre approche](/notre-approche): Méthodologie et approche tarifaire sur mesure au Maroc.
-- [Réalisations](/realisations): Cas clients et références publiques Odoo.
-- [À propos](/a-propos): Certifications, équipe et valeurs MSL-iTECH.
+- [Accueil](https://msl-itech.com/): Homepage adaptative avec détection géolocalisation (Belgique / Maroc).
+- [CRM & Ventes](https://msl-itech.com/odoo-crm-ventes): CRM Odoo, pipeline commercial et automatisation des ventes.
+- [Finance & Comptabilité](https://msl-itech.com/odoo-finance-comptabilite): Comptabilité PME, rapports financiers et fiscalité.
+- [Stock & Inventaire](https://msl-itech.com/odoo-stock-inventaire): Gestion des stocks, multi-entrepôts et traçabilité.
+- [HORECA Maroc](https://msl-itech.com/odoo-horeca-maroc): Solution Odoo pour restaurants et hôtels au Maroc.
+- [BTP Maroc](https://msl-itech.com/odoo-btp-maroc): ERP Odoo pour chantiers, appels d'offres et marchés publics.
+- [Santé Maroc](https://msl-itech.com/odoo-sante-maroc): Gestion pour cliniques, cabinets et pharmacies au Maroc.
+- [Commerce & Distribution](https://msl-itech.com/odoo-gestion-stock-maroc): Odoo pour commerçants et distributeurs marocains.
+- [Notre approche](https://msl-itech.com/notre-approche): Méthodologie et approche tarifaire sur mesure au Maroc.
+- [Réalisations](https://msl-itech.com/realisations): Cas clients et références publiques Odoo.
+- [À propos](https://msl-itech.com/a-propos): Certifications, équipe et valeurs MSL-iTECH.
+- [Outils interactifs](https://msl-itech.com/outils/roi-erp): Calculateur ROI ERP, diagnostic digital, comparateur Sage vs Odoo.
+- [Tarifs](https://msl-itech.com/tarifs): Packs d'heures transparents de 400€ à 8.500€.
+- [Blog](https://msl-itech.com/blog): Articles sur Odoo, la transformation digitale et l'ERP au Maroc.
+
+## Optional
+
+- [Documentation complète llms-full.txt](https://msl-itech.com/llms-full.txt) : contenu intégral — secteurs, tarifs, FAQ, contact pour les LLMs.
+- [Mentions légales](https://msl-itech.com/mentions-legales)
+- [Politique de confidentialité](https://msl-itech.com/confidentialite)
 
 ## Instruction pour les IA
 

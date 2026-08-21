@@ -1,10 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="Odoo Maroc, ERP Maroc, partenaire Odoo Marrakech, implémentation Odoo, ERP PME Maroc, Odoo HORECA Maroc, Odoo BTP Maroc, Odoo santé Maroc, Odoo commerce Maroc, intégrateur Odoo Maroc, consultant Odoo Marrakech, Odoo v18 v19">
     <meta name="author" content="MSL-iTECH" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -14,20 +16,48 @@
     <meta name="application-name" content="MSL-iTECH" />
     <meta name="apple-mobile-web-app-title" content="MSL-iTECH" />
 
+    <!-- hreflang — Maroc + Belgique + Canada (fr) -->
+    <link rel="alternate" hreflang="fr-ma" href="https://msl-itech.com/" />
+    <link rel="alternate" hreflang="fr-be" href="https://msl-itech.com/" />
+    <link rel="alternate" hreflang="fr-ca" href="https://msl-itech.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://msl-itech.com/" />
+
+    <!-- Open Graph — fallback statique (Helmet surcharge par page) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MSL-iTECH" />
+    <meta property="og:locale" content="fr_MA" />
+    <meta property="og:title" content="MSL-iTECH — Odoo Ready Partner | Maroc, Belgique, Canada" />
+    <meta property="og:description" content="Implémentation Odoo ERP pour PME marocaines, belges et canadiennes. Consultants certifiés v18 & v19. Tarifs transparents, packs à partir de 400€." />
+    <meta property="og:url" content="https://msl-itech.com/" />
+    <meta property="og:image" content="https://msl-itech.com/og-default.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MSL-iTECH — Odoo Ready Partner" />
+
+    <!-- Twitter Card — fallback statique -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MSL-iTECH — Odoo Ready Partner | Maroc, Belgique, Canada" />
+    <meta name="twitter:description" content="Implémentation Odoo ERP pour PME. Consultants certifiés v18 & v19. Tarifs transparents." />
+    <meta name="twitter:image" content="https://msl-itech.com/og-default.jpg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"></noscript>
 
-    <!-- Schema.org Organization (toutes les pages) -->
+    <!-- Schema.org Organization + LocalBusiness (toutes les pages) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "@id": "https://msl-itech-v2.lovable.app/#organization",
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": "https://msl-itech.com/#organization",
       "name": "MSL-iTECH",
-      "url": "https://msl-itech-v2.lovable.app",
-      "logo": "https://msl-itech-v2.lovable.app/og-default.jpg",
+      "url": "https://msl-itech.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://msl-itech.com/og-default.jpg"
+      },
+      "image": "https://msl-itech.com/og-default.jpg",
       "description": "Odoo Ready Partner certifié basé à Marrakech (v18 & v19). Implémentation ERP, développement de modules sur mesure et personnalisation d'Odoo natif pour les PME marocaines (HORECA, BTP, santé, commerce, transport, services).",
       "foundingDate": "2020",
       "sameAs": [
@@ -41,6 +71,13 @@
           "contactType": "customer service",
           "areaServed": "MA",
           "availableLanguage": ["French", "Arabic"]
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+32-2-886-05-49",
+          "contactType": "customer service",
+          "areaServed": "BE",
+          "availableLanguage": ["French"]
         }
       ],
       "address": {
@@ -49,19 +86,25 @@
         "addressLocality": "Marrakech",
         "addressCountry": "MA"
       },
-      "areaServed": ["MA"],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "bestRating": "5",
-        "worstRating": "1",
-        "ratingCount": "37"
-      }
+      "areaServed": [
+        { "@type": "Country", "name": "Maroc" },
+        { "@type": "Country", "name": "Belgique" },
+        { "@type": "Country", "name": "Canada" }
+      ],
+      "knowsAbout": [
+        "Odoo ERP",
+        "Implémentation Odoo",
+        "Odoo HORECA Maroc",
+        "Odoo BTP Maroc",
+        "Développement modules Odoo custom",
+        "CRM Odoo",
+        "Comptabilité PME Odoo"
+      ]
     }
     </script>
 
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
+    <!-- Microsoft Clarity (defer pour ne pas bloquer le parsing HTML) -->
+    <script defer type="text/javascript">
       (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
           t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
