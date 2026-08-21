@@ -1346,6 +1346,10 @@ export const blogPosts: BlogPost[] = [
       subtitle:
         "20 minutes avec un consultant MSL-iTECH · Discussion sur vos processus réels · Pas de démo générique",
     },
+    sources: [
+      "Données MSL-iTECH : 12 entretiens semi-directifs auprès de DAF et responsables financiers de PME marocaines (15-60 salariés, 2024-2026).",
+      "Méthode : estimations déclaratives recoupées avec les indicateurs de temps et productivité d'Odoo après le go-live.",
+    ],
     body: [
       {
         type: "p",
