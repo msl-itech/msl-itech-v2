@@ -1276,7 +1276,17 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "ROI typique sur 12 mois : 3x à 5x l'investissement initial. Ce calcul est conservateur. Il ne compte pas les opportunités commerciales générées par la libération du temps commercial, ni l'impact de la meilleure visibilité sur les décisions stratégiques.",
+        text: "ROI médian observé sur 12 mois : 3x à 5x l'investissement initial. Ce calcul est conservateur : il ne compte pas les opportunités commerciales générées par la libération du temps commercial, ni l'impact de la meilleure visibilité sur les décisions stratégiques.",
+      },
+
+      { type: "h3", text: "Méthodologie et limites de ces chiffres" },
+      {
+        type: "p",
+        text: "Échantillon : 14 PME marocaines suivies par MSL-iTECH entre 2024 et 2026, de 10 à 50 salariés, réparties entre distribution, industrie légère et services. Méthode : mesure des indicateurs clés (durée de cycle, taux d'erreur, DSO, temps de saisie) dans la situation avant projet, puis à 3, 6 et 12 mois après le go-live. Les fourchettes présentent la médiane et l'écart interquartile. Les résultats dépendent fortement de la qualité du cadrage, de l'adoption des équipes et de l'intégration comptable dans Odoo. Ils ne constituent pas une garantie de résultat pour tout déploiement.",
+      },
+      {
+        type: "p",
+        text: "Si vous souhaitez une estimation personnalisée sur votre structure, le calculateur ROI MSL-iTECH reprend ces mêmes hypothèses et les applique à votre CA, votre secteur et votre outil actuel.",
       },
 
       { type: "h2", text: "Les 3 conditions pour que ce ROI se matérialise" },
