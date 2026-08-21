@@ -1158,6 +1158,10 @@ export const blogPosts: BlogPost[] = [
       subtitle:
         "30 min avec un consultant MSL-iTECH · Analyse de votre cycle actuel · Fourchette de ROI chiffrée et réaliste",
     },
+    sources: [
+      "Données MSL-iTECH : échantillon de 14 PME marocaines suivies entre 2024 et 2026 (10-50 salariés, distribution, industrie légère, services).",
+      "Méthode : mesure avant migration vs. 3, 6 et 12 mois après go-live (durée de cycle, taux d'erreur de facturation, DSO, temps de saisie).",
+    ],
     body: [
       {
         type: "p",
