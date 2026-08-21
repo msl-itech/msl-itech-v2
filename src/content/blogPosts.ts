@@ -1421,7 +1421,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Résultat global : le DAF récupère 30 à 50 % de son temps productif, qu'il peut réorienter vers l'analyse et le conseil interne.",
+        text: "Résultat global observé sur l'échantillon MSL-iTECH : 6 à 12 mois après le go-live, les DAF interrogés estiment récupérer 30 à 50 % de leur temps productif, réorienté vers l'analyse et le conseil interne. L'ampleur du gain dépend de l'intégration comptable dans Odoo et de la qualité du paramétrage des tableaux de bord.",
       },
 
       { type: "h2", text: "Du reporting passif au pilotage actif — la différence en pratique" },
