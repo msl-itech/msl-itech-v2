@@ -69,10 +69,10 @@ export function SEOHead({
       )}
 
       {/* hreflang — même URL pour tous les marchés francophones */}
-      <link rel="alternate" hreflang="fr-ma" href={absCanonical} />
-      <link rel="alternate" hreflang="fr-be" href={absCanonical} />
-      <link rel="alternate" hreflang="fr-ca" href={absCanonical} />
-      <link rel="alternate" hreflang="x-default" href={absCanonical} />
+      <link rel="alternate" hrefLang="fr-ma" href={absCanonical} />
+      <link rel="alternate" hrefLang="fr-be" href={absCanonical} />
+      <link rel="alternate" hrefLang="fr-ca" href={absCanonical} />
+      <link rel="alternate" hrefLang="x-default" href={absCanonical} />
 
       {/* Open Graph */}
       <meta property="og:title" content={title} />
