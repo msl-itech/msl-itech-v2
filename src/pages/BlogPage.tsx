@@ -258,7 +258,7 @@ export default function BlogPage() {
       </section>
 
       {/* COVER IMAGE */}
-      {post.image && (
+      {blogImageBySlug[post.slug] && (
         <section className="bg-background pt-10">
           <div className="container max-w-5xl">
             <div
