@@ -1319,7 +1319,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription:
       "Le DAF marocain passe trop de temps à produire des chiffres et pas assez à les analyser. Voici comment Odoo transforme concrètement le rôle de la direction financière.",
     excerpt:
-      "70 % du temps d'un DAF marocain part dans la production de chiffres. Comment Odoo lui rend du temps pour l'analyse, le pilotage et la décision.",
+      "Dans les PME marocaines suives par MSL-iTECH, le DAF consacre 70 à 80 % de son temps à la production de chiffres. Comment Odoo lui rend du temps pour l'analyse, le pilotage et la décision.",
     category: "Direction financière",
     region: "MA",
     readingTime: "9 min",
