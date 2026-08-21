@@ -111,7 +111,12 @@ référence est consultable sur notre fiche partenaire officielle Odoo.
 - [Santé Maroc](https://msl-itech.com/odoo-sante-maroc): Gestion pour cliniques, cabinets et pharmacies au Maroc.
 - [Commerce & Distribution](https://msl-itech.com/odoo-gestion-stock-maroc): Odoo pour commerçants et distributeurs marocains.
 - [Notre approche](https://msl-itech.com/notre-approche): Méthodologie et tarification sur mesure — cadrage gratuit, devis 48h.
-- [Réalisations](https://msl-itech.com/realisations): Cas clients et références publiques Odoo.
+- [Réalisations](https://msl-itech.com/realisations): Cas clients et références publiques Odoo (19 projets détaillés).
+- [Cas client NASLI HOLDING](https://msl-itech.com/realisations/nasli-holding): Odoo RH pour un groupe holding marocain (hôtellerie, immobilier, santé).
+- [Cas client AIT OUKHALI TRAVAUX](https://msl-itech.com/realisations/ait-oukhali-travaux): Odoo BTP / marchés publics — CRM appels d'offres, chantier, RH.
+- [Cas client EDGE SPORT MAROC](https://msl-itech.com/realisations/edge-sport-maroc): Odoo Commerce — stocks multi-dépôts, B2B & B2C.
+- [Cas client Les Clés du Sahara](https://msl-itech.com/realisations/les-cles-du-sahara): Odoo MRP — ferme hydroponique, traçabilité des cultures bio.
+- [Cas client Wam Lek Faya — The Perfect Kick](https://msl-itech.com/realisations/wam-lek-faya): Odoo eCommerce + MRP — traçabilité par lot, boutique synchronisée.
 - [À propos](https://msl-itech.com/a-propos): Certifications, équipe et valeurs MSL-iTECH.
 - [Outils interactifs](https://msl-itech.com/outils/roi-erp): Calculateur ROI ERP, diagnostic digital, comparateur Sage vs Odoo.
 - [Blog](https://msl-itech.com/blog): Articles sur Odoo, la transformation digitale et l'ERP au Maroc.

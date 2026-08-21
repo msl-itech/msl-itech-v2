@@ -90,10 +90,10 @@ export function buildSitemapEntries(): SitemapEntry[] {
     loc: `/realisations/${c.slug}`,
     changefreq: "monthly" as const,
     priority: 0.8,
+    lastmod: c.publishedAt,
   }));
   return [...staticEntries, ...blogEntries, ...caseEntries];
 }
-
 
 export function renderSitemapXml(entries: SitemapEntry[] = buildSitemapEntries()): string {
   const today = new Date().toISOString().slice(0, 10);

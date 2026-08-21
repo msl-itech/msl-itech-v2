@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+const SITE = "https://msl-itech.com";
+
 /**
  * Injecte un bloc <script type="application/ld+json"> dans le <head>.
  * Le script est identifié par `id` et nettoyé au démontage.
@@ -25,12 +27,12 @@ export function JsonLd({ id, data }: { id: string; data: Record<string, unknown>
 export const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "@id": "https://msl-itech-v2.lovable.app/#service",
+  "@id": `${SITE}/#service`,
   name: "MSL-iTECH — Implémentation Odoo & Services Digitaux",
-  url: "https://msl-itech-v2.lovable.app",
+  url: SITE,
   description:
-    "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. Implémentation ERP, développement de modules custom et personnalisation d'Odoo natif, création web React/WordPress et marketing digital. Accompagnement à distance des PME en Belgique, au Canada et à l'international. Packs d'heures 20 à 50% plus accessibles que les Success Packs observés sur le marché belge.",
-  provider: { "@id": "https://msl-itech-v2.lovable.app/#organization" },
+    "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. Implémentation ERP, développement de modules custom et personnalisation d'Odoo natif, création web React/WordPress et marketing digital. Accompagnement à distance des PME en Belgique, au Canada et à l'international.",
+  provider: { "@id": `${SITE}/#organization` },
   areaServed: ["BE", "MA", "CA"],
   serviceType: [
     "Implémentation Odoo ERP",
@@ -45,55 +47,14 @@ export const professionalServiceSchema = {
     name: "Odoo Ready Partner — consultants certifiés v18 & v19",
     url: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    bestRating: "5",
-    worstRating: "1",
-    ratingCount: "37",
-  },
-};
-
-/* ----------- Reviews partagées (3 témoignages publics) ----------- */
-
-const sharedReviews = [
-  {
-    "@type": "Review",
-    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-    author: { "@type": "Person", name: "Karim B." },
-    reviewBody:
-      "Implémentation Odoo livrée dans les délais. Équipe MSL-iTECH réactive et pédagogue, montée en compétence rapide pour nos équipes.",
-  },
-  {
-    "@type": "Review",
-    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-    author: { "@type": "Person", name: "Sophie L." },
-    reviewBody:
-      "Migration Odoo SaaS → on-premise gérée sans accroc. Reporting financier enfin fiable. Excellent rapport qualité/prix.",
-  },
-  {
-    "@type": "Review",
-    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-    author: { "@type": "Person", name: "Hassan E." },
-    reviewBody:
-      "Déploiement HORECA multi-points de vente : caisse, stock et compta unifiés. ROI visible dès le 3ᵉ mois.",
-  },
-];
-
-const sharedAggregateRating = {
-  "@type": "AggregateRating",
-  ratingValue: "4.9",
-  bestRating: "5",
-  worstRating: "1",
-  ratingCount: "37",
 };
 
 export const localBusinessBeSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://msl-itech-v2.lovable.app/#localbusiness-be",
+  "@id": `${SITE}/#localbusiness-be`,
   name: "MSL-iTECH — Service Belgique (à distance)",
-  url: "https://msl-itech-v2.lovable.app",
+  url: SITE,
   telephone: "+32-2-886-05-49",
   email: "info@msl-itech.com",
   description:
@@ -101,16 +62,14 @@ export const localBusinessBeSchema = {
   priceRange: "€€",
   areaServed: "BE",
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
-  aggregateRating: sharedAggregateRating,
-  review: sharedReviews,
 };
 
 export const localBusinessMaSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://msl-itech-v2.lovable.app/#localbusiness-ma",
+  "@id": `${SITE}/#localbusiness-ma`,
   name: "MSL-iTECH Maroc",
-  url: "https://msl-itech-v2.lovable.app",
+  url: SITE,
   telephone: "+212-6-89-30-62-78",
   email: "info@msl-itech.com",
   address: {
@@ -125,22 +84,18 @@ export const localBusinessMaSchema = {
   openingHours: "Mo-Fr 09:00-18:00",
   areaServed: "MA",
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
-  aggregateRating: sharedAggregateRating,
-  review: sharedReviews,
 };
 
 export const localBusinessCaSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://msl-itech-v2.lovable.app/#localbusiness-ca",
+  "@id": `${SITE}/#localbusiness-ca`,
   name: "MSL-iTECH — Service Canada (à distance)",
-  url: "https://msl-itech-v2.lovable.app",
+  url: SITE,
   email: "info@msl-itech.com",
   description:
     "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. Accompagnement à distance des PME canadiennes francophones. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique au Canada.",
   priceRange: "$$",
   areaServed: "CA",
   sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
-  aggregateRating: sharedAggregateRating,
-  review: sharedReviews,
 };

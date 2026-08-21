@@ -70,6 +70,7 @@ Odoo adapté aux entreprises du bâtiment marocaines : gestion des appels d'offr
 **Référence** : AIT OUKHALI TRAVAUX (BTP/marchés publics) — CRM appels d'offres, gestion de chantier, RH. Consultable sur la fiche partenaire officielle Odoo.
 
 URL : https://msl-itech.com/odoo-btp-maroc
+Cas client détaillé : https://msl-itech.com/realisations/ait-oukhali-travaux
 
 ---
 
@@ -143,6 +144,36 @@ URL : https://msl-itech.com/creation-web
 - Audit digital gratuit
 
 URL : https://msl-itech.com/marketing-digital
+
+---
+
+# CAS CLIENTS — RÉALISATIONS ODOO
+
+MSL-iTECH a déployé Odoo pour 19 PME en Maroc, Belgique et Cameroun. Chaque cas client est détaillé sur une page dédiée.
+
+| Client | Secteur | Pays | Modules Odoo | Page |
+|---|---|---|---|---|
+| NASLI HOLDING | Holding & Investissement | MA | RH, Gestion personnel | /realisations/nasli-holding |
+| DOWNTOWN HOTEL CORPORATION | Hôtellerie & Immobilier | MA | État Locatif, Abonnements, Comptabilité | /realisations/downtown-hotel-corporation |
+| AIT OUKHALI TRAVAUX | BTP & Marchés Publics | MA | CRM, Projet, Facturation, RH | /realisations/ait-oukhali-travaux |
+| AIS HECTOR DENIS | Immobilier Social | BE | Site web WordPress | /realisations/ais-hector-denis |
+| EDGE SPORT MAROC | Commerce / Distribution | MA | Ventes, Achats, Stock, CRM | /realisations/edge-sport-maroc |
+| Hamimi Export | Export / Distribution | MA | Ventes, Achats, Stock, CRM | /realisations/hamimi-export |
+| ICC DOUALA | Organisation extra-territoriale | CM | CRM, Site web, Événements, RH | /realisations/icc-douala |
+| JCD RENOV | Construction / Rénovation | MA | Projet, Ventes, Achats, RH | /realisations/jcd-renov |
+| LES TITIS BOUT'CHOUX | Éducation / Crèche | BE | CRM, Ventes, RH, Site web | /realisations/les-titis-boutchoux |
+| LOUVE SOINS SRL | Santé & aide à la personne | Belgique | CRM, Stock, Ventes, RH | /realisations/louve-soins |
+| MC Avocat | Cabinet juridique | BE | CRM, Projet, Comptabilité, RH | /realisations/mc-avocat |
+| Phazz4 | Commerce / Distribution | MA | Ventes, Achats, Stock, CRM | /realisations/phazz4 |
+| SARL Maroc Destination Santé | Transport médical | MA | Flotte, Stock, Ventes, Maintenance | /realisations/maroc-destination-sante |
+| STE CUCO MATERIAUX | Construction / Matériaux | MA | Stock, Ventes, Achats, Projet | /realisations/cuco-materiaux-construction |
+| Sd Maintenance | Distribution d'eau / Maintenance | MA | Maintenance, Projet, Stock, RH | /realisations/sd-maintenance |
+| Studely Finance Cameroun | Finance / Conseil | CM | CRM, Comptabilité, Projet, RH | /realisations/studely-finance-cameroun |
+| TPMR Maroc | Transport / Logistique | MA | Flotte, Ventes, RH, Maintenance | /realisations/tpmr-maroc |
+| Wam Lek Faya — The Perfect Kick | Épices & sauces piquantes | International | Ventes, Stock, eCommerce, CRM | /realisations/wam-lek-faya |
+| Les Clés du Sahara | Agriculture hydroponique | MA | Production MRP, Stock, Qualité | /realisations/les-cles-du-sahara |
+
+Page index des réalisations : https://msl-itech.com/realisations
 
 ---
 

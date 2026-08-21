@@ -7,6 +7,7 @@
  *   (chiffre mesuré avant/après go-live + autorisation de citation).
  * - `imageIsIllustration` : true quand le visuel est une illustration sectorielle
  *   et non une photo du projet — l'attribut alt doit le dire.
+ * - `publishedAt` : date de publication de la page (ISO), utilisée pour le sitemap.
  */
 
 export type CaseMetric = {
@@ -35,6 +36,8 @@ export type CaseStudy = {
   metrics?: CaseMetric[];
   quote?: { text: string; author: string; role: string };
   verifiedOn?: string;
+  /** Date ISO pour le sitemap. */
+  publishedAt: string;
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -58,6 +61,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Référentiel RH unique pour le groupe et processus RH digitalisés dans Odoo (dossiers du personnel, congés, absences).",
+    publishedAt: "2024-09-01",
   },
   {
     slug: "downtown-hotel-corporation",
@@ -80,6 +84,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "État locatif centralisé avec échéances et révisions de loyers calculées automatiquement, facturation récurrente et comptabilité intégrée.",
+    publishedAt: "2024-09-01",
   },
   {
     slug: "ait-oukhali-travaux",
@@ -102,6 +107,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Chaîne appels d'offres → chantier → facturation dans un seul système : plus de double saisie entre les services.",
+    publishedAt: "2024-06-01",
   },
   {
     slug: "ais-hector-denis",
@@ -123,6 +129,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Site institutionnel WordPress livré, référence publiquement consultable sur notre fiche partenaire Odoo.",
+    publishedAt: "2023-11-01",
   },
   {
     slug: "edge-sport-maroc",
@@ -144,6 +151,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Disponibilité stock multi-dépôts en temps réel et circuit commercial intégré du devis à la facture.",
+    publishedAt: "2024-03-01",
   },
   {
     slug: "hamimi-export",
@@ -165,6 +173,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Commandes export et encours clients suivis dans un seul système, du bon de commande à la facture.",
+    publishedAt: "2024-05-01",
   },
   {
     slug: "icc-douala",
@@ -186,6 +195,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Base membres centralisée, inscriptions événements en ligne et comptabilité consolidée des dons.",
+    publishedAt: "2023-09-01",
   },
   {
     slug: "jcd-renov",
@@ -207,6 +217,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Chantiers pilotés en projets Odoo : budget, achats et heures rattachés, écart budget/réel visible en cours de chantier.",
+    publishedAt: "2024-01-01",
   },
   {
     slug: "les-titis-boutchoux",
@@ -228,6 +239,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Inscriptions suivies depuis le site, facturation des familles et plannings du personnel gérés dans Odoo.",
+    publishedAt: "2023-10-01",
   },
   {
     slug: "louve-soins",
@@ -249,6 +261,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Interventions planifiées et tracées, stocks de consommables sous seuils, facturation rattachée aux prestations.",
+    publishedAt: "2024-02-01",
   },
   {
     slug: "mc-avocat",
@@ -270,6 +283,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Dossiers en projets avec feuilles de temps, facturation générée directement depuis les heures saisies.",
+    publishedAt: "2024-04-01",
   },
   {
     slug: "phazz4",
@@ -291,6 +305,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Réassort automatisé par règles de stock, inventaires tournants outillés et canaux de vente sur un stock unique.",
+    publishedAt: "2024-07-01",
   },
   {
     slug: "maroc-destination-sante",
@@ -312,6 +327,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Flotte suivie véhicule par véhicule, entretiens préventifs planifiés et courses facturées depuis les prestations.",
+    publishedAt: "2024-06-01",
   },
   {
     slug: "cuco-materiaux-construction",
@@ -333,6 +349,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Seuils de stock sur les références à forte rotation, achats déclenchés par les besoins et rapprochement livraison/facture automatique.",
+    publishedAt: "2024-08-01",
   },
   {
     slug: "sd-maintenance",
@@ -354,6 +371,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Interventions centralisées avec historique par équipement, préventif planifié et pièces consommées suivies en stock.",
+    publishedAt: "2024-05-01",
   },
   {
     slug: "studely-finance-cameroun",
@@ -375,6 +393,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Dossiers clients structurés dans le CRM, pièces rattachées et reporting généré depuis Odoo.",
+    publishedAt: "2023-12-01",
   },
   {
     slug: "tpmr-maroc",
@@ -396,6 +415,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Courses enregistrées avec les justificatifs attendus et facturation partenaires générée depuis les courses réalisées.",
+    publishedAt: "2024-03-01",
   },
   {
     slug: "wam-lek-faya",
@@ -417,6 +437,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Lots de production tracés de la matière première à la vente et boutique en ligne synchronisée avec le stock unique.",
+    publishedAt: "2024-10-01",
   },
   {
     slug: "les-cles-du-sahara",
@@ -438,6 +459,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     result:
       "Cycles de culture en ordres de production, traçabilité par lot mobilisable en contrôle et points qualité intégrés.",
+    publishedAt: "2024-11-01",
   },
 ];
 

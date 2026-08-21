@@ -20,6 +20,7 @@ import {
   Landmark,
   Leaf,
   Factory,
+  LucideIcon,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
@@ -43,8 +44,6 @@ const caseIcons: Record<string, typeof Building2> = {
   Leaf,
   Factory,
 };
-
-
 /* ---------------- Highlight (marker brushstroke) ---------------- */
 function Mark({ children }: { children: React.ReactNode }) {
   return (
@@ -218,8 +217,9 @@ export default function RealisationsPage() {
             {caseStudies.map((c, idx) => {
               const Icon = caseIcons[c.iconKey] ?? Building2;
               return (
-                <article
+                <Link
                   key={c.slug}
+                  to={`/realisations/${c.slug}`}
                   className="group relative isolate overflow-hidden rounded-[28px] border bg-brand-white shadow-sm transition hover:shadow-xl"
                   style={{ borderColor: "var(--grey-light)" }}
                 >
@@ -298,15 +298,12 @@ export default function RealisationsPage() {
                       <p className="font-body text-sm text-brand-black">{c.result}</p>
                     </div>
 
-                    <Link
-                      to={`/realisations/${c.slug}`}
-                      className="mt-6 inline-flex items-center gap-2 font-body text-sm font-bold text-brand-blue"
-                    >
+                    <p className="mt-6 inline-flex items-center gap-2 font-body text-sm font-bold text-brand-blue">
                       Lire le cas client
                       <ArrowRight size={16} className="transition group-hover:translate-x-1" />
-                    </Link>
+                    </p>
                   </div>
-                </article>
+                </Link>
               );
             })}
           </div>

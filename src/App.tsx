@@ -99,7 +99,6 @@ const App = () => {
             <Route path="/marketing-digital" element={<MarketingPage />} />
             <Route path="/realisations" element={<RealisationsPage />} />
             <Route path="/realisations/:slug" element={<CaseStudyPage />} />
-
             <Route path="/notre-approche" element={<TarifsPage />} />
             <Route path="/a-propos" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
