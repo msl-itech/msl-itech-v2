@@ -156,10 +156,11 @@ export default function BlogPage() {
 
   const SITE = "https://msl-itech.com";
   const articleUrl = `${SITE}/blog/${post.slug}`;
-  const articleImage = post.image
-    ? post.image.startsWith("http")
-      ? post.image
-      : `${SITE}${post.image.startsWith("/") ? post.image : "/" + post.image}`
+  const postImage = blogImageBySlug[post.slug];
+  const articleImage = postImage
+    ? postImage.startsWith("http")
+      ? postImage
+      : `${SITE}${postImage.startsWith("/") ? postImage : "/" + postImage}`
     : `${SITE}/og-default.jpg`;
 
   const articleSchema = {
