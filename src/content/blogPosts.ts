@@ -1194,9 +1194,9 @@ export const blogPosts: BlogPost[] = [
       {
         type: "ul",
         items: [
-          "Temps de saisie redondant : une même information (référence produit, quantité, prix, conditions de paiement) est saisie en moyenne 3 à 4 fois dans différents systèmes. Pour 100 commandes/mois, cela représente 8 à 15 heures de travail administratif pur chaque mois.",
-          "Taux d'erreur de facturation : dans les cycles manuels, le taux d'erreur sur les factures (mauvais prix, mauvaise quantité, oubli de ligne) est estimé entre 3 et 8 %. Chaque erreur génère un avoir, une nouvelle facture, un délai supplémentaire et une friction client.",
-          "Délai moyen de recouvrement : sans système de relance automatisé, le délai moyen de paiement dépasse de 20 à 40 jours les conditions contractuelles. Sur un CA mensuel de 500 000 MAD, c'est 300 000 à 600 000 MAD d'encours immobilisés en permanence.",
+          "Temps de saisie redondant : une même information (référence produit, quantité, prix, conditions de paiement) était saisie en moyenne 3 à 4 fois dans différents systèmes. Pour 100 commandes/mois, cela représentait 8 à 15 heures de travail administratif pur chaque mois.",
+          "Taux d'erreur de facturation : dans les cycles manuels de notre échantillon, le taux d'erreur sur les factures (mauvais prix, mauvaise quantité, oubli de ligne) se situait entre 3 et 8 %. Chaque erreur génère un avoir, une nouvelle facture, un délai supplémentaire et une friction client.",
+          "Délai moyen de recouvrement : sans système de relance automatisé, le délai moyen de paiement dépassait de 20 à 40 jours les conditions contractuelles. Sur un CA mensuel de 500 000 MAD, c'est 300 000 à 600 000 MAD d'encours immobilisés en permanence.",
         ],
       },
       {
