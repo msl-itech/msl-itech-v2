@@ -26,6 +26,8 @@ const TourismePage = lazy(() => import("./pages/TourismePage"));
 const WebPage = lazy(() => import("./pages/WebPage"));
 const MarketingPage = lazy(() => import("./pages/MarketingPage"));
 const RealisationsPage = lazy(() => import("./pages/RealisationsPage"));
+const CaseStudyPage = lazy(() => import("./pages/CaseStudyPage"));
+
 const TarifsPage = lazy(() => import("./pages/TarifsPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
@@ -96,6 +98,8 @@ const App = () => {
             <Route path="/creation-web" element={<WebPage />} />
             <Route path="/marketing-digital" element={<MarketingPage />} />
             <Route path="/realisations" element={<RealisationsPage />} />
+            <Route path="/realisations/:slug" element={<CaseStudyPage />} />
+
             <Route path="/notre-approche" element={<TarifsPage />} />
             <Route path="/a-propos" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />

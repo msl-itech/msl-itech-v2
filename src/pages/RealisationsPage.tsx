@@ -23,21 +23,27 @@ import {
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
-import caseBe from "@/assets/home/case-be.webp";
-import caseMa from "@/assets/home/case-ma.webp";
+import { caseStudies } from "@/content/caseStudies";
+import { caseImageByKey, caseImageAlt } from "@/lib/case-images";
 import pillarWeb from "@/assets/home/pillar-web.webp";
-import sectorWholesale from "@/assets/home/sector-wholesale.webp";
-import sectorBtp from "@/assets/home/sector-btp.webp";
-import sectorHealth from "@/assets/home/sector-health.webp";
-import sectorServices from "@/assets/home/sector-services.webp";
-import sectorLogistics from "@/assets/home/sector-logistics.webp";
-import sectorEngineering from "@/assets/home/sector-engineering.webp";
-import sectorFood from "@/assets/home/sector-food.webp";
-import sectorB2b from "@/assets/home/sector-b2b.webp";
-import sectorScaleup from "@/assets/home/sector-scaleup.webp";
-import caseChurch from "@/assets/home/case-church.webp";
-import caseDaycare from "@/assets/home/case-daycare.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
+
+const caseIcons: Record<string, typeof Building2> = {
+  Landmark,
+  Home,
+  Building2,
+  ShoppingBag,
+  Church,
+  Hammer,
+  Baby,
+  HeartPulse,
+  Briefcase,
+  Truck,
+  Zap,
+  Leaf,
+  Factory,
+};
+
 
 /* ---------------- Highlight (marker brushstroke) ---------------- */
 function Mark({ children }: { children: React.ReactNode }) {
@@ -78,201 +84,6 @@ function Sticker({
   );
 }
 
-const odooCases = [
-  {
-    icon: Landmark,
-    name: "NASLI HOLDING",
-    sector: "Holding & Investissement — Maroc",
-    image: sectorScaleup,
-    context:
-      "Groupe d'investissement marocain basé à Marrakech. Société holding (SA) active dans l'hôtellerie, l'enseignement, la santé et l'immobilier de prestige, dont le projet M Avenue.",
-    modules: ["RH", "Gestion du personnel", "Digitalisation des processus RH"],
-    result:
-      "Mise en place de la gestion RH sur Odoo : structuration des données du personnel, suivi des collaborateurs et digitalisation des processus de ressources humaines.",
-  },
-  {
-    icon: Home,
-    name: "DOWNTOWN HOTEL CORPORATION (DHC)",
-    sector: "Hôtellerie & Immobilier — Maroc",
-    image: caseMa,
-    context:
-      "Société hôtelière, filiale du groupe Nasli Holding, en charge de l'exploitation hôtelière et de la gestion immobilière et locative de ses actifs.",
-    modules: ["État Locatif", "Abonnements", "Comptabilité"],
-    result:
-      "État locatif : centralisation des biens loués, calcul automatique des échéances et révisions de loyers, reporting dédié au parc immobilier. Abonnements : gestion et facturation des contrats récurrents. Comptabilité : mise en place et suivi de la gestion comptable.",
-  },
-  {
-    icon: Building2,
-    name: "AIT OUKHALI TRAVAUX",
-    sector: "BTP & Marchés Publics — Maroc",
-    image: caseMa,
-    context:
-      "Centralisation des données commerciales, CRM marchés publics, gestion du flux commercial et automatisation des projets, facturation et RH.",
-    modules: ["CRM & appels d'offres", "Gestion de projet & Construction", "Facturation", "RH"],
-    result: "Toute la gestion opérationnelle centralisée dans Odoo. Zéro ressaisie entre les services.",
-  },
-  {
-    icon: Home,
-    name: "AIS HECTOR DENIS",
-    sector: "Agence Immobilière Sociale — Belgique",
-    image: caseBe,
-    context:
-      "Agence immobilière sociale à but non lucratif basée à Evere, gestion de plus de 1.000 logements locatifs en Région Bruxelloise.",
-    modules: ["Site web WordPress professionnel"],
-    result:
-      "Référence publiquement consultable sur notre fiche partenaire officielle Odoo.",
-  },
-  {
-    icon: ShoppingBag,
-    name: "EDGE SPORT MAROC",
-    sector: "Vente en gros / Vente au détail — Maroc",
-    image: sectorWholesale,
-    context:
-      "Distributeur d'articles de sport. Gestion du flux commercial, stocks multi-dépôts et suivi des ventes B2B et B2C.",
-    modules: ["Ventes", "Achats", "Stock", "Comptabilité", "CRM"],
-    result: "Visibilité en temps réel sur les stocks et les commandes. Circuit commercial entièrement intégré.",
-  },
-  {
-    icon: ShoppingBag,
-    name: "Hamimi Export",
-    sector: "Vente en gros / Vente au détail — Maroc",
-    image: sectorB2b,
-    context:
-      "Société d'export et de distribution. Pilotage des commandes internationales, logistique et trésorerie.",
-    modules: ["Ventes", "Achats", "Stock", "Comptabilité", "CRM"],
-    result: "Suivi des exports simplifié et contrôle financier renforcé.",
-  },
-  {
-    icon: Church,
-    name: "ICC DOUALA",
-    sector: "Extraterritorial — Cameroun",
-    image: caseChurch,
-    context:
-      "Église évangélique charismatique à Douala, Cameroun. Gestion des membres, dons, événements et ressources humaines.",
-    modules: ["CRM", "Site web", "Événements", "Comptabilité", "RH"],
-    result: "Administration communautaire centralisée et transparence financière assurée.",
-  },
-  {
-    icon: Hammer,
-    name: "JCD RENOV",
-    sector: "Construction et Rénovation — Maroc",
-    image: sectorBtp,
-    context:
-      "Entreprise de construction et rénovation. Suivi de chantiers, devis, facturation et gestion des approvisionnements.",
-    modules: ["Projet", "Ventes", "Achats", "Comptabilité", "RH"],
-    result: "Chantiers pilotés de bout en bout avec une marge maîtrisée en temps réel.",
-  },
-  {
-    icon: Baby,
-    name: "LES TITIS BOUT'CHOUX",
-    sector: "Éducation — Belgique",
-    image: caseDaycare,
-    context:
-      "Crèche à Uccle, Bruxelles. Gestion des inscriptions, planning du personnel, facturation familles et communication parents.",
-    modules: ["CRM", "Ventes", "RH", "Comptabilité", "Site web"],
-    result: "Gestion administrative simplifiée et suivi familial personnalisé.",
-  },
-  {
-    icon: HeartPulse,
-    name: "LOUVE SOINS SRL",
-    sector: "Santé / Aide sociale / Pharmaceutique — Belgique",
-    image: sectorHealth,
-    context:
-      "Structure de soins et services de santé. Coordination des interventions, gestion des stocks et facturation.",
-    modules: ["CRM", "Stock", "Ventes", "Comptabilité", "RH"],
-    result: "Parcours patient fluidifié et stocks médicaux optimisés.",
-  },
-  {
-    icon: Briefcase,
-    name: "MC Avocat",
-    sector: "Finance / Assurance — Belgique",
-    image: sectorServices,
-    context:
-      "Cabinet d'avocats. Gestion des dossiers clients, temps passé, facturation et conformité.",
-    modules: ["CRM", "Projet", "Comptabilité", "RH", "Facturation"],
-    result: "Productivité du cabinet augmentée grâce au suivi centralisé des affaires.",
-  },
-  {
-    icon: ShoppingBag,
-    name: "Phazz4",
-    sector: "Vente en gros / Vente au détail — Maroc",
-    image: sectorWholesale,
-    context:
-      "Distributeur multi-marques. Pilotage des commandes fournisseurs, inventaires et ventes omnicanal.",
-    modules: ["Ventes", "Achats", "Stock", "Comptabilité", "CRM"],
-    result: "Rotation de stock optimisée et commandes automatisées.",
-  },
-  {
-    icon: Truck,
-    name: "SARL Maroc Destination Santé",
-    sector: "Transport / Logistique — Maroc",
-    image: sectorLogistics,
-    context:
-      "Transport sanitaire et logistique médicale au Maroc. Planification des tournées, suivi des véhicules et facturation.",
-    modules: ["Flotte", "Stock", "Ventes", "Comptabilité", "Maintenance"],
-    result: "Tournées optimisées et maintenance préventive planifiée.",
-  },
-  {
-    icon: Factory,
-    name: "STE CUCO DES MATERIAUX DE CONSTRUCTION",
-    sector: "Construction et Rénovation — Maroc",
-    image: sectorBtp,
-    context:
-      "Société de matériaux de construction. Gestion des stocks, approvisionnements, ventes et livraisons.",
-    modules: ["Stock", "Ventes", "Achats", "Comptabilité", "Projet"],
-    result: "Disponibilité des matériaux garantie et circuits d'achat accélérés.",
-  },
-  {
-    icon: Zap,
-    name: "Sd Maintenance",
-    sector: "Services publics / Énergie / Distribution d'eau — Maroc",
-    image: sectorEngineering,
-    context:
-      "Société de maintenance et distribution d'eau. Gestion des interventions, planning et stocks de pièces.",
-    modules: ["Maintenance", "Projet", "Stock", "Comptabilité", "RH"],
-    result: "Interventions planifiées et pièces de rechange toujours disponibles.",
-  },
-  {
-    icon: Landmark,
-    name: "Studely Finance Cameroun",
-    sector: "Finance / Assurance — Cameroun",
-    image: sectorScaleup,
-    context:
-      "Cabinet de conseil financier au Cameroun. Gestion des dossiers clients, conformité et reporting.",
-    modules: ["CRM", "Comptabilité", "Projet", "RH", "Site web"],
-    result: "Processus financiers structurés et reporting client automatisé.",
-  },
-  {
-    icon: Truck,
-    name: "TPMR Maroc",
-    sector: "Transport / Logistique — Maroc",
-    image: sectorLogistics,
-    context:
-      "Transport de personnes à mobilité réduite au Maroc. Planification, suivi des courses et facturation.",
-    modules: ["Flotte", "Ventes", "Comptabilité", "RH", "Maintenance"],
-    result: "Courses sécurisées et facturation simplifiée pour les partenaires institutionnels.",
-  },
-  {
-    icon: ShoppingBag,
-    name: "Wam Lek Faya, LLC — The Perfect Kick",
-    sector: "Vente en gros / Vente au détail — Épices & sauces piquantes",
-    image: sectorFood,
-    context:
-      "Marque d'épices et sauces piquantes artisanales. Gestion des recettes, lots de production, stocks et ventes en ligne et en magasin.",
-    modules: ["Ventes", "Stock", "eCommerce", "Comptabilité", "CRM"],
-    result: "Présence omnicanale synchronisée avec traçabilité des lots en temps réel.",
-  },
-  {
-    icon: Leaf,
-    name: "Les Clés du Sahara",
-    sector: "Agriculture — Maroc",
-    image: sectorFood,
-    context:
-      "Ferme hydroponique produisant des salades bio. Gestion de la production, traçabilité, ventes et opérations.",
-    modules: ["Production (MRP)", "Stock", "Ventes", "Achats", "Comptabilité", "Qualité"],
-    result: "Traçabilité complète des cultures et qualité constante garantie.",
-  },
-];
 
 const webProjects = [
   { url: "odoo-finances.pro", label: "Odoo Finances", tag: "Showcase ERP" },
@@ -404,19 +215,19 @@ export default function RealisationsPage() {
           </div>
 
           <div className="mt-16 grid gap-6 lg:grid-cols-2">
-            {odooCases.map((c, idx) => {
-              const Icon = c.icon;
+            {caseStudies.map((c, idx) => {
+              const Icon = caseIcons[c.iconKey] ?? Building2;
               return (
                 <article
-                  key={c.name}
+                  key={c.slug}
                   className="group relative isolate overflow-hidden rounded-[28px] border bg-brand-white shadow-sm transition hover:shadow-xl"
                   style={{ borderColor: "var(--grey-light)" }}
                 >
-                  {/* Image header */}
+                  {/* Image header — illustration sectorielle */}
                   <div className="relative h-56 overflow-hidden md:h-64">
                     <img
-                      src={c.image}
-                      alt={`Projet Odoo réalisé par MSL-iTECH pour ${c.name}`}
+                      src={caseImageByKey[c.imageKey]}
+                      alt={caseImageAlt(c.sector, c.imageIsIllustration, c.name)}
                       className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     loading="lazy" decoding="async"/>
                     <div
@@ -431,9 +242,14 @@ export default function RealisationsPage() {
                         Cas {String(idx + 1).padStart(2, "0")}
                       </Sticker>
                     </div>
+                    {c.imageIsIllustration && (
+                      <span className="absolute right-4 top-5 rounded-full bg-black/45 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.15em] text-white/85 backdrop-blur-sm">
+                        Illustration sectorielle
+                      </span>
+                    )}
                     <div className="absolute bottom-5 left-5 right-5">
                       <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-gold">
-                        {c.sector}
+                        {c.sector} — {c.country}
                       </p>
                       <h3 className="mt-2 font-heading text-2xl font-bold text-white md:text-3xl">
                         {c.name}
@@ -481,11 +297,20 @@ export default function RealisationsPage() {
                       />
                       <p className="font-body text-sm text-brand-black">{c.result}</p>
                     </div>
+
+                    <Link
+                      to={`/realisations/${c.slug}`}
+                      className="mt-6 inline-flex items-center gap-2 font-body text-sm font-bold text-brand-blue"
+                    >
+                      Lire le cas client
+                      <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+                    </Link>
                   </div>
                 </article>
               );
             })}
           </div>
+
         </div>
       </section>
 

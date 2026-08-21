@@ -11,6 +11,8 @@
  * publier un article suffit pour qu'il apparaisse dans le sitemap au build suivant.
  */
 import { blogPosts } from "../content/blogPosts";
+import { caseStudies } from "../content/caseStudies";
+
 export type SitemapEntry = {
   loc: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
@@ -84,8 +86,14 @@ export function buildSitemapEntries(): SitemapEntry[] {
     priority: 0.85,
     lastmod: p.updatedAt ?? p.publishedAt,
   }));
-  return [...staticEntries, ...blogEntries];
+  const caseEntries: SitemapEntry[] = caseStudies.map((c) => ({
+    loc: `/realisations/${c.slug}`,
+    changefreq: "monthly" as const,
+    priority: 0.8,
+  }));
+  return [...staticEntries, ...blogEntries, ...caseEntries];
 }
+
 
 export function renderSitemapXml(entries: SitemapEntry[] = buildSitemapEntries()): string {
   const today = new Date().toISOString().slice(0, 10);
