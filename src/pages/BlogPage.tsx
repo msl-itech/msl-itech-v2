@@ -288,10 +288,10 @@ export default function BlogPage() {
         />
         <div className="container relative py-16 lg:py-20 text-white">
           <Link
-            to="/"
-            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/70 transition hover:text-white"
+            to="/blog"
+            className="mb-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/70 transition hover:text-white"
           >
-            <ArrowLeft size={12} /> Retour
+            <ArrowLeft size={12} /> Retour au blog
           </Link>
           <p
             className="mt-6 mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em]"
