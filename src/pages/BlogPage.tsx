@@ -289,12 +289,12 @@ export default function BlogPage() {
         <div className="container relative py-16 lg:py-20 text-white">
           <Link
             to="/blog"
-            className="mb-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/70 transition hover:text-white"
+            className="mb-8 flex w-fit items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/70 transition hover:text-white"
           >
             <ArrowLeft size={12} /> Retour au blog
           </Link>
           <p
-            className="mt-6 mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em]"
+            className="mb-6 flex w-fit items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em]"
             style={{
               backgroundColor: "rgba(255,221,87,0.14)",
               color: "var(--gold)",
