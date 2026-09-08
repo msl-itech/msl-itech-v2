@@ -129,6 +129,7 @@ export default function TourismePage() {
       ctaTitle="Réserver ma démo Tourisme gratuite"
       ctaSubtitle="Démo sur site ou à distance · Réponse sous 24h · +212 6 89 30 62 78"
       extraSection={
+        <>
         <section className="bg-white py-20">
           <div className="container">
             <div className="mx-auto max-w-2xl text-center">
@@ -168,6 +169,21 @@ export default function TourismePage() {
             </div>
           </div>
         </section>
+        <section className="bg-brand-bg py-10">
+          <div className="container">
+            <p className="font-body text-sm text-brand-grey">
+              Vous recherchez un{" "}
+              <Link
+                to="/integrateur-odoo-maroc"
+                className="font-semibold text-brand-blue underline underline-offset-2 hover:text-brand-blue/80"
+              >
+                intégrateur Odoo au Maroc
+              </Link>{" "}
+              pour votre activité touristique ? MSL-iTECH est partenaire certifié Odoo, implanté au Maroc.
+            </p>
+          </div>
+        </section>
+        </>
       }
     />
   );

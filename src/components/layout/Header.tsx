@@ -12,6 +12,8 @@ const odooLinks = [
   { to: "/odoo-services-professionnels", label: "Services Professionnels" },
 ];
 
+const integrateurLink = { to: "/integrateur-odoo-maroc", label: "Intégrateur Odoo Maroc" };
+
 const sectorLinks = [
   { to: "/odoo-horeca-maroc", label: "HORECA Maroc" },
   { to: "/odoo-btp-maroc", label: "BTP & Construction" },
@@ -108,6 +110,13 @@ export const Header = () => {
             {openMenu === "odoo" && (
               <div className="absolute left-0 top-full pt-3">
                 <div className="w-72 rounded-lg border border-brand-grey-light bg-brand-white p-2 shadow-lg">
+                  <NavLink
+                    to={integrateurLink.to}
+                    className="block rounded-md px-3 py-2 font-body text-sm font-semibold text-brand-blue transition hover:bg-[var(--blue-light)]"
+                  >
+                    {integrateurLink.label}
+                  </NavLink>
+                  <hr className="my-1.5 border-brand-grey-light" />
                   {odooLinks.map((l) => (
                     <NavLink
                       key={l.to}
@@ -234,8 +243,16 @@ export const Header = () => {
                   <ul className="mb-3 space-y-0.5 pl-3">
                     <li>
                       <NavLink
+                        to={integrateurLink.to}
+                        className="block rounded-md px-3 py-2 font-body text-sm font-semibold text-brand-blue"
+                      >
+                        Intégrateur Odoo Maroc →
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
                         to="/odoo-erp"
-                        className="block rounded-md px-3 py-2 font-body text-sm font-medium text-brand-blue"
+                        className="block rounded-md px-3 py-2 font-body text-sm font-medium text-brand-black"
                       >
                         Vue d'ensemble Odoo →
                       </NavLink>

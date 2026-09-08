@@ -1,4 +1,5 @@
 import { ScanLine, FileHeart, ShieldCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
@@ -117,6 +118,22 @@ export default function SantePage() {
       ctaTitle="Réserver ma démo Santé gratuite"
       ctaSubtitle="Démo adaptée à votre type de structure · Réponse sous 24h"
       faqs={faqs}
+      extraSection={
+        <section className="bg-brand-bg py-10">
+          <div className="container">
+            <p className="font-body text-sm text-brand-grey">
+              Vous recherchez un{" "}
+              <Link
+                to="/integrateur-odoo-maroc"
+                className="font-semibold text-brand-blue underline underline-offset-2 hover:text-brand-blue/80"
+              >
+                intégrateur Odoo au Maroc
+              </Link>{" "}
+              pour votre structure de santé ou pharmacie ? MSL-iTECH est partenaire certifié Odoo, implanté au Maroc.
+            </p>
+          </div>
+        </section>
+      }
     />
   );
 }

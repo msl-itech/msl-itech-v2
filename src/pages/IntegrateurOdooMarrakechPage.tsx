@@ -68,9 +68,9 @@ const localSectors = [
 
 function useSeo() {
   useProductSeo({
-    title: "Intégrateur Odoo Marrakech — Consultant certifié sur place | MSL-iTECH",
+    title: "Intégrateur Odoo Marrakech — Consultant certifié | MSL-iTECH",
     description:
-      "MSL-iTECH, intégrateur Odoo basé à Marrakech. Intervention en présentiel pour PME de la région : tourisme, hôtellerie, BTP, commerce. Partenaire Odoo certifié Ready Partner.",
+      "Intégrateur Odoo basé à Marrakech — intervention en présentiel dans la région Marrakech-Safi. Tourisme, hôtellerie, BTP, commerce. Partenaire Odoo certifié.",
     path: "/integrateur-odoo-marrakech",
     ogImage: heroMaImg,
     faqs,

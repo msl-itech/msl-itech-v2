@@ -31,12 +31,17 @@ const LOCAL_BUSINESS_MA = {
     "@type": "PostalAddress",
     streetAddress: "951 Q.I. Al Massar N°2, Route de Safi",
     addressLocality: "Marrakech",
+    postalCode: "40000",
     addressCountry: "MA",
   },
   priceRange: "€€",
   openingHours: "Mo-Fr 09:00-18:00",
   areaServed: ["MA"],
-  sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+  sameAs: [
+    "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+    "https://www.linkedin.com/company/msl-itech",
+  ],
+  parentOrganization: { "@id": "https://msl-itech.com/#organization" },
 };
 
 /* ------------------------------------------------------------------ *

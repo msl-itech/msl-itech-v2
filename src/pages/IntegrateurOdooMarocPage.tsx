@@ -99,9 +99,9 @@ const steps = [
 
 function useSeo() {
   useProductSeo({
-    title: "Intégrateur Odoo Maroc — Partenaire certifié Ready Partner | MSL-iTECH",
+    title: "Intégrateur Odoo Maroc — Partenaire certifié | MSL-iTECH",
     description:
-      "MSL-iTECH, intégrateur Odoo Maroc certifié Ready Partner. Implémentation ERP, modules custom et support pour PME marocaines : HORECA, BTP, Commerce, Santé. Devis gratuit sous 48 h.",
+      "Intégrateur Odoo certifié Ready Partner au Maroc. Implémentation ERP, modules custom, migration et formation pour PME : HORECA, BTP, Santé, Commerce. Devis sous 48 h.",
     path: "/integrateur-odoo-maroc",
     ogImage: heroMaImg,
     faqs,

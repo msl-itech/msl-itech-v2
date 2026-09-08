@@ -38,6 +38,14 @@ export type CaseStudy = {
   verifiedOn?: string;
   /** Date ISO pour le sitemap. */
   publishedAt: string;
+  /** Page ville correspondante (Maroc uniquement). Ex. "/integrateur-odoo-marrakech" */
+  cityPage?: string;
+  /** Libellé court de la ville pour l'ancre. Ex. "à Marrakech" ou "au Maroc" */
+  cityLabel?: string;
+  /** Page verticale correspondante. Ex. "/odoo-btp-maroc" */
+  verticalPage?: string;
+  /** Libellé du secteur pour l'ancre. Ex. "BTP & Construction" */
+  verticalLabel?: string;
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -62,6 +70,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Référentiel RH unique pour le groupe et processus RH digitalisés dans Odoo (dossiers du personnel, congés, absences).",
     publishedAt: "2024-09-01",
+    cityPage: "/integrateur-odoo-marrakech",
+    cityLabel: "à Marrakech",
   },
   {
     slug: "downtown-hotel-corporation",
@@ -85,6 +95,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "État locatif centralisé avec échéances et révisions de loyers calculées automatiquement, facturation récurrente et comptabilité intégrée.",
     publishedAt: "2024-09-01",
+    cityPage: "/integrateur-odoo-marrakech",
+    cityLabel: "à Marrakech",
+    verticalPage: "/odoo-horeca-maroc",
+    verticalLabel: "HORECA",
   },
   {
     slug: "ait-oukhali-travaux",
@@ -108,6 +122,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Chaîne appels d'offres → chantier → facturation dans un seul système : plus de double saisie entre les services.",
     publishedAt: "2024-06-01",
+    cityPage: "/integrateur-odoo-maroc",
+    cityLabel: "au Maroc",
+    verticalPage: "/odoo-btp-maroc",
+    verticalLabel: "BTP & Construction",
   },
   {
     slug: "ais-hector-denis",
@@ -152,6 +170,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Disponibilité stock multi-dépôts en temps réel et circuit commercial intégré du devis à la facture.",
     publishedAt: "2024-03-01",
+    cityPage: "/integrateur-odoo-maroc",
+    cityLabel: "au Maroc",
+    verticalPage: "/odoo-gestion-stock-maroc",
+    verticalLabel: "Commerce & Distribution",
   },
   {
     slug: "hamimi-export",
@@ -174,6 +196,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Commandes export et encours clients suivis dans un seul système, du bon de commande à la facture.",
     publishedAt: "2024-05-01",
+    cityPage: "/integrateur-odoo-maroc",
+    cityLabel: "au Maroc",
+    verticalPage: "/odoo-gestion-stock-maroc",
+    verticalLabel: "Commerce & Distribution",
   },
   {
     slug: "icc-douala",
@@ -218,6 +244,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Chantiers pilotés en projets Odoo : budget, achats et heures rattachés, écart budget/réel visible en cours de chantier.",
     publishedAt: "2024-01-01",
+    cityPage: "/integrateur-odoo-maroc",
+    cityLabel: "au Maroc",
+    verticalPage: "/odoo-btp-maroc",
+    verticalLabel: "BTP & Construction",
   },
   {
     slug: "les-titis-boutchoux",
@@ -306,6 +336,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Réassort automatisé par règles de stock, inventaires tournants outillés et canaux de vente sur un stock unique.",
     publishedAt: "2024-07-01",
+    cityPage: "/integrateur-odoo-maroc",
+    cityLabel: "au Maroc",
+    verticalPage: "/odoo-gestion-stock-maroc",
+    verticalLabel: "Commerce & Distribution",
   },
   {
     slug: "maroc-destination-sante",
@@ -328,6 +362,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Flotte suivie véhicule par véhicule, entretiens préventifs planifiés et courses facturées depuis les prestations.",
     publishedAt: "2024-06-01",
+    cityPage: "/integrateur-odoo-maroc",
+    cityLabel: "au Maroc",
+    verticalPage: "/odoo-transport-logistique-maroc",
+    verticalLabel: "Transport & Logistique",
   },
   {
     slug: "cuco-materiaux-construction",
@@ -350,6 +388,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Seuils de stock sur les références à forte rotation, achats déclenchés par les besoins et rapprochement livraison/facture automatique.",
     publishedAt: "2024-08-01",
+    cityPage: "/integrateur-odoo-maroc",
+    cityLabel: "au Maroc",
+    verticalPage: "/odoo-btp-maroc",
+    verticalLabel: "BTP & Construction",
   },
   {
     slug: "sd-maintenance",
@@ -372,6 +414,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Interventions centralisées avec historique par équipement, préventif planifié et pièces consommées suivies en stock.",
     publishedAt: "2024-05-01",
+    cityPage: "/integrateur-odoo-maroc",
+    cityLabel: "au Maroc",
   },
   {
     slug: "studely-finance-cameroun",
@@ -416,6 +460,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Courses enregistrées avec les justificatifs attendus et facturation partenaires générée depuis les courses réalisées.",
     publishedAt: "2024-03-01",
+    cityPage: "/integrateur-odoo-maroc",
+    cityLabel: "au Maroc",
+    verticalPage: "/odoo-transport-logistique-maroc",
+    verticalLabel: "Transport & Logistique",
   },
   {
     slug: "wam-lek-faya",
@@ -460,6 +508,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Cycles de culture en ordres de production, traçabilité par lot mobilisable en contrôle et points qualité intégrés.",
     publishedAt: "2024-11-01",
+    cityPage: "/integrateur-odoo-maroc",
+    cityLabel: "au Maroc",
   },
 ];
 

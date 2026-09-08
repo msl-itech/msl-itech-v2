@@ -1,4 +1,5 @@
 import { Warehouse, RefreshCw, Receipt, ScanLine } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
@@ -118,6 +119,7 @@ export default function StockMarocPage() {
       ctaTitle="Réserver ma démo Stock gratuite"
       ctaSubtitle="Démo adaptée à votre volume et votre secteur · Réponse sous 24h"
       extraSection={
+        <>
         <RelatedResources
           title="Ressources Stock, ERP & IA"
           intro="Comprendre les paliers de gestion de stock au Maroc et anticiper la prochaine étape ERP."
@@ -154,6 +156,21 @@ export default function StockMarocPage() {
             },
           ]}
         />
+        <section className="bg-brand-bg py-10">
+          <div className="container">
+            <p className="font-body text-sm text-brand-grey">
+              Vous recherchez un{" "}
+              <Link
+                to="/integrateur-odoo-maroc"
+                className="font-semibold text-brand-blue underline underline-offset-2 hover:text-brand-blue/80"
+              >
+                intégrateur Odoo au Maroc
+              </Link>{" "}
+              pour votre activité commerce ou distribution ? MSL-iTECH est partenaire certifié Odoo, implanté au Maroc.
+            </p>
+          </div>
+        </section>
+        </>
       }
     />
   );

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Sparkles, Clock, Calendar, ExternalLink, Wrench } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
@@ -154,6 +155,79 @@ export default function BlogPage() {
   const relatedTool = ARTICLE_TO_TOOL[post.slug];
   const relatedPosts = getRelatedPosts(post.slug, 3);
 
+  // Injection mid-article : après ~45 % des blocs, jamais avant le 3e ni après l'avant-dernier
+  const injectAfterIndex = relatedTool
+    ? Math.min(
+        Math.max(Math.ceil(post.body.length * 0.45) - 1, 2),
+        post.body.length - 2,
+      )
+    : -1;
+
+  // Construction du corps avec callout injecté à mi-parcours
+  const renderedBody: ReactNode[] = post.body.map((block, i) => {
+    if (block.type === "h2") {
+      return (
+        <h2 key={i} className="mt-10 font-heading text-2xl font-bold text-brand-black md:text-3xl">
+          {block.text}
+        </h2>
+      );
+    }
+    if (block.type === "h3") {
+      return (
+        <h3 key={i} className="mt-6 font-heading text-xl font-bold text-brand-black">
+          {block.text}
+        </h3>
+      );
+    }
+    if (block.type === "ul") {
+      return (
+        <ul key={i} className="space-y-2 pl-5">
+          {block.items.map((it, j) => (
+            <li key={j} className="list-disc font-body text-base text-brand-grey marker:text-brand-blue">
+              {it}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return (
+      <p key={i} className="font-body text-base text-brand-grey">
+        {block.text}
+      </p>
+    );
+  });
+
+  if (relatedTool && injectAfterIndex >= 0) {
+    renderedBody.splice(
+      injectAfterIndex + 1,
+      0,
+      <aside
+        key="mid-tool"
+        className="my-2 flex items-start gap-4 rounded-2xl p-5"
+        style={{
+          backgroundColor: "var(--blue-light)",
+          borderLeft: "3px solid var(--blue)",
+        }}
+      >
+        <Wrench size={18} className="mt-0.5 shrink-0 text-brand-blue" />
+        <div>
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-blue">
+            Outil gratuit · {relatedTool.label}
+          </p>
+          <p className="mt-1.5 font-body text-sm text-brand-black">
+            {relatedTool.description}
+          </p>
+          <Link
+            to={relatedTool.path}
+            className="mt-3 inline-flex items-center gap-1.5 font-body text-sm font-bold text-brand-blue hover:underline"
+          >
+            Lancer l'outil <ArrowRight size={13} />
+          </Link>
+        </div>
+      </aside>,
+    );
+  }
+
   const SITE = "https://msl-itech.com";
   const articleUrl = `${SITE}/blog/${post.slug}`;
   const postImage = blogImageBySlug[post.slug];
@@ -281,47 +355,7 @@ export default function BlogPage() {
       <section className="bg-background py-20">
         <article className="container max-w-3xl">
           <div className="space-y-6 font-body text-base leading-relaxed text-brand-black">
-            {post.body.map((block, i) => {
-              if (block.type === "h2") {
-                return (
-                  <h2
-                    key={i}
-                    className="mt-10 font-heading text-2xl font-bold text-brand-black md:text-3xl"
-                  >
-                    {block.text}
-                  </h2>
-                );
-              }
-              if (block.type === "h3") {
-                return (
-                  <h3
-                    key={i}
-                    className="mt-6 font-heading text-xl font-bold text-brand-black"
-                  >
-                    {block.text}
-                  </h3>
-                );
-              }
-              if (block.type === "ul") {
-                return (
-                  <ul key={i} className="space-y-2 pl-5">
-                    {block.items.map((it, j) => (
-                      <li
-                        key={j}
-                        className="list-disc font-body text-base text-brand-grey marker:text-brand-blue"
-                      >
-                        {it}
-                      </li>
-                    ))}
-                  </ul>
-                );
-              }
-              return (
-                <p key={i} className="font-body text-base text-brand-grey">
-                  {block.text}
-                </p>
-              );
-            })}
+            {renderedBody}
           </div>
 
           {post.faqs && post.faqs.length > 0 && (

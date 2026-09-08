@@ -38,11 +38,11 @@ const HomeFaqJsonLd = lazy(() =>
 function useSeo(market: "BE" | "MA") {
   const title =
     market === "MA"
-      ? "Intégrateur Odoo Maroc | Partenaire certifié — MSL-iTECH"
+      ? "Partenaire Odoo Maroc — ERP, web et acquisition | MSL-iTECH"
       : "Expert Odoo Belgique & Canada — MSL-iTECH";
   const description =
     market === "MA"
-      ? "MSL-iTECH, intégrateur et partenaire Odoo certifié au Maroc. Consultants v18 & v19 — implémentation ERP, modules custom pour HORECA, BTP, Santé et Commerce."
+      ? "Odoo Ready Partner basé à Marrakech. Implémentation ERP, modules sur mesure, création web et acquisition pour PME marocaines. Cadrage gratuit de 30 minutes."
       : "Odoo Ready Partner. Accompagnement à distance PME belges et canadiennes. ERP, modules custom et personnalisation d'Odoo natif.";
   useProductSeo({ title, description, path: "/" });
 }
@@ -193,7 +193,7 @@ function HeroShell({
                   ))}
                 </div>
                 <div className="mt-5 font-heading text-4xl font-bold text-white md:text-5xl">
-                  20+
+                  20
                 </div>
                 <p className="mt-1 font-body text-sm text-white/85">
                   références publiques vérifiables sur odoo.com

@@ -61,7 +61,11 @@ export const localBusinessBeSchema = {
     "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. Accompagnement à distance des PME belges. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique en Belgique.",
   priceRange: "€€",
   areaServed: "BE",
-  sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+  sameAs: [
+    "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+    "https://www.linkedin.com/company/msl-itech",
+  ],
+  parentOrganization: { "@id": "https://msl-itech.com/#organization" },
 };
 
 export const localBusinessMaSchema = {
@@ -76,6 +80,7 @@ export const localBusinessMaSchema = {
     "@type": "PostalAddress",
     streetAddress: "951 Q.I. Al Massar N°2, Route de Safi",
     addressLocality: "Marrakech",
+    postalCode: "40000",
     addressCountry: "MA",
   },
   description:
@@ -83,7 +88,11 @@ export const localBusinessMaSchema = {
   priceRange: "€€",
   openingHours: "Mo-Fr 09:00-18:00",
   areaServed: "MA",
-  sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+  sameAs: [
+    "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+    "https://www.linkedin.com/company/msl-itech",
+  ],
+  parentOrganization: { "@id": "https://msl-itech.com/#organization" },
 };
 
 export const localBusinessCaSchema = {
@@ -97,5 +106,9 @@ export const localBusinessCaSchema = {
     "Odoo Ready Partner au Maroc — consultants certifiés v18 & v19. Accompagnement à distance des PME canadiennes francophones. Implémentation ERP, modules custom et personnalisation d'Odoo natif. Pas de bureau physique au Canada.",
   priceRange: "$$",
   areaServed: "CA",
-  sameAs: "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+  sameAs: [
+    "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
+    "https://www.linkedin.com/company/msl-itech",
+  ],
+  parentOrganization: { "@id": "https://msl-itech.com/#organization" },
 };

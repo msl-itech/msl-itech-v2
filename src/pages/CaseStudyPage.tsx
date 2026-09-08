@@ -28,7 +28,20 @@ export default function CaseStudyPage() {
   if (!study) return <Navigate to="/realisations" replace />;
 
   const image = caseImageByKey[study.imageKey];
-  const others = caseStudies.filter((c) => c.slug !== study.slug).slice(0, 3);
+
+  // Priorité : cas du même secteur ; compléter si moins de 2
+  const sameSector = caseStudies
+    .filter((c) => c.slug !== study.slug && c.sector === study.sector)
+    .slice(0, 2);
+  const relatedCases =
+    sameSector.length >= 2
+      ? sameSector
+      : [
+          ...sameSector,
+          ...caseStudies
+            .filter((c) => c.slug !== study.slug && !sameSector.some((s) => s.slug === c.slug))
+            .slice(0, 2 - sameSector.length),
+        ];
 
   return (
     <>
@@ -193,13 +206,73 @@ export default function CaseStudyPage() {
         </div>
       </section>
 
+      {/* ── Vertical + ville ── */}
+      {(study.verticalPage || study.cityPage) && (
+        <section className="bg-brand-white py-14 md:py-16">
+          <div className="container">
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
+              Aller plus loin
+            </p>
+            <h2 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-3xl">
+              Solutions et implantations liées
+            </h2>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {study.verticalPage && (
+                <Link
+                  to={study.verticalPage}
+                  className="group flex items-start gap-4 rounded-[20px] border bg-brand-bg p-6 transition hover:border-brand-blue/40 hover:shadow-md"
+                  style={{ borderColor: "var(--grey-light)" }}
+                >
+                  <div className="flex-1">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+                      Solution sectorielle
+                    </p>
+                    <p className="mt-1.5 font-heading text-lg font-bold text-brand-black">
+                      Partenaire Odoo {study.verticalLabel}
+                    </p>
+                    <p className="mt-1 font-body text-sm text-brand-grey">
+                      Modules, cas d'usage et références dans ce secteur.
+                    </p>
+                  </div>
+                  <ArrowRight size={18} className="mt-1 shrink-0 text-brand-blue transition group-hover:translate-x-1" />
+                </Link>
+              )}
+              {study.cityPage && (
+                <Link
+                  to={study.cityPage}
+                  className="group flex items-start gap-4 rounded-[20px] border bg-brand-bg p-6 transition hover:border-brand-blue/40 hover:shadow-md"
+                  style={{ borderColor: "var(--grey-light)" }}
+                >
+                  <div className="flex-1">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+                      Implantation locale
+                    </p>
+                    <p className="mt-1.5 font-heading text-lg font-bold text-brand-black">
+                      Intégrateur Odoo {study.cityLabel}
+                    </p>
+                    <p className="mt-1 font-body text-sm text-brand-grey">
+                      Références, secteurs et présence MSL-iTECH dans cette ville.
+                    </p>
+                  </div>
+                  <ArrowRight size={18} className="mt-1 shrink-0 text-brand-blue transition group-hover:translate-x-1" />
+                </Link>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Cas du même secteur ── */}
       <section className="bg-brand-bg py-16 md:py-20">
         <div className="container">
-          <h2 className="font-heading text-2xl font-bold text-brand-black md:text-3xl">
-            Autres cas clients
+          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
+            {sameSector.length > 0 ? "Dans le même secteur" : "Autres réalisations"}
+          </p>
+          <h2 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-3xl">
+            Cas clients similaires
           </h2>
-          <div className="mt-8 grid gap-5 sm:grid-cols-3">
-            {others.map((c) => (
+          <div className="mt-8 grid gap-5 sm:grid-cols-2">
+            {relatedCases.map((c) => (
               <Link
                 key={c.slug}
                 to={`/realisations/${c.slug}`}
@@ -207,15 +280,54 @@ export default function CaseStudyPage() {
                 style={{ borderColor: "var(--grey-light)" }}
               >
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
-                  {c.sector}
+                  {c.sector} · {c.country}
                 </p>
                 <h3 className="mt-2 font-heading text-lg font-bold text-brand-black">{c.name}</h3>
-                <span className="mt-3 inline-flex items-center gap-1.5 font-body text-sm text-brand-blue">
+                <p className="mt-2 line-clamp-2 font-body text-sm text-brand-grey">{c.result}</p>
+                <span className="mt-4 inline-flex items-center gap-1.5 font-body text-sm font-medium text-brand-blue">
                   Lire le cas client
                   <ArrowRight size={14} className="transition group-hover:translate-x-1" />
                 </span>
               </Link>
             ))}
+          </div>
+          <div className="mt-6 text-right">
+            <Link
+              to="/realisations"
+              className="inline-flex items-center gap-1.5 font-body text-sm text-brand-grey hover:text-brand-blue"
+            >
+              Toutes nos réalisations <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA cadrage ── */}
+      <section className="py-16 md:py-20" style={{ backgroundColor: "var(--blue)" }}>
+        <div className="container text-center">
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand-gold">
+            Votre projet
+          </p>
+          <h2 className="mt-4 font-heading text-2xl font-bold text-white md:text-3xl">
+            Votre situation ressemble à ce cas ?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl font-body text-base text-white/80">
+            Cadrons-le ensemble en 30 minutes — sans engagement. Nous analysons votre périmètre, vos contraintes et vous indiquons si Odoo est la bonne réponse.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-sm font-bold text-brand-black transition hover:scale-[1.03]"
+              style={{ backgroundColor: "var(--gold)" }}
+            >
+              Réserver un cadrage gratuit <ArrowRight size={16} />
+            </Link>
+            <Link
+              to="/realisations"
+              className="inline-flex items-center rounded-full border border-white/30 px-7 py-3.5 font-body text-sm font-medium text-white transition hover:bg-white/10"
+            >
+              Voir toutes les réalisations
+            </Link>
           </div>
         </div>
       </section>

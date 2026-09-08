@@ -78,9 +78,9 @@ const casaSectors = [
 
 function useSeo() {
   useProductSeo({
-    title: "Intégrateur Odoo Casablanca — ERP pour PME et ETI | MSL-iTECH",
+    title: "Intégrateur Odoo Casablanca — ERP PME et ETI | MSL-iTECH",
     description:
-      "MSL-iTECH déploie Odoo à Casablanca et dans le Grand Casablanca. Partenaire Odoo certifié : implémentation ERP, modules custom, support — distribution, industrie, services B2B.",
+      "Déploiement Odoo à Casablanca et dans le Grand Casablanca : distribution, industrie, services B2B. Partenaire Odoo certifié — implémentation, modules custom, support.",
     path: "/integrateur-odoo-casablanca",
     ogImage: heroMaImg,
     faqs,
