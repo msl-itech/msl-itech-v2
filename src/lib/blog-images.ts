@@ -32,7 +32,7 @@ export const blogImageBySlug: Record<string, string> = {
   "sage-vs-odoo-maroc-comparatif-2026": sageVsOdooMarocImg,
   "facturation-electronique-dgi-maroc-2026-pdf-ubl": facturationDgi2026Img,
   "facturation-electronique-maroc-2026": facturationElectroniqueMarocImg,
-  "gestion-stock-maroc-odoo": gestionStockMarocImg,
+  "gestion-stock-maroc-apres-1-5m-mad": gestionStockMarocImg,
   "cout-erp-odoo-maroc-2026": coutErpOdooMarocImg,
   "odoo-vs-sap-vs-sage-comparatif-cout-pme-2026": odooVsSapVsSageImg,
   "couts-caches-projet-erp-2026": coutsCachesErpImg,
