@@ -1,4 +1,4 @@
-import { Boxes, Receipt, CalendarCheck, Users } from "lucide-react";
+import { Boxes, Receipt, CalendarCheck, Users, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
@@ -133,16 +133,34 @@ export default function HorecaPage() {
       extraSection={
         <section className="bg-brand-bg py-10">
           <div className="container">
-            <p className="font-body text-sm text-brand-grey">
-              Vous recherchez un{" "}
+            <div
+              className="flex flex-col gap-6 rounded-3xl border bg-white p-8 sm:flex-row sm:items-center sm:justify-between"
+              style={{ borderColor: "var(--grey-light)" }}
+            >
+              <div>
+                <p className="mb-3 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-brand-blue">
+                  <span className="inline-block h-px w-6 bg-brand-blue" />
+                  Partenaire certifié Odoo
+                </p>
+                <p className="font-heading text-xl font-bold text-brand-black">
+                  Vous cherchez un intégrateur Odoo au Maroc ?
+                </p>
+                <p className="mt-2 font-body text-sm text-brand-grey">
+                  MSL-iTECH est partenaire certifié Odoo, implanté au Maroc, spécialisé dans le déploiement pour les établissements HORECA.
+                </p>
+              </div>
               <Link
                 to="/integrateur-odoo-maroc"
-                className="font-semibold text-brand-blue underline underline-offset-2 hover:text-brand-blue/80"
+                className="group inline-flex shrink-0 items-center gap-2 rounded-full border-2 px-6 py-3 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
+                style={{ borderColor: "var(--blue)" }}
               >
-                intégrateur Odoo au Maroc
-              </Link>{" "}
-              pour votre établissement HORECA ? MSL-iTECH est partenaire certifié Odoo, implanté au Maroc.
-            </p>
+                En savoir plus
+                <ArrowUpRight
+                  size={16}
+                  className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
+              </Link>
+            </div>
           </div>
         </section>
       }
