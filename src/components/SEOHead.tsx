@@ -37,6 +37,14 @@ export function SEOHead({
   noIndex = false,
   schemaJson,
 }: SEOHeadProps) {
+  // Force noindex sur les domaines d'aperçu (msl-itech-v2.lovable.app, etc.)
+  // pour éviter le contenu dupliqué avec msl-itech.com.
+  const isPreviewHost =
+    typeof window !== "undefined" &&
+    /\.(lovable\.app|lovableproject\.com|gptengineer\.run)$/.test(
+      window.location.hostname
+    );
+
   const absCanonical = toAbsolute(canonical);
   const absOgImage = toAbsolute(ogImage || DEFAULT_OG_IMAGE);
   const schemas = Array.isArray(schemaJson)
@@ -62,7 +70,7 @@ export function SEOHead({
       <meta name="description" content={description} />
       <link rel="canonical" href={absCanonical} />
 
-      {noIndex ? (
+      {noIndex || isPreviewHost ? (
         <meta name="robots" content="noindex, nofollow" />
       ) : (
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
