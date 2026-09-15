@@ -70,7 +70,7 @@ export function SEOHead({
       <meta name="description" content={description} />
       <link rel="canonical" href={absCanonical} />
 
-      {noIndex ? (
+      {noIndex || isPreviewHost ? (
         <meta name="robots" content="noindex, nofollow" />
       ) : (
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
