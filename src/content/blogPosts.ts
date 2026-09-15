@@ -35,7 +35,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "Facturation électronique obligatoire au Maroc : pourquoi le papier ne suffit plus — et comment basculer sereinement vers un ERP",
     metaTitle:
-      "Facturation électronique Maroc : qui, quand, comment",
+      "Facturation électronique Maroc : qui et quand",
     metaDescription:
       "Obligation DGI : entreprises concernées, calendrier, formats acceptés et méthode pour basculer sans arrêter votre activité. Vérifiez votre cas en 2 min.",
     excerpt:
@@ -2090,7 +2090,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "facturation-electronique-dgi-maroc-2026-pdf-ubl",
     title: "Le PDF n'est plus une facture : ce que la DGI exige vraiment en 2026",
-    metaTitle: "Facture électronique DGI : le PDF suffit-il ? Formats exigés",
+    metaTitle: "Facture électronique DGI : le PDF suffit-il ?",
     metaDescription:
       "PDF signé, UBL, CII : ce que la DGI accepte réellement et comment mettre votre facturation en conformité. Guide pratique pour PME marocaines.",
     excerpt:
@@ -2408,7 +2408,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "Combien coûte un ERP Odoo au Maroc en 2026 ? Licences, intégration et budget réaliste",
     metaTitle:
-      "Prix Odoo au Maroc 2026 : licences, intégration, budget PME",
+      "Prix Odoo au Maroc 2026 : licences, intégration",
     metaDescription:
       "Fourchettes réelles pour déployer Odoo dans une PME marocaine : licences, intégration, hébergement, formation. Devis détaillé sous 48 h.",
     excerpt:

@@ -124,7 +124,7 @@ export default function BlogPage() {
   const post = slug ? getPostBySlug(slug) : undefined;
 
   useProductSeo({
-    title: post ? `${post.metaTitle} | Blog MSL-iTECH` : "Blog — MSL-iTECH",
+    title: post ? `${post.metaTitle} | MSL-iTECH` : "Blog — MSL-iTECH",
     description:
       post?.metaDescription ?? "Articles, conseils et analyses Odoo par MSL-iTECH.",
     path: post ? `/blog/${post.slug}` : "/blog",
