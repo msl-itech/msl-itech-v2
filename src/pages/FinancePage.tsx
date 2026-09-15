@@ -77,9 +77,9 @@ const faqs = [
 
 export default function FinancePage() {
   useProductSeo({
-    title: "Odoo Finance & Comptabilité PME — MSL-iTECH",
+    title: "Odoo Finance & comptabilité Maroc : CGNC, TVA, DGI",
     description:
-      "Pilotez votre trésorerie et automatisez votre comptabilité avec Odoo. Implémentation certifiée MSL-iTECH au Maroc. Démo gratuite.",
+      "Comptabilité marocaine dans Odoo : plan comptable CGNC, TVA, facturation électronique DGI, rapprochement bancaire. Déployé par un partenaire certifié.",
     path: "/odoo-finance-comptabilite",
     faqs,
     ldId: "ld-faq-finance",

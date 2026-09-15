@@ -35,9 +35,9 @@ export const blogPosts: BlogPost[] = [
     title:
       "Facturation électronique obligatoire au Maroc : pourquoi le papier ne suffit plus — et comment basculer sereinement vers un ERP",
     metaTitle:
-      "Facturation électronique obligatoire Maroc 2026 : passer du papier à l'ERP",
+      "Facturation électronique Maroc : qui, quand, comment",
     metaDescription:
-      "La DGI rend la facture électronique obligatoire au Maroc. Fini le papier et Excel : voici les vrais points de douleur et comment MSL-iTECH x Odoo vous met en conformité.",
+      "Obligation DGI : entreprises concernées, calendrier, formats acceptés et méthode pour basculer sans arrêter votre activité. Vérifiez votre cas en 2 min.",
     excerpt:
       "Le Maroc rejoint la Belgique, la France et l'Italie : la facturation électronique devient obligatoire. Carnets à souches, factures Word et Excel ne passeront plus. Ce que ça change pour votre PME, et comment basculer sans casser votre activité.",
     category: "Conformité & DGI",
@@ -2090,9 +2090,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "facturation-electronique-dgi-maroc-2026-pdf-ubl",
     title: "Le PDF n'est plus une facture : ce que la DGI exige vraiment en 2026",
-    metaTitle: "Facturation électronique DGI 2026 : PDF ou format structuré ?",
+    metaTitle: "Facture électronique DGI : le PDF suffit-il ? Formats exigés",
     metaDescription:
-      "La DGI n'accepte plus n'importe quel PDF comme facture valide. Découvrez ce qu'exige vraiment la réglementation marocaine en 2026 et comment vous y conformer.",
+      "PDF signé, UBL, CII : ce que la DGI accepte réellement et comment mettre votre facturation en conformité. Guide pratique pour PME marocaines.",
     excerpt:
       "PDF signé, UBL, CII : ce que la DGI marocaine exige vraiment en 2026 et comment mettre votre facturation en conformité sans rupture.",
     category: "Réglementation & conformité",
@@ -2408,9 +2408,9 @@ export const blogPosts: BlogPost[] = [
     title:
       "Combien coûte un ERP Odoo au Maroc en 2026 ? Licences, intégration et budget réaliste",
     metaTitle:
-      "Coût ERP Odoo au Maroc 2026 — Licences, Intégration, Budget PME",
+      "Prix Odoo au Maroc 2026 : licences, intégration, budget PME",
     metaDescription:
-      "Prix licence Odoo, tarif consultant, coût d'implémentation : tout ce qu'une PME marocaine doit savoir pour budgétiser son projet ERP en 2026.",
+      "Fourchettes réelles pour déployer Odoo dans une PME marocaine : licences, intégration, hébergement, formation. Devis détaillé sous 48 h.",
     excerpt:
       "Licence, intégration, hébergement : les fourchettes de prix du marché pour déployer Odoo dans une PME marocaine en 2026.",
     category: "Tarifs & ROI",

@@ -96,9 +96,9 @@ function computeResult(answers: Record<string, string | number>) {
 
 export default function ComparateurSageOdooPage() {
   useProductSeo({
-    title: "Comparateur Sage vs Odoo Maroc — Coût 3 ans & recommandation",
+    title: "Odoo vs Sage au Maroc : comparateur 2026 (prix, DGI)",
     description:
-      "Comparez Sage et Odoo pour votre PME marocaine : coût total 3 ans, couverture fonctionnelle, conformité DGI. Recommandation personnalisée par MSL-iTECH.",
+      "Comparez Sage et Odoo pour une PME marocaine : licence, plan comptable CGNC, facturation électronique DGI, support local, coût total sur 3 ans.",
     path: "/outils/comparateur-sage-odoo",
   });
   return (

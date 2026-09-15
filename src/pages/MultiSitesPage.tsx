@@ -76,9 +76,9 @@ const faqs = [
 
 export default function MultiSitesPage() {
   useProductSeo({
-    title: "Odoo pour entreprises multi-sites — ERP centralisé, données unifiées | MSL-iTECH",
+    title: "Odoo multi-société : une base, plusieurs entités",
     description:
-      "Gérez plusieurs sites, entrepôts ou filiales depuis un seul Odoo. MSL-iTECH implémente des architectures multi-sociétés et multi-entrepôts pour les entreprises structurées. Partenaire officiel certifié.",
+      "Gérez plusieurs sociétés, dépôts ou agences dans un seul Odoo : comptabilité par entité, consolidation, stocks partagés. Partenaire Odoo officiel.",
     path: "/entreprise-multi-sites",
     faqs,
     ldId: "ld-faq-multi-sites",
