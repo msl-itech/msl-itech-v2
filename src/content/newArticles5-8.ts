@@ -191,7 +191,7 @@ export const newArticles5to8: BlogPost[] = [
       { type: "h2", text: "Ce que fait MSL-iTECH" },
       {
         type: "p",
-        text: "MSL-iTECH est [intégrateur Odoo au Maroc](/integrateur-odoo-maroc), [partenaire officiel de l'éditeur](https://www.odoo.com/fr_FR/partners/msl-itech-15851608?country_id=132), avec 20 références nommées consultables sur [nos réalisations](/realisations). Nous répondons par écrit aux douze questions ci-dessus dans chaque proposition ; c'est même la structure de nos devis. Le premier échange est un cadrage gratuit de 30 minutes, suivi d'un devis détaillé sous 48 heures. Les fourchettes de budget sont publiées dans [Combien coûte un ERP Odoo au Maroc](/blog/cout-erp-odoo-maroc-2026).",
+        text: "MSL-iTECH est [intégrateur Odoo au Maroc](/integrateur-odoo-maroc), [partenaire officiel de l'éditeur](https://www.odoo.com/fr_FR/partners/msl-itech-15851608?country_id=132), avec 19 références nommées consultables sur [nos réalisations](/realisations). Nous répondons par écrit aux douze questions ci-dessus dans chaque proposition ; c'est même la structure de nos devis. Le premier échange est un cadrage gratuit de 30 minutes, suivi d'un devis détaillé sous 48 heures. Les fourchettes de budget sont publiées dans [Combien coûte un ERP Odoo au Maroc](/blog/cout-erp-odoo-maroc-2026).",
       },
     ],
   },

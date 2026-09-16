@@ -49,6 +49,10 @@ const faqs = [
     q: "Combien coûte une implémentation Odoo au Maroc ?",
     a: "Le coût dépend de la taille de votre entreprise, du nombre de modules et du niveau de personnalisation. MSL-iTECH propose des formules adaptées aux PME marocaines, sans forfaits cachés. Contactez-nous pour recevoir un devis gratuit et personnalisé sous 48 h.",
   },
+  {
+    q: "Quelle est la différence entre un intégrateur Odoo et un freelance ?",
+    a: "Un intégrateur comme MSL-iTECH est référencé sur odoo.com, dispose d'un accès direct au support éditeur, maintient ses certifications à jour et engage une structure pérenne. Un freelance peut convenir pour de petites tâches ponctuelles, mais ne garantit ni la continuité du service, ni la montée de version, ni le recours à l'éditeur en cas de blocage technique.",
+  },
 ];
 
 const sectors = [
@@ -156,7 +160,7 @@ export default function IntegrateurOdooMarocPage() {
             </div>
 
             <h1 className="mt-8 font-heading text-5xl font-bold leading-[1.04] tracking-tight text-brand-black md:text-[72px]">
-              L'intégrateur Odoo <Mark>de référence</Mark> au Maroc.
+              Intégrateur Odoo au Maroc : implémentation, modules sur mesure, <Mark>formation</Mark>
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl font-body text-base text-brand-grey md:text-lg">
@@ -330,6 +334,119 @@ export default function IntegrateurOdooMarocPage() {
                 </li>
               ))}
             </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Notre offre ── */}
+      <section className="bg-brand-bg py-20">
+        <div className="container">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="font-heading text-3xl font-bold text-brand-black md:text-4xl">
+              Ce que MSL-iTECH prend en charge
+            </h2>
+            <p className="mt-4 font-body text-brand-grey">
+              Notre périmètre couvre l'ensemble du cycle de vie d'un projet Odoo, de l'audit initial
+              au support après démarrage. Nous intervenons sur les modules natifs — Comptabilité, CRM,
+              Ventes, Stock, Achats, Fabrication, RH, Site Web — et développons des modules sur mesure
+              lorsque le besoin métier l'exige. La localisation fiscale marocaine (plan comptable CGNC,
+              TVA, e-facture DGI), la migration depuis un ancien logiciel (Sage, Excel, autre) et la
+              formation des utilisateurs font partie de chaque projet. Nous ne livrons pas un logiciel :
+              nous livrons un outil configuré pour votre entreprise, avec des équipes formées et un
+              support réactif.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Cas clients Maroc ── */}
+      <section className="py-20">
+        <div className="container">
+          <div className="mx-auto max-w-5xl">
+            <h2 className="font-heading text-3xl font-bold text-brand-black md:text-4xl">
+              Trois projets Odoo au Maroc accompagnés par MSL-iTECH
+            </h2>
+            <p className="mt-4 max-w-2xl font-body text-brand-grey">
+              Chaque projet est différent. Voici trois exemples concrets de déploiements réalisés au Maroc,
+              avec les modules activés et les résultats obtenus.
+            </p>
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  name: "NASLI Holding",
+                  sector: "Groupe multi-sociétés · Marrakech",
+                  desc: "Déploiement Odoo multi-société pour un groupe hôtelier : 12 sociétés, comptabilité consolidée, RH mutualisée et reporting groupe unifié.",
+                  href: "/realisations/nasli-holding",
+                },
+                {
+                  name: "Edge Sport Maroc",
+                  sector: "Commerce & distribution · Maroc",
+                  desc: "Implémentation Odoo pour la gestion commerciale, le stock multi-entrepôts et la facturation conforme DGI dans le secteur des articles de sport.",
+                  href: "/realisations/edge-sport-maroc",
+                },
+                {
+                  name: "TPMR Maroc",
+                  sector: "Transport de personnes · Maroc",
+                  desc: "Mise en place d'Odoo pour la planification des tournées, la facturation des prestations et le suivi de flotte dans le transport de personnes à mobilité réduite.",
+                  href: "/realisations/tpmr-maroc",
+                },
+              ].map((c) => (
+                <Link
+                  key={c.name}
+                  to={c.href}
+                  className="group flex flex-col rounded-2xl border bg-brand-white p-6 transition hover:-translate-y-0.5 hover:shadow-md"
+                  style={{ borderColor: "var(--grey-light)" }}
+                >
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
+                    {c.sector}
+                  </p>
+                  <h3 className="mt-2 font-heading text-base font-bold text-brand-black">{c.name}</h3>
+                  <p className="mt-2 flex-1 font-body text-sm text-brand-grey">{c.desc}</p>
+                  <span className="mt-4 inline-flex items-center gap-1 font-body text-sm font-semibold text-brand-blue">
+                    Voir le cas client
+                    <ArrowRight size={14} aria-hidden="true" className="transition group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+            <p className="mt-8 text-center font-body text-sm text-brand-grey">
+              Toutes nos références sont vérifiables sur{" "}
+              <a
+                href="https://www.odoo.com/fr_FR/partners/msl-itech-15851608?country_id=132"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-brand-blue underline"
+              >
+                odoo.com/partners
+              </a>{" "}
+              et sur notre page{" "}
+              <Link to="/realisations" className="font-semibold text-brand-blue underline">
+                réalisations
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Équipe ── */}
+      <section className="bg-brand-bg py-20">
+        <div className="container">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="font-heading text-3xl font-bold text-brand-black md:text-4xl">
+              Notre équipe
+            </h2>
+            <p className="mt-4 font-body text-brand-grey">
+              MSL-iTECH est une équipe de consultants fonctionnels et techniques certifiés Odoo,
+              basée à Marrakech. Nos profils combinent une connaissance approfondie du tissu
+              économique marocain — réglementations DGI, plan comptable CGNC, habitudes de gestion
+              des PME locales — avec une expérience internationale acquise sur des projets en Belgique,
+              au Canada et en Afrique. Chaque projet est piloté par un consultant dédié qui connaît
+              votre secteur, pas seulement le logiciel. Notre structure légère nous permet de proposer
+              des tarifs compétitifs sans sacrifier la qualité d'accompagnement, et notre statut de
+              partenaire officiel Odoo nous donne un accès direct aux équipes de l'éditeur pour les
+              cas techniques complexes.
+            </p>
           </div>
         </div>
       </section>
