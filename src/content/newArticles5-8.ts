@@ -584,7 +584,7 @@ export const newArticles5to8: BlogPost[] = [
       { type: "h2", text: "Ce que fait MSL-iTECH" },
       {
         type: "p",
-        text: "Nous réalisons un audit gratuit en dix points de votre site, sous 48 heures, à partir de son adresse : visibilité Google et présence dans les réponses des IA, vitesse, mobile, clarté de l'offre, preuves, appels à l'action, formulaire, suivi des demandes, mesure. Vous recevez un document de deux pages et un appel de quinze minutes pour le commenter. Selon ce qu'il révèle, la suite peut être une correction ponctuelle, une [refonte](/creation-web) ou un [accompagnement continu](/marketing-digital). Aucune obligation à l'issue de l'audit.",
+        text: "En tant qu'[intégrateur Odoo au Maroc](/integrateur-odoo-maroc), nous réalisons un audit gratuit en dix points de votre site, sous 48 heures, à partir de son adresse : visibilité Google et présence dans les réponses des IA, vitesse, mobile, clarté de l'offre, preuves, appels à l'action, formulaire, suivi des demandes, mesure. Vous recevez un document de deux pages et un appel de quinze minutes pour le commenter. Selon ce qu'il révèle, la suite peut être une correction ponctuelle, une [refonte](/creation-web) ou un [accompagnement continu](/marketing-digital). Aucune obligation à l'issue de l'audit.",
       },
     ],
   },

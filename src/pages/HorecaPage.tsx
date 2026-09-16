@@ -154,7 +154,7 @@ export default function HorecaPage() {
                 className="group inline-flex shrink-0 items-center gap-2 rounded-full border-2 px-6 py-3 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
                 style={{ borderColor: "var(--blue)" }}
               >
-                En savoir plus
+                Intégrateur Odoo au Maroc
                 <ArrowUpRight
                   size={16}
                   className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"

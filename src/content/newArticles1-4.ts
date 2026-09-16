@@ -228,7 +228,7 @@ export const newArticles1to4: BlogPost[] = [
       },
       {
         type: "p",
-        text: "MSL-iTECH est partenaire Odoo Ready au Maroc, basé à Marrakech.",
+        text: "MSL-iTECH est [partenaire Odoo au Maroc](/integrateur-odoo-maroc), basé à Marrakech.",
       },
       {
         type: "p",
@@ -510,7 +510,7 @@ export const newArticles1to4: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Dans [Odoo Finance](/odoo-finance-comptabilite), nous paramétrons les éléments nécessaires à une facturation correctement structurée : informations légales de la société, données fiscales des clients, taxes applicables, séquences de numérotation, modèle de facture, conditions de paiement ainsi que les informations reprises sur les lignes de facturation.",
+        text: "En tant qu'[intégrateur Odoo au Maroc](/integrateur-odoo-maroc), nous paramétrons dans [Odoo Finance](/odoo-finance-comptabilite) les éléments nécessaires à une facturation correctement structurée : informations légales de la société, données fiscales des clients, taxes applicables, séquences de numérotation, modèle de facture, conditions de paiement ainsi que les informations reprises sur les lignes de facturation.",
       },
       {
         type: "p",
