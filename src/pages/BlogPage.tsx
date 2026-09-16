@@ -7,6 +7,40 @@ import { blogImageBySlug } from "@/lib/blog-images";
 import { JsonLd } from "@/components/JsonLd";
 
 /**
+ * Parse les liens markdown `[texte](/chemin)` dans une chaîne et renvoie
+ * un tableau de ReactNode avec des <Link> pour les liens internes et des
+ * <a> pour les liens externes.
+ */
+function renderInlineLinks(text: string): ReactNode[] {
+  const parts: ReactNode[] = [];
+  const re = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let last = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > last) parts.push(text.slice(last, match.index));
+    const label = match[1];
+    const href = match[2];
+    if (href.startsWith("http")) {
+      parts.push(
+        <a key={key++} href={href} target="_blank" rel="noopener noreferrer" className="text-brand-blue underline hover:text-brand-black">
+          {label}
+        </a>,
+      );
+    } else {
+      parts.push(
+        <Link key={key++} to={href} className="text-brand-blue underline hover:text-brand-black">
+          {label}
+        </Link>,
+      );
+    }
+    last = match.index + match[0].length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
+
+/**
  * Maillage interne contextuel : chaque article pertinent renvoie vers
  * l'outil interactif exact correspondant à la douleur traitée.
  * Règle absolue : jamais de redirection vers l'accueil.
@@ -117,6 +151,54 @@ const ARTICLE_TO_TOOL: Record<
     label: "Diagnostic maturité digitale",
     description: "Mesurez votre maturité gestion de stock et identifiez les leviers prioritaires.",
   },
+  "facturation-electronique-maroc-qui-quand-que-faire": {
+    path: "/outils/conformite-dgi",
+    label: "Simulateur de conformité DGI",
+    description:
+      "Vérifiez votre situation en 2 minutes : échéance, format, risques. Plan d'action personnalisé.",
+  },
+  "facture-electronique-maroc-mentions-obligatoires-formats": {
+    path: "/outils/conformite-dgi",
+    label: "Simulateur de conformité DGI",
+    description:
+      "Votre facturation contient-elle toutes les mentions obligatoires ? Vérifiez en 2 minutes.",
+  },
+  "passer-facture-electronique-sans-arreter-activite": {
+    path: "/outils/conformite-dgi",
+    label: "Simulateur de conformité DGI",
+    description:
+      "Mesurez votre risque de non-conformité et obtenez votre fenêtre de bascule conseillée.",
+  },
+  "odoo-vs-sage-maroc-comparatif": {
+    path: "/outils/comparateur-sage-odoo",
+    label: "Comparateur Sage vs Odoo",
+    description:
+      "Appliquez la grille des dix critères à votre situation : coût 3 ans, CGNC, DGI, support.",
+  },
+  "choisir-integrateur-odoo-maroc-12-questions": {
+    path: "/outils/diagnostic-digital",
+    label: "Diagnostic maturité digitale",
+    description:
+      "Évaluez votre maturité digitale avant de choisir un intégrateur : le bon périmètre dépend de votre point de départ.",
+  },
+  "odoo-multi-societe": {
+    path: "/outils/roi-erp",
+    label: "Calculateur ROI ERP",
+    description:
+      "Estimez le gain d'une base unique multi-société vs plusieurs outils séparés.",
+  },
+  "site-web-ne-genere-aucun-client-10-causes": {
+    path: "/outils/diagnostic-digital",
+    label: "Diagnostic maturité digitale",
+    description:
+      "Votre site est-il trouvé, compris, actionnable ? Mesurez votre maturité digitale en 2 minutes.",
+  },
+  "site-web-relie-odoo-crm": {
+    path: "/outils/diagnostic-digital",
+    label: "Diagnostic maturité digitale",
+    description:
+      "Évaluez votre niveau de digitalisation : formulaires, CRM, suivi des demandes, mesure.",
+  },
 };
 
 export default function BlogPage() {
@@ -168,14 +250,14 @@ export default function BlogPage() {
     if (block.type === "h2") {
       return (
         <h2 key={i} className="mt-10 font-heading text-2xl font-bold text-brand-black md:text-3xl">
-          {block.text}
+          {renderInlineLinks(block.text)}
         </h2>
       );
     }
     if (block.type === "h3") {
       return (
         <h3 key={i} className="mt-6 font-heading text-xl font-bold text-brand-black">
-          {block.text}
+          {renderInlineLinks(block.text)}
         </h3>
       );
     }
@@ -184,7 +266,7 @@ export default function BlogPage() {
         <ul key={i} className="space-y-2 pl-5">
           {block.items.map((it, j) => (
             <li key={j} className="list-disc font-body text-base text-brand-grey marker:text-brand-blue">
-              {it}
+              {renderInlineLinks(it)}
             </li>
           ))}
         </ul>
@@ -192,7 +274,7 @@ export default function BlogPage() {
     }
     return (
       <p key={i} className="font-body text-base text-brand-grey">
-        {block.text}
+        {renderInlineLinks(block.text)}
       </p>
     );
   });

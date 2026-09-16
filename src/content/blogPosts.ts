@@ -1,3 +1,6 @@
+import { newArticles1to4 } from "./newArticles1-4";
+import { newArticles5to8 } from "./newArticles5-8";
+
 export type BlogSection =
   | { type: "p"; text: string }
   | { type: "h2"; text: string }
@@ -3046,6 +3049,8 @@ export const blogPosts: BlogPost[] = [
     ],
   },
 
+  ...newArticles1to4,
+  ...newArticles5to8,
 ];
 
 export const getPostBySlug = (slug: string) =>
