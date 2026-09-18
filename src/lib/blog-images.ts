@@ -19,6 +19,14 @@ import copiloteConversationnelOdooImg from "@/assets/blog/copilote-conversationn
 import facturationElectroniqueObligatoireImg from "@/assets/blog/facturation-electronique-obligatoire-maroc.jpg";
 
 export const blogImageBySlug: Record<string, string> = {
+  "facturation-electronique-maroc-qui-quand-que-faire": "/55fd7223-656a-4f6e-ace8-e27162bf7be3.png",
+  "facture-electronique-maroc-mentions-obligatoires-formats": "/20fe9f6c-cc2b-497a-96a8-beae034186e5.png",
+  "passer-facture-electronique-sans-arreter-activite": "/5b8d22e2-df07-49e0-b9da-c56b4f865430.png",
+  "choisir-integrateur-odoo-maroc-12-questions": "/57a363d9-d7de-4498-9474-9ea33f18a13f.png",
+  "odoo-multi-societe": "/6f45520d-7977-47a0-bde8-a8ecf85d7815.png",
+  "site-web-ne-genere-aucun-client-10-causes": "/8f101fc6-8734-4e49-a017-8108dc8d2b5c.png",
+  "site-web-relie-odoo-crm": "/c90ce8a7-a1e1-4f2a-9bc6-173fbfdbc84b.png",
+  "odoo-vs-sage-maroc-comparatif": "/b4ce3644-f462-44a0-b018-5604bbc622a4.png",
   "facturation-electronique-obligatoire-maroc-2026-erp": facturationElectroniqueObligatoireImg,
   "copilote-conversationnel-odoo-ia-maroc": copiloteConversationnelOdooImg,
   "agents-ia-odoo-pme-maroc-2026": agentsIaOdooImg,

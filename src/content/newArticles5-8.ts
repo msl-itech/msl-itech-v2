@@ -10,6 +10,7 @@ export const newArticles5to8: BlogPost[] = [
       "Choisir un intégrateur Odoo au Maroc : 12 questions avant de signer",
     metaDescription:
       "Partenaire officiel, références vérifiables, méthode, devis détaillé, support : les 12 questions qui distinguent un bon intégrateur Odoo au Maroc d'un simple revendeur.",
+    image: "/57a363d9-d7de-4498-9474-9ea33f18a13f.png",
     excerpt:
       "Le logiciel est le même pour tout le monde ; ce qui fait réussir ou échouer un projet Odoo, c'est l'intégrateur. Voici les douze questions à poser à chaque candidat, ce qu'une bonne réponse contient, et les signaux qui doivent vous faire hésiter. Elles tiennent en une réunion d'une heure.",
     category: "ERP & Odoo",
@@ -205,6 +206,7 @@ export const newArticles5to8: BlogPost[] = [
       "Odoo multi-société : plusieurs sociétés dans une seule base",
     metaDescription:
       "Holding, réseau d'agences, plusieurs points de vente : comment Odoo gère plusieurs sociétés dans une base unique — comptabilité par entité, consolidation, stocks partagés, flux inter-sociétés.",
+    image: "/6f45520d-7977-47a0-bde8-a8ecf85d7815.png",
     excerpt:
       "Quand une entreprise devient plusieurs — une holding et ses filiales, une société par ville, une activité de négoce et une de services — la question n'est plus « quel logiciel » mais « une base ou plusieurs ». Odoo est conçu pour faire tenir plusieurs sociétés dans une seule base, avec une comptabilité séparée par entité et des données partagées quand c'est utile. Voici ce que cela permet, ce que cela impose, et comment le mettre en place.",
     category: "ERP & Odoo",
@@ -375,6 +377,7 @@ export const newArticles5to8: BlogPost[] = [
       "Site web sans clients : les 10 causes vues dans nos audits",
     metaDescription:
       "Votre site est en ligne mais ne rapporte rien ? Les 10 causes que nous retrouvons dans les audits de sites de PME, avec pour chacune le test à faire vous-même et la correction.",
+    image: "/8f101fc6-8734-4e49-a017-8108dc8d2b5c.png",
     excerpt:
       "Un site web peut être beau, récent, techniquement propre, et ne rapporter aucune demande. Quand nous auditons le site d'une PME, nous retrouvons presque toujours les mêmes dix causes, souvent combinées. Pour chacune, voici comment la repérer vous-même en quelques minutes, et ce qui la corrige.",
     category: "Marketing digital",
@@ -598,6 +601,7 @@ export const newArticles5to8: BlogPost[] = [
       "Site web relié à Odoo CRM : aucun prospect perdu",
     metaDescription:
       "Comment connecter votre site web à Odoo CRM pour que chaque formulaire crée un prospect assigné, suivi et mesuré, avec sa source. Méthode, champs à transmettre, pièges.",
+    image: "/c90ce8a7-a1e1-4f2a-9bc6-173fbfdbc84b.png",
     excerpt:
       "La plupart des sites d'entreprise envoient leurs formulaires vers une boîte email. La demande y arrive, puis dépend de la personne qui lit cette boîte, de son emploi du temps et de sa mémoire. Relier le site à un CRM change cela : chaque formulaire crée une fiche, assignée à quelqu'un, avec un rappel et une source. Voici comment le faire avec Odoo, ce qu'il faut transmettre, et les erreurs à éviter.",
     category: "Marketing digital",

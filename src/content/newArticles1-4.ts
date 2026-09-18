@@ -252,6 +252,7 @@ export const newArticles1to4: BlogPost[] = [
       "Facture électronique Maroc : mentions obligatoires et formats",
     metaDescription:
       "ICE, IF, RC, TVA détaillée, numérotation continue, format UBL ou CII : la liste complète pour émettre une facture électronique conforme DGI. Guide PME.",
+    image: "/20fe9f6c-cc2b-497a-96a8-beae034186e5.png",
     excerpt:
       "Une facture électronique conforme au Maroc doit réunir toutes les mentions exigées par le Code Général des Impôts et un format de fichier structuré accepté par la DGI. Voici la liste de contrôle complète.",
     category: "Conformité & DGI",
@@ -534,6 +535,7 @@ export const newArticles1to4: BlogPost[] = [
       "De Word/Excel à la facture électronique : méthode en 4 semaines",
     metaDescription:
       "Vous facturez sur Word, Excel ou un carnet ? Voici la méthode que suivent les PME marocaines pour passer à la facture électronique conforme sans interrompre les ventes.",
+    image: "/5b8d22e2-df07-49e0-b9da-c56b4f865430.png",
     excerpt:
       "Une PME qui facture sur Word, Excel ou un carnet peut être opérationnelle sur un outil de facturation électronique conforme en quatre à six semaines. Voici la méthode étape par étape.",
     category: "Conformité & DGI",
@@ -728,6 +730,7 @@ export const newArticles1to4: BlogPost[] = [
       "Odoo vs Sage au Maroc 2026 : comparatif prix, CGNC, DGI, support",
     metaDescription:
       "Comparez Sage et Odoo pour une PME marocaine : modèle de licence, plan comptable CGNC, facturation électronique DGI, support local, coût total sur 3 ans.",
+    image: "/b4ce3644-f462-44a0-b018-5604bbc622a4.png",
     excerpt:
       "Sage et Odoo répondent à la même question avec deux philosophies différentes. Ce comparatif en dix critères vous donne une grille de lecture pour décider, sans slogans.",
     category: "ERP & Odoo",
