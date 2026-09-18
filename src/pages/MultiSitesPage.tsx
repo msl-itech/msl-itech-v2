@@ -76,7 +76,7 @@ const faqs = [
 
 export default function MultiSitesPage() {
   useProductSeo({
-    title: "Odoo multi-société : une base, plusieurs entités",
+    title: "Odoo multi-société et multi-sites : une seule base",
     description:
       "Gérez plusieurs sociétés, dépôts ou agences dans un seul Odoo : comptabilité par entité, consolidation, stocks partagés. Partenaire Odoo officiel.",
     path: "/entreprise-multi-sites",
