@@ -34,6 +34,7 @@ const AboutPage = lazyRetry(() => import("./pages/AboutPage"));
 const ContactPage = lazyRetry(() => import("./pages/ContactPage"));
 const BlogPage = lazyRetry(() => import("./pages/BlogPage"));
 const BlogIndexPage = lazyRetry(() => import("./pages/BlogIndexPage"));
+const BlogHubPage = lazyRetry(() => import("./pages/BlogHubPage"));
 const PmeStructurationPage = lazyRetry(() => import("./pages/PmeStructurationPage"));
 const MultiSitesPage = lazyRetry(() => import("./pages/MultiSitesPage"));
 const CroissanceRapidePage = lazyRetry(() => import("./pages/CroissanceRapidePage"));
@@ -107,6 +108,11 @@ const App = () => {
             <Route path="/entreprise-multi-sites" element={<MultiSitesPage />} />
             <Route path="/structure-en-croissance" element={<CroissanceRapidePage />} />
             <Route path="/blog" element={<BlogIndexPage />} />
+            <Route path="/blog/facturation-electronique-dgi" element={<BlogHubPage />} />
+            <Route path="/blog/acheter-odoo" element={<BlogHubPage />} />
+            <Route path="/blog/problematiques-metier" element={<BlogHubPage />} />
+            <Route path="/blog/sites-web-acquisition" element={<BlogHubPage />} />
+            <Route path="/blog/belgique" element={<BlogHubPage />} />
             <Route path="/blog/:slug" element={<BlogPage />} />
             <Route path="/prendre-rendez-vous" element={<AppointmentPage />} />
             <Route path="/politique-de-confidentialite" element={<PrivacyPage />} />

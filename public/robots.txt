@@ -1,5 +1,5 @@
 # robots.txt — msl-itech.com
-# Dernière mise à jour : Avril 2026
+# Dernière mise à jour : Septembre 2026
 
 # ── Bots généraux ──
 User-agent: *

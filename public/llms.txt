@@ -120,6 +120,11 @@ référence est consultable sur notre fiche partenaire officielle Odoo.
 - [À propos](https://msl-itech.com/a-propos): Certifications, équipe et valeurs MSL-iTECH.
 - [Outils interactifs](https://msl-itech.com/outils/roi-erp): Calculateur ROI ERP, diagnostic digital, comparateur Sage vs Odoo.
 - [Blog](https://msl-itech.com/blog): Articles sur Odoo, la transformation digitale et l'ERP au Maroc.
+- [Hub — Facturation électronique DGI](https://msl-itech.com/blog/facturation-electronique-dgi): Calendrier DGI, formats acceptés, mentions obligatoires, méthode de bascule.
+- [Hub — Acheter Odoo](https://msl-itech.com/blog/acheter-odoo): Comparatifs chiffrés, grilles tarifaires, guides de sélection d'intégrateur.
+- [Hub — Problématiques métier](https://msl-itech.com/blog/problematiques-metier): Analyses sectorielles — HORECA, BTP, santé, commerce, transport, IA.
+- [Hub — Sites web & acquisition](https://msl-itech.com/blog/sites-web-acquisition): Création web, SEO, connexion site-CRM, acquisition digitale.
+- [Hub — Odoo en Belgique](https://msl-itech.com/blog/belgique): Articles dédiés au marché belge — réglementation, fiscalité, déploiement à distance.
 
 ## Optional
 
