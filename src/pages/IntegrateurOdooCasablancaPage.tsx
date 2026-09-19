@@ -83,6 +83,7 @@ function useSeo() {
       "Déploiement Odoo à Casablanca et dans le Grand Casablanca : distribution, industrie, services B2B. Partenaire Odoo certifié — implémentation, modules custom, support.",
     path: "/integrateur-odoo-casablanca",
     ogImage: heroMaImg,
+    isEntityPage: true,
     faqs,
     service: {
       name: "Intégration Odoo ERP à Casablanca",
@@ -310,7 +311,7 @@ export default function IntegrateurOdooCasablancaPage() {
                 to="/integrateur-odoo-maroc"
                 className="rounded-full border border-brand-blue/20 px-4 py-2 font-body text-sm text-brand-blue transition hover:border-brand-blue"
               >
-                Maroc (national)
+                Intégrateur Odoo au Maroc
               </Link>
               <Link
                 to="/integrateur-odoo-marrakech"

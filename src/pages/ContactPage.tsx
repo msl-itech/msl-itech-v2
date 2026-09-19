@@ -118,6 +118,7 @@ export default function ContactPage() {
     description:
       "Contactez MSL-iTECH pour une démo Odoo personnalisée. Réponse sous 24h. Équipe technique basée à Marrakech au service des PME marocaines. Sans engagement.",
     path: "/contact",
+    isEntityPage: true,
   });
 
   const [step, setStep] = useState(0);

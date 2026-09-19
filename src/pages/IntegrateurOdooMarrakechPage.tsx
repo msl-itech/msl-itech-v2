@@ -73,6 +73,7 @@ function useSeo() {
       "Intégrateur Odoo basé à Marrakech — intervention en présentiel dans la région Marrakech-Safi. Tourisme, hôtellerie, BTP, commerce. Partenaire Odoo certifié.",
     path: "/integrateur-odoo-marrakech",
     ogImage: heroMaImg,
+    isEntityPage: true,
     faqs,
     service: {
       name: "Intégration Odoo ERP à Marrakech",
@@ -301,7 +302,7 @@ export default function IntegrateurOdooMarrakechPage() {
                 to="/integrateur-odoo-maroc"
                 className="rounded-full border border-brand-blue/20 px-4 py-2 font-body text-sm text-brand-blue transition hover:border-brand-blue"
               >
-                Maroc (national)
+                Intégrateur Odoo au Maroc
               </Link>
               <Link
                 to="/integrateur-odoo-casablanca"
