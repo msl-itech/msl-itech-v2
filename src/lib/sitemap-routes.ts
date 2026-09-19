@@ -69,8 +69,13 @@ const staticEntries: SitemapEntry[] = [
   { loc: "/contact", changefreq: "monthly", priority: 0.8 },
   { loc: "/prendre-rendez-vous", changefreq: "monthly", priority: 0.7 },
 
-  // Blog index
+  // Blog index + hub pages
   { loc: "/blog", changefreq: "weekly", priority: 0.8 },
+  { loc: "/blog/facturation-electronique-dgi", changefreq: "weekly", priority: 0.85 },
+  { loc: "/blog/acheter-odoo", changefreq: "weekly", priority: 0.85 },
+  { loc: "/blog/problematiques-metier", changefreq: "weekly", priority: 0.85 },
+  { loc: "/blog/sites-web-acquisition", changefreq: "weekly", priority: 0.85 },
+  { loc: "/blog/belgique", changefreq: "weekly", priority: 0.85 },
 
   // Pages légales
   { loc: "/politique-de-confidentialite", changefreq: "yearly", priority: 0.3 },
@@ -80,7 +85,7 @@ const staticEntries: SitemapEntry[] = [
 ];
 
 export function buildSitemapEntries(): SitemapEntry[] {
-  const blogEntries: SitemapEntry[] = blogPosts.map((p) => ({
+  const blogEntries: SitemapEntry[] = blogPosts.filter((p) => !p.noIndex).map((p) => ({
     loc: `/blog/${p.slug}`,
     changefreq: "monthly" as const,
     priority: 0.85,
