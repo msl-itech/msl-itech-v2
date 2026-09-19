@@ -301,7 +301,7 @@ export default function IntegrateurOdooMarrakechPage() {
                 to="/integrateur-odoo-maroc"
                 className="rounded-full border border-brand-blue/20 px-4 py-2 font-body text-sm text-brand-blue transition hover:border-brand-blue"
               >
-                Maroc (national)
+                Intégrateur Odoo au Maroc
               </Link>
               <Link
                 to="/integrateur-odoo-casablanca"

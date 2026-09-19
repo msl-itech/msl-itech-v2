@@ -61,7 +61,9 @@ export default function BlogIndexPage() {
 
   const sortedPosts = useMemo(
     () =>
-      [...blogPosts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)),
+      [...blogPosts]
+        .filter((p) => !p.noIndex)
+        .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)),
     []
   );
 
