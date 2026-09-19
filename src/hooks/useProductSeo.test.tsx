@@ -89,6 +89,7 @@ describe("useProductSeo", () => {
       );
       const faq = scripts
         .map((s) => JSON.parse(s.textContent ?? "{}"))
+        .flatMap((j) => (j["@graph"] ? j["@graph"] : [j]))
         .find((j) => j["@type"] === "FAQPage");
       expect(faq).toBeTruthy();
       expect(faq.mainEntity[0].name).toBe("Q1?");

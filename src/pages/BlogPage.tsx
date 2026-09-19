@@ -4,7 +4,7 @@ import { ArrowRight, ArrowLeft, Sparkles, Clock, Calendar, ExternalLink, Wrench 
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { getPostBySlug, getRelatedPosts } from "@/content/blogPosts";
 import { blogImageBySlug } from "@/lib/blog-images";
-import { JsonLd } from "@/components/JsonLd";
+
 
 /**
  * Parse les liens markdown `[texte](/chemin)` dans une chaîne et renvoie
@@ -205,6 +205,14 @@ export default function BlogPage() {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getPostBySlug(slug) : undefined;
 
+  const postImage = post ? blogImageBySlug[post.slug] : undefined;
+  const SITE = "https://msl-itech.com";
+  const articleImage = postImage
+    ? postImage.startsWith("http")
+      ? postImage
+      : `${SITE}${postImage.startsWith("/") ? postImage : "/" + postImage}`
+    : `${SITE}/og-default.jpg`;
+
   useProductSeo({
     title: post ? `${post.metaTitle} | MSL-iTECH` : "Blog — MSL-iTECH",
     description:
@@ -215,6 +223,17 @@ export default function BlogPage() {
     faqs: post?.faqs,
     ldId: post?.faqs ? `ld-faq-blog-${post.slug}` : undefined,
     noIndex: post?.noIndex,
+    article: post
+      ? {
+          headline: post.title,
+          description: post.excerpt,
+          datePublished: post.publishedAt,
+          dateModified: post.updatedAt ?? post.publishedAt,
+          authorName: post.author ?? "Équipe MSL-iTECH",
+          image: articleImage,
+          articleSection: post.category,
+        }
+      : undefined,
   });
 
   if (!post) {
@@ -311,46 +330,8 @@ export default function BlogPage() {
     );
   }
 
-  const SITE = "https://msl-itech.com";
-  const articleUrl = `${SITE}/blog/${post.slug}`;
-  const postImage = blogImageBySlug[post.slug];
-  const articleImage = postImage
-    ? postImage.startsWith("http")
-      ? postImage
-      : `${SITE}${postImage.startsWith("/") ? postImage : "/" + postImage}`
-    : `${SITE}/og-default.jpg`;
-
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.excerpt,
-    image: articleImage,
-    articleSection: post.category,
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt ?? post.publishedAt,
-    author: {
-      "@type": "Organization",
-      name: "MSL-iTECH",
-      url: SITE,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "MSL-iTECH",
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE}/icon-192.png`,
-      },
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": articleUrl,
-    },
-  };
-
   return (
     <>
-      <JsonLd id="ld-article-blog" data={articleSchema} />
       {/* HERO */}
       <section className="relative overflow-hidden" style={{ backgroundColor: "#0F3F4A" }}>
         <div

@@ -44,7 +44,7 @@ function useSeo(market: "BE" | "MA") {
     market === "MA"
       ? "Odoo Ready Partner basé à Marrakech. Implémentation ERP, modules sur mesure, création web et acquisition pour PME marocaines. Cadrage gratuit de 30 minutes."
       : "Odoo Ready Partner. Accompagnement à distance PME belges et canadiennes. ERP, modules custom et personnalisation d'Odoo natif.";
-  useProductSeo({ title, description, path: "/" });
+  useProductSeo({ title, description, path: "/", isEntityPage: true });
 }
 
 /* ------------------- Highlight (marker brushstroke) ------------------- */
