@@ -240,17 +240,18 @@ export default function CaseStudyPage() {
               {study.cityPage && (
                 <Link
                   to={study.cityPage}
+                  aria-label={`Intégrateur Odoo ${study.cityLabel}`}
                   className="group flex items-start gap-4 rounded-[20px] border bg-brand-bg p-6 transition hover:border-brand-blue/40 hover:shadow-md"
                   style={{ borderColor: "var(--grey-light)" }}
                 >
                   <div className="flex-1">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+                    <p aria-hidden className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
                       Implantation locale
                     </p>
                     <p className="mt-1.5 font-heading text-lg font-bold text-brand-black">
                       Intégrateur Odoo {study.cityLabel}
                     </p>
-                    <p className="mt-1 font-body text-sm text-brand-grey">
+                    <p aria-hidden className="mt-1 font-body text-sm text-brand-grey">
                       Références, secteurs et présence MSL-iTECH dans cette ville.
                     </p>
                   </div>

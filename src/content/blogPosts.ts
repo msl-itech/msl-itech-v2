@@ -27,6 +27,8 @@ export type BlogPost = {
   relatedPath?: string;
   relatedLabel?: string;
   faqs?: { q: string; a: string }[];
+  /** If true, emits noindex and hides the post from the blog index. */
+  noIndex?: boolean;
   cta: { title: string; subtitle: string };
   body: BlogSection[];
 };
