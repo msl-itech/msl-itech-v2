@@ -214,6 +214,7 @@ export default function BlogPage() {
     ogType: "article",
     faqs: post?.faqs,
     ldId: post?.faqs ? `ld-faq-blog-${post.slug}` : undefined,
+    noIndex: post?.noIndex,
   });
 
   if (!post) {

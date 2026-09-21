@@ -27,6 +27,8 @@ export type BlogPost = {
   relatedPath?: string;
   relatedLabel?: string;
   faqs?: { q: string; a: string }[];
+  /** If true, emits noindex and hides the post from the blog index. */
+  noIndex?: boolean;
   cta: { title: string; subtitle: string };
   body: BlogSection[];
 };
@@ -166,7 +168,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Plutôt que d'acheter un logiciel de facturation conforme DGI (et de continuer à gérer le reste à côté), MSL-iTECH déploie Odoo configuré pour la conformité marocaine. Vous obtenez en un seul outil :",
+        text: "Plutôt que d'acheter un logiciel de facturation conforme DGI (et de continuer à gérer le reste à côté), MSL-iTECH, [intégrateur Odoo au Maroc](/integrateur-odoo-maroc), déploie Odoo configuré pour la conformité marocaine. Vous obtenez en un seul outil :",
       },
       {
         type: "ul",
@@ -451,7 +453,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Pour les instances Odoo déjà déployées par MSL-iTECH, l'activation du copilote est possible lors d'une mise à jour vers la version compatible, sans redéploiement complet. Pour les nouveaux projets, le copilote est activé et configuré par défaut dans tous les déploiements MSL-iTECH sur Odoo v17 et v18.",
+        text: "Pour les instances Odoo déjà déployées par MSL-iTECH, [partenaire Odoo Maroc](/integrateur-odoo-maroc), l'activation du copilote est possible lors d'une mise à jour vers la version compatible, sans redéploiement complet. Pour les nouveaux projets, le copilote est activé et configuré par défaut dans tous les déploiements MSL-iTECH sur Odoo v17 et v18.",
       },
       {
         type: "p",
@@ -590,7 +592,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h3", text: "3 — Un partenaire qui connaît les limites du système" },
       {
         type: "p",
-        text: "Les fonctionnalités IA d'Odoo évoluent rapidement entre les versions. Un partenaire certifié comme MSL-iTECH suit ces évolutions et vous recommande les fonctionnalités matures et stables — pas les fonctionnalités expérimentales qui peuvent générer plus de problèmes qu'elles n'en résolvent.",
+        text: "Les fonctionnalités IA d'Odoo évoluent rapidement entre les versions. Un [partenaire Odoo Maroc](/integrateur-odoo-maroc) certifié comme MSL-iTECH suit ces évolutions et vous recommande les fonctionnalités matures et stables — pas les fonctionnalités expérimentales qui peuvent générer plus de problèmes qu'elles n'en résolvent.",
       },
       { type: "h2", text: "L'IA dans Odoo au Maroc : où en est-on réellement ?" },
       {
@@ -739,7 +741,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "La Data Readiness comme positionnement stratégique de MSL-iTECH" },
       {
         type: "p",
-        text: "Chez MSL-iTECH, nous avons fait de la qualité des données un axe central de notre accompagnement. Pas parce que c'est à la mode — parce que c'est ce qui détermine réellement si un projet ERP réussit ou échoue à 18 mois.",
+        text: "Chez MSL-iTECH, [intégrateur Odoo au Maroc](/integrateur-odoo-maroc), nous avons fait de la qualité des données un axe central de notre accompagnement. Pas parce que c'est à la mode — parce que c'est ce qui détermine réellement si un projet ERP réussit ou échoue à 18 mois.",
       },
       {
         type: "p",
@@ -1360,7 +1362,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Dans les entretiens de suivi menés par MSL-iTECH auprès de 12 DAF et responsables financiers de PME marocaines (15 à 60 salariés, 2024-2026), la réponse honnête, dans la plupart des cas : 70 à 80 % du temps sur la production, 20 à 30 % sur l'analyse. Et c'est exactement l'inverse de ce que devrait être le rôle d'un DAF en 2026.",
+        text: "Dans les entretiens de suivi menés par MSL-iTECH, [intégrateur Odoo au Maroc](/integrateur-odoo-maroc), auprès de 12 DAF et responsables financiers de PME marocaines (15 à 60 salariés, 2024-2026), la réponse honnête, dans la plupart des cas : 70 à 80 % du temps sur la production, 20 à 30 % sur l'analyse. Et c'est exactement l'inverse de ce que devrait être le rôle d'un DAF en 2026.",
       },
       {
         type: "p",
@@ -1659,7 +1661,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Avant d'activer l'automatisation, l'étape critique est la qualité de votre donnée. C'est le travail que MSL-iTECH réalise en phase 1 de tout déploiement Odoo — et c'est précisément ce qui détermine si votre ERP vous aide ou vous noie dans de fausses alertes.",
+        text: "Avant d'activer l'automatisation, l'étape critique est la qualité de votre donnée. C'est le travail que MSL-iTECH, [partenaire Odoo Maroc](/integrateur-odoo-maroc), réalise en phase 1 de tout déploiement Odoo — et c'est précisément ce qui détermine si votre ERP vous aide ou vous noie dans de fausses alertes.",
       },
 
       { type: "h2", text: "Pour quelle taille d'entreprise et quel budget ?" },
@@ -1802,7 +1804,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h3", text: "Phase 4 — Bascule en production et accompagnement (semaines 7–10)" },
       {
         type: "p",
-        text: "La bascule est planifiée sur un weekend ou en fin de mois pour minimiser l'impact. Le lundi matin, votre équipe travaille sur Odoo — avec toutes leurs données, leur historique, et une formation dispensée dans la semaine précédant la bascule. MSL-iTECH assure un support renforcé les 30 premiers jours post-migration.",
+        text: "La bascule est planifiée sur un weekend ou en fin de mois pour minimiser l'impact. Le lundi matin, votre équipe travaille sur Odoo — avec toutes leurs données, leur historique, et une formation dispensée dans la semaine précédant la bascule. MSL-iTECH, [intégrateur Odoo au Maroc](/integrateur-odoo-maroc), assure un support renforcé les 30 premiers jours post-migration.",
       },
       {
         type: "p",
@@ -2007,7 +2009,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h3", text: "Le réseau Odoo au Maroc en 2026" },
       {
         type: "p",
-        text: "Le réseau de partenaires Odoo certifiés au Maroc s'est considérablement étoffé depuis 2020. Les partenaires certifiés Odoo sont soumis à des critères stricts de compétence et de satisfaction client — une certification qui se renouvelle annuellement. MSL-iTECH, partenaire certifié opérant au Maroc, accompagne les PME marocaines de la phase d'analyse jusqu'au support post-déploiement, avec une équipe disponible localement.",
+        text: "Le réseau de partenaires Odoo certifiés au Maroc s'est considérablement étoffé depuis 2020. Les partenaires certifiés Odoo sont soumis à des critères stricts de compétence et de satisfaction client — une certification qui se renouvelle annuellement. MSL-iTECH, [partenaire Odoo Maroc](/integrateur-odoo-maroc), accompagne les PME marocaines de la phase d'analyse jusqu'au support post-déploiement, avec une équipe disponible localement.",
       },
       {
         type: "p",
@@ -2505,7 +2507,7 @@ export const blogPosts: BlogPost[] = [
       { type: "h2", text: "Comment obtenir une estimation fiable" },
       {
         type: "p",
-        text: "Le seul moyen d'avoir un budget réaliste, c'est un appel découverte avec un intégrateur certifié qui va cartographier vos processus, compter vos utilisateurs et évaluer le volume de migration. Chez MSL-iTECH, cet appel est gratuit, dure 30 minutes et débouche sur une estimation chiffrée — pas un « ça dépend ».",
+        text: "Le seul moyen d'avoir un budget réaliste, c'est un appel découverte avec un [intégrateur Odoo au Maroc](/integrateur-odoo-maroc) certifié qui va cartographier vos processus, compter vos utilisateurs et évaluer le volume de migration. Chez MSL-iTECH, cet appel est gratuit, dure 30 minutes et débouche sur une estimation chiffrée — pas un « ça dépend ».",
       },
     ],
     faqs: [
@@ -2762,7 +2764,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Chez MSL-iTECH, chaque devis détaille ces 8 points. Pas de surprise, pas de « ça dépend » — un budget clair avant de démarrer.",
+        text: "Chez MSL-iTECH, [intégrateur Odoo au Maroc](/integrateur-odoo-maroc), chaque devis détaille ces 8 points. Pas de surprise, pas de « ça dépend » — un budget clair avant de démarrer.",
       },
     ],
     faqs: [

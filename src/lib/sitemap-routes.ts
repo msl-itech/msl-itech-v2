@@ -80,7 +80,7 @@ const staticEntries: SitemapEntry[] = [
 ];
 
 export function buildSitemapEntries(): SitemapEntry[] {
-  const blogEntries: SitemapEntry[] = blogPosts.map((p) => ({
+  const blogEntries: SitemapEntry[] = blogPosts.filter((p) => !p.noIndex).map((p) => ({
     loc: `/blog/${p.slug}`,
     changefreq: "monthly" as const,
     priority: 0.85,
