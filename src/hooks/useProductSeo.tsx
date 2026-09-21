@@ -143,8 +143,9 @@ export function useProductSeo(opts: {
     // Assemble JSON-LD schemas for this page.
     const schemas: Record<string, unknown>[] = [];
 
-    // ProfessionalService entity — only on entity pages.
-    if (opts.isEntityPage) {
+    // ProfessionalService entity — on entity pages, and on pages whose
+    // schemas reference it via @id (article → publisher, service → provider).
+    if (opts.isEntityPage || opts.article || opts.service) {
       schemas.push(ORGANIZATION_ENTITY);
     }
 

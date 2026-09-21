@@ -25,7 +25,7 @@ if (typeof document !== "undefined") {
 }
 
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
-import { JsonLd, professionalServiceSchema } from "@/components/JsonLd";
+import { JsonLd } from "@/components/JsonLd";
 
 const HomeBelowFold = lazy(() => import("./HomeBelowFold"));
 const HomeFaqJsonLd = lazy(() =>
@@ -331,7 +331,6 @@ export default function HomePage() {
 
   return (
     <>
-      <JsonLd id="ld-professional-service-home" data={professionalServiceSchema} />
       {market === "MA" ? <HeroMA /> : <HeroBE />}
       <Suspense fallback={null}>
         <HomeFaqJsonLd />

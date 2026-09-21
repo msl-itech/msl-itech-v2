@@ -800,6 +800,26 @@ export const newArticles1to4: BlogPost[] = [
         text: "La grille en dix critères",
       },
       {
+        type: "table",
+        headers: ["Critère", "Sage 100", "Odoo"],
+        rows: [
+          ["Périmètre", "Suite modulaire (compta, gestion co., immobilisations…)", "Base unique intégrée (compta, ventes, stock, CRM, RH, site web)"],
+          ["Licence", "Par devis (utilisateurs + périmètre + support)", "Community gratuite / Enterprise par utilisateur (plan Standard ou Custom)"],
+          ["Plan comptable MA", "Offre dédiée Maroc disponible", "Localisation comptable officielle Maroc (CGNC, taxes)"],
+          ["Facturation DGI", "Préparation annoncée — demandez confirmation écrite", "Localisation MA présente — connexion plateforme DGI à confirmer"],
+          ["Hébergement", "Cloud Azure (offre Sage 100 Maroc)", "Odoo Online / Odoo.sh / on-premise"],
+          ["Personnalisation", "Paramétrage + réseau partenaires", "Studio + modules custom Python (Odoo.sh ou on-premise)"],
+          ["Multi-société", "Multi-sociétés et multi-exercices", "Multi-sociétés dans une base (plan Custom)"],
+          ["Ergonomie / mobile", "Interface bureau ; mobile selon gamme", "Interface web responsive + app mobile"],
+          ["Support local", "Réseau revendeurs MA ancien et dense", "Partenaires officiels MA (dont MSL-iTECH) + communauté mondiale"],
+          ["Évolutivité", "Ajout de logiciels de la gamme + passerelles", "Activation d'apps sur la même base, sans migration"],
+        ],
+      },
+      {
+        type: "p",
+        text: "Détail de chaque critère :",
+      },
+      {
         type: "ul",
         items: [
           "Périmètre couvert — Sage 100 fonctionne comme une suite modulaire : comptabilité, gestion commerciale, immobilisations, moyens de paiement et autres fonctions peuvent être combinés selon le périmètre retenu. Odoo regroupe ses différentes applications dans une même base et permet de les activer progressivement selon les besoins. Ce qui compte pour vous : avez-vous besoin de relier ventes, achats, stock et comptabilité dans un même environnement, sans ressaisie ?",

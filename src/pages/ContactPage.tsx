@@ -20,7 +20,6 @@ import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import contactHero from "@/assets/home/cta-bg.webp";
 import { submitLead } from "@/lib/leads";
 import type { OdooLeadData } from "@/lib/odoo";
-import { JsonLd, localBusinessBeSchema, localBusinessMaSchema, localBusinessCaSchema } from "@/components/JsonLd";
 
 /* ---------------- Sticker (charte MSL) ---------------- */
 function Sticker({
@@ -260,9 +259,6 @@ export default function ContactPage() {
 
   return (
     <>
-      <JsonLd id="ld-localbusiness-be" data={localBusinessBeSchema} />
-      <JsonLd id="ld-localbusiness-ma" data={localBusinessMaSchema} />
-      <JsonLd id="ld-localbusiness-ca" data={localBusinessCaSchema} />
       {/* HERO — image overlay (charte MSL) */}
       <section className="bg-brand-bg pt-6 md:pt-8">
         <div className="container">
