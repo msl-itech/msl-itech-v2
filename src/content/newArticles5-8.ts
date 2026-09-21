@@ -7,7 +7,7 @@ export const newArticles5to8: BlogPost[] = [
     title:
       "Comment choisir un intégrateur Odoo au Maroc : 12 questions à poser avant de signer",
     metaTitle:
-      "Choisir un intégrateur Odoo au Maroc : 12 questions avant de signer",
+      "Choisir son intégrateur Odoo au Maroc",
     metaDescription:
       "Partenaire officiel, références vérifiables, méthode, devis détaillé, support : les 12 questions qui distinguent un bon intégrateur Odoo au Maroc d'un simple revendeur.",
     image: "/57a363d9-d7de-4498-9474-9ea33f18a13f.png",
@@ -203,7 +203,7 @@ export const newArticles5to8: BlogPost[] = [
     title:
       "Odoo multi-société : gérer plusieurs sociétés, dépôts ou agences dans une seule base",
     metaTitle:
-      "Odoo multi-société : plusieurs sociétés dans une seule base",
+      "Odoo multi-société : plusieurs sociétés, une base",
     metaDescription:
       "Holding, réseau d'agences, plusieurs points de vente : comment Odoo gère plusieurs sociétés dans une base unique — comptabilité par entité, consolidation, stocks partagés, flux inter-sociétés.",
     image: "/6f45520d-7977-47a0-bde8-a8ecf85d7815.png",
@@ -374,7 +374,7 @@ export const newArticles5to8: BlogPost[] = [
     title:
       "Pourquoi votre site web ne génère aucun client : les 10 causes que nous voyons dans nos audits",
     metaTitle:
-      "Site web sans clients : les 10 causes vues dans nos audits",
+      "Site web sans clients : les 10 causes",
     metaDescription:
       "Votre site est en ligne mais ne rapporte rien ? Les 10 causes que nous retrouvons dans les audits de sites de PME, avec pour chacune le test à faire vous-même et la correction.",
     image: "/8f101fc6-8734-4e49-a017-8108dc8d2b5c.png",
