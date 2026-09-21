@@ -25,7 +25,7 @@ if (typeof document !== "undefined") {
 }
 
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
-import { JsonLd, professionalServiceSchema } from "@/components/JsonLd";
+import { JsonLd } from "@/components/JsonLd";
 
 const HomeBelowFold = lazy(() => import("./HomeBelowFold"));
 const HomeFaqJsonLd = lazy(() =>
@@ -44,7 +44,7 @@ function useSeo(market: "BE" | "MA") {
     market === "MA"
       ? "Odoo Ready Partner basé à Marrakech. Implémentation ERP, modules sur mesure, création web et acquisition pour PME marocaines. Cadrage gratuit de 30 minutes."
       : "Odoo Ready Partner. Accompagnement à distance PME belges et canadiennes. ERP, modules custom et personnalisation d'Odoo natif.";
-  useProductSeo({ title, description, path: "/" });
+  useProductSeo({ title, description, path: "/", isEntityPage: true });
 }
 
 /* ------------------- Highlight (marker brushstroke) ------------------- */
@@ -331,7 +331,6 @@ export default function HomePage() {
 
   return (
     <>
-      <JsonLd id="ld-professional-service-home" data={professionalServiceSchema} />
       {market === "MA" ? <HeroMA /> : <HeroBE />}
       <Suspense fallback={null}>
         <HomeFaqJsonLd />

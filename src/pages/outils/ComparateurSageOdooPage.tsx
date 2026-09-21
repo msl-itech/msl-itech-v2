@@ -94,12 +94,33 @@ function computeResult(answers: Record<string, string | number>) {
   };
 }
 
+const faqs = [
+  {
+    q: "Les prix affichés sont-ils contractuels ?",
+    a: "Non. Les montants sont des estimations indicatives fondées sur les tarifs publics et notre expérience d'intégrateur. Le devis détaillé que vous recevez après le cadrage engage les vrais chiffres.",
+  },
+  {
+    q: "Odoo Community est gratuit : pourquoi le comparateur affiche-t-il un coût ?",
+    a: "Community est gratuit en licence, mais l'implémentation (paramétrage, reprise de données, formation) a un coût. Le comparateur additionne licence et intégration sur trois ans.",
+  },
+  {
+    q: "Le comparateur tient-il compte de la facturation électronique DGI ?",
+    a: "Il intègre le coût de la mise en conformité dans le poste intégration Odoo. Pour Sage, demandez à votre revendeur le coût de la mise à jour DGI et ajoutez-le au total.",
+  },
+  {
+    q: "Puis-je garder Sage pour la comptabilité et utiliser Odoo pour le reste ?",
+    a: "Techniquement oui, via des exports. En pratique, cela maintient une double saisie et deux contrats de maintenance. Le comparateur montre le coût total d'un outil unique.",
+  },
+];
+
 export default function ComparateurSageOdooPage() {
   useProductSeo({
     title: "Odoo vs Sage au Maroc : comparateur 2026 (prix, DGI)",
     description:
       "Comparez Sage et Odoo pour une PME marocaine : licence, plan comptable CGNC, facturation électronique DGI, support local, coût total sur 3 ans.",
     path: "/outils/comparateur-sage-odoo",
+    faqs,
+    ldId: "ld-faq-comparateur",
   });
   return (
     <ToolWizard

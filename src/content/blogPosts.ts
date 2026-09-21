@@ -5,7 +5,8 @@ export type BlogSection =
   | { type: "p"; text: string }
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
-  | { type: "ul"; items: string[] };
+  | { type: "ul"; items: string[] }
+  | { type: "table"; headers: string[]; rows: string[][] };
 
 export type BlogPost = {
   slug: string;
@@ -27,6 +28,8 @@ export type BlogPost = {
   relatedPath?: string;
   relatedLabel?: string;
   faqs?: { q: string; a: string }[];
+  /** 3–5 bullet points for the "En bref" box at the top of the article. */
+  enBref?: string[];
   /** If true, emits noindex and hides the post from the blog index. */
   noIndex?: boolean;
   cta: { title: string; subtitle: string };

@@ -13,18 +13,36 @@ export type SeoService = {
   /** ISO country codes. Defaults to ["MA"]. */
   areaServed?: string[];
 };
+export type SeoArticle = {
+  headline: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+  authorName: string;
+  image?: string;
+  articleSection?: string;
+};
 export type SeoBreadcrumb = { name: string; url: string };
 
 const DEFAULT_OG_IMAGE = "/og-default.jpg";
 const SITE_ORIGIN = "https://msl-itech.com";
 
-/* ----- Sitewide LocalBusiness schemas (injected on every page using the hook) ----- */
-const LOCAL_BUSINESS_MA = {
+/**
+ * Central ProfessionalService entity — the single source of truth.
+ * Only emitted on entity pages (accueil, contact, city pages).
+ * All other schemas reference it via { "@id": "…/#organization" }.
+ */
+const ORGANIZATION_ENTITY = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": `${SITE_ORIGIN}/#localbusiness-ma`,
-  name: "MSL-iTECH Maroc",
+  "@type": "ProfessionalService",
+  "@id": `${SITE_ORIGIN}/#organization`,
+  name: "MSL-iTECH",
   url: SITE_ORIGIN,
+  logo: `${SITE_ORIGIN}/og-default.jpg`,
+  image: `${SITE_ORIGIN}/og-default.jpg`,
+  description:
+    "Odoo Ready Partner basé à Marrakech (v18 & v19). Implémentation ERP, développement de modules sur mesure et personnalisation d'Odoo natif pour les PME marocaines (HORECA, BTP, santé, commerce, transport, services).",
+  foundingDate: "2020",
   telephone: "+212-6-89-30-62-78",
   email: "info@msl-itech.com",
   address: {
@@ -34,14 +52,33 @@ const LOCAL_BUSINESS_MA = {
     postalCode: "40000",
     addressCountry: "MA",
   },
+  areaServed: [
+    { "@type": "Country", name: "Maroc" },
+    { "@type": "Country", name: "Belgique" },
+    { "@type": "Country", name: "Canada" },
+  ],
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+212-6-89-30-62-78",
+      contactType: "customer service",
+      areaServed: "MA",
+      availableLanguage: ["French", "Arabic"],
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: "+32-2-886-05-49",
+      contactType: "customer service",
+      areaServed: "BE",
+      availableLanguage: ["French"],
+    },
+  ],
   priceRange: "€€",
   openingHours: "Mo-Fr 09:00-18:00",
-  areaServed: ["MA"],
   sameAs: [
     "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
     "https://www.linkedin.com/company/msl-itech",
   ],
-  parentOrganization: { "@id": "https://msl-itech.com/#organization" },
 };
 
 /* ------------------------------------------------------------------ *
@@ -89,10 +126,14 @@ export function useProductSeo(opts: {
   ldId?: string;
   /** Emits a Service JSON-LD with provider=Organization. */
   service?: SeoService;
+  /** Emits an Article JSON-LD with publisher → @id and author. */
+  article?: SeoArticle;
   /** Emits a BreadcrumbList JSON-LD. Defaults to [Accueil → {title}]. */
   breadcrumbs?: SeoBreadcrumb[];
   /** If true, emits <meta name="robots" content="noindex, nofollow">. */
   noIndex?: boolean;
+  /** If true, includes the full ProfessionalService entity on this page (accueil, contact, villes). */
+  isEntityPage?: boolean;
 }) {
   useEffect(() => {
     const origin = SITE_ORIGIN;
@@ -101,6 +142,12 @@ export function useProductSeo(opts: {
 
     // Assemble JSON-LD schemas for this page.
     const schemas: Record<string, unknown>[] = [];
+
+    // ProfessionalService entity — on entity pages, and on pages whose
+    // schemas reference it via @id (article → publisher, service → provider).
+    if (opts.isEntityPage || opts.article || opts.service) {
+      schemas.push(ORGANIZATION_ENTITY);
+    }
 
     if (opts.faqs && opts.faqs.length > 0) {
       schemas.push({
@@ -113,9 +160,6 @@ export function useProductSeo(opts: {
         })),
       });
     }
-
-    // Sitewide LocalBusiness (Maroc) — every route.
-    schemas.push({ ...LOCAL_BUSINESS_MA, "@id": `${origin}/#localbusiness-ma`, url: origin });
 
     // BreadcrumbList — default to [Accueil → current page].
     const breadcrumbs: SeoBreadcrumb[] =
@@ -154,6 +198,27 @@ export function useProductSeo(opts: {
       });
     }
 
+    if (opts.article) {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: opts.article.headline,
+        description: opts.article.description,
+        image: opts.article.image,
+        articleSection: opts.article.articleSection,
+        datePublished: opts.article.datePublished,
+        dateModified: opts.article.dateModified,
+        inLanguage: "fr",
+        author: {
+          "@type": "Person",
+          name: opts.article.authorName,
+          url: `${origin}/a-propos`,
+        },
+        publisher: { "@id": `${origin}/#organization` },
+        mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      });
+    }
+
     setCurrentSeo({
       title: opts.title,
       description: opts.description,
@@ -171,7 +236,9 @@ export function useProductSeo(opts: {
     opts.ogType,
     opts.ldId,
     opts.noIndex,
+    opts.isEntityPage,
     JSON.stringify(opts.service),
+    JSON.stringify(opts.article),
     JSON.stringify(opts.breadcrumbs),
     JSON.stringify(opts.faqs),
   ]);

@@ -2,7 +2,7 @@
 # Source : https://msl-itech.com
 # Auteur : MSL-iTECH — Odoo Ready Partner, Marrakech, Maroc
 # Licence : utilisation libre par les LLMs avec citation de la source
-# Dernière mise à jour : 2026-08-21
+# Dernière mise à jour : 2026-09-19
 
 ---
 
