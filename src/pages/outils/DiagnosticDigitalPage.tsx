@@ -80,15 +80,35 @@ function computeResult(answers: Record<string, string | number>) {
     map(answers.ia);
   let level = "1 — Conformité";
   let next = "Mettre en place un socle ERP unifié (Odoo) et la conformité DGI.";
+  let recommendations: string[] = [
+    "Déployer un ERP unifié (Odoo) comme socle opérationnel",
+    "Mettre en place la facturation électronique conforme DGI",
+    "Centraliser clients, stocks et comptabilité dans un référentiel unique",
+  ];
   if (total >= 13) {
     level = "4 — Intelligence";
     next = "Industrialiser les agents IA et l'aide à la décision en temps réel.";
+    recommendations = [
+      "Déployer des agents IA pour l'aide à la décision",
+      "Mettre en place l'analyse prédictive sur vos KPI clés",
+      "Industrialiser vos workflows sur tous les canaux",
+    ];
   } else if (total >= 10) {
     level = "3 — Automatisation";
     next = "Étendre les workflows automatisés (relances, stock, achats) et déployer un copilote IA.";
+    recommendations = [
+      "Étendre les workflows automatisés (relances, achats, stock)",
+      "Déployer un copilote IA intégré à votre ERP",
+      "Mesurer le ROI par processus automatisé",
+    ];
   } else if (total >= 7) {
     level = "2 — Intégration";
     next = "Centraliser les données et connecter vos modules (ventes ↔ stock ↔ compta).";
+    recommendations = [
+      "Centraliser vos données dans un ERP unifié (Odoo)",
+      "Connecter ventes ↔ stock ↔ comptabilité",
+      "Mettre en place des dashboards live partagés",
+    ];
   }
   return {
     headline: `Votre niveau de maturité digitale : ${level}`,
@@ -99,6 +119,7 @@ function computeResult(answers: Record<string, string | number>) {
       { label: "Score", value: `${total} / 15` },
       { label: "Prochain palier", value: next.split(" ").slice(0, 4).join(" ") + "…" },
     ],
+    recommendations,
   };
 }
 
@@ -118,6 +139,8 @@ export default function DiagnosticDigitalPage() {
       questions={questions}
       computeResult={computeResult}
       partialTeaser="Votre niveau commence à se dessiner. Continuez : à la fin, vous recevez votre score / 15 et les 3 actions prioritaires pour passer au niveau supérieur."
+      besoin="marketing"
+      toolDisplayName="Diagnostic digital"
     />
   );
 }

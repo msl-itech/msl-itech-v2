@@ -78,6 +78,26 @@ function computeResult(answers: Record<string, string | number>) {
   else if (fact === "erp" && ech === "12_24") risk = "Faible";
   const delais =
     ech === "asap" ? "0 à 3 mois" : ech === "cette_annee" ? "3 à 9 mois" : "9 à 18 mois";
+
+  const recommendations: string[] =
+    risk === "Élevé"
+      ? [
+          "Identifier votre format DGI cible (UBL 2.1 ou PDF signé)",
+          "Choisir un logiciel de facturation certifié DGI",
+          "Planifier la migration avant l'échéance réglementaire",
+        ]
+      : risk === "Faible"
+      ? [
+          "Faire certifier votre solution par la DGI",
+          "Planifier un audit de conformité annuel",
+          "Former vos équipes à la transmission électronique",
+        ]
+      : [
+          "Vérifier la conformité de votre format (UBL ou PDF signé)",
+          "Tester la transmission à la plateforme DGI",
+          "Former votre équipe comptable à la procédure",
+        ];
+
   return {
     headline: `Risque de non-conformité : ${risk}`,
     summary:
@@ -87,6 +107,7 @@ function computeResult(answers: Record<string, string | number>) {
       { label: "Fenêtre conseillée", value: delais },
       { label: "Format cible DGI", value: "PDF + UBL" },
     ],
+    recommendations,
   };
 }
 
@@ -106,6 +127,8 @@ export default function ConformiteDgiPage() {
       questions={questions}
       computeResult={computeResult}
       partialTeaser="Votre profil de risque se dessine. Continuez : à la fin, vous obtenez votre fenêtre conseillée de mise en conformité et le format DGI cible (PDF/UBL)."
+      besoin="erp"
+      toolDisplayName="Simulateur DGI"
     />
   );
 }

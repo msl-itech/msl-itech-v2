@@ -89,6 +89,11 @@ function computeResult(answers: Record<string, string | number>) {
       { label: "Gain haut", value: fmt(high) },
       { label: "Payback", value: payback },
     ],
+    recommendations: [
+      "Lancer un cadrage Odoo avec un consultant pour affiner le chiffrage",
+      "Identifier les 3 processus à automatiser en priorité (gain maximum)",
+      "Demander un devis détaillé avec planning de déploiement",
+    ],
   };
 }
 
