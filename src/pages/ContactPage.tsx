@@ -444,7 +444,7 @@ export default function ContactPage() {
       phone: data.phone || undefined,
       partner_name: data.company || undefined,
       country_code: data.country !== "OTHER" ? data.country : undefined,
-      team_name: besoin === "erp" ? "ERP" : "Web & Marketing",
+      team_name: besoin === "erp" ? "ERP ODOO" : "web & marketing",
       utm_source_name: utm.source || undefined,
       utm_medium_name: utm.medium || undefined,
       utm_campaign_name: utm.campaign || undefined,

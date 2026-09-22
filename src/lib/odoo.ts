@@ -14,7 +14,7 @@ export interface OdooLeadData {
   source?: string;       // origine ex: "msl-itech.com /contact"
   tag_names?: string[];  // tags Odoo (créés s'ils n'existent pas)
   country_code?: string; // BE, MA, CA, ...
-  team_name?: string;     // équipe Odoo : "ERP" | "Web & Marketing"
+  team_name?: string;     // équipe Odoo : "ERP ODOO" | "web & marketing"
   /** UTM natifs Odoo — le proxy doit les mapper vers source_id / medium_id / campaign_id */
   utm_source_name?: string;   // → utm.source (search_or_create)
   utm_medium_name?: string;   // → utm.medium
