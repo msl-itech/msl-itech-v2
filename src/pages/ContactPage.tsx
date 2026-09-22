@@ -231,6 +231,7 @@ export default function ContactPage() {
   const formRef = useRef<HTMLFormElement>(null);
 
   const besoinParam = searchParams.get("besoin") as Besoin | null;
+  const scoreParam = searchParams.get("score");
   const validBesoin =
     besoinParam !== null &&
     (["erp", "site", "marketing"] as const).includes(besoinParam as Besoin);
@@ -433,7 +434,7 @@ export default function ContactPage() {
 
     const description = buildLeadDescription(sections);
 
-    const tags: string[] = [`besoin:${besoin}`, "consentement:ok"];
+    const tags: string[] = [`besoin:${besoin}`, "Consentement OK"];
     if (besoin === "erp" && data.sector) tags.push(`secteur:${data.sector}`);
 
     const payload: OdooLeadData = {
@@ -443,6 +444,7 @@ export default function ContactPage() {
       phone: data.phone || undefined,
       partner_name: data.company || undefined,
       country_code: data.country !== "OTHER" ? data.country : undefined,
+      team_name: besoin === "erp" ? "ERP" : "Web & Marketing",
       description,
       source: utm.source
         ? `${utm.source}${utm.medium ? ` / ${utm.medium}` : ""}`
@@ -450,6 +452,7 @@ export default function ContactPage() {
       tag_names: tags,
       extra: {
         x_besoin: besoin,
+        score_outil: scoreParam ? Number(scoreParam) : undefined,
         page_origine: window.location.href,
         referrer: utm.referrer || undefined,
         utm_source: utm.source || undefined,
