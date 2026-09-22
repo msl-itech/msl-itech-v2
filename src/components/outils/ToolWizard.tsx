@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, CheckCircle2, Lock, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import {
   CompanySize,
   CurrentTool,
@@ -41,6 +41,16 @@ export type ToolQuestion = {
   placeholder?: string;
 };
 
+export type ToolResult = {
+  headline: string;
+  summary: string;
+  highlights: { label: string; value: string }[];
+  /** 3 actions prioritaires à afficher sur l'écran de résultat */
+  recommendations: string[];
+  /** Valeur affichée dans le badge doré. Si absent, affiche le lead score (0-100). */
+  badgeValue?: string | number;
+};
+
 export type ToolWizardProps = {
   slug: ToolSlug;
   title: string;
@@ -48,13 +58,13 @@ export type ToolWizardProps = {
   intro: string;
   questions: ToolQuestion[];
   /** Calcule un résultat lisible à partir des réponses */
-  computeResult: (answers: Record<string, string | number>) => {
-    headline: string;
-    summary: string;
-    highlights: { label: string; value: string }[];
-  };
+  computeResult: (answers: Record<string, string | number>) => ToolResult;
   /** Affiché en encart partiel après la 3e question */
   partialTeaser: string;
+  /** Besoin Odoo pour le routage CRM (erp | marketing) */
+  besoin?: "erp" | "marketing";
+  /** Nom affiché dans le tag Odoo ex: "Simulateur DGI", "Diagnostic digital" */
+  toolDisplayName?: string;
 };
 
 type FormState = {
@@ -63,12 +73,23 @@ type FormState = {
   phone: string;
   company: string;
   currentTool: CurrentTool | "";
+  consent: boolean;
 };
 
 export function ToolWizard(props: ToolWizardProps) {
-  const { slug, title, eyebrow, intro, questions, computeResult, partialTeaser } = props;
+  const {
+    slug,
+    title,
+    eyebrow,
+    intro,
+    questions,
+    computeResult,
+    partialTeaser,
+    besoin,
+    toolDisplayName,
+  } = props;
 
-  const [step, setStep] = useState(0); // 0..questions.length-1 = question; questions.length = form; +1 = done
+  const [step, setStep] = useState(0); // 0..questions.length-1 = question; questions.length = result+form
   const [answers, setAnswers] = useState<Record<string, string | number>>({});
   const [form, setForm] = useState<FormState>({
     firstName: "",
@@ -76,19 +97,20 @@ export function ToolWizard(props: ToolWizardProps) {
     phone: "",
     company: "",
     currentTool: "",
+    consent: false,
   });
   const [submitting, setSubmitting] = useState(false);
-  const [done, setDone] = useState(false);
+  const [leadCaptured, setLeadCaptured] = useState(false);
 
   useEffect(() => {
     captureUtm();
   }, []);
 
   const total = questions.length;
-  const progress = Math.min(
-    100,
-    Math.round(((Math.min(step, total) + (done ? 1 : 0)) / (total + 1)) * 100),
-  );
+  const progress =
+    step >= total
+      ? 100
+      : Math.round(((step + 1) / (total + 1)) * 100);
 
   const currentQ = questions[step];
   const showPartial = step >= 3 && step < total;
@@ -110,6 +132,13 @@ export function ToolWizard(props: ToolWizardProps) {
     return acc;
   }, [answers, questions]);
 
+  /** Score calculé à partir des réponses seules (sans email/téléphone) — pour l'affichage et le lien RDV */
+  const previewScore = useMemo(() => {
+    if (step < total) return 0;
+    const { score } = scoreLead({ ...derivedScoreInputs, toolSlug: slug });
+    return score;
+  }, [step, total, derivedScoreInputs, slug]);
+
   function answerAndAdvance(value: string | number) {
     setAnswers((a) => ({ ...a, [currentQ.id]: value }));
     setStep((s) => s + 1);
@@ -122,7 +151,8 @@ export function ToolWizard(props: ToolWizardProps) {
   const canSubmit =
     form.firstName.trim().length > 1 &&
     /.+@.+\..+/.test(form.email) &&
-    form.currentTool;
+    !!form.currentTool &&
+    form.consent;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -156,9 +186,10 @@ export function ToolWizard(props: ToolWizardProps) {
         .join("\n");
 
       const description = buildLeadDescription({
-        "Outil utilisé": title,
+        "Outil utilisé": toolDisplayName ?? title,
         "Score lead": `${score} / 100 — ${segment}`,
         "Résultat affiché": `${result.headline}\n${result.summary}`,
+        Recommandations: result.recommendations.map((r, i) => `${i + 1}. ${r}`).join("\n"),
         Réponses: answersText,
         Société: form.company || undefined,
         "Outil actuel (form)": form.currentTool || undefined,
@@ -169,7 +200,7 @@ export function ToolWizard(props: ToolWizardProps) {
       });
 
       const payload: OdooLeadData = {
-        name: `${form.firstName}${form.company ? " — " + form.company : ""} — ${title}`,
+        name: `${form.firstName}${form.company ? " — " + form.company : ""} — ${toolDisplayName ?? title}`,
         contact_name: form.firstName,
         email_from: form.email,
         phone: form.phone || undefined,
@@ -178,15 +209,17 @@ export function ToolWizard(props: ToolWizardProps) {
         source: `msl-itech.com/outils/${slug}${utm.source ? " · " + utm.source : ""}`,
         country_code: "MA",
         tag_names: [
-          `outil:${slug}`,
+          toolDisplayName ? `Outil : ${toolDisplayName}` : `outil:${slug}`,
           `segment:${segment}`,
           `score:${score}`,
+          besoin ? `besoin:${besoin}` : "",
           finalTool ? `outil-actuel:${finalTool}` : "",
         ].filter(Boolean),
         extra: {
           lead_score: score,
           segment,
           tool_slug: slug,
+          x_besoin: besoin,
           answers,
           utm,
         },
@@ -210,7 +243,7 @@ export function ToolWizard(props: ToolWizardProps) {
         })
         .catch((err) => console.warn("enroll-lead-sequence failed", err));
 
-      setDone(true);
+      setLeadCaptured(true);
       toast({
         title: "Analyse envoyée",
         description: "Vous recevez votre résultat complet par email.",
@@ -248,11 +281,11 @@ export function ToolWizard(props: ToolWizardProps) {
           {/* Progress */}
           <div className="mb-6 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey">
             <span>
-              {done
-                ? "Terminé"
+              {leadCaptured
+                ? "Plan d'action envoyé"
                 : step < total
                   ? `Question ${Math.min(step + 1, total)} / ${total}`
-                  : "Recevez votre analyse"}
+                  : "Votre résultat"}
             </span>
             <span>{progress}%</span>
           </div>
@@ -264,9 +297,7 @@ export function ToolWizard(props: ToolWizardProps) {
           </div>
 
           {/* Body */}
-          {done ? (
-            <ResultCard result={result} firstName={form.firstName} />
-          ) : step < total ? (
+          {step < total ? (
             <QuestionBlock
               q={currentQ}
               value={answers[currentQ.id]}
@@ -274,12 +305,15 @@ export function ToolWizard(props: ToolWizardProps) {
               onBack={step > 0 ? back : undefined}
             />
           ) : (
-            <LeadFormBlock
+            <ResultAndLeadBlock
+              result={result}
+              score={previewScore}
+              slug={slug}
               form={form}
               setForm={setForm}
-              partialResult={result}
               submitting={submitting}
               canSubmit={!!canSubmit}
+              leadCaptured={leadCaptured}
               onBack={back}
               onSubmit={handleSubmit}
             />
@@ -304,7 +338,7 @@ export function ToolWizard(props: ToolWizardProps) {
   );
 }
 
-/* ---------------- Subcomponents ---------------- */
+/* ──────────────────────────── Subcomponents ──────────────────────────── */
 
 function QuestionBlock({
   q,
@@ -406,139 +440,240 @@ function QuestionBlock({
   );
 }
 
-function LeadFormBlock({
+/**
+ * Écran final : résultat complet d'abord, formulaire de capture en-dessous.
+ * Le score est visible sans avoir à soumettre ses coordonnées.
+ */
+function ResultAndLeadBlock({
+  result,
+  score,
+  slug,
   form,
   setForm,
-  partialResult,
   submitting,
   canSubmit,
+  leadCaptured,
   onBack,
   onSubmit,
 }: {
+  result: ToolResult;
+  score: number;
+  slug: string;
   form: FormState;
   setForm: (f: FormState) => void;
-  partialResult: {
-    headline: string;
-    summary: string;
-    highlights: { label: string; value: string }[];
-  };
   submitting: boolean;
   canSubmit: boolean;
+  leadCaptured: boolean;
   onBack: () => void;
   onSubmit: (e: React.FormEvent) => void;
 }) {
   return (
-    <form onSubmit={onSubmit} className="mt-8">
-      <div className="rounded-2xl border border-brand-grey-light bg-brand-bg p-5">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
-          Votre analyse personnalisée
-        </p>
-        <p className="mt-2 font-heading text-lg font-bold text-brand-black">
-          {partialResult.headline}
-        </p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {partialResult.highlights.slice(0, 2).map((h) => (
-            <span
-              key={h.label}
-              className="rounded-full bg-brand-white px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey"
-            >
-              {h.label}: <strong className="text-brand-blue">{h.value}</strong>
-            </span>
-          ))}
-        </div>
-        <p className="mt-3 inline-flex items-center gap-2 font-body text-xs text-brand-grey">
-          <Lock size={12} /> Résultat complet + plan d'action envoyés par email.
-        </p>
-      </div>
-
-      <div className="mt-6 grid gap-4">
-        <Field
-          label="Prénom *"
-          value={form.firstName}
-          onChange={(v) => setForm({ ...form, firstName: v })}
-          autoComplete="given-name"
-          required
-        />
-        <Field
-          label="Email professionnel *"
-          type="email"
-          value={form.email}
-          onChange={(v) => setForm({ ...form, email: v })}
-          autoComplete="email"
-          required
-          hint={
-            form.email && !isProfessionalEmail(form.email)
-              ? "Astuce : un email pro accélère le traitement de votre demande."
-              : undefined
-          }
-        />
-        <Field
-          label="Société"
-          value={form.company}
-          onChange={(v) => setForm({ ...form, company: v })}
-          autoComplete="organization"
-        />
-        <Field
-          label="Téléphone (facultatif)"
-          value={form.phone}
-          onChange={(v) => setForm({ ...form, phone: v })}
-          autoComplete="tel"
-          type="tel"
-        />
-        <div>
-          <label className="block font-body text-sm font-semibold text-brand-black">
-            Quel outil utilisez-vous aujourd'hui ? *
-          </label>
-          <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
-            {(["excel", "sage", "odoo", "autre"] as const).map((t) => (
-              <button
-                type="button"
-                key={t}
-                onClick={() => setForm({ ...form, currentTool: t })}
-                className={`rounded-xl border-2 px-3 py-2 font-body text-sm capitalize transition ${
-                  form.currentTool === t
-                    ? "border-brand-blue bg-brand-blue/5 text-brand-blue"
-                    : "border-brand-grey-light bg-brand-white text-brand-grey hover:border-brand-blue/60"
-                }`}
-              >
-                {t === "autre" ? "Autre" : t.charAt(0).toUpperCase() + t.slice(1)}
-              </button>
-            ))}
+    <div className="mt-8 space-y-6">
+      {/* ── Résultat complet ── */}
+      <div className="rounded-2xl border border-brand-grey-light bg-brand-bg p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
+              Votre résultat
+            </p>
+            <h2 className="mt-1 font-heading text-xl font-bold text-brand-black md:text-2xl">
+              {result.headline}
+            </h2>
+          </div>
+          <div
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl font-heading text-xl font-bold text-brand-blue shadow-inner"
+            style={{ backgroundColor: "var(--gold)" }}
+          >
+            {result.badgeValue !== undefined ? result.badgeValue : score}
           </div>
         </div>
-      </div>
+        <p className="mt-3 font-body text-sm leading-relaxed text-brand-grey">
+          {result.summary}
+        </p>
 
-      <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <button
-          type="button"
-          onClick={onBack}
-          className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey hover:text-brand-blue"
-        >
-          <ArrowLeft size={12} /> Précédent
-        </button>
-        <button
-          type="submit"
-          disabled={!canSubmit || submitting}
-          className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50"
-          style={{ backgroundColor: "var(--gold)" }}
-        >
-          {submitting ? "Envoi en cours…" : "Recevoir mon analyse complète"}
-          <ArrowRight size={18} />
-        </button>
-      </div>
+        {/* Highlights */}
+        <div className="mt-4 grid gap-2 sm:grid-cols-3">
+          {result.highlights.map((h) => (
+            <div
+              key={h.label}
+              className="rounded-xl border border-brand-grey-light bg-brand-white px-4 py-3"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey">
+                {h.label}
+              </p>
+              <p className="mt-0.5 font-heading text-base font-bold text-brand-blue">
+                {h.value}
+              </p>
+            </div>
+          ))}
+        </div>
 
-      <p className="mt-4 font-mono text-[10px] leading-relaxed text-brand-grey">
-        En soumettant, vous acceptez d'être recontacté par MSL-iTECH. Voir notre{" "}
-        <Link to="/politique-de-confidentialite" className="underline hover:text-brand-blue">
-          politique de confidentialité
+        {/* Recommendations */}
+        {result.recommendations.length > 0 && (
+          <div className="mt-5">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-brand-blue">
+              3 actions prioritaires
+            </p>
+            <ul className="mt-3 space-y-2">
+              {result.recommendations.map((rec, i) => (
+                <li key={i} className="flex items-start gap-3 font-body text-sm text-brand-black">
+                  <span
+                    className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
+                    style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
+                  >
+                    {i + 1}
+                  </span>
+                  {rec}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* RDV button — always visible */}
+        <Link
+          to={`/prendre-rendez-vous?score=${score}`}
+          className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand-blue px-5 py-2.5 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
+        >
+          Réserver un cadrage de 30 min <ArrowRight size={14} />
         </Link>
-        .
-      </p>
-    </form>
+      </div>
+
+      {/* ── Lead capture — en-dessous du résultat ── */}
+      {!leadCaptured ? (
+        <form onSubmit={onSubmit} className="rounded-2xl border border-brand-grey-light bg-brand-white p-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
+            Recevoir mon plan d'action détaillé par email
+          </p>
+          <p className="mt-1 font-body text-sm text-brand-grey">
+            Résultats complets, recommandations priorisées et ressources adaptées à votre profil — envoyés en quelques minutes.
+          </p>
+
+          <div className="mt-4 grid gap-4">
+            <LeadField
+              label="Prénom *"
+              value={form.firstName}
+              onChange={(v) => setForm({ ...form, firstName: v })}
+              autoComplete="given-name"
+              required
+            />
+            <LeadField
+              label="Email professionnel *"
+              type="email"
+              value={form.email}
+              onChange={(v) => setForm({ ...form, email: v })}
+              autoComplete="email"
+              required
+              hint={
+                form.email && !isProfessionalEmail(form.email)
+                  ? "Astuce : un email pro accélère le traitement de votre demande."
+                  : undefined
+              }
+            />
+            <LeadField
+              label="Société"
+              value={form.company}
+              onChange={(v) => setForm({ ...form, company: v })}
+              autoComplete="organization"
+            />
+            <LeadField
+              label="Téléphone (facultatif)"
+              value={form.phone}
+              onChange={(v) => setForm({ ...form, phone: v })}
+              autoComplete="tel"
+              type="tel"
+            />
+            <div>
+              <label className="block font-body text-sm font-semibold text-brand-black">
+                Quel outil utilisez-vous aujourd'hui ? *
+              </label>
+              <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                {(["excel", "sage", "odoo", "autre"] as const).map((t) => (
+                  <button
+                    type="button"
+                    key={t}
+                    onClick={() => setForm({ ...form, currentTool: t })}
+                    className={`rounded-xl border-2 px-3 py-2 font-body text-sm capitalize transition ${
+                      form.currentTool === t
+                        ? "border-brand-blue bg-brand-blue/5 text-brand-blue"
+                        : "border-brand-grey-light bg-brand-white text-brand-grey hover:border-brand-blue/60"
+                    }`}
+                  >
+                    {t === "autre" ? "Autre" : t.charAt(0).toUpperCase() + t.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-lg border border-brand-grey-light bg-brand-bg/50 p-4">
+            <input
+              type="checkbox"
+              checked={form.consent}
+              onChange={(e) => setForm({ ...form, consent: e.target.checked })}
+              className="mt-0.5 h-4 w-4 shrink-0 accent-[color:var(--gold)]"
+            />
+            <span className="font-body text-sm text-brand-grey">
+              J'accepte que MSL-iTECH me recontacte dans le cadre de ma demande, conformément à la{" "}
+              <Link
+                to="/politique-de-confidentialite"
+                className="underline hover:text-brand-blue"
+                onClick={(e) => e.stopPropagation()}
+              >
+                politique de confidentialité
+              </Link>{" "}
+              (Loi 09-08 / RGPD). *
+            </span>
+          </label>
+
+          <div className="mt-4 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <button
+              type="button"
+              onClick={onBack}
+              className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey hover:text-brand-blue"
+            >
+              <ArrowLeft size={12} /> Refaire le test
+            </button>
+            <button
+              type="submit"
+              disabled={!canSubmit || submitting}
+              className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50"
+              style={{ backgroundColor: "var(--gold)" }}
+            >
+              {submitting ? "Envoi en cours…" : "Recevoir mon plan d'action"}
+              <ArrowRight size={18} />
+            </button>
+          </div>
+        </form>
+      ) : (
+        /* ── Confirmation inline après soumission ── */
+        <div className="rounded-2xl border border-brand-gold/50 bg-[color:var(--gold)]/10 p-6 text-center">
+          <div
+            className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full"
+            style={{ backgroundColor: "var(--gold)" }}
+          >
+            <CheckCircle2 className="text-brand-blue" size={24} />
+          </div>
+          <p className="mt-3 font-heading text-lg font-bold text-brand-black">
+            Votre plan d'action est en route !
+          </p>
+          <p className="mt-1 font-body text-sm text-brand-grey">
+            Vous recevrez le détail complet et vos recommandations personnalisées par email dans quelques minutes.
+          </p>
+          <Link
+            to={`/prendre-rendez-vous?score=${score}`}
+            className="mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-bold transition hover:scale-[1.02]"
+            style={{ backgroundColor: "var(--blue)", color: "white" }}
+          >
+            Réserver un cadrage de 30 min <ArrowRight size={14} />
+          </Link>
+        </div>
+      )}
+    </div>
   );
 }
 
-function Field({
+function LeadField({
   label,
   value,
   onChange,
@@ -569,62 +704,6 @@ function Field({
         className="mt-2 w-full rounded-xl border-2 border-brand-grey-light bg-brand-white px-4 py-3 font-body text-sm text-brand-black outline-none transition focus:border-brand-blue"
       />
       {hint && <p className="mt-1 font-body text-xs text-brand-grey">{hint}</p>}
-    </div>
-  );
-}
-
-function ResultCard({
-  result,
-  firstName,
-}: {
-  result: {
-    headline: string;
-    summary: string;
-    highlights: { label: string; value: string }[];
-  };
-  firstName: string;
-}) {
-  return (
-    <div className="mt-8 text-center">
-      <div
-        className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full"
-        style={{ backgroundColor: "var(--gold)" }}
-      >
-        <CheckCircle2 className="text-brand-blue" size={28} />
-      </div>
-      <h2 className="mt-5 font-heading text-2xl font-bold text-brand-black md:text-3xl">
-        Merci {firstName || ""} — votre analyse est prête.
-      </h2>
-      <p className="mt-3 font-body text-base text-brand-grey">{result.summary}</p>
-
-      <div className="mt-6 grid gap-3 sm:grid-cols-3">
-        {result.highlights.map((h) => (
-          <div
-            key={h.label}
-            className="rounded-2xl border border-brand-grey-light bg-brand-bg px-4 py-5"
-          >
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-              {h.label}
-            </p>
-            <p className="mt-1 font-heading text-xl font-bold text-brand-blue">
-              {h.value}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <p className="mt-6 font-body text-sm text-brand-grey">
-        Vous recevez le détail complet et un plan d'action par email dans quelques
-        instants. Pour aller plus vite, prenez 30 minutes avec un consultant senior :
-      </p>
-
-      <Link
-        to="/prendre-rendez-vous"
-        className="mt-5 inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
-        style={{ backgroundColor: "var(--gold)" }}
-      >
-        Planifier mon diagnostic gratuit <ArrowRight size={18} />
-      </Link>
     </div>
   );
 }

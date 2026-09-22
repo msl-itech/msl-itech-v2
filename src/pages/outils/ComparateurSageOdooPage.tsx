@@ -91,6 +91,11 @@ function computeResult(answers: Record<string, string | number>) {
       { label: "Odoo 3 ans", value: fmt(odoo3y) },
       { label: "Recommandation", value: reco },
     ],
+    recommendations: [
+      `Privilégier ${reco} pour optimiser le coût total sur 3 ans`,
+      "Vérifier la conformité DGI et la couverture fonctionnelle",
+      "Planifier la migration avec un intégrateur certifié au Maroc",
+    ],
   };
 }
 
