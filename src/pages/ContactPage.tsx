@@ -434,7 +434,7 @@ export default function ContactPage() {
 
     const description = buildLeadDescription(sections);
 
-    const tags: string[] = [`besoin:${besoin}`, "Consentement OK"];
+    const tags: string[] = [`besoin:${besoin}`, "consentement:ok"];
     if (besoin === "erp" && data.sector) tags.push(`secteur:${data.sector}`);
 
     const payload: OdooLeadData = {
@@ -445,6 +445,10 @@ export default function ContactPage() {
       partner_name: data.company || undefined,
       country_code: data.country !== "OTHER" ? data.country : undefined,
       team_name: besoin === "erp" ? "ERP" : "Web & Marketing",
+      utm_source_name: utm.source || undefined,
+      utm_medium_name: utm.medium || undefined,
+      utm_campaign_name: utm.campaign || undefined,
+      referred: window.location.href,
       description,
       source: utm.source
         ? `${utm.source}${utm.medium ? ` / ${utm.medium}` : ""}`

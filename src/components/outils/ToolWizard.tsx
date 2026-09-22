@@ -208,12 +208,17 @@ export function ToolWizard(props: ToolWizardProps) {
         description,
         source: `msl-itech.com/outils/${slug}${utm.source ? " · " + utm.source : ""}`,
         country_code: "MA",
+        utm_source_name: utm.source || undefined,
+        utm_medium_name: utm.medium || undefined,
+        utm_campaign_name: utm.campaign || undefined,
+        referred: utm.landing || undefined,
         tag_names: [
           toolDisplayName ? `Outil : ${toolDisplayName}` : `outil:${slug}`,
           `segment:${segment}`,
           `score:${score}`,
           besoin ? `besoin:${besoin}` : "",
           finalTool ? `outil-actuel:${finalTool}` : "",
+          "consentement:ok",
         ].filter(Boolean),
         extra: {
           lead_score: score,
@@ -532,7 +537,7 @@ function ResultAndLeadBlock({
 
         {/* RDV button — always visible */}
         <Link
-          to={`/prendre-rendez-vous?score=${score}`}
+          to={`/prendre-rendez-vous?score=${result.badgeValue !== undefined ? result.badgeValue : score}`}
           className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand-blue px-5 py-2.5 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
         >
           Réserver un cadrage de 30 min <ArrowRight size={14} />
@@ -661,7 +666,7 @@ function ResultAndLeadBlock({
             Vous recevrez le détail complet et vos recommandations personnalisées par email dans quelques minutes.
           </p>
           <Link
-            to={`/prendre-rendez-vous?score=${score}`}
+            to={`/prendre-rendez-vous?score=${result.badgeValue !== undefined ? result.badgeValue : score}`}
             className="mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-bold transition hover:scale-[1.02]"
             style={{ backgroundColor: "var(--blue)", color: "white" }}
           >

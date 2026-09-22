@@ -858,6 +858,10 @@ export const newArticles1to4: BlogPost[] = [
         text: "Pour Odoo, les fourchettes que nous pratiquons sont détaillées dans [Combien coûte un ERP Odoo au Maroc en 2026](/blog/cout-erp-odoo-maroc-2026). Pour Sage, demandez un devis complet à trois ans à votre revendeur, en exigeant que les six postes soient remplis. Comparez ensuite ligne à ligne. Le [comparateur](/outils/comparateur-sage-odoo) vous aide à structurer ce calcul.",
       },
       {
+        type: "p",
+        text: "Les fourchettes observées sur le terrain au Maroc pour une PME de 20 utilisateurs sur 3 ans : Sage 100 se situe généralement entre 150 000 et 300 000 MAD (licences, intégration, maintenance, hébergement) ; Odoo Enterprise entre 60 000 et 150 000 MAD selon le déploiement et le périmètre retenu — soit 40 à 60 % de moins en coût total de possession. Ces chiffres varient selon la complexité du projet et les modules activés.",
+      },
+      {
         type: "h2",
         text: "Trois profils, trois réponses",
       },
@@ -880,6 +884,14 @@ export const newArticles1to4: BlogPost[] = [
       {
         type: "p",
         text: "Si vous décidez de migrer, le projet suit la logique décrite dans [notre méthode de bascule](/blog/passer-facture-electronique-sans-arreter-activite), avec une étape supplémentaire : la reprise des écritures et des balances depuis Sage. On reprend en général les soldes d'ouverture, les tiers avec leurs encours et l'historique nécessaire aux déclarations ; l'historique complet peut rester consultable dans Sage en lecture.",
+      },
+      {
+        type: "h2",
+        text: "En résumé : quel outil remporte le comparatif ?",
+      },
+      {
+        type: "p",
+        text: "Sage domine sur la maturité comptable et la solidité de son réseau historique au Maroc — si votre cabinet comptable y travaille déjà et que votre revendeur vous confirme la conformité DGI par écrit, le changement n'est pas nécessairement justifié. Odoo domine sur le rapport coût/fonctionnalités, la couverture métier intégrée (ventes, stock, CRM, RH dans une seule base) et l'adaptabilité aux projets de croissance. Pour une PME qui gère ses flux dans des outils séparés, ou qui veut réduire son coût de gestion de 40 à 60 % sur trois ans, Odoo est aujourd'hui le choix le plus cohérent.",
       },
       {
         type: "h2",

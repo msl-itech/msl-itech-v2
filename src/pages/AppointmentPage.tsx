@@ -143,7 +143,7 @@ export default function AppointmentPage() {
                   </p>
                 </div>
                 <p className="mt-1 font-heading text-lg font-bold text-brand-black">
-                  {score}/100 — notre consultant le consultera avant l'appel
+                  Score {score} — notre consultant le consultera avant l'appel
                 </p>
                 <p className="mt-0.5 font-body text-sm text-brand-grey">
                   Vos réponses sont transmises à l'équipe pour préparer des recommandations personnalisées dès le début de l'échange.
