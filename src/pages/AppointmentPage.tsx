@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   Calendar,
   Clock,
@@ -13,6 +13,7 @@ import {
   Lightbulb,
   Settings,
   Phone,
+  BarChart2,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 
@@ -23,6 +24,11 @@ export default function AppointmentPage() {
       "Réservez un créneau de 30 minutes avec un consultant MSL-iTECH. Diagnostic gratuit de vos processus, recommandations personnalisées et feuille de route adaptée à votre budget. Sans engagement.",
     path: "/prendre-rendez-vous",
   });
+
+  const [searchParams] = useSearchParams();
+  const scoreParam = searchParams.get("score");
+  const score = scoreParam ? parseInt(scoreParam, 10) : null;
+  const validScore = score !== null && !isNaN(score) && score >= 0 && score <= 100;
 
   return (
     <>
@@ -120,6 +126,32 @@ export default function AppointmentPage() {
       {/* IFRAME BOOKING */}
       <section className="py-10 md:py-14" style={{ backgroundColor: "var(--bg)" }}>
         <div className="container">
+          {/* Score banner — affiché si le prospect arrive depuis un outil (/outils/*?score=N) */}
+          {validScore && (
+            <div className="mb-6 flex flex-col gap-4 rounded-[20px] border border-brand-gold/50 bg-[color:var(--gold)]/10 p-6 sm:flex-row sm:items-center sm:gap-6">
+              <div
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl font-heading text-xl font-bold shadow-inner"
+                style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
+              >
+                {score}
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <BarChart2 size={14} className="text-brand-blue" />
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
+                    Votre score de maturité
+                  </p>
+                </div>
+                <p className="mt-1 font-heading text-lg font-bold text-brand-black">
+                  Score {score} — notre consultant le consultera avant l'appel
+                </p>
+                <p className="mt-0.5 font-body text-sm text-brand-grey">
+                  Vos réponses sont transmises à l'équipe pour préparer des recommandations personnalisées dès le début de l'échange.
+                </p>
+              </div>
+            </div>
+          )}
+
           <div className="overflow-hidden rounded-[24px] border border-brand-grey-light bg-white shadow-[0_24px_60px_-20px_rgba(18,77,90,0.12)]">
             <iframe
               src="https://odoo.msl-itech.com/appointment/4?iframe=1"
