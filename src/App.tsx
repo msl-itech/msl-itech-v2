@@ -8,6 +8,7 @@ import { Layout } from "@/components/layout/Layout";
 import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 import { retryPendingLeads } from "@/lib/leads";
+import { captureUtm } from "@/lib/utm";
 import { lazyRetry } from "@/lib/lazy-retry";
 
 // Lazy-load all secondary routes — keeps the initial bundle (Home + Layout) lean.
@@ -69,6 +70,9 @@ function RouteFallback() {
 
 const App = () => {
   useEffect(() => {
+    // Capture les UTM dès le premier rendu, quelle que soit la page d'entrée.
+    // Doit être appelé avant tout routing pour préserver referrer + landing URL.
+    captureUtm();
     // Renvoie automatiquement les leads sauvegardés en localStorage
     // si un précédent envoi vers Odoo a échoué (offline / timeout).
     retryPendingLeads().catch(() => {});
