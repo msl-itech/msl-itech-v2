@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 import {
@@ -22,7 +22,7 @@ import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import contactHero from "@/assets/home/cta-bg.webp";
 import { submitLead } from "@/lib/leads";
-import { captureUtm, getUtm, formatUtmForOdoo } from "@/lib/utm";
+import { getUtm, formatUtmForOdoo } from "@/lib/utm";
 import { buildLeadDescription } from "@/lib/odoo";
 import type { OdooLeadData } from "@/lib/odoo";
 
@@ -224,6 +224,10 @@ export default function ContactPage() {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [navDisabled, setNavDisabled] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const besoinParam = searchParams.get("besoin") as Besoin | null;
@@ -251,11 +255,50 @@ export default function ContactPage() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  // Capture UTMs + pre-select besoin from URL param
+  // Pre-select besoin from URL param (UTM capture now lives in App.tsx root)
   useEffect(() => {
-    captureUtm();
     if (validBesoin) setStep(1);
+    // Preload Turnstile script early so it's ready when user reaches step 2
+    if (!document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) {
+      const s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      s.async = true;
+      s.defer = true;
+      document.head.appendChild(s);
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Turnstile widget — render on step 2, remove when leaving
+  const renderTurnstile = useCallback(() => {
+    const tw = (window as unknown as { turnstile?: { render: (el: HTMLElement, opts: unknown) => string; remove: (id: string) => void } }).turnstile;
+    if (!tw || !turnstileRef.current || widgetIdRef.current) return;
+    widgetIdRef.current = tw.render(turnstileRef.current, {
+      sitekey: import.meta.env.VITE_TURNSTILE_SITEKEY ?? "1x00000000000000000000AA",
+      callback: (token: string) => setTurnstileToken(token),
+      "expired-callback": () => setTurnstileToken(null),
+      "error-callback": () => setTurnstileToken(null),
+      theme: "light",
+    });
+  }, []);
+
+  useEffect(() => {
+    if (step !== 2) {
+      // Clean up widget when leaving step 2
+      if (widgetIdRef.current) {
+        (window as unknown as { turnstile?: { remove: (id: string) => void } }).turnstile?.remove(widgetIdRef.current);
+        widgetIdRef.current = null;
+        setTurnstileToken(null);
+      }
+      return;
+    }
+    const tw = (window as unknown as { turnstile?: unknown }).turnstile;
+    if (tw) {
+      renderTurnstile();
+    } else {
+      const script = document.querySelector<HTMLScriptElement>('script[src*="challenges.cloudflare.com/turnstile"]');
+      script?.addEventListener("load", renderTurnstile, { once: true });
+    }
+  }, [step, renderTurnstile]);
 
   const update = <K extends keyof FormData>(k: K, v: FormData[K]) => {
     setData((d) => ({ ...d, [k]: v }));
@@ -303,33 +346,47 @@ export default function ContactPage() {
       if (!phoneClean || phoneClean.length < 5) {
         newErrors.phone = "Le téléphone est requis.";
       }
+      if (!data.company.trim()) {
+        newErrors.company = "L'entreprise est requise.";
+      }
       if (!data.consent) {
         newErrors.consent = "Votre consentement est requis pour continuer.";
       }
     }
 
-    // Step 2: all fields optional — no validation needed
+    // Step 2: Turnstile token required before submit
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  const disableNav = () => {
+    setNavDisabled(true);
+    setTimeout(() => setNavDisabled(false), 500);
+  };
+
   const handleNext = () => {
+    if (navDisabled) return;
     if (validateStep()) {
+      disableNav();
       setStep((s) => s + 1);
       scrollToFormTop();
     }
   };
 
   const handleBack = () => {
+    if (navDisabled) return;
+    disableNav();
     setStep((s) => Math.max(0, s - 1));
     scrollToFormTop();
   };
 
   // Step 0: clicking a card immediately advances to step 1
   const handleBesoinSelect = (besoin: Besoin) => {
+    if (navDisabled) return;
     setData((d) => ({ ...d, besoin }));
     setErrors((e) => ({ ...e, besoin: "" }));
+    disableNav();
     setStep(1);
     scrollToFormTop();
   };
@@ -337,9 +394,10 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Anti-spam: honeypot + minimum fill time (3 s)
+    // Anti-spam: honeypot + minimum fill time (3 s) + Turnstile token
     if (honeypot) return;
     if (Date.now() - startedAt.current < 3000) return;
+    if (!turnstileToken) return;
 
     if (!validateStep()) return;
 
@@ -734,10 +792,11 @@ export default function ContactPage() {
 
                     <Field
                       id="company"
-                      label="Entreprise"
+                      label="Entreprise *"
+                      error={errors.company}
                       value={data.company}
                       onChange={(v) => update("company", v)}
-                      placeholder="Nom de votre société (optionnel)"
+                      placeholder="Nom de votre société"
                     />
 
                     <div>
@@ -745,7 +804,7 @@ export default function ContactPage() {
                         htmlFor="country"
                         className="block font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey"
                       >
-                        Pays
+                        Pays *
                       </label>
                       <select
                         id="country"
@@ -893,12 +952,24 @@ export default function ContactPage() {
                 )}
               </div>
 
+              {/* ── Turnstile (step 2 only) ── */}
+              {step === 2 && (
+                <div className="mt-6">
+                  <div ref={turnstileRef} />
+                  {!turnstileToken && (
+                    <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey">
+                      Vérification anti-robot requise avant l'envoi.
+                    </p>
+                  )}
+                </div>
+              )}
+
               {/* ── Navigation ── */}
               <div className="mt-8 flex items-center justify-between gap-3">
                 <button
                   type="button"
                   onClick={handleBack}
-                  disabled={step === 0}
+                  disabled={step === 0 || navDisabled}
                   className="inline-flex items-center gap-2 rounded-full border bg-white px-5 py-2.5 font-body text-sm font-semibold transition hover:bg-brand-bg disabled:cursor-not-allowed disabled:opacity-40"
                   style={{ borderColor: "var(--grey-light)", color: "var(--blue)" }}
                 >
@@ -909,7 +980,8 @@ export default function ContactPage() {
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-semibold shadow-[0_12px_30px_-12px_rgba(18,77,90,0.5)] transition hover:-translate-y-0.5"
+                    disabled={navDisabled}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-semibold shadow-[0_12px_30px_-12px_rgba(18,77,90,0.5)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
                     style={{ backgroundColor: "var(--blue)", color: "white" }}
                   >
                     Continuer <ArrowRight size={16} />
@@ -917,7 +989,7 @@ export default function ContactPage() {
                 ) : (
                   <button
                     type="submit"
-                    disabled={submitting}
+                    disabled={submitting || !turnstileToken}
                     className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold shadow-[0_14px_36px_-12px_rgba(255,221,87,0.7)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
                     style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
                   >
