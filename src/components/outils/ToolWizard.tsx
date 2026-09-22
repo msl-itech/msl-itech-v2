@@ -268,7 +268,7 @@ export function ToolWizard(props: ToolWizardProps) {
   const result = useMemo(() => computeResult(answers), [answers, computeResult]);
 
   return (
-    <section className="bg-brand-bg pb-20 pt-10 md:pt-14">
+    <section className="overflow-x-clip bg-brand-bg pb-20 pt-10 md:pt-14">
       <div className="container px-4 sm:px-6">
         {/* Hero */}
         <div className="mx-auto max-w-3xl text-center">

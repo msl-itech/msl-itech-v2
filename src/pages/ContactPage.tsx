@@ -131,7 +131,7 @@ const CONFIRMATION: Record<Besoin, { title: string; body: string }> = {
 };
 
 const SUBMIT_LABELS: Record<Besoin, string> = {
-  erp: "Demander ma démo Odoo gratuite",
+  erp: "Demander ma démo Odoo",
   site: "Recevoir un devis site",
   marketing: "Demander mon audit digital",
 };
@@ -274,7 +274,7 @@ export default function ContactPage() {
     const tw = (window as unknown as { turnstile?: { render: (el: HTMLElement, opts: unknown) => string; remove: (id: string) => void } }).turnstile;
     if (!tw || !turnstileRef.current || widgetIdRef.current) return;
     widgetIdRef.current = tw.render(turnstileRef.current, {
-      sitekey: import.meta.env.VITE_TURNSTILE_SITEKEY ?? "1x00000000000000000000AA",
+      sitekey: import.meta.env.VITE_TURNSTILE_SITEKEY,
       callback: (token: string) => setTurnstileToken(token),
       "expired-callback": () => setTurnstileToken(null),
       "error-callback": () => setTurnstileToken(null),
