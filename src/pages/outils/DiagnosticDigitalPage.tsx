@@ -120,6 +120,7 @@ function computeResult(answers: Record<string, string | number>) {
       { label: "Prochain palier", value: next.split(" ").slice(0, 4).join(" ") + "…" },
     ],
     recommendations,
+    badgeValue: total,
   };
 }
 

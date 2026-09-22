@@ -47,6 +47,8 @@ export type ToolResult = {
   highlights: { label: string; value: string }[];
   /** 3 actions prioritaires à afficher sur l'écran de résultat */
   recommendations: string[];
+  /** Valeur affichée dans le badge doré. Si absent, affiche le lead score (0-100). */
+  badgeValue?: string | number;
 };
 
 export type ToolWizardProps = {
@@ -71,6 +73,7 @@ type FormState = {
   phone: string;
   company: string;
   currentTool: CurrentTool | "";
+  consent: boolean;
 };
 
 export function ToolWizard(props: ToolWizardProps) {
@@ -94,6 +97,7 @@ export function ToolWizard(props: ToolWizardProps) {
     phone: "",
     company: "",
     currentTool: "",
+    consent: false,
   });
   const [submitting, setSubmitting] = useState(false);
   const [leadCaptured, setLeadCaptured] = useState(false);
@@ -103,10 +107,10 @@ export function ToolWizard(props: ToolWizardProps) {
   }, []);
 
   const total = questions.length;
-  const progress = Math.min(
-    100,
-    Math.round(((Math.min(step, total) + (leadCaptured ? 1 : 0)) / (total + 1)) * 100),
-  );
+  const progress =
+    step >= total
+      ? 100
+      : Math.round(((step + 1) / (total + 1)) * 100);
 
   const currentQ = questions[step];
   const showPartial = step >= 3 && step < total;
@@ -147,7 +151,8 @@ export function ToolWizard(props: ToolWizardProps) {
   const canSubmit =
     form.firstName.trim().length > 1 &&
     /.+@.+\..+/.test(form.email) &&
-    form.currentTool;
+    !!form.currentTool &&
+    form.consent;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -479,7 +484,7 @@ function ResultAndLeadBlock({
             className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl font-heading text-xl font-bold text-brand-blue shadow-inner"
             style={{ backgroundColor: "var(--gold)" }}
           >
-            {score}
+            {result.badgeValue !== undefined ? result.badgeValue : score}
           </div>
         </div>
         <p className="mt-3 font-body text-sm leading-relaxed text-brand-grey">
@@ -601,7 +606,27 @@ function ResultAndLeadBlock({
             </div>
           </div>
 
-          <div className="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-lg border border-brand-grey-light bg-brand-bg/50 p-4">
+            <input
+              type="checkbox"
+              checked={form.consent}
+              onChange={(e) => setForm({ ...form, consent: e.target.checked })}
+              className="mt-0.5 h-4 w-4 shrink-0 accent-[color:var(--gold)]"
+            />
+            <span className="font-body text-sm text-brand-grey">
+              J'accepte que MSL-iTECH me recontacte dans le cadre de ma demande, conformément à la{" "}
+              <Link
+                to="/politique-de-confidentialite"
+                className="underline hover:text-brand-blue"
+                onClick={(e) => e.stopPropagation()}
+              >
+                politique de confidentialité
+              </Link>{" "}
+              (Loi 09-08 / RGPD). *
+            </span>
+          </label>
+
+          <div className="mt-4 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
             <button
               type="button"
               onClick={onBack}
@@ -619,14 +644,6 @@ function ResultAndLeadBlock({
               <ArrowRight size={18} />
             </button>
           </div>
-
-          <p className="mt-3 font-mono text-[10px] leading-relaxed text-brand-grey">
-            En soumettant, vous acceptez d'être recontacté par MSL-iTECH. Voir notre{" "}
-            <Link to="/politique-de-confidentialite" className="underline hover:text-brand-blue">
-              politique de confidentialité
-            </Link>
-            .
-          </p>
         </form>
       ) : (
         /* ── Confirmation inline après soumission ── */
