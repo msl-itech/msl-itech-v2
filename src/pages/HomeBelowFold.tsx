@@ -350,11 +350,6 @@ function Sectors({ market }: { market: "BE" | "MA" }) {
                     <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full" style={{ backgroundColor: isClickable ? "var(--gold)" : "rgba(255,255,255,0.5)" }} />
                     {String(i + 1).padStart(2, "0")} · {isClickable ? "Disponible" : "Bientôt"}
                   </span>
-                  {isFeature && (
-                    <span className="rounded-full px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.22em] shadow-[0_8px_20px_-6px_rgba(255,221,87,0.55)]" style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}>
-                      ★ Expertise phare
-                    </span>
-                  )}
                 </div>
                 <div aria-hidden className="absolute bottom-0 left-0 h-[3px] w-12 origin-left transition-all duration-500 group-hover:w-full" style={{ backgroundColor: "var(--gold)" }} />
                 <div className="relative p-5 md:p-6" style={{ textShadow: "0 1px 14px rgba(0,0,0,0.6)" }}>
