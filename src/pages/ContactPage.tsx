@@ -225,8 +225,8 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [navDisabled, setNavDisabled] = useState(false);
-  // Si VITE_TURNSTILE_SITEKEY absent (dev local), on bypass Turnstile
-  const turnstileEnabled = !!import.meta.env.VITE_TURNSTILE_SITEKEY;
+  // Si VITE_TURNSTILE_SITE_KEY absent (dev local), on bypass Turnstile
+  const turnstileEnabled = !!import.meta.env.VITE_TURNSTILE_SITE_KEY;
   const [turnstileToken, setTurnstileToken] = useState<string | null>(
     turnstileEnabled ? null : "bypass-no-sitekey"
   );
@@ -276,7 +276,8 @@ export default function ContactPage() {
   // Turnstile widget — render on step 2, remove when leaving
   const renderTurnstile = useCallback(() => {
     const tw = (window as unknown as { turnstile?: { render: (el: HTMLElement, opts: unknown) => string; remove: (id: string) => void } }).turnstile;
-    const sitekey = import.meta.env.VITE_TURNSTILE_SITEKEY;
+    const sitekey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+    console.info("[Turnstile] sitekey présente :", !!sitekey, "| valeur :", sitekey ? sitekey.slice(0, 8) + "…" : "undefined");
     if (!tw || !turnstileRef.current || widgetIdRef.current || !sitekey) return;
     try {
       widgetIdRef.current = tw.render(turnstileRef.current, {
