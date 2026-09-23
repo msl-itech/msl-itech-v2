@@ -286,6 +286,8 @@ export default function ContactPage() {
         "expired-callback": () => setTurnstileToken(null),
         "error-callback": () => setTurnstileToken(null),
         theme: "light",
+        appearance: "always",
+        "refresh-expired": "auto",
       });
     } catch (e) {
       console.warn("[Turnstile] render() échoué :", e);
@@ -972,7 +974,7 @@ export default function ContactPage() {
 
               {/* ── Turnstile (step 2 only) ── */}
               {step === 2 && (
-                <div className="mt-6">
+                <div className="mt-6" onSubmit={(e) => e.stopPropagation()} onClick={(e) => e.stopPropagation()}>
                   <div ref={turnstileRef} />
                   {!turnstileToken && (
                     <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey">
