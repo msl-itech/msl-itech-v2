@@ -185,19 +185,20 @@ export function ToolWizard(props: ToolWizardProps) {
         })
         .join("\n");
 
+      // T12 — description : résultats + recommandations de l'outil (pas de champ dédié).
+      // Réponses individuelles dans x_studio_* quand les clés B3 sont connues.
       const description = buildLeadDescription({
-        "Outil utilisé": toolDisplayName ?? title,
-        "Score lead": `${score} / 100 — ${segment}`,
-        "Résultat affiché": `${result.headline}\n${result.summary}`,
+        "Résultat": `${result.headline} — ${result.summary}`,
         Recommandations: result.recommendations.map((r, i) => `${i + 1}. ${r}`).join("\n"),
         Réponses: answersText,
-        Société: form.company || undefined,
-        "Outil actuel (form)": form.currentTool || undefined,
-        Téléphone: form.phone || undefined,
-        UTM: formatUtmForOdoo(utm) || undefined,
-        Landing: utm.landing,
-        Referrer: utm.referrer,
       });
+
+      const besoinLabel = besoin === "erp" ? "Odoo ERP" : "Marketing digital";
+      const consentAt = new Date().toISOString();
+
+      const outilSourceKey = slug === "diagnostic-digital"
+        ? "Diagnostic digital"
+        : "Simulateur DGI";
 
       const payload: OdooLeadData = {
         name: `${form.firstName}${form.company ? " — " + form.company : ""} — ${toolDisplayName ?? title}`,
@@ -208,26 +209,18 @@ export function ToolWizard(props: ToolWizardProps) {
         description,
         source: `msl-itech.com/outils/${slug}${utm.source ? " · " + utm.source : ""}`,
         country_code: "MA",
+        studio_routing: true,
         utm_source_name: utm.source || undefined,
         utm_medium_name: utm.medium || undefined,
         utm_campaign_name: utm.campaign || undefined,
         referred: utm.landing || undefined,
-        tag_names: [
-          toolDisplayName ? `Outil : ${toolDisplayName}` : `outil:${slug}`,
-          `segment:${segment}`,
-          `score:${score}`,
-          besoin ? `besoin:${besoin}` : "",
-          finalTool ? `outil-actuel:${finalTool}` : "",
-          "consentement:ok",
-        ].filter(Boolean),
-        extra: {
-          lead_score: score,
-          segment,
-          tool_slug: slug,
-          x_besoin: besoin,
-          answers,
-          utm,
-        },
+        tag_names: [besoinLabel],
+        // Qualification
+        x_studio_outil_source: outilSourceKey,
+        x_studio_score: score,
+        x_studio_outil_actuel: finalTool ? ({ excel: "Excel / Word", sage: "Sage", odoo: "Odoo", autre: "Autre" } as Record<string, string>)[finalTool] : undefined,
+        x_studio_consentement: true,
+        x_studio_consentement_date: consentAt,
       };
 
       await submitLead(payload);

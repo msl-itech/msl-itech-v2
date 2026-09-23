@@ -115,6 +115,52 @@ const OBJECTIF_MARKETING_OPTIONS = [
 
 const STEP_LABELS = ["Votre besoin", "Coordonnées", "Précisions"];
 
+// ── B3 — Mapping valeurs formulaire → clés techniques Odoo Studio ──────────
+// Clés récupérées via API le 2026-09-23. Certaines ont un \u200b (zéro-width)
+// généré par Studio — ne pas modifier ces chaînes.
+
+const ODOO_SECTEUR: Record<string, string> = {
+  "Commerce / Distribution":   "Commerce / Distribution",
+  "BTP / Construction":        "BTP / Construction",
+  "HORECA / Restauration":     "HORECA / Restauration",
+  "Santé / Services médicaux": "\u200bSanté / Services médicaux",
+  "Transport / Logistique":    "\u200bTransport / Logistique",
+  "Production / Industrie":    "Production / Industrie",
+  "Services B2B":              "Services B2B",
+  "Tourisme / Hôtellerie":     "Tourisme / Hôtellerie",
+  "Autre":                     "Autre",
+};
+
+const ODOO_OUTIL_ACTUEL: Record<string, string> = {
+  excel_word:  "Excel / Word",
+  sage:        "Sage",
+  autre_erp:   "Autre ERP",
+  odoo:        "Odoo",
+  aucun:       "Aucun outil",
+};
+
+const ODOO_ECHEANCE: Record<string, string> = {
+  lt3m:          "Moins de 3 mois",
+  "3_6m":        "\u200b3 à 6 mois",
+  later:         "\u200bPlus tard",
+  renseignement: "\u200b\u200bJe me renseigne",
+};
+
+const ODOO_OBJECTIF: Record<string, string> = {
+  nouveau:       "Nouveau site",
+  refonte:       "Refonte",
+  ecommerce:     "E-commerce",
+  plus_demandes: "Plus de demandes",
+  visibilite:    "Visibilité Google / IA",
+  campagnes:     "Campagnes pub",
+};
+
+const ODOO_BUDGET: Record<string, string> = {
+  lt1000:      "Moins de 1 000 €",
+  "1000_3500": "1 000 à 3 500 €",
+  gt3500:      "Plus de 3 500 €",
+};
+
 const CONFIRMATION: Record<Besoin, { title: string; body: string }> = {
   erp: {
     title: "Votre demande de démo ERP est enregistrée !",
@@ -417,37 +463,13 @@ export default function ContactPage() {
     const besoin = data.besoin as Besoin;
     const besoinLabel = { erp: "Odoo ERP", site: "Site web", marketing: "Marketing digital" }[besoin];
     const utm = getUtm();
+    const consentAt = new Date().toISOString();
 
-    // Build rich description
-    const sections: Record<string, string | undefined | null> = {
-      Besoin: besoinLabel,
-      Pays: COUNTRY_LABELS[data.country],
-    };
-
-    if (besoin === "erp") {
-      if (data.sector) sections["Secteur"] = data.sector;
-      if (data.currentToolErp) sections["Outil actuel"] = CURRENT_TOOL_OPTIONS.find((o) => o.value === data.currentToolErp)?.label;
-      if (data.echeance) sections["Échéance"] = ECHEANCE_OPTIONS.find((o) => o.value === data.echeance)?.label;
-    } else if (besoin === "site") {
-      if (data.urlSite) sections["URL actuel"] = data.urlSite;
-      if (data.objectifSite) sections["Objectif"] = OBJECTIF_SITE_OPTIONS.find((o) => o.value === data.objectifSite)?.label;
-      if (data.budget) sections["Budget indicatif"] = BUDGET_OPTIONS.find((o) => o.value === data.budget)?.label;
-    } else if (besoin === "marketing") {
-      if (data.urlMarketing) sections["URL du site"] = data.urlMarketing;
-      if (data.objectifMarketing) sections["Objectif"] = OBJECTIF_MARKETING_OPTIONS.find((o) => o.value === data.objectifMarketing)?.label;
-      if (data.message) sections["Message"] = data.message;
-    }
-
-    const utmStr = formatUtmForOdoo(utm);
-    if (utmStr) sections["UTM"] = utmStr;
-    if (utm.referrer) sections["Referrer"] = utm.referrer;
-    sections["Page d'origine"] = window.location.href;
-    sections["Consentement"] = `Oui — ${new Date().toISOString()}`;
-
-    const description = buildLeadDescription(sections);
-
-    const tags: string[] = [`besoin:${besoin}`, "consentement:ok"];
-    if (besoin === "erp" && data.sector) tags.push(`secteur:${data.sector}`);
+    // T12 — description : uniquement le message libre (marketing).
+    // Tout le reste va dans les champs x_studio_*.
+    const freeMessage = besoin === "marketing" && data.message
+      ? buildLeadDescription({ Message: data.message })
+      : undefined;
 
     const payload: OdooLeadData = {
       name: `${data.fullName}${data.company ? ` — ${data.company}` : ""} — ${besoinLabel}`,
@@ -456,34 +478,37 @@ export default function ContactPage() {
       phone: data.phone || undefined,
       partner_name: data.company || undefined,
       country_code: data.country !== "OTHER" ? data.country : undefined,
-      team_name: besoin === "erp" ? "ERP ODOO" : "web & marketing",
+      studio_routing: true,
       utm_source_name: utm.source || undefined,
       utm_medium_name: utm.medium || undefined,
       utm_campaign_name: utm.campaign || undefined,
       referred: window.location.href,
-      description,
+      description: freeMessage,
       source: utm.source
         ? `${utm.source}${utm.medium ? ` / ${utm.medium}` : ""}`
         : "msl-itech.com /contact",
-      tag_names: tags,
-      extra: {
-        x_besoin: besoin,
-        score_outil: scoreParam ? Number(scoreParam) : undefined,
-        page_origine: window.location.href,
-        referrer: utm.referrer || undefined,
-        utm_source: utm.source || undefined,
-        utm_medium: utm.medium || undefined,
-        utm_campaign: utm.campaign || undefined,
-        utm_content: utm.content || undefined,
-        consent_at: new Date().toISOString(),
-        sector: data.sector || undefined,
-        current_tool: data.currentToolErp || undefined,
-        echeance: data.echeance || undefined,
-        url_site: data.urlSite || data.urlMarketing || undefined,
-        objectif: data.objectifSite || data.objectifMarketing || undefined,
-        budget: data.budget || undefined,
-        message: data.message || undefined,
-      },
+      tag_names: [besoinLabel],
+      // Qualification
+      x_studio_outil_source: "Formulaire de contact",
+      x_studio_score: scoreParam ? Number(scoreParam) : undefined,
+      x_studio_consentement: true,
+      x_studio_consentement_date: consentAt,
+      // Champs selon le besoin
+      ...(besoin === "erp" && {
+        x_studio_secteur:      data.sector        ? ODOO_SECTEUR[data.sector]             : undefined,
+        x_studio_outil_actuel: data.currentToolErp ? ODOO_OUTIL_ACTUEL[data.currentToolErp] : undefined,
+        x_studio_echeance:     data.echeance       ? ODOO_ECHEANCE[data.echeance]           : undefined,
+      }),
+      ...(besoin === "site" && {
+        x_studio_url_site:  data.urlSite       || undefined,
+        x_studio_objectif:  data.objectifSite  ? ODOO_OBJECTIF[data.objectifSite]  : undefined,
+        x_studio_budget:    data.budget        ? ODOO_BUDGET[data.budget]           : undefined,
+      }),
+      ...(besoin === "marketing" && {
+        x_studio_url_site:  data.urlMarketing       || undefined,
+        x_studio_objectif:  data.objectifMarketing  ? ODOO_OBJECTIF[data.objectifMarketing] : undefined,
+        x_studio_budget:    data.budget             ? ODOO_BUDGET[data.budget]               : undefined,
+      }),
     };
 
     setSubmitting(true);
