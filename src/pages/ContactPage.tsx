@@ -278,13 +278,17 @@ export default function ContactPage() {
     const tw = (window as unknown as { turnstile?: { render: (el: HTMLElement, opts: unknown) => string; remove: (id: string) => void } }).turnstile;
     const sitekey = import.meta.env.VITE_TURNSTILE_SITEKEY;
     if (!tw || !turnstileRef.current || widgetIdRef.current || !sitekey) return;
-    widgetIdRef.current = tw.render(turnstileRef.current, {
-      sitekey,
-      callback: (token: string) => setTurnstileToken(token),
-      "expired-callback": () => setTurnstileToken(null),
-      "error-callback": () => setTurnstileToken(null),
-      theme: "light",
-    });
+    try {
+      widgetIdRef.current = tw.render(turnstileRef.current, {
+        sitekey,
+        callback: (token: string) => setTurnstileToken(token),
+        "expired-callback": () => setTurnstileToken(null),
+        "error-callback": () => setTurnstileToken(null),
+        theme: "light",
+      });
+    } catch (e) {
+      console.warn("[Turnstile] render() échoué :", e);
+    }
   }, []);
 
   useEffect(() => {
