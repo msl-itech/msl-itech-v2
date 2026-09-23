@@ -674,6 +674,7 @@ export default function ContactPage() {
             </div>
           ) : (
             <form
+              onKeyDown={(e) => { if (e.key === "Enter" && (e.target as HTMLElement).tagName !== "BUTTON") e.preventDefault(); }}
               onSubmit={handleSubmit}
               ref={formRef}
               className="relative mt-12 overflow-hidden rounded-[28px] border bg-brand-white p-7 shadow-[0_30px_80px_-30px_rgba(18,77,90,0.25)] md:p-10"
