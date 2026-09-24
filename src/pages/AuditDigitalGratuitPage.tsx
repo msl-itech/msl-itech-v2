@@ -24,7 +24,7 @@ import { submitLead } from "@/lib/leads";
 import { buildLeadDescription } from "@/lib/odoo";
 import { getUtm } from "@/lib/utm";
 import { toast } from "@/hooks/use-toast";
-import sectorB2b from "@/assets/home/sector-b2b.webp";
+import stepReporting from "@/assets/marketing-step-reporting.jpg";
 import stepAudit from "@/assets/marketing-step-audit.jpg";
 import stepStrategy from "@/assets/marketing-step-strategy.jpg";
 import sectorScaleup from "@/assets/home/sector-scaleup.webp";
@@ -219,7 +219,7 @@ export default function AuditDigitalGratuitPage() {
             <div className="relative hidden lg:block">
               <div className="overflow-hidden rounded-[28px] shadow-[0_32px_80px_-20px_rgba(0,0,0,0.5)]">
                 <img
-                  src={sectorB2b}
+                  src={stepReporting}
                   alt="Analyse digitale d'un site web par MSL-iTECH"
                   className="w-full object-cover"
                   style={{ aspectRatio: "4/3" }}
