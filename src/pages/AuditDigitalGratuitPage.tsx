@@ -27,6 +27,7 @@ import { toast } from "@/hooks/use-toast";
 import marketingHero from "@/assets/marketing-hero.webp";
 import stepAudit from "@/assets/marketing-step-audit.jpg";
 import stepStrategy from "@/assets/marketing-step-strategy.jpg";
+import sectorScaleup from "@/assets/home/sector-scaleup.webp";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -451,8 +452,8 @@ export default function AuditDigitalGratuitPage() {
               <div className="hidden lg:flex lg:flex-col lg:justify-center">
                 <div className="overflow-hidden rounded-3xl shadow-[0_24px_60px_-20px_rgba(18,77,90,0.25)]">
                   <img
-                    src={marketingHero}
-                    alt="Consultant MSL-iTECH en train d'analyser un site web"
+                    src={sectorScaleup}
+                    alt="Équipe MSL-iTECH en analyse digitale"
                     className="w-full object-cover"
                     style={{ aspectRatio: "4/3" }}
                   />
