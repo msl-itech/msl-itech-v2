@@ -141,6 +141,8 @@ export function ToolWizard(props: ToolWizardProps) {
     }
   }, []);
 
+  const total = questions.length;
+
   // Monter/démonter le widget Turnstile sur l'écran résultat (step >= total)
   useEffect(() => {
     if (step < total) {
@@ -159,8 +161,6 @@ export function ToolWizard(props: ToolWizardProps) {
       script?.addEventListener("load", renderTurnstile, { once: true });
     }
   }, [step, total, turnstileEnabled, renderTurnstile]);
-
-  const total = questions.length;
   const progress =
     step >= total
       ? 100
