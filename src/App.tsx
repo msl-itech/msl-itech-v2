@@ -52,6 +52,7 @@ const EmailUnsubscribePage = lazyRetry(() => import("./pages/EmailUnsubscribePag
 const IntegrateurOdooMarocPage = lazyRetry(() => import("./pages/IntegrateurOdooMarocPage"));
 const IntegrateurOdooMarrakechPage = lazyRetry(() => import("./pages/IntegrateurOdooMarrakechPage"));
 const IntegrateurOdooCasablancaPage = lazyRetry(() => import("./pages/IntegrateurOdooCasablancaPage"));
+const AuditDigitalGratuitPage = lazyRetry(() => import("./pages/AuditDigitalGratuitPage"));
 
 const queryClient = new QueryClient();
 
@@ -128,6 +129,7 @@ const App = () => {
             <Route path="/outils/diagnostic-digital" element={<DiagnosticDigitalToolPage />} />
             <Route path="/outils/comparateur-sage-odoo" element={<ComparateurSageOdooToolPage />} />
             <Route path="/email/desinscription" element={<EmailUnsubscribePage />} />
+            <Route path="/audit-digital-gratuit" element={<AuditDigitalGratuitPage />} />
             {/* Keyword landing pages */}
             <Route path="/integrateur-odoo-maroc" element={<IntegrateurOdooMarocPage />} />
             <Route path="/integrateur-odoo-marrakech" element={<IntegrateurOdooMarrakechPage />} />

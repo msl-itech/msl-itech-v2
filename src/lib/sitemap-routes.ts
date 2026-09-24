@@ -77,6 +77,9 @@ const staticEntries: SitemapEntry[] = [
   { loc: "/blog/sites-web-acquisition", changefreq: "weekly", priority: 0.85 },
   { loc: "/blog/belgique", changefreq: "weekly", priority: 0.85 },
 
+  // Pages de conversion outbound
+  { loc: "/audit-digital-gratuit", changefreq: "monthly", priority: 0.6 },
+
   // Pages légales
   { loc: "/politique-de-confidentialite", changefreq: "yearly", priority: 0.3 },
   { loc: "/conditions-generales-de-vente", changefreq: "yearly", priority: 0.3 },
