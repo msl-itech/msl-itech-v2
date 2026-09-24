@@ -374,76 +374,107 @@ export default function AuditDigitalGratuitPage() {
       ══════════════════════════════════════════════ */}
       <section id="formulaire" className="bg-brand-bg py-20 md:py-24">
         <div className="container px-4 sm:px-6">
-          <div className="mx-auto max-w-xl">
-            {/* Header */}
-            <div className="text-center">
-              <p className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-                <span className="inline-block h-px w-8 bg-brand-blue" /> Étape 1 sur 1 <span className="inline-block h-px w-8 bg-brand-blue" />
-              </p>
-              <h2 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-[2rem]">
-                Demander mon audit gratuit
-              </h2>
-              <p className="mt-2 font-body text-sm text-brand-grey">
-                Réponse sous 48 h ouvrées · Aucun engagement · Aucune carte bancaire
-              </p>
-            </div>
+          <div className="mx-auto max-w-6xl">
+            <div className="grid items-start gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
 
-            {/* Card */}
-            <div className="mt-10 rounded-3xl border border-brand-grey-light bg-brand-white p-7 shadow-[0_24px_60px_-20px_rgba(18,77,90,0.12)] md:p-10">
-              {submitted ? (
-                <div className="py-6 text-center">
-                  <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl" style={{ backgroundColor: "var(--gold)" }}>
-                    <CheckCircle2 size={30} className="text-brand-blue" />
-                  </div>
-                  <h3 className="mt-5 font-heading text-xl font-bold text-brand-black">Demande reçue !</h3>
-                  <p className="mt-2 font-body text-sm text-brand-grey">
-                    Votre audit est en cours. Vous recevrez le rapport PDF + une invitation à l'appel de 15 min sous 48 h ouvrées.
-                  </p>
-                  <Link to="/" className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-brand-blue hover:underline">
-                    Retour à l'accueil <ArrowRight size={14} />
-                  </Link>
+              {/* ── Gauche : formulaire ── */}
+              <div>
+                <p className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+                  <span className="inline-block h-px w-8 bg-brand-blue" /> Étape 1 sur 1 <span className="inline-block h-px w-8 bg-brand-blue" />
+                </p>
+                <h2 className="mt-3 font-heading text-2xl font-bold text-brand-black md:text-[2rem]">
+                  Demander mon audit gratuit
+                </h2>
+                <p className="mt-2 font-body text-sm text-brand-grey">
+                  Réponse sous 48 h ouvrées · Aucun engagement · Aucune carte bancaire
+                </p>
+
+                <div className="mt-8 rounded-3xl border border-brand-grey-light bg-brand-white p-7 shadow-[0_24px_60px_-20px_rgba(18,77,90,0.12)] md:p-8">
+                  {submitted ? (
+                    <div className="py-6 text-center">
+                      <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl" style={{ backgroundColor: "var(--gold)" }}>
+                        <CheckCircle2 size={30} className="text-brand-blue" />
+                      </div>
+                      <h3 className="mt-5 font-heading text-xl font-bold text-brand-black">Demande reçue !</h3>
+                      <p className="mt-2 font-body text-sm text-brand-grey">
+                        Votre audit est en cours. Vous recevrez le rapport PDF + une invitation à l'appel de 15 min sous 48 h ouvrées.
+                      </p>
+                      <Link to="/" className="mt-6 inline-flex items-center gap-2 font-body text-sm font-semibold text-brand-blue hover:underline">
+                        Retour à l'accueil <ArrowRight size={14} />
+                      </Link>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <Field label="URL de votre site web *" value={form.siteUrl} onChange={(v) => setForm({ ...form, siteUrl: v })} type="url" placeholder="https://www.votresite.ma" required />
+                      <Field label="Email professionnel *" value={form.email} onChange={(v) => setForm({ ...form, email: v })} type="email" placeholder="prenom@societe.ma" autoComplete="email" required />
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        <Field label="Prénom *" value={form.firstName} onChange={(v) => setForm({ ...form, firstName: v })} autoComplete="given-name" required />
+                        <Field label="Téléphone" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} type="tel" autoComplete="tel" />
+                      </div>
+                      <Field label="Société" value={form.company} onChange={(v) => setForm({ ...form, company: v })} autoComplete="organization" />
+
+                      <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-brand-grey-light bg-brand-bg p-4">
+                        <input
+                          type="checkbox"
+                          checked={form.consent}
+                          onChange={(e) => setForm({ ...form, consent: e.target.checked })}
+                          className="mt-0.5 h-4 w-4 shrink-0 accent-[color:var(--gold)]"
+                          required
+                        />
+                        <span className="font-body text-sm text-brand-grey">
+                          J'accepte que MSL-iTECH me contacte dans le cadre de ma demande, conformément à la{" "}
+                          <Link to="/politique-de-confidentialite" className="underline hover:text-brand-blue" onClick={(e) => e.stopPropagation()}>
+                            politique de confidentialité
+                          </Link>{" "}
+                          (Loi 09-08 / RGPD). *
+                        </span>
+                      </label>
+
+                      <button
+                        type="submit"
+                        disabled={!canSubmit || submitting}
+                        className="w-full rounded-full px-7 py-4 font-body text-base font-bold text-brand-blue shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50"
+                        style={{ backgroundColor: "var(--gold)" }}
+                      >
+                        {submitting ? "Envoi en cours…" : "Recevoir mon audit gratuit →"}
+                      </button>
+
+                      <p className="flex items-center justify-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey">
+                        <ShieldCheck size={12} /> Données confidentielles · Aucune revente · 48 h
+                      </p>
+                    </form>
+                  )}
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <Field label="URL de votre site web *" value={form.siteUrl} onChange={(v) => setForm({ ...form, siteUrl: v })} type="url" placeholder="https://www.votresite.ma" required />
-                  <Field label="Email professionnel *" value={form.email} onChange={(v) => setForm({ ...form, email: v })} type="email" placeholder="prenom@societe.ma" autoComplete="email" required />
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <Field label="Prénom *" value={form.firstName} onChange={(v) => setForm({ ...form, firstName: v })} autoComplete="given-name" required />
-                    <Field label="Téléphone" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} type="tel" autoComplete="tel" />
-                  </div>
-                  <Field label="Société" value={form.company} onChange={(v) => setForm({ ...form, company: v })} autoComplete="organization" />
+              </div>
 
-                  <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-brand-grey-light bg-brand-bg p-4">
-                    <input
-                      type="checkbox"
-                      checked={form.consent}
-                      onChange={(e) => setForm({ ...form, consent: e.target.checked })}
-                      className="mt-0.5 h-4 w-4 shrink-0 accent-[color:var(--gold)]"
-                      required
-                    />
-                    <span className="font-body text-sm text-brand-grey">
-                      J'accepte que MSL-iTECH me contacte dans le cadre de ma demande, conformément à la{" "}
-                      <Link to="/politique-de-confidentialite" className="underline hover:text-brand-blue" onClick={(e) => e.stopPropagation()}>
-                        politique de confidentialité
-                      </Link>{" "}
-                      (Loi 09-08 / RGPD). *
-                    </span>
-                  </label>
+              {/* ── Droite : image + réassurance ── */}
+              <div className="hidden lg:flex lg:flex-col lg:justify-center">
+                <div className="overflow-hidden rounded-3xl shadow-[0_24px_60px_-20px_rgba(18,77,90,0.25)]">
+                  <img
+                    src={marketingHero}
+                    alt="Consultant MSL-iTECH en train d'analyser un site web"
+                    className="w-full object-cover"
+                    style={{ aspectRatio: "4/3" }}
+                  />
+                </div>
 
-                  <button
-                    type="submit"
-                    disabled={!canSubmit || submitting}
-                    className="w-full rounded-full px-7 py-4 font-body text-base font-bold text-brand-blue shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50"
-                    style={{ backgroundColor: "var(--gold)" }}
-                  >
-                    {submitting ? "Envoi en cours…" : "Recevoir mon audit gratuit →"}
-                  </button>
+                {/* Réassurance sous l'image */}
+                <div className="mt-6 space-y-3">
+                  {[
+                    { icon: FileDown, text: "PDF de 2 pages avec score par point et priorités d'action" },
+                    { icon: Phone,    text: "Appel de 15 min inclus pour débriefer les résultats" },
+                    { icon: ShieldCheck, text: "Aucune revente de vos données · Conforme Loi 09-08" },
+                  ].map((item) => (
+                    <div key={item.text} className="flex items-start gap-3">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: "var(--gold)" }}>
+                        <item.icon size={14} className="text-brand-blue" />
+                      </div>
+                      <p className="font-body text-sm text-brand-grey leading-relaxed">{item.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-                  <p className="flex items-center justify-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey">
-                    <ShieldCheck size={12} /> Données confidentielles · Aucune revente · 48 h
-                  </p>
-                </form>
-              )}
             </div>
           </div>
         </div>
