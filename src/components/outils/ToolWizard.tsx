@@ -255,6 +255,15 @@ export function ToolWizard(props: ToolWizardProps) {
         ? "Diagnostic digital"
         : "Simulateur DGI";
 
+      // Tag séquence Marketing Automation (un par outil)
+      const sequenceTagMap: Record<string, string> = {
+        "conformite-dgi":        "Séquence: Conformité DGI",
+        "roi-erp":               "Séquence: ROI ERP",
+        "diagnostic-digital":    "Séquence: Diagnostic Digital",
+        "comparateur-sage-odoo": "Séquence: Comparateur Sage-Odoo",
+      };
+      const sequenceTag = sequenceTagMap[slug];
+
       const payload: OdooLeadData = {
         name: `${form.firstName}${form.company ? " — " + form.company : ""} — ${toolDisplayName ?? title}`,
         contact_name: form.firstName,
@@ -269,7 +278,7 @@ export function ToolWizard(props: ToolWizardProps) {
         utm_medium_name: utm.medium || undefined,
         utm_campaign_name: utm.campaign || undefined,
         referred: utm.landing || undefined,
-        tag_names: [besoinLabel],
+        tag_names: sequenceTag ? [besoinLabel, sequenceTag] : [besoinLabel],
         // Qualification
         x_studio_outil_source: outilSourceKey,
         x_studio_score: score,
