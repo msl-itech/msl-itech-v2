@@ -13,7 +13,6 @@ import {
 import { captureUtm, formatUtmForOdoo, getUtm } from "@/lib/utm";
 import { buildLeadDescription, OdooLeadData } from "@/lib/odoo";
 import { submitLead } from "@/lib/leads";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 
 export type ToolOption = {
@@ -288,22 +287,6 @@ export function ToolWizard(props: ToolWizardProps) {
       };
 
       await submitLead(payload);
-
-      // Enroll lead into the email nurture sequence (non-blocking).
-      supabase.functions
-        .invoke("enroll-lead-sequence", {
-          body: {
-            email: form.email,
-            tool_slug: slug,
-            score,
-            segment,
-            first_name: form.firstName,
-            company: form.company || null,
-            phone: form.phone || null,
-            template_data: { answers, utm, result, current_tool: form.currentTool },
-          },
-        })
-        .catch((err) => console.warn("enroll-lead-sequence failed", err));
 
       setLeadCaptured(true);
       toast({
