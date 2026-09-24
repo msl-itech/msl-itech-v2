@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import {
@@ -102,9 +102,63 @@ export function ToolWizard(props: ToolWizardProps) {
   const [submitting, setSubmitting] = useState(false);
   const [leadCaptured, setLeadCaptured] = useState(false);
 
+  // Turnstile — bypass si pas de sitekey (dev local)
+  const turnstileEnabled = !!import.meta.env.VITE_TURNSTILE_SITE_KEY;
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(
+    turnstileEnabled ? null : "bypass-no-sitekey"
+  );
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+
   useEffect(() => {
     captureUtm();
+    // Précharger le script Turnstile dès le montage
+    if (!document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) {
+      const s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      s.async = true;
+      s.defer = true;
+      document.head.appendChild(s);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const renderTurnstile = useCallback(() => {
+    const tw = (window as unknown as { turnstile?: { render: (el: HTMLElement, opts: unknown) => string; remove: (id: string) => void } }).turnstile;
+    const sitekey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+    if (!tw || !turnstileRef.current || widgetIdRef.current || !sitekey) return;
+    try {
+      widgetIdRef.current = tw.render(turnstileRef.current, {
+        sitekey,
+        callback: (token: string) => setTurnstileToken(token),
+        "expired-callback": () => setTurnstileToken(null),
+        "error-callback": () => setTurnstileToken(null),
+        theme: "light",
+        appearance: "always",
+        "refresh-expired": "auto",
+      });
+    } catch (e) {
+      console.warn("[Turnstile] render() échoué :", e);
+    }
   }, []);
+
+  // Monter/démonter le widget Turnstile sur l'écran résultat (step >= total)
+  useEffect(() => {
+    if (step < total) {
+      if (widgetIdRef.current) {
+        (window as unknown as { turnstile?: { remove: (id: string) => void } }).turnstile?.remove(widgetIdRef.current);
+        widgetIdRef.current = null;
+        if (turnstileEnabled) setTurnstileToken(null);
+      }
+      return;
+    }
+    const tw = (window as unknown as { turnstile?: unknown }).turnstile;
+    if (tw) {
+      renderTurnstile();
+    } else {
+      const script = document.querySelector<HTMLScriptElement>('script[src*="challenges.cloudflare.com/turnstile"]');
+      script?.addEventListener("load", renderTurnstile, { once: true });
+    }
+  }, [step, total, turnstileEnabled, renderTurnstile]);
 
   const total = questions.length;
   const progress =
@@ -152,7 +206,8 @@ export function ToolWizard(props: ToolWizardProps) {
     form.firstName.trim().length > 1 &&
     /.+@.+\..+/.test(form.email) &&
     !!form.currentTool &&
-    form.consent;
+    form.consent &&
+    !!turnstileToken;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -314,6 +369,8 @@ export function ToolWizard(props: ToolWizardProps) {
               leadCaptured={leadCaptured}
               onBack={back}
               onSubmit={handleSubmit}
+              turnstileToken={turnstileToken}
+              turnstileRef={turnstileRef}
             />
           )}
 
@@ -453,6 +510,8 @@ function ResultAndLeadBlock({
   leadCaptured,
   onBack,
   onSubmit,
+  turnstileToken,
+  turnstileRef,
 }: {
   result: ToolResult;
   score: number;
@@ -464,6 +523,8 @@ function ResultAndLeadBlock({
   leadCaptured: boolean;
   onBack: () => void;
   onSubmit: (e: React.FormEvent) => void;
+  turnstileToken: string | null;
+  turnstileRef: React.RefObject<HTMLDivElement>;
 }) {
   return (
     <div className="mt-8 space-y-6">
@@ -624,6 +685,16 @@ function ResultAndLeadBlock({
             </span>
           </label>
 
+          {/* Turnstile anti-robot */}
+          <div className="mt-5" onClick={(e) => e.stopPropagation()}>
+            <div ref={turnstileRef} />
+            {!turnstileToken && (
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey">
+                Vérification anti-robot requise avant l'envoi.
+              </p>
+            )}
+          </div>
+
           <div className="mt-4 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
             <button
               type="button"
@@ -635,7 +706,7 @@ function ResultAndLeadBlock({
             <button
               type="submit"
               disabled={!canSubmit || submitting}
-              className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
               style={{ backgroundColor: "var(--gold)" }}
             >
               {submitting ? "Envoi en cours…" : "Recevoir mon plan d'action"}
