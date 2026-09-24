@@ -375,7 +375,7 @@ export default function AuditDigitalGratuitPage() {
       <section id="formulaire" className="bg-brand-bg py-20 md:py-24">
         <div className="container px-4 sm:px-6">
           <div className="mx-auto max-w-6xl">
-            <div className="grid items-start gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
+            <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
 
               {/* ── Gauche : formulaire ── */}
               <div>
