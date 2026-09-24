@@ -302,21 +302,20 @@ export default function AuditDigitalGratuitPage() {
 
           <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2">
             {DELIVERABLES.map((d) => (
-              <div key={d.title} className="overflow-hidden rounded-3xl border border-brand-grey-light bg-brand-bg shadow-[0_8px_40px_-20px_rgba(18,77,90,0.15)]">
+              <div key={d.title} className="overflow-hidden rounded-3xl border border-brand-grey-light bg-brand-white shadow-[0_8px_40px_-20px_rgba(18,77,90,0.15)]">
                 {/* Image */}
-                <div className="relative overflow-hidden" style={{ aspectRatio: "16/9" }}>
+                <div className="overflow-hidden" style={{ aspectRatio: "16/9" }}>
                   <img src={d.image} alt={d.title} className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 bg-brand-blue/40" />
-                  <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ backgroundColor: "var(--gold)" }}>
-                      <d.icon size={16} className="text-brand-blue" />
-                    </div>
-                    <span className="font-heading text-lg font-bold text-white">{d.title}</span>
-                  </div>
                 </div>
                 {/* Content */}
                 <div className="p-6">
-                  <ul className="space-y-2.5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: "var(--gold)" }}>
+                      <d.icon size={18} className="text-brand-blue" />
+                    </div>
+                    <h3 className="font-heading text-xl font-bold text-brand-black">{d.title}</h3>
+                  </div>
+                  <ul className="mt-4 space-y-2.5">
                     {d.items.map((item) => (
                       <li key={item} className="flex items-start gap-2.5 font-body text-sm text-brand-grey">
                         <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-brand-blue" />
