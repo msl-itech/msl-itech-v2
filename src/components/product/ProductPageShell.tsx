@@ -32,6 +32,16 @@ export interface ProductPageShellProps {
   proposalEyebrow?: string;
   proposalTitle?: ReactNode;
   extraSection?: ReactNode;
+  /** Masque le badge "Consultants certifiés v18 & v19" dans le hero */
+  hideSticker?: boolean;
+  /** Remplace le CTA "Réserver ma démo gratuite" dans le hero */
+  heroCta?: { label: string; to: string };
+  /** Remplace l'intro de la section FAQ (par défaut : phrase Odoo) */
+  faqIntro?: string;
+  /** Masque le lien "Découvrir tous les modules Odoo" dans la section Why */
+  hideOdooLink?: boolean;
+  /** Masque le badge "Cas réel" dans la section Why */
+  hideCasReel?: boolean;
 }
 
 /* Sticker — same visual language as the homepage / Odoo ERP page */
@@ -69,6 +79,8 @@ function Hero({
   heroBullets,
   proposalEyebrow,
   proposalTitle,
+  hideSticker,
+  heroCta,
 }: Pick<
   ProductPageShellProps,
   | "eyebrow"
@@ -80,6 +92,8 @@ function Hero({
   | "heroBullets"
   | "proposalEyebrow"
   | "proposalTitle"
+  | "hideSticker"
+  | "heroCta"
 >) {
   const bullets =
     heroBullets && heroBullets.length > 0
@@ -135,9 +149,11 @@ function Hero({
           <HeroCursorGlow radius="inherit" />
 
           {/* Sticker top-left */}
-          <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
-            <Sticker rotate={-8}>★ Consultants certifiés v18 & v19</Sticker>
-          </div>
+          {!hideSticker && (
+            <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
+              <Sticker rotate={-8}>★ Consultants certifiés v18 & v19</Sticker>
+            </div>
+          )}
 
           {/* Banner content */}
           <div className="relative flex min-h-[380px] flex-col items-center justify-center px-6 py-20 text-center md:min-h-[480px] md:py-28">
@@ -233,11 +249,11 @@ function Hero({
 
             <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Link
-                to="/contact"
+                to={heroCta ? heroCta.to : "/contact"}
                 className="group inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] sm:w-auto"
                 style={{ backgroundColor: "var(--gold)" }}
               >
-                Réserver ma démo gratuite
+                {heroCta ? heroCta.label : "Réserver ma démo gratuite"}
                 <ArrowRight
                   size={18}
                   className="transition group-hover:translate-x-1"
@@ -352,11 +368,15 @@ function Why({
   image,
   imageAlt,
   eyebrow,
+  hideOdooLink,
+  hideCasReel,
 }: {
   whySection: NonNullable<ProductPageShellProps["whySection"]>;
   image: string;
   imageAlt: string;
   eyebrow: string;
+  hideOdooLink?: boolean;
+  hideCasReel?: boolean;
 }) {
   return (
     <section className="relative overflow-hidden bg-white py-24">
@@ -415,18 +435,20 @@ function Why({
                 />
                 {eyebrow}
               </span>
-              <Sticker rotate={-4}>★ Cas réel</Sticker>
+              {!hideCasReel && <Sticker rotate={-4}>★ Cas réel</Sticker>}
             </div>
           </div>
 
-          <Link
-            to="/odoo-erp"
-            className="group mt-8 inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
-            style={{ borderColor: "var(--blue)" }}
-          >
-            Découvrir tous les modules Odoo
-            <ArrowUpRight size={16} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </Link>
+          {!hideOdooLink && (
+            <Link
+              to="/odoo-erp"
+              className="group mt-8 inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
+              style={{ borderColor: "var(--blue)" }}
+            >
+              Découvrir tous les modules Odoo
+              <ArrowUpRight size={16} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+          )}
         </div>
         <ul data-anim="stagger" data-stagger="0.08" className="grid gap-4">
           {whySection.points.map((p, i) => (
@@ -465,7 +487,7 @@ function Why({
   );
 }
 
-function FaqBlock({ faqs }: { faqs: Faq[] }) {
+function FaqBlock({ faqs, faqIntro }: { faqs: Faq[]; faqIntro?: string }) {
   return (
     <section className="py-24" style={{ backgroundColor: "var(--bg)" }}>
       <div className="container max-w-3xl">
@@ -479,7 +501,7 @@ function FaqBlock({ faqs }: { faqs: Faq[] }) {
             Questions fréquentes
           </h2>
           <p className="mx-auto mt-4 max-w-xl font-body text-base text-brand-grey">
-            Tout ce que vous devez savoir avant de démarrer votre projet Odoo avec MSL-iTECH.
+            {faqIntro ?? "Tout ce que vous devez savoir avant de démarrer votre projet Odoo avec MSL-iTECH."}
           </p>
         </div>
         <div data-anim="stagger" data-stagger="0.06" className="mt-12 space-y-3">
@@ -607,6 +629,8 @@ export function ProductPageShell(props: ProductPageShellProps) {
         heroBullets={props.heroBullets}
         proposalEyebrow={props.proposalEyebrow}
         proposalTitle={props.proposalTitle}
+        hideSticker={props.hideSticker}
+        heroCta={props.heroCta}
       />
       {props.featuresSlot ? (
         props.featuresSlot
@@ -623,9 +647,13 @@ export function ProductPageShell(props: ProductPageShellProps) {
           image={props.heroImage}
           imageAlt={props.heroImageAlt}
           eyebrow={props.eyebrow}
+          hideOdooLink={props.hideOdooLink}
+          hideCasReel={props.hideCasReel}
         />
       )}
-      {props.faqs && props.faqs.length > 0 && <FaqBlock faqs={props.faqs} />}
+      {props.faqs && props.faqs.length > 0 && (
+        <FaqBlock faqs={props.faqs} faqIntro={props.faqIntro} />
+      )}
       {props.extraSection}
       <ProjectCTA
         eyebrow={props.ctaSubtitle ? "Démarrons ensemble" : "Démarrons ensemble"}

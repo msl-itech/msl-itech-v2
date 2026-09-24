@@ -98,7 +98,7 @@ export default function HorecaPage() {
       title={
         <>
           Votre restaurant perd selon les études sectorielles jusqu'à{" "}
-          <span style={{ color: "var(--gold)" }}>27% de ses aliments</span> — la
+          <span style={{ color: "var(--gold)" }}>30% de ses aliments</span> — la
           digitalisation réduit ce problème dès les premiers mois
         </>
       }
@@ -128,6 +128,7 @@ export default function HorecaPage() {
         ],
       }}
       faqs={faqs}
+      hideCasReel
       ctaTitle="Réserver ma démo HORECA gratuite"
       ctaSubtitle="Démo sur site ou à distance · Réponse sous 24h · +212 6 89 30 62 78"
       extraSection={

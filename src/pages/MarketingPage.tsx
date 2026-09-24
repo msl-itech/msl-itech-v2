@@ -9,7 +9,6 @@ import {
   Target,
   Rocket,
   BarChart3,
-  MessageSquareQuote,
 } from "lucide-react";
 import { ProductPageShell } from "@/components/product/ProductPageShell";
 import { useProductSeo } from "@/hooks/useProductSeo";
@@ -253,11 +252,11 @@ function ProcessSection() {
         {/* CTA intermédiaire */}
         <div className="mt-24 text-center">
           <Link
-            to="/contact"
+            to="/audit-digital-gratuit"
             className="group cta-pulse-gold hover-shine inline-flex items-center gap-2 rounded-full px-8 py-4 font-body text-base font-bold shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02]"
             style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
           >
-            Demander mon audit digital gratuit
+            Demander mon audit gratuit
             <ArrowRight
               size={20}
               className="transition group-hover:translate-x-1"
@@ -315,65 +314,32 @@ function SocialProofSection() {
           </h2>
         </div>
 
-        {/* Side-by-side Testimonial and Stats */}
-        <div className="mx-auto mt-16 grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          {/* Testimonial quote (Left) */}
-          <div className="flex h-full flex-col justify-center rounded-[2.5rem] border border-white/15 bg-white/5 p-8 backdrop-blur-md md:p-12">
-            <MessageSquareQuote
-              size={36}
-              className="mb-8"
-              style={{ color: "var(--gold)" }}
-            />
-            <blockquote className="font-heading text-xl font-medium leading-relaxed text-white md:text-3xl">
-              "MSL-iTECH a construit une stratégie digitale entièrement adaptée à notre
-              activité. En 3 mois, notre trafic organique a doublé et nous recevons
-              des demandes de devis qualifiées chaque semaine."
-            </blockquote>
-            <div className="mt-10 flex items-center gap-4 border-t border-white/10 pt-6">
+        {/* Stats */}
+        <div className="mx-auto mt-16 grid max-w-3xl gap-6">
+          {stats.map((s, idx) => (
+            <div
+              key={s.label}
+              className="group relative flex items-center justify-between overflow-hidden rounded-3xl border border-white/15 bg-white/5 p-8 backdrop-blur-sm transition-all hover:-translate-y-1 hover:bg-white/10"
+              style={{ transitionDelay: `${idx * 100}ms` }}
+            >
               <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-heading text-base font-bold shadow-inner"
-                style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
+                aria-hidden
+                className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                style={{
+                  background: "radial-gradient(circle at right, rgba(255,221,87,0.15) 0%, transparent 60%)"
+                }}
+              />
+              <p className="font-body text-lg font-medium text-white/80 md:text-xl">
+                {s.label}
+              </p>
+              <p
+                className="font-heading text-5xl font-bold tracking-tight md:text-6xl"
+                style={{ color: "var(--gold)" }}
               >
-                PM
-              </div>
-              <div>
-                <p className="font-body text-base font-bold text-white">
-                  Dirigeant PME
-                </p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/60">
-                  Secteur B2B
-                </p>
-              </div>
+                {s.value}
+              </p>
             </div>
-          </div>
-
-          {/* Stats stack (Right) */}
-          <div className="flex flex-col justify-center gap-6">
-            {stats.map((s, idx) => (
-              <div
-                key={s.label}
-                className="group relative flex items-center justify-between overflow-hidden rounded-3xl border border-white/15 bg-white/5 p-8 backdrop-blur-sm transition-all hover:-translate-y-1 hover:bg-white/10"
-                style={{ transitionDelay: `${idx * 100}ms` }}
-              >
-                <div
-                  aria-hidden
-                  className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  style={{
-                    background: "radial-gradient(circle at right, rgba(255,221,87,0.15) 0%, transparent 60%)"
-                  }}
-                />
-                <p className="font-body text-lg font-medium text-white/80 md:text-xl">
-                  {s.label}
-                </p>
-                <p
-                  className="font-heading text-5xl font-bold tracking-tight md:text-6xl"
-                  style={{ color: "var(--gold)" }}
-                >
-                  {s.value}
-                </p>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
 
         {/* Actions */}
@@ -543,9 +509,13 @@ export default function MarketingPage() {
           "Reporting mensuel clair et transparent — pas de jargon inutile",
         ],
       }}
-      ctaTitle="Demander mon audit digital gratuit"
+      ctaTitle="Demander mon audit gratuit"
       ctaSubtitle="Analyse complète de votre présence en ligne · Recommandations concrètes et actionnables · Réponse sous 24h"
       faqs={faqs}
+      hideSticker
+      heroCta={{ label: "Demander mon audit gratuit", to: "/audit-digital-gratuit" }}
+      faqIntro="Tout ce que vous devez savoir sur notre offre d'accompagnement marketing digital."
+      hideOdooLink
     />
   );
 }

@@ -230,11 +230,11 @@ function TechShowcase() {
               Pas sûr du bon choix ? On en discute 30 minutes, gratuitement.
             </p>
             <Link
-              to="/contact"
+              to="/contact?besoin=site"
               className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-bold transition hover:scale-[1.02]"
               style={{ backgroundColor: "var(--blue)", color: "var(--white)" }}
             >
-              Comparer pour mon projet
+              Recevoir un devis site
               <ArrowRight size={16} className="transition group-hover:translate-x-1" />
             </Link>
           </div>
@@ -306,9 +306,13 @@ export default function WebPage() {
           "Formulaire de conversion et analytics intégrés",
         ],
       }}
-      ctaTitle="Démarrer mon projet web"
+      ctaTitle="Recevoir un devis site"
       ctaSubtitle="Devis gratuit · Réponse sous 24h · Sans engagement · Maroc"
       faqs={faqs}
+      hideSticker
+      heroCta={{ label: "Recevoir un devis site", to: "/contact?besoin=site" }}
+      faqIntro="Tout ce que vous devez savoir avant de démarrer votre projet web avec MSL-iTECH."
+      hideOdooLink
     />
   );
 }

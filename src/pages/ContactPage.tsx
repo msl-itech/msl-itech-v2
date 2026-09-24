@@ -131,7 +131,7 @@ const CONFIRMATION: Record<Besoin, { title: string; body: string }> = {
 };
 
 const SUBMIT_LABELS: Record<Besoin, string> = {
-  erp: "Demander ma démo Odoo gratuite",
+  erp: "Demander ma démo Odoo",
   site: "Recevoir un devis site",
   marketing: "Demander mon audit digital",
 };
@@ -274,7 +274,7 @@ export default function ContactPage() {
     const tw = (window as unknown as { turnstile?: { render: (el: HTMLElement, opts: unknown) => string; remove: (id: string) => void } }).turnstile;
     if (!tw || !turnstileRef.current || widgetIdRef.current) return;
     widgetIdRef.current = tw.render(turnstileRef.current, {
-      sitekey: import.meta.env.VITE_TURNSTILE_SITEKEY ?? "1x00000000000000000000AA",
+      sitekey: import.meta.env.VITE_TURNSTILE_SITEKEY,
       callback: (token: string) => setTurnstileToken(token),
       "expired-callback": () => setTurnstileToken(null),
       "error-callback": () => setTurnstileToken(null),
@@ -434,7 +434,7 @@ export default function ContactPage() {
 
     const description = buildLeadDescription(sections);
 
-    const tags: string[] = [`besoin:${besoin}`, "Consentement OK"];
+    const tags: string[] = [`besoin:${besoin}`, "consentement:ok"];
     if (besoin === "erp" && data.sector) tags.push(`secteur:${data.sector}`);
 
     const payload: OdooLeadData = {
@@ -444,7 +444,11 @@ export default function ContactPage() {
       phone: data.phone || undefined,
       partner_name: data.company || undefined,
       country_code: data.country !== "OTHER" ? data.country : undefined,
-      team_name: besoin === "erp" ? "ERP" : "Web & Marketing",
+      team_name: besoin === "erp" ? "ERP ODOO" : "web & marketing",
+      utm_source_name: utm.source || undefined,
+      utm_medium_name: utm.medium || undefined,
+      utm_campaign_name: utm.campaign || undefined,
+      referred: window.location.href,
       description,
       source: utm.source
         ? `${utm.source}${utm.medium ? ` / ${utm.medium}` : ""}`
