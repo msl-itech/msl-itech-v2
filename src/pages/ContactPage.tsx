@@ -168,7 +168,7 @@ const CONFIRMATION: Record<Besoin, { title: string; body: string }> = {
   },
   site: {
     title: "Votre projet web est entre de bonnes mains !",
-    body: "Notre équipe web revient vers vous sous 24h avec des exemples adaptés à votre secteur.",
+    body: "Notre équipe web revient vers vous sous 48 h ouvrées pour échanger sur votre projet.",
   },
   marketing: {
     title: "Votre demande de conseil digital est prise en compte !",

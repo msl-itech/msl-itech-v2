@@ -21,7 +21,6 @@ import {
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import { submitLead } from "@/lib/leads";
-import { buildLeadDescription } from "@/lib/odoo";
 import { getUtm } from "@/lib/utm";
 import { toast } from "@/hooks/use-toast";
 import stepReporting from "@/assets/marketing-step-reporting.jpg";
@@ -191,7 +190,7 @@ export default function AuditDigitalGratuitPage() {
         email_from: form.email,
         phone: form.phone,
         partner_name: form.company || undefined,
-        description: buildLeadDescription({ "URL du site": form.siteUrl, Société: form.company || "—" }),
+        description: undefined,
         source: `msl-itech.com/audit-digital-gratuit${utm.source ? " · " + utm.source : ""}`,
         country_code: "MA",
         studio_routing: true,
@@ -199,10 +198,9 @@ export default function AuditDigitalGratuitPage() {
         utm_source_name: utm.source || undefined,
         utm_medium_name: utm.medium || undefined,
         utm_campaign_name: utm.campaign || undefined,
-        referred: utm.landing || undefined,
+        referred: window.location.pathname,
         x_studio_outil_source: "Audit gratuit",
         x_studio_url_site: form.siteUrl,
-        x_studio_objectif: "Plus de demandes",
         x_studio_consentement: true,
         x_studio_consentement_date: new Date().toISOString(),
       });
@@ -400,13 +398,10 @@ export default function AuditDigitalGratuitPage() {
       <section className="bg-brand-blue py-20 md:py-24">
         <div className="container px-4 sm:px-6">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-white/60">
-              <span className="inline-block h-px w-8 bg-white/30" /> Exemples réels <span className="inline-block h-px w-8 bg-white/30" />
-            </p>
-            <h2 className="mt-3 font-heading text-2xl font-bold text-white md:text-[2rem]">
+            <h2 className="font-heading text-2xl font-bold text-white md:text-[2rem]">
               Ce qu'on trouve en pratique
             </h2>
-            <p className="mt-3 font-body text-sm text-white/60">Exemples anonymisés issus d'audits récents.</p>
+            <p className="mt-3 font-body text-sm text-white/60">Cas types illustrant les problèmes les plus fréquents rencontrés sur les sites B2B.</p>
           </div>
 
           <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2">
@@ -500,7 +495,18 @@ export default function AuditDigitalGratuitPage() {
 
                       <button
                         type="submit"
-                        disabled={!canSubmit || submitting || !turnstileToken}
+                        disabled={submitting}
+                        onClick={() => {
+                          if (!canSubmit) {
+                            const missing: string[] = [];
+                            if (form.siteUrl.trim().length <= 4) missing.push("URL du site");
+                            if (!/.+@.+\..+/.test(form.email)) missing.push("Email");
+                            if (form.firstName.trim().length <= 1) missing.push("Prénom");
+                            if (form.phone.trim().length <= 3) missing.push("Téléphone");
+                            if (!form.consent) missing.push("consentement");
+                            toast({ title: "Champs requis", description: missing.join(", "), variant: "destructive" });
+                          }
+                        }}
                         className="w-full rounded-full px-7 py-4 font-body text-base font-bold text-brand-blue shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50"
                         style={{ backgroundColor: "var(--gold)" }}
                       >
