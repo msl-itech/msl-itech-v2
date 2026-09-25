@@ -282,7 +282,7 @@ export function ToolWizard(props: ToolWizardProps) {
         // Qualification
         x_studio_outil_source: outilSourceKey,
         x_studio_score: score,
-        x_studio_score_affiche: result.badgeValue !== undefined ? Number(result.badgeValue) : score,
+        x_studio_score_affiche: result.badgeValue !== undefined ? Number(result.badgeValue) : previewScore,
         x_studio_recommandations: recommendationsText,
         x_studio_outil_actuel: finalTool ? ({ excel: "Excel / Word", sage: "Sage", odoo: "Odoo", autre: "Autre" } as Record<string, string>)[finalTool] : undefined,
         x_studio_consentement: true,
