@@ -239,11 +239,12 @@ export function ToolWizard(props: ToolWizardProps) {
         })
         .join("\n");
 
-      // T12 — description : résultats + recommandations de l'outil (pas de champ dédié).
-      // Réponses individuelles dans x_studio_* quand les clés B3 sont connues.
+      // T12/3.4 — score affiché + recommandations dans des champs dédiés (x_studio_*)
+      // + dans la description pour la lisibilité côté commercial.
+      const recommendationsText = result.recommendations.map((r, i) => `${i + 1}. ${r}`).join("\n");
       const description = buildLeadDescription({
         "Résultat": `${result.headline} — ${result.summary}`,
-        Recommandations: result.recommendations.map((r, i) => `${i + 1}. ${r}`).join("\n"),
+        Recommandations: recommendationsText,
         Réponses: answersText,
       });
 
@@ -281,6 +282,8 @@ export function ToolWizard(props: ToolWizardProps) {
         // Qualification
         x_studio_outil_source: outilSourceKey,
         x_studio_score: score,
+        x_studio_score_affiche: result.badgeValue !== undefined ? Number(result.badgeValue) : score,
+        x_studio_recommandations: recommendationsText,
         x_studio_outil_actuel: finalTool ? ({ excel: "Excel / Word", sage: "Sage", odoo: "Odoo", autre: "Autre" } as Record<string, string>)[finalTool] : undefined,
         x_studio_consentement: true,
         x_studio_consentement_date: consentAt,
