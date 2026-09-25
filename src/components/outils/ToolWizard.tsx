@@ -277,7 +277,7 @@ export function ToolWizard(props: ToolWizardProps) {
         utm_source_name: utm.source || undefined,
         utm_medium_name: utm.medium || undefined,
         utm_campaign_name: utm.campaign || undefined,
-        referred: utm.landing || undefined,
+        referred: window.location.pathname,
         tag_names: sequenceTag ? [besoinLabel, sequenceTag] : [besoinLabel],
         // Qualification
         x_studio_outil_source: outilSourceKey,

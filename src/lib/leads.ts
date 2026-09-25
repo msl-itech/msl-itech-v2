@@ -1,7 +1,7 @@
 import { OdooLeadData } from "./odoo";
 
 const ODOO_API_URL = "https://api-connect-odoo.vercel.app/api";
-const TIMEOUT_MS = 8000;
+const TIMEOUT_MS = 20000;
 
 /** Durée de vie maximale d'un lead en attente avant purge (30 jours). */
 const PENDING_TTL_MS = 30 * 24 * 60 * 60 * 1000;
