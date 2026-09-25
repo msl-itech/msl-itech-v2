@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import {
   Search,
@@ -105,17 +105,79 @@ type FormState = {
 
 export default function AuditDigitalGratuitPage() {
   useProductSeo({
-    title: "Audit gratuit de votre site web — 10 points vérifiés, réponse sous 48 h | MSL-iTECH",
+    title: "Audit Digital Gratuit de votre Site Web | MSL-iTECH",
     description:
-      "Obtenez un audit gratuit de votre site web : visibilité Google, présence IA, vitesse, mobile, formulaires, analytics. Résultat PDF + appel de 15 min sous 48 h.",
+      "Audit gratuit de votre site : Google, IA, vitesse, mobile, Core Web Vitals, formulaires. Rapport PDF + appel 15 min sous 48 h ouvrées.",
     path: "/audit-digital-gratuit",
+    service: {
+      name: "Audit digital gratuit",
+      description:
+        "Analyse complète de votre présence digitale (SEO, GEO, vitesse, mobile, analytics) par MSL-iTECH. Rapport PDF actionnable + appel de 15 min sous 48 h ouvrées, sans engagement.",
+      serviceType: ["Audit SEO", "Audit digital", "Diagnostic web"],
+    },
   });
 
   const [form, setForm] = useState<FormState>({ siteUrl: "", email: "", phone: "", firstName: "", company: "", consent: false });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const canSubmit = form.siteUrl.trim().length > 4 && /.+@.+\..+/.test(form.email) && form.firstName.trim().length > 1 && form.consent;
+  // Turnstile
+  const turnstileEnabled = !!import.meta.env.VITE_TURNSTILE_SITE_KEY;
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(
+    turnstileEnabled ? null : "bypass-no-sitekey"
+  );
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+
+  const renderTurnstile = useCallback(() => {
+    const tw = (window as unknown as { turnstile?: { render: (el: HTMLElement, opts: unknown) => string; remove: (id: string) => void } }).turnstile;
+    const sitekey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+    if (!tw || !turnstileRef.current || widgetIdRef.current || !sitekey) return;
+    try {
+      widgetIdRef.current = tw.render(turnstileRef.current, {
+        sitekey,
+        callback: (token: string) => setTurnstileToken(token),
+        "expired-callback": () => setTurnstileToken(null),
+        "error-callback": () => setTurnstileToken(null),
+        theme: "light",
+        appearance: "always",
+        "refresh-expired": "auto",
+      });
+    } catch (e) {
+      console.warn("[Turnstile] render() échoué :", e);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!turnstileEnabled) return;
+    if (!document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) {
+      const s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      s.async = true;
+      s.defer = true;
+      document.head.appendChild(s);
+    }
+    const tw = (window as unknown as { turnstile?: unknown }).turnstile;
+    if (tw) {
+      renderTurnstile();
+    } else {
+      const script = document.querySelector<HTMLScriptElement>('script[src*="challenges.cloudflare.com/turnstile"]');
+      script?.addEventListener("load", renderTurnstile, { once: true });
+    }
+    return () => {
+      if (widgetIdRef.current) {
+        (window as unknown as { turnstile?: { remove: (id: string) => void } }).turnstile?.remove(widgetIdRef.current);
+        widgetIdRef.current = null;
+      }
+    };
+  }, [turnstileEnabled, renderTurnstile]);
+
+  const canSubmit =
+    form.siteUrl.trim().length > 4 &&
+    /.+@.+\..+/.test(form.email) &&
+    form.firstName.trim().length > 1 &&
+    form.phone.trim().length > 3 &&
+    form.consent;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -127,18 +189,19 @@ export default function AuditDigitalGratuitPage() {
         name: `${form.firstName}${form.company ? " — " + form.company : ""} — Audit digital`,
         contact_name: form.firstName,
         email_from: form.email,
-        phone: form.phone || undefined,
+        phone: form.phone,
         partner_name: form.company || undefined,
         description: buildLeadDescription({ "URL du site": form.siteUrl, Société: form.company || "—" }),
         source: `msl-itech.com/audit-digital-gratuit${utm.source ? " · " + utm.source : ""}`,
         country_code: "MA",
         studio_routing: true,
-        tag_names: ["Marketing digital", "Audit"],
+        tag_names: ["Marketing digital"],
         utm_source_name: utm.source || undefined,
         utm_medium_name: utm.medium || undefined,
         utm_campaign_name: utm.campaign || undefined,
         referred: utm.landing || undefined,
-        x_studio_outil_source: "Formulaire de contact",
+        x_studio_outil_source: "Audit gratuit",
+        x_studio_url_site: form.siteUrl,
         x_studio_objectif: "Plus de demandes",
         x_studio_consentement: true,
         x_studio_consentement_date: new Date().toISOString(),
@@ -360,10 +423,6 @@ export default function AuditDigitalGratuitPage() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-5 flex items-center gap-2 rounded-xl px-4 py-2.5" style={{ backgroundColor: "rgba(255,221,87,0.15)" }}>
-                  <ArrowRight size={14} style={{ color: "var(--gold)" }} />
-                  <p className="font-body text-sm font-semibold" style={{ color: "var(--gold)" }}>{ex.result}</p>
-                </div>
               </div>
             ))}
           </div>
@@ -406,13 +465,13 @@ export default function AuditDigitalGratuitPage() {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
-                      <Field label="URL de votre site web *" value={form.siteUrl} onChange={(v) => setForm({ ...form, siteUrl: v })} type="url" placeholder="https://www.votresite.ma" required />
-                      <Field label="Email professionnel *" value={form.email} onChange={(v) => setForm({ ...form, email: v })} type="email" placeholder="prenom@societe.ma" autoComplete="email" required />
+                      <Field name="site_url" label="URL de votre site web *" value={form.siteUrl} onChange={(v) => setForm({ ...form, siteUrl: v })} type="url" placeholder="https://www.votresite.ma" required />
+                      <Field name="email" label="Email professionnel *" value={form.email} onChange={(v) => setForm({ ...form, email: v })} type="email" placeholder="prenom@societe.ma" autoComplete="email" required />
                       <div className="grid gap-4 sm:grid-cols-2">
-                        <Field label="Prénom *" value={form.firstName} onChange={(v) => setForm({ ...form, firstName: v })} autoComplete="given-name" required />
-                        <Field label="Téléphone" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} type="tel" autoComplete="tel" />
+                        <Field name="first_name" label="Prénom *" value={form.firstName} onChange={(v) => setForm({ ...form, firstName: v })} autoComplete="given-name" required />
+                        <Field name="phone" label="Téléphone *" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} type="tel" autoComplete="tel" required />
                       </div>
-                      <Field label="Société" value={form.company} onChange={(v) => setForm({ ...form, company: v })} autoComplete="organization" />
+                      <Field name="company" label="Société" value={form.company} onChange={(v) => setForm({ ...form, company: v })} autoComplete="organization" />
 
                       <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-brand-grey-light bg-brand-bg p-4">
                         <input
@@ -431,9 +490,17 @@ export default function AuditDigitalGratuitPage() {
                         </span>
                       </label>
 
+                      {/* Turnstile */}
+                      <div ref={turnstileRef} />
+                      {turnstileEnabled && !turnstileToken && (
+                        <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey">
+                          Vérification anti-robot requise avant l'envoi.
+                        </p>
+                      )}
+
                       <button
                         type="submit"
-                        disabled={!canSubmit || submitting}
+                        disabled={!canSubmit || submitting || !turnstileToken}
                         className="w-full rounded-full px-7 py-4 font-body text-base font-bold text-brand-blue shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50"
                         style={{ backgroundColor: "var(--gold)" }}
                       >
@@ -487,15 +554,16 @@ export default function AuditDigitalGratuitPage() {
 // ── Micro component ───────────────────────────────────────────────────────────
 
 function Field({
-  label, value, onChange, type = "text", placeholder, autoComplete, required,
+  name, label, value, onChange, type = "text", placeholder, autoComplete, required,
 }: {
-  label: string; value: string; onChange: (v: string) => void;
+  name: string; label: string; value: string; onChange: (v: string) => void;
   type?: string; placeholder?: string; autoComplete?: string; required?: boolean;
 }) {
   return (
     <div>
       <label className="block font-body text-sm font-semibold text-brand-black">{label}</label>
       <input
+        name={name}
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
