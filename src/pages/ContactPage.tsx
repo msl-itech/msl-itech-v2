@@ -116,15 +116,15 @@ const OBJECTIF_MARKETING_OPTIONS = [
 const STEP_LABELS = ["Votre besoin", "Coordonnées", "Précisions"];
 
 // ── B3 — Mapping valeurs formulaire → clés techniques Odoo Studio ──────────
-// Clés récupérées via API le 2026-09-23. Certaines ont un \u200b (zéro-width)
-// généré par Studio — ne pas modifier ces chaînes.
+// Clés récupérées via API le 2026-09-23, nettoyées le 2026-09-25 (suppression U+200B).
+// Script fix-studio-selection-u200b.js a corrigé les valeurs côté Odoo — garder en sync.
 
 const ODOO_SECTEUR: Record<string, string> = {
   "Commerce / Distribution":   "Commerce / Distribution",
   "BTP / Construction":        "BTP / Construction",
   "HORECA / Restauration":     "HORECA / Restauration",
-  "Santé / Services médicaux": "\u200bSanté / Services médicaux",
-  "Transport / Logistique":    "\u200bTransport / Logistique",
+  "Santé / Services médicaux": "Santé / Services médicaux",
+  "Transport / Logistique":    "Transport / Logistique",
   "Production / Industrie":    "Production / Industrie",
   "Services B2B":              "Services B2B",
   "Tourisme / Hôtellerie":     "Tourisme / Hôtellerie",
@@ -141,9 +141,9 @@ const ODOO_OUTIL_ACTUEL: Record<string, string> = {
 
 const ODOO_ECHEANCE: Record<string, string> = {
   lt3m:          "Moins de 3 mois",
-  "3_6m":        "\u200b3 à 6 mois",
-  later:         "\u200bPlus tard",
-  renseignement: "\u200b\u200bJe me renseigne",
+  "3_6m":        "3 à 6 mois",
+  later:         "Plus tard",
+  renseignement: "Je me renseigne",
 };
 
 const ODOO_OBJECTIF: Record<string, string> = {
