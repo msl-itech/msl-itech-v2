@@ -251,9 +251,13 @@ export function ToolWizard(props: ToolWizardProps) {
       const besoinLabel = besoin === "erp" ? "Odoo ERP" : "Marketing digital";
       const consentAt = new Date().toISOString();
 
-      const outilSourceKey = slug === "diagnostic-digital"
-        ? "Diagnostic digital"
-        : "Simulateur DGI";
+      const outilSourceMap: Record<string, string> = {
+        "conformite-dgi":        "Simulateur DGI",
+        "diagnostic-digital":    "Diagnostic digital",
+        "roi-erp":               "Calculateur ROI ERP",
+        "comparateur-sage-odoo": "Comparateur Sage-Odoo",
+      };
+      const outilSourceKey = outilSourceMap[slug] ?? "Simulateur DGI";
 
       // Tag séquence Marketing Automation (un par outil)
       const sequenceTagMap: Record<string, string> = {
