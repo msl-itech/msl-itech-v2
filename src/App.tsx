@@ -52,6 +52,7 @@ const EmailUnsubscribePage = lazyRetry(() => import("./pages/EmailUnsubscribePag
 const IntegrateurOdooMarocPage = lazyRetry(() => import("./pages/IntegrateurOdooMarocPage"));
 const IntegrateurOdooMarrakechPage = lazyRetry(() => import("./pages/IntegrateurOdooMarrakechPage"));
 const IntegrateurOdooCasablancaPage = lazyRetry(() => import("./pages/IntegrateurOdooCasablancaPage"));
+const AuditDigitalGratuitPage = lazyRetry(() => import("./pages/AuditDigitalGratuitPage"));
 
 const queryClient = new QueryClient();
 
@@ -128,6 +129,7 @@ const App = () => {
             <Route path="/outils/diagnostic-digital" element={<DiagnosticDigitalToolPage />} />
             <Route path="/outils/comparateur-sage-odoo" element={<ComparateurSageOdooToolPage />} />
             <Route path="/email/desinscription" element={<EmailUnsubscribePage />} />
+            <Route path="/audit-digital-gratuit" element={<AuditDigitalGratuitPage />} />
             {/* Keyword landing pages */}
             <Route path="/integrateur-odoo-maroc" element={<IntegrateurOdooMarocPage />} />
             <Route path="/integrateur-odoo-marrakech" element={<IntegrateurOdooMarrakechPage />} />
@@ -138,6 +140,9 @@ const App = () => {
             <Route path="/about" element={<Navigate to="/a-propos" replace />} />
             <Route path="/tarif-Odoo" element={<Navigate to="/notre-approche" replace />} />
             <Route path="/tarif-odoo" element={<Navigate to="/notre-approche" replace />} />
+            {/* Blog 301 — concentration du signal SEO vers les articles les plus riches */}
+            <Route path="/blog/facturation-electronique-maroc-2026" element={<Navigate to="/blog/facturation-electronique-obligatoire-maroc-2026-erp" replace />} />
+            <Route path="/blog/sage-vs-odoo-maroc-comparatif-2026" element={<Navigate to="/blog/odoo-vs-sage-maroc-comparatif" replace />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>

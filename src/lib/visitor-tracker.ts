@@ -44,12 +44,15 @@ export function initTracker(): void {
   const tracker = read<Tracker | null>(localStorage, TRACKER_KEY, null);
   const params = new URLSearchParams(window.location.search);
   const utm = params.get("utm_campaign") ?? undefined;
+  const utmSource = params.get("utm_source") ?? undefined;
   const referrer = document.referrer || "direct";
+  // utm_source prime sur le referrer pour identifier la source d'acquisition
+  const source = utmSource || referrer;
 
   if (!tracker) {
     write(localStorage, TRACKER_KEY, {
       visitCount: 1,
-      source: referrer,
+      source,
       utm_campaign: utm,
       firstSeenAt: new Date().toISOString(),
     } satisfies Tracker);
@@ -61,6 +64,8 @@ export function initTracker(): void {
         ...tracker,
         visitCount: tracker.visitCount + 1,
         utm_campaign: utm ?? tracker.utm_campaign,
+        // Si un UTM source arrive, mettre à jour (sinon conserver la valeur existante)
+        source: utmSource ?? tracker.source,
       });
     }
   }

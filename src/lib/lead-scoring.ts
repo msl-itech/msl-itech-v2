@@ -8,7 +8,7 @@ export type ToolSlug =
   | "diagnostic-digital"
   | "comparateur-sage-odoo";
 
-export type Segment = "tres_chaud" | "chaud" | "tiede" | "froid";
+export type Segment = "chaud" | "tiede" | "froid";
 
 export type CompanySize = "lt10" | "10_20" | "20_50" | "gt50";
 export type CurrentTool = "excel" | "sage" | "odoo" | "autre";
@@ -118,18 +118,11 @@ export function scoreLead(input: ScoreInputs): { score: number; segment: Segment
   const used = pToolUsed(input.toolSlug);
   const score = Math.min(100, size + tool + urg + email + phone + used);
   let segment: Segment = "froid";
-  if (score >= 75) segment = "tres_chaud";
-  else if (score >= 55) segment = "chaud";
+  if (score >= 55) segment = "chaud";
   else if (score >= 35) segment = "tiede";
   return { score, segment };
 }
 
 export function segmentLabel(s: Segment): string {
-  return s === "tres_chaud"
-    ? "Très chaud"
-    : s === "chaud"
-      ? "Chaud"
-      : s === "tiede"
-        ? "Tiède"
-        : "Froid";
+  return s === "chaud" ? "Chaud" : s === "tiede" ? "Tiède" : "Froid";
 }

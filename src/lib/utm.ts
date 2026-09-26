@@ -48,7 +48,8 @@ export function captureUtm(): Utm {
   ];
   for (const [field, qs] of map) {
     const v = params.get(qs);
-    if (v && !next[field]) next[field] = v;
+    // Toujours écraser si l'URL porte un paramètre UTM (last-touch par paramètre)
+    if (v) next[field] = v;
   }
   if (!next.referrer && document.referrer) next.referrer = document.referrer;
   if (!next.landing) next.landing = window.location.pathname;

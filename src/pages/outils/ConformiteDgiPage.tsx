@@ -129,6 +129,7 @@ export default function ConformiteDgiPage() {
       partialTeaser="Votre profil de risque se dessine. Continuez : à la fin, vous obtenez votre fenêtre conseillée de mise en conformité et le format DGI cible (PDF/UBL)."
       besoin="erp"
       toolDisplayName="Simulateur DGI"
+      badgeLabel="Score de conformité"
     />
   );
 }

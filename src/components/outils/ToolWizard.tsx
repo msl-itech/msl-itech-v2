@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import {
@@ -13,7 +13,6 @@ import {
 import { captureUtm, formatUtmForOdoo, getUtm } from "@/lib/utm";
 import { buildLeadDescription, OdooLeadData } from "@/lib/odoo";
 import { submitLead } from "@/lib/leads";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 
 export type ToolOption = {
@@ -65,6 +64,8 @@ export type ToolWizardProps = {
   besoin?: "erp" | "marketing";
   /** Nom affiché dans le tag Odoo ex: "Simulateur DGI", "Diagnostic digital" */
   toolDisplayName?: string;
+  /** Libellé affiché au-dessus du badge de score (ex: "Score de conformité") */
+  badgeLabel?: string;
 };
 
 type FormState = {
@@ -87,6 +88,7 @@ export function ToolWizard(props: ToolWizardProps) {
     partialTeaser,
     besoin,
     toolDisplayName,
+    badgeLabel,
   } = props;
 
   const [step, setStep] = useState(0); // 0..questions.length-1 = question; questions.length = result+form
@@ -102,11 +104,65 @@ export function ToolWizard(props: ToolWizardProps) {
   const [submitting, setSubmitting] = useState(false);
   const [leadCaptured, setLeadCaptured] = useState(false);
 
+  // Turnstile — bypass si pas de sitekey (dev local)
+  const turnstileEnabled = !!import.meta.env.VITE_TURNSTILE_SITE_KEY;
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(
+    turnstileEnabled ? null : "bypass-no-sitekey"
+  );
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+
   useEffect(() => {
     captureUtm();
+    // Précharger le script Turnstile dès le montage
+    if (!document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) {
+      const s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      s.async = true;
+      s.defer = true;
+      document.head.appendChild(s);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const renderTurnstile = useCallback(() => {
+    const tw = (window as unknown as { turnstile?: { render: (el: HTMLElement, opts: unknown) => string; remove: (id: string) => void } }).turnstile;
+    const sitekey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+    if (!tw || !turnstileRef.current || widgetIdRef.current || !sitekey) return;
+    try {
+      widgetIdRef.current = tw.render(turnstileRef.current, {
+        sitekey,
+        callback: (token: string) => setTurnstileToken(token),
+        "expired-callback": () => setTurnstileToken(null),
+        "error-callback": () => setTurnstileToken(null),
+        theme: "light",
+        appearance: "always",
+        "refresh-expired": "auto",
+      });
+    } catch (e) {
+      console.warn("[Turnstile] render() échoué :", e);
+    }
   }, []);
 
   const total = questions.length;
+
+  // Monter/démonter le widget Turnstile sur l'écran résultat (step >= total)
+  useEffect(() => {
+    if (step < total) {
+      if (widgetIdRef.current) {
+        (window as unknown as { turnstile?: { remove: (id: string) => void } }).turnstile?.remove(widgetIdRef.current);
+        widgetIdRef.current = null;
+        if (turnstileEnabled) setTurnstileToken(null);
+      }
+      return;
+    }
+    const tw = (window as unknown as { turnstile?: unknown }).turnstile;
+    if (tw) {
+      renderTurnstile();
+    } else {
+      const script = document.querySelector<HTMLScriptElement>('script[src*="challenges.cloudflare.com/turnstile"]');
+      script?.addEventListener("load", renderTurnstile, { once: true });
+    }
+  }, [step, total, turnstileEnabled, renderTurnstile]);
   const progress =
     step >= total
       ? 100
@@ -152,7 +208,8 @@ export function ToolWizard(props: ToolWizardProps) {
     form.firstName.trim().length > 1 &&
     /.+@.+\..+/.test(form.email) &&
     !!form.currentTool &&
-    form.consent;
+    form.consent &&
+    !!turnstileToken;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -185,19 +242,34 @@ export function ToolWizard(props: ToolWizardProps) {
         })
         .join("\n");
 
+      // T12/3.4 — score affiché + recommandations dans des champs dédiés (x_studio_*)
+      // + dans la description pour la lisibilité côté commercial.
+      const recommendationsText = result.recommendations.map((r, i) => `${i + 1}. ${r}`).join("\n");
       const description = buildLeadDescription({
-        "Outil utilisé": toolDisplayName ?? title,
-        "Score lead": `${score} / 100 — ${segment}`,
-        "Résultat affiché": `${result.headline}\n${result.summary}`,
-        Recommandations: result.recommendations.map((r, i) => `${i + 1}. ${r}`).join("\n"),
+        "Résultat": `${result.headline} — ${result.summary}`,
+        Recommandations: recommendationsText,
         Réponses: answersText,
-        Société: form.company || undefined,
-        "Outil actuel (form)": form.currentTool || undefined,
-        Téléphone: form.phone || undefined,
-        UTM: formatUtmForOdoo(utm) || undefined,
-        Landing: utm.landing,
-        Referrer: utm.referrer,
       });
+
+      const besoinLabel = besoin === "erp" ? "Odoo ERP" : "Marketing digital";
+      const consentAt = new Date().toISOString();
+
+      const outilSourceMap: Record<string, string> = {
+        "conformite-dgi":        "Simulateur DGI",
+        "diagnostic-digital":    "Diagnostic digital",
+        "roi-erp":               "Calculateur ROI ERP",
+        "comparateur-sage-odoo": "Comparateur Sage-Odoo",
+      };
+      const outilSourceKey = outilSourceMap[slug] ?? "Simulateur DGI";
+
+      // Tag séquence Marketing Automation (un par outil)
+      const sequenceTagMap: Record<string, string> = {
+        "conformite-dgi":        "Séquence: Conformité DGI",
+        "roi-erp":               "Séquence: ROI ERP",
+        "diagnostic-digital":    "Séquence: Diagnostic Digital",
+        "comparateur-sage-odoo": "Séquence: Comparateur Sage-Odoo",
+      };
+      const sequenceTag = sequenceTagMap[slug];
 
       const payload: OdooLeadData = {
         name: `${form.firstName}${form.company ? " — " + form.company : ""} — ${toolDisplayName ?? title}`,
@@ -208,40 +280,23 @@ export function ToolWizard(props: ToolWizardProps) {
         description,
         source: `msl-itech.com/outils/${slug}${utm.source ? " · " + utm.source : ""}`,
         country_code: "MA",
-        tag_names: [
-          toolDisplayName ? `Outil : ${toolDisplayName}` : `outil:${slug}`,
-          `segment:${segment}`,
-          `score:${score}`,
-          besoin ? `besoin:${besoin}` : "",
-          finalTool ? `outil-actuel:${finalTool}` : "",
-        ].filter(Boolean),
-        extra: {
-          lead_score: score,
-          segment,
-          tool_slug: slug,
-          x_besoin: besoin,
-          answers,
-          utm,
-        },
+        studio_routing: true,
+        utm_source_name: utm.source || undefined,
+        utm_medium_name: utm.medium || undefined,
+        utm_campaign_name: utm.campaign || undefined,
+        referred: window.location.pathname,
+        tag_names: sequenceTag ? [besoinLabel, sequenceTag] : [besoinLabel],
+        // Qualification
+        x_studio_outil_source: outilSourceKey,
+        x_studio_score: score,
+        x_studio_score_affiche: result.badgeValue !== undefined ? Number(result.badgeValue) : previewScore,
+        x_studio_recommandations: recommendationsText,
+        x_studio_outil_actuel: finalTool ? ({ excel: "Excel / Word", sage: "Sage", odoo: "Odoo", autre: "Autre" } as Record<string, string>)[finalTool] : undefined,
+        x_studio_consentement: true,
+        x_studio_consentement_date: consentAt,
       };
 
       await submitLead(payload);
-
-      // Enroll lead into the email nurture sequence (non-blocking).
-      supabase.functions
-        .invoke("enroll-lead-sequence", {
-          body: {
-            email: form.email,
-            tool_slug: slug,
-            score,
-            segment,
-            first_name: form.firstName,
-            company: form.company || null,
-            phone: form.phone || null,
-            template_data: { answers, utm, result, current_tool: form.currentTool },
-          },
-        })
-        .catch((err) => console.warn("enroll-lead-sequence failed", err));
 
       setLeadCaptured(true);
       toast({
@@ -263,7 +318,7 @@ export function ToolWizard(props: ToolWizardProps) {
   const result = useMemo(() => computeResult(answers), [answers, computeResult]);
 
   return (
-    <section className="bg-brand-bg pb-20 pt-10 md:pt-14">
+    <section className="overflow-x-clip bg-brand-bg pb-20 pt-10 md:pt-14">
       <div className="container px-4 sm:px-6">
         {/* Hero */}
         <div className="mx-auto max-w-3xl text-center">
@@ -316,6 +371,9 @@ export function ToolWizard(props: ToolWizardProps) {
               leadCaptured={leadCaptured}
               onBack={back}
               onSubmit={handleSubmit}
+              turnstileToken={turnstileToken}
+              turnstileRef={turnstileRef}
+              badgeLabel={badgeLabel}
             />
           )}
 
@@ -455,6 +513,9 @@ function ResultAndLeadBlock({
   leadCaptured,
   onBack,
   onSubmit,
+  turnstileToken,
+  turnstileRef,
+  badgeLabel,
 }: {
   result: ToolResult;
   score: number;
@@ -466,6 +527,9 @@ function ResultAndLeadBlock({
   leadCaptured: boolean;
   onBack: () => void;
   onSubmit: (e: React.FormEvent) => void;
+  turnstileToken: string | null;
+  turnstileRef: React.RefObject<HTMLDivElement>;
+  badgeLabel?: string;
 }) {
   return (
     <div className="mt-8 space-y-6">
@@ -480,11 +544,23 @@ function ResultAndLeadBlock({
               {result.headline}
             </h2>
           </div>
-          <div
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl font-heading text-xl font-bold text-brand-blue shadow-inner"
-            style={{ backgroundColor: "var(--gold)" }}
-          >
-            {result.badgeValue !== undefined ? result.badgeValue : score}
+          <div className="flex shrink-0 flex-col items-end gap-1">
+            {badgeLabel && (
+              <p className="font-mono text-[9px] uppercase tracking-[0.15em] text-brand-grey">
+                {badgeLabel}
+              </p>
+            )}
+            <div
+              className="flex items-baseline gap-0.5 rounded-2xl px-3 py-2.5 font-heading font-bold text-brand-blue shadow-inner"
+              style={{ backgroundColor: "var(--gold)" }}
+            >
+              <span className="text-2xl leading-none">
+                {result.badgeValue !== undefined ? result.badgeValue : score}
+              </span>
+              {badgeLabel && (
+                <span className="text-sm font-normal leading-none text-brand-blue/70">/100</span>
+              )}
+            </div>
           </div>
         </div>
         <p className="mt-3 font-body text-sm leading-relaxed text-brand-grey">
@@ -532,7 +608,7 @@ function ResultAndLeadBlock({
 
         {/* RDV button — always visible */}
         <Link
-          to={`/prendre-rendez-vous?score=${score}`}
+          to={`/prendre-rendez-vous?score=${result.badgeValue !== undefined ? result.badgeValue : score}`}
           className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand-blue px-5 py-2.5 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
         >
           Réserver un cadrage de 30 min <ArrowRight size={14} />
@@ -626,6 +702,16 @@ function ResultAndLeadBlock({
             </span>
           </label>
 
+          {/* Turnstile anti-robot */}
+          <div className="mt-5" onClick={(e) => e.stopPropagation()}>
+            <div ref={turnstileRef} />
+            {!turnstileToken && (
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey">
+                Vérification anti-robot requise avant l'envoi.
+              </p>
+            )}
+          </div>
+
           <div className="mt-4 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
             <button
               type="button"
@@ -637,7 +723,7 @@ function ResultAndLeadBlock({
             <button
               type="submit"
               disabled={!canSubmit || submitting}
-              className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
               style={{ backgroundColor: "var(--gold)" }}
             >
               {submitting ? "Envoi en cours…" : "Recevoir mon plan d'action"}
@@ -661,7 +747,7 @@ function ResultAndLeadBlock({
             Vous recevrez le détail complet et vos recommandations personnalisées par email dans quelques minutes.
           </p>
           <Link
-            to={`/prendre-rendez-vous?score=${score}`}
+            to={`/prendre-rendez-vous?score=${result.badgeValue !== undefined ? result.badgeValue : score}`}
             className="mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-bold transition hover:scale-[1.02]"
             style={{ backgroundColor: "var(--blue)", color: "white" }}
           >

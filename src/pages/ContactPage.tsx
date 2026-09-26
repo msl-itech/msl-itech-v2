@@ -115,6 +115,52 @@ const OBJECTIF_MARKETING_OPTIONS = [
 
 const STEP_LABELS = ["Votre besoin", "Coordonnées", "Précisions"];
 
+// ── B3 — Mapping valeurs formulaire → clés techniques Odoo Studio ──────────
+// Clés récupérées via API le 2026-09-23, nettoyées le 2026-09-25 (suppression U+200B).
+// Script fix-studio-selection-u200b.js a corrigé les valeurs côté Odoo — garder en sync.
+
+const ODOO_SECTEUR: Record<string, string> = {
+  "Commerce / Distribution":   "Commerce / Distribution",
+  "BTP / Construction":        "BTP / Construction",
+  "HORECA / Restauration":     "HORECA / Restauration",
+  "Santé / Services médicaux": "Santé / Services médicaux",
+  "Transport / Logistique":    "Transport / Logistique",
+  "Production / Industrie":    "Production / Industrie",
+  "Services B2B":              "Services B2B",
+  "Tourisme / Hôtellerie":     "Tourisme / Hôtellerie",
+  "Autre":                     "Autre",
+};
+
+const ODOO_OUTIL_ACTUEL: Record<string, string> = {
+  excel_word:  "Excel / Word",
+  sage:        "Sage",
+  autre_erp:   "Autre ERP",
+  odoo:        "Odoo",
+  aucun:       "Aucun outil",
+};
+
+const ODOO_ECHEANCE: Record<string, string> = {
+  lt3m:          "Moins de 3 mois",
+  "3_6m":        "3 à 6 mois",
+  later:         "Plus tard",
+  renseignement: "Je me renseigne",
+};
+
+const ODOO_OBJECTIF: Record<string, string> = {
+  nouveau:       "Nouveau site",
+  refonte:       "Refonte",
+  ecommerce:     "E-commerce",
+  plus_demandes: "Plus de demandes",
+  visibilite:    "Visibilité Google / IA",
+  campagnes:     "Campagnes pub",
+};
+
+const ODOO_BUDGET: Record<string, string> = {
+  lt1000:      "Moins de 1 000 €",
+  "1000_3500": "1 000 à 3 500 €",
+  gt3500:      "Plus de 3 500 €",
+};
+
 const CONFIRMATION: Record<Besoin, { title: string; body: string }> = {
   erp: {
     title: "Votre demande de démo ERP est enregistrée !",
@@ -122,7 +168,7 @@ const CONFIRMATION: Record<Besoin, { title: string; body: string }> = {
   },
   site: {
     title: "Votre projet web est entre de bonnes mains !",
-    body: "Notre équipe web revient vers vous sous 24h avec des exemples adaptés à votre secteur.",
+    body: "Notre équipe web revient vers vous sous 24 h ouvrées pour échanger sur votre projet.",
   },
   marketing: {
     title: "Votre demande de conseil digital est prise en compte !",
@@ -131,7 +177,7 @@ const CONFIRMATION: Record<Besoin, { title: string; body: string }> = {
 };
 
 const SUBMIT_LABELS: Record<Besoin, string> = {
-  erp: "Demander ma démo Odoo gratuite",
+  erp: "Demander ma démo Odoo",
   site: "Recevoir un devis site",
   marketing: "Demander mon audit digital",
 };
@@ -225,7 +271,11 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [navDisabled, setNavDisabled] = useState(false);
-  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  // Si VITE_TURNSTILE_SITE_KEY absent (dev local), on bypass Turnstile
+  const turnstileEnabled = !!import.meta.env.VITE_TURNSTILE_SITE_KEY;
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(
+    turnstileEnabled ? null : "bypass-no-sitekey"
+  );
   const turnstileRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -272,14 +322,22 @@ export default function ContactPage() {
   // Turnstile widget — render on step 2, remove when leaving
   const renderTurnstile = useCallback(() => {
     const tw = (window as unknown as { turnstile?: { render: (el: HTMLElement, opts: unknown) => string; remove: (id: string) => void } }).turnstile;
-    if (!tw || !turnstileRef.current || widgetIdRef.current) return;
-    widgetIdRef.current = tw.render(turnstileRef.current, {
-      sitekey: import.meta.env.VITE_TURNSTILE_SITEKEY ?? "1x00000000000000000000AA",
-      callback: (token: string) => setTurnstileToken(token),
-      "expired-callback": () => setTurnstileToken(null),
-      "error-callback": () => setTurnstileToken(null),
-      theme: "light",
-    });
+    const sitekey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+    console.info("[Turnstile] sitekey présente :", !!sitekey, "| valeur :", sitekey ? sitekey.slice(0, 8) + "…" : "undefined");
+    if (!tw || !turnstileRef.current || widgetIdRef.current || !sitekey) return;
+    try {
+      widgetIdRef.current = tw.render(turnstileRef.current, {
+        sitekey,
+        callback: (token: string) => setTurnstileToken(token),
+        "expired-callback": () => setTurnstileToken(null),
+        "error-callback": () => setTurnstileToken(null),
+        theme: "light",
+        appearance: "always",
+        "refresh-expired": "auto",
+      });
+    } catch (e) {
+      console.warn("[Turnstile] render() échoué :", e);
+    }
   }, []);
 
   useEffect(() => {
@@ -405,37 +463,13 @@ export default function ContactPage() {
     const besoin = data.besoin as Besoin;
     const besoinLabel = { erp: "Odoo ERP", site: "Site web", marketing: "Marketing digital" }[besoin];
     const utm = getUtm();
+    const consentAt = new Date().toISOString();
 
-    // Build rich description
-    const sections: Record<string, string | undefined | null> = {
-      Besoin: besoinLabel,
-      Pays: COUNTRY_LABELS[data.country],
-    };
-
-    if (besoin === "erp") {
-      if (data.sector) sections["Secteur"] = data.sector;
-      if (data.currentToolErp) sections["Outil actuel"] = CURRENT_TOOL_OPTIONS.find((o) => o.value === data.currentToolErp)?.label;
-      if (data.echeance) sections["Échéance"] = ECHEANCE_OPTIONS.find((o) => o.value === data.echeance)?.label;
-    } else if (besoin === "site") {
-      if (data.urlSite) sections["URL actuel"] = data.urlSite;
-      if (data.objectifSite) sections["Objectif"] = OBJECTIF_SITE_OPTIONS.find((o) => o.value === data.objectifSite)?.label;
-      if (data.budget) sections["Budget indicatif"] = BUDGET_OPTIONS.find((o) => o.value === data.budget)?.label;
-    } else if (besoin === "marketing") {
-      if (data.urlMarketing) sections["URL du site"] = data.urlMarketing;
-      if (data.objectifMarketing) sections["Objectif"] = OBJECTIF_MARKETING_OPTIONS.find((o) => o.value === data.objectifMarketing)?.label;
-      if (data.message) sections["Message"] = data.message;
-    }
-
-    const utmStr = formatUtmForOdoo(utm);
-    if (utmStr) sections["UTM"] = utmStr;
-    if (utm.referrer) sections["Referrer"] = utm.referrer;
-    sections["Page d'origine"] = window.location.href;
-    sections["Consentement"] = `Oui — ${new Date().toISOString()}`;
-
-    const description = buildLeadDescription(sections);
-
-    const tags: string[] = [`besoin:${besoin}`, "Consentement OK"];
-    if (besoin === "erp" && data.sector) tags.push(`secteur:${data.sector}`);
+    // T12 — description : uniquement le message libre (marketing).
+    // Tout le reste va dans les champs x_studio_*.
+    const freeMessage = besoin === "marketing" && data.message
+      ? buildLeadDescription({ Message: data.message })
+      : undefined;
 
     const payload: OdooLeadData = {
       name: `${data.fullName}${data.company ? ` — ${data.company}` : ""} — ${besoinLabel}`,
@@ -444,30 +478,37 @@ export default function ContactPage() {
       phone: data.phone || undefined,
       partner_name: data.company || undefined,
       country_code: data.country !== "OTHER" ? data.country : undefined,
-      team_name: besoin === "erp" ? "ERP" : "Web & Marketing",
-      description,
+      studio_routing: true,
+      utm_source_name: utm.source || undefined,
+      utm_medium_name: utm.medium || undefined,
+      utm_campaign_name: utm.campaign || undefined,
+      referred: window.location.href,
+      description: freeMessage,
       source: utm.source
         ? `${utm.source}${utm.medium ? ` / ${utm.medium}` : ""}`
         : "msl-itech.com /contact",
-      tag_names: tags,
-      extra: {
-        x_besoin: besoin,
-        score_outil: scoreParam ? Number(scoreParam) : undefined,
-        page_origine: window.location.href,
-        referrer: utm.referrer || undefined,
-        utm_source: utm.source || undefined,
-        utm_medium: utm.medium || undefined,
-        utm_campaign: utm.campaign || undefined,
-        utm_content: utm.content || undefined,
-        consent_at: new Date().toISOString(),
-        sector: data.sector || undefined,
-        current_tool: data.currentToolErp || undefined,
-        echeance: data.echeance || undefined,
-        url_site: data.urlSite || data.urlMarketing || undefined,
-        objectif: data.objectifSite || data.objectifMarketing || undefined,
-        budget: data.budget || undefined,
-        message: data.message || undefined,
-      },
+      tag_names: [besoinLabel],
+      // Qualification
+      x_studio_outil_source: "Formulaire de contact",
+      x_studio_score: scoreParam ? Number(scoreParam) : undefined,
+      x_studio_consentement: true,
+      x_studio_consentement_date: consentAt,
+      // Champs selon le besoin
+      ...(besoin === "erp" && {
+        x_studio_secteur:      data.sector        ? ODOO_SECTEUR[data.sector]             : undefined,
+        x_studio_outil_actuel: data.currentToolErp ? ODOO_OUTIL_ACTUEL[data.currentToolErp] : undefined,
+        x_studio_echeance:     data.echeance       ? ODOO_ECHEANCE[data.echeance]           : undefined,
+      }),
+      ...(besoin === "site" && {
+        x_studio_url_site:  data.urlSite       || undefined,
+        x_studio_objectif:  data.objectifSite  ? ODOO_OBJECTIF[data.objectifSite]  : undefined,
+        x_studio_budget:    data.budget        ? ODOO_BUDGET[data.budget]           : undefined,
+      }),
+      ...(besoin === "marketing" && {
+        x_studio_url_site:  data.urlMarketing       || undefined,
+        x_studio_objectif:  data.objectifMarketing  ? ODOO_OBJECTIF[data.objectifMarketing] : undefined,
+        x_studio_budget:    data.budget             ? ODOO_BUDGET[data.budget]               : undefined,
+      }),
     };
 
     setSubmitting(true);
@@ -660,9 +701,10 @@ export default function ContactPage() {
             </div>
           ) : (
             <form
+              onKeyDown={(e) => { if (e.key === "Enter" && (e.target as HTMLElement).tagName !== "BUTTON") e.preventDefault(); }}
               onSubmit={handleSubmit}
               ref={formRef}
-              className="relative mt-12 overflow-hidden rounded-[28px] border bg-brand-white p-7 shadow-[0_30px_80px_-30px_rgba(18,77,90,0.25)] md:p-10"
+              className="relative mt-12 overflow-clip rounded-[28px] border bg-brand-white p-7 shadow-[0_30px_80px_-30px_rgba(18,77,90,0.25)] md:p-10"
               style={{ borderColor: "var(--grey-light)" }}
               noValidate
             >
@@ -957,7 +999,7 @@ export default function ContactPage() {
 
               {/* ── Turnstile (step 2 only) ── */}
               {step === 2 && (
-                <div className="mt-6">
+                <div className="mt-6" onSubmit={(e) => e.stopPropagation()} onClick={(e) => e.stopPropagation()}>
                   <div ref={turnstileRef} />
                   {!turnstileToken && (
                     <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey">
