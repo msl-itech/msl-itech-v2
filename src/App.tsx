@@ -143,6 +143,7 @@ const App = () => {
             {/* Blog 301 — concentration du signal SEO vers les articles les plus riches */}
             <Route path="/blog/facturation-electronique-maroc-2026" element={<Navigate to="/blog/facturation-electronique-obligatoire-maroc-2026-erp" replace />} />
             <Route path="/blog/sage-vs-odoo-maroc-comparatif-2026" element={<Navigate to="/blog/odoo-vs-sage-maroc-comparatif" replace />} />
+
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>
