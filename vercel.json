@@ -5,16 +5,6 @@
       "has": [{ "type": "host", "value": "marrakech.msl-itech.com" }],
       "destination": "https://msl-itech.com/integrateur-odoo-marrakech",
       "permanent": true
-    },
-    {
-      "source": "/blog/facturation-electronique-maroc-2026",
-      "destination": "/blog/facturation-electronique-obligatoire-maroc-2026-erp",
-      "permanent": true
-    },
-    {
-      "source": "/blog/sage-vs-odoo-maroc-comparatif-2026",
-      "destination": "/blog/odoo-vs-sage-maroc-comparatif",
-      "permanent": true
     }
   ],
   "rewrites": [
