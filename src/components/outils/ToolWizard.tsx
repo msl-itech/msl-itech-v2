@@ -64,6 +64,8 @@ export type ToolWizardProps = {
   besoin?: "erp" | "marketing";
   /** Nom affiché dans le tag Odoo ex: "Simulateur DGI", "Diagnostic digital" */
   toolDisplayName?: string;
+  /** Libellé affiché au-dessus du badge de score (ex: "Score de conformité") */
+  badgeLabel?: string;
 };
 
 type FormState = {
@@ -86,6 +88,7 @@ export function ToolWizard(props: ToolWizardProps) {
     partialTeaser,
     besoin,
     toolDisplayName,
+    badgeLabel,
   } = props;
 
   const [step, setStep] = useState(0); // 0..questions.length-1 = question; questions.length = result+form
@@ -370,6 +373,7 @@ export function ToolWizard(props: ToolWizardProps) {
               onSubmit={handleSubmit}
               turnstileToken={turnstileToken}
               turnstileRef={turnstileRef}
+              badgeLabel={badgeLabel}
             />
           )}
 
@@ -511,6 +515,7 @@ function ResultAndLeadBlock({
   onSubmit,
   turnstileToken,
   turnstileRef,
+  badgeLabel,
 }: {
   result: ToolResult;
   score: number;
@@ -524,6 +529,7 @@ function ResultAndLeadBlock({
   onSubmit: (e: React.FormEvent) => void;
   turnstileToken: string | null;
   turnstileRef: React.RefObject<HTMLDivElement>;
+  badgeLabel?: string;
 }) {
   return (
     <div className="mt-8 space-y-6">
@@ -538,11 +544,23 @@ function ResultAndLeadBlock({
               {result.headline}
             </h2>
           </div>
-          <div
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl font-heading text-xl font-bold text-brand-blue shadow-inner"
-            style={{ backgroundColor: "var(--gold)" }}
-          >
-            {result.badgeValue !== undefined ? result.badgeValue : score}
+          <div className="flex shrink-0 flex-col items-end gap-1">
+            {badgeLabel && (
+              <p className="font-mono text-[9px] uppercase tracking-[0.15em] text-brand-grey">
+                {badgeLabel}
+              </p>
+            )}
+            <div
+              className="flex items-baseline gap-0.5 rounded-2xl px-3 py-2.5 font-heading font-bold text-brand-blue shadow-inner"
+              style={{ backgroundColor: "var(--gold)" }}
+            >
+              <span className="text-2xl leading-none">
+                {result.badgeValue !== undefined ? result.badgeValue : score}
+              </span>
+              {badgeLabel && (
+                <span className="text-sm font-normal leading-none text-brand-blue/70">/100</span>
+              )}
+            </div>
           </div>
         </div>
         <p className="mt-3 font-body text-sm leading-relaxed text-brand-grey">

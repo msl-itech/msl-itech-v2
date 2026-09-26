@@ -136,6 +136,8 @@ export default function ComparateurSageOdooPage() {
       questions={questions}
       computeResult={computeResult}
       partialTeaser="La fourchette de coût se précise. Continuez : à la fin, vous recevez la comparaison Sage 3 ans vs Odoo 3 ans et notre recommandation."
+      besoin="erp"
+      toolDisplayName="Comparateur Sage-Odoo"
     />
   );
 }

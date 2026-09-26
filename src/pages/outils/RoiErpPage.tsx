@@ -113,6 +113,8 @@ export default function RoiErpPage() {
       questions={questions}
       computeResult={computeResult}
       partialTeaser="Vos données nous permettent déjà d'estimer une fourchette. Continuez : à la fin, vous recevez le gain 12 mois (MAD) et le payback estimé."
+      besoin="erp"
+      toolDisplayName="Calculateur ROI ERP"
     />
   );
 }
