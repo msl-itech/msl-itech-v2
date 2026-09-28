@@ -142,6 +142,7 @@ export default function DiagnosticDigitalPage() {
       partialTeaser="Votre niveau commence à se dessiner. Continuez : à la fin, vous recevez votre score / 15 et les 3 actions prioritaires pour passer au niveau supérieur."
       besoin="marketing"
       toolDisplayName="Diagnostic digital"
+      badgeMax={15}
     />
   );
 }
