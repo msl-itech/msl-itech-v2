@@ -3,11 +3,23 @@
  * T14 : Vrais codes 404 pour les routes inconnues
  *
  * Logique :
+ *  0. 301 — Slash final → sans slash (ex: /contact/ → /contact)
+ *  0. 301 — Anciennes URLs blog (anciens slugs → nouveaux slugs)
  *  1. Assets et fichiers système → toujours 200, proxy direct
  *  2. Routes statiques connues   → 200, proxy direct
  *  3. Préfixes dynamiques (/blog/, /realisations/) → vérifier le sitemap
  *  4. Tout le reste              → 404 (body = index.html de Lovable)
  */
+
+// ── 301 — Anciennes URLs blog ────────────────────────────────────────────────
+// Ces redirections remplacent les <Navigate> client-side de App.tsx.
+
+const BLOG_REDIRECTS = {
+  "/blog/facturation-electronique-maroc-2026":
+    "/blog/facturation-electronique-obligatoire-maroc-2026-erp",
+  "/blog/sage-vs-odoo-maroc-comparatif-2026":
+    "/blog/odoo-vs-sage-maroc-comparatif",
+};
 
 // ── Routes statiques ────────────────────────────────────────────────────────
 // Mettre à jour ici quand une nouvelle page statique est ajoutée au site.
@@ -172,10 +184,21 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
-    // Normaliser : supprimer le slash final sauf pour "/"
-    const normalizedPath = path.length > 1 && path.endsWith("/")
-      ? path.slice(0, -1)
-      : path;
+    // 0a. Slash final → 301 vers la version sans slash (sauf "/")
+    if (path.length > 1 && path.endsWith("/")) {
+      const target = url.origin + path.slice(0, -1) + (url.search || "");
+      return Response.redirect(target, 301);
+    }
+
+    const normalizedPath = path;
+
+    // 0b. Anciennes URLs blog → 301 vers le nouvel URL canonique
+    if (BLOG_REDIRECTS[normalizedPath]) {
+      return Response.redirect(
+        url.origin + BLOG_REDIRECTS[normalizedPath],
+        301
+      );
+    }
 
     // 1. Assets et fichiers système → proxy direct
     if (ALWAYS_PASS.some((pattern) => pattern.test(path))) {
