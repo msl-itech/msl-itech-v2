@@ -1,3 +1,4 @@
+// Purge prérendu — correctif noindex, 29/09/2026
 import { Helmet } from "react-helmet-async";
 
 export interface SEOHeadProps {
