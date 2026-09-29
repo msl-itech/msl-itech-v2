@@ -46,8 +46,10 @@ export type ToolResult = {
   highlights: { label: string; value: string }[];
   /** 3 actions prioritaires à afficher sur l'écran de résultat */
   recommendations: string[];
-  /** Valeur affichée dans le badge doré. Si absent, affiche le lead score (0-100). */
+  /** Valeur affichée dans le badge doré. Si absent, le badge est masqué (sauf si badgeLabel fourni). */
   badgeValue?: string | number;
+  /** Texte synthétique des 3 highlights + phrase contextuelle → envoyé à Odoo comme x_studio_resultat_detail */
+  detailText?: string;
 };
 
 export type ToolWizardProps = {
@@ -292,9 +294,10 @@ export function ToolWizard(props: ToolWizardProps) {
         // Qualification
         x_studio_outil_source: outilSourceKey,
         x_studio_score: score,
-        x_studio_score_affiche: result.badgeValue !== undefined ? Number(result.badgeValue) : previewScore,
+        x_studio_score_affiche: result.badgeValue !== undefined ? Number(result.badgeValue) : undefined,
         x_studio_recommandations: recommendationsText,
         x_studio_resultat_cle: result.headline,
+        x_studio_resultat_detail: result.detailText,
         x_studio_outil_actuel: finalTool ? ({ excel: "Excel / Word", sage: "Sage", odoo: "Odoo", autre: "Autre" } as Record<string, string>)[finalTool] : undefined,
         x_studio_consentement: true,
         x_studio_consentement_date: consentAt,

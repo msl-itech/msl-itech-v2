@@ -94,6 +94,7 @@ function computeResult(answers: Record<string, string | number>) {
       "Identifier les 3 processus à automatiser en priorité (gain maximum)",
       "Demander un devis détaillé avec planning de déploiement",
     ],
+    detailText: `Gain bas : ${fmt(low)}  •  Gain haut : ${fmt(high)}  •  Payback : ${payback}\nVotre PME peut économiser entre ${fmt(low)} et ${fmt(high)} sur 12 mois grâce à Odoo — avec un retour sur investissement estimé à ${payback}.`,
   };
 }
 

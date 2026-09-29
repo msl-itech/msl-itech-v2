@@ -110,6 +110,14 @@ function computeResult(answers: Record<string, string | number>) {
       "Mettre en place des dashboards live partagés",
     ];
   }
+  const contextualSentence =
+    total >= 13
+      ? "Votre PME atteint le niveau Intelligence. L'objectif est d'industrialiser vos agents IA et de piloter en temps réel."
+      : total >= 10
+        ? "Votre PME est au niveau Automatisation. Déployer un copilote IA et étendre vos workflows vous propulsera au niveau Intelligence."
+        : total >= 7
+          ? "Votre PME est en phase d'Intégration. Centraliser vos données dans Odoo et connecter vos modules est l'étape clé."
+          : "Votre PME est au niveau Conformité. Mettre en place un ERP unifié (Odoo) et la facturation DGI est votre priorité.";
   return {
     headline: `Votre niveau de maturité digitale : ${level}`,
     summary:
@@ -121,6 +129,7 @@ function computeResult(answers: Record<string, string | number>) {
     ],
     recommendations,
     badgeValue: total,
+    detailText: `Niveau : ${level.split(" — ")[0]}  •  Score : ${total} / 15  •  Prochain palier : ${next.split(" ").slice(0, 4).join(" ")}…\n${contextualSentence}`,
   };
 }
 
@@ -140,7 +149,7 @@ export default function DiagnosticDigitalPage() {
       questions={questions}
       computeResult={computeResult}
       partialTeaser="Votre niveau commence à se dessiner. Continuez : à la fin, vous recevez votre score / 15 et les 3 actions prioritaires pour passer au niveau supérieur."
-      besoin="marketing"
+      besoin="erp"
       toolDisplayName="Diagnostic digital"
       badgeMax={15}
     />

@@ -82,6 +82,10 @@ function computeResult(answers: Record<string, string | number>) {
     new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(Math.max(0, n)) +
     " MAD";
   const reco = diff > 0 ? "Odoo" : "Sage";
+  const contextualSentenceComparateur =
+    diff > 0
+      ? `Sur 3 ans, Odoo représente ${fmt(diff)} d'économie par rapport à votre Sage actuel — avec une couverture fonctionnelle plus complète et la conformité DGI intégrée.`
+      : `Sur 3 ans, votre Sage actuel est moins coûteux de ${fmt(Math.abs(diff))} — mais évaluez la couverture fonctionnelle et la conformité DGI avant de décider.`;
   return {
     headline: `Économie 3 ans estimée en faveur d'${reco === "Odoo" ? "Odoo" : "Sage"} : ${fmt(Math.abs(diff))}`,
     summary:
@@ -96,6 +100,7 @@ function computeResult(answers: Record<string, string | number>) {
       "Vérifier la conformité DGI et la couverture fonctionnelle",
       "Planifier la migration avec un intégrateur certifié au Maroc",
     ],
+    detailText: `Sage 3 ans : ${fmt(sage3y)}  •  Odoo 3 ans : ${fmt(odoo3y)}  •  Recommandation : ${reco}\n${contextualSentenceComparateur}`,
   };
 }
 
