@@ -3,12 +3,19 @@
  * T14 : Vrais codes 404 pour les routes inconnues
  *
  * Logique :
- *  0. 301 — Slash final → sans slash (ex: /contact/ → /contact)
- *  0. 301 — Anciennes URLs blog (anciens slugs → nouveaux slugs)
- *  1. Assets et fichiers système → toujours 200, proxy direct
- *  2. Routes statiques connues   → 200, proxy direct
- *  3. Préfixes dynamiques (/blog/, /realisations/) → vérifier le sitemap
- *  4. Tout le reste              → 404 (body = index.html de Lovable)
+ *  0. Purge cache sitemap (endpoint protégé par secret, POST /?_purge=SECRET)
+ *  1. 301 — Slash final → sans slash (ex: /contact/ → /contact)
+ *  2. 301 — Anciennes URLs blog (anciens slugs → nouveaux slugs)
+ *  3. Assets et fichiers système → toujours 200, proxy direct
+ *  4. Routes statiques connues   → 200, proxy direct
+ *  5. Préfixes dynamiques (/blog/, /realisations/) → vérifier le sitemap
+ *  6. Tout le reste              → 404 (body = index.html de Lovable)
+ *
+ * Variable d'environnement requise :
+ *  PURGE_SECRET — chaîne aléatoire, définie dans le dashboard Worker
+ *
+ * Purger le cache après une publication :
+ *  curl -X POST "https://msl-itech.com/?_purge=VOTRE_SECRET"
  */
 
 // ── 301 — Anciennes URLs blog ────────────────────────────────────────────────
@@ -184,7 +191,22 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
-    // 0a. Slash final → 301 vers la version sans slash (sauf "/")
+    // 0. Endpoint de purge du cache sitemap
+    // POST https://msl-itech.com/?_purge=SECRET
+    if (
+      request.method === "POST" &&
+      url.searchParams.get("_purge") === env.PURGE_SECRET &&
+      env.PURGE_SECRET
+    ) {
+      const cache = caches.default;
+      const deleted = await cache.delete(new Request(SITEMAP_URL));
+      return new Response(
+        JSON.stringify({ purged: deleted, sitemap: SITEMAP_URL }),
+        { headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    // 2. Slash final → 301 vers la version sans slash (sauf "/")
     if (path.length > 1 && path.endsWith("/")) {
       const target = url.origin + path.slice(0, -1) + (url.search || "");
       return Response.redirect(target, 301);
@@ -192,7 +214,7 @@ export default {
 
     const normalizedPath = path;
 
-    // 0b. Anciennes URLs blog → 301 vers le nouvel URL canonique
+    // 3. Anciennes URLs blog → 301 vers le nouvel URL canonique
     if (BLOG_REDIRECTS[normalizedPath]) {
       return Response.redirect(
         url.origin + BLOG_REDIRECTS[normalizedPath],
