@@ -175,12 +175,15 @@ function parseSitemapLocs(xml) {
 
 async function respond404(request) {
   // Fetch l'index.html de Lovable (qui affiche <NotFound />)
-  // mais on retourne le status 404
+  // mais on retourne le status 404 avec Cache-Control: no-store
+  // pour éviter qu'un 404 soit mis en cache (navigateur ou CDN).
   const origin = await fetch(request);
+  const headers = new Headers(origin.headers);
+  headers.set("Cache-Control", "no-store");
   return new Response(origin.body, {
     status: 404,
     statusText: "Not Found",
-    headers: origin.headers,
+    headers,
   });
 }
 
