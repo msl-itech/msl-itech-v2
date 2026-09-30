@@ -381,6 +381,7 @@ export function ToolWizard(props: ToolWizardProps) {
               turnstileToken={turnstileToken}
               turnstileRef={turnstileRef}
               badgeLabel={badgeLabel}
+              badgeMax={badgeMax}
             />
           )}
 
@@ -523,6 +524,7 @@ function ResultAndLeadBlock({
   turnstileToken,
   turnstileRef,
   badgeLabel,
+  badgeMax,
 }: {
   result: ToolResult;
   score: number;
@@ -537,6 +539,7 @@ function ResultAndLeadBlock({
   turnstileToken: string | null;
   turnstileRef: React.RefObject<HTMLDivElement>;
   badgeLabel?: string;
+  badgeMax?: number;
 }) {
   return (
     <div className="mt-8 space-y-6">
