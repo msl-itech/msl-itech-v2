@@ -384,11 +384,11 @@ export const newArticles9to10: BlogPost[] = [
     faqs: [
       {
         q: "Combien coûte Odoo par mois ?",
-        a: "Le prix d'Odoo varie selon votre zone géographique, votre devise locale et la période de facturation (mensuelle ou annuelle). Les plans Standard, Custom et Light User sont tous payants avec des tarifs différents selon les régions. Le plan One App Free reste gratuit. Pour connaître les prix exacts dans votre pays, consultez la page officielle odoo.com/fr_FR/pricing.",
+        a: "Le prix d'Odoo varie selon votre zone géographique, votre devise locale et la période de facturation (mensuelle ou annuelle). Les plans Standard, Custom et Light User sont tous payants avec des tarifs différents selon les régions. Le plan One App Free reste gratuit. Pour connaître les prix exacts dans votre pays, consultez la [page officielle de tarification Odoo](https://www.odoo.com/fr_FR/pricing).",
       },
       {
         q: "Quel est le prix d'Odoo par utilisateur ?",
-        a: "Le prix par utilisateur dépend du plan choisi (Standard ou Custom) et de votre zone géographique. Odoo facture par utilisateur actif par mois, avec un tarif promotionnel la première année inférieur au tarif de renouvellement. Consultez odoo.com/fr_FR/pricing pour les tarifs actuels dans votre région.",
+        a: "Le prix par utilisateur dépend du plan choisi (Standard ou Custom) et de votre zone géographique. Odoo facture par utilisateur actif par mois, avec un tarif promotionnel la première année inférieur au tarif de renouvellement. Consultez [odoo.com/fr_FR/pricing](https://www.odoo.com/fr_FR/pricing) pour les tarifs actuels dans votre région.",
       },
       {
         q: "Qu'est-ce qu'un Light User Odoo ?",
@@ -396,7 +396,7 @@ export const newArticles9to10: BlogPost[] = [
       },
       {
         q: "Combien coûte un Light User Odoo ?",
-        a: "Le prix d'un Light User varie selon votre zone géographique et votre devise. Ce tarif s'ajoute à un abonnement Standard ou Custom existant. Consultez odoo.com/fr_FR/pricing pour connaître le prix applicable dans votre pays avant de vous engager.",
+        a: "Le prix d'un Light User varie selon votre zone géographique et votre devise. Ce tarif s'ajoute à un abonnement Standard ou Custom existant. Consultez [odoo.com/fr_FR/pricing](https://www.odoo.com/fr_FR/pricing) pour connaître le prix applicable dans votre pays avant de vous engager.",
       },
       {
         q: "Quelle différence entre Odoo Standard et Custom ?",
@@ -461,7 +461,7 @@ export const newArticles9to10: BlogPost[] = [
       },
       {
         type: "p",
-        text: "⚠️ Les tarifs Odoo varient selon votre zone géographique, votre devise locale et la période de facturation choisie (mensuelle ou annuelle). Consultez la page officielle odoo.com/fr_FR/pricing pour connaître les prix exacts applicables dans votre région avant toute décision.",
+        text: "⚠️ Les tarifs Odoo varient selon votre zone géographique, votre devise locale et la période de facturation choisie (mensuelle ou annuelle). Consultez la [page officielle de tarification Odoo](https://www.odoo.com/fr_FR/pricing) pour connaître les prix exacts applicables dans votre région avant toute décision.",
       },
       {
         type: "p",
@@ -592,7 +592,7 @@ export const newArticles9to10: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Les prix Odoo variant selon la zone géographique, les exemples ci-dessous décrivent la structure des licences sans montants fixes. Pour obtenir un chiffrage précis dans votre région, consultez odoo.com/fr_FR/pricing.",
+        text: "Les prix Odoo variant selon la zone géographique, les exemples ci-dessous décrivent la structure des licences sans montants fixes. Pour obtenir un chiffrage précis dans votre région, consultez [odoo.com/fr_FR/pricing](https://www.odoo.com/fr_FR/pricing).",
       },
       {
         type: "h3",
@@ -633,7 +633,7 @@ export const newArticles9to10: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Pour un chiffrage adapté à votre contexte, contactez un partenaire Odoo certifié ou utilisez le configurateur officiel sur odoo.com/fr_FR/pricing.",
+        text: "Pour un chiffrage adapté à votre contexte, contactez un partenaire Odoo certifié ou utilisez le [configurateur officiel sur odoo.com/fr_FR/pricing](https://www.odoo.com/fr_FR/pricing).",
       },
       {
         type: "h2",
