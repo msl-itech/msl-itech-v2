@@ -569,7 +569,7 @@ export default function BlogPage() {
       {/* ── BODY ── */}
       <section className="bg-background py-20">
         <div className="container max-w-6xl">
-          <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-14 xl:gap-20 lg:items-start">
+          <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-14 xl:gap-20">
 
             {/* ── SIDEBAR — sticky, desktop only ── */}
             {tocItems.length > 0 && (
