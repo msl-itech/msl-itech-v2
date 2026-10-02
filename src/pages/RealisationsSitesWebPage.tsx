@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -10,9 +9,6 @@ import {
   Search,
   Smartphone,
   Code2,
-  List,
-  Link2,
-  Check,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
@@ -180,24 +176,6 @@ const approachCards = [
   },
 ];
 
-function CopyLinkButton() {
-  const [copied, setCopied] = useState(false);
-  return (
-    <button
-      onClick={async () => {
-        await navigator.clipboard.writeText("https://msl-itech.com/realisations/sites-web");
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      }}
-      className="flex w-full items-center gap-2.5 rounded-xl border px-3.5 py-2.5 font-body text-sm text-brand-black transition hover:border-brand-blue hover:text-brand-blue"
-      style={{ borderColor: "var(--grey-light)" }}
-    >
-      {copied ? <Check size={15} className="text-green-600" /> : <Link2 size={15} />}
-      {copied ? "Lien copié !" : "Copier le lien"}
-    </button>
-  );
-}
-
 export default function RealisationsSitesWebPage() {
   useProductSeo({
     title: "Réalisations Sites Web & Plateformes — MSL-iTECH",
@@ -307,113 +285,28 @@ export default function RealisationsSitesWebPage() {
         </div>
       </section>
 
-      {/* ── CORPS — 2 colonnes (sidebar sticky + contenu) ── */}
-      <div className="bg-brand-bg">
-        <div className="container py-20 md:py-24">
-          <div className="flex gap-10 xl:gap-14">
-
-            {/* ── SIDEBAR STICKY ── */}
-            <aside className="hidden lg:block w-52 xl:w-60 shrink-0">
-              <div className="sticky top-28 space-y-5">
-
-                {/* Sommaire */}
-                <nav
-                  className="rounded-[20px] border bg-brand-white p-5"
-                  style={{ borderColor: "var(--grey-light)" }}
-                  aria-label="Sommaire de la page"
-                >
-                  <p className="mb-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
-                    <List size={13} />
-                    Sommaire
-                  </p>
-                  <ul className="space-y-3">
-                    {[
-                      { id: "projets", label: "Nos créations web" },
-                      { id: "methode", label: "Notre méthode" },
-                      { id: "odoo",    label: "Réalisations Odoo ERP" },
-                    ].map((item) => (
-                      <li key={item.id}>
-                        <a
-                          href={`#${item.id}`}
-                          className="block font-body text-sm text-brand-grey transition hover:text-brand-blue hover:translate-x-0.5"
-                        >
-                          {item.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-
-                {/* Partager */}
-                <div
-                  className="rounded-[20px] border bg-brand-white p-5"
-                  style={{ borderColor: "var(--grey-light)" }}
-                >
-                  <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
-                    Partager
-                  </p>
-                  <div className="space-y-2">
-                    {/* LinkedIn */}
-                    <a
-                      href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent("https://msl-itech.com/realisations/sites-web")}&title=${encodeURIComponent("Réalisations Sites Web & Plateformes — MSL-iTECH")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2.5 rounded-xl border px-3.5 py-2.5 font-body text-sm text-brand-black transition hover:border-brand-blue hover:text-brand-blue"
-                      style={{ borderColor: "var(--grey-light)" }}
-                    >
-                      {/* LinkedIn SVG */}
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                        <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
-                      </svg>
-                      LinkedIn
-                    </a>
-
-                    {/* X / Twitter */}
-                    <a
-                      href={`https://twitter.com/intent/tweet?url=${encodeURIComponent("https://msl-itech.com/realisations/sites-web")}&text=${encodeURIComponent("Réalisations Sites Web & Plateformes — MSL-iTECH")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2.5 rounded-xl border px-3.5 py-2.5 font-body text-sm text-brand-black transition hover:border-brand-blue hover:text-brand-blue"
-                      style={{ borderColor: "var(--grey-light)" }}
-                    >
-                      {/* X SVG */}
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                      </svg>
-                      X / Twitter
-                    </a>
-
-                    {/* Copier le lien */}
-                    <CopyLinkButton />
-                  </div>
-                </div>
-
+      {/* ── PROJETS ── */}
+      <section className="bg-brand-bg py-24 md:py-28">
+        <div className="container">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end mb-14">
+            <div className="lg:col-span-7">
+              <div className="mb-4 inline-flex items-center gap-2">
+                <span className="h-px w-10 bg-brand-blue" />
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+                  Sites & plateformes
+                </p>
               </div>
-            </aside>
+              <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
+                {webProjects.length} créations <Mark>en ligne.</Mark>
+              </h2>
+            </div>
+            <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
+              Chaque site est consultable en un clic — React, WordPress ou Odoo
+              eCommerce selon le besoin.
+            </p>
+          </div>
 
-            {/* ── CONTENU PRINCIPAL ── */}
-            <div className="flex-1 min-w-0">
-
-              {/* PROJETS */}
-              <section id="projets">
-                <div className="mb-14">
-                  <div className="mb-4 inline-flex items-center gap-2">
-                    <span className="h-px w-10 bg-brand-blue" />
-                    <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-                      Sites & plateformes
-                    </p>
-                  </div>
-                  <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-5xl">
-                    {webProjects.length} créations <Mark>en ligne.</Mark>
-                  </h2>
-                  <p className="mt-5 max-w-xl font-body text-base text-brand-grey">
-                    Chaque site est consultable en un clic — React, WordPress ou Odoo
-                    eCommerce selon le besoin.
-                  </p>
-                </div>
-
-                <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {webProjects.map((p) => (
               <div
                 key={p.url}
@@ -493,27 +386,33 @@ export default function RealisationsSitesWebPage() {
                 </div>
               </div>
             ))}
-                </div>
-              </section>
+          </div>
+        </div>
+      </section>
 
-              {/* MÉTHODE */}
-              <section id="methode" className="mt-20 border-t pt-20" style={{ borderColor: "var(--grey-light)" }}>
-                <div className="mb-14">
-                  <div className="mb-4 inline-flex items-center gap-2">
-                    <span className="h-px w-10 bg-brand-blue" />
-                    <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-                      Notre méthode
-                    </p>
-                  </div>
-                  <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-5xl">
-                    Un site qui <Mark>travaille pour vous.</Mark>
-                  </h2>
-                  <p className="mt-5 max-w-sm font-body text-base text-brand-grey">
-                    Quatre engagements concrets — pas de jargon, pas de promesses creuses.
-                  </p>
-                </div>
+      {/* ── APPROCHE WEB ── */}
+      <section className="bg-brand-bg py-24 md:py-28">
+        <div className="container">
+          {/* Header */}
+          <div className="mb-16 flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <div className="mb-4 inline-flex items-center gap-2">
+                <span className="h-px w-10 bg-brand-blue" />
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
+                  Notre méthode
+                </p>
+              </div>
+              <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-5xl">
+                Un site qui <Mark>travaille pour vous.</Mark>
+              </h2>
+            </div>
+            <p className="max-w-sm font-body text-base text-brand-grey lg:text-right">
+              Quatre engagements concrets — pas de jargon, pas de promesses creuses.
+            </p>
+          </div>
 
-                <div className="grid gap-5 sm:grid-cols-2">
+          {/* Cards 2×2 */}
+          <div className="grid gap-5 sm:grid-cols-2">
             {approachCards.map((card) => {
               const Icon = card.icon;
               return (
@@ -580,42 +479,40 @@ export default function RealisationsSitesWebPage() {
                 </div>
               );
             })}
-                </div>
-              </section>
+          </div>
+        </div>
+      </section>
 
-              {/* CROSS-LINK ODOO */}
-              <section id="odoo" className="mt-20 border-t pt-16" style={{ borderColor: "var(--grey-light)" }}>
-                <div
-                  className="flex flex-col items-start gap-6 rounded-[24px] border p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10"
-                  style={{ borderColor: "var(--grey-light)" }}
-                >
-                  <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
-                      Voir aussi
-                    </p>
-                    <p className="mt-2 font-heading text-2xl font-bold text-brand-black md:text-3xl">
-                      Nos implémentations Odoo ERP
-                    </p>
-                    <p className="mt-2 font-body text-sm text-brand-grey">
-                      17 cas clients livrés au Maroc, en Belgique et au Cameroun —
-                      BTP, HORECA, commerce, transport.
-                    </p>
-                  </div>
-                  <Link
-                    to="/realisations/odoo"
-                    className="inline-flex shrink-0 items-center gap-2 rounded-full border-2 px-6 py-3.5 font-body text-sm font-bold text-brand-blue transition hover:bg-brand-blue hover:text-white"
-                    style={{ borderColor: "var(--blue)" }}
-                  >
-                    Voir les cas Odoo
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </section>
-
-            </div>{/* end contenu principal */}
-          </div>{/* end flex sidebar+contenu */}
-        </div>{/* end container */}
-      </div>{/* end bg wrapper */}
+      {/* ── CROSS-LINK ODOO ── */}
+      <section className="bg-brand-bg py-16 md:py-20">
+        <div className="container">
+          <div
+            className="flex flex-col items-start gap-6 rounded-[24px] border p-8 lg:flex-row lg:items-center lg:justify-between lg:p-10"
+            style={{ borderColor: "var(--grey-light)" }}
+          >
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
+                Voir aussi
+              </p>
+              <p className="mt-2 font-heading text-2xl font-bold text-brand-black md:text-3xl">
+                Nos implémentations Odoo ERP
+              </p>
+              <p className="mt-2 font-body text-sm text-brand-grey">
+                17 cas clients livrés au Maroc, en Belgique et au Cameroun —
+                BTP, HORECA, commerce, transport.
+              </p>
+            </div>
+            <Link
+              to="/realisations/odoo"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border-2 px-6 py-3.5 font-body text-sm font-bold text-brand-blue transition hover:bg-brand-blue hover:text-white"
+              style={{ borderColor: "var(--blue)" }}
+            >
+              Voir les cas Odoo
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ── CTA ── */}
       <section className="relative isolate overflow-hidden bg-brand-black py-24 md:py-28">
