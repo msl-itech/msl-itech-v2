@@ -59,7 +59,7 @@ export const newArticles9to10: BlogPost[] = [
       },
       {
         q: "Combien coûte Odoo 20 ?",
-        a: "Le plan Standard commence à environ 7,95 € par utilisateur et par mois (facturation annuelle, tarif première année). Le plan Custom — avec Studio, agents IA, API et multi-société — débute à environ 12 € par utilisateur et par mois. Le Light User est disponible à environ 7,90 € par employé et par mois. Ces tarifs sont susceptibles d'évoluer — vérifiez sur odoo.com/pricing. Consultez notre article dédié aux tarifs Odoo pour une explication complète.",
+        a: "Les tarifs Odoo 20 varient selon votre zone géographique et votre devise — il n'y a pas un prix universel. Odoo propose quatre formules : One App Free (gratuit), Standard, Custom et Light User. Pour les prix exacts dans votre région, consultez [odoo.com/fr_FR/pricing](https://www.odoo.com/fr_FR/pricing). Notre article dédié explique en détail les différences entre chaque formule.",
       },
       {
         q: "Peut-on conserver ses développements personnalisés en migrant vers Odoo 20 ?",
@@ -358,7 +358,7 @@ export const newArticles9to10: BlogPost[] = [
     metaTitle:
       "Tarifs Odoo 2026 : Standard, Custom et Light User expliqués simplement",
     metaDescription:
-      "Comprendre la tarification Odoo en 2026 : One App Free, Standard, Custom, Light User. Prix vérifiés en octobre 2026, différences clés, exemples PME et méthode pour dimensionner vos licences sans erreur.",
+      "Comprendre la tarification Odoo en 2026 : One App Free, Standard, Custom, Light User. Prix variables selon la zone, différences clés, exemples PME et méthode pour dimensionner vos licences sans erreur.",
     excerpt:
       "Combien vais-je réellement payer pour Odoo ? En 2026, Odoo propose quatre niveaux d'accès : One App Free, Standard, Custom, et le nouveau Light User. Tous vos collaborateurs n'ont pas nécessairement besoin du même type de licence. Ce guide explique le modèle, les différences clés, et comment éviter les erreurs de dimensionnement les plus courantes.",
     category: "Tarifs & ROI",
@@ -368,14 +368,14 @@ export const newArticles9to10: BlogPost[] = [
     updatedAt: "2026-10-02",
     author: "El Houssine BOUHMAIDA",
     sources: [
-      "https://www.odoo.com/pricing",
+      "https://www.odoo.com/fr_FR/pricing",
       "https://www.odoo.com/pricing-configurator",
       "https://www.odoo.com/documentation/19.0/legal/terms/enterprise.html",
     ],
     enBref: [
       "Odoo propose quatre formules : One App Free, Standard, Custom et Light User (nouveau en 2026).",
       "Le plan Standard couvre plusieurs modules sans Studio ni API externe. Custom ajoute Studio, agents IA, multi-société et API.",
-      "Le Light User (~7,90 €/employé/mois) donne accès à des fonctions RH limitées et à des rôles opérationnels spécifiques — pas aux modules back-office.",
+      "Le Light User donne accès à des fonctions RH limitées et à des rôles opérationnels spécifiques — pas aux modules back-office. Son prix varie selon votre zone géographique.",
       "Le tarif de la première année est promotionnel et inférieur au tarif de renouvellement.",
       "Le coût des licences est distinct du coût d'implémentation — deux entreprises avec le même nombre de licences peuvent avoir des budgets projet très différents.",
     ],
@@ -384,11 +384,11 @@ export const newArticles9to10: BlogPost[] = [
     faqs: [
       {
         q: "Combien coûte Odoo par mois ?",
-        a: "En 2026, le plan Standard commence à environ 7,95 €/utilisateur/mois en facturation annuelle (tarif promotionnel première année). Le plan Custom débute à environ 12 €/utilisateur/mois. Le Light User est à environ 7,90 €/employé/mois. Ces tarifs augmentent au renouvellement et varient selon la devise et la région. Vérifiez les prix actualisés sur odoo.com/pricing.",
+        a: "Le prix d'Odoo varie selon votre zone géographique, votre devise locale et la période de facturation (mensuelle ou annuelle). Les plans Standard, Custom et Light User sont tous payants avec des tarifs différents selon les régions. Le plan One App Free reste gratuit. Pour connaître les prix exacts dans votre pays, consultez la page officielle odoo.com/fr_FR/pricing.",
       },
       {
         q: "Quel est le prix d'Odoo par utilisateur ?",
-        a: "En plan Standard, environ 7,95 € à 8,95 €/utilisateur/mois selon la facturation annuelle ou mensuelle. En plan Custom, environ 12 € à 14,50 €/utilisateur/mois. Ces tarifs sont promotionnels pour l'année 1 et augmentent au renouvellement. Le Light User est une catégorie distincte à environ 7,90 €/employé/mois.",
+        a: "Le prix par utilisateur dépend du plan choisi (Standard ou Custom) et de votre zone géographique. Odoo facture par utilisateur actif par mois, avec un tarif promotionnel la première année inférieur au tarif de renouvellement. Consultez odoo.com/fr_FR/pricing pour les tarifs actuels dans votre région.",
       },
       {
         q: "Qu'est-ce qu'un Light User Odoo ?",
@@ -396,7 +396,7 @@ export const newArticles9to10: BlogPost[] = [
       },
       {
         q: "Combien coûte un Light User Odoo ?",
-        a: "Environ 7,90 € par employé et par mois en EUR, ou environ 8,90 USD/mois selon les tarifs affichés sur odoo.com en octobre 2026. Ce tarif s'ajoute à un abonnement Standard ou Custom existant. Vérifiez le prix actuel sur odoo.com avant de vous engager.",
+        a: "Le prix d'un Light User varie selon votre zone géographique et votre devise. Ce tarif s'ajoute à un abonnement Standard ou Custom existant. Consultez odoo.com/fr_FR/pricing pour connaître le prix applicable dans votre pays avant de vous engager.",
       },
       {
         q: "Quelle différence entre Odoo Standard et Custom ?",
@@ -439,7 +439,7 @@ export const newArticles9to10: BlogPost[] = [
     body: [
       {
         type: "p",
-        text: "La question revient systématiquement avant tout projet Odoo : « Combien vais-je réellement payer ? » La réponse dépend de plusieurs facteurs que la page de tarification officielle n'explique pas toujours clairement. En 2026, Odoo propose quatre niveaux d'accès — One App Free, Standard, Custom, et le nouveau Light User — avec des différences importantes en termes de droits, d'hébergement et de fonctionnalités incluses. Tous les collaborateurs d'une entreprise n'ont pas nécessairement besoin du même niveau d'accès, et un bon dimensionnement des licences peut avoir un impact significatif sur votre budget.",
+        text: "La question revient systématiquement avant tout projet Odoo : « Combien vais-je réellement payer ? » La réponse dépend de plusieurs facteurs — et notamment de votre zone géographique, car les tarifs Odoo varient selon les régions et les devises. En 2026, Odoo propose quatre niveaux d'accès — One App Free, Standard, Custom, et le nouveau Light User — avec des différences importantes en termes de droits, d'hébergement et de fonctionnalités incluses. Pour les prix exacts dans votre région, consultez la [page officielle de tarification Odoo](https://www.odoo.com/fr_FR/pricing). Tous les collaborateurs d'une entreprise n'ont pas nécessairement besoin du même niveau d'accès, et un bon dimensionnement des licences peut avoir un impact significatif sur votre budget.",
       },
       {
         type: "h2",
@@ -451,21 +451,21 @@ export const newArticles9to10: BlogPost[] = [
       },
       {
         type: "table",
-        headers: ["Formule", "Prix indicatif EUR (facturation annuelle)", "Pour qui ?", "Limite principale"],
+        headers: ["Formule", "Accès", "Pour qui ?", "Limite principale"],
         rows: [
           ["One App Free", "Gratuit", "Toute organisation pour un usage ciblé", "Une seule application"],
-          ["Standard", "~7,95 €/utilisateur/mois (année 1)", "PME ayant besoin de plusieurs modules", "Pas de Studio, pas d'API externe, pas de multi-société"],
-          ["Custom", "~12 €/utilisateur/mois (année 1)", "Entreprises avec personnalisations ou besoins avancés", "Tarif plus élevé, Odoo.sh facturé séparément"],
-          ["Light User", "~7,90 €/employé/mois", "Employés à accès limité", "Pas d'accès au back-office complet"],
+          ["Standard", "Payant — prix variable selon la zone", "PME ayant besoin de plusieurs modules", "Pas de Studio, pas d'API externe, pas de multi-société"],
+          ["Custom", "Payant — prix variable selon la zone", "Entreprises avec personnalisations ou besoins avancés", "Tarif plus élevé, Odoo.sh facturé séparément"],
+          ["Light User", "Payant — prix variable selon la zone", "Employés à accès limité", "Pas d'accès au back-office complet"],
         ],
       },
       {
         type: "p",
-        text: "Tarifs indicatifs vérifiés en octobre 2026 sur odoo.com. Les prix varient selon la devise, la région et la période de facturation. Vérifiez toujours les prix actualisés sur odoo.com/pricing avant de vous engager.",
+        text: "⚠️ Les tarifs Odoo varient selon votre zone géographique, votre devise locale et la période de facturation choisie (mensuelle ou annuelle). Consultez la page officielle odoo.com/fr_FR/pricing pour connaître les prix exacts applicables dans votre région avant toute décision.",
       },
       {
         type: "p",
-        text: "Point important à ne pas négliger : Odoo applique une tarification promotionnelle la première année, sensiblement inférieure au tarif de renouvellement. En USD par exemple, le plan Standard débute à environ 24,90 $/utilisateur/mois (an 1) et monte à environ 31,10 $/utilisateur/mois au renouvellement. Ce point est souvent source de surprise — calculez votre budget sur 3 ans pour avoir une vision réaliste.",
+        text: "Point important à ne pas négliger : Odoo applique une tarification promotionnelle la première année, sensiblement inférieure au tarif de renouvellement. Ce point est souvent source de surprise — calculez votre budget sur 3 ans pour avoir une vision réaliste du coût total.",
       },
       {
         type: "h2",
@@ -592,7 +592,7 @@ export const newArticles9to10: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Les calculs suivants sont basés uniquement sur les tarifs de licences vérifiés en octobre 2026. Les coûts d'implémentation ne sont pas inclus car ils dépendent du périmètre.",
+        text: "Les prix Odoo variant selon la zone géographique, les exemples ci-dessous décrivent la structure des licences sans montants fixes. Pour obtenir un chiffrage précis dans votre région, consultez odoo.com/fr_FR/pricing.",
       },
       {
         type: "h3",
@@ -601,9 +601,9 @@ export const newArticles9to10: BlogPost[] = [
       {
         type: "ul",
         items: [
-          "3 utilisateurs complets (comptable, commercial, gestionnaire) → plan Standard : 3 × ~7,95 € = ~23,85 €/mois",
-          "7 employés accès limité (présence, congés, frais) → Light User : 7 × ~7,90 € = ~55,30 €/mois",
-          "Total licences estimé : ~79 €/mois (hors implémentation, première année)",
+          "3 utilisateurs complets (comptable, commercial, gestionnaire) → plan Standard.",
+          "7 employés accès limité (présence, congés, frais) → Light User.",
+          "Impact : le Light User réduit le coût des 7 profils simples par rapport à des licences Standard complètes.",
         ],
       },
       {
@@ -613,8 +613,8 @@ export const newArticles9to10: BlogPost[] = [
       {
         type: "ul",
         items: [
-          "20 utilisateurs Standard : 20 × ~7,95 € = ~159 €/mois",
-          "Total licences estimé : ~159 €/mois (hors implémentation, première année)",
+          "20 utilisateurs Standard.",
+          "Tous accèdent à plusieurs modules back-office → aucun n'est qualifiable en Light User.",
         ],
       },
       {
@@ -624,16 +624,16 @@ export const newArticles9to10: BlogPost[] = [
       {
         type: "ul",
         items: [
-          "8 utilisateurs Custom : 8 × ~12 € = ~96 €/mois",
-          "5 utilisateurs Standard : 5 × ~7,95 € = ~39,75 €/mois",
-          "17 Light Users (terrain, entrepôt) : 17 × ~7,90 € = ~134,30 €/mois",
-          "Hébergement Odoo.sh : ~12 €/mois (indicatif, à vérifier sur odoo.com)",
-          "Total licences estimé : ~282 €/mois (hors implémentation, première année)",
+          "8 utilisateurs Custom (besoins API, Studio, multi-société).",
+          "5 utilisateurs Standard (accès multi-modules classiques).",
+          "17 Light Users (terrain, entrepôt, POS).",
+          "Hébergement Odoo.sh : coût supplémentaire à vérifier sur odoo.com.",
+          "Résultat : la combinaison Standard + Light User réduit le coût global vs 30 licences Custom.",
         ],
       },
       {
         type: "p",
-        text: "Ces exemples sont indicatifs. Les tarifs de la première année sont promotionnels et augmentent au renouvellement. Vérifiez les prix exacts sur odoo.com/pricing à la date de votre souscription.",
+        text: "Pour un chiffrage adapté à votre contexte, contactez un partenaire Odoo certifié ou utilisez le configurateur officiel sur odoo.com/fr_FR/pricing.",
       },
       {
         type: "h2",
