@@ -484,33 +484,66 @@ export default function RealisationsSitesWebPage() {
       </section>
 
       {/* ── CROSS-LINK ODOO ── */}
-      <section className="bg-brand-bg py-16 md:py-20">
+      <section className="bg-brand-white py-16 md:py-20">
         <div className="container">
-          <div
-            className="flex flex-col items-start gap-6 rounded-[24px] border p-8 lg:flex-row lg:items-center lg:justify-between lg:p-10"
-            style={{ borderColor: "var(--grey-light)" }}
+          <Link
+            to="/realisations/odoo"
+            className="group relative isolate block overflow-hidden rounded-[28px] p-10 transition hover:shadow-2xl md:p-14"
+            style={{ backgroundColor: "var(--blue)" }}
           >
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
-                Voir aussi
-              </p>
-              <p className="mt-2 font-heading text-2xl font-bold text-brand-black md:text-3xl">
-                Nos implémentations Odoo ERP
-              </p>
-              <p className="mt-2 font-body text-sm text-brand-grey">
-                17 cas clients livrés au Maroc, en Belgique et au Cameroun —
-                BTP, HORECA, commerce, transport.
-              </p>
-            </div>
-            <Link
-              to="/realisations/odoo"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full border-2 px-6 py-3.5 font-body text-sm font-bold text-brand-blue transition hover:bg-brand-blue hover:text-white"
-              style={{ borderColor: "var(--blue)" }}
+            {/* Glow déco */}
+            <div
+              className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full opacity-20 blur-3xl transition duration-700 group-hover:opacity-35"
+              style={{ backgroundColor: "var(--gold)" }}
+            />
+            <div
+              className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full opacity-10 blur-2xl"
+              style={{ backgroundColor: "var(--gold)" }}
+            />
+            {/* Numéro déco */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute right-8 bottom-4 font-heading text-[120px] font-bold leading-none select-none opacity-[0.07] text-white"
             >
-              Voir les cas Odoo
-              <ArrowRight size={16} />
-            </Link>
-          </div>
+              17
+            </span>
+
+            <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand-gold">
+                  Voir aussi
+                </p>
+                <h3 className="mt-3 font-heading text-3xl font-bold leading-snug text-white md:text-4xl">
+                  Nos implémentations Odoo ERP
+                </h3>
+                <p className="mt-3 max-w-lg font-body text-base text-white/75">
+                  17 cas clients livrés au Maroc, en Belgique et au Cameroun —
+                  BTP, HORECA, commerce, transport.
+                </p>
+                {/* Tags secteurs */}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {["BTP", "HORECA", "Commerce", "Transport", "Santé", "Finance"].map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-white/20 bg-white/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/80"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="shrink-0">
+                <span
+                  className="inline-flex items-center gap-2 rounded-full px-7 py-4 font-body text-base font-bold text-brand-black shadow-[0_12px_40px_-10px_rgba(255,221,87,0.5)] transition group-hover:scale-105"
+                  style={{ backgroundColor: "var(--gold)" }}
+                >
+                  Voir les 17 cas clients
+                  <ArrowRight size={18} className="transition group-hover:translate-x-1" />
+                </span>
+              </div>
+            </div>
+          </Link>
         </div>
       </section>
 
