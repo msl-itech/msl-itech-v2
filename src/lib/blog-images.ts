@@ -46,6 +46,6 @@ export const blogImageBySlug: Record<string, string> = {
   "couts-caches-projet-erp-2026": coutsCachesErpImg,
   "budget-erp-horeca-maroc-2026": budgetErpHorecaMarocImg,
   "roi-erp-pme-economies-2026": roiErpPmeImg,
-  "odoo-20-nouveautes-guide-2026": "/Odoo20.webp",
+  "odoo-20-nouveautes-guide-2026": "/odoo20-composition-technologique.png",
   "tarifs-odoo-standard-custom-light-user": "/og-default.jpg",
 };
