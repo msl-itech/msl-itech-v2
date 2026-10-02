@@ -49,7 +49,7 @@ function Sticker({
 }
 
 const odooCasesCount = caseStudies.filter((c) => c.type !== "web").length;
-const webCasesCount = caseStudies.filter((c) => c.type === "web").length + 4; // 4 URL cards
+const webCasesCount = 8;
 
 const navCards = [
   {
@@ -143,7 +143,7 @@ export default function RealisationsPage() {
 
               <h1 className="mt-8 max-w-3xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[60px] lg:text-[68px]">
                 Nos preuves,{" "}
-                <span className="italic font-light text-brand-gold">
+                <span className="italic font-light text-white">
                   <Mark>publiquement</Mark>
                 </span>{" "}
                 vérifiables.

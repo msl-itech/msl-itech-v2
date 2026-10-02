@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ArrowUpRight,
-  CheckCircle2,
   Star,
   Sparkles,
   Globe,
@@ -10,12 +9,10 @@ import {
   Search,
   Smartphone,
   Code2,
-  Building2,
+  ExternalLink,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
-import { caseStudies } from "@/content/caseStudies";
-import { caseImageByKey, caseImageAlt } from "@/lib/case-images";
 import ctaBg from "@/assets/home/cta-bg.webp";
 
 function Mark({ children }: { children: React.ReactNode }) {
@@ -53,36 +50,93 @@ function Sticker({
   );
 }
 
-const webCases = caseStudies.filter((c) => c.type === "web");
+type WebProject = {
+  href: string;
+  url: string;
+  label: string;
+  tag: string;
+  region: string;
+  desc: string;
+  tech: string[];
+  /** Si le projet a une page cas client détaillée. */
+  caseSlug?: string;
+  featured?: boolean;
+};
 
-const webProjects = [
+const webProjects: WebProject[] = [
   {
-    url: "odoo-finances.pro",
-    label: "Odoo Finances",
-    tag: "Showcase ERP",
-    country: "International",
-    desc: "Vitrine produit dédiée à l'écosystème Odoo Finance.",
+    href: "https://msl-itech.com/",
+    url: "msl-itech.com",
+    label: "MSL-iTECH",
+    tag: "Notre site",
+    region: "International",
+    desc: "Site vitrine et hub de conversion. Partenaire officiel Odoo — React + Vite, SEO avancé, Core Web Vitals optimisés.",
+    tech: ["React", "Vite", "TypeScript", "SEO"],
+    featured: true,
   },
   {
-    url: "mfinances.be",
-    label: "M-Finances",
-    tag: "Cabinet conseil",
-    country: "Belgique",
-    desc: "Site corporate pour un cabinet de conseil financier bruxellois.",
+    href: "https://www.wamlekfaya.com/",
+    url: "wamlekfaya.com",
+    label: "Wam Lek Faya",
+    tag: "eCommerce & Branding",
+    region: "International",
+    desc: "Boutique en ligne réalisée sous Odoo eCommerce, design sur mesure et identité de marque.",
+    tech: ["Odoo eCommerce", "Branding"],
   },
   {
-    url: "msales.ma",
-    label: "M-Sales Strategy",
-    tag: "Stratégie B2B",
-    country: "Maroc",
-    desc: "Plateforme de stratégie et d'outils commerciaux B2B.",
-  },
-  {
+    href: "https://www.novatrait.com/",
     url: "novatrait.com",
-    label: "Novatrait",
-    tag: "Industrie & Services",
-    country: "Maroc",
-    desc: "Site vitrine pour une société de services industriels.",
+    label: "NovaTrait",
+    tag: "Site corporate",
+    region: "Québec",
+    desc: "Site corporate avec architecture SEO complète pour une société de services industriels.",
+    tech: ["WordPress", "SEO"],
+  },
+  {
+    href: "https://mslanalytica.com/",
+    url: "mslanalytica.com",
+    label: "MSL Analytica",
+    tag: "Corporate B2B",
+    region: "Maroc · Belgique",
+    desc: "Plateforme corporate B2B dédiée au pilotage financier des PME.",
+    tech: ["Corporate", "Finance"],
+  },
+  {
+    href: "https://odoo-finances.pro/",
+    url: "odoo-finances.pro",
+    label: "Odoo Finance",
+    tag: "Conseil Odoo",
+    region: "Belgique · Maroc",
+    desc: "Conseil Odoo et finances pour PME — Belgique et Maroc.",
+    tech: ["Odoo", "Finance"],
+  },
+  {
+    href: "https://odoo-systems.pro/",
+    url: "odoo-systems.pro",
+    label: "Odoo Systems",
+    tag: "Organisation ERP",
+    region: "Belgique · Maroc",
+    desc: "Organisation d'entreprise sous Odoo — intégration et accompagnement.",
+    tech: ["Odoo", "ERP"],
+  },
+  {
+    href: "https://mfinances.be/",
+    url: "mfinances.be",
+    label: "MFinances",
+    tag: "Expertise comptable",
+    region: "Belgique",
+    desc: "Site pour un cabinet d'expertise comptable basé à Bruxelles.",
+    tech: ["WordPress", "Corporate"],
+  },
+  {
+    href: "https://aishd.be/",
+    url: "aishd.be",
+    label: "AIS Hector Denis",
+    tag: "Institutionnel",
+    region: "Belgique",
+    desc: "Refonte du site institutionnel d'une agence immobilière sociale en Région bruxelloise.",
+    tech: ["WordPress"],
+    caseSlug: "ais-hector-denis",
   },
 ];
 
@@ -90,7 +144,7 @@ const approachCards = [
   {
     icon: Zap,
     title: "Performance d'abord",
-    desc: "Sites React (Vite) ou WordPress optimisés : Core Web Vitals, images next-gen, lazy loading, TTI < 2 s.",
+    desc: "React (Vite) ou WordPress optimisé : Core Web Vitals, images next-gen, lazy loading, TTI < 2 s.",
   },
   {
     icon: Search,
@@ -100,11 +154,11 @@ const approachCards = [
   {
     icon: Smartphone,
     title: "Mobile-first & accessible",
-    desc: "Design responsive testé sur tous les breakpoints. Contraste, navigation clavier, ARIA — conformité WCAG 2.1 AA.",
+    desc: "Design responsive testé sur tous les breakpoints. Contraste, navigation clavier, ARIA — WCAG 2.1 AA.",
   },
   {
     icon: Code2,
-    title: "Code maintenable & documenté",
+    title: "Code maintenable",
     desc: "Composants réutilisables, TypeScript strict, tests automatisés. Votre équipe reprend la main facilement.",
   },
 ];
@@ -113,7 +167,7 @@ export default function RealisationsSitesWebPage() {
   useProductSeo({
     title: "Réalisations Sites Web & Plateformes — MSL-iTECH",
     description:
-      "Sites React haute performance et WordPress conçus par MSL-iTECH pour des entreprises en Belgique et au Maroc. SEO intégré, mobile-first, design sur mesure.",
+      "8 sites web et plateformes conçus par MSL-iTECH pour des entreprises en Belgique, au Maroc et au Québec. React, WordPress, SEO intégré, design sur mesure.",
     path: "/realisations/sites-web",
     breadcrumbs: [
       { name: "Accueil", url: "https://msl-itech.com/" },
@@ -122,13 +176,15 @@ export default function RealisationsSitesWebPage() {
     ],
   });
 
+  const featured = webProjects.filter((p) => p.featured);
+  const others = webProjects.filter((p) => !p.featured);
+
   return (
     <>
       {/* ── HERO ── */}
       <section className="bg-brand-bg pt-6 md:pt-8">
         <div className="container">
           <div className="relative isolate overflow-hidden rounded-[28px] md:rounded-[36px]">
-            {/* Fond gradient brand */}
             <div
               className="absolute inset-0 -z-10"
               style={{
@@ -159,7 +215,7 @@ export default function RealisationsSitesWebPage() {
             <HeroCursorGlow radius="inherit" />
 
             <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
-              <Sticker rotate={-8}>★ React · WordPress · Performance</Sticker>
+              <Sticker rotate={-8}>★ {webProjects.length} sites livrés</Sticker>
             </div>
 
             <div className="relative flex min-h-[420px] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[500px] md:py-28">
@@ -178,16 +234,13 @@ export default function RealisationsSitesWebPage() {
               </h1>
 
               <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
-                De la maquette à la mise en production — sites React hautes
-                performances et WordPress sur mesure pour des entreprises en
-                Belgique et au Maroc.
+                De la maquette à la mise en production — {webProjects.length} sites React et
+                WordPress sur mesure pour des entreprises en Belgique, au Maroc et au
+                Québec.
               </p>
 
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">
-                  Technologies
-                </p>
-                {["React + Vite", "TypeScript", "WordPress", "Tailwind CSS", "SEO on-page"].map(
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+                {["React + Vite", "WordPress", "Odoo eCommerce", "TypeScript", "SEO on-page"].map(
                   (t) => (
                     <span
                       key={t}
@@ -206,200 +259,182 @@ export default function RealisationsSitesWebPage() {
                 className="flex items-center gap-3 rounded-full border bg-brand-white px-5 py-2.5 shadow-[0_18px_40px_-15px_rgba(0,0,0,0.25)]"
                 style={{ borderColor: "var(--grey-light)" }}
               >
-                <Link
-                  to="/"
-                  className="font-body text-sm text-brand-grey transition hover:text-brand-blue"
-                >
+                <Link to="/" className="font-body text-sm text-brand-grey transition hover:text-brand-blue">
                   Accueil
                 </Link>
                 <ArrowRight size={14} className="text-brand-gold" />
-                <Link
-                  to="/realisations"
-                  className="font-body text-sm text-brand-grey transition hover:text-brand-blue"
-                >
+                <Link to="/realisations" className="font-body text-sm text-brand-grey transition hover:text-brand-blue">
                   Réalisations
                 </Link>
                 <ArrowRight size={14} className="text-brand-gold" />
-                <span className="font-body text-sm font-semibold text-brand-blue">
-                  Sites Web
-                </span>
+                <span className="font-body text-sm font-semibold text-brand-blue">Sites Web</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── CAS CLIENT DÉTAILLÉ ── */}
-      {webCases.length > 0 && (
-        <section className="bg-brand-white py-24 md:py-28">
-          <div className="container">
-            <div className="mb-12 grid gap-10 lg:grid-cols-12 lg:items-end">
-              <div className="lg:col-span-7">
-                <div className="mb-4 inline-flex items-center gap-2">
-                  <span className="h-px w-10 bg-brand-blue" />
-                  <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-                    Cas client détaillé
-                  </p>
-                </div>
-                <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
-                  Refonte <Mark>institutionnelle.</Mark>
-                </h2>
-              </div>
-              <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-                Un site WordPress professionnel repensé de A à Z pour une
-                agence immobilière sociale bruxelloise.
-              </p>
-            </div>
-
-            <div className="grid gap-6 lg:grid-cols-2">
-              {webCases.map((c, idx) => (
-                <Link
-                  key={c.slug}
-                  to={`/realisations/${c.slug}`}
-                  className="group relative isolate overflow-hidden rounded-[28px] border bg-brand-bg shadow-sm transition hover:shadow-xl"
-                  style={{ borderColor: "var(--grey-light)" }}
-                >
-                  <div className="relative h-56 overflow-hidden md:h-64">
-                    <img
-                      src={caseImageByKey[c.imageKey]}
-                      alt={caseImageAlt(c.sector, c.imageIsIllustration, c.name)}
-                      className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background:
-                          "linear-gradient(180deg, rgba(18,77,90,0.1) 0%, rgba(18,77,90,0.7) 100%)",
-                      }}
-                    />
-                    <div className="absolute left-5 top-5">
-                      <Sticker rotate={idx % 2 === 0 ? -6 : 6}>
-                        Cas {String(idx + 1).padStart(2, "0")}
-                      </Sticker>
-                    </div>
-                    <div className="absolute bottom-5 left-5 right-5">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-gold">
-                        {c.sector} — {c.country}
-                      </p>
-                      <h3 className="mt-2 font-heading text-2xl font-bold text-white md:text-3xl">
-                        {c.name}
-                      </h3>
-                    </div>
-                  </div>
-
-                  <div className="p-8">
-                    <div className="flex items-start gap-3">
-                      <div
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
-                        style={{ backgroundColor: "rgba(18,77,90,0.08)", color: "var(--blue)" }}
-                      >
-                        <Building2 size={20} />
-                      </div>
-                      <p className="font-body text-base text-brand-grey">{c.context}</p>
-                    </div>
-
-                    <div className="mt-6">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
-                        Livrable
-                      </p>
-                      <ul className="mt-3 flex flex-wrap gap-2">
-                        {c.modules.map((m) => (
-                          <li
-                            key={m}
-                            className="rounded-full border bg-brand-white px-3 py-1 font-body text-xs text-brand-black"
-                            style={{ borderColor: "var(--grey-light)" }}
-                          >
-                            {m}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div
-                      className="mt-6 flex items-start gap-3 rounded-2xl p-4"
-                      style={{ backgroundColor: "rgba(255,221,87,0.18)" }}
-                    >
-                      <CheckCircle2
-                        size={18}
-                        style={{ color: "var(--blue)" }}
-                        className="mt-0.5 shrink-0"
-                      />
-                      <p className="font-body text-sm text-brand-black">{c.result}</p>
-                    </div>
-
-                    <p className="mt-6 inline-flex items-center gap-2 font-body text-sm font-bold text-brand-blue">
-                      Lire le cas client
-                      <ArrowRight size={16} className="transition group-hover:translate-x-1" />
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── PROJETS URL ── */}
+      {/* ── PROJETS ── */}
       <section className="bg-brand-bg py-24 md:py-28">
         <div className="container">
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end mb-14">
             <div className="lg:col-span-7">
               <div className="mb-4 inline-flex items-center gap-2">
                 <span className="h-px w-10 bg-brand-blue" />
                 <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-                  Sites & plateformes en ligne
+                  Sites & plateformes
                 </p>
               </div>
               <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
-                Créations <Mark>web.</Mark>
+                {webProjects.length} créations <Mark>en ligne.</Mark>
               </h2>
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              Sites React haute performance, plateformes WordPress et refontes
-              pour des entreprises en Belgique et au Maroc. Consultables en un
-              clic.
+              Chaque site est consultable en un clic — React, WordPress ou Odoo
+              eCommerce selon le besoin.
             </p>
           </div>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {webProjects.map((p) => (
-              <a
-                key={p.url}
-                href={`https://${p.url}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative isolate flex flex-col justify-between overflow-hidden rounded-[24px] border bg-brand-white p-6 transition hover:-translate-y-1 hover:shadow-xl"
-                style={{ borderColor: "var(--grey-light)", minHeight: 220 }}
-              >
+          {/* Card featured (MSL-iTECH) */}
+          {featured.map((p) => (
+            <a
+              key={p.url}
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mb-5 relative isolate flex flex-col justify-between overflow-hidden rounded-[28px] border bg-brand-white p-8 transition hover:-translate-y-1 hover:shadow-2xl md:flex-row md:items-center md:p-10"
+              style={{ borderColor: "var(--grey-light)" }}
+            >
+              <div
+                className="pointer-events-none absolute -bottom-20 -right-20 h-60 w-60 rounded-full opacity-0 blur-3xl transition duration-500 group-hover:opacity-50"
+                style={{ backgroundColor: "var(--gold)" }}
+              />
+              <div className="flex items-start gap-5 md:items-center">
                 <div
-                  className="pointer-events-none absolute -bottom-16 -right-16 h-40 w-40 rounded-full opacity-0 blur-2xl transition group-hover:opacity-60"
-                  style={{ backgroundColor: "var(--gold)" }}
-                />
-                <div className="flex items-start justify-between">
-                  <div
-                    className="flex h-11 w-11 items-center justify-center rounded-xl"
-                    style={{ backgroundColor: "var(--blue)" }}
-                  >
-                    <Globe size={18} className="text-white" />
-                  </div>
-                  <ArrowUpRight
-                    size={20}
-                    className="text-brand-grey transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand-blue"
-                  />
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
+                  style={{ backgroundColor: "var(--blue)" }}
+                >
+                  <Globe size={24} className="text-white" />
                 </div>
-                <div className="mt-6">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
-                    {p.tag} · {p.country}
-                  </p>
-                  <h3 className="mt-2 font-heading text-lg font-bold text-brand-black">
+                <div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span
+                      className="rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em]"
+                      style={{ backgroundColor: "rgba(255,221,87,0.25)", color: "var(--blue)" }}
+                    >
+                      {p.tag}
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+                      {p.region}
+                    </span>
+                  </div>
+                  <h3 className="mt-2 font-heading text-2xl font-bold text-brand-black md:text-3xl">
                     {p.label}
                   </h3>
-                  <p className="mt-1 font-body text-xs text-brand-grey">{p.desc}</p>
-                  <p className="mt-3 font-mono text-[10px] text-brand-blue/70">{p.url}</p>
+                  <p className="mt-2 max-w-xl font-body text-base text-brand-grey">{p.desc}</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {p.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border bg-brand-bg px-3 py-1 font-body text-xs text-brand-black"
+                        style={{ borderColor: "var(--grey-light)" }}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </a>
+              </div>
+              <div className="mt-6 shrink-0 md:mt-0 md:ml-8">
+                <div className="inline-flex items-center gap-2 rounded-full border-2 px-5 py-2.5 font-body text-sm font-bold text-brand-blue transition group-hover:bg-brand-blue group-hover:text-white"
+                  style={{ borderColor: "var(--blue)" }}>
+                  {p.url}
+                  <ArrowUpRight size={16} />
+                </div>
+              </div>
+            </a>
+          ))}
+
+          {/* Grille des 7 autres projets */}
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {others.map((p) => (
+              <div
+                key={p.url}
+                className="group relative isolate flex flex-col justify-between overflow-hidden rounded-[24px] border bg-brand-white p-6 transition hover:-translate-y-1 hover:shadow-xl"
+                style={{ borderColor: "var(--grey-light)" }}
+              >
+                <div
+                  className="pointer-events-none absolute -bottom-14 -right-14 h-40 w-40 rounded-full opacity-0 blur-2xl transition group-hover:opacity-60"
+                  style={{ backgroundColor: "var(--gold)" }}
+                />
+
+                <div>
+                  <div className="flex items-start justify-between">
+                    <div
+                      className="flex h-11 w-11 items-center justify-center rounded-xl"
+                      style={{ backgroundColor: "var(--blue)" }}
+                    >
+                      <Globe size={18} className="text-white" />
+                    </div>
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-grey transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-blue"
+                      aria-label={`Visiter ${p.label}`}
+                    >
+                      <ArrowUpRight size={20} />
+                    </a>
+                  </div>
+
+                  <div className="mt-5">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-brand-blue">
+                        {p.tag}
+                      </span>
+                      <span className="font-mono text-[9px] text-brand-grey">· {p.region}</span>
+                    </div>
+                    <h3 className="mt-2 font-heading text-xl font-bold text-brand-black">
+                      {p.label}
+                    </h3>
+                    <p className="mt-2 font-body text-sm text-brand-grey leading-relaxed">
+                      {p.desc}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {p.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border bg-brand-bg px-2.5 py-0.5 font-body text-xs text-brand-black"
+                        style={{ borderColor: "var(--grey-light)" }}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-5 flex items-center justify-between">
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-[10px] text-brand-blue/70 underline-offset-2 hover:underline"
+                  >
+                    {p.url}
+                  </a>
+                  {p.caseSlug && (
+                    <Link
+                      to={`/realisations/${p.caseSlug}`}
+                      className="inline-flex items-center gap-1 font-body text-xs font-semibold text-brand-blue hover:underline"
+                    >
+                      Cas client
+                      <ArrowRight size={12} />
+                    </Link>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -441,9 +476,7 @@ export default function RealisationsSitesWebPage() {
                   >
                     <Icon size={22} />
                   </div>
-                  <h3 className="font-heading text-xl font-bold text-brand-black">
-                    {card.title}
-                  </h3>
+                  <h3 className="font-heading text-xl font-bold text-brand-black">{card.title}</h3>
                   <p className="mt-3 font-body text-sm text-brand-grey leading-relaxed">
                     {card.desc}
                   </p>
