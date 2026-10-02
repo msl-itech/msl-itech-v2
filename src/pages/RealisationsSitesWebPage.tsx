@@ -90,6 +90,15 @@ const webProjects: WebProject[] = [
     tech: ["Corporate", "Finance"],
   },
   {
+    href: "https://msales.ma/",
+    url: "msales.ma",
+    label: "M-Sales Strategy",
+    tag: "Stratégie B2B",
+    region: "Maroc",
+    desc: "Plateforme de stratégie et d'outils commerciaux B2B pour PME marocaines.",
+    tech: ["Corporate", "B2B"],
+  },
+  {
     href: "https://odoo-finances.pro/",
     url: "odoo-finances.pro",
     label: "Odoo Finance",
