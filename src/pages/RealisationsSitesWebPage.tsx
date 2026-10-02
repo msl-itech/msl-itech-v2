@@ -9,7 +9,6 @@ import {
   Search,
   Smartphone,
   Code2,
-  ExternalLink,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
@@ -60,20 +59,9 @@ type WebProject = {
   tech: string[];
   /** Si le projet a une page cas client détaillée. */
   caseSlug?: string;
-  featured?: boolean;
 };
 
 const webProjects: WebProject[] = [
-  {
-    href: "https://msl-itech.com/",
-    url: "msl-itech.com",
-    label: "MSL-iTECH",
-    tag: "Notre site",
-    region: "International",
-    desc: "Site vitrine et hub de conversion. Partenaire officiel Odoo — React + Vite, SEO avancé, Core Web Vitals optimisés.",
-    tech: ["React", "Vite", "TypeScript", "SEO"],
-    featured: true,
-  },
   {
     href: "https://www.wamlekfaya.com/",
     url: "wamlekfaya.com",
@@ -176,8 +164,6 @@ export default function RealisationsSitesWebPage() {
     ],
   });
 
-  const featured = webProjects.filter((p) => p.featured);
-  const others = webProjects.filter((p) => !p.featured);
 
   return (
     <>
@@ -295,69 +281,8 @@ export default function RealisationsSitesWebPage() {
             </p>
           </div>
 
-          {/* Card featured (MSL-iTECH) */}
-          {featured.map((p) => (
-            <a
-              key={p.url}
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group mb-5 relative isolate flex flex-col justify-between overflow-hidden rounded-[28px] border bg-brand-white p-8 transition hover:-translate-y-1 hover:shadow-2xl md:flex-row md:items-center md:p-10"
-              style={{ borderColor: "var(--grey-light)" }}
-            >
-              <div
-                className="pointer-events-none absolute -bottom-20 -right-20 h-60 w-60 rounded-full opacity-0 blur-3xl transition duration-500 group-hover:opacity-50"
-                style={{ backgroundColor: "var(--gold)" }}
-              />
-              <div className="flex items-start gap-5 md:items-center">
-                <div
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
-                  style={{ backgroundColor: "var(--blue)" }}
-                >
-                  <Globe size={24} className="text-white" />
-                </div>
-                <div>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span
-                      className="rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em]"
-                      style={{ backgroundColor: "rgba(255,221,87,0.25)", color: "var(--blue)" }}
-                    >
-                      {p.tag}
-                    </span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-                      {p.region}
-                    </span>
-                  </div>
-                  <h3 className="mt-2 font-heading text-2xl font-bold text-brand-black md:text-3xl">
-                    {p.label}
-                  </h3>
-                  <p className="mt-2 max-w-xl font-body text-base text-brand-grey">{p.desc}</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {p.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full border bg-brand-bg px-3 py-1 font-body text-xs text-brand-black"
-                        style={{ borderColor: "var(--grey-light)" }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div className="mt-6 shrink-0 md:mt-0 md:ml-8">
-                <div className="inline-flex items-center gap-2 rounded-full border-2 px-5 py-2.5 font-body text-sm font-bold text-brand-blue transition group-hover:bg-brand-blue group-hover:text-white"
-                  style={{ borderColor: "var(--blue)" }}>
-                  {p.url}
-                  <ArrowUpRight size={16} />
-                </div>
-              </div>
-            </a>
-          ))}
-
-          {/* Grille des 7 autres projets */}
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {others.map((p) => (
+            {webProjects.map((p) => (
               <div
                 key={p.url}
                 className="group relative isolate flex flex-col justify-between overflow-hidden rounded-[24px] border bg-brand-white p-6 transition hover:-translate-y-1 hover:shadow-xl"

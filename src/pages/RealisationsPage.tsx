@@ -49,7 +49,7 @@ function Sticker({
 }
 
 const odooCasesCount = caseStudies.filter((c) => c.type !== "web").length;
-const webCasesCount = 8;
+const webCasesCount = 7;
 
 const navCards = [
   {
