@@ -139,24 +139,40 @@ const webProjects: WebProject[] = [
 
 const approachCards = [
   {
+    number: "01",
     icon: Zap,
-    title: "Performance d'abord",
-    desc: "React (Vite) ou WordPress optimisé : Core Web Vitals, images next-gen, lazy loading, TTI < 2 s.",
+    tagline: "Performance d'abord",
+    title: "Votre site s'affiche en moins de 2 s.",
+    desc: "React (Vite) ou WordPress optimisé à fond : images next-gen, lazy loading, cache agressif. Vos visiteurs n'attendent pas — et Google le remarque.",
+    badge: "TTI < 2 s · Lighthouse 90+",
+    gold: true,
   },
   {
+    number: "02",
     icon: Search,
-    title: "SEO intégré dès la conception",
-    desc: "Structure sémantique, balises meta, Schema.org, sitemap XML et robots.txt pensés depuis la maquette.",
+    tagline: "SEO intégré dès la maquette",
+    title: "Google vous trouve. Vraiment.",
+    desc: "Structure sémantique, Schema.org, sitemap XML, robots.txt — le SEO n'est pas une option qu'on rajoute à la fin. Il est dans chaque balise, chaque URL, chaque titre.",
+    badge: "On-page · Technique · Schema.org",
+    gold: false,
   },
   {
+    number: "03",
     icon: Smartphone,
-    title: "Mobile-first & accessible",
-    desc: "Design responsive testé sur tous les breakpoints. Contraste, navigation clavier, ARIA — WCAG 2.1 AA.",
+    tagline: "Mobile-first & accessible",
+    title: "Impeccable sur tous les écrans.",
+    desc: "Testé sur mobile, tablette et desktop avant chaque livraison. Contraste, navigation clavier, ARIA — parce que chaque utilisateur compte.",
+    badge: "WCAG 2.1 AA · Responsive",
+    gold: true,
   },
   {
+    number: "04",
     icon: Code2,
-    title: "Code maintenable",
-    desc: "Composants réutilisables, TypeScript strict, tests automatisés. Votre équipe reprend la main facilement.",
+    tagline: "Code propre & documenté",
+    title: "Vous restez maîtres à bord.",
+    desc: "TypeScript strict, composants réutilisables, tests automatisés. Votre équipe peut reprendre la main sans nous appeler — c'est fait exprès.",
+    badge: "TypeScript · Tests · Docs",
+    gold: false,
   },
 ];
 
@@ -375,10 +391,11 @@ export default function RealisationsSitesWebPage() {
       </section>
 
       {/* ── APPROCHE WEB ── */}
-      <section className="bg-brand-white py-24 md:py-28">
+      <section className="bg-brand-bg py-24 md:py-28">
         <div className="container">
-          <div className="mb-14 grid gap-10 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-7">
+          {/* Header */}
+          <div className="mb-16 flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div>
               <div className="mb-4 inline-flex items-center gap-2">
                 <span className="h-px w-10 bg-brand-blue" />
                 <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
@@ -386,34 +403,79 @@ export default function RealisationsSitesWebPage() {
                 </p>
               </div>
               <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-5xl">
-                Un site web qui <Mark>travaille pour vous.</Mark>
+                Un site qui <Mark>travaille pour vous.</Mark>
               </h2>
             </div>
-            <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              Performance, SEO et design ne sont pas des options — ils sont
-              intégrés à chaque étape de notre processus.
+            <p className="max-w-sm font-body text-base text-brand-grey lg:text-right">
+              Quatre engagements concrets — pas de jargon, pas de promesses creuses.
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2">
+          {/* Cards 2×2 */}
+          <div className="grid gap-5 sm:grid-cols-2">
             {approachCards.map((card) => {
               const Icon = card.icon;
               return (
                 <div
-                  key={card.title}
-                  className="rounded-[24px] border p-8"
+                  key={card.number}
+                  className="relative isolate overflow-hidden rounded-[28px] border bg-brand-white p-8 md:p-10"
                   style={{ borderColor: "var(--grey-light)" }}
                 >
-                  <div
-                    className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl"
-                    style={{ backgroundColor: "rgba(18,77,90,0.08)", color: "var(--blue)" }}
+                  {/* Numéro décoratif en arrière-plan */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute -right-3 -top-4 font-heading text-[96px] font-bold leading-none select-none"
+                    style={{
+                      color: card.gold ? "rgba(255,221,87,0.18)" : "rgba(18,77,90,0.07)",
+                    }}
                   >
-                    <Icon size={22} />
+                    {card.number}
+                  </span>
+
+                  {/* Icône */}
+                  <div
+                    className="mb-6 flex h-13 w-13 items-center justify-center rounded-2xl"
+                    style={{
+                      width: 52,
+                      height: 52,
+                      backgroundColor: card.gold
+                        ? "rgba(255,221,87,0.2)"
+                        : "rgba(18,77,90,0.08)",
+                      color: card.gold ? "#a07800" : "var(--blue)",
+                    }}
+                  >
+                    <Icon size={24} />
                   </div>
-                  <h3 className="font-heading text-xl font-bold text-brand-black">{card.title}</h3>
-                  <p className="mt-3 font-body text-sm text-brand-grey leading-relaxed">
+
+                  {/* Tagline */}
+                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
+                    {card.tagline}
+                  </p>
+
+                  {/* Titre */}
+                  <h3 className="mt-2 font-heading text-2xl font-bold leading-snug text-brand-black">
+                    {card.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="mt-4 font-body text-sm text-brand-grey leading-relaxed">
                     {card.desc}
                   </p>
+
+                  {/* Badge promesse */}
+                  <div className="mt-6">
+                    <span
+                      className="inline-block rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.15em]"
+                      style={{
+                        backgroundColor: card.gold
+                          ? "rgba(255,221,87,0.22)"
+                          : "rgba(18,77,90,0.07)",
+                        color: card.gold ? "#856200" : "var(--blue)",
+                      }}
+                    >
+                      {card.badge}
+                    </span>
+                  </div>
                 </div>
               );
             })}
