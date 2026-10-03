@@ -35,6 +35,8 @@ export interface OdooLeadData {
   x_studio_url_site?: string;          // URL libre
   x_studio_score_affiche?: number;     // Score affiché à l'écran au prospect (≠ score lead)
   x_studio_recommandations?: string;   // 3 recommandations affichées, séparées par \n
+  x_studio_resultat_cle?: string;      // Résultat clé affiché à l'écran (headline)
+  x_studio_resultat_detail?: string;   // 3 highlights + phrase contextuelle (texte libre)
   x_studio_consentement?: boolean;
   x_studio_consentement_date?: string; // ISO 8601
   /** Champs additionnels libres */

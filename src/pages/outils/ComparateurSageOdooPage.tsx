@@ -96,6 +96,14 @@ function computeResult(answers: Record<string, string | number>) {
       "Vérifier la conformité DGI et la couverture fonctionnelle",
       "Planifier la migration avec un intégrateur certifié au Maroc",
     ],
+    detailText: [
+      `Sage 3 ans | ${fmt(sage3y)}`,
+      `Odoo 3 ans | ${fmt(odoo3y)}`,
+      `Recommandation | ${reco}`,
+      diff > 0
+        ? `Sur trois ans, Sage vous coûterait ${fmt(sage3y)} contre ${fmt(odoo3y)} pour Odoo. Ce chiffrage est indicatif : un cadrage permet de le confirmer sur votre périmètre.`
+        : `Sur trois ans, Odoo vous coûterait ${fmt(odoo3y)} contre ${fmt(sage3y)} pour Sage. Ce chiffrage est indicatif : un cadrage permet de le confirmer sur votre périmètre.`,
+    ].join("\n"),
   };
 }
 

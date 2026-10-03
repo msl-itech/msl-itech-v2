@@ -94,6 +94,12 @@ function computeResult(answers: Record<string, string | number>) {
       "Identifier les 3 processus à automatiser en priorité (gain maximum)",
       "Demander un devis détaillé avec planning de déploiement",
     ],
+    detailText: [
+      `Gain bas | ${fmt(low)}`,
+      `Gain haut | ${fmt(high)}`,
+      `Payback | ${payback}`,
+      `Cette fourchette correspond aux gains attendus sur 12 mois ; votre investissement serait remboursé en ${payback}. Un cadrage de 30 minutes permet de l'affiner sur vos vrais chiffres.`,
+    ].join("\n"),
   };
 }
 

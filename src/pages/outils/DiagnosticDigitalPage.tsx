@@ -110,6 +110,14 @@ function computeResult(answers: Record<string, string | number>) {
       "Mettre en place des dashboards live partagés",
     ];
   }
+  const levelNum = level.split(" — ")[0];
+  const levelName = level.split(" — ")[1];
+  const levelMeaning: Record<string, string> = {
+    "1": "votre organisation repose encore sur des outils fragmentés et non reliés",
+    "2": "vos outils existent mais restent cloisonnés entre vos services",
+    "3": "vos premiers processus tournent déjà seuls et génèrent des gains mesurables",
+    "4": "vous pilotez votre activité par la donnée et l'IA en temps réel",
+  };
   return {
     headline: `Votre niveau de maturité digitale : ${level}`,
     summary:
@@ -121,6 +129,12 @@ function computeResult(answers: Record<string, string | number>) {
     ],
     recommendations,
     badgeValue: total,
+    detailText: [
+      `Niveau | ${level}`,
+      `Score | ${total} / 15`,
+      `Prochain palier | ${next.split(" ").slice(0, 4).join(" ")}…`,
+      `Le niveau ${levelNum}, ${levelName}, signifie que ${levelMeaning[levelNum] ?? ""}. Prochain palier : ${next}`,
+    ].join("\n"),
   };
 }
 
@@ -140,8 +154,9 @@ export default function DiagnosticDigitalPage() {
       questions={questions}
       computeResult={computeResult}
       partialTeaser="Votre niveau commence à se dessiner. Continuez : à la fin, vous recevez votre score / 15 et les 3 actions prioritaires pour passer au niveau supérieur."
-      besoin="marketing"
+      besoin="erp"
       toolDisplayName="Diagnostic digital"
+      badgeMax={15}
     />
   );
 }

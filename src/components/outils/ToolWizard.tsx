@@ -46,8 +46,10 @@ export type ToolResult = {
   highlights: { label: string; value: string }[];
   /** 3 actions prioritaires à afficher sur l'écran de résultat */
   recommendations: string[];
-  /** Valeur affichée dans le badge doré. Si absent, affiche le lead score (0-100). */
+  /** Valeur affichée dans le badge doré. Si absent, le badge est masqué (sauf si badgeLabel fourni). */
   badgeValue?: string | number;
+  /** Texte synthétique des 3 highlights + phrase contextuelle → envoyé à Odoo comme x_studio_resultat_detail */
+  detailText?: string;
 };
 
 export type ToolWizardProps = {
@@ -66,6 +68,8 @@ export type ToolWizardProps = {
   toolDisplayName?: string;
   /** Libellé affiché au-dessus du badge de score (ex: "Score de conformité") */
   badgeLabel?: string;
+  /** Dénominateur du score affiché dans le badge (ex: 15 → "10/15"). Masqué si result.badgeValue est undefined. */
+  badgeMax?: number;
 };
 
 type FormState = {
@@ -89,6 +93,7 @@ export function ToolWizard(props: ToolWizardProps) {
     besoin,
     toolDisplayName,
     badgeLabel,
+    badgeMax,
   } = props;
 
   const [step, setStep] = useState(0); // 0..questions.length-1 = question; questions.length = result+form
@@ -289,8 +294,10 @@ export function ToolWizard(props: ToolWizardProps) {
         // Qualification
         x_studio_outil_source: outilSourceKey,
         x_studio_score: score,
-        x_studio_score_affiche: result.badgeValue !== undefined ? Number(result.badgeValue) : previewScore,
+        x_studio_score_affiche: result.badgeValue !== undefined ? Number(result.badgeValue) : undefined,
         x_studio_recommandations: recommendationsText,
+        x_studio_resultat_cle: result.headline,
+        x_studio_resultat_detail: result.detailText,
         x_studio_outil_actuel: finalTool ? ({ excel: "Excel / Word", sage: "Sage", odoo: "Odoo", autre: "Autre" } as Record<string, string>)[finalTool] : undefined,
         x_studio_consentement: true,
         x_studio_consentement_date: consentAt,
@@ -374,6 +381,7 @@ export function ToolWizard(props: ToolWizardProps) {
               turnstileToken={turnstileToken}
               turnstileRef={turnstileRef}
               badgeLabel={badgeLabel}
+              badgeMax={badgeMax}
             />
           )}
 
@@ -516,6 +524,7 @@ function ResultAndLeadBlock({
   turnstileToken,
   turnstileRef,
   badgeLabel,
+  badgeMax,
 }: {
   result: ToolResult;
   score: number;
@@ -530,6 +539,7 @@ function ResultAndLeadBlock({
   turnstileToken: string | null;
   turnstileRef: React.RefObject<HTMLDivElement>;
   badgeLabel?: string;
+  badgeMax?: number;
 }) {
   return (
     <div className="mt-8 space-y-6">
@@ -544,24 +554,28 @@ function ResultAndLeadBlock({
               {result.headline}
             </h2>
           </div>
-          <div className="flex shrink-0 flex-col items-end gap-1">
-            {badgeLabel && (
-              <p className="font-mono text-[9px] uppercase tracking-[0.15em] text-brand-grey">
-                {badgeLabel}
-              </p>
-            )}
-            <div
-              className="flex items-baseline gap-0.5 rounded-2xl px-3 py-2.5 font-heading font-bold text-brand-blue shadow-inner"
-              style={{ backgroundColor: "var(--gold)" }}
-            >
-              <span className="text-2xl leading-none">
-                {result.badgeValue !== undefined ? result.badgeValue : score}
-              </span>
+          {(result.badgeValue !== undefined || !!badgeLabel) && (
+            <div className="flex shrink-0 flex-col items-end gap-1">
               {badgeLabel && (
-                <span className="text-sm font-normal leading-none text-brand-blue/70">/100</span>
+                <p className="font-mono text-[9px] uppercase tracking-[0.15em] text-brand-grey">
+                  {badgeLabel}
+                </p>
               )}
+              <div
+                className="flex items-baseline gap-0.5 rounded-2xl px-3 py-2.5 font-heading font-bold text-brand-blue shadow-inner"
+                style={{ backgroundColor: "var(--gold)" }}
+              >
+                <span className="text-2xl leading-none">
+                  {result.badgeValue !== undefined ? result.badgeValue : score}
+                </span>
+                {(badgeLabel || badgeMax) && (
+                  <span className="text-sm font-normal leading-none text-brand-blue/70">
+                    /{badgeLabel ? 100 : badgeMax}
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <p className="mt-3 font-body text-sm leading-relaxed text-brand-grey">
           {result.summary}
