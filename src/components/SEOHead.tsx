@@ -14,7 +14,7 @@ export interface SEOHeadProps {
   schemaJson?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const DEFAULT_OG_IMAGE = "https://msl-itech.com/og-default.jpg";
+const DEFAULT_OG_IMAGE = "https://msl-itech.com/og-default.png";
 const SITE_ORIGIN = "https://msl-itech.com";
 
 function toAbsolute(url: string): string {

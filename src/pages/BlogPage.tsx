@@ -257,7 +257,7 @@ export default function BlogPage() {
     ? postImage.startsWith("http")
       ? postImage
       : `${SITE}${postImage.startsWith("/") ? postImage : "/" + postImage}`
-    : `${SITE}/og-default.jpg`;
+    : `${SITE}/og-default.png`;
 
   // Extract H2 headings for auto-TOC
   const tocItems = useMemo(() => {

@@ -47,5 +47,5 @@ export const blogImageBySlug: Record<string, string> = {
   "budget-erp-horeca-maroc-2026": budgetErpHorecaMarocImg,
   "roi-erp-pme-economies-2026": roiErpPmeImg,
   "odoo-20-nouveautes-guide-2026": "/odoo20-composition-technologique.png",
-  "tarifs-odoo-standard-custom-light-user": "/og-default.jpg",
+  "tarifs-odoo-standard-custom-light-user": "/og-default.png",
 };
