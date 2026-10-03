@@ -28,6 +28,8 @@ const TourismePage = lazyRetry(() => import("./pages/TourismePage"));
 const WebPage = lazyRetry(() => import("./pages/WebPage"));
 const MarketingPage = lazyRetry(() => import("./pages/MarketingPage"));
 const RealisationsPage = lazyRetry(() => import("./pages/RealisationsPage"));
+const RealisationsOdooPage = lazyRetry(() => import("./pages/RealisationsOdooPage"));
+const RealisationsSitesWebPage = lazyRetry(() => import("./pages/RealisationsSitesWebPage"));
 const CaseStudyPage = lazyRetry(() => import("./pages/CaseStudyPage"));
 
 const TarifsPage = lazyRetry(() => import("./pages/TarifsPage"));
@@ -105,6 +107,8 @@ const App = () => {
             <Route path="/creation-web" element={<WebPage />} />
             <Route path="/marketing-digital" element={<MarketingPage />} />
             <Route path="/realisations" element={<RealisationsPage />} />
+            <Route path="/realisations/odoo" element={<RealisationsOdooPage />} />
+            <Route path="/realisations/sites-web" element={<RealisationsSitesWebPage />} />
             <Route path="/realisations/:slug" element={<CaseStudyPage />} />
             <Route path="/notre-approche" element={<TarifsPage />} />
             <Route path="/a-propos" element={<AboutPage />} />
