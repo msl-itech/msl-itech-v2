@@ -37,6 +37,8 @@ import { useProductSeo } from "@/hooks/useProductSeo";
 import { getPostBySlug, getRelatedPosts } from "@/content/blogPosts";
 import { blogImageBySlug } from "@/lib/blog-images";
 import { getHubForPost } from "@/lib/blog-hubs";
+import photoHoussineAsset from "@/assets/team/houssine-new.png.asset.json";
+const photoHoussine = photoHoussineAsset.url;
 
 /* ------------------------------------------------------------------ *
  * Helpers
@@ -753,12 +755,20 @@ export default function BlogPage() {
                 className="mt-14 flex items-start gap-4 rounded-2xl border p-6"
                 style={{ borderColor: "var(--grey-light)" }}
               >
-                <div
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full"
-                  style={{ backgroundColor: "rgba(18,77,90,0.08)" }}
-                >
-                  <User size={20} className="text-brand-blue" />
-                </div>
+                {post.author === "El Houssine BOUHMAIDA" ? (
+                  <img
+                    src={photoHoussine}
+                    alt="El Houssine BOUHMAIDA"
+                    className="h-12 w-12 shrink-0 rounded-full object-cover"
+                  />
+                ) : (
+                  <div
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full"
+                    style={{ backgroundColor: "rgba(18,77,90,0.08)" }}
+                  >
+                    <User size={20} className="text-brand-blue" />
+                  </div>
+                )}
                 <div>
                   <p className="font-body text-sm font-semibold text-brand-black">
                     {post.author ?? "Équipe MSL-iTECH"}
