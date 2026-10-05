@@ -37,8 +37,7 @@ import { useProductSeo } from "@/hooks/useProductSeo";
 import { getPostBySlug, getRelatedPosts } from "@/content/blogPosts";
 import { blogImageBySlug } from "@/lib/blog-images";
 import { getHubForPost } from "@/lib/blog-hubs";
-import photoHoussineAsset from "@/assets/team/houssine-new.png.asset.json";
-const photoHoussine = photoHoussineAsset.url;
+import photoHoussine from "@/assets/team/houssine.jpg";
 
 /* ------------------------------------------------------------------ *
  * Helpers
