@@ -122,7 +122,7 @@ export default function ConformiteDgiPage() {
     <ToolWizard
       slug="conformite-dgi"
       eyebrow="Outil · Conformité DGI Maroc"
-      title="Suis-je concerné par la facturation électronique\u00a0DGI\u00a0?"
+      title={`Suis-je concerné par la facturation électronique\u00a0DGI\u00a0?`}
       intro="Six questions, deux minutes, un diagnostic clair de votre exposition à l'obligation de facturation électronique au Maroc."
       questions={questions}
       computeResult={computeResult}

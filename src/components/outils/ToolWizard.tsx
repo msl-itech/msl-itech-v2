@@ -570,7 +570,7 @@ function ResultAndLeadBlock({
                 </span>
                 {(badgeLabel || badgeMax) && (
                   <span className="text-sm font-normal leading-none text-brand-blue/70">
-                    /{badgeLabel ? 100 : badgeMax}
+                    /{badgeMax ?? 100}
                   </span>
                 )}
               </div>
