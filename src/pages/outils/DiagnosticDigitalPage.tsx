@@ -121,19 +121,18 @@ function computeResult(answers: Record<string, string | number>) {
   return {
     headline: `Votre niveau de maturité digitale : ${level}`,
     summary:
-      "Diagnostic synthétique de votre maturité digitale en 5 dimensions clés. Le détail par axe et le plan d'action priorisé vous sont envoyés par email.",
+      "Diagnostic synthétique de votre maturité digitale. Le détail par axe et le plan d'action priorisé vous sont envoyés par email.",
     highlights: [
-      { label: "Niveau", value: level.split(" — ")[0] },
-      { label: "Score", value: `${total} / 15` },
-      { label: "Prochain palier", value: next.split(" ").slice(0, 4).join(" ") + "…" },
+      { label: "Niveau", value: level },
+      { label: "Prochain palier", value: next },
     ],
     recommendations,
     badgeValue: total,
     detailText: [
       `Niveau | ${level}`,
       `Score | ${total} / 15`,
-      `Prochain palier | ${next.split(" ").slice(0, 4).join(" ")}…`,
-      `Le niveau ${levelNum}, ${levelName}, signifie que ${levelMeaning[levelNum] ?? ""}. Prochain palier : ${next}`,
+      `Prochain palier | ${next}`,
+      `Le niveau ${levelNum}, ${levelName}, signifie que ${levelMeaning[levelNum] ?? ""}.`,
     ].join("\n"),
   };
 }
@@ -150,12 +149,13 @@ export default function DiagnosticDigitalPage() {
       slug="diagnostic-digital"
       eyebrow="Outil · Maturité digitale"
       title="À quel niveau de digitalisation est mon entreprise ?"
-      intro="Six questions pour situer votre PME sur l'échelle Conformité → Intégration → Automatisation → Intelligence — et identifier votre prochain palier."
+      intro="Cinq questions sur vos outils, une sur votre ambition — pour situer votre PME sur l'échelle Conformité → Intégration → Automatisation → Intelligence."
       questions={questions}
       computeResult={computeResult}
       partialTeaser="Votre niveau commence à se dessiner. Continuez : à la fin, vous recevez votre score / 15 et les 3 actions prioritaires pour passer au niveau supérieur."
       besoin="erp"
       toolDisplayName="Diagnostic digital"
+      badgeLabel="Score de maturité"
       badgeMax={15}
     />
   );
