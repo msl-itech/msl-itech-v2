@@ -570,7 +570,7 @@ function ResultAndLeadBlock({
                 </span>
                 {(badgeLabel || badgeMax) && (
                   <span className="text-sm font-normal leading-none text-brand-blue/70">
-                    /{badgeLabel ? 100 : badgeMax}
+                    /{badgeMax ?? 100}
                   </span>
                 )}
               </div>
@@ -582,7 +582,7 @@ function ResultAndLeadBlock({
         </p>
 
         {/* Highlights */}
-        <div className="mt-4 grid gap-2 sm:grid-cols-3">
+        <div className={`mt-4 grid gap-2 ${result.highlights.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}>
           {result.highlights.map((h) => (
             <div
               key={h.label}

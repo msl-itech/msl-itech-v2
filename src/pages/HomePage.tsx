@@ -193,10 +193,10 @@ function HeroShell({
                   ))}
                 </div>
                 <div className="mt-5 font-heading text-4xl font-bold text-white md:text-5xl">
-                  20
+                  19
                 </div>
                 <p className="mt-1 font-body text-sm text-white/85">
-                  références publiques vérifiables sur odoo.com
+                  projets déployés, dont 10 vérifiables sur odoo.com
                 </p>
 
                 <Link
@@ -256,7 +256,7 @@ function HeroShell({
                   Approche
                 </p>
                 <div
-                  className="mt-2 font-heading text-2xl font-bold leading-tight md:text-3xl"
+                  className="mt-2 font-heading text-2xl font-bold leading-tight lg:text-3xl"
                   style={{ color: "var(--blue)" }}
                 >
                   Sur mesure
