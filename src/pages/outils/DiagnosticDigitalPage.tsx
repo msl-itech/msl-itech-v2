@@ -79,7 +79,7 @@ function computeResult(answers: Record<string, string | number>) {
     map(answers.kpi) +
     map(answers.ia);
   let level = "1 — Conformité";
-  let next = "Mettre en place un socle ERP unifié (Odoo) et la conformité DGI.";
+  let next = "2 — Intégration";
   let recommendations: string[] = [
     "Déployer un ERP unifié (Odoo) comme socle opérationnel",
     "Mettre en place la facturation électronique conforme DGI",
@@ -87,7 +87,7 @@ function computeResult(answers: Record<string, string | number>) {
   ];
   if (total >= 13) {
     level = "4 — Intelligence";
-    next = "Industrialiser les agents IA et l'aide à la décision en temps réel.";
+    next = "Niveau maximal atteint";
     recommendations = [
       "Déployer des agents IA pour l'aide à la décision",
       "Mettre en place l'analyse prédictive sur vos KPI clés",
@@ -95,7 +95,7 @@ function computeResult(answers: Record<string, string | number>) {
     ];
   } else if (total >= 10) {
     level = "3 — Automatisation";
-    next = "Étendre les workflows automatisés (relances, stock, achats) et déployer un copilote IA.";
+    next = "4 — Intelligence";
     recommendations = [
       "Étendre les workflows automatisés (relances, achats, stock)",
       "Déployer un copilote IA intégré à votre ERP",
@@ -103,7 +103,7 @@ function computeResult(answers: Record<string, string | number>) {
     ];
   } else if (total >= 7) {
     level = "2 — Intégration";
-    next = "Centraliser les données et connecter vos modules (ventes ↔ stock ↔ compta).";
+    next = "3 — Automatisation";
     recommendations = [
       "Centraliser vos données dans un ERP unifié (Odoo)",
       "Connecter ventes ↔ stock ↔ comptabilité",

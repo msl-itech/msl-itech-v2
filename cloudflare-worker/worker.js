@@ -24,6 +24,11 @@ const BLOG_REDIRECTS = {
     "/blog/facturation-electronique-obligatoire-maroc-2026-erp",
   "/blog/sage-vs-odoo-maroc-comparatif-2026":
     "/blog/odoo-vs-sage-maroc-comparatif",
+  "/about": "/a-propos",
+  "/serviceOdoo": "/odoo-erp",
+  "/ventes": "/odoo-crm-ventes",
+  "/tarif-odoo": "/notre-approche",
+  "/tarif-Odoo": "/notre-approche",
 };
 // ── Routes statiques ────────────────────────────────────────────────────────
 // Mettre à jour ici quand une nouvelle page statique est ajoutée au site.
@@ -79,6 +84,7 @@ const STATIC_ROUTES = new Set([
   "/conditions-generales-de-vente",
   "/mentions-legales",
   "/conformite-loi-09-08",
+  "/email/desinscription",
 ]);
 // ── Préfixes dynamiques ─────────────────────────────────────────────────────
 // Ces chemins sont vérifiés contre le sitemap.xml (cache 1h).
@@ -201,7 +207,7 @@ export default {
 // 3. Anciennes URLs blog → 301 vers le nouvel URL canonique
     if (BLOG_REDIRECTS[normalizedPath]) {
       return Response.redirect(
-        url.origin + BLOG_REDIRECTS[normalizedPath],
+        url.origin + BLOG_REDIRECTS[normalizedPath] + (url.search || ""),
         301
       );
     }
