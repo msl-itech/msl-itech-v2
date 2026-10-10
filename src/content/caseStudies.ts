@@ -21,6 +21,8 @@ export type CaseStudy = {
   slug: string;
   name: string;
   sector: string;
+  /** "odoo" (défaut) ou "web" pour les projets site internet purs. */
+  type?: "odoo" | "web";
   country: "Maroc" | "Belgique" | "Cameroun" | "International";
   /** Clé de l'illustration, résolue dans src/lib/case-images.ts */
   imageKey: string;
@@ -131,6 +133,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "ais-hector-denis",
     name: "AIS HECTOR DENIS",
     sector: "Agence Immobilière Sociale",
+    type: "web",
     country: "Belgique",
     imageKey: "realestate",
     imageIsIllustration: true,

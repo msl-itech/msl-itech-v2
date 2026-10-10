@@ -1,50 +1,18 @@
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  ArrowUpRight,
   Sparkles,
-  Building2,
-  Home,
-  Globe,
-  ExternalLink,
-  CheckCircle2,
   Star,
-  ShoppingBag,
-  Church,
-  Hammer,
-  Baby,
-  HeartPulse,
-  Briefcase,
-  Truck,
-  Zap,
-  Landmark,
-  Leaf,
-  Factory,
-  LucideIcon,
+  ExternalLink,
+  ServerCog,
+  Globe,
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import { caseStudies } from "@/content/caseStudies";
-import { caseImageByKey, caseImageAlt } from "@/lib/case-images";
 import pillarWeb from "@/assets/home/pillar-web.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
 
-const caseIcons: Record<string, typeof Building2> = {
-  Landmark,
-  Home,
-  Building2,
-  ShoppingBag,
-  Church,
-  Hammer,
-  Baby,
-  HeartPulse,
-  Briefcase,
-  Truck,
-  Zap,
-  Leaf,
-  Factory,
-};
-/* ---------------- Highlight (marker brushstroke) ---------------- */
 function Mark({ children }: { children: React.ReactNode }) {
   return (
     <span className="relative inline-block">
@@ -58,19 +26,16 @@ function Mark({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ---------------- Sticker ---------------- */
 function Sticker({
   children,
   rotate = -6,
-  className = "",
 }: {
   children: React.ReactNode;
   rotate?: number;
-  className?: string;
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-2xl border-2 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] ${className}`}
+      className="inline-flex items-center gap-1.5 rounded-2xl border-2 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)]"
       style={{
         backgroundColor: "var(--gold)",
         borderColor: "var(--blue)",
@@ -83,40 +48,67 @@ function Sticker({
   );
 }
 
+const odooCasesCount = caseStudies.filter((c) => c.type !== "web").length;
+const webCasesCount = 8;
 
-const webProjects = [
-  { url: "odoo-finances.pro", label: "Odoo Finances", tag: "Showcase ERP" },
-  { url: "mfinances.be", label: "M-Finances", tag: "Cabinet conseil" },
-  { url: "msales.ma", label: "M-Sales Strategy", tag: "Stratégie B2B" },
-  { url: "novatrait.com", label: "Novatrait", tag: "Industrie & Services" },
+const navCards = [
+  {
+    to: "/realisations/odoo",
+    icon: ServerCog,
+    label: "Implémentations Odoo ERP",
+    count: odooCasesCount,
+    countLabel: "cas clients",
+    tags: ["BTP", "HORECA", "Commerce", "Transport", "Santé"],
+    desc: "Du cadrage au déploiement — ERP complets pour des PME ambitieuses au Maroc, en Belgique et au Cameroun.",
+    cta: "Voir les cas Odoo",
+    accentBg: "rgba(18,77,90,0.06)",
+  },
+  {
+    to: "/realisations/sites-web",
+    icon: Globe,
+    label: "Sites Web & Plateformes",
+    count: webCasesCount,
+    countLabel: "projets livrés",
+    tags: ["React", "WordPress", "SEO", "Performance", "Mobile-first"],
+    desc: "Sites hautes performances et plateformes sur mesure pour des entreprises en Belgique et au Maroc.",
+    cta: "Voir les créations web",
+    accentBg: "rgba(255,221,87,0.12)",
+  },
 ];
 
 export default function RealisationsPage() {
   useProductSeo({
-    title: "Nos Réalisations Odoo & Web — Cas Clients MSL-iTECH",
+    title: "Nos Réalisations — ERP Odoo & Sites Web | MSL-iTECH",
     description:
-      "Découvrez les projets Odoo et sites web réalisés par MSL-iTECH au Maroc. BTP, HORECA, immobilier, services. Références vérifiables sur odoo.com/partners.",
+      "Découvrez les projets Odoo ERP et sites web réalisés par MSL-iTECH au Maroc, en Belgique et au Cameroun. Références vérifiables sur odoo.com/partners.",
     path: "/realisations",
+    breadcrumbs: [
+      { name: "Accueil", url: "https://msl-itech.com/" },
+      { name: "Réalisations", url: "https://msl-itech.com/realisations" },
+    ],
   });
 
   return (
     <>
-      {/* HERO — image overlay (style /odoo-erp) */}
+      {/* ── HERO ── */}
       <section className="bg-brand-bg pt-6 md:pt-8">
         <div className="container">
           <div className="relative isolate rounded-[28px] md:rounded-[36px]">
             <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
               <img
                 src={pillarWeb}
-                alt="Aperçu de projets Odoo déployés par MSL-iTECH pour des PME marocaines — interfaces ERP, CRM et gestion de stock"
+                alt="Projets Odoo ERP et sites web réalisés par MSL-iTECH pour des PME"
                 className="absolute inset-0 h-full w-full object-cover"
-              loading="eager" fetchPriority="high" decoding="async"/>
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
               <div
                 aria-hidden
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(10,30,38,0.55) 0%, rgba(10,30,38,0.7) 55%, rgba(10,30,38,0.88) 100%)",
+                    "linear-gradient(180deg, rgba(10,30,38,0.55) 0%, rgba(10,30,38,0.72) 55%, rgba(10,30,38,0.90) 100%)",
                 }}
               />
               <div
@@ -126,12 +118,7 @@ export default function RealisationsPage() {
               />
               <div
                 aria-hidden
-                className="pointer-events-none absolute -bottom-40 -right-24 h-[28rem] w-[28rem] rounded-full opacity-20 blur-3xl"
-                style={{ backgroundColor: "var(--blue)" }}
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 opacity-[0.08]"
+                className="absolute inset-0 opacity-[0.07]"
                 style={{
                   backgroundImage:
                     "radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px)",
@@ -146,7 +133,7 @@ export default function RealisationsPage() {
               <Sticker rotate={-8}>★ Références vérifiables</Sticker>
             </div>
 
-            <div className="relative flex min-h-[420px] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[520px] md:py-28">
+            <div className="relative flex min-h-[380px] flex-col items-center justify-center px-6 py-20 text-center md:min-h-[460px] md:py-24">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
                 <Sparkles size={12} className="text-brand-gold" />
                 <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
@@ -154,17 +141,17 @@ export default function RealisationsPage() {
                 </p>
               </div>
 
-              <h1 className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[64px] lg:text-[76px]">
+              <h1 className="mt-8 max-w-3xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[60px] lg:text-[68px]">
                 Nos preuves,{" "}
-                <span className="italic font-light text-brand-gold">
-                  publiquement
+                <span className="italic font-light text-white">
+                  <Mark>publiquement</Mark>
                 </span>{" "}
-                <Mark>vérifiables.</Mark>
+                vérifiables.
               </h1>
 
-              <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
-                Les meilleures preuves viennent de nos clients et de notre fiche
-                partenaire officielle Odoo — consultable et vérifiable en un clic.
+              <p className="mt-6 max-w-xl font-body text-base text-white/80 md:text-lg">
+                Implémentations Odoo ERP et créations web — consultables sur
+                notre fiche partenaire officielle Odoo en un clic.
               </p>
             </div>
 
@@ -190,197 +177,94 @@ export default function RealisationsPage() {
         </div>
       </section>
 
-      {/* ODOO CASES */}
-      <section className="bg-brand-bg py-24 md:py-28">
+      {/* ── NAV CARDS ── */}
+      <section className="bg-brand-white py-24 md:py-28">
         <div className="container">
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-7">
-              <div className="mb-4 inline-flex items-center gap-2">
-                <span className="h-px w-10 bg-brand-blue" />
-                <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-                  Cas clients Odoo
-                </p>
-              </div>
-              <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
-                Implémentations
-                <br />
-                <Mark>livrées.</Mark>
-              </h2>
-            </div>
-            <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              Du cadrage au déploiement — voici comment nous transformons la
-              gestion quotidienne de PME ambitieuses.
+          <div className="mb-14 text-center">
+            <h2 className="font-heading text-3xl font-bold text-brand-black md:text-4xl">
+              Choisissez votre univers
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl font-body text-base text-brand-grey">
+              Deux expertises complémentaires — explorez nos références par
+              domaine.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-6 lg:grid-cols-2">
-            {caseStudies.map((c, idx) => {
-              const Icon = caseIcons[c.iconKey] ?? Building2;
+          <div className="grid gap-6 lg:grid-cols-2">
+            {navCards.map((card) => {
+              const Icon = card.icon;
               return (
                 <Link
-                  key={c.slug}
-                  to={`/realisations/${c.slug}`}
-                  className="group relative isolate overflow-hidden rounded-[28px] border bg-brand-white shadow-sm transition hover:shadow-xl"
-                  style={{ borderColor: "var(--grey-light)" }}
+                  key={card.to}
+                  to={card.to}
+                  className="group relative isolate overflow-hidden rounded-[28px] border p-8 transition hover:-translate-y-1 hover:shadow-2xl md:p-10"
+                  style={{
+                    borderColor: "var(--grey-light)",
+                    backgroundColor: card.accentBg,
+                  }}
                 >
-                  {/* Image header — illustration sectorielle */}
-                  <div className="relative h-56 overflow-hidden md:h-64">
-                    <img
-                      src={caseImageByKey[c.imageKey]}
-                      alt={caseImageAlt(c.sector, c.imageIsIllustration, c.name)}
-                      className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                    loading="lazy" decoding="async"/>
+                  {/* Hover glow */}
+                  <div
+                    className="pointer-events-none absolute -bottom-20 -right-20 h-52 w-52 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
+                    style={{ backgroundColor: "var(--gold)" }}
+                  />
+
+                  <div className="flex items-start justify-between">
                     <div
-                      className="absolute inset-0"
-                      style={{
-                        background:
-                          "linear-gradient(180deg, rgba(18,77,90,0.15) 0%, rgba(18,77,90,0.75) 100%)",
-                      }}
-                    />
-                    <div className="absolute left-5 top-5">
-                      <Sticker rotate={idx % 2 === 0 ? -6 : 6}>
-                        Cas {String(idx + 1).padStart(2, "0")}
-                      </Sticker>
+                      className="flex h-14 w-14 items-center justify-center rounded-2xl"
+                      style={{ backgroundColor: "var(--blue)", color: "white" }}
+                    >
+                      <Icon size={26} />
                     </div>
-                    {c.imageIsIllustration && (
-                      <span className="absolute right-4 top-5 rounded-full bg-black/45 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.15em] text-white/85 backdrop-blur-sm">
-                        Illustration sectorielle
-                      </span>
-                    )}
-                    <div className="absolute bottom-5 left-5 right-5">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-gold">
-                        {c.sector} — {c.country}
+                    <div className="text-right">
+                      <p className="font-heading text-4xl font-bold text-brand-black">
+                        {card.count}
                       </p>
-                      <h3 className="mt-2 font-heading text-2xl font-bold text-white md:text-3xl">
-                        {c.name}
-                      </h3>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
+                        {card.countLabel}
+                      </p>
                     </div>
                   </div>
 
-                  {/* Body */}
-                  <div className="p-8">
-                    <div className="flex items-start gap-3">
-                      <div
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
-                        style={{ backgroundColor: "rgba(18,77,90,0.08)", color: "var(--blue)" }}
-                      >
-                        <Icon size={20} />
-                      </div>
-                      <p className="font-body text-base text-brand-grey">{c.context}</p>
-                    </div>
-
-                    <div className="mt-6">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-blue">
-                        Solution déployée
-                      </p>
-                      <ul className="mt-3 flex flex-wrap gap-2">
-                        {c.modules.map((m) => (
-                          <li
-                            key={m}
-                            className="rounded-full border bg-brand-bg px-3 py-1 font-body text-xs text-brand-black"
-                            style={{ borderColor: "var(--grey-light)" }}
-                          >
-                            {m}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div
-                      className="mt-6 flex items-start gap-3 rounded-2xl p-4"
-                      style={{ backgroundColor: "rgba(255,221,87,0.18)" }}
-                    >
-                      <CheckCircle2
-                        size={18}
-                        style={{ color: "var(--blue)" }}
-                        className="mt-0.5 shrink-0"
-                      />
-                      <p className="font-body text-sm text-brand-black">{c.result}</p>
-                    </div>
-
-                    <p className="mt-6 inline-flex items-center gap-2 font-body text-sm font-bold text-brand-blue">
-                      Lire le cas client
-                      <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+                  <div className="mt-8">
+                    <h3 className="font-heading text-2xl font-bold text-brand-black md:text-3xl">
+                      {card.label}
+                    </h3>
+                    <p className="mt-3 font-body text-base text-brand-grey leading-relaxed">
+                      {card.desc}
                     </p>
+                  </div>
+
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {card.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border bg-brand-white px-3 py-1 font-body text-xs text-brand-black"
+                        style={{ borderColor: "var(--grey-light)" }}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 inline-flex items-center gap-2 font-body text-base font-bold text-brand-blue">
+                    {card.cta}
+                    <ArrowRight size={18} className="transition group-hover:translate-x-1.5" />
                   </div>
                 </Link>
               );
             })}
           </div>
-
         </div>
       </section>
 
-      {/* WEB PROJECTS */}
-      <section id="sites-plateformes" className="bg-brand-white py-24 md:py-28">
-        <div className="container">
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-7">
-              <div className="mb-4 inline-flex items-center gap-2">
-                <span className="h-px w-10 bg-brand-blue" />
-                <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-blue">
-                  Sites & plateformes
-                </p>
-              </div>
-              <h2 className="font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-6xl">
-                Créations <Mark>web.</Mark>
-              </h2>
-            </div>
-            <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              Sites React haute performance, plateformes WordPress et refontes
-              pour des entreprises en Belgique et au Maroc.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {webProjects.map((p, i) => (
-              <a
-                key={p.url}
-                href={`https://${p.url}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative isolate flex flex-col justify-between overflow-hidden rounded-[24px] border bg-brand-bg p-6 transition hover:-translate-y-1 hover:shadow-xl"
-                style={{ borderColor: "var(--grey-light)", minHeight: 200 }}
-              >
-                <div
-                  className="pointer-events-none absolute -bottom-16 -right-16 h-40 w-40 rounded-full opacity-0 blur-2xl transition group-hover:opacity-60"
-                  style={{ backgroundColor: "var(--gold)" }}
-                />
-                <div className="flex items-start justify-between">
-                  <div
-                    className="flex h-11 w-11 items-center justify-center rounded-xl"
-                    style={{ backgroundColor: "var(--blue)" }}
-                  >
-                    <Globe size={18} className="text-white" />
-                  </div>
-                  <ArrowUpRight
-                    size={20}
-                    className="text-brand-grey transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand-blue"
-                  />
-                </div>
-                <div className="mt-6">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-brand-grey">
-                    {p.tag}
-                  </p>
-                  <h3 className="mt-2 font-heading text-lg font-bold text-brand-black">
-                    {p.label}
-                  </h3>
-                  <p className="mt-1 font-body text-xs text-brand-grey">{p.url}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ODOO PARTNER */}
+      {/* ── ODOO PARTNER ── */}
       <section className="bg-brand-bg py-24 md:py-28">
         <div className="container">
           <div
             className="relative isolate rounded-[28px] p-10 lg:p-16"
             style={{ backgroundColor: "var(--blue)" }}
           >
-            {/* Glow clipped inside */}
             <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[28px]">
               <div
                 className="absolute -top-24 -right-24 h-72 w-72 rounded-full opacity-25 blur-3xl"
@@ -414,10 +298,7 @@ export default function RealisationsPage() {
                   style={{ backgroundColor: "var(--gold)" }}
                 >
                   Voir odoo.com/partners
-                  <ExternalLink
-                    size={16}
-                    className="transition group-hover:translate-x-1"
-                  />
+                  <ExternalLink size={16} className="transition group-hover:translate-x-1" />
                 </a>
               </div>
             </div>
@@ -425,14 +306,16 @@ export default function RealisationsPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* ── CTA ── */}
       <section className="relative isolate overflow-hidden bg-brand-black py-24 md:py-28">
         <HeroCursorGlow color="rgba(255, 221, 87, 1)" size={620} intensity={0.55} />
         <img
           src={ctaBg}
           alt=""
           className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30"
-        loading="lazy" decoding="async"/>
+          loading="lazy"
+          decoding="async"
+        />
         <div
           aria-hidden
           className="absolute inset-0 -z-10"
