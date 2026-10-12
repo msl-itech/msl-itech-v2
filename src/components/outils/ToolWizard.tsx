@@ -171,7 +171,7 @@ export function ToolWizard(props: ToolWizardProps) {
   const progress =
     step >= total
       ? 100
-      : Math.round(((step + 1) / (total + 1)) * 100);
+      : Math.round(((step + 1) / total) * 100);
 
   const currentQ = questions[step];
   const showPartial = step >= 3 && step < total;
@@ -207,6 +207,14 @@ export function ToolWizard(props: ToolWizardProps) {
 
   function back() {
     setStep((s) => Math.max(0, s - 1));
+  }
+
+  function restart() {
+    setStep(0);
+    setAnswers({});
+    setForm({ firstName: "", email: "", phone: "", company: "", currentTool: "", consent: false });
+    setLeadCaptured(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   const canSubmit =
@@ -379,6 +387,7 @@ export function ToolWizard(props: ToolWizardProps) {
               canSubmit={!!canSubmit}
               leadCaptured={leadCaptured}
               onBack={back}
+              onRestart={restart}
               onSubmit={handleSubmit}
               turnstileToken={turnstileToken}
               turnstileRef={turnstileRef}
@@ -522,6 +531,7 @@ function ResultAndLeadBlock({
   canSubmit,
   leadCaptured,
   onBack,
+  onRestart,
   onSubmit,
   turnstileToken,
   turnstileRef,
@@ -537,6 +547,7 @@ function ResultAndLeadBlock({
   canSubmit: boolean;
   leadCaptured: boolean;
   onBack: () => void;
+  onRestart: () => void;
   onSubmit: (e: React.FormEvent) => void;
   turnstileToken: string | null;
   turnstileRef: React.RefObject<HTMLDivElement>;
@@ -731,7 +742,7 @@ function ResultAndLeadBlock({
           <div className="mt-4 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
             <button
               type="button"
-              onClick={onBack}
+              onClick={onRestart}
               className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey hover:text-brand-blue"
             >
               <ArrowLeft size={12} /> Refaire le test
