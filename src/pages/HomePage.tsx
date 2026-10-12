@@ -256,7 +256,7 @@ function HeroShell({
                   Approche
                 </p>
                 <div
-                  className="mt-2 font-heading text-2xl font-bold leading-tight lg:text-3xl"
+                  className="mt-2 font-heading text-xl font-bold leading-tight 2xl:text-3xl"
                   style={{ color: "var(--blue)" }}
                 >
                   Sur mesure
@@ -274,7 +274,7 @@ function HeroShell({
                   Réponse
                 </p>
                 <div
-                  className="mt-2 font-heading text-3xl font-bold md:text-4xl"
+                  className="mt-2 font-heading text-xl font-bold 2xl:text-3xl"
                   style={{ color: "var(--blue)" }}
                 >
                   &lt; 24h

@@ -126,3 +126,92 @@ public/
 ├── llms-full.txt               # Version étendue llms.txt
 index.html                      # Shell HTML — PAS de canonical, PAS de JSON-LD
 ```
+
+---
+
+## Odoo — Règles absolues
+
+Ces règles s'appliquent **à toute interaction avec Odoo** (templates email, vues, modèles, champs Studio). Aucune exception sans accord explicite de l'utilisateur.
+
+### 1. Ne jamais écrire directement sur un objet de production
+
+| Interdit | Pourquoi | Faire à la place |
+|----------|----------|------------------|
+| Modifier `body_html` d'un `mail.template` via XML-RPC | Odoo 17+ WYSIWYG stocke sa propre copie ; l'écriture API réussit mais le contenu affiché ne change pas | Préparer le HTML corrigé dans un fichier local, demander à l'utilisateur de le coller dans la vue code (`</>`) d'Odoo |
+| Écrire un test/marqueur dans un template de production | Risque d'envoi au client final | Dupliquer le template (`copy()`) dans un template de test, tester dessus, supprimer après |
+| Modifier un champ `ir.ui.view` directement | Casse les mises à jour et l'héritage | Utiliser l'héritage de vue (voir §3) |
+
+### 2. Héritage de vues — toujours `inherit_id`
+
+Odoo fonctionne par **héritage de vues** (`ir.ui.view` avec `inherit_id`). Ne jamais modifier la vue parente :
+
+```xml
+<!-- ✅ CORRECT : vue héritée -->
+<record id="my_custom_view" model="ir.ui.view">
+  <field name="name">crm.lead.form.custom</field>
+  <field name="model">crm.lead</field>
+  <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+  <field name="arch" type="xml">
+    <xpath expr="//field[@name='phone']" position="after">
+      <field name="x_studio_secteur"/>
+    </xpath>
+  </field>
+</record>
+
+<!-- ❌ INTERDIT : réécrire la vue parente -->
+<record id="crm.crm_lead_view_form" model="ir.ui.view">
+  ...toute l'arch réécrite...
+</record>
+```
+
+**Règles xpath** :
+- `position="after"` / `"before"` / `"inside"` / `"replace"` / `"attributes"`
+- Toujours utiliser des expressions xpath précises (`//field[@name='...']`, `//page[@name='...']`)
+- Une modification = une vue héritée dans un module custom, jamais un patch sur la vue de base
+
+### 3. Templates email (`mail.template`)
+
+| Règle | Détail |
+|-------|--------|
+| **Pas de version Odoo** | Écrire "Odoo", jamais "Odoo 18" ou "Odoo 17". Le numéro de version change, le template reste. |
+| **Qweb dynamique** | Utiliser `<t t-if>`, `<t t-out>`, `<t t-else="">` pour les champs dynamiques. Toujours prévoir un fallback. |
+| **Signature dynamique** | `<t t-if="object.user_id"><t t-out="object.user_id.name"></t></t><t t-else="">El Houssine BOUHMAIDA</t>` — jamais de nom en dur sans fallback. |
+| **Pas de test en prod** | Dupliquer le template avant tout test. Ne jamais injecter de marqueur, balise test ou texte temporaire dans un template envoyé aux clients. |
+| **Livraison** | Préparer le HTML dans un fichier local (`/tmp/template-XXX.html`). L'utilisateur colle manuellement dans Odoo via `</>`. Ne pas tenter d'écrire via XML-RPC — ça ne marche pas sur Odoo 17+. |
+
+### 4. Champs Studio (`x_studio_*`)
+
+| Règle | Détail |
+|-------|--------|
+| **Valeurs de sélection** | Toujours utiliser les clés techniques exactes récupérées via API. Garder le mapping synchronisé dans le code frontend (ex: `ODOO_SECTEUR`, `ODOO_ECHEANCE`). |
+| **Score affiché ≠ score interne** | `x_studio_score_affiche` = ce que le prospect voit à l'écran. `x_studio_score` = score interne du lead (jamais montré au prospect). Ne jamais les confondre. |
+| **Nouveaux champs** | Créer via Studio ou XML dans un module custom. Ne jamais modifier la structure d'un modèle de base directement. |
+
+### 5. Routage des leads
+
+| Étiquette | Équipe | Commercial |
+|-----------|--------|------------|
+| `Odoo ERP` | `ERP Odoo` | El Houssine |
+| `Site web` | `Web & Marketing` | Manal |
+| `Marketing digital` | `Web & Marketing` | Manal |
+
+Le champ `team_name` dans le payload API détermine l'équipe. Le commercial est assigné par règle d'automatisation Odoo sur l'équipe.
+
+### 6. Proxy API (`api-connect-odoo`)
+
+- Le proxy est dans un repo séparé (`api-connect-odoo`), déployé sur Vercel
+- `studio_routing: true` = le proxy **ne fait pas** le routage ni la création d'activité → tout repose sur les automatisations Odoo
+- `team_name: "ERP Odoo"` (sans `studio_routing`) = le proxy **fait** le routage vers l'équipe + crée l'activité de suivi
+- Si les automatisations Odoo ne sont pas en place, utiliser `team_name` explicite
+
+### Pièges Odoo (leçons passées)
+
+| Piège | Contexte | Prévention |
+|-------|----------|------------|
+| XML-RPC write sur `body_html` | Écriture réussit, read-back confirme, mais le WYSIWYG affiche l'ancien contenu | Ne jamais modifier `body_html` par API — toujours via l'UI Odoo |
+| Marqueur test en production | "⚡ MARKER TEST API ⚡" envoyé à un vrai prospect | Toujours dupliquer le template avant de tester |
+| `x_studio_score_affiche` vide | Le simulateur DGI n'envoyait pas `badgeValue` → email affichait "0/100" | Chaque simulateur avec badge doit retourner `badgeValue` dans `computeResult` |
+| `studio_routing: true` sans automatisation | Leads arrivent dans l'équipe "Sales" par défaut, pas de rappel H+48 | Utiliser `team_name` explicite tant que les automatisations Odoo ne sont pas confirmées opérationnelles |
+| Vue parente modifiée | Perte à la mise à jour, conflit avec d'autres modules | Toujours hériter avec `inherit_id` + xpath |
+| xpath invalide (localisateur orphelin) | `<xpath expr="//page[@name='tunnel_qualification']" position="replace">` dans une vue héritée Studio → le `@name` n'existe pas/plus dans la vue parente → Odoo surligne en rouge, la customisation est ignorée silencieusement | Toujours vérifier que le `@name` ciblé existe dans la vue parente **avant** de créer le xpath. Si un champ/page a été renommé côté base, mettre à jour le xpath dans la vue héritée. |
+| "Odoo 18" dans les templates | Devient faux à chaque changement de version | Écrire "Odoo" sans numéro de version |

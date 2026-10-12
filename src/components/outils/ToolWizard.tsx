@@ -257,6 +257,8 @@ export function ToolWizard(props: ToolWizardProps) {
       });
 
       const besoinLabel = besoin === "erp" ? "Odoo ERP" : "Marketing digital";
+      // T14 — routage équipe commerciale par étiquette
+      const teamName = besoin === "erp" ? "ERP Odoo" : "Web & Marketing";
       const consentAt = new Date().toISOString();
 
       const outilSourceMap: Record<string, string> = {
@@ -285,7 +287,7 @@ export function ToolWizard(props: ToolWizardProps) {
         description,
         source: `msl-itech.com/outils/${slug}${utm.source ? " · " + utm.source : ""}`,
         country_code: "MA",
-        studio_routing: true,
+        team_name: teamName,
         utm_source_name: utm.source || undefined,
         utm_medium_name: utm.medium || undefined,
         utm_campaign_name: utm.campaign || undefined,

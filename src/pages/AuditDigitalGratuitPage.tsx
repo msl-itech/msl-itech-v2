@@ -193,7 +193,7 @@ export default function AuditDigitalGratuitPage() {
         description: undefined,
         source: `msl-itech.com/audit-digital-gratuit${utm.source ? " · " + utm.source : ""}`,
         country_code: "MA",
-        studio_routing: true,
+        team_name: "Web & Marketing",
         tag_names: ["Marketing digital"],
         utm_source_name: utm.source || undefined,
         utm_medium_name: utm.medium || undefined,
