@@ -451,8 +451,13 @@ export default function ContactPage() {
     scrollToFormTop();
   };
 
+  const submitGuard = useRef(false);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // T14 — guard anti double-submit (le setState est asynchrone, deux clicks rapides passent)
+    if (submitGuard.current) return;
+    submitGuard.current = true;
 
     // Anti-spam: honeypot + minimum fill time (3 s) + Turnstile token
     if (honeypot) return;
@@ -519,6 +524,9 @@ export default function ContactPage() {
       await submitLead(payload);
       setSubmitted(true);
       toast.success("Demande envoyée — nous revenons vers vous sous 24h.");
+    } catch (err) {
+      submitGuard.current = false;
+      throw err;
     } finally {
       setSubmitting(false);
     }
