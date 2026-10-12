@@ -209,12 +209,16 @@ export function ToolWizard(props: ToolWizardProps) {
     setStep((s) => Math.max(0, s - 1));
   }
 
+  const wizardRef = useRef<HTMLDivElement>(null);
   function restart() {
     setStep(0);
     setAnswers({});
     setForm({ firstName: "", email: "", phone: "", company: "", currentTool: "", consent: false });
     setLeadCaptured(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Scroll après le re-render (la page rétrécit, scrollTo immédiat est annulé)
+    requestAnimationFrame(() => {
+      wizardRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+    });
   }
 
   const canSubmit =
@@ -349,7 +353,7 @@ export function ToolWizard(props: ToolWizardProps) {
         </div>
 
         {/* Wizard card */}
-        <div className="mx-auto mt-10 max-w-2xl rounded-[28px] border border-brand-grey-light bg-brand-white p-6 shadow-[0_24px_60px_-30px_rgba(15,63,74,0.35)] md:p-10">
+        <div ref={wizardRef} className="mx-auto mt-10 max-w-2xl rounded-[28px] border border-brand-grey-light bg-brand-white p-6 shadow-[0_24px_60px_-30px_rgba(15,63,74,0.35)] md:p-10">
           {/* Progress */}
           <div className="mb-6 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey">
             <span>
