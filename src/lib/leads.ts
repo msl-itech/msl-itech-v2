@@ -1,7 +1,7 @@
 import { OdooLeadData } from "./odoo";
 
 const ODOO_API_URL = "https://api-connect-odoo.vercel.app/api";
-const TIMEOUT_MS = 20000;
+const TIMEOUT_MS = 30000;
 
 const ODOO_HEADERS: Record<string, string> = {
   "Content-Type": "application/json",
