@@ -85,6 +85,13 @@ async function sendWithTimeout(
     }
   } catch (error) {
     clearTimeout(timeoutId);
+    // T14 — si le timeout a coupé la connexion APRÈS que le serveur a reçu
+    // la requête, le lead existe déjà dans Odoo. On ne doit PAS le sauvegarder
+    // en fallback. On marque l'erreur comme "maybe sent" pour éviter les doublons.
+    if (controller.signal.aborted) {
+      console.warn("[Odoo] Timeout — le lead a peut-être déjà été créé, pas de fallback");
+      return; // Ne pas throw → pas de sauvegarde localStorage
+    }
     throw error;
   }
 }
