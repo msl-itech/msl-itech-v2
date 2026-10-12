@@ -422,7 +422,7 @@ function CaseStudy({ market }: { market: "BE" | "MA" }) {
           metrics: [
             { k: "19", v: "projets déployés" },
             { k: "v18·v19", v: "certifiés" },
-            { k: "100%", v: "vérifiable" },
+            { k: "10", v: "vérifiables sur odoo.com" },
           ],
           img: caseBe,
         };

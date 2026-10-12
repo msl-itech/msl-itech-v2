@@ -742,7 +742,7 @@ function CaseStudy() {
               {[
                 { k: "9", v: "références" },
                 { k: "v18·v19", v: "certifiés" },
-                { k: "100%", v: "vérifiable" },
+                { k: "10", v: "vérifiables sur odoo.com" },
               ].map((m) => (
                 <div
                   key={m.v}
