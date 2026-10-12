@@ -217,7 +217,7 @@ export function ToolWizard(props: ToolWizardProps) {
     setLeadCaptured(false);
     // Scroll après le re-render (la page rétrécit, scrollTo immédiat est annulé)
     requestAnimationFrame(() => {
-      wizardRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+      wizardRef.current?.scrollIntoView({ behavior: "instant", block: "start" });
     });
   }
 
@@ -353,7 +353,7 @@ export function ToolWizard(props: ToolWizardProps) {
         </div>
 
         {/* Wizard card */}
-        <div ref={wizardRef} className="mx-auto mt-10 max-w-2xl rounded-[28px] border border-brand-grey-light bg-brand-white p-6 shadow-[0_24px_60px_-30px_rgba(15,63,74,0.35)] md:p-10">
+        <div ref={wizardRef} className="scroll-mt-24 mx-auto mt-10 max-w-2xl rounded-[28px] border border-brand-grey-light bg-brand-white p-6 shadow-[0_24px_60px_-30px_rgba(15,63,74,0.35)] md:p-10">
           {/* Progress */}
           <div className="mb-6 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey">
             <span>
