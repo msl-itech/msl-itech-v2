@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { submitLead } from "./leads";
+import { submitLead, clearLegacyPendingLeads } from "./leads";
 
 describe("submitLead", () => {
   const lead = {
@@ -27,32 +27,30 @@ describe("submitLead", () => {
     expect(localStorage.getItem("pending_leads")).toBeNull();
   });
 
-  it("falls back to localStorage when the API errors out", async () => {
+  it("throws when the API errors out (no localStorage fallback)", async () => {
     vi.spyOn(global, "fetch").mockResolvedValue(
       new Response("nope", { status: 500 })
     );
-    const res = await submitLead(lead);
-    expect(res.success).toBe(true);
-    expect(res.message).toBe("fallback");
-    const raw = localStorage.getItem("pending_leads");
-    expect(raw).not.toBeNull();
-    const stored = JSON.parse(raw!);
-    expect(stored).toHaveLength(1);
-    expect(stored[0].data.email_from).toBe("jane@acme.test");
-    expect(stored[0].status).toBe("pending");
+    await expect(submitLead(lead)).rejects.toThrow("HTTP 500");
+    expect(localStorage.getItem("pending_leads")).toBeNull();
   });
 
-  it("falls back to localStorage when fetch throws (offline)", async () => {
+  it("throws when fetch throws (offline)", async () => {
     vi.spyOn(global, "fetch").mockRejectedValue(new Error("network down"));
-    const res = await submitLead(lead);
-    expect(res.message).toBe("fallback");
-    expect(localStorage.getItem("pending_leads")).not.toBeNull();
+    await expect(submitLead(lead)).rejects.toThrow("network down");
+    expect(localStorage.getItem("pending_leads")).toBeNull();
+  });
+});
+
+describe("clearLegacyPendingLeads", () => {
+  it("removes pending_leads from localStorage", () => {
+    localStorage.setItem("pending_leads", JSON.stringify([{ data: {}, savedAt: new Date().toISOString(), status: "pending" }]));
+    clearLegacyPendingLeads();
+    expect(localStorage.getItem("pending_leads")).toBeNull();
   });
 
-  it("never throws — UX must not be blocked by Odoo", async () => {
-    vi.spyOn(global, "fetch").mockImplementation(() => {
-      throw new Error("sync boom");
-    });
-    await expect(submitLead(lead)).resolves.toMatchObject({ success: true });
+  it("does nothing when no pending_leads exist", () => {
+    clearLegacyPendingLeads();
+    expect(localStorage.getItem("pending_leads")).toBeNull();
   });
 });

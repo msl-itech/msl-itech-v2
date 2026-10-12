@@ -524,9 +524,9 @@ export default function ContactPage() {
       await submitLead(payload);
       setSubmitted(true);
       toast.success("Demande envoyée — nous revenons vers vous sous 24h.");
-    } catch (err) {
+    } catch {
       submitGuard.current = false;
-      throw err;
+      toast.error("Erreur d'envoi — veuillez réessayer.");
     } finally {
       setSubmitting(false);
     }
