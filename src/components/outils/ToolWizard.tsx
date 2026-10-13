@@ -215,9 +215,9 @@ export function ToolWizard(props: ToolWizardProps) {
     setAnswers({});
     setForm({ firstName: "", email: "", phone: "", company: "", currentTool: "", consent: false });
     setLeadCaptured(false);
-    // Scroll après le re-render (la page rétrécit, scrollTo immédiat est annulé)
+    // Scroll tout en haut après le re-render
     requestAnimationFrame(() => {
-      wizardRef.current?.scrollIntoView({ behavior: "instant", block: "start" });
+      window.scrollTo({ top: 0, behavior: "instant" });
     });
   }
 

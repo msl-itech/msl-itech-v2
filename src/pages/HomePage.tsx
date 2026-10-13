@@ -256,7 +256,7 @@ function HeroShell({
                   Approche
                 </p>
                 <div
-                  className="mt-2 font-heading text-xl font-bold leading-tight 2xl:text-3xl"
+                  className="mt-2 font-heading text-lg font-bold leading-tight xl:text-xl 2xl:text-3xl"
                   style={{ color: "var(--blue)" }}
                 >
                   Sur mesure
