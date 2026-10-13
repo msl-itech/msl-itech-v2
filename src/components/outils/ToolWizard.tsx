@@ -171,7 +171,7 @@ export function ToolWizard(props: ToolWizardProps) {
   const progress =
     step >= total
       ? 100
-      : Math.round(((step + 1) / (total + 1)) * 100);
+      : Math.round(((step + 1) / total) * 100);
 
   const currentQ = questions[step];
   const showPartial = step >= 3 && step < total;
@@ -207,6 +207,18 @@ export function ToolWizard(props: ToolWizardProps) {
 
   function back() {
     setStep((s) => Math.max(0, s - 1));
+  }
+
+  const wizardRef = useRef<HTMLDivElement>(null);
+  function restart() {
+    setStep(0);
+    setAnswers({});
+    setForm({ firstName: "", email: "", phone: "", company: "", currentTool: "", consent: false });
+    setLeadCaptured(false);
+    // Scroll tout en haut après le re-render
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    });
   }
 
   const canSubmit =
@@ -257,6 +269,8 @@ export function ToolWizard(props: ToolWizardProps) {
       });
 
       const besoinLabel = besoin === "erp" ? "Odoo ERP" : "Marketing digital";
+      // T14 — routage équipe commerciale par étiquette
+      const teamName = besoin === "erp" ? "ERP Odoo" : "Web & Marketing";
       const consentAt = new Date().toISOString();
 
       const outilSourceMap: Record<string, string> = {
@@ -285,7 +299,7 @@ export function ToolWizard(props: ToolWizardProps) {
         description,
         source: `msl-itech.com/outils/${slug}${utm.source ? " · " + utm.source : ""}`,
         country_code: "MA",
-        studio_routing: true,
+        team_name: teamName,
         utm_source_name: utm.source || undefined,
         utm_medium_name: utm.medium || undefined,
         utm_campaign_name: utm.campaign || undefined,
@@ -339,7 +353,7 @@ export function ToolWizard(props: ToolWizardProps) {
         </div>
 
         {/* Wizard card */}
-        <div className="mx-auto mt-10 max-w-2xl rounded-[28px] border border-brand-grey-light bg-brand-white p-6 shadow-[0_24px_60px_-30px_rgba(15,63,74,0.35)] md:p-10">
+        <div ref={wizardRef} className="scroll-mt-24 mx-auto mt-10 max-w-2xl rounded-[28px] border border-brand-grey-light bg-brand-white p-6 shadow-[0_24px_60px_-30px_rgba(15,63,74,0.35)] md:p-10">
           {/* Progress */}
           <div className="mb-6 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey">
             <span>
@@ -377,6 +391,7 @@ export function ToolWizard(props: ToolWizardProps) {
               canSubmit={!!canSubmit}
               leadCaptured={leadCaptured}
               onBack={back}
+              onRestart={restart}
               onSubmit={handleSubmit}
               turnstileToken={turnstileToken}
               turnstileRef={turnstileRef}
@@ -520,6 +535,7 @@ function ResultAndLeadBlock({
   canSubmit,
   leadCaptured,
   onBack,
+  onRestart,
   onSubmit,
   turnstileToken,
   turnstileRef,
@@ -535,6 +551,7 @@ function ResultAndLeadBlock({
   canSubmit: boolean;
   leadCaptured: boolean;
   onBack: () => void;
+  onRestart: () => void;
   onSubmit: (e: React.FormEvent) => void;
   turnstileToken: string | null;
   turnstileRef: React.RefObject<HTMLDivElement>;
@@ -570,7 +587,7 @@ function ResultAndLeadBlock({
                 </span>
                 {(badgeLabel || badgeMax) && (
                   <span className="text-sm font-normal leading-none text-brand-blue/70">
-                    /{badgeLabel ? 100 : badgeMax}
+                    /{badgeMax ?? 100}
                   </span>
                 )}
               </div>
@@ -582,7 +599,7 @@ function ResultAndLeadBlock({
         </p>
 
         {/* Highlights */}
-        <div className="mt-4 grid gap-2 sm:grid-cols-3">
+        <div className={`mt-4 grid gap-2 ${result.highlights.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}>
           {result.highlights.map((h) => (
             <div
               key={h.label}
@@ -729,7 +746,7 @@ function ResultAndLeadBlock({
           <div className="mt-4 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
             <button
               type="button"
-              onClick={onBack}
+              onClick={onRestart}
               className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey hover:text-brand-blue"
             >
               <ArrowLeft size={12} /> Refaire le test

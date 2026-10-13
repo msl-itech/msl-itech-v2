@@ -424,7 +424,8 @@ export default function ContactPage() {
     setTimeout(() => setNavDisabled(false), 500);
   };
 
-  const handleNext = () => {
+  const handleNext = (e?: React.MouseEvent) => {
+    e?.preventDefault();
     if (navDisabled) return;
     if (validateStep()) {
       disableNav();
@@ -450,8 +451,13 @@ export default function ContactPage() {
     scrollToFormTop();
   };
 
+  const submitGuard = useRef(false);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // T14 — guard anti double-submit (le setState est asynchrone, deux clicks rapides passent)
+    if (submitGuard.current) return;
+    submitGuard.current = true;
 
     // Anti-spam: honeypot + minimum fill time (3 s) + Turnstile token
     if (honeypot) return;
@@ -462,12 +468,14 @@ export default function ContactPage() {
 
     const besoin = data.besoin as Besoin;
     const besoinLabel = { erp: "Odoo ERP", site: "Site web", marketing: "Marketing digital" }[besoin];
+    // T14 — routage équipe commerciale par étiquette
+    const teamName = besoin === "erp" ? "ERP Odoo" : "Web & Marketing";
     const utm = getUtm();
     const consentAt = new Date().toISOString();
 
-    // T12 — description : uniquement le message libre (marketing).
-    // Tout le reste va dans les champs x_studio_*.
-    const freeMessage = besoin === "marketing" && data.message
+    // T12 — description : message libre (tous besoins) + réponses étape 3.
+    // Les champs structurés vont dans x_studio_*.
+    const freeMessage = data.message
       ? buildLeadDescription({ Message: data.message })
       : undefined;
 
@@ -478,7 +486,7 @@ export default function ContactPage() {
       phone: data.phone || undefined,
       partner_name: data.company || undefined,
       country_code: data.country !== "OTHER" ? data.country : undefined,
-      studio_routing: true,
+      team_name: teamName,
       utm_source_name: utm.source || undefined,
       utm_medium_name: utm.medium || undefined,
       utm_campaign_name: utm.campaign || undefined,
@@ -516,6 +524,9 @@ export default function ContactPage() {
       await submitLead(payload);
       setSubmitted(true);
       toast.success("Demande envoyée — nous revenons vers vous sous 24h.");
+    } catch {
+      submitGuard.current = false;
+      toast.error("Erreur d'envoi — veuillez réessayer.");
     } finally {
       setSubmitting(false);
     }
@@ -980,19 +991,21 @@ export default function ContactPage() {
                           value={data.objectifMarketing}
                           onChange={(v) => update("objectifMarketing", v)}
                         />
-                        <Field
-                          id="message"
-                          label="Message (facultatif)"
-                          value={data.message}
-                          onChange={(v) => update("message", v)}
-                          textarea
-                          rows={4}
-                          maxLength={800}
-                          showCount
-                          placeholder="Décrivez brièvement votre situation ou vos questions…"
-                        />
                       </>
                     )}
+
+                    {/* Message libre — commun aux 3 besoins */}
+                    <Field
+                      id="message"
+                      label="Message (facultatif)"
+                      value={data.message}
+                      onChange={(v) => update("message", v)}
+                      textarea
+                      rows={4}
+                      maxLength={800}
+                      showCount
+                      placeholder="Décrivez brièvement votre situation ou vos questions…"
+                    />
                   </div>
                 )}
               </div>
@@ -1023,6 +1036,7 @@ export default function ContactPage() {
 
                 {step < STEP_LABELS.length - 1 ? (
                   <button
+                    key="btn-next"
                     type="button"
                     onClick={handleNext}
                     disabled={navDisabled}
@@ -1033,6 +1047,7 @@ export default function ContactPage() {
                   </button>
                 ) : (
                   <button
+                    key="btn-submit"
                     type="submit"
                     disabled={submitting || !turnstileToken}
                     className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold shadow-[0_14px_36px_-12px_rgba(255,221,87,0.7)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"

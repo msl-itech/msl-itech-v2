@@ -14,7 +14,7 @@ export interface OdooLeadData {
   source?: string;       // origine ex: "msl-itech.com /contact"
   tag_names?: string[];  // une seule étiquette parmi : "Odoo ERP" | "Site web" | "Marketing digital"
   country_code?: string; // BE, MA, CA, ...
-  team_name?: string;    // équipe Odoo — legacy, non utilisé si studio_routing=true
+  team_name?: string;    // équipe Odoo — routage par tag (T14: "ERP Odoo" ou "Web & Marketing")
   /** T12 — active le mode Studio : connecteur ne fait plus le routage ni l'activité */
   studio_routing?: boolean;
   /** UTM natifs Odoo — le proxy mappe vers source_id / medium_id / campaign_id */

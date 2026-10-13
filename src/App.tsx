@@ -7,7 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Layout } from "@/components/layout/Layout";
 import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
-import { retryPendingLeads } from "@/lib/leads";
+import { clearLegacyPendingLeads } from "@/lib/leads";
 import { captureUtm } from "@/lib/utm";
 import { lazyRetry } from "@/lib/lazy-retry";
 
@@ -74,9 +74,8 @@ const App = () => {
     // Capture les UTM dès le premier rendu, quelle que soit la page d'entrée.
     // Doit être appelé avant tout routing pour préserver referrer + landing URL.
     captureUtm();
-    // Renvoie automatiquement les leads sauvegardés en localStorage
-    // si un précédent envoi vers Odoo a échoué (offline / timeout).
-    retryPendingLeads().catch(() => {});
+    // T14 — purge les pending_leads legacy (le mécanisme de retry créait des doublons)
+    clearLegacyPendingLeads();
   }, []);
 
   return (

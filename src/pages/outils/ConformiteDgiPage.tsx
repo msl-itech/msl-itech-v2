@@ -79,6 +79,22 @@ function computeResult(answers: Record<string, string | number>) {
   const delais =
     ech === "asap" ? "0 à 3 mois" : ech === "cette_annee" ? "3 à 9 mois" : "9 à 18 mois";
 
+  // Score de conformité affiché au prospect (0–100)
+  // Facturation: papier=0, word/excel=10, logiciel=30, erp=50
+  // Volume: lt20=10, 20_100=5, 100_500=0, gt500=0
+  // Échéance: asap=0, cette_annee=10, 12_24=20, inconnu=5
+  // Blocage: tech=5, budget=10, equipe=5, personne=0
+  const factScore: Record<string, number> = { papier: 0, word_excel: 10, logiciel: 30, erp: 50 };
+  const volScore: Record<string, number> = { lt20: 10, "20_100": 5, "100_500": 0, gt500: 0 };
+  const echScore: Record<string, number> = { asap: 0, cette_annee: 10, "12_24": 20, inconnu: 5 };
+  const blocScore: Record<string, number> = { tech: 5, budget: 10, equipe: 5, personne: 0 };
+  const conformityScore = Math.min(100,
+    (factScore[String(fact)] ?? 0) +
+    (volScore[String(answers.volume)] ?? 0) +
+    (echScore[String(ech)] ?? 0) +
+    (blocScore[String(answers.blocage)] ?? 0)
+  );
+
   const recommendations: string[] =
     risk === "Élevé"
       ? [
@@ -108,6 +124,7 @@ function computeResult(answers: Record<string, string | number>) {
       { label: "Format cible DGI", value: "PDF + UBL" },
     ],
     recommendations,
+    badgeValue: conformityScore,
   };
 }
 
@@ -122,7 +139,7 @@ export default function ConformiteDgiPage() {
     <ToolWizard
       slug="conformite-dgi"
       eyebrow="Outil · Conformité DGI Maroc"
-      title="Suis-je concerné par la facturation électronique DGI ?"
+      title={`Suis-je concerné par la facturation électronique\u00a0DGI\u00a0?`}
       intro="Six questions, deux minutes, un diagnostic clair de votre exposition à l'obligation de facturation électronique au Maroc."
       questions={questions}
       computeResult={computeResult}
@@ -130,6 +147,7 @@ export default function ConformiteDgiPage() {
       besoin="erp"
       toolDisplayName="Simulateur DGI"
       badgeLabel="Score de conformité"
+      badgeMax={100}
     />
   );
 }
