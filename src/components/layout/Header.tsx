@@ -1,6 +1,7 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X, ChevronRight } from "lucide-react";
+import { track } from "@/lib/analytics";
 import logoDark from "@/assets/logo-msl-dark.png";
 
 const odooLinks = [
@@ -192,6 +193,7 @@ export const Header = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/contact"
+            onClick={() => track("cta_click", { cta_label: "Réserver une démo", cta_location: "header", cta_target: "/contact" })}
             className="hidden rounded-md px-4 py-2 font-body text-sm font-medium text-brand-white transition hover:opacity-90 sm:inline-flex"
             style={{ backgroundColor: "var(--blue)" }}
           >
@@ -346,7 +348,7 @@ export const Header = () => {
             </ul>
             <Link
               to="/contact"
-              onClick={() => setMobileOpen(false)}
+              onClick={() => { track("cta_click", { cta_label: "Réserver une démo", cta_location: "header", cta_target: "/contact" }); setMobileOpen(false); }}
               className="mt-6 block rounded-md px-4 py-3 text-center font-body text-sm font-medium text-brand-white"
               style={{ backgroundColor: "var(--blue)" }}
             >

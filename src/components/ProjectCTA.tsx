@@ -1,6 +1,7 @@
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
+import { track } from "@/lib/analytics";
 
 type Tag = { label: string; ty: number; r: number; accent?: boolean };
 
@@ -100,6 +101,7 @@ export const ProjectCTA = ({
             <div className="mt-10 flex justify-center">
               <Link
                 to={ctaTo}
+                onClick={() => track("cta_click", { cta_label: ctaLabel, cta_location: "section", cta_target: ctaTo })}
                 className="group cta-pulse-gold hover-shine inline-flex items-center gap-3 rounded-full px-7 py-4 font-body text-base font-bold transition hover:scale-[1.03]"
                 style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
               >

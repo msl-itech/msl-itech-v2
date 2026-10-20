@@ -14,6 +14,7 @@ import { captureUtm, formatUtmForOdoo, getUtm } from "@/lib/utm";
 import { buildLeadDescription, OdooLeadData } from "@/lib/odoo";
 import { submitLead } from "@/lib/leads";
 import { toast } from "@/hooks/use-toast";
+import { track } from "@/lib/analytics";
 
 export type ToolOption = {
   value: string;
@@ -201,6 +202,7 @@ export function ToolWizard(props: ToolWizardProps) {
   }, [step, total, derivedScoreInputs, slug]);
 
   function answerAndAdvance(value: string | number) {
+    if (step === 0) track("tool_start", { tool_name: slug });
     setAnswers((a) => ({ ...a, [currentQ.id]: value }));
     setStep((s) => s + 1);
   }
@@ -211,6 +213,7 @@ export function ToolWizard(props: ToolWizardProps) {
 
   const wizardRef = useRef<HTMLDivElement>(null);
   function restart() {
+    track("tool_restart", { tool_name: slug });
     setStep(0);
     setAnswers({});
     setForm({ firstName: "", email: "", phone: "", company: "", currentTool: "", consent: false });
@@ -318,6 +321,7 @@ export function ToolWizard(props: ToolWizardProps) {
       };
 
       await submitLead(payload);
+      track("generate_lead", { lead_source: "outil", tool_name: slug, market: "MA" });
 
       setLeadCaptured(true);
       toast({
@@ -325,6 +329,7 @@ export function ToolWizard(props: ToolWizardProps) {
         description: "Vous recevez votre résultat complet par email.",
       });
     } catch (err) {
+      track("form_error", { lead_source: "outil", tool_name: slug, error_type: "network" });
       console.error(err);
       toast({
         title: "Une erreur est survenue",
@@ -337,6 +342,16 @@ export function ToolWizard(props: ToolWizardProps) {
   }
 
   const result = useMemo(() => computeResult(answers), [answers, computeResult]);
+
+  // GA4: track tool_complete when the result screen appears
+  const toolCompleteTracked = useRef(false);
+  useEffect(() => {
+    if (step === total && !toolCompleteTracked.current) {
+      toolCompleteTracked.current = true;
+      track("tool_complete", { tool_name: slug, result_level: String(result.badgeValue ?? result.headline) });
+    }
+    if (step < total) toolCompleteTracked.current = false;
+  }, [step, total, slug, result]);
 
   return (
     <section className="overflow-x-clip bg-brand-bg pb-20 pt-10 md:pt-14">
