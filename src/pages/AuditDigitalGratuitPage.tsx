@@ -22,6 +22,7 @@ import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import { submitLead } from "@/lib/leads";
 import { getUtm } from "@/lib/utm";
+import { track } from "@/lib/analytics";
 import { toast } from "@/hooks/use-toast";
 import stepReporting from "@/assets/marketing-step-reporting.jpg";
 import stepAudit from "@/assets/marketing-step-audit.jpg";
@@ -204,9 +205,11 @@ export default function AuditDigitalGratuitPage() {
         x_studio_consentement: true,
         x_studio_consentement_date: new Date().toISOString(),
       });
+      track("generate_lead", { lead_source: "audit", form_type: "audit", market: "MA" });
       setSubmitted(true);
       toast({ title: "Demande reçue !", description: "Votre audit arrive sous 48 h." });
     } catch {
+      track("form_error", { lead_source: "audit", form_type: "audit", error_type: "network" });
       toast({ title: "Erreur", description: "Réessayez ou écrivez-nous directement.", variant: "destructive" });
     } finally {
       setSubmitting(false);
