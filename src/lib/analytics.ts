@@ -61,10 +61,21 @@ function loadGa() {
   if (gaLoaded || !GA_ID || !isProductionHost() || typeof document === "undefined") return;
   gaLoaded = true;
 
+  // Sauvegarder les méthodes history natives AVANT le chargement de gtag.js.
+  // gtag.js les wrappe pour détecter les navigations SPA et envoyer des page_view
+  // automatiques avec le document.title périmé. On les restaure après chargement
+  // car on gère les page_view manuellement via sendPageView() avec le bon titre.
+  const nativePushState = history.pushState;
+  const nativeReplaceState = history.replaceState;
+
   const s = document.createElement("script");
   s.id = "ga4-loader";
   s.async = true;
   s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  s.onload = () => {
+    history.pushState = nativePushState;
+    history.replaceState = nativeReplaceState;
+  };
   document.head.appendChild(s);
 
   window.dataLayer = window.dataLayer || [];
@@ -75,7 +86,7 @@ function loadGa() {
   window.gtag("js", new Date());
 
   const config: Record<string, unknown> = {
-    send_page_view: false, // page_view envoyé manuellement par SEOHead après que Helmet ait posé le titre
+    send_page_view: false, // page_view envoyé manuellement par SEOHead avec le bon titre
     allow_google_signals: false,
     allow_ad_personalization_signals: false,
   };
