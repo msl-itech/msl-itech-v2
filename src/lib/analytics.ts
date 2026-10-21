@@ -84,10 +84,6 @@ function loadGa() {
     config.debug_mode = true;
   }
   window.gtag("config", GA_ID, config);
-
-  // Envoyer le page_view initial maintenant que GA est configuré
-  // (le titre est déjà en place car Helmet a rendu avant le consentement)
-  sendPageView();
 }
 
 /* ── Microsoft Clarity ────────────────────────────────────────── */
@@ -116,15 +112,21 @@ function loadClarity() {
 /* ── Public API ───────────────────────────────────────────────── */
 
 /**
- * Send a page_view with the current title and URL.
- * Called by SEOHead after Helmet has set the correct document.title.
+ * Send a page_view with the given title and current URL.
+ * Called by SEOHead after Helmet has set the title, and by initAnalytics
+ * when consent is granted after mount. Deduplicates by URL to avoid doubles.
  */
-export function sendPageView(): void {
+let lastPageViewUrl = "";
+
+export function sendPageView(title: string): void {
   if (typeof window === "undefined" || !gaLoaded || !window.gtag) return;
   if (!getConsent().categories.analytics) return;
+  const url = window.location.href;
+  if (url === lastPageViewUrl) return;
+  lastPageViewUrl = url;
   window.gtag("event", "page_view", {
-    page_title: document.title,
-    page_location: window.location.href,
+    page_title: title,
+    page_location: url,
   });
 }
 
@@ -155,6 +157,10 @@ export function initAnalytics() {
     if (granted) {
       setGaDisabled(false);
       loadGa();
+      // Page_view pour le late consent : SEOHead a déjà monté, son useEffect ne se
+      // re-déclenchera pas. Le délai laisse gtag.js charger. Le dédup par URL empêche
+      // le doublon si SEOHead envoie aussi (cas du premier chargement).
+      setTimeout(() => sendPageView(document.title), 150);
       if (clarityLoaded) window.clarity?.("start"); else loadClarity();
     } else {
       setGaDisabled(true);

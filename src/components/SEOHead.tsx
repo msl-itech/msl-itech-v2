@@ -1,5 +1,5 @@
 // Purge prérendu — correctif noindex, 29/09/2026
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { sendPageView } from "@/lib/analytics";
 
@@ -49,18 +49,14 @@ export function SEOHead({
       ? [schemaJson]
       : [];
 
-  // GA4: envoie le page_view après que Helmet a posé le titre.
-  // Le premier rendu (mount) est ignoré car loadGa() envoie déjà le page_view initial.
-  const isFirstRender = useRef(true);
+  // GA4: envoie un page_view après chaque changement de route.
+  // Le titre est passé directement (pas lu depuis document.title) pour éviter les titres périmés.
+  // Dépend uniquement de canonical (= identité de la page). Le dédup par URL dans sendPageView
+  // empêche les doublons si initAnalytics envoie aussi au moment du consentement.
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    // Petit délai pour laisser Helmet appliquer le titre au DOM
-    const t = setTimeout(() => sendPageView(), 50);
+    const t = setTimeout(() => sendPageView(title), 0);
     return () => clearTimeout(t);
-  }, [title, canonical]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [canonical]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Merge multiple schemas into a single @graph block
   const merged =
