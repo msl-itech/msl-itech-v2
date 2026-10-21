@@ -344,11 +344,27 @@ export function ToolWizard(props: ToolWizardProps) {
   const result = useMemo(() => computeResult(answers), [answers, computeResult]);
 
   // GA4: track tool_complete when the result screen appears
+  // result_level = niveau textuel sans accent (DGI: faible/modere/eleve, Diagnostic: 1/2/3/4)
+  // result_score = badge numérique quand il existe (DGI: 0-100, Diagnostic: 5-15)
   const toolCompleteTracked = useRef(false);
   useEffect(() => {
     if (step === total && !toolCompleteTracked.current) {
       toolCompleteTracked.current = true;
-      track("tool_complete", { tool_name: slug, result_level: String(result.badgeValue ?? result.headline) });
+
+      let resultLevel: string | undefined;
+      if (slug === "conformite-dgi") {
+        const m = result.headline?.match(/:\s*(Élevé|Modéré|Faible)/i);
+        if (m) resultLevel = m[1].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      } else if (slug === "diagnostic-digital") {
+        const m = result.headline?.match(/(\d)\s*—/);
+        if (m) resultLevel = m[1];
+      }
+
+      track("tool_complete", {
+        tool_name: slug,
+        result_level: resultLevel,
+        result_score: result.badgeValue != null ? Number(result.badgeValue) : undefined,
+      });
     }
     if (step < total) toolCompleteTracked.current = false;
   }, [step, total, slug, result]);

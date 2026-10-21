@@ -450,7 +450,9 @@ export default function ContactPage() {
     setData((d) => ({ ...d, besoin }));
     setErrors((e) => ({ ...e, besoin: "" }));
     disableNav();
-    track("form_start", { lead_source: "contact", form_type: besoin === "site" ? "site_web" : besoin });
+    const ft = besoin === "site" ? "site_web" : besoin;
+    track("form_start", { lead_source: "contact", form_type: ft });
+    track("form_step", { lead_source: "contact", form_type: ft, step: 2 });
     setStep(1);
     scrollToFormTop();
   };
