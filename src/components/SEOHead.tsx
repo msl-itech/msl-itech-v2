@@ -1,5 +1,7 @@
 // Purge prérendu — correctif noindex, 29/09/2026
+import { useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
+import { sendPageView } from "@/lib/analytics";
 
 export interface SEOHeadProps {
   title: string;
@@ -46,6 +48,19 @@ export function SEOHead({
     : schemaJson
       ? [schemaJson]
       : [];
+
+  // GA4: envoie le page_view après que Helmet a posé le titre.
+  // Le premier rendu (mount) est ignoré car loadGa() envoie déjà le page_view initial.
+  const isFirstRender = useRef(true);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    // Petit délai pour laisser Helmet appliquer le titre au DOM
+    const t = setTimeout(() => sendPageView(), 50);
+    return () => clearTimeout(t);
+  }, [title, canonical]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Merge multiple schemas into a single @graph block
   const merged =

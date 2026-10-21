@@ -15,8 +15,7 @@ import { getConsent, onConsentChange } from "./consent";
 const GA_ID = (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined) || "";
 const CLARITY_ID = "xrf313hs67";
 
-// TODO T9 : retirer le hostname preview avant merge dans main
-const PRODUCTION_HOSTS = ["msl-itech.com", "msl-itech-v2-git-fix-t9-ga4-msl-itech.vercel.app"];
+const PRODUCTION_HOSTS = ["msl-itech.com"];
 const INTERNAL_FLAG_KEY = "msl_internal";
 
 declare global {
@@ -75,6 +74,7 @@ function loadGa() {
   window.gtag("js", new Date());
 
   const config: Record<string, unknown> = {
+    send_page_view: false, // page_view envoyé manuellement par SEOHead après que Helmet ait posé le titre
     allow_google_signals: false,
     allow_ad_personalization_signals: false,
   };
@@ -83,6 +83,10 @@ function loadGa() {
     config.debug_mode = true;
   }
   window.gtag("config", GA_ID, config);
+
+  // Envoyer le page_view initial maintenant que GA est configuré
+  // (le titre est déjà en place car Helmet a rendu avant le consentement)
+  sendPageView();
 }
 
 /* ── Microsoft Clarity ────────────────────────────────────────── */
@@ -111,6 +115,19 @@ function loadClarity() {
 /* ── Public API ───────────────────────────────────────────────── */
 
 /**
+ * Send a page_view with the current title and URL.
+ * Called by SEOHead after Helmet has set the correct document.title.
+ */
+export function sendPageView(): void {
+  if (typeof window === "undefined" || !gaLoaded || !window.gtag) return;
+  if (!getConsent().categories.analytics) return;
+  window.gtag("event", "page_view", {
+    page_title: document.title,
+    page_location: window.location.href,
+  });
+}
+
+/**
  * Send a GA4 event. No-op when GA is not loaded (no consent, no ID, preview host).
  * Never pass personal data (name, email, phone, company, free text, entered URLs).
  */
@@ -137,7 +154,7 @@ export function initAnalytics() {
     if (granted) {
       setGaDisabled(false);
       loadGa();
-      loadClarity();
+      if (clarityLoaded) window.clarity?.("start"); else loadClarity();
     } else {
       setGaDisabled(true);
       window.clarity?.("stop");
