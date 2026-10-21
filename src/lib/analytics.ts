@@ -15,7 +15,8 @@ import { getConsent, onConsentChange } from "./consent";
 const GA_ID = (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined) || "";
 const CLARITY_ID = "xrf313hs67";
 
-const PRODUCTION_HOSTS = ["msl-itech.com"];
+// TODO T9 : retirer le hostname preview avant merge dans main
+const PRODUCTION_HOSTS = ["msl-itech.com", "msl-itech-v2-git-fix-t9-ga4-msl-itech.vercel.app"];
 const INTERNAL_FLAG_KEY = "msl_internal";
 
 declare global {
