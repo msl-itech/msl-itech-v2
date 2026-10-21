@@ -3,6 +3,7 @@ import { useMarket } from "@/hooks/useMarket";
 import logoWhite from "@/assets/logo-msl-white.png";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { track } from "@/lib/analytics";
 import { openConsentPreferences } from "@/lib/consent";
 
 const odooCol = [
@@ -164,7 +165,13 @@ export const Footer = () => {
         <div className="container grid gap-4 px-4 py-6 text-center font-mono text-[11px] text-brand-grey-light/70 sm:px-6 sm:text-xs md:grid-cols-3 md:items-center md:gap-3 md:text-left">
           <span>© 2026 MSL-iTECH · Tous droits réservés</span>
           <span className="break-words md:text-center">
-            +32 2 886 05 49 · +212 6 89 30 62 78 · info@msl-itech.com
+            <a href="tel:+3228860549" onClick={() => track("contact_click", { contact_method: "phone", cta_location: "footer" })} className="transition hover:text-brand-white">+32 2 886 05 49</a>
+            {" · "}
+            <a href="tel:+212689306278" onClick={() => track("contact_click", { contact_method: "phone", cta_location: "footer" })} className="transition hover:text-brand-white">+212 6 89 30 62 78</a>
+            {" · "}
+            <a href="tel:+12046500765" onClick={() => track("contact_click", { contact_method: "phone", cta_location: "footer" })} className="transition hover:text-brand-white">+1 204 650 0765</a>
+            {" · "}
+            <a href="mailto:info@msl-itech.com" onClick={() => track("contact_click", { contact_method: "email", cta_location: "footer" })} className="transition hover:text-brand-white">info@msl-itech.com</a>
           </span>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:justify-end">
             {/* QA button — hidden in production
