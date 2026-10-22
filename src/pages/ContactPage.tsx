@@ -25,6 +25,7 @@ import { submitLead } from "@/lib/leads";
 import { getUtm, formatUtmForOdoo } from "@/lib/utm";
 import { buildLeadDescription } from "@/lib/odoo";
 import type { OdooLeadData } from "@/lib/odoo";
+import { track } from "@/lib/analytics";
 
 /* ─────────────── Constants ─────────────── */
 
@@ -429,6 +430,8 @@ export default function ContactPage() {
     if (navDisabled) return;
     if (validateStep()) {
       disableNav();
+      const nextStep = step + 1;
+      track("form_step", { lead_source: "contact", form_type: (data.besoin === "site" ? "site_web" : data.besoin) || undefined, step: nextStep + 1 });
       setStep((s) => s + 1);
       scrollToFormTop();
     }
@@ -447,6 +450,9 @@ export default function ContactPage() {
     setData((d) => ({ ...d, besoin }));
     setErrors((e) => ({ ...e, besoin: "" }));
     disableNav();
+    const ft = besoin === "site" ? "site_web" : besoin;
+    track("form_start", { lead_source: "contact", form_type: ft });
+    track("form_step", { lead_source: "contact", form_type: ft, step: 2 });
     setStep(1);
     scrollToFormTop();
   };
@@ -520,11 +526,14 @@ export default function ContactPage() {
     };
 
     setSubmitting(true);
+    const formType = besoin === "site" ? "site_web" : besoin;
     try {
       await submitLead(payload);
+      track("generate_lead", { lead_source: "contact", form_type: formType, market: "MA" });
       setSubmitted(true);
       toast.success("Demande envoyée — nous revenons vers vous sous 24h.");
     } catch {
+      track("form_error", { lead_source: "contact", form_type: formType, error_type: "network" });
       submitGuard.current = false;
       toast.error("Erreur d'envoi — veuillez réessayer.");
     } finally {
@@ -658,11 +667,11 @@ export default function ContactPage() {
                       )}
                       <li className="flex gap-3">
                         <Phone size={15} className="mt-0.5 shrink-0" style={{ color: s.link }} />
-                        <a href={`tel:${o.phone.replace(/\s/g, "")}`} className="transition hover:opacity-80" style={{ color: s.text }}>{o.phone}</a>
+                        <a href={`tel:${o.phone.replace(/\s/g, "")}`} onClick={() => track("contact_click", { contact_method: "phone", cta_location: "section" })} className="transition hover:opacity-80" style={{ color: s.text }}>{o.phone}</a>
                       </li>
                       <li className="flex gap-3">
                         <Mail size={15} className="mt-0.5 shrink-0" style={{ color: s.link }} />
-                        <a href={`mailto:${o.email}`} className="transition hover:opacity-80" style={{ color: s.text }}>{o.email}</a>
+                        <a href={`mailto:${o.email}`} onClick={() => track("contact_click", { contact_method: "email", cta_location: "section" })} className="transition hover:opacity-80" style={{ color: s.text }}>{o.email}</a>
                       </li>
                     </ul>
                   </div>

@@ -1,16 +1,23 @@
 /**
  * Conditional analytics loaders — Google Analytics 4 + Microsoft Clarity.
- * Both are loaded ONLY after the user grants the "analytics" consent.
+ * Both load ONLY after the user grants the "analytics" consent,
+ * and ONLY on the production host (never on Vercel previews or localhost).
  *
- * GA4: set VITE_GA_MEASUREMENT_ID in your environment (e.g. "G-XXXXXX").
- *      Without it the GA loader is a no-op (safe in dev / preview).
+ * GA4: VITE_GA_MEASUREMENT_ID must be set in the Vercel *Production* environment only.
  * Clarity: tag ID is hardcoded (xrf313hs67) — public by design, no secret.
+ *
+ * Internal traffic: open the site once with ?msl_internal=1 to flag the browser
+ * (excluded from reports via the GA4 "Internal traffic" data filter, visible in DebugView).
  */
 
 import { getConsent, onConsentChange } from "./consent";
 
 const GA_ID = (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined) || "";
 const CLARITY_ID = "xrf313hs67";
+
+// TODO T9 : retirer le hostname preview avant merge dans main
+const PRODUCTION_HOSTS = ["msl-itech.com", "msl-itech-v2-git-fix-t9-ga4-msl-itech.vercel.app"];
+const INTERNAL_FLAG_KEY = "msl_internal";
 
 declare global {
   interface Window {
@@ -20,18 +27,55 @@ declare global {
   }
 }
 
-/* ── Google Analytics 4 ─────────────────────────────────────────── */
+export type TrackParams = Record<string, string | number | boolean | null | undefined>;
+
+/* ── Helpers ───────────────────────────────────────────────────── */
+
+function isProductionHost(): boolean {
+  return typeof window !== "undefined" && PRODUCTION_HOSTS.includes(window.location.hostname);
+}
+
+/** Reads ?msl_internal=1|0 once, persists it, and returns the current flag. */
+function isInternal(): boolean {
+  try {
+    const param = new URLSearchParams(window.location.search).get(INTERNAL_FLAG_KEY);
+    if (param === "1") localStorage.setItem(INTERNAL_FLAG_KEY, "1");
+    if (param === "0") localStorage.removeItem(INTERNAL_FLAG_KEY);
+    return localStorage.getItem(INTERNAL_FLAG_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+/** GA4 official opt-out switch: window['ga-disable-G-XXXX'] = true stops all hits. */
+function setGaDisabled(disabled: boolean) {
+  if (!GA_ID) return;
+  (window as unknown as Record<string, unknown>)[`ga-disable-${GA_ID}`] = disabled;
+}
+
+/* ── Google Analytics 4 ───────────────────────────────────────── */
 
 let gaLoaded = false;
 
 function loadGa() {
-  if (gaLoaded || !GA_ID || typeof document === "undefined") return;
+  if (gaLoaded || !GA_ID || !isProductionHost() || typeof document === "undefined") return;
   gaLoaded = true;
+
+  // Sauvegarder les méthodes history natives AVANT le chargement de gtag.js.
+  // gtag.js les wrappe pour détecter les navigations SPA et envoyer des page_view
+  // automatiques avec le document.title périmé. On les restaure après chargement
+  // car on gère les page_view manuellement via sendPageView() avec le bon titre.
+  const nativePushState = history.pushState;
+  const nativeReplaceState = history.replaceState;
 
   const s = document.createElement("script");
   s.id = "ga4-loader";
   s.async = true;
   s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  s.onload = () => {
+    history.pushState = nativePushState;
+    history.replaceState = nativeReplaceState;
+  };
   document.head.appendChild(s);
 
   window.dataLayer = window.dataLayer || [];
@@ -40,22 +84,27 @@ function loadGa() {
     window.dataLayer!.push(arguments);
   };
   window.gtag("js", new Date());
-  window.gtag("config", GA_ID, {
-    anonymize_ip: true,
+
+  const config: Record<string, unknown> = {
+    send_page_view: false, // page_view envoyé manuellement par SEOHead avec le bon titre
     allow_google_signals: false,
     allow_ad_personalization_signals: false,
-  });
+  };
+  if (isInternal()) {
+    config.traffic_type = "internal";
+    config.debug_mode = true;
+  }
+  window.gtag("config", GA_ID, config);
 }
 
-/* ── Microsoft Clarity ──────────────────────────────────────────── */
+/* ── Microsoft Clarity ────────────────────────────────────────── */
 
 let clarityLoaded = false;
 
 function loadClarity() {
-  if (clarityLoaded || typeof document === "undefined") return;
+  if (clarityLoaded || !isProductionHost() || typeof document === "undefined") return;
   clarityLoaded = true;
 
-  // Minimal Clarity snippet — identical to the official tag, injected on demand.
   const c = window as Window & { clarity?: (...args: unknown[]) => void };
   c.clarity =
     c.clarity ||
@@ -71,22 +120,65 @@ function loadClarity() {
   document.head.appendChild(s);
 }
 
-/* ── Boot ───────────────────────────────────────────────────────── */
+/* ── Public API ───────────────────────────────────────────────── */
+
+/**
+ * Send a page_view with the given title and current URL.
+ * Called by SEOHead after Helmet has set the title, and by initAnalytics
+ * when consent is granted after mount. Deduplicates by URL to avoid doubles.
+ */
+let lastPageViewUrl = "";
+
+export function sendPageView(title: string): void {
+  if (typeof window === "undefined" || !gaLoaded || !window.gtag) return;
+  if (!getConsent().categories.analytics) return;
+  const url = window.location.href;
+  if (url === lastPageViewUrl) return;
+  lastPageViewUrl = url;
+  window.gtag("event", "page_view", {
+    page_title: title,
+    page_location: url,
+  });
+}
+
+/**
+ * Send a GA4 event. No-op when GA is not loaded (no consent, no ID, preview host).
+ * Never pass personal data (name, email, phone, company, free text, entered URLs).
+ */
+export function track(event: string, params: TrackParams = {}): void {
+  if (typeof window === "undefined" || !gaLoaded || !window.gtag) return;
+  if (!getConsent().categories.analytics) return;
+
+  const clean: Record<string, string | number | boolean> = {};
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined && value !== null && value !== "") clean[key] = value;
+  }
+  window.gtag("event", event, clean);
+}
 
 /**
  * Initialise listeners. Call once at app boot.
- * Loads GA4 + Clarity if consent is already granted, otherwise waits for the event.
+ * Loads GA4 + Clarity when consent is granted; stops them when it is withdrawn.
  */
 export function initAnalytics() {
   if (typeof window === "undefined") return;
-  if (getConsent().categories.analytics) {
-    loadGa();
-    loadClarity();
-  }
-  onConsentChange((s) => {
-    if (s.categories.analytics) {
+  isInternal(); // persist ?msl_internal=1|0 on first page load
+
+  const apply = (granted: boolean) => {
+    if (granted) {
+      setGaDisabled(false);
       loadGa();
-      loadClarity();
+      // Page_view pour le late consent : SEOHead a déjà monté, son useEffect ne se
+      // re-déclenchera pas. Le délai laisse gtag.js charger. Le dédup par URL empêche
+      // le doublon si SEOHead envoie aussi (cas du premier chargement).
+      setTimeout(() => sendPageView(document.title), 150);
+      if (clarityLoaded) window.clarity?.("start"); else loadClarity();
+    } else {
+      setGaDisabled(true);
+      window.clarity?.("stop");
     }
-  });
+  };
+
+  apply(getConsent().categories.analytics);
+  onConsentChange((s) => apply(s.categories.analytics));
 }

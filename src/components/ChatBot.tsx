@@ -387,6 +387,10 @@ export default function ChatBot() {
     return `/prendre-rendez-vous?${params.toString()}`;
   }, [tracker]);
 
+  // Sur /contact < 768 px le formulaire suffit — on masque le chat pour éviter
+  // que la bulle recouvre le CTA « Demander ma démo Odoo ».
+  const hideOnMobile = pathname === "/contact";
+
   return (
     <>
       {/* Bulle d'indice (proactive / exit-intent) — n'ouvre PAS le chat tant qu'on ne clique pas */}
@@ -401,7 +405,7 @@ export default function ChatBot() {
                 : prev,
             );
           }}
-          className="fixed bottom-24 right-5 z-[60] max-w-[280px] rounded-2xl border bg-white px-4 py-3 text-left text-sm text-brand-black shadow-xl animate-fade-in hover:shadow-2xl"
+          className={`fixed bottom-24 right-5 z-[60] max-w-[280px] rounded-2xl border bg-white px-4 py-3 text-left text-sm text-brand-black shadow-xl animate-fade-in hover:shadow-2xl ${hideOnMobile ? "hidden md:block" : ""}`}
           style={{ borderColor: "rgba(0,0,0,0.08)" }}
           aria-label="Ouvrir le chat"
         >
@@ -429,7 +433,7 @@ export default function ChatBot() {
         aria-label={open ? "Fermer le chat" : "Ouvrir le chat"}
         className={`fixed bottom-5 right-5 z-[60] flex h-14 w-14 items-center justify-center rounded-full shadow-xl transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
           open ? "" : "cta-pulse-gold"
-        }`}
+        } ${hideOnMobile ? "hidden md:flex" : ""}`}
         style={{
           backgroundColor: "var(--gold)",
           color: "var(--blue)",
@@ -441,7 +445,7 @@ export default function ChatBot() {
       {/* Panneau de chat */}
       {open && (
         <div
-          className="fixed bottom-24 right-5 z-[60] flex w-[calc(100vw-2.5rem)] max-w-[400px] flex-col overflow-hidden rounded-2xl border bg-white shadow-2xl sm:max-h-[640px]"
+          className={`fixed bottom-24 right-5 z-[60] flex w-[calc(100vw-2.5rem)] max-w-[400px] flex-col overflow-hidden rounded-2xl border bg-white shadow-2xl sm:max-h-[640px] ${hideOnMobile ? "hidden md:flex" : ""}`}
           style={{
             borderColor: "rgba(0,0,0,0.08)",
             height: "min(640px, calc(100vh - 8rem))",
