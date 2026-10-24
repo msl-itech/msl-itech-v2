@@ -1311,6 +1311,9 @@ export default function IntegrateurOdooMarocPage() {
                   >
                     <button
                       type="button"
+                      id={`integrateur-faq-question-${idx}`}
+                      aria-expanded={isOpen}
+                      aria-controls={`integrateur-faq-answer-${idx}`}
                       onClick={() => setOpenFaq(isOpen ? null : idx)}
                       className="flex w-full items-center justify-between p-6 text-left"
                     >
@@ -1325,11 +1328,14 @@ export default function IntegrateurOdooMarocPage() {
                         <ChevronDown size={18} />
                       </span>
                     </button>
-                    {isOpen && (
-                      <dd className="px-6 pb-6 font-body text-sm leading-relaxed text-brand-grey border-t border-brand-grey/10 pt-4">
-                        {faq.a}
-                      </dd>
-                    )}
+                    <dd
+                      id={`integrateur-faq-answer-${idx}`}
+                      aria-labelledby={`integrateur-faq-question-${idx}`}
+                      hidden={!isOpen}
+                      className="px-6 pb-6 font-body text-sm leading-relaxed text-brand-grey border-t border-brand-grey/10 pt-4"
+                    >
+                      {faq.a}
+                    </dd>
                   </div>
                 );
               })}
