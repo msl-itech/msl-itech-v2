@@ -29,6 +29,27 @@ declare global {
 
 export type TrackParams = Record<string, string | number | boolean | null | undefined>;
 
+/* ── Page context (kept in sync by SEOHead on each route) ────── */
+
+let _pageTitle = "";
+let _pageLocation = "";
+
+/**
+ * Called by SEOHead after every route change.
+ * Stores the authoritative page title & URL so that sendPageView
+ * and gtag("set") always use the Helmet-rendered values, even when
+ * GA4 hasn't loaded yet or document.title hasn't caught up.
+ */
+export function setCurrentPage(title: string, url: string): void {
+  _pageTitle = title;
+  _pageLocation = url;
+}
+
+/** Returns the last title pushed by SEOHead. */
+export function getCurrentPageTitle(): string {
+  return _pageTitle;
+}
+
 /* ── Helpers ───────────────────────────────────────────────────── */
 
 function isProductionHost(): boolean {
@@ -61,21 +82,10 @@ function loadGa() {
   if (gaLoaded || !GA_ID || !isProductionHost() || typeof document === "undefined") return;
   gaLoaded = true;
 
-  // Sauvegarder les méthodes history natives AVANT le chargement de gtag.js.
-  // gtag.js les wrappe pour détecter les navigations SPA et envoyer des page_view
-  // automatiques avec le document.title périmé. On les restaure après chargement
-  // car on gère les page_view manuellement via sendPageView() avec le bon titre.
-  const nativePushState = history.pushState;
-  const nativeReplaceState = history.replaceState;
-
   const s = document.createElement("script");
   s.id = "ga4-loader";
   s.async = true;
   s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-  s.onload = () => {
-    history.pushState = nativePushState;
-    history.replaceState = nativeReplaceState;
-  };
   document.head.appendChild(s);
 
   window.dataLayer = window.dataLayer || [];
@@ -123,21 +133,28 @@ function loadClarity() {
 /* ── Public API ───────────────────────────────────────────────── */
 
 /**
- * Send a page_view with the given title and current URL.
+ * Send a page_view with the stored title and URL.
  * Called by SEOHead after Helmet has set the title, and by initAnalytics
  * when consent is granted after mount. Deduplicates by URL to avoid doubles.
+ *
+ * Also calls gtag("set") so that subsequent events (scroll, form_*,
+ * generate_lead, tool_*, contact_click) inherit the correct page title
+ * and location automatically.
  */
 let lastPageViewUrl = "";
 
-export function sendPageView(title: string): void {
+export function sendPageView(title?: string): void {
   if (typeof window === "undefined" || !gaLoaded || !window.gtag) return;
   if (!getConsent().categories.analytics) return;
-  const url = window.location.href;
-  if (url === lastPageViewUrl) return;
-  lastPageViewUrl = url;
+  const pageTitle = title || _pageTitle;
+  const pageLocation = _pageLocation || window.location.href;
+  if (pageLocation === lastPageViewUrl) return;
+  lastPageViewUrl = pageLocation;
+  // Set global page context so all future events inherit the correct title.
+  window.gtag("set", { page_title: pageTitle, page_location: pageLocation });
   window.gtag("event", "page_view", {
-    page_title: title,
-    page_location: url,
+    page_title: pageTitle,
+    page_location: pageLocation,
   });
 }
 
@@ -171,7 +188,7 @@ export function initAnalytics() {
       // Page_view pour le late consent : SEOHead a déjà monté, son useEffect ne se
       // re-déclenchera pas. Le délai laisse gtag.js charger. Le dédup par URL empêche
       // le doublon si SEOHead envoie aussi (cas du premier chargement).
-      setTimeout(() => sendPageView(document.title), 150);
+      setTimeout(() => sendPageView(), 150);
       if (clarityLoaded) window.clarity?.("start"); else loadClarity();
     } else {
       setGaDisabled(true);

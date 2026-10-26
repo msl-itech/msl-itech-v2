@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -34,9 +34,18 @@ export const Layout = () => {
       <ScrollProgress />
       <Header />
       <main>
-        <RevealRoot>
-          <Outlet />
-        </RevealRoot>
+        <Suspense
+          fallback={
+            <div className="flex min-h-[60vh] items-center justify-center" role="status" aria-live="polite">
+              <span className="sr-only">Chargement de la page…</span>
+              <span className="h-10 w-10 animate-spin rounded-full border-2 border-brand-blue/20 border-t-brand-blue" />
+            </div>
+          }
+        >
+          <RevealRoot>
+            <Outlet />
+          </RevealRoot>
+        </Suspense>
       </main>
       <Footer />
       <ChatBot />

@@ -1,7 +1,7 @@
 // Purge prérendu — correctif noindex, 29/09/2026
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { sendPageView } from "@/lib/analytics";
+import { sendPageView, setCurrentPage } from "@/lib/analytics";
 
 export interface SEOHeadProps {
   title: string;
@@ -49,14 +49,14 @@ export function SEOHead({
       ? [schemaJson]
       : [];
 
-  // GA4: envoie un page_view après chaque changement de route.
-  // Le titre est passé directement (pas lu depuis document.title) pour éviter les titres périmés.
-  // Dépend uniquement de canonical (= identité de la page). Le dédup par URL dans sendPageView
-  // empêche les doublons si initAnalytics envoie aussi au moment du consentement.
+  // Synchronise le store analytics (titre + URL) à chaque changement de route,
+  // même si GA4 n'est pas encore chargé. Ainsi, sendPageView et tous les événements
+  // ultérieurs (scroll, form_*, contact_click…) utilisent toujours le bon titre.
   useEffect(() => {
-    const t = setTimeout(() => sendPageView(title), 0);
+    setCurrentPage(title, absCanonical);
+    const t = setTimeout(() => sendPageView(), 0);
     return () => clearTimeout(t);
-  }, [canonical]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [title, absCanonical]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Merge multiple schemas into a single @graph block
   const merged =
