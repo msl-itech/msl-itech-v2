@@ -146,8 +146,11 @@ let lastPageViewUrl = "";
 export function sendPageView(title?: string): void {
   if (typeof window === "undefined" || !gaLoaded || !window.gtag) return;
   if (!getConsent().categories.analytics) return;
+  // Ne rien envoyer tant que SEOHead n'a pas posé le contexte page —
+  // évite un page_view avec titre vide ou URL preview.
+  if (!_pageTitle || !_pageLocation) return;
   const pageTitle = title || _pageTitle;
-  const pageLocation = _pageLocation || window.location.href;
+  const pageLocation = _pageLocation;
   if (pageLocation === lastPageViewUrl) return;
   lastPageViewUrl = pageLocation;
   // Set global page context so all future events inherit the correct title.
@@ -185,10 +188,11 @@ export function initAnalytics() {
     if (granted) {
       setGaDisabled(false);
       loadGa();
-      // Page_view pour le late consent : SEOHead a déjà monté, son useEffect ne se
-      // re-déclenchera pas. Le délai laisse gtag.js charger. Le dédup par URL empêche
-      // le doublon si SEOHead envoie aussi (cas du premier chargement).
-      setTimeout(() => sendPageView(), 150);
+      // Page_view pour le late consent : si SEOHead a déjà posé le titre, on
+      // envoie après un court délai (laisse gtag.js charger). Sinon (page lazy
+      // pas encore montée), on n'envoie rien — SEOHead le fera lui-même via
+      // son propre useEffect dès qu'il montera. Le dédup par URL empêche les doublons.
+      setTimeout(() => { if (_pageTitle) sendPageView(); }, 150);
       if (clarityLoaded) window.clarity?.("start"); else loadClarity();
     } else {
       setGaDisabled(true);
