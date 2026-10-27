@@ -52,8 +52,11 @@ export function SEOHead({
   // Synchronise le store analytics (titre + URL) à chaque changement de route,
   // même si GA4 n'est pas encore chargé. Ainsi, sendPageView et tous les événements
   // ultérieurs (scroll, form_*, contact_click…) utilisent toujours le bon titre.
+  // On utilise l'URL réelle (avec UTM/gclid) pour GA4, pas le canonical (sans query).
   useEffect(() => {
-    setCurrentPage(title, absCanonical);
+    const url = new URL(window.location.href);
+    url.searchParams.delete("msl_internal");
+    setCurrentPage(title, url.toString());
     const t = setTimeout(() => sendPageView(), 0);
     return () => clearTimeout(t);
   }, [title, absCanonical]); // eslint-disable-line react-hooks/exhaustive-deps
