@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -56,19 +56,6 @@ const AuditDigitalGratuitPage = lazyRetry(() => import("./pages/AuditDigitalGrat
 
 const queryClient = new QueryClient();
 
-function RouteFallback() {
-  return (
-    <div
-      className="flex min-h-[60vh] items-center justify-center"
-      role="status"
-      aria-live="polite"
-    >
-      <span className="sr-only">Chargement de la page…</span>
-      <span className="h-10 w-10 animate-spin rounded-full border-2 border-brand-blue/20 border-t-brand-blue" />
-    </div>
-  );
-}
-
 const App = () => {
   useEffect(() => {
     // Capture les UTM dès le premier rendu, quelle que soit la page d'entrée.
@@ -84,7 +71,6 @@ const App = () => {
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Suspense fallback={<RouteFallback />}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
@@ -144,7 +130,6 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
-        </Suspense>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

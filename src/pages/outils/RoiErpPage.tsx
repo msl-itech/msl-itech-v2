@@ -105,7 +105,7 @@ function computeResult(answers: Record<string, string | number>) {
 
 export default function RoiErpPage() {
   useProductSeo({
-    title: "Calculateur ROI ERP Odoo — Combien gagner en 12 mois ?",
+    title: "Calculateur ROI ERP Odoo — Combien gagner en 12 mois ? | MSL-iTECH",
     description:
       "Estimez en 2 minutes le ROI d'un déploiement Odoo pour votre PME marocaine. Gain annuel, payback et plan d'action MSL-iTECH.",
     path: "/outils/roi-erp",
