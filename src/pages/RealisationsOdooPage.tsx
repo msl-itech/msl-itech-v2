@@ -96,7 +96,7 @@ export default function RealisationsOdooPage() {
   useProductSeo({
     title: "Réalisations Odoo ERP — Cas Clients MSL-iTECH",
     description:
-      "17 implémentations Odoo ERP livrées pour des PME au Maroc, en Belgique et au Cameroun — BTP, HORECA, commerce, transport. Références vérifiables sur odoo.com/partners.",
+      "40+ projets Odoo ERP livrés pour des PME au Maroc, en Belgique et au Cameroun — BTP, HORECA, commerce, transport. Fiche partenaire : odoo.com/fr_FR/partners/msl-itech-15851608.",
     path: "/realisations/odoo",
     breadcrumbs: [
       { name: "Accueil", url: "https://msl-itech.com/" },

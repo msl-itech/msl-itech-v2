@@ -80,7 +80,7 @@ export default function RealisationsPage() {
   useProductSeo({
     title: "Nos Réalisations — ERP Odoo & Sites Web | MSL-iTECH",
     description:
-      "Découvrez les projets Odoo ERP et sites web réalisés par MSL-iTECH au Maroc, en Belgique et au Cameroun. Références vérifiables sur odoo.com/partners.",
+      "Découvrez les 40+ projets Odoo ERP et sites web réalisés par MSL-iTECH au Maroc, en Belgique et au Cameroun. Fiche partenaire : odoo.com/fr_FR/partners/msl-itech-15851608.",
     path: "/realisations",
     breadcrumbs: [
       { name: "Accueil", url: "https://msl-itech.com/" },

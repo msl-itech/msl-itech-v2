@@ -691,7 +691,7 @@ function CaseStudy() {
             </p>
           </div>
           <h2 className="max-w-2xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-brand-black md:text-5xl">
-            Référence <Mark>vérifiable</Mark> sur odoo.com.
+            Référence sur <Mark>odoo.com</Mark>.
           </h2>
         </div>
         <Link
@@ -734,15 +734,14 @@ function CaseStudy() {
               </h3>
               <p className="mt-6 font-body text-lg italic leading-relaxed text-brand-grey">
                 "Une implémentation structurée et transparente. AIS figure parmi
-                nos références publiques, vérifiables sur odoo.com."
+                nos références publiques sur odoo.com."
               </p>
             </div>
 
             <div className="mt-10 grid grid-cols-3 gap-4">
               {[
-                { k: "9", v: "références" },
+                { k: "40+", v: "projets livrés" },
                 { k: "v18·v19", v: "certifiés" },
-                { k: "10", v: "vérifiables sur odoo.com" },
               ].map((m) => (
                 <div
                   key={m.v}

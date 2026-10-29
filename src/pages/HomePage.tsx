@@ -193,10 +193,10 @@ function HeroShell({
                   ))}
                 </div>
                 <div className="mt-5 font-heading text-4xl font-bold text-white md:text-5xl">
-                  19
+                  40+
                 </div>
                 <p className="mt-1 font-body text-sm text-white/85">
-                  projets déployés, dont 10 vérifiables sur odoo.com
+                  projets livrés
                 </p>
 
                 <Link
