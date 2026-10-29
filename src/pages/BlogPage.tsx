@@ -1,4 +1,5 @@
 import { useMemo, useState, type ReactNode } from "react";
+import authorHoussine from "@/assets/team/houssine.jpg";
 import { Link, useParams } from "react-router-dom";
 import {
   ArrowRight,
@@ -753,12 +754,20 @@ export default function BlogPage() {
                 className="mt-14 flex items-start gap-4 rounded-2xl border p-6"
                 style={{ borderColor: "var(--grey-light)" }}
               >
-                <div
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full"
-                  style={{ backgroundColor: "rgba(18,77,90,0.08)" }}
-                >
-                  <User size={20} className="text-brand-blue" />
-                </div>
+                {post.author === "El Houssine BOUHMAIDA" ? (
+                  <img
+                    src={authorHoussine}
+                    alt="El Houssine BOUHMAIDA"
+                    className="h-12 w-12 shrink-0 rounded-full object-cover"
+                  />
+                ) : (
+                  <div
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full"
+                    style={{ backgroundColor: "rgba(18,77,90,0.08)" }}
+                  >
+                    <User size={20} className="text-brand-blue" />
+                  </div>
+                )}
                 <div>
                   <p className="font-body text-sm font-semibold text-brand-black">
                     {post.author ?? "Équipe MSL-iTECH"}
