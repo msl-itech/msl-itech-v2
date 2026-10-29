@@ -314,7 +314,7 @@ export const newArticles9to10: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Le coût d'Odoo 20 dépend de plusieurs facteurs : le nombre d'utilisateurs, le plan choisi (Standard ou Custom), et l'usage des fonctionnalités IA. En résumé : les licences Standard commencent à environ 7,95 € par utilisateur et par mois en facturation annuelle (tarif promotionnel première année). Le plan Custom — qui inclut Studio, les agents IA, le multi-société et l'API externe — est facturé à partir de 12 € par utilisateur et par mois. Une nouvelle catégorie Light User est disponible à environ 7,90 € par employé et par mois pour des accès limités (RH, présence, barcode, etc.).",
+        text: "Le coût d'Odoo 20 dépend de plusieurs facteurs : le nombre d'utilisateurs, le plan choisi (Standard ou Custom), et l'usage des fonctionnalités IA. Le plan Standard couvre les besoins essentiels. Le plan Custom — qui inclut Studio, les agents IA, le multi-société et l'API externe — est facturé à un tarif supérieur. Une catégorie Light User est également disponible pour des accès limités (RH, présence, barcode, etc.). Les tarifs varient selon la devise, la région et la période de facturation — consultez la [grille tarifaire officielle Odoo](https://www.odoo.com/fr_FR/pricing) pour les montants à jour.",
       },
       {
         type: "p",
