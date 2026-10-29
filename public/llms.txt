@@ -35,7 +35,7 @@ possibles pour les ateliers de cadrage ou les formations clés.
 - Personnalisation d'Odoo natif : workflows, vues, rapports PDF, intégrations API, connecteurs e-commerce
 - Tarification sur mesure — chaque projet est chiffré après un cadrage gratuit de 30 minutes
 - Sur les volumes comparables, nos tarifs sont 20 à 50% plus accessibles que ceux des grands cabinets d'intégration
-- Références publiques vérifiables sur odoo.com/partners
+- 40+ projets livrés. Fiche partenaire : odoo.com/fr_FR/partners/msl-itech-15851608
 
 ### Création Web
 - Sites React/Lovable haute performance avec pré-rendu LovableHTML
@@ -61,7 +61,7 @@ Douleur principale : processus éparpillés, Excel comme outil de gestion
 
 ## Différenciateurs
 
-- Odoo Ready Partner — statut vérifiable sur odoo.com/partners
+- Odoo Ready Partner — 40+ projets livrés (fiche : odoo.com/fr_FR/partners/msl-itech-15851608)
 - Consultants certifiés Odoo v18 et v19, montée de version continue
 - Capacité interne de développement de modules custom et de personnalisation d'Odoo natif
 - Tarification sur mesure après cadrage gratuit — devis détaillé sous 48h, sans engagement
@@ -111,7 +111,7 @@ référence est consultable sur notre fiche partenaire officielle Odoo.
 - [Santé Maroc](https://msl-itech.com/odoo-sante-maroc): Gestion pour cliniques, cabinets et pharmacies au Maroc.
 - [Commerce & Distribution](https://msl-itech.com/odoo-gestion-stock-maroc): Odoo pour commerçants et distributeurs marocains.
 - [Notre approche](https://msl-itech.com/notre-approche): Méthodologie et tarification sur mesure — cadrage gratuit, devis 48h.
-- [Réalisations](https://msl-itech.com/realisations): Cas clients et références publiques Odoo (19 projets détaillés).
+- [Réalisations](https://msl-itech.com/realisations): Cas clients et références Odoo (40+ projets livrés).
 - [Cas client NASLI HOLDING](https://msl-itech.com/realisations/nasli-holding): Odoo RH pour un groupe holding marocain (hôtellerie, immobilier, santé).
 - [Cas client AIT OUKHALI TRAVAUX](https://msl-itech.com/realisations/ait-oukhali-travaux): Odoo BTP / marchés publics — CRM appels d'offres, chantier, RH.
 - [Cas client EDGE SPORT MAROC](https://msl-itech.com/realisations/edge-sport-maroc): Odoo Commerce — stocks multi-dépôts, B2B & B2C.
