@@ -391,9 +391,9 @@ export default function IntegrateurOdooMarocPage() {
                       />
                     ))}
                   </div>
-                  <div className="mt-4 font-heading text-3xl font-bold">20+</div>
+                  <div className="mt-4 font-heading text-3xl font-bold">40+</div>
                   <p className="mt-1 font-body text-xs text-white/85">
-                    références publiques vérifiables sur odoo.com
+                    projets livrés — fiche partenaire officielle sur odoo.com
                   </p>
                 </div>
 
@@ -1025,7 +1025,7 @@ export default function IntegrateurOdooMarocPage() {
 
             <div className="mt-10 rounded-2xl border bg-brand-bg/50 p-4 text-center" style={{ borderColor: "var(--grey-light)" }}>
               <p className="font-body text-sm text-brand-grey">
-                Toutes nos références sont vérifiables sur{" "}
+                Retrouvez notre fiche partenaire officielle sur{" "}
                 <a
                   href="https://www.odoo.com/fr_FR/partners/msl-itech-15851608?country_id=132"
                   target="_blank"

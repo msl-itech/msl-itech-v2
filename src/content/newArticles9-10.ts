@@ -15,8 +15,8 @@ export const newArticles9to10: BlogPost[] = [
     category: "ERP & Odoo",
     region: "INT",
     readingTime: "14 min",
-    publishedAt: "2026-10-02",
-    updatedAt: "2026-10-02",
+    publishedAt: "2026-11-02",
+    updatedAt: "2026-11-02",
     author: "El Houssine BOUHMAIDA",
     sources: [
       "https://www.odoo.com/odoo-20-release-notes",
@@ -364,8 +364,8 @@ export const newArticles9to10: BlogPost[] = [
     category: "Tarifs & ROI",
     region: "INT",
     readingTime: "12 min",
-    publishedAt: "2026-10-02",
-    updatedAt: "2026-10-02",
+    publishedAt: "2026-11-02",
+    updatedAt: "2026-11-02",
     author: "El Houssine BOUHMAIDA",
     sources: [
       "https://www.odoo.com/fr_FR/pricing",

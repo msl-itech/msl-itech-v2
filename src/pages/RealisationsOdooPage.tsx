@@ -86,7 +86,7 @@ function Sticker({
 const odooCases = caseStudies.filter((c) => c.type !== "web");
 
 const stats = [
-  { icon: Users, value: `${odooCases.length}`, label: "clients accompagnés" },
+  { icon: Users, value: `${odooCases.length}`, label: "cas clients détaillés" },
   { icon: Globe2, value: "4", label: "pays" },
   { icon: LayoutGrid, value: "8+", label: "secteurs couverts" },
   { icon: Award, value: "Ready", label: "Partenaire officiel Odoo" },
@@ -96,7 +96,7 @@ export default function RealisationsOdooPage() {
   useProductSeo({
     title: "Réalisations Odoo ERP — Cas Clients MSL-iTECH",
     description:
-      "40+ projets Odoo ERP livrés pour des PME au Maroc, en Belgique et au Cameroun — BTP, HORECA, commerce, transport. Fiche partenaire : odoo.com/fr_FR/partners/msl-itech-15851608.",
+      "40+ projets livrés pour des PME au Maroc, en Belgique et au Cameroun — BTP, HORECA, commerce, transport. Fiche partenaire : odoo.com/fr_FR/partners/msl-itech-15851608.",
     path: "/realisations/odoo",
     breadcrumbs: [
       { name: "Accueil", url: "https://msl-itech.com/" },
@@ -159,9 +159,9 @@ export default function RealisationsOdooPage() {
               </div>
 
               <h1 className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[64px] lg:text-[76px]">
-                {odooCases.length} implémentations livrées.{" "}
+                {odooCases.length} cas clients Odoo,{" "}
                 <span className="italic font-light text-brand-gold">
-                  <Mark>Vérifiables.</Mark>
+                  <Mark>en détail.</Mark>
                 </span>
               </h1>
 
@@ -386,7 +386,7 @@ export default function RealisationsOdooPage() {
               />
             </div>
             <div className="absolute -top-4 left-8 z-20">
-              <Sticker rotate={-6}>★ Vérifiable</Sticker>
+              <Sticker rotate={-6}>★ Partenaire officiel</Sticker>
             </div>
 
             <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
@@ -401,7 +401,7 @@ export default function RealisationsOdooPage() {
                 <p className="mt-5 max-w-xl font-body text-base text-white/80">
                   Statut Ready Partner, certifications et liste de clients : tout
                   est public. Aucune promesse en l'air, juste des preuves
-                  vérifiables.
+                  concrètes.
                 </p>
               </div>
               <div className="flex justify-start lg:col-span-4 lg:justify-end">

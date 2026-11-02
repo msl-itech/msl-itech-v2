@@ -217,7 +217,7 @@ export default function RealisationsSitesWebPage() {
       {/* ── HERO ── */}
       <section className="bg-brand-bg pt-6 md:pt-8">
         <div className="container">
-          <div className="relative isolate rounded-[28px] md:rounded-[36px]">
+          <div className="relative isolate overflow-hidden rounded-[28px] md:rounded-[36px]">
             <div
               className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]"
               style={{

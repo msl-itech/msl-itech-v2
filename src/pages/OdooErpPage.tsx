@@ -222,7 +222,7 @@ function Hero() {
                 "Open-source — sans vendor lock-in",
                 "Hébergement Europe ou Maroc",
                 "6 à 10 semaines de mise en route",
-                "9+ références vérifiables",
+                "40+ projets livrés",
               ].map((p) => (
                 <li
                   key={p}

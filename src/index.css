@@ -186,6 +186,11 @@
   transform: translateX(100%);
 }
 
+/* Prévention du scroll horizontal global */
+html, body {
+  overflow-x: clip;
+}
+
 /* Lenis smooth scroll — laisse le natif quand Lenis n'est pas actif */
 html:not(.lenis-active) {
   scroll-behavior: smooth;

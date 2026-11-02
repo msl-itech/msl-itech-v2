@@ -130,7 +130,7 @@ export default function RealisationsPage() {
             <HeroCursorGlow radius="inherit" />
 
             <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
-              <Sticker rotate={-8}>★ Références vérifiables</Sticker>
+              <Sticker rotate={-8}>★ Cas clients réels</Sticker>
             </div>
 
             <div className="relative flex min-h-[380px] flex-col items-center justify-center px-6 py-20 text-center md:min-h-[460px] md:py-24">
@@ -144,9 +144,8 @@ export default function RealisationsPage() {
               <h1 className="mt-8 max-w-3xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[60px] lg:text-[68px]">
                 Nos preuves,{" "}
                 <span className="italic font-light text-white">
-                  <Mark>publiquement</Mark>
-                </span>{" "}
-                vérifiables.
+                  <Mark>en détail.</Mark>
+                </span>
               </h1>
 
               <p className="mt-6 max-w-xl font-body text-base text-white/80 md:text-lg">
@@ -286,7 +285,7 @@ export default function RealisationsPage() {
                 </h2>
                 <p className="mt-5 max-w-xl font-body text-base text-white/80">
                   Statut, certifications et clients : tout est public. Aucune
-                  promesse en l'air, juste des preuves vérifiables.
+                  promesse en l'air, juste des preuves concrètes.
                 </p>
               </div>
               <div className="flex justify-start lg:col-span-4 lg:justify-end">

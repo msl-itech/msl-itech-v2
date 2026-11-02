@@ -112,6 +112,8 @@ référence est consultable sur notre fiche partenaire officielle Odoo.
 - [Commerce & Distribution](https://msl-itech.com/odoo-gestion-stock-maroc): Odoo pour commerçants et distributeurs marocains.
 - [Notre approche](https://msl-itech.com/notre-approche): Méthodologie et tarification sur mesure — cadrage gratuit, devis 48h.
 - [Réalisations](https://msl-itech.com/realisations): Cas clients et références Odoo (40+ projets livrés).
+- [Réalisations Odoo ERP](https://msl-itech.com/realisations/odoo): Grille complète des implémentations Odoo — BTP, HORECA, commerce, transport, santé (Maroc, Belgique, Cameroun).
+- [Réalisations Sites Web & Plateformes](https://msl-itech.com/realisations/sites-web): 8 sites React et WordPress livrés pour des entreprises en Belgique, au Maroc et au Québec.
 - [Cas client NASLI HOLDING](https://msl-itech.com/realisations/nasli-holding): Odoo RH pour un groupe holding marocain (hôtellerie, immobilier, santé).
 - [Cas client AIT OUKHALI TRAVAUX](https://msl-itech.com/realisations/ait-oukhali-travaux): Odoo BTP / marchés publics — CRM appels d'offres, chantier, RH.
 - [Cas client EDGE SPORT MAROC](https://msl-itech.com/realisations/edge-sport-maroc): Odoo Commerce — stocks multi-dépôts, B2B & B2C.
@@ -125,6 +127,8 @@ référence est consultable sur notre fiche partenaire officielle Odoo.
 - [Hub — Problématiques métier](https://msl-itech.com/blog/problematiques-metier): Analyses sectorielles — HORECA, BTP, santé, commerce, transport, IA.
 - [Hub — Sites web & acquisition](https://msl-itech.com/blog/sites-web-acquisition): Création web, SEO, connexion site-CRM, acquisition digitale.
 - [Hub — Odoo en Belgique](https://msl-itech.com/blog/belgique): Articles dédiés au marché belge — réglementation, fiscalité, déploiement à distance.
+- [Article — Odoo 20 : nouveautés et migration](https://msl-itech.com/blog/odoo-20-nouveautes-guide-2026): Agents IA, mode hors ligne, fabrication continue — les changements clés d'Odoo 20 et si une migration est pertinente.
+- [Article — Tarifs Odoo : Standard, Custom et Light User](https://msl-itech.com/blog/tarifs-odoo-standard-custom-light-user): Modèle de licence Odoo 2026 expliqué simplement — One App Free, Standard, Custom, Light User, exemples PME.
 
 ## Optional
 
