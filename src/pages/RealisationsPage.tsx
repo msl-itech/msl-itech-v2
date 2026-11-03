@@ -97,7 +97,7 @@ export default function RealisationsPage() {
             <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
               <img
                 src={pillarWeb}
-                alt="Projets Odoo ERP et sites web réalisés par MSL-iTECH pour des PME"
+                alt="Interface Odoo ERP affichant un tableau de bord de gestion, accompagnée d'une maquette de site web React — réalisations MSL-iTECH pour des PME au Maroc, en Belgique et au Canada"
                 className="absolute inset-0 h-full w-full object-cover"
                 loading="eager"
                 fetchPriority="high"

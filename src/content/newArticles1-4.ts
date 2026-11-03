@@ -6,10 +6,9 @@ export const newArticles1to4: BlogPost[] = [
     title:
       "Facturation électronique au Maroc : qui est concerné, à quelle date, que faire",
     metaTitle:
-      "Facturation électronique Maroc : qui et quand",
+      "Facturation électronique Maroc : qui est concerné, quand et que faire",
     metaDescription:
       "Obligation DGI : entreprises concernées, calendrier, formats acceptés et méthode pour basculer sans arrêter votre activité. Vérifiez votre cas en 2 min.",
-    noIndex: true,
     excerpt:
       "La facturation électronique devient obligatoire au Maroc par étapes. Ce guide vous dit qui est concerné, à quelle date, et ce que vous devez changer concrètement dans votre façon de facturer.",
     category: "Conformité & DGI",
@@ -241,7 +240,7 @@ export const newArticles1to4: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Le budget dépend du nombre d'utilisateurs, du périmètre fonctionnel, des données à reprendre et des éventuelles personnalisations. Les principaux postes de coût sont détaillés dans [Combien coûte un ERP Odoo au Maroc](/blog/combien-coute-erp-odoo-maroc).",
+        text: "Le budget dépend du nombre d'utilisateurs, du périmètre fonctionnel, des données à reprendre et des éventuelles personnalisations. Les principaux postes de coût sont détaillés dans [Combien coûte un ERP Odoo au Maroc](/blog/cout-erp-odoo-maroc-2026).",
       },
     ],
   },
@@ -254,7 +253,6 @@ export const newArticles1to4: BlogPost[] = [
     metaDescription:
       "ICE, IF, RC, TVA détaillée, numérotation continue, format UBL ou CII : la liste complète pour émettre une facture électronique conforme DGI. Guide PME.",
     image: "/20fe9f6c-cc2b-497a-96a8-beae034186e5.png",
-    noIndex: true,
     excerpt:
       "Une facture électronique conforme au Maroc doit réunir toutes les mentions exigées par le Code Général des Impôts et un format de fichier structuré accepté par la DGI. Voici la liste de contrôle complète.",
     category: "Conformité & DGI",
@@ -850,7 +848,7 @@ export const newArticles1to4: BlogPost[] = [
           "Maintenance et support : contrat annuel, mises à jour, assistance.",
           "Hébergement et sauvegardes si l'outil n'est pas en cloud.",
           "Développements spécifiques si vos processus sortent du standard.",
-          "Temps interne : le coût caché des ressaisies quand deux logiciels ne se parlent pas (nous l'estimons dans [Ce que la double saisie coûte à une PME](/blog/double-saisie-cout-reel-pme), à paraître).",
+          "Temps interne : le coût caché des ressaisies quand deux logiciels ne se parlent pas (voir [Coûts cachés d'un projet ERP](/blog/couts-caches-projet-erp-2026)).",
         ],
       },
       {

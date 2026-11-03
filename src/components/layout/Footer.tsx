@@ -36,6 +36,7 @@ const companyCol = [
   { to: "/realisations", label: "Réalisations" },
   { to: "/notre-approche", label: "Notre approche" },
   { to: "/blog", label: "Blog" },
+  { to: "/blog/facturation-electronique-dgi", label: "Conformité DGI — Guide" },
   { to: "/contact", label: "Contact" },
 ];
 

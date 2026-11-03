@@ -161,9 +161,9 @@ export default function FinancePage() {
               desc: "Mesurez en 2 minutes votre exposition à la réforme et obtenez votre plan d'action.",
             },
             {
-              to: "/outils/comparateur-sage-odoo",
-              title: "Comparateur Sage vs Odoo",
-              desc: "Comparaison coût 3 ans et couverture fonctionnelle, adaptée à votre PME.",
+              to: "/blog/facturation-electronique-dgi",
+              title: "Hub conformité DGI — tous nos guides",
+              desc: "Calendrier, formats UBL/PDF, mentions obligatoires et méthode de migration : le centre de ressources MSL-iTECH sur la réforme DGI.",
             },
           ]}
         />

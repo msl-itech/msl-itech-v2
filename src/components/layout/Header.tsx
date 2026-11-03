@@ -29,19 +29,26 @@ const profileItems = [
   { to: "/structure-en-croissance", label: "Structure en croissance rapide" },
 ];
 
+const blogHubLinks = [
+  { to: "/blog", label: "Tous les articles" },
+  { to: "/blog/facturation-electronique-dgi", label: "Conformité DGI Maroc" },
+  { to: "/blog/acheter-odoo", label: "Acheter Odoo" },
+  { to: "/blog/problematiques-metier", label: "Problématiques métier" },
+  { to: "/blog/sites-web-acquisition", label: "Sites web & Acquisition" },
+];
+
 const simpleLinks = [
   { to: "/creation-web", label: "Création Web" },
   { to: "/marketing-digital", label: "Marketing" },
   { to: "/realisations", label: "Réalisations" },
   { to: "/notre-approche", label: "Notre approche" },
-  { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ];
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState<null | "odoo" | "sectors">(null);
+  const [openMenu, setOpenMenu] = useState<null | "odoo" | "sectors" | "blog">(null);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const location = useLocation();
 
@@ -188,6 +195,39 @@ export const Header = () => {
               {l.label}
             </NavLink>
           ))}
+
+          {/* Blog dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setOpenMenu("blog")}
+            onMouseLeave={() => setOpenMenu(null)}
+          >
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                `flex items-center gap-1 font-body text-sm transition-colors hover:text-brand-blue ${
+                  isActive ? "font-medium text-brand-blue" : "text-brand-black"
+                }`
+              }
+            >
+              Blog <ChevronDown size={14} />
+            </NavLink>
+            {openMenu === "blog" && (
+              <div className="absolute right-0 top-full pt-3">
+                <div className="w-60 rounded-lg border border-brand-grey-light bg-brand-white p-2 shadow-lg">
+                  {blogHubLinks.map((l) => (
+                    <NavLink
+                      key={l.to}
+                      to={l.to}
+                      className="block rounded-md px-3 py-2 font-body text-sm text-brand-black transition hover:bg-[var(--blue-light)] hover:text-brand-blue"
+                    >
+                      {l.label}
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </nav>
 
         <div className="flex items-center gap-3">
@@ -326,6 +366,37 @@ export const Header = () => {
                           className="block rounded-md px-3 py-2 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
                         >
                           {p.label}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+
+              {/* Blog — accordion */}
+              <li>
+                <button
+                  type="button"
+                  onClick={() => toggleSection("blog")}
+                  aria-expanded={mobileSection === "blog"}
+                  className="flex w-full items-center justify-between py-4 font-body text-base font-medium text-brand-black"
+                >
+                  Blog
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform ${mobileSection === "blog" ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {mobileSection === "blog" && (
+                  <ul className="mb-3 space-y-0.5 pl-3">
+                    {blogHubLinks.map((l) => (
+                      <li key={l.to}>
+                        <NavLink
+                          to={l.to}
+                          onClick={() => setMobileOpen(false)}
+                          className="block rounded-md px-3 py-2 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
+                        >
+                          {l.label}
                         </NavLink>
                       </li>
                     ))}
