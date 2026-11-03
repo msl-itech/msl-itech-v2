@@ -24,7 +24,7 @@ export type SeoArticle = {
 };
 export type SeoBreadcrumb = { name: string; url: string };
 
-const DEFAULT_OG_IMAGE = "/og-default.jpg";
+const DEFAULT_OG_IMAGE = "/og-default.png";
 const SITE_ORIGIN = "https://msl-itech.com";
 
 /**
@@ -38,8 +38,8 @@ const ORGANIZATION_ENTITY = {
   "@id": `${SITE_ORIGIN}/#organization`,
   name: "MSL-iTECH",
   url: SITE_ORIGIN,
-  logo: `${SITE_ORIGIN}/og-default.jpg`,
-  image: `${SITE_ORIGIN}/og-default.jpg`,
+  logo: `${SITE_ORIGIN}/og-default.png`,
+  image: `${SITE_ORIGIN}/og-default.png`,
   description:
     "Odoo Ready Partner basé à Marrakech (v18 & v19). Implémentation ERP, développement de modules sur mesure et personnalisation d'Odoo natif pour les PME marocaines (HORECA, BTP, santé, commerce, transport, services).",
   foundingDate: "2020",

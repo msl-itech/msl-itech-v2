@@ -64,6 +64,8 @@ const staticEntries: SitemapEntry[] = [
 
   // Pages corporate
   { loc: "/realisations", changefreq: "monthly", priority: 0.85 },
+  { loc: "/realisations/odoo", changefreq: "monthly", priority: 0.85 },
+  { loc: "/realisations/sites-web", changefreq: "monthly", priority: 0.8 },
   { loc: "/notre-approche", changefreq: "monthly", priority: 0.9 },
   { loc: "/a-propos", changefreq: "monthly", priority: 0.7 },
   { loc: "/contact", changefreq: "monthly", priority: 0.8 },
