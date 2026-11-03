@@ -23,7 +23,7 @@ const SOCIAL_PROOF: Record<string, string> = {
   marketing:
     "Un client B2B a multiplié son trafic SEO par 4 en 6 mois grâce à notre approche SEO + GEO (Generative Engine Optimization).",
   default:
-    "9 références publiques vérifiables sur notre fiche partenaire officielle Odoo (odoo.com/partners).",
+    "40+ projets livrés. Notre fiche partenaire officielle : odoo.com/fr_FR/partners/msl-itech-15851608.",
 };
 
 const KEYWORDS = {
@@ -105,7 +105,7 @@ Ton rôle UNIQUE : convertir ce visiteur en rendez-vous ou lead qualifié.
 Tu incarnes l'expertise MSL-iTECH — tu n'es PAS une IA, tu es le conseiller.
 
 ## Identité MSL-iTECH
-- Partenaire Officiel Odoo certifié (vérifiable sur odoo.com/partners)
+- Partenaire Officiel Odoo certifié (fiche : odoo.com/fr_FR/partners/msl-itech-15851608)
 - Belgique : +32 2 886 05 49 — Bruxelles
 - Maroc : +212 6 89 30 62 78 — Marrakech
 - Canada : +1 204 650 0765

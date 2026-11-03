@@ -133,14 +133,14 @@ export const Footer = () => {
             L'intégrateur Odoo qui structure, construit et accélère.
           </p>
           <p className="mt-3 hidden max-w-md font-body text-xs text-brand-grey-light/70 sm:mt-4 sm:block">
-            Partenaire officiel Odoo —{" "}
+            Partenaire officiel Odoo — 40+ projets livrés.{" "}
             <a
-              href="https://www.odoo.com/fr_FR/partners/country/maroc-132?search=msl-itech"
+              href="https://www.odoo.com/fr_FR/partners/msl-itech-15851608"
               target="_blank"
               rel="noreferrer noopener"
               className="underline hover:text-brand-white"
             >
-              vérifiable sur odoo.com/partners
+              Fiche partenaire
             </a>
           </p>
           <p className="mt-3 font-mono text-[11px] text-brand-grey-light/80 sm:mt-5 sm:text-xs">
