@@ -36,7 +36,7 @@ import stepExecutionImg from "@/assets/marketing-step-execution.jpg";
 import stepReportingImg from "@/assets/marketing-step-reporting.jpg";
 
 import heroMaImg from "@/assets/hero-ma.webp";
-import odooPartnerLogo from "@/assets/odoo-silver-partner.png";
+const odooPartnerLogo = "/odoo_silver_partner_rgb.png";
 
 import sectorHoreca from "@/assets/home/sector-horeca.webp";
 import sectorBtp from "@/assets/home/sector-btp.webp";
