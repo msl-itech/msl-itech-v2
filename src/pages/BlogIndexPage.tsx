@@ -216,7 +216,7 @@ export default function BlogIndexPage() {
                 {blogImageBySlug[featured.slug] ? (
                   <img
                     src={blogImageBySlug[featured.slug]}
-                    alt={`Illustration de l'article de blog : ${featured.title}`}
+                    alt={`${featured.title} — ${featured.category}`}
                     className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     loading="lazy"
                     width={1280}
@@ -354,7 +354,7 @@ export default function BlogIndexPage() {
                   {blogImageBySlug[p.slug] ? (
                     <img
                       src={blogImageBySlug[p.slug]}
-                      alt={`Illustration de l'article de blog : ${p.title}`}
+                      alt={`${p.title} — ${p.category}`}
                       className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
                       loading="lazy"
                       width={1280}

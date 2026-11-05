@@ -42,8 +42,8 @@ function useSeo(market: "BE" | "MA") {
       : "Expert Odoo Belgique & Canada — MSL-iTECH";
   const description =
     market === "MA"
-      ? "Odoo Ready Partner basé à Marrakech. Implémentation ERP, modules sur mesure, création web et acquisition pour PME marocaines. Cadrage gratuit de 30 minutes."
-      : "Odoo Ready Partner. Accompagnement à distance PME belges et canadiennes. ERP, modules custom et personnalisation d'Odoo natif.";
+      ? "Odoo Silver Partner basé à Marrakech. Implémentation ERP, modules sur mesure, création web et acquisition pour PME marocaines. Cadrage gratuit de 30 minutes."
+      : "Odoo Silver Partner. Accompagnement à distance PME belges et canadiennes. ERP, modules custom et personnalisation d'Odoo natif.";
   useProductSeo({ title, description, path: "/", isEntityPage: true });
 }
 
@@ -305,8 +305,8 @@ function HeroBE() {
   return (
     <HeroShell
       bgImage={heroBeImg}
-      eyebrow="Odoo Ready Partner · Maroc → Belgique & Canada"
-      titleTop="L'expertise d'un Odoo Ready Partner certifié."
+      eyebrow="Odoo Silver Partner · Maroc → Belgique & Canada"
+      titleTop="L'expertise d'un Odoo Silver Partner certifié."
       titleAccent="Des tarifs repensés."
       description="Équipe technique au Maroc — consultants certifiés v18 & v19 — à votre service à distance en Belgique et au Canada. Implémentation, modules custom et personnalisation d'Odoo natif sans la lourdeur d'un grand cabinet, avec une approche sur mesure adaptée à votre projet."
     />

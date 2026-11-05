@@ -773,7 +773,7 @@ export default function BlogPage() {
                     {post.author ?? "Équipe MSL-iTECH"}
                   </p>
                   <p className="font-body text-xs text-brand-grey">
-                    Consultant{post.author ? "" : "s"} · Odoo Ready Partner
+                    Consultant{post.author ? "" : "s"} · Odoo Silver Partner
                   </p>
                   <Link to="/a-propos" className="mt-1 font-body text-xs text-brand-blue hover:underline">
                     En savoir plus sur notre équipe

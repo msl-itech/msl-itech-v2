@@ -70,7 +70,7 @@ function Sticker({
 const homeFaqs: { q: string; a: string }[] = [
   {
     q: "MSL-iTECH est-il un partenaire Odoo officiel ?",
-    a: "Oui. MSL-iTECH est Odoo Ready Partner avec 40+ projets livrés. Nos consultants sont certifiés Odoo v18 et v19, avec montée en version continue. Notre fiche partenaire : odoo.com/fr_FR/partners/msl-itech-15851608.",
+    a: "Oui. MSL-iTECH est Odoo Silver Partner avec 40+ projets livrés. Nos consultants sont certifiés Odoo v18 et v19, avec montée en version continue. Notre fiche partenaire : odoo.com/fr_FR/partners/msl-itech-15851608.",
   },
   {
     q: "Combien coûte une implémentation Odoo chez MSL-iTECH ?",

@@ -151,6 +151,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Site institutionnel WordPress livré, référence publiquement consultable sur notre fiche partenaire Odoo.",
     publishedAt: "2023-11-01",
+    verticalPage: "/creation-web",
+    verticalLabel: "Création de sites web",
   },
   {
     slug: "edge-sport-maroc",
@@ -225,6 +227,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Base membres centralisée, inscriptions événements en ligne et comptabilité consolidée des dons.",
     publishedAt: "2023-09-01",
+    verticalPage: "/odoo-crm-ventes",
+    verticalLabel: "CRM & Ventes",
   },
   {
     slug: "jcd-renov",
@@ -273,6 +277,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Inscriptions suivies depuis le site, facturation des familles et plannings du personnel gérés dans Odoo.",
     publishedAt: "2023-10-01",
+    verticalPage: "/odoo-services-professionnels",
+    verticalLabel: "Services professionnels",
   },
   {
     slug: "louve-soins",
@@ -295,6 +301,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Interventions planifiées et tracées, stocks de consommables sous seuils, facturation rattachée aux prestations.",
     publishedAt: "2024-02-01",
+    verticalPage: "/odoo-services-professionnels",
+    verticalLabel: "Services professionnels",
   },
   {
     slug: "mc-avocat",
@@ -317,6 +325,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Dossiers en projets avec feuilles de temps, facturation générée directement depuis les heures saisies.",
     publishedAt: "2024-04-01",
+    verticalPage: "/odoo-services-professionnels",
+    verticalLabel: "Services professionnels",
   },
   {
     slug: "phazz4",
@@ -419,6 +429,8 @@ export const caseStudies: CaseStudy[] = [
     publishedAt: "2024-05-01",
     cityPage: "/integrateur-odoo-maroc",
     cityLabel: "au Maroc",
+    verticalPage: "/odoo-services-professionnels",
+    verticalLabel: "Maintenance & Services",
   },
   {
     slug: "studely-finance-cameroun",
@@ -441,6 +453,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Dossiers clients structurés dans le CRM, pièces rattachées et reporting généré depuis Odoo.",
     publishedAt: "2023-12-01",
+    verticalPage: "/odoo-finance-comptabilite",
+    verticalLabel: "Finance & Comptabilité",
   },
   {
     slug: "tpmr-maroc",
@@ -489,6 +503,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Lots de production tracés de la matière première à la vente et boutique en ligne synchronisée avec le stock unique.",
     publishedAt: "2024-10-01",
+    verticalPage: "/odoo-production-fabrication",
+    verticalLabel: "Production & Fabrication",
   },
   {
     slug: "les-cles-du-sahara",
@@ -513,6 +529,8 @@ export const caseStudies: CaseStudy[] = [
     publishedAt: "2024-11-01",
     cityPage: "/integrateur-odoo-maroc",
     cityLabel: "au Maroc",
+    verticalPage: "/odoo-production-fabrication",
+    verticalLabel: "Production & Fabrication",
   },
 ];
 

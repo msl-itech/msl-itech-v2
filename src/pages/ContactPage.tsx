@@ -256,15 +256,19 @@ type FormData = {
 
 /* ─────────────── Main component ─────────────── */
 
-export default function ContactPage() {
-  useProductSeo({
-    title: "Contactez MSL-iTECH — ERP Odoo, Site web, Marketing digital",
-    description:
-      "Dites-nous votre projet : Odoo ERP, création de site ou marketing digital. Un expert vous répond sous 24h avec une proposition personnalisée. Sans engagement.",
-    path: "/contact",
-    isEntityPage: true,
-  });
+const CONTACT_TITLES: Record<string, string> = {
+  erp: "Demander une démo Odoo ERP — MSL-iTECH",
+  site: "Demander un devis site web — MSL-iTECH",
+  marketing: "Demander un conseil marketing digital — MSL-iTECH",
+};
 
+const CONTACT_DESCRIPTIONS: Record<string, string> = {
+  erp: "Vous envisagez un projet Odoo ERP ? Décrivez votre activité et vos besoins en 2 minutes. Un consultant certifié MSL-iTECH vous répond sous 24h avec une proposition sur mesure.",
+  site: "Refonte ou création de site web ? Expliquez-nous votre projet en 2 minutes. Notre équipe vous répond sous 24h avec un devis détaillé adapté à vos objectifs.",
+  marketing: "Visibilité Google, génération de leads, réseaux sociaux ? Décrivez votre enjeu en 2 minutes. Un expert marketing digital MSL-iTECH vous répond sous 24h.",
+};
+
+export default function ContactPage() {
   const [searchParams] = useSearchParams();
   const startedAt = useRef(Date.now());
   const [honeypot, setHoneypot] = useState("");
@@ -286,6 +290,15 @@ export default function ContactPage() {
   const validBesoin =
     besoinParam !== null &&
     (["erp", "site", "marketing"] as const).includes(besoinParam as Besoin);
+
+  useProductSeo({
+    title: validBesoin && besoinParam ? CONTACT_TITLES[besoinParam] : "Contactez MSL-iTECH — ERP Odoo, Site web, Marketing digital",
+    description: validBesoin && besoinParam
+      ? CONTACT_DESCRIPTIONS[besoinParam]
+      : "Dites-nous votre projet : Odoo ERP, création de site ou marketing digital. Un expert vous répond sous 24h avec une proposition personnalisée. Sans engagement.",
+    path: "/contact",
+    isEntityPage: true,
+  });
 
   const [data, setData] = useState<FormData>({
     besoin: validBesoin ? (besoinParam as Besoin) : "",

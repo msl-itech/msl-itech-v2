@@ -36,7 +36,7 @@ import stepExecutionImg from "@/assets/marketing-step-execution.jpg";
 import stepReportingImg from "@/assets/marketing-step-reporting.jpg";
 
 import heroMaImg from "@/assets/hero-ma.webp";
-import odooPartnerLogo from "@/assets/odoo-ready-partner.png";
+const odooPartnerLogo = "/odoo_silver_partner_rgb.png";
 
 import sectorHoreca from "@/assets/home/sector-horeca.webp";
 import sectorBtp from "@/assets/home/sector-btp.webp";
@@ -105,8 +105,8 @@ const faqs = [
     a: "Un intégrateur Odoo est un partenaire certifié par Odoo S.A. qui prend en charge l'implémentation, la personnalisation et le déploiement de la plateforme ERP Odoo dans votre entreprise. Il configure les modules adaptés à votre métier, migre vos données et forme vos équipes.",
   },
   {
-    q: "Pourquoi choisir un intégrateur Odoo certifié Ready Partner au Maroc ?",
-    a: "Le label Ready Partner garantit que l'équipe a passé les certifications techniques Odoo et dispose d'un nombre minimum de projets livrés. Choisir un partenaire local comme MSL-iTECH assure un accompagnement en arabe, français et anglais, une connaissance des réglementations marocaines (TVA, e-facture DGI) et une disponibilité en fuseau horaire GMT+1.",
+    q: "Pourquoi choisir un intégrateur Odoo certifié Silver Partner au Maroc ?",
+    a: "Le label Silver Partner garantit que l'équipe a passé les certifications techniques Odoo et dispose d'un nombre minimum de projets livrés. Choisir un partenaire local comme MSL-iTECH assure un accompagnement en arabe, français et anglais, une connaissance des réglementations marocaines (TVA, e-facture DGI) et une disponibilité en fuseau horaire GMT+1.",
   },
   {
     q: "Quelle est la différence entre un partenaire Odoo et un consultant Odoo indépendant ?",
@@ -224,14 +224,14 @@ function useSeo() {
   useProductSeo({
     title: "Intégrateur Odoo Maroc — Partenaire certifié | MSL-iTECH",
     description:
-      "Intégrateur Odoo Ready Partner au Maroc : implémentation ERP, modules sur mesure, migration et formation pour PME. Devis détaillé sous 48 h.",
+      "Intégrateur Odoo Silver Partner au Maroc : implémentation ERP, modules sur mesure, migration et formation pour PME. Devis détaillé sous 48 h.",
     path: "/integrateur-odoo-maroc",
     ogImage: heroMaImg,
     faqs,
     service: {
       name: "Intégration Odoo ERP au Maroc",
       description:
-        "Implémentation, personnalisation et support de la plateforme Odoo pour PME et ETI marocaines par un partenaire certifié Ready Partner.",
+        "Implémentation, personnalisation et support de la plateforme Odoo pour PME et ETI marocaines par un partenaire certifié Silver Partner.",
       serviceType: [
         "Intégration ERP",
         "Implémentation Odoo",
@@ -284,7 +284,7 @@ export default function IntegrateurOdooMarocPage() {
               <div className="inline-flex items-center gap-2 rounded-full border border-brand-blue/20 bg-brand-white/80 px-3.5 py-1.5 backdrop-blur-sm shadow-sm">
                 <Sparkles size={13} className="text-brand-blue" aria-hidden="true" />
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-brand-blue">
-                  Odoo Ready Partner · Maroc
+                  Odoo Silver Partner · Maroc
                 </p>
               </div>
 
@@ -293,7 +293,7 @@ export default function IntegrateurOdooMarocPage() {
               </h1>
 
               <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-brand-grey md:text-lg">
-                MSL-iTECH est un partenaire Odoo certifié Ready Partner, basé à Marrakech.
+                MSL-iTECH est un partenaire Odoo certifié Silver Partner, basé à Marrakech.
                 Nous accompagnons les PME et ETI marocaines dans leur transformation digitale :
                 implémentation ERP, modules sur mesure, migration des données et support local.
               </p>
@@ -363,7 +363,7 @@ export default function IntegrateurOdooMarocPage() {
                   <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl bg-brand-black/60 p-3 backdrop-blur-md text-white">
                     <div className="flex items-center gap-2.5">
                       <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="font-heading text-xs font-semibold">Ready Partner officiel Odoo</span>
+                      <span className="font-heading text-xs font-semibold">Silver Partner officiel Odoo</span>
                     </div>
                     <span className="font-mono text-[10px] uppercase tracking-wider text-white/80">Maroc</span>
                   </div>
@@ -427,7 +427,7 @@ export default function IntegrateurOdooMarocPage() {
             <div className="flex shrink-0 items-center justify-center rounded-2xl bg-brand-white p-4 shadow-sm border border-brand-grey/10">
               <img
                 src={odooPartnerLogo}
-                alt="Logo Odoo Ready Partner"
+                alt="Logo Odoo Silver Partner"
                 className="h-16 w-auto object-contain md:h-20"
                 loading="lazy"
               />
@@ -437,7 +437,7 @@ export default function IntegrateurOdooMarocPage() {
                 <ShieldCheck size={14} /> Partenaire Référencé
               </div>
               <h2 className="font-heading text-xl font-bold text-brand-black md:text-2xl">
-                Certifié Odoo Ready Partner — consultants v18 &amp; v19
+                Certifié Odoo Silver Partner — consultants v18 &amp; v19
               </h2>
               <p className="mt-2 font-body text-sm leading-relaxed text-brand-grey">
                 MSL-iTECH est référencé sur <strong>odoo.com/partners</strong> en tant que partenaire

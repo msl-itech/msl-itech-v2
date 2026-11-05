@@ -63,7 +63,7 @@ export const newArticles5to8: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Odoo est diffusé par un réseau de partenaires : l'éditeur fournit le logiciel, le partenaire l'adapte, reprend vos données, forme vos équipes et vous accompagne ensuite. Deux entreprises identiques peuvent vivre deux projets opposés selon la qualité de ce travail. Les causes d'échec que nous rencontrons (mauvais cadrage, reprise de données bâclée, formation absente, développements inutiles) sont toutes du côté de l'intégration, jamais du logiciel lui-même. Nous les détaillons dans [Implémentation Odoo ratée : les 8 causes](/blog/implementation-odoo-ratee-8-causes) (à paraître).",
+        text: "Odoo est diffusé par un réseau de partenaires : l'éditeur fournit le logiciel, le partenaire l'adapte, reprend vos données, forme vos équipes et vous accompagne ensuite. Deux entreprises identiques peuvent vivre deux projets opposés selon la qualité de ce travail. Les causes d'échec que nous rencontrons (mauvais cadrage, reprise de données bâclée, formation absente, développements inutiles) sont toutes du côté de l'intégration, jamais du logiciel lui-même. Les [12 questions à poser avant de signer](/blog/choisir-integrateur-odoo-maroc-12-questions) vous aident à distinguer un bon intégrateur d'un mauvais.",
       },
       { type: "h2", text: "Les 12 questions" },
       {
@@ -327,7 +327,7 @@ export const newArticles5to8: BlogPost[] = [
         items: [
           "Un cadrage précis des entités : lesquelles existent, lesquelles vont naître, ce qui est partagé.",
           "Une discipline sur les fiches : un contact créé « dans » une société n'est visible que d'elle ; il faut décider des règles.",
-          "Des séquences de numérotation par société : chaque entité a ses factures, obligatoires pour la [facturation électronique](/facturation-electronique-maroc-odoo), avec un préfixe distinct.",
+          "Des séquences de numérotation par société : chaque entité a ses factures, obligatoires pour la [facturation électronique](/odoo-finance-comptabilite), avec un préfixe distinct.",
           "Une réflexion sur les stocks : un entrepôt appartient à une société ; les transferts entre sociétés sont des ventes/achats, pas de simples mouvements. Voir [gestion de stock](/odoo-gestion-stock-maroc).",
           "Une attention aux droits : qui voit quoi, dès le départ.",
         ],

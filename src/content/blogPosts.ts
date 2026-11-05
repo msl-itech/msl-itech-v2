@@ -44,7 +44,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "Facturation électronique obligatoire au Maroc : pourquoi le papier ne suffit plus — et comment basculer sereinement vers un ERP",
     metaTitle:
-      "Facturation électronique Maroc : qui et quand",
+      "Facturation électronique obligatoire au Maroc : basculer vers un ERP",
     metaDescription:
       "Obligation DGI : entreprises concernées, calendrier, formats acceptés et méthode pour basculer sans arrêter votre activité. Vérifiez votre cas en 2 min.",
     excerpt:
@@ -2297,7 +2297,7 @@ export const blogPosts: BlogPost[] = [
     readingTime: "6 min",
     publishedAt: "2026-02-05",
     intent: "Réglementaire · Urgence réelle",
-    relatedPath: "/odoo-finance",
+    relatedPath: "/odoo-finance-comptabilite",
     relatedLabel: "Voir Odoo Finance & Comptabilité",
     cta: {
       title: "Préparez votre conformité avec MSL-iTECH",

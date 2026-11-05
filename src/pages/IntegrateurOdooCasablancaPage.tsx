@@ -137,7 +137,7 @@ export default function IntegrateurOdooCasablancaPage() {
 
             <p className="mx-auto mt-6 max-w-2xl font-body text-base text-brand-grey md:text-lg">
               MSL-iTECH accompagne les PME, ETI et groupes du <strong>Grand Casablanca</strong>
-              {" "}dans leur déploiement Odoo. Partenaire certifié Ready Partner, nous intervenons
+              {" "}dans leur déploiement Odoo. Partenaire certifié Silver Partner, nous intervenons
               en présentiel et à distance pour l'implémentation, la personnalisation et le support
               de votre ERP.
             </p>

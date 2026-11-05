@@ -129,6 +129,7 @@ const App = () => {
             <Route path="/about" element={<Navigate to="/a-propos" replace />} />
             <Route path="/tarif-Odoo" element={<Navigate to="/notre-approche" replace />} />
             <Route path="/tarif-odoo" element={<Navigate to="/notre-approche" replace />} />
+            <Route path="/facturation-electronique-maroc-odoo" element={<Navigate to="/odoo-finance-comptabilite" replace />} />
 
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

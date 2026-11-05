@@ -379,7 +379,7 @@ function SocialProofSection() {
         {/* Actions */}
         <div className="mt-16 flex flex-wrap items-center justify-center gap-4">
           <Link
-            to="/realisations#sites-plateformes"
+            to="/realisations/sites-web"
             className="group cta-pulse-gold hover-shine inline-flex items-center gap-2 rounded-full px-8 py-4 font-body text-base font-bold transition hover:scale-[1.02]"
             style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
           >

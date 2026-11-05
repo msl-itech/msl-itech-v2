@@ -29,6 +29,7 @@ const BLOG_REDIRECTS = {
   "/ventes": "/odoo-crm-ventes",
   "/tarif-odoo": "/notre-approche",
   "/tarif-Odoo": "/notre-approche",
+  "/facturation-electronique-maroc-odoo": "/odoo-finance-comptabilite",
 };
 // ── Routes statiques ────────────────────────────────────────────────────────
 // Mettre à jour ici quand une nouvelle page statique est ajoutée au site.
@@ -102,10 +103,10 @@ const ALWAYS_PASS = [
 ];
 // ── Cache sitemap ───────────────────────────────────────────────────────────
 const SITEMAP_URL = "https://msl-itech.com/sitemap.xml";
-const SITEMAP_TTL = 3600; // 1 heure en secondes
+const SITEMAP_TTL = 300; // 5 minutes en secondes
 async function getSitemapRoutes(ctx) {
   const cache = caches.default;
-  const cacheKey = new Request(SITEMAP_URL);
+  const cacheKey = new Request(SITEMAP_URL + "?v=2");
 // Lire depuis le cache Cloudflare
   const cached = await cache.match(cacheKey);
   if (cached) {
@@ -185,14 +186,14 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 // 0. Endpoint de purge du cache sitemap
-// POST https://msl-itech.com/?_purge=SECRET
+// POST https://msl-itech.com/?_purge=SERET
     if (
       request.method === "POST" &&
       url.searchParams.get("_purge") === env.PURGE_SECRET &&
       env.PURGE_SECRET
     ) {
       const cache = caches.default;
-      const deleted = await cache.delete(new Request(SITEMAP_URL));
+      const deleted = await cache.delete(new Request(SITEMAP_URL + "?v=2"));
       return new Response(
         JSON.stringify({ purged: deleted, sitemap: SITEMAP_URL }),
         { headers: { "Content-Type": "application/json" } }

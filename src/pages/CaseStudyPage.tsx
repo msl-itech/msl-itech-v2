@@ -48,10 +48,10 @@ export default function CaseStudyPage() {
       <section className="bg-brand-bg pt-10 md:pt-14">
         <div className="container">
           <Link
-            to="/realisations"
+            to={study.type === "web" ? "/realisations/sites-web" : "/realisations/odoo"}
             className="inline-flex items-center gap-2 font-body text-sm text-brand-grey transition hover:text-brand-blue"
           >
-            <ArrowLeft size={16} /> Toutes les réalisations
+            <ArrowLeft size={16} /> {study.type === "web" ? "Réalisations sites web" : "Réalisations Odoo ERP"}
           </Link>
 
           <div className="mt-6 grid gap-10 lg:grid-cols-12 lg:items-center">
@@ -294,10 +294,10 @@ export default function CaseStudyPage() {
           </div>
           <div className="mt-6 text-right">
             <Link
-              to="/realisations"
+              to={study.type === "web" ? "/realisations/sites-web" : "/realisations/odoo"}
               className="inline-flex items-center gap-1.5 font-body text-sm text-brand-grey hover:text-brand-blue"
             >
-              Toutes nos réalisations <ArrowRight size={14} />
+              {study.type === "web" ? "Toutes nos réalisations sites web" : "Toutes nos réalisations Odoo"} <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -324,10 +324,10 @@ export default function CaseStudyPage() {
               Réserver un cadrage gratuit <ArrowRight size={16} />
             </Link>
             <Link
-              to="/realisations"
+              to={study.type === "web" ? "/realisations/sites-web" : "/realisations/odoo"}
               className="inline-flex items-center rounded-full border border-white/30 px-7 py-3.5 font-body text-sm font-medium text-white transition hover:bg-white/10"
             >
-              Voir toutes les réalisations
+              {study.type === "web" ? "Voir nos réalisations sites web" : "Voir nos réalisations Odoo"}
             </Link>
           </div>
         </div>
