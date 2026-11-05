@@ -399,7 +399,7 @@ export default function RealisationsOdooPage() {
                   <span className="italic font-light">odoo.com/partners</span>
                 </h2>
                 <p className="mt-5 max-w-xl font-body text-base text-white/80">
-                  Statut Ready Partner, certifications et liste de clients : tout
+                  Statut Silver Partner, certifications et liste de clients : tout
                   est public. Aucune promesse en l'air, juste des preuves
                   concrètes.
                 </p>

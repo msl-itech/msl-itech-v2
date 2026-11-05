@@ -41,7 +41,7 @@ const ORGANIZATION_ENTITY = {
   logo: `${SITE_ORIGIN}/og-default.jpg`,
   image: `${SITE_ORIGIN}/og-default.jpg`,
   description:
-    "Odoo Ready Partner basé à Marrakech (v18 & v19). Implémentation ERP, développement de modules sur mesure et personnalisation d'Odoo natif pour les PME marocaines (HORECA, BTP, santé, commerce, transport, services).",
+    "Odoo Silver Partner basé à Marrakech (v18 & v19). Implémentation ERP, développement de modules sur mesure et personnalisation d'Odoo natif pour les PME marocaines (HORECA, BTP, santé, commerce, transport, services).",
   foundingDate: "2020",
   telephone: "+212-6-89-30-62-78",
   email: "info@msl-itech.com",

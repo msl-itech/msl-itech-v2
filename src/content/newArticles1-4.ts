@@ -519,7 +519,7 @@ export const newArticles1to4: BlogPost[] = [
       },
       {
         type: "p",
-        text: "En tant que partenaire Odoo Ready au Maroc, MSL-iTECH vous accompagne dans le paramétrage de votre environnement, la reprise de vos clients et produits, la configuration des règles de facturation et les tests avant mise en production.",
+        text: "En tant que partenaire Odoo Silver au Maroc, MSL-iTECH vous accompagne dans le paramétrage de votre environnement, la reprise de vos clients et produits, la configuration des règles de facturation et les tests avant mise en production.",
       },
       {
         type: "p",

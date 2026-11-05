@@ -135,7 +135,7 @@ export default function AboutPage() {
   useProductSeo({
     title: "À Propos de MSL-iTECH — Équipe & Expertise Odoo au Maroc",
     description:
-      "Découvrez MSL-iTECH, Odoo Ready Partner au Maroc — consultants certifiés v18 & v19 depuis 2024. Équipe technique basée à Marrakech au service des PME marocaines. Références publiques vérifiables sur odoo.com/partners.",
+      "Découvrez MSL-iTECH, Odoo Silver Partner au Maroc — consultants certifiés v18 & v19 depuis 2024. Équipe technique basée à Marrakech au service des PME marocaines. Références publiques vérifiables sur odoo.com/partners.",
     path: "/a-propos",
   });
 
@@ -206,7 +206,7 @@ export default function AboutPage() {
               </h1>
 
               <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
-                Une équipe Odoo Ready Partner certifiée au Maroc, qui accompagne
+                Une équipe Odoo Silver Partner certifiée au Maroc, qui accompagne
                 les PME marocaines — avec la conviction qu'elles méritent les
                 mêmes outils que les grandes entreprises.
               </p>
@@ -282,7 +282,7 @@ export default function AboutPage() {
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
               MSL-iTECH a été fondée avec une vision claire : faire bénéficier
-              les PME de l'expertise d'une équipe Odoo Ready Partner certifiée
+              les PME de l'expertise d'une équipe Odoo Silver Partner certifiée
               au Maroc. Nos consultants accompagnent les clients intégralement
               à distance (visio, démo, support) avec, ponctuellement, des
               déplacements sur site pour les formations et ateliers clés.

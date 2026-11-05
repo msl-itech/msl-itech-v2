@@ -151,6 +151,8 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Site institutionnel WordPress livré, référence publiquement consultable sur notre fiche partenaire Odoo.",
     publishedAt: "2023-11-01",
+    verticalPage: "/creation-web",
+    verticalLabel: "Création de sites web",
   },
   {
     slug: "edge-sport-maroc",

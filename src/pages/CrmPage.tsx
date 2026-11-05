@@ -181,7 +181,7 @@ export default function CrmPage() {
     service: {
       name: "Implémentation Odoo CRM & Ventes",
       description:
-        "Mise en place d'Odoo CRM pour centraliser le pipeline commercial : automatisation des relances, devis, factures et reporting des ventes par MSL-iTECH (Odoo Ready Partner).",
+        "Mise en place d'Odoo CRM pour centraliser le pipeline commercial : automatisation des relances, devis, factures et reporting des ventes par MSL-iTECH (Odoo Silver Partner).",
       serviceType: ["Odoo CRM", "Automatisation commerciale", "Pipeline de ventes"],
     },
   });

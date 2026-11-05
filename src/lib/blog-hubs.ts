@@ -38,7 +38,7 @@ export const BLOG_HUBS: BlogHub[] = [
     intro:
       "La facturation électronique devient obligatoire au Maroc. La DGI impose un calendrier progressif : grandes entreprises d'abord, PME ensuite. Chaque facture B2B devra être émise dans un format structuré (XML/UBL) et transmise via une plateforme conforme. Les carnets à souches, les factures Word et les classeurs Excel ne passeront plus. Ce hub rassemble nos analyses sur le calendrier DGI, les formats acceptés, les mentions obligatoires et la méthode pour basculer sans interrompre votre activité. Chaque article est sourcé, daté et mis à jour dès qu'un nouveau texte officiel paraît. Commencez par l'article pilier pour une vue d'ensemble, puis consultez les guides pratiques selon votre situation.",
     mslBlock:
-      "MSL-iTECH est Odoo Ready Partner certifié v18 & v19. Nous déployons la facturation électronique conforme DGI en 4 à 8 semaines pour les PME marocaines, avec reprise de données, formation et support post-déploiement.",
+      "MSL-iTECH est Odoo Silver Partner certifié v18 & v19. Nous déployons la facturation électronique conforme DGI en 4 à 8 semaines pour les PME marocaines, avec reprise de données, formation et support post-déploiement.",
   },
   {
     slug: "acheter-odoo",
@@ -48,9 +48,9 @@ export const BLOG_HUBS: BlogHub[] = [
     pillarPath: "/blog/acheter-odoo",
     defaultServicePath: "/odoo-erp",
     intro:
-      "Vous envisagez Odoo pour votre PME et vous cherchez des réponses concrètes : combien ça coûte, quel intégrateur choisir, comment se compare Odoo face à Sage ou SAP, quel ROI attendre la première année ? Ce hub regroupe nos comparatifs chiffrés, nos grilles tarifaires et nos guides de sélection d'intégrateur. Chaque article inclut des fourchettes de prix vérifiables et des critères objectifs pour vous aider à décider sans pression commerciale. Nous sommes Odoo Ready Partner — notre parti pris est transparent — mais les chiffres parlent d'eux-mêmes. Commencez par le comparatif global, puis affinez avec le calculateur ROI.",
+      "Vous envisagez Odoo pour votre PME et vous cherchez des réponses concrètes : combien ça coûte, quel intégrateur choisir, comment se compare Odoo face à Sage ou SAP, quel ROI attendre la première année ? Ce hub regroupe nos comparatifs chiffrés, nos grilles tarifaires et nos guides de sélection d'intégrateur. Chaque article inclut des fourchettes de prix vérifiables et des critères objectifs pour vous aider à décider sans pression commerciale. Nous sommes Odoo Silver Partner — notre parti pris est transparent — mais les chiffres parlent d'eux-mêmes. Commencez par le comparatif global, puis affinez avec le calculateur ROI.",
     mslBlock:
-      "MSL-iTECH est Odoo Ready Partner basé à Marrakech. Nous accompagnons les PME du cadrage gratuit au déploiement complet : audit des besoins, estimation budgétaire, implémentation et formation. Devis détaillé sous 48 h, sans engagement.",
+      "MSL-iTECH est Odoo Silver Partner basé à Marrakech. Nous accompagnons les PME du cadrage gratuit au déploiement complet : audit des besoins, estimation budgétaire, implémentation et formation. Devis détaillé sous 48 h, sans engagement.",
   },
   {
     slug: "problematiques-metier",
@@ -62,7 +62,7 @@ export const BLOG_HUBS: BlogHub[] = [
     intro:
       "Chaque secteur a ses propres contraintes : traçabilité des lots en agroalimentaire, suivi de chantier en BTP, gestion des chambres en hôtellerie, relances automatiques en services B2B. Ce hub regroupe nos analyses métier : comment Odoo répond aux problématiques concrètes des PME marocaines, quels modules activer en priorité, quels pièges éviter. Les articles couvrent la gestion de stock après un certain seuil de CA, le pilotage financier pour les DAF, l'automatisation des relances et l'intégration de l'IA dans les processus opérationnels. Chaque cas est illustré par des références clients vérifiables sur notre fiche partenaire Odoo.",
     mslBlock:
-      "MSL-iTECH est Odoo Ready Partner avec des références vérifiables en HORECA, BTP, santé, commerce et transport. Nous adaptons Odoo aux contraintes spécifiques de votre secteur : modules métier, workflows personnalisés et intégrations API.",
+      "MSL-iTECH est Odoo Silver Partner avec des références vérifiables en HORECA, BTP, santé, commerce et transport. Nous adaptons Odoo aux contraintes spécifiques de votre secteur : modules métier, workflows personnalisés et intégrations API.",
   },
   {
     slug: "sites-web-acquisition",
