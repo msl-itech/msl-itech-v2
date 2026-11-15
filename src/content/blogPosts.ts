@@ -1884,6 +1884,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "sage-vs-odoo-maroc-comparatif-2026",
+    noIndex: true,
     title: "Sage vs Odoo au Maroc : le comparatif que les éditeurs n'osent pas faire",
     metaTitle: "Sage vs Odoo au Maroc : le comparatif honnête en 2026",
     metaDescription:
@@ -2284,6 +2285,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "facturation-electronique-maroc-2026",
+    noIndex: true,
     title:
       "Facturation électronique au Maroc 2026 — ce que votre entreprise doit faire maintenant pour être prête",
     metaTitle:

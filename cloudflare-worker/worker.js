@@ -17,19 +17,50 @@
  * Purger le cache après une publication :
  *  curl -X POST "https://msl-itech.com/?_purge=VOTRE_SECRET"
  */
-// ── 301 — Anciennes URLs blog ────────────────────────────────────────────────
+// ── 301 — Redirections permanentes ──────────────────────────────────────────
 // Ces redirections remplacent les <Navigate> client-side de App.tsx.
-const BLOG_REDIRECTS = {
+const REDIRECTS = {
+  // Anciens slugs blog
   "/blog/facturation-electronique-maroc-2026":
     "/blog/facturation-electronique-obligatoire-maroc-2026-erp",
   "/blog/sage-vs-odoo-maroc-comparatif-2026":
     "/blog/odoo-vs-sage-maroc-comparatif",
+  "/blog/implementation-odoo-ratee-8-causes":
+    "/blog/choisir-integrateur-odoo-maroc-12-questions",
+  "/blog/double-saisie-cout-reel-pme": "/blog/roi-erp-pme-economies-2026",
+  "/facturation-electronique-maroc-odoo": "/blog/facturation-electronique-dgi",
+
+  // Pages métiers / services
+  "/services-professionnels": "/odoo-services-professionnels",
+  "/ressources-humaines": "/odoo-rh-paie",
+  "/finances": "/odoo-finance-comptabilite",
+  "/fabrication": "/odoo-production-fabrication",
+  "/package-metier/commerciale": "/odoo-crm-ventes",
+  "/package-metier/administratif": "/odoo-finance-comptabilite",
+
+  // Démo / contact / tarifs
+  "/reserver-demo": "/prendre-rendez-vous",
+  "/demo-reservation": "/prendre-rendez-vous",
+  "/support": "/contact",
+  "/besoin": "/contact",
+  "/devenir-partenaire": "/contact",
+  "/tarif": "/notre-approche",
+  "/questionnaire": "/audit-digital-gratuit",
+
+  // Pages institutionnelles
+  "/accueil": "/",
+  "/references": "/realisations",
+  "/politique-confidentialite": "/politique-de-confidentialite",
+  "/careers": "/a-propos",
+  "/job": "/a-propos",
+  "/evenements": "/blog",
+
+  // Aliases déjà connus
   "/about": "/a-propos",
   "/serviceOdoo": "/odoo-erp",
   "/ventes": "/odoo-crm-ventes",
   "/tarif-odoo": "/notre-approche",
   "/tarif-Odoo": "/notre-approche",
-  "/facturation-electronique-maroc-odoo": "/odoo-finance-comptabilite",
 };
 // ── Routes statiques ────────────────────────────────────────────────────────
 // Mettre à jour ici quand une nouvelle page statique est ajoutée au site.
@@ -206,9 +237,9 @@ export default {
     }
     const normalizedPath = path;
 // 3. Anciennes URLs blog → 301 vers le nouvel URL canonique
-    if (BLOG_REDIRECTS[normalizedPath]) {
+    if (REDIRECTS[normalizedPath]) {
       return Response.redirect(
-        url.origin + BLOG_REDIRECTS[normalizedPath] + (url.search || ""),
+        url.origin + REDIRECTS[normalizedPath] + (url.search || ""),
         301
       );
     }
