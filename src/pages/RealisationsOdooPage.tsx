@@ -89,7 +89,7 @@ const stats = [
   { icon: Users, value: `${odooCases.length}`, label: "cas clients détaillés" },
   { icon: Globe2, value: "4", label: "pays" },
   { icon: LayoutGrid, value: "8+", label: "secteurs couverts" },
-  { icon: Award, value: "Ready", label: "Partenaire officiel Odoo" },
+  { icon: Award, value: "Silver", label: "Partenaire officiel Odoo" },
 ];
 
 export default function RealisationsOdooPage() {
