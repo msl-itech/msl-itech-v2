@@ -1,6 +1,7 @@
 import { useEffect, useSyncExternalStore } from "react";
 import type { SEOHeadProps } from "@/components/SEOHead";
 import { SEOHead } from "@/components/SEOHead";
+import { SOCIAL_LINKS } from "@/lib/social-links";
 
 export type SeoFaq = { q: string; a: string };
 export type SeoService = {
@@ -77,7 +78,7 @@ const ORGANIZATION_ENTITY = {
   openingHours: "Mo-Fr 09:00-18:00",
   sameAs: [
     "https://www.odoo.com/fr_FR/partners/msl-itech-15851608",
-    "https://www.linkedin.com/company/msl-itech",
+    ...SOCIAL_LINKS.map((s) => s.url),
   ],
 };
 

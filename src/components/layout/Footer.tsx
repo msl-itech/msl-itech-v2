@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 import { useMarket } from "@/hooks/useMarket";
 import logoWhite from "@/assets/logo-msl-white.png";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { track } from "@/lib/analytics";
 import { openConsentPreferences } from "@/lib/consent";
+import { SOCIAL_LINKS } from "@/lib/social-links";
+
+const SOCIAL_ICONS = { LinkedIn: Linkedin, Facebook, Instagram, YouTube: Youtube } as const;
 
 const odooCol = [
   { to: "/odoo-crm-ventes", label: "CRM & Ventes" },
@@ -133,6 +136,25 @@ export const Footer = () => {
           <p className="mt-3 max-w-md font-body text-sm text-brand-grey-light/85 sm:mt-4">
             L'intégrateur Odoo qui structure, construit et accélère.
           </p>
+          <ul className="mt-4 flex items-center gap-3">
+            {SOCIAL_LINKS.map((s) => {
+              const Icon = SOCIAL_ICONS[s.name];
+              return (
+                <li key={s.name}>
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label={`MSL-iTECH sur ${s.name}`}
+                    onClick={() => track("social_click", { network: s.name, cta_location: "footer" })}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-brand-grey/40 text-brand-grey-light/85 transition hover:border-brand-white hover:text-brand-white"
+                  >
+                    <Icon size={16} aria-hidden="true" />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
           <p className="mt-3 hidden max-w-md font-body text-xs text-brand-grey-light/70 sm:mt-4 sm:block">
             Partenaire officiel Odoo — 40+ projets livrés.{" "}
             <a
