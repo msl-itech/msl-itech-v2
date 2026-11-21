@@ -9,15 +9,7 @@ export const SOCIAL_LINKS = [
     url: "https://www.linkedin.com/company/mslitech",
   },
   {
-    name: "Facebook",
-    url: "https://www.facebook.com/mslitech",
-  },
-  {
-    name: "Instagram",
-    url: "https://www.instagram.com/mslitech",
-  },
-  {
     name: "YouTube",
-    url: "https://www.youtube.com/@mslitech",
+    url: "https://www.youtube.com/@MSL-iTECH",
   },
 ] as const;
