@@ -12,4 +12,12 @@ export const SOCIAL_LINKS = [
     name: "YouTube",
     url: "https://www.youtube.com/@MSL-iTECH",
   },
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/people/MSL-itech/61573365670665",
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/msl.itech",
+  },
 ] as const;
