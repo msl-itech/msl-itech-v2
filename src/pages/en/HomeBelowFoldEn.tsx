@@ -522,7 +522,7 @@ function FinalCTA() {
           <div className="relative text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 backdrop-blur-md">
               <Sparkles size={14} className="text-brand-gold" />
-              <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/85">Ready to start?</p>
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/85">Let’s get started</p>
             </div>
             <h2 className="mx-auto max-w-3xl font-heading text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
               Structure your business <Mark>with Odoo.</Mark>

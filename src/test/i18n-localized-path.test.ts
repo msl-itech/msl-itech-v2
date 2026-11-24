@@ -6,8 +6,8 @@ describe("localizedPath", () => {
     expect(localizedPath("/contact", "fr")).toBe("/contact");
   });
   it("falls back to the French path in English when no translation exists", () => {
-    expect(TRANSLATED_ROUTES["/realisations"]).toBeUndefined();
-    expect(localizedPath("/realisations", "en")).toBe("/realisations");
+    expect(TRANSLATED_ROUTES["/blog"]).toBeUndefined();
+    expect(localizedPath("/blog", "en")).toBe("/blog");
   });
   it("uses the English path when translated, keeping the query string", () => {
     TRANSLATED_ROUTES["/__t"] = "/en/__t";

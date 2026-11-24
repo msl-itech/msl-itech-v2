@@ -17,6 +17,11 @@ const OdooPartnerMoroccoPage = lazyRetry(() => import("./pages/en/OdooPartnerMor
 const AboutPageEn = lazyRetry(() => import("./pages/en/AboutPageEn"));
 const ContactPageEn = lazyRetry(() => import("./pages/en/ContactPageEn"));
 const BookMeetingPage = lazyRetry(() => import("./pages/en/BookMeetingPage"));
+const OdooErpPageEn = lazyRetry(() => import("./pages/en/OdooErpPageEn"));
+const OdooConstructionPage = lazyRetry(() => import("./pages/en/OdooConstructionPage"));
+const OdooHospitalityPage = lazyRetry(() => import("./pages/en/OdooHospitalityPage"));
+const CaseStudiesPage = lazyRetry(() => import("./pages/en/CaseStudiesPage"));
+const OurApproachPage = lazyRetry(() => import("./pages/en/OurApproachPage"));
 const CrmPage = lazyRetry(() => import("./pages/CrmPage"));
 const OdooErpPage = lazyRetry(() => import("./pages/OdooErpPage"));
 const FinancePage = lazyRetry(() => import("./pages/FinancePage"));
@@ -142,6 +147,11 @@ const App = () => {
             <Route path="/en/about" element={<AboutPageEn />} />
             <Route path="/en/contact" element={<ContactPageEn />} />
             <Route path="/en/book-a-meeting" element={<BookMeetingPage />} />
+            <Route path="/en/odoo-erp" element={<OdooErpPageEn />} />
+            <Route path="/en/odoo-construction-morocco" element={<OdooConstructionPage />} />
+            <Route path="/en/odoo-hospitality-morocco" element={<OdooHospitalityPage />} />
+            <Route path="/en/case-studies" element={<CaseStudiesPage />} />
+            <Route path="/en/our-approach" element={<OurApproachPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

@@ -28,6 +28,11 @@ export const TRANSLATED_ROUTES: Record<string, string> = {
   "/a-propos": "/en/about",
   "/contact": "/en/contact",
   "/prendre-rendez-vous": "/en/book-a-meeting",
+  "/odoo-erp": "/en/odoo-erp",
+  "/odoo-btp-maroc": "/en/odoo-construction-morocco",
+  "/odoo-horeca-maroc": "/en/odoo-hospitality-morocco",
+  "/realisations": "/en/case-studies",
+  "/notre-approche": "/en/our-approach",
 };
 
 /** Chemin EN → chemin FR (calculé à la volée : la table reste la seule source). */

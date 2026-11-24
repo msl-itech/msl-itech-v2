@@ -1326,7 +1326,7 @@ export default function OdooPartnerMoroccoPage() {
             />
 
             <h2 className="relative z-10 font-heading text-3xl font-bold text-white md:text-5xl leading-tight">
-              Ready to launch your Odoo ERP project in Morocco?
+              Want to launch your Odoo ERP project in Morocco?
             </h2>
             <p className="relative z-10 mx-auto mt-5 max-w-xl font-body text-base text-white/85 leading-relaxed">
               Describe your business workflows to our senior consultants — we will revert within 48 hours with a clear, fixed-scope proposal in MAD.
