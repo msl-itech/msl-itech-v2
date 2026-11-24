@@ -1,0 +1,1203 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
+import {
+  ArrowRight,
+  ArrowLeft,
+  Sparkles,
+  Mail,
+  Phone,
+  MapPin,
+  CheckCircle2,
+  ShieldCheck,
+  Clock,
+  Calendar,
+  User,
+  Settings,
+  Cpu,
+  Globe,
+  Megaphone,
+} from "lucide-react";
+import { useProductSeo } from "@/hooks/useProductSeo";
+import { HeroCursorGlow } from "@/components/HeroCursorGlow";
+import contactHero from "@/assets/home/cta-bg.webp";
+import { submitLead } from "@/lib/leads";
+import { getUtm } from "@/lib/utm";
+import { buildLeadDescription } from "@/lib/odoo";
+import type { OdooLeadData } from "@/lib/odoo";
+import { track } from "@/lib/analytics";
+import { localizedPath, tagMessageForLang } from "@/lib/i18n";
+import { ui } from "@/lib/ui-strings";
+
+/* ─────────────── Constants ─────────────── */
+
+const DISPOSABLE_DOMAINS = [
+  "yopmail.com", "mailinator.com", "guerrillamail.com", "sharklasers.com",
+  "guerrillamail.info", "spam4.me", "trashmail.com", "trashmail.me",
+  "trashmail.net", "tempmail.com", "throwam.com", "dispostable.com",
+  "maildrop.cc", "tempr.email", "discard.email", "fakeinbox.com",
+  "spamgourmet.com", "binkmail.com", "crap.email",
+];
+
+const PHONE_PREFIXES: Record<string, string> = {
+  MA: "+212 ", BE: "+32 ", CA: "+1 ", OTHER: "",
+};
+
+const COUNTRY_LABELS: Record<string, string> = {
+  MA: "Morocco", BE: "Belgium", CA: "Canada", OTHER: "Other",
+};
+
+type Besoin = "erp" | "site" | "marketing";
+type Country = "MA" | "BE" | "CA" | "OTHER";
+
+const BESOIN_OPTIONS: { id: Besoin; label: string; subtitle: string; icon: React.ReactNode }[] = [
+  {
+    id: "erp",
+    label: "Odoo ERP",
+    subtitle: "Digitize operations (accounting, inventory, CRM, invoicing)",
+    icon: <Cpu size={28} />,
+  },
+  {
+    id: "site",
+    label: "Website",
+    subtitle: "Build or redesign your online business presence",
+    icon: <Globe size={28} />,
+  },
+  {
+    id: "marketing",
+    label: "Digital Marketing",
+    subtitle: "Generate qualified leads and improve Google/AI visibility",
+    icon: <Megaphone size={28} />,
+  },
+];
+
+const SECTOR_OPTIONS = [
+  { value: "Commerce / Distribution", label: "Retail & Distribution" },
+  { value: "BTP / Construction", label: "Construction & Real Estate" },
+  { value: "HORECA / Restauration", label: "Hospitality & Food Service" },
+  { value: "Santé / Services médicaux", label: "Healthcare & Pharma" },
+  { value: "Transport / Logistique", label: "Transport & Logistics" },
+  { value: "Production / Industrie", label: "Manufacturing & Industry" },
+  { value: "Services B2B", label: "B2B Professional Services" },
+  { value: "Tourisme / Hôtellerie", label: "Tourism & Hotels" },
+  { value: "Autre", label: "Other industry" },
+];
+
+const CURRENT_TOOL_OPTIONS = [
+  { value: "excel_word", label: "Excel / Word" },
+  { value: "sage", label: "Sage" },
+  { value: "autre_erp", label: "Other ERP" },
+  { value: "odoo", label: "Odoo" },
+  { value: "aucun", label: "No tool yet" },
+];
+
+const ECHEANCE_OPTIONS = [
+  { value: "lt3m", label: "< 3 months" },
+  { value: "3_6m", label: "3–6 months" },
+  { value: "later", label: "Later" },
+  { value: "renseignement", label: "Just exploring" },
+];
+
+const OBJECTIF_SITE_OPTIONS = [
+  { value: "nouveau", label: "New website" },
+  { value: "refonte", label: "Redesign" },
+  { value: "ecommerce", label: "E-commerce" },
+];
+
+const BUDGET_OPTIONS = [
+  { value: "lt1000", label: "< €1,000" },
+  { value: "1000_3500", label: "€1,000–€3,500" },
+  { value: "gt3500", label: "> €3,500" },
+];
+
+const OBJECTIF_MARKETING_OPTIONS = [
+  { value: "plus_demandes", label: "More client inquiries" },
+  { value: "visibilite", label: "Google & AI visibility" },
+  { value: "campagnes", label: "Paid advertising campaigns" },
+];
+
+// Technical mapping to Odoo Studio selection values
+const ODOO_SECTEUR: Record<string, string> = {
+  "Commerce / Distribution":   "Commerce / Distribution",
+  "BTP / Construction":        "BTP / Construction",
+  "HORECA / Restauration":     "HORECA / Restauration",
+  "Santé / Services médicaux": "Santé / Services médicaux",
+  "Transport / Logistique":    "Transport / Logistique",
+  "Production / Industrie":    "Production / Industrie",
+  "Services B2B":              "Services B2B",
+  "Tourisme / Hôtellerie":     "Tourisme / Hôtellerie",
+  "Autre":                     "Autre",
+};
+
+const ODOO_OUTIL_ACTUEL: Record<string, string> = {
+  excel_word:  "Excel / Word",
+  sage:        "Sage",
+  autre_erp:   "Autre ERP",
+  odoo:        "Odoo",
+  aucun:       "Aucun outil",
+};
+
+const ODOO_ECHEANCE: Record<string, string> = {
+  lt3m:          "Moins de 3 mois",
+  "3_6m":        "3 à 6 mois",
+  later:         "Plus tard",
+  renseignement: "Je me renseigne",
+};
+
+const ODOO_OBJECTIF: Record<string, string> = {
+  nouveau:       "Nouveau site",
+  refonte:       "Refonte",
+  ecommerce:     "E-commerce",
+  plus_demandes: "Plus de demandes",
+  visibilite:    "Visibilité Google / IA",
+  campagnes:     "Campagnes pub",
+};
+
+const ODOO_BUDGET: Record<string, string> = {
+  lt1000:      "Moins de 1 000 €",
+  "1000_3500": "1 000 à 3 500 €",
+  gt3500:      "Plus de 3 500 €",
+};
+
+/* ─────────────── Offices data ─────────────── */
+
+const offices = [
+  {
+    country: "Belgium",
+    address: "—",
+    phone: "+32 2 886 05 49",
+    email: "info@msl-itech.com",
+  },
+  {
+    country: "Morocco",
+    address: "951 Q.I. Al Massar N°2, Route de Safi, Marrakech",
+    phone: "+212 6 89 30 62 78",
+    email: "info@msl-itech.com",
+  },
+  {
+    country: "Canada",
+    address: "—",
+    phone: "+1 204 650 0765",
+    email: "info@msl-itech.com",
+  },
+];
+
+/* ─────────────── Sticker ─────────────── */
+
+function Sticker({
+  children,
+  rotate = -6,
+}: {
+  children: React.ReactNode;
+  rotate?: number;
+}) {
+  return (
+    <span
+      className="inline-flex items-center gap-1.5 rounded-full border-2 px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.15em] shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)]"
+      style={{
+        backgroundColor: "var(--gold)",
+        color: "var(--blue)",
+        borderColor: "var(--blue)",
+        transform: `rotate(${rotate}deg)`,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
+/* ─────────────── Form data type ─────────────── */
+
+type FormData = {
+  besoin: Besoin | "";
+  fullName: string;
+  email: string;
+  phone: string;
+  company: string;
+  country: Country;
+  consent: boolean;
+  // ERP step 2
+  sector: string;
+  currentToolErp: string;
+  echeance: string;
+  // Site step 2
+  urlSite: string;
+  objectifSite: string;
+  budget: string;
+  // Marketing step 2
+  urlMarketing: string;
+  objectifMarketing: string;
+  message: string;
+};
+
+/* ─────────────── Main component ─────────────── */
+
+const CONTACT_TITLES: Record<string, string> = {
+  erp: "Contact Odoo Consultant Morocco — ERP Demo | MSL-iTECH",
+  site: "Contact Website & Odoo Consultant Morocco | MSL-iTECH",
+  marketing: "Contact Digital Marketing & Odoo Team | MSL-iTECH",
+};
+
+const CONTACT_DESCRIPTIONS: Record<string, string> = {
+  erp: "Plan your Odoo ERP implementation with a certified consultant in Morocco. Get a tailored demo and technical roadmap within 24 hours. Start risk-free today.",
+  site: "Build or redesign your business website integrated with Odoo ERP in Morocco. Get a transparent quote and project roadmap within 24h. Contact our team now.",
+  marketing: "Scale your Moroccan business with targeted SEO, Google Ads and lead generation tailored to your ERP. Get a free digital audit within 24h. Contact us today.",
+};
+
+export default function ContactPageEn() {
+  const t = ui("en");
+  const [searchParams] = useSearchParams();
+  const startedAt = useRef(Date.now());
+  const [honeypot, setHoneypot] = useState("");
+  const [step, setStep] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [navDisabled, setNavDisabled] = useState(false);
+  const turnstileEnabled = !!import.meta.env.VITE_TURNSTILE_SITE_KEY;
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(
+    turnstileEnabled ? null : "bypass-no-sitekey"
+  );
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const besoinParam = searchParams.get("besoin") as Besoin | null;
+  const scoreParam = searchParams.get("score");
+  const validBesoin =
+    besoinParam !== null &&
+    (["erp", "site", "marketing"] as const).includes(besoinParam as Besoin);
+
+  useProductSeo({
+    title: validBesoin && besoinParam
+      ? CONTACT_TITLES[besoinParam]
+      : "Contact Odoo Consultant Morocco — Free Demo | MSL-iTECH",
+    description: validBesoin && besoinParam
+      ? CONTACT_DESCRIPTIONS[besoinParam]
+      : "Contact an Odoo consultant in Morocco for ERP implementation, web or marketing. Get your tailored demo and roadmap within 24h. Book your scoping call today.",
+    path: "/en/contact",
+    isEntityPage: true,
+  });
+
+  const [data, setData] = useState<FormData>({
+    besoin: validBesoin ? (besoinParam as Besoin) : "",
+    fullName: "",
+    email: "",
+    phone: "",
+    company: "",
+    country: "MA",
+    consent: false,
+    sector: "",
+    currentToolErp: "",
+    echeance: "",
+    urlSite: "",
+    objectifSite: "",
+    budget: "",
+    urlMarketing: "",
+    objectifMarketing: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (validBesoin) setStep(1);
+    if (!document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) {
+      const s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      s.async = true;
+      s.defer = true;
+      document.head.appendChild(s);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const renderTurnstile = useCallback(() => {
+    const tw = (window as unknown as { turnstile?: { render: (el: HTMLElement, opts: unknown) => string; remove: (id: string) => void } }).turnstile;
+    const sitekey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+    if (!tw || !turnstileRef.current || widgetIdRef.current || !sitekey) return;
+    try {
+      widgetIdRef.current = tw.render(turnstileRef.current, {
+        sitekey,
+        callback: (token: string) => setTurnstileToken(token),
+        "expired-callback": () => setTurnstileToken(null),
+        "error-callback": () => setTurnstileToken(null),
+        theme: "light",
+        appearance: "always",
+        "refresh-expired": "auto",
+      });
+    } catch (e) {
+      console.warn("[Turnstile] render() failed:", e);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (step !== 2) {
+      if (widgetIdRef.current) {
+        (window as unknown as { turnstile?: { remove: (id: string) => void } }).turnstile?.remove(widgetIdRef.current);
+        widgetIdRef.current = null;
+        setTurnstileToken(null);
+      }
+      return;
+    }
+    const tw = (window as unknown as { turnstile?: unknown }).turnstile;
+    if (tw) {
+      renderTurnstile();
+    } else {
+      const script = document.querySelector<HTMLScriptElement>('script[src*="challenges.cloudflare.com/turnstile"]');
+      script?.addEventListener("load", renderTurnstile, { once: true });
+    }
+  }, [step, renderTurnstile]);
+
+  const update = <K extends keyof FormData>(k: K, v: FormData[K]) => {
+    setData((d) => ({ ...d, [k]: v }));
+    setErrors((e) => ({ ...e, [k]: "" }));
+  };
+
+  const handleCountryChange = (country: Country) => {
+    update("country", country);
+    if (!data.phone.trim()) {
+      setData((d) => ({ ...d, country, phone: PHONE_PREFIXES[country] }));
+    }
+  };
+
+  const scrollToFormTop = () => {
+    requestAnimationFrame(() => {
+      const el = formRef.current;
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: "smooth" });
+    });
+  };
+
+  const validateStep = (): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    if (step === 0) {
+      if (!data.besoin) newErrors.besoin = t.contact.errBesoin;
+    }
+
+    if (step === 1) {
+      if (!data.fullName.trim() || data.fullName.trim().length < 2) {
+        newErrors.fullName = t.contact.errFullName;
+      }
+      const emailLower = data.email.trim().toLowerCase();
+      if (!emailLower || !/.+@.+\..+/.test(emailLower)) {
+        newErrors.email = t.contact.errEmail;
+      } else {
+        const domain = emailLower.split("@")[1];
+        if (domain && DISPOSABLE_DOMAINS.includes(domain)) {
+          newErrors.email = t.contact.errEmailValid;
+        }
+      }
+      const phoneClean = data.phone.replace(/[\s+\-().]/g, "");
+      if (!phoneClean || phoneClean.length < 5) {
+        newErrors.phone = t.contact.errPhone;
+      }
+      if (!data.company.trim()) {
+        newErrors.company = t.contact.errCompany;
+      }
+      if (!data.consent) {
+        newErrors.consent = t.contact.errConsent;
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const disableNav = () => {
+    setNavDisabled(true);
+    setTimeout(() => setNavDisabled(false), 500);
+  };
+
+  const handleNext = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    if (navDisabled) return;
+    if (validateStep()) {
+      disableNav();
+      const nextStep = step + 1;
+      track("form_step", { lead_source: "contact", form_type: (data.besoin === "site" ? "site_web" : data.besoin) || undefined, step: nextStep + 1 });
+      setStep((s) => s + 1);
+      scrollToFormTop();
+    }
+  };
+
+  const handleBack = () => {
+    if (navDisabled) return;
+    disableNav();
+    setStep((s) => Math.max(0, s - 1));
+    scrollToFormTop();
+  };
+
+  const handleBesoinSelect = (besoin: Besoin) => {
+    if (navDisabled) return;
+    setData((d) => ({ ...d, besoin }));
+    setErrors((e) => ({ ...e, besoin: "" }));
+    disableNav();
+    const ft = besoin === "site" ? "site_web" : besoin;
+    track("form_start", { lead_source: "contact", form_type: ft });
+    track("form_step", { lead_source: "contact", form_type: ft, step: 2 });
+    setStep(1);
+    scrollToFormTop();
+  };
+
+  const submitGuard = useRef(false);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (submitGuard.current) return;
+    submitGuard.current = true;
+
+    if (honeypot) return;
+    if (Date.now() - startedAt.current < 3000) return;
+    if (!turnstileToken) return;
+
+    if (!validateStep()) return;
+
+    const besoin = data.besoin as Besoin;
+    const besoinLabel = { erp: "Odoo ERP", site: "Site web", marketing: "Marketing digital" }[besoin];
+    const teamName = besoin === "erp" ? "ERP Odoo" : "Web & Marketing";
+    const utm = getUtm();
+    const consentAt = new Date().toISOString();
+
+    const freeMessage = data.message
+      ? buildLeadDescription({ Message: tagMessageForLang(data.message, "en") })
+      : undefined;
+
+    const payload: OdooLeadData = {
+      name: `${data.fullName}${data.company ? ` — ${data.company}` : ""} — ${besoinLabel}`,
+      contact_name: data.fullName,
+      email_from: data.email,
+      phone: data.phone || undefined,
+      partner_name: data.company || undefined,
+      country_code: data.country !== "OTHER" ? data.country : undefined,
+      team_name: teamName,
+      utm_source_name: utm.source || undefined,
+      utm_medium_name: utm.medium || undefined,
+      utm_campaign_name: utm.campaign || undefined,
+      referred: window.location.href,
+      description: freeMessage,
+      source: utm.source
+        ? `${utm.source}${utm.medium ? ` / ${utm.medium}` : ""}`
+        : "msl-itech.com /en/contact",
+      tag_names: [besoinLabel],
+      x_studio_outil_source: "Formulaire de contact",
+      x_studio_score: scoreParam ? Number(scoreParam) : undefined,
+      x_studio_consentement: true,
+      x_studio_consentement_date: consentAt,
+      ...(besoin === "erp" && {
+        x_studio_secteur:      data.sector        ? ODOO_SECTEUR[data.sector]             : undefined,
+        x_studio_outil_actuel: data.currentToolErp ? ODOO_OUTIL_ACTUEL[data.currentToolErp] : undefined,
+        x_studio_echeance:     data.echeance       ? ODOO_ECHEANCE[data.echeance]           : undefined,
+      }),
+      ...(besoin === "site" && {
+        x_studio_url_site:  data.urlSite       || undefined,
+        x_studio_objectif:  data.objectifSite  ? ODOO_OBJECTIF[data.objectifSite]  : undefined,
+        x_studio_budget:    data.budget        ? ODOO_BUDGET[data.budget]           : undefined,
+      }),
+      ...(besoin === "marketing" && {
+        x_studio_url_site:  data.urlMarketing       || undefined,
+        x_studio_objectif:  data.objectifMarketing  ? ODOO_OBJECTIF[data.objectifMarketing] : undefined,
+        x_studio_budget:    data.budget             ? ODOO_BUDGET[data.budget]               : undefined,
+      }),
+    };
+
+    setSubmitting(true);
+    const formType = besoin === "site" ? "site_web" : besoin;
+    try {
+      await submitLead(payload);
+      track("generate_lead", { lead_source: "contact", form_type: formType, market: "MA" });
+      setSubmitted(true);
+      toast.success(t.contact.toastSuccess);
+    } catch {
+      track("form_error", { lead_source: "contact", form_type: formType, error_type: "network" });
+      submitGuard.current = false;
+      toast.error(t.contact.toastError);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const besoin = data.besoin as Besoin | "";
+  const confirmData = besoin ? t.contact.confirmation[besoin] : t.contact.confirmation.erp;
+
+  return (
+    <>
+      {/* ── HERO ── */}
+      <section className="bg-brand-bg pt-6 md:pt-8">
+        <div className="container">
+          <div className="relative isolate rounded-[28px] md:rounded-[36px]">
+            <div className="absolute inset-0 -z-10 overflow-hidden rounded-[28px] md:rounded-[36px]">
+              <img
+                src={contactHero}
+                alt="Contact MSL-iTECH Odoo consultants in Morocco"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="eager"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(10,30,38,0.55) 0%, rgba(10,30,38,0.7) 55%, rgba(10,30,38,0.9) 100%)",
+                }}
+              />
+              <div aria-hidden className="pointer-events-none absolute -top-32 -left-20 h-96 w-96 rounded-full opacity-25 blur-3xl" style={{ backgroundColor: "var(--gold)" }} />
+              <div aria-hidden className="pointer-events-none absolute -bottom-40 -right-24 h-[28rem] w-[28rem] rounded-full opacity-20 blur-3xl" style={{ backgroundColor: "var(--blue)" }} />
+              <div aria-hidden className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+            </div>
+
+            <HeroCursorGlow radius="inherit" />
+
+            <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
+              <Sticker rotate={-8}>★ Response within 24h</Sticker>
+            </div>
+
+            <div className="relative flex min-h-[420px] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[500px] md:py-28">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
+                <Sparkles size={12} className="text-brand-gold" />
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
+                  Contact · MSL-iTECH
+                </p>
+              </div>
+
+              <h1 className="mt-8 max-w-4xl font-heading text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[60px] lg:text-[68px]">
+                Contact Odoo Consultant Morocco —{" "}
+                <span className="italic font-light text-brand-gold">
+                  ERP, Web & Growth
+                </span>
+              </h1>
+
+              <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
+                Looking to contact an Odoo consultant in Morocco for your ERP migration, custom implementation or digital transformation? MSL-iTECH delivers certified Odoo expertise with dedicated Moroccan and international support, providing a customized demo and scoping roadmap within 24 hours.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-white/70">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5">
+                  <Clock size={12} className="text-brand-gold" /> 24h response time
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5">
+                  <ShieldCheck size={12} className="text-brand-gold" /> No commitment
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5">
+                  <Calendar size={12} className="text-brand-gold" /> 3 core specialties
+                </span>
+              </div>
+            </div>
+
+            {/* Breadcrumb pill */}
+            <div className="absolute -bottom-5 right-6 z-30 md:right-10">
+              <div
+                className="flex items-center gap-3 rounded-full border bg-brand-white px-5 py-2.5 shadow-[0_18px_40px_-15px_rgba(0,0,0,0.25)]"
+                style={{ borderColor: "var(--grey-light)" }}
+              >
+                <Link to={localizedPath("/", "en")} className="font-body text-sm text-brand-grey transition hover:text-brand-blue">
+                  Home
+                </Link>
+                <span className="text-brand-grey/40">/</span>
+                <span className="font-body text-sm font-semibold text-brand-blue">Contact</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── OFFICES ── */}
+      <section className="py-24" style={{ backgroundColor: "var(--bg)" }}>
+        <div className="container">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+              <span className="inline-block h-px w-8 bg-brand-blue" />
+              Our offices & lines
+            </p>
+            <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]">
+              Three international hubs, one dedicated consultant
+            </h2>
+          </div>
+
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
+            {offices.map((o, i) => {
+              const variants = [
+                { bg: "var(--blue)", text: "white", desc: "rgba(255,255,255,0.78)", iconBg: "var(--gold)", iconColor: "var(--blue)", glow: "var(--gold)", border: "transparent", link: "white" },
+                { bg: "white", text: "var(--black)", desc: "var(--grey)", iconBg: "var(--blue)", iconColor: "var(--gold)", glow: "var(--gold)", border: "var(--grey-light)", link: "var(--blue)" },
+                { bg: "var(--blue-light)", text: "var(--blue)", desc: "rgba(18,77,90,0.75)", iconBg: "var(--blue)", iconColor: "var(--gold)", glow: "var(--gold)", border: "transparent", link: "var(--blue)" },
+              ];
+              const s = variants[i % variants.length];
+              return (
+                <article
+                  key={o.country}
+                  className="group relative overflow-hidden rounded-[28px] border p-8 transition hover:-translate-y-1 hover:shadow-[0_24px_60px_-20px_rgba(18,77,90,0.28)]"
+                  style={{ backgroundColor: s.bg, borderColor: s.border }}
+                >
+                  <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-25 blur-3xl" style={{ backgroundColor: s.glow }} />
+                  <div className="relative flex flex-col gap-6">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-heading text-2xl font-bold leading-[1.1]" style={{ color: s.text }}>{o.country}</h3>
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl shadow-[0_10px_30px_-12px_rgba(0,0,0,0.25)]" style={{ backgroundColor: s.iconBg, color: s.iconColor }}>
+                        <MapPin size={18} />
+                      </div>
+                    </div>
+                    <ul className="space-y-3 font-body text-sm" style={{ color: s.desc }}>
+                      {o.address !== "—" && (
+                        <li className="flex gap-3">
+                          <MapPin size={15} className="mt-0.5 shrink-0" style={{ color: s.link }} />
+                          <span>{o.address}</span>
+                        </li>
+                      )}
+                      <li className="flex gap-3">
+                        <Phone size={15} className="mt-0.5 shrink-0" style={{ color: s.link }} />
+                        <a href={`tel:${o.phone.replace(/\s/g, "")}`} onClick={() => track("contact_click", { contact_method: "phone", cta_location: "section" })} className="transition hover:opacity-80" style={{ color: s.text }}>{o.phone}</a>
+                      </li>
+                      <li className="flex gap-3">
+                        <Mail size={15} className="mt-0.5 shrink-0" style={{ color: s.link }} />
+                        <a href={`mailto:${o.email}`} onClick={() => track("contact_click", { contact_method: "email", cta_location: "section" })} className="transition hover:opacity-80" style={{ color: s.text }}>{o.email}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FORM ── */}
+      <section
+        className="py-24"
+        style={{ background: "linear-gradient(180deg, var(--blue-light) 0%, var(--bg) 100%)" }}
+      >
+        <div className="container max-w-3xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
+              <span className="inline-block h-px w-8 bg-brand-blue" />
+              Contact form
+            </p>
+            <h2 className="font-heading text-3xl font-bold text-brand-black md:text-[2.5rem]">
+              Three steps to get started
+            </h2>
+            <p className="mt-4 font-body text-base text-brand-grey">
+              Select your needs, enter your details and add optional project specifics — under 3 minutes.
+            </p>
+          </div>
+
+          {submitted ? (
+            <div className="mt-10 rounded-2xl border border-border bg-card p-10 text-center shadow-sm">
+              <div
+                className="mx-auto flex h-14 w-14 items-center justify-center rounded-full"
+                style={{ backgroundColor: "rgba(255,221,87,0.2)", color: "#0F3F4A" }}
+              >
+                <CheckCircle2 size={26} />
+              </div>
+              <h3 className="mt-5 font-heading text-2xl font-bold text-brand-black">{confirmData.title}</h3>
+              <p className="mt-3 font-body text-base text-brand-grey">{confirmData.body}</p>
+              <Link
+                to={localizedPath("/", "en")}
+                className="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-semibold transition hover:opacity-90"
+                style={{ backgroundColor: "#0F3F4A", color: "white" }}
+              >
+                Back to home <ArrowRight size={16} />
+              </Link>
+            </div>
+          ) : (
+            <form
+              onKeyDown={(e) => { if (e.key === "Enter" && (e.target as HTMLElement).tagName !== "BUTTON") e.preventDefault(); }}
+              onSubmit={handleSubmit}
+              ref={formRef}
+              className="relative mt-12 overflow-clip rounded-[28px] border bg-brand-white p-7 pb-24 shadow-[0_30px_80px_-30px_rgba(18,77,90,0.25)] md:p-10"
+              style={{ borderColor: "var(--grey-light)" }}
+              noValidate
+            >
+              <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full opacity-30 blur-3xl" style={{ backgroundColor: "var(--gold)" }} />
+              <div aria-hidden className="pointer-events-none absolute -left-24 -bottom-24 h-56 w-56 rounded-full opacity-20 blur-3xl" style={{ backgroundColor: "var(--blue)" }} />
+
+              {/* Step indicator */}
+              <div className="relative mb-10">
+                <div className="absolute left-0 right-0 top-4 h-0.5 -z-0" style={{ backgroundColor: "var(--grey-light)" }} />
+                <div
+                  className="absolute left-0 top-4 h-0.5 -z-0 transition-all duration-500"
+                  style={{ backgroundColor: "var(--blue)", width: `${(step / (t.contact.steps.length - 1)) * 100}%` }}
+                />
+                <ol className="relative grid grid-cols-3 gap-2">
+                  {t.contact.steps.map((lbl, i) => {
+                    const done = i < step;
+                    const active = i === step;
+                    return (
+                      <li key={lbl} className="flex flex-col items-center text-center">
+                        <span
+                          className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition"
+                          style={{
+                            backgroundColor: active ? "var(--gold)" : done ? "var(--blue)" : "white",
+                            color: active ? "var(--blue)" : done ? "white" : "var(--grey)",
+                            border: active || done ? "2px solid var(--blue)" : "2px solid var(--grey-light)",
+                          }}
+                        >
+                          {done ? <CheckCircle2 size={14} /> : i + 1}
+                        </span>
+                        <span
+                          className="mt-2 hidden text-[10px] uppercase tracking-[0.15em] md:block"
+                          style={{ color: active ? "var(--blue)" : "var(--grey)", fontWeight: active ? 700 : 400 }}
+                        >
+                          {lbl}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
+
+              <div className="relative">
+                {/* ── Step 0 — Need ── */}
+                {step === 0 && (
+                  <div className="space-y-6">
+                    <StepHeader
+                      icon={<Sparkles size={20} />}
+                      title={t.contact.step1Title}
+                      subtitle={t.contact.step1Subtitle}
+                    />
+                    {errors.besoin && <p className="text-xs text-destructive">{errors.besoin}</p>}
+                    <div className="grid gap-4 md:grid-cols-3">
+                      {BESOIN_OPTIONS.map((b) => (
+                        <button
+                          key={b.id}
+                          type="button"
+                          onClick={() => handleBesoinSelect(b.id)}
+                          className={`flex flex-col items-start gap-4 rounded-[20px] border-2 p-6 text-left transition hover:-translate-y-1 ${
+                            data.besoin === b.id
+                              ? "border-brand-blue bg-brand-blue/5"
+                              : "border-border bg-white hover:border-brand-blue/40 hover:shadow-md"
+                          }`}
+                        >
+                          <div
+                            className="flex h-12 w-12 items-center justify-center rounded-xl"
+                            style={{ backgroundColor: "var(--blue)", color: "var(--gold)" }}
+                          >
+                            {b.icon}
+                          </div>
+                          <div>
+                            <p className="font-heading text-lg font-bold text-brand-black">{b.label}</p>
+                            <p className="mt-1 font-body text-sm text-brand-grey">{b.subtitle}</p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* ── Step 1 — Contact details ── */}
+                {step === 1 && (
+                  <div className="space-y-5">
+                    <StepHeader
+                      icon={<User size={20} />}
+                      title={t.contact.step2Title}
+                      subtitle={t.contact.step2Subtitle}
+                    />
+
+                    <Field
+                      id="fullName"
+                      label={t.contact.fullName}
+                      error={errors.fullName}
+                      value={data.fullName}
+                      onChange={(v) => update("fullName", v)}
+                      placeholder={t.contact.fullNamePh}
+                    />
+
+                    <div className="grid gap-5 md:grid-cols-2">
+                      <Field
+                        id="email"
+                        type="email"
+                        label={t.contact.email}
+                        error={errors.email}
+                        value={data.email}
+                        onChange={(v) => update("email", v)}
+                        placeholder={t.contact.emailPh}
+                      />
+                      <div>
+                        <label
+                          htmlFor="phone"
+                          className="block font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey"
+                        >
+                          Phone number *
+                        </label>
+                        <input
+                          id="phone"
+                          type="tel"
+                          value={data.phone}
+                          onChange={(e) => update("phone", e.target.value)}
+                          placeholder={t.contact.phonePh}
+                          className={`mt-2 w-full rounded-lg border bg-background px-4 py-3 font-body text-sm text-brand-black focus:outline-none focus:ring-1 ${
+                            errors.phone
+                              ? "border-destructive focus:border-destructive focus:ring-destructive"
+                              : "border-border focus:border-brand-blue focus:ring-brand-blue"
+                          }`}
+                        />
+                        {errors.phone && <p className="mt-1.5 text-xs text-destructive">{errors.phone}</p>}
+                      </div>
+                    </div>
+
+                    <Field
+                      id="company"
+                      label={t.contact.company}
+                      error={errors.company}
+                      value={data.company}
+                      onChange={(v) => update("company", v)}
+                      placeholder={t.contact.companyPh}
+                    />
+
+                    <div>
+                      <label
+                        htmlFor="country"
+                        className="block font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey"
+                      >
+                        Country *
+                      </label>
+                      <select
+                        id="country"
+                        value={data.country}
+                        onChange={(e) => handleCountryChange(e.target.value as Country)}
+                        className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 font-body text-sm text-brand-black focus:border-brand-blue focus:outline-none focus:ring-1 focus:ring-brand-blue"
+                      >
+                        <option value="MA">{COUNTRY_LABELS.MA}</option>
+                        <option value="BE">{COUNTRY_LABELS.BE}</option>
+                        <option value="CA">{COUNTRY_LABELS.CA}</option>
+                        <option value="OTHER">{COUNTRY_LABELS.OTHER}</option>
+                      </select>
+                    </div>
+
+                    <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-border bg-muted/40 p-4 text-sm">
+                      <input
+                        type="checkbox"
+                        checked={data.consent}
+                        onChange={(e) => update("consent", e.target.checked)}
+                        className="mt-1 h-4 w-4 shrink-0 accent-[color:var(--gold)]"
+                      />
+                      <span className="text-brand-grey">
+                        I agree that MSL-iTECH may contact me regarding my request, in accordance with the{" "}
+                        <Link
+                          to={localizedPath("/politique-de-confidentialite", "en")}
+                          className="underline hover:text-brand-blue"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          privacy policy
+                        </Link>{" "}
+                        (Moroccan Law 09-08 / GDPR). *
+                      </span>
+                    </label>
+                    {errors.consent && <p className="text-xs text-destructive">{errors.consent}</p>}
+
+                    {/* Honeypot */}
+                    <input
+                      name="fax_number"
+                      tabIndex={-1}
+                      aria-hidden="true"
+                      autoComplete="off"
+                      className="sr-only absolute left-[-9999px]"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </div>
+                )}
+
+                {/* ── Step 2 — Specifics (optional) ── */}
+                {step === 2 && (
+                  <div className="space-y-6">
+                    <StepHeader
+                      icon={<Settings size={20} />}
+                      title={t.contact.step3Title}
+                      subtitle="These details help us prepare a high-impact first conversation — all fields are optional."
+                    />
+
+                    {data.besoin === "erp" && (
+                      <>
+                        <div>
+                          <label
+                            htmlFor="sector"
+                            className="block font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey"
+                          >
+                            Industry sector
+                          </label>
+                          <select
+                            id="sector"
+                            value={data.sector}
+                            onChange={(e) => update("sector", e.target.value)}
+                            className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 font-body text-sm text-brand-black focus:border-brand-blue focus:outline-none focus:ring-1 focus:ring-brand-blue"
+                          >
+                            <option value="">— Select an industry —</option>
+                            {SECTOR_OPTIONS.map((s) => (
+                              <option key={s.value} value={s.value}>
+                                {s.label}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        <RadioCards
+                          label="Current business tool"
+                          options={CURRENT_TOOL_OPTIONS}
+                          value={data.currentToolErp}
+                          onChange={(v) => update("currentToolErp", v)}
+                        />
+                        <RadioCards
+                          label="Target implementation timeline"
+                          options={ECHEANCE_OPTIONS}
+                          value={data.echeance}
+                          onChange={(v) => update("echeance", v)}
+                        />
+                      </>
+                    )}
+
+                    {data.besoin === "site" && (
+                      <>
+                        <Field
+                          id="urlSite"
+                          label="Current website URL (if any)"
+                          value={data.urlSite}
+                          onChange={(v) => update("urlSite", v)}
+                          placeholder="https://your-company.com"
+                        />
+                        <RadioCards
+                          label="Primary project objective"
+                          options={OBJECTIF_SITE_OPTIONS}
+                          value={data.objectifSite}
+                          onChange={(v) => update("objectifSite", v)}
+                        />
+                        <RadioCards
+                          label="Estimated budget"
+                          options={BUDGET_OPTIONS}
+                          value={data.budget}
+                          onChange={(v) => update("budget", v)}
+                        />
+                      </>
+                    )}
+
+                    {data.besoin === "marketing" && (
+                      <>
+                        <Field
+                          id="urlMarketing"
+                          label="Website URL"
+                          value={data.urlMarketing}
+                          onChange={(v) => update("urlMarketing", v)}
+                          placeholder="https://your-company.com"
+                        />
+                        <RadioCards
+                          label="Main marketing objective"
+                          options={OBJECTIF_MARKETING_OPTIONS}
+                          value={data.objectifMarketing}
+                          onChange={(v) => update("objectifMarketing", v)}
+                        />
+                      </>
+                    )}
+
+                    <Field
+                      id="message"
+                      label="Additional message (optional)"
+                      value={data.message}
+                      onChange={(v) => update("message", v)}
+                      textarea
+                      rows={4}
+                      maxLength={800}
+                      showCount
+                      placeholder="Briefly describe your business challenges, current bottlenecks or questions…"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* ── Turnstile (step 2 only) ── */}
+              {step === 2 && (
+                <div className="mt-6" onSubmit={(e) => e.stopPropagation()} onClick={(e) => e.stopPropagation()}>
+                  <div ref={turnstileRef} />
+                  {!turnstileToken && (
+                    <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey">
+                      {t.tool.captcha}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {/* ── Navigation ── */}
+              <div className="mt-8 flex items-center justify-between gap-3">
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  disabled={step === 0 || navDisabled}
+                  className="inline-flex items-center gap-2 rounded-full border bg-white px-5 py-2.5 font-body text-sm font-semibold transition hover:bg-brand-bg disabled:cursor-not-allowed disabled:opacity-40"
+                  style={{ borderColor: "var(--grey-light)", color: "var(--blue)" }}
+                >
+                  <ArrowLeft size={16} /> {t.tool.previous}
+                </button>
+
+                {step < t.contact.steps.length - 1 ? (
+                  <button
+                    key="btn-next"
+                    type="button"
+                    onClick={handleNext}
+                    disabled={navDisabled}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-semibold shadow-[0_12px_30px_-12px_rgba(18,77,90,0.5)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                    style={{ backgroundColor: "var(--blue)", color: "white" }}
+                  >
+                    {t.tool.continue} <ArrowRight size={16} />
+                  </button>
+                ) : (
+                  <button
+                    key="btn-submit"
+                    type="submit"
+                    disabled={submitting || !turnstileToken}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-body text-sm font-bold shadow-[0_14px_36px_-12px_rgba(255,221,87,0.7)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                    style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
+                  >
+                    {submitting
+                      ? t.tool.sending
+                      : besoin
+                      ? t.contact.submit[besoin]
+                      : "Send my inquiry"}{" "}
+                    <ArrowRight size={16} />
+                  </button>
+                )}
+              </div>
+
+              <p className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-brand-grey">
+                <ShieldCheck size={12} /> No commitment · Response within 24h · Protected data (Moroccan Law 09-08 / GDPR)
+              </p>
+            </form>
+          )}
+        </div>
+      </section>
+    </>
+  );
+}
+
+/* ─────────────── Sub-components ─────────────── */
+
+function Field({
+  id,
+  label,
+  hint,
+  error,
+  value,
+  onChange,
+  type = "text",
+  textarea,
+  rows = 4,
+  maxLength,
+  showCount,
+  placeholder,
+}: {
+  id: string;
+  label: string;
+  hint?: string;
+  error?: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+  textarea?: boolean;
+  rows?: number;
+  maxLength?: number;
+  showCount?: boolean;
+  placeholder?: string;
+}) {
+  const base =
+    "mt-2 w-full rounded-lg border bg-background px-4 py-3 font-body text-sm text-brand-black focus:outline-none focus:ring-1";
+  const cls = `${base} ${
+    error
+      ? "border-destructive focus:border-destructive focus:ring-destructive"
+      : "border-border focus:border-brand-blue focus:ring-brand-blue"
+  }`;
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-3">
+        <label htmlFor={id} className="block font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey">
+          {label}
+        </label>
+        {showCount && maxLength && (
+          <span className="font-mono text-[10px] tabular-nums text-brand-grey/70">
+            {value.length}/{maxLength}
+          </span>
+        )}
+      </div>
+      {textarea ? (
+        <textarea
+          id={id}
+          rows={rows}
+          maxLength={maxLength}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          className={cls}
+        />
+      ) : (
+        <input
+          id={id}
+          type={type}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          className={cls}
+        />
+      )}
+      {hint && !error && <p className="mt-1.5 text-xs text-brand-grey">{hint}</p>}
+      {error && <p className="mt-1.5 text-xs text-destructive">{error}</p>}
+    </div>
+  );
+}
+
+function StepHeader({
+  icon,
+  title,
+  subtitle,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  subtitle?: string;
+}) {
+  return (
+    <div className="flex items-start gap-4">
+      <div
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+        style={{ backgroundColor: "var(--gold)", color: "var(--blue)" }}
+      >
+        {icon}
+      </div>
+      <div>
+        <h3 className="font-heading text-xl font-bold leading-tight text-brand-black md:text-2xl">
+          {title}
+        </h3>
+        {subtitle && (
+          <p className="mt-1.5 font-body text-sm text-brand-grey">{subtitle}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function RadioCards({
+  label,
+  options,
+  value,
+  onChange,
+}: {
+  label: string;
+  options: { value: string; label: string }[];
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div>
+      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey">{label}</p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {options.map((o) => (
+          <button
+            key={o.value}
+            type="button"
+            onClick={() => onChange(value === o.value ? "" : o.value)}
+            className="inline-flex items-center gap-1.5 rounded-full border px-4 py-2 font-body text-xs font-medium transition hover:-translate-y-0.5"
+            style={{
+              backgroundColor: value === o.value ? "var(--blue)" : "white",
+              color: value === o.value ? "white" : "var(--blue)",
+              borderColor: value === o.value ? "var(--blue)" : "var(--grey-light)",
+            }}
+          >
+            {value === o.value && <CheckCircle2 size={12} />}
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}

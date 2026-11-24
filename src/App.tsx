@@ -12,6 +12,11 @@ import { captureUtm } from "@/lib/utm";
 import { lazyRetry } from "@/lib/lazy-retry";
 
 // Lazy-load all secondary routes — keeps the initial bundle (Home + Layout) lean.
+const HomePageEn = lazyRetry(() => import("./pages/en/HomePageEn"));
+const OdooPartnerMoroccoPage = lazyRetry(() => import("./pages/en/OdooPartnerMoroccoPage"));
+const AboutPageEn = lazyRetry(() => import("./pages/en/AboutPageEn"));
+const ContactPageEn = lazyRetry(() => import("./pages/en/ContactPageEn"));
+const BookMeetingPage = lazyRetry(() => import("./pages/en/BookMeetingPage"));
 const CrmPage = lazyRetry(() => import("./pages/CrmPage"));
 const OdooErpPage = lazyRetry(() => import("./pages/OdooErpPage"));
 const FinancePage = lazyRetry(() => import("./pages/FinancePage"));
@@ -132,6 +137,11 @@ const App = () => {
             <Route path="/facturation-electronique-maroc-odoo" element={<Navigate to="/odoo-finance-comptabilite" replace />} />
 
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/en" element={<HomePageEn />} />
+            <Route path="/en/odoo-partner-morocco" element={<OdooPartnerMoroccoPage />} />
+            <Route path="/en/about" element={<AboutPageEn />} />
+            <Route path="/en/contact" element={<ContactPageEn />} />
+            <Route path="/en/book-a-meeting" element={<BookMeetingPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

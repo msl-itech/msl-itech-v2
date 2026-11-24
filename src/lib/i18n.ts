@@ -23,11 +23,11 @@ export const EN_PREFIX = "/en";
  * (route déclarée dans App.tsx, contenu traduit et relu).
  */
 export const TRANSLATED_ROUTES: Record<string, string> = {
-  // "/": "/en",
-  // "/integrateur-odoo-maroc": "/en/odoo-partner-morocco",
-  // "/a-propos": "/en/about",
-  // "/contact": "/en/contact",
-  // "/prendre-rendez-vous": "/en/book-a-meeting",
+  "/": "/en",
+  "/integrateur-odoo-maroc": "/en/odoo-partner-morocco",
+  "/a-propos": "/en/about",
+  "/contact": "/en/contact",
+  "/prendre-rendez-vous": "/en/book-a-meeting",
 };
 
 /** Chemin EN → chemin FR (calculé à la volée : la table reste la seule source). */
