@@ -2,6 +2,7 @@ import { useEffect, useSyncExternalStore } from "react";
 import type { SEOHeadProps } from "@/components/SEOHead";
 import { SEOHead } from "@/components/SEOHead";
 import { SOCIAL_LINKS } from "@/lib/social-links";
+import { getAlternates, homePath, langFromPath, SEO_LABELS } from "@/lib/i18n";
 
 export type SeoFaq = { q: string; a: string };
 export type SeoService = {
@@ -140,6 +141,9 @@ export function useProductSeo(opts: {
     const origin = SITE_ORIGIN;
     const url = origin + opts.path;
     const ogImage = opts.ogImage ?? DEFAULT_OG_IMAGE;
+    // Langue déduite du chemin : /en/... = anglais, le reste = français.
+    const lang = langFromPath(opts.path);
+    const home = homePath(lang);
 
     // Assemble JSON-LD schemas for this page.
     const schemas: Record<string, unknown>[] = [];
@@ -166,10 +170,10 @@ export function useProductSeo(opts: {
     const breadcrumbs: SeoBreadcrumb[] =
       opts.breadcrumbs && opts.breadcrumbs.length > 0
         ? opts.breadcrumbs
-        : opts.path === "/"
+        : opts.path === home
           ? []
           : [
-              { name: "Accueil", url: origin + "/" },
+              { name: SEO_LABELS[lang].home, url: origin + home },
               { name: opts.title.split("—")[0].trim() || opts.title, url },
             ];
     if (breadcrumbs.length > 0) {
@@ -209,7 +213,7 @@ export function useProductSeo(opts: {
         articleSection: opts.article.articleSection,
         datePublished: opts.article.datePublished,
         dateModified: opts.article.dateModified,
-        inLanguage: "fr",
+        inLanguage: lang,
         author: {
           "@type": "Person",
           name: opts.article.authorName,
@@ -228,6 +232,8 @@ export function useProductSeo(opts: {
       ogType: opts.ogType,
       noIndex: opts.noIndex,
       schemaJson: schemas,
+      lang,
+      alternates: getAlternates(opts.path),
     });
   }, [
     opts.title,

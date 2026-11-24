@@ -2,6 +2,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X, ChevronRight } from "lucide-react";
 import { track } from "@/lib/analytics";
+import { LanguageSwitch } from "@/components/LanguageSwitch";
 import logoDark from "@/assets/logo-msl-dark.png";
 
 const odooLinks = [
@@ -240,6 +241,8 @@ export const Header = () => {
         </nav>
 
         <div className="flex items-center gap-3">
+          {/* Lien FR/EN — invisible tant que la page n'a pas de traduction */}
+          <LanguageSwitch className="text-brand-black" />
           <Link
             to="/contact"
             onClick={() => track("cta_click", { cta_label: "Réserver une démo", cta_location: "header", cta_target: "/contact" })}

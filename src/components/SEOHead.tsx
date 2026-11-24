@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { sendPageView, setCurrentPage } from "@/lib/analytics";
+import { ogLocale, type Alternates, type Lang } from "@/lib/i18n";
 
 export interface SEOHeadProps {
   title: string;
@@ -15,6 +16,13 @@ export interface SEOHeadProps {
    * <script type="application/ld+json"> tag inside <head>.
    */
   schemaJson?: Record<string, unknown> | Record<string, unknown>[];
+  /** Langue de la page (défaut : "fr"). Pilote <html lang> et og:locale. */
+  lang?: Lang;
+  /**
+   * Versions linguistiques existantes (chemins relatifs). Sans valeur, seule
+   * la version française (= canonical) est déclarée.
+   */
+  alternates?: Alternates;
 }
 
 const DEFAULT_OG_IMAGE = "https://msl-itech.com/og-default.jpg";
@@ -39,10 +47,17 @@ export function SEOHead({
   ogType = "website",
   noIndex = false,
   schemaJson,
+  lang = "fr",
+  alternates,
 }: SEOHeadProps) {
 
   const absCanonical = toAbsolute(canonical);
   const absOgImage = toAbsolute(ogImage || DEFAULT_OG_IMAGE);
+  // hreflang : la version FR sert de x-default (marché principal).
+  // Une page noindex ne déclare aucune alternative.
+  const altFr = alternates?.fr ? toAbsolute(alternates.fr) : lang === "fr" ? absCanonical : undefined;
+  const altEn = alternates?.en ? toAbsolute(alternates.en) : lang === "en" ? absCanonical : undefined;
+  const xDefault = altFr ?? altEn;
   const schemas = Array.isArray(schemaJson)
     ? schemaJson
     : schemaJson
@@ -73,7 +88,7 @@ export function SEOHead({
           };
 
   return (
-    <Helmet>
+    <Helmet htmlAttributes={{ lang }}>
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={absCanonical} />
@@ -84,11 +99,10 @@ export function SEOHead({
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       )}
 
-      {/* hreflang — même URL pour tous les marchés francophones */}
-      <link rel="alternate" hrefLang="fr-ma" href={absCanonical} />
-      <link rel="alternate" hrefLang="fr-be" href={absCanonical} />
-      <link rel="alternate" hrefLang="fr-ca" href={absCanonical} />
-      <link rel="alternate" hrefLang="x-default" href={absCanonical} />
+      {/* hreflang — "fr" couvre Maroc, Belgique et Québec ; "en" seulement si traduite */}
+      {!noIndex && altFr && <link rel="alternate" hrefLang="fr" href={altFr} />}
+      {!noIndex && altEn && <link rel="alternate" hrefLang="en" href={altEn} />}
+      {!noIndex && xDefault && <link rel="alternate" hrefLang="x-default" href={xDefault} />}
 
       {/* Open Graph */}
       <meta property="og:title" content={title} />
@@ -100,7 +114,10 @@ export function SEOHead({
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={title} />
       <meta property="og:site_name" content="MSL-iTECH" />
-      <meta property="og:locale" content="fr_MA" />
+      <meta property="og:locale" content={ogLocale(lang)} />
+      {!noIndex && altFr && altEn && (
+        <meta property="og:locale:alternate" content={ogLocale(lang === "fr" ? "en" : "fr")} />
+      )}
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

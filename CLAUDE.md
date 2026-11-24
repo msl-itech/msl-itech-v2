@@ -40,6 +40,19 @@ Avant de considérer un ticket comme terminé, **exécute systématiquement** le
 | **llms.txt** | Mettre à jour si de nouvelles pages piliers ou hubs sont créés. |
 | **Piège robots + noindex** | Une page bloquée par `robots.txt` ne peut pas être lue par Google → son `noindex` est invisible. **Ne jamais cumuler les deux.** Si noindex est nécessaire, ne pas bloquer dans robots.txt. |
 
+#### Bilinguisme FR / EN
+
+| Règle | Détail |
+|-------|--------|
+| **Français à la racine** | Aucune URL française ne change. L'anglais vit sous `/en`, avec des slugs traduits. |
+| **Une seule table** | `src/lib/i18n.ts` → `TRANSLATED_ROUTES` (chemin FR → chemin EN). Ajouter la ligne **uniquement** quand la page EN est en ligne : route dans `App.tsx`, contenu traduit et relu. |
+| **hreflang automatique** | `useProductSeo` déduit la langue du `path` et passe `lang` + `alternates` à `SEOHead` : `fr`, `en` (si traduite), `x-default` = FR. Ne jamais écrire de hreflang à la main. |
+| **Canonical** | Toujours la page elle-même. Jamais de canonical EN → FR. |
+| **Sitemap** | Les URL `/en` et les `<xhtml:link>` sont générés depuis `TRANSLATED_ROUTES`. |
+| **Worker** | `/en` et `/en/...` ne sont valides que s'ils sont dans le sitemap : page non traduite = vrai 404. |
+| **Pas de redirection automatique** | Ni par langue du navigateur, ni par IP. Le `LanguageSwitch` du Header pointe vers la page équivalente et disparaît si elle n'existe pas. |
+| **Une page = une langue** | Pas de texte français dans une page `/en` (Header, Footer, formulaires compris). |
+
 #### Blog — Gabarit d'article (T10)
 
 Chaque article de blog doit contenir ces 10 éléments :

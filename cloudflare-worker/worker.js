@@ -8,8 +8,18 @@
  *  2. 301 — Anciennes URLs blog (anciens slugs → nouveaux slugs)
  *  3. Assets et fichiers système → toujours 200, proxy direct
  *  4. Routes statiques connues   → 200, proxy direct
- *  5. Préfixes dynamiques (/blog/, /realisations/) → vérifier le sitemap
+ *  5. Préfixes dynamiques (/blog/, /realisations/, /en/) → vérifier le sitemap
  *  6. Tout le reste              → 404 (body = index.html de Lovable)
+ *
+ * Bilingue (FR racine / EN sous /en) :
+ *  - "/en" et toute URL /en/... sont valides seulement s'ils figurent dans sitemap.xml,
+ *    lui-même généré depuis TRANSLATED_ROUTES (src/lib/i18n.ts).
+ *    Une page non traduite renvoie donc un vrai 404 — jamais la page FR en 200.
+ *  - Aucune redirection selon la langue du navigateur ou l'IP.
+ *
+ * Hôte canonique : www.msl-itech.com → 301 vers msl-itech.com (même chemin).
+ *  Prérequis Cloudflare : enregistrement DNS « www » proxifié (nuage orange)
+ *  et route Worker « www.msl-itech.com/* » en plus de « msl-itech.com/* ».
  *
  * Variable d'environnement requise :
  *  PURGE_SECRET — chaîne aléatoire, définie dans le dashboard Worker
@@ -120,7 +130,7 @@ const STATIC_ROUTES = new Set([
 ]);
 // ── Préfixes dynamiques ─────────────────────────────────────────────────────
 // Ces chemins sont vérifiés contre le sitemap.xml (cache 1h).
-const DYNAMIC_PREFIXES = ["/blog/", "/realisations/"];
+const DYNAMIC_PREFIXES = ["/blog/", "/realisations/", "/en/"];
 // ── Patterns qui passent toujours (assets, fichiers système) ────────────────
 const ALWAYS_PASS = [
   /\.[a-zA-Z0-9]+$/,     // tout ce qui a une extension (.js, .css, .png, .webp…)
@@ -216,6 +226,13 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const path = url.pathname;
+// -1. Hôte canonique : www → apex, en https, chemin et paramètres conservés
+    if (url.hostname === "www.msl-itech.com") {
+      return Response.redirect(
+        "https://msl-itech.com" + path + (url.search || ""),
+        301
+      );
+    }
 // 0. Endpoint de purge du cache sitemap
 // POST https://msl-itech.com/?_purge=SERET
     if (
@@ -252,9 +269,9 @@ export default {
       return fetchPage(request);
     }
 // 3. Préfixes dynamiques → vérifier le sitemap
-    const isDynamic = DYNAMIC_PREFIXES.some((prefix) =>
-      normalizedPath.startsWith(prefix)
-    );
+    const isDynamic =
+      normalizedPath === "/en" ||
+      DYNAMIC_PREFIXES.some((prefix) => normalizedPath.startsWith(prefix));
     if (isDynamic) {
       const sitemapRoutes = await getSitemapRoutes(ctx);
 // fail-open : sitemap inaccessible → on laisse passer

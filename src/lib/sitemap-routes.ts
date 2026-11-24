@@ -12,6 +12,7 @@
  */
 import { blogPosts } from "../content/blogPosts";
 import { caseStudies } from "../content/caseStudies";
+import { getAlternates, TRANSLATED_ROUTES } from "./i18n";
 
 export type SitemapEntry = {
   loc: string;
@@ -102,7 +103,23 @@ export function buildSitemapEntries(): SitemapEntry[] {
     priority: 0.8,
     lastmod: c.publishedAt,
   }));
-  return [...staticEntries, ...blogEntries, ...caseEntries];
+  const frEntries = [...staticEntries, ...blogEntries, ...caseEntries];
+  // Versions anglaises : une entrée par page traduite, mêmes réglages que la page FR.
+  const enEntries: SitemapEntry[] = frEntries
+    .filter((e) => TRANSLATED_ROUTES[e.loc])
+    .map((e) => ({ ...e, loc: TRANSLATED_ROUTES[e.loc] }));
+  return [...frEntries, ...enEntries];
+}
+
+/** Balises <xhtml:link> hreflang d'une URL (vide si la page n'a qu'une langue). */
+function alternateLinks(loc: string): string[] {
+  const alt = getAlternates(loc);
+  if (!alt.fr || !alt.en) return [];
+  return [
+    `    <xhtml:link rel="alternate" hreflang="fr" href="${SITE}${alt.fr}"/>`,
+    `    <xhtml:link rel="alternate" hreflang="en" href="${SITE}${alt.en}"/>`,
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${alt.fr}"/>`,
+  ];
 }
 
 export function renderSitemapXml(entries: SitemapEntry[] = buildSitemapEntries()): string {
@@ -113,8 +130,9 @@ export function renderSitemapXml(entries: SitemapEntry[] = buildSitemapEntries()
       parts.push(`    <lastmod>${e.lastmod ?? today}</lastmod>`);
       if (e.changefreq) parts.push(`    <changefreq>${e.changefreq}</changefreq>`);
       if (e.priority !== undefined) parts.push(`    <priority>${e.priority.toFixed(2)}</priority>`);
+      parts.push(...alternateLinks(e.loc));
       return `  <url>\n${parts.join("\n")}\n  </url>`;
     })
     .join("\n");
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}\n</urlset>\n`;
 }
