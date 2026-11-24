@@ -4,6 +4,9 @@ import { ChevronDown, Menu, X, ChevronRight } from "lucide-react";
 import { track } from "@/lib/analytics";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
 import logoDark from "@/assets/logo-msl-dark.png";
+import { useLang } from "@/hooks/useLang";
+import { homePath, localizedPath } from "@/lib/i18n";
+import { ui } from "@/lib/ui-strings";
 
 const odooLinks = [
   { to: "/odoo-crm-ventes", label: "CRM & Ventes" },
@@ -52,6 +55,10 @@ export const Header = () => {
   const [openMenu, setOpenMenu] = useState<null | "odoo" | "sectors" | "blog">(null);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const location = useLocation();
+  const lang = useLang();
+  const t = ui(lang);
+  const L = (to: string) => localizedPath(to, lang);
+  const lbl = (l: { to: string; label: string }) => t.nav[l.to] ?? l.label;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -84,9 +91,9 @@ export const Header = () => {
     >
       <div className="container flex h-16 items-center justify-between">
         <Link
-          to="/"
+          to={homePath(lang)}
           className="flex items-center"
-          aria-label="MSL-iTECH — accueil"
+          aria-label={t.header.homeAria}
         >
           <img
             src={logoDark}
@@ -99,7 +106,7 @@ export const Header = () => {
         </Link>
 
         {/* Desktop nav */}
-        <nav aria-label="Navigation principale" className="hidden items-center gap-5 lg:flex xl:gap-7">
+        <nav aria-label={t.header.mainNavAria} className="hidden items-center gap-5 lg:flex xl:gap-7">
           {/* Odoo ERP dropdown */}
           <div
             className="relative"
@@ -110,32 +117,32 @@ export const Header = () => {
             onKeyDown={(e) => { if (e.key === "Escape") { setOpenMenu(null); (e.currentTarget.querySelector("a,button") as HTMLElement | null)?.focus(); } }}
           >
             <NavLink
-              to="/odoo-erp"
+              to={L("/odoo-erp")}
               className={({ isActive }) =>
                 `flex items-center gap-1 font-body text-sm transition-colors hover:text-brand-blue ${
                   isActive ? "font-medium text-brand-blue" : "text-brand-black"
                 }`
               }
             >
-              Odoo ERP <ChevronDown size={14} aria-hidden="true" />
+              {t.nav["/odoo-erp"]} <ChevronDown size={14} aria-hidden="true" />
             </NavLink>
             {openMenu === "odoo" && (
               <div className="absolute left-0 top-full pt-3">
                 <div className="w-72 rounded-lg border border-brand-grey-light bg-brand-white p-2 shadow-lg">
                   <NavLink
-                    to={integrateurLink.to}
+                    to={L(integrateurLink.to)}
                     className="block rounded-md px-3 py-2 font-body text-sm font-semibold text-brand-blue transition hover:bg-[var(--blue-light)]"
                   >
-                    {integrateurLink.label}
+                    {lbl(integrateurLink)}
                   </NavLink>
                   <hr className="my-1.5 border-brand-grey-light" />
                   {odooLinks.map((l) => (
                     <NavLink
                       key={l.to}
-                      to={l.to}
+                      to={L(l.to)}
                       className="block rounded-md px-3 py-2 font-body text-sm text-brand-black transition hover:bg-[var(--blue-light)] hover:text-brand-blue"
                     >
-                      {l.label}
+                      {lbl(l)}
                     </NavLink>
                   ))}
                 </div>
@@ -153,23 +160,23 @@ export const Header = () => {
             onKeyDown={(e) => { if (e.key === "Escape") { setOpenMenu(null); (e.currentTarget.querySelector("a,button") as HTMLElement | null)?.focus(); } }}
           >
             <button type="button" aria-haspopup="true" aria-expanded={openMenu === "sectors"} onClick={() => setOpenMenu(openMenu === "sectors" ? null : "sectors")} className="flex items-center gap-1 font-body text-sm text-brand-black hover:text-brand-blue">
-              Nos Secteurs <ChevronDown size={14} aria-hidden="true" />
+              {t.header.sectors} <ChevronDown size={14} aria-hidden="true" />
             </button>
             {openMenu === "sectors" && (
               <div className="absolute left-0 top-full pt-3">
                 <div className="grid w-[520px] grid-cols-2 gap-6 rounded-lg border border-brand-grey-light bg-brand-white p-5 shadow-lg">
                   <div>
                     <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-                      Par secteur
+                      {t.header.bySector}
                     </p>
                     <ul className="space-y-1">
                       {sectorLinks.map((l) => (
                         <li key={l.to}>
                           <NavLink
-                            to={l.to}
+                            to={L(l.to)}
                             className="block rounded-md px-2 py-1.5 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
                           >
-                            {l.label}
+                            {lbl(l)}
                           </NavLink>
                         </li>
                       ))}
@@ -177,16 +184,16 @@ export const Header = () => {
                   </div>
                   <div>
                     <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-grey">
-                      Par profil
+                      {t.header.byProfile}
                     </p>
                     <ul className="space-y-1">
                       {profileItems.map((p) => (
                         <li key={p.to}>
                           <NavLink
-                            to={p.to}
+                            to={L(p.to)}
                             className="block rounded-md px-2 py-1.5 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
                           >
-                            {p.label}
+                            {lbl(p)}
                           </NavLink>
                         </li>
                       ))}
@@ -198,8 +205,8 @@ export const Header = () => {
           </div>
 
           {simpleLinks.map((l) => (
-            <NavLink key={l.to} to={l.to} className={linkClass}>
-              {l.label}
+            <NavLink key={l.to} to={L(l.to)} className={linkClass}>
+              {lbl(l)}
             </NavLink>
           ))}
 
@@ -213,14 +220,14 @@ export const Header = () => {
             onKeyDown={(e) => { if (e.key === "Escape") { setOpenMenu(null); (e.currentTarget.querySelector("a,button") as HTMLElement | null)?.focus(); } }}
           >
             <NavLink
-              to="/blog"
+              to={L("/blog")}
               className={({ isActive }) =>
                 `flex items-center gap-1 font-body text-sm transition-colors hover:text-brand-blue ${
                   isActive ? "font-medium text-brand-blue" : "text-brand-black"
                 }`
               }
             >
-              Blog <ChevronDown size={14} aria-hidden="true" />
+              {t.header.blog} <ChevronDown size={14} aria-hidden="true" />
             </NavLink>
             {openMenu === "blog" && (
               <div className="absolute right-0 top-full pt-3">
@@ -228,10 +235,10 @@ export const Header = () => {
                   {blogHubLinks.map((l) => (
                     <NavLink
                       key={l.to}
-                      to={l.to}
+                      to={L(l.to)}
                       className="block rounded-md px-3 py-2 font-body text-sm text-brand-black transition hover:bg-[var(--blue-light)] hover:text-brand-blue"
                     >
-                      {l.label}
+                      {lbl(l)}
                     </NavLink>
                   ))}
                 </div>
@@ -244,15 +251,15 @@ export const Header = () => {
           {/* Lien FR/EN — invisible tant que la page n'a pas de traduction */}
           <LanguageSwitch className="text-brand-black" />
           <Link
-            to="/contact"
-            onClick={() => track("cta_click", { cta_label: "Réserver une démo", cta_location: "header", cta_target: "/contact" })}
+            to={L("/contact")}
+            onClick={() => track("cta_click", { cta_label: t.header.cta, cta_location: "header", cta_target: L("/contact") })}
             className="hidden rounded-md px-4 py-2 font-body text-sm font-medium text-brand-white transition hover:opacity-90 sm:inline-flex"
             style={{ backgroundColor: "var(--blue)" }}
           >
-            Réserver une démo
+            {t.header.cta}
           </Link>
           <button
-            aria-label="Ouvrir le menu" aria-expanded={mobileOpen}
+            aria-label={t.header.openMenu} aria-expanded={mobileOpen}
             className="lg:hidden"
             onClick={() => setMobileOpen(true)}
           >
@@ -263,17 +270,17 @@ export const Header = () => {
 
       {/* Mobile full-screen overlay */}
       {mobileOpen && (
-        <div role="dialog" aria-modal="true" aria-label="Menu de navigation" onKeyDown={(e) => { if (e.key === "Escape") setMobileOpen(false); }} className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-brand-white lg:hidden">
+        <div role="dialog" aria-modal="true" aria-label={t.header.mobileMenuAria} onKeyDown={(e) => { if (e.key === "Escape") setMobileOpen(false); }} className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-brand-white lg:hidden">
           <div className="container flex h-16 items-center justify-between">
             <Link
-              to="/"
+              to={homePath(lang)}
               onClick={() => setMobileOpen(false)}
               className="flex items-center"
-              aria-label="MSL-iTECH — accueil"
+              aria-label={t.header.homeAria}
             >
               <img src={logoDark} alt="MSL-iTECH" className="h-8 w-auto" width="288" height="120" loading="eager" decoding="async" />
             </Link>
-            <button type="button" autoFocus aria-label="Fermer le menu" onClick={() => setMobileOpen(false)}>
+            <button type="button" autoFocus aria-label={t.header.closeMenu} onClick={() => setMobileOpen(false)}>
               <X size={26} />
             </button>
           </div>
@@ -287,7 +294,7 @@ export const Header = () => {
                   aria-expanded={mobileSection === "odoo"}
                   className="flex w-full items-center justify-between py-4 font-body text-base font-medium text-brand-black"
                 >
-                  Odoo ERP
+                  {t.nav["/odoo-erp"]}
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${mobileSection === "odoo" ? "rotate-180" : ""}`}
@@ -297,27 +304,27 @@ export const Header = () => {
                   <ul className="mb-3 space-y-0.5 pl-3">
                     <li>
                       <NavLink
-                        to={integrateurLink.to}
+                        to={L(integrateurLink.to)}
                         className="block rounded-md px-3 py-2 font-body text-sm font-semibold text-brand-blue"
                       >
-                        Intégrateur Odoo Maroc →
+                        {lbl(integrateurLink)} →
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
-                        to="/odoo-erp"
+                        to={L("/odoo-erp")}
                         className="block rounded-md px-3 py-2 font-body text-sm font-medium text-brand-black"
                       >
-                        Vue d'ensemble Odoo →
+                        {t.header.odooOverview}
                       </NavLink>
                     </li>
                     {odooLinks.map((l) => (
                       <li key={l.to}>
                         <NavLink
-                          to={l.to}
+                          to={L(l.to)}
                           className="block rounded-md px-3 py-2 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
                         >
-                          {l.label}
+                          {lbl(l)}
                         </NavLink>
                       </li>
                     ))}
@@ -333,7 +340,7 @@ export const Header = () => {
                   aria-expanded={mobileSection === "sectors"}
                   className="flex w-full items-center justify-between py-4 font-body text-base font-medium text-brand-black"
                 >
-                  Nos Secteurs
+                  {t.header.sectors}
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${mobileSection === "sectors" ? "rotate-180" : ""}`}
@@ -344,10 +351,10 @@ export const Header = () => {
                     {sectorLinks.map((l) => (
                       <li key={l.to}>
                         <NavLink
-                          to={l.to}
+                          to={L(l.to)}
                           className="block rounded-md px-3 py-2 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
                         >
-                          {l.label}
+                          {lbl(l)}
                         </NavLink>
                       </li>
                     ))}
@@ -363,7 +370,7 @@ export const Header = () => {
                   aria-expanded={mobileSection === "profiles"}
                   className="flex w-full items-center justify-between py-4 font-body text-base font-medium text-brand-black"
                 >
-                  Par profil
+                  {t.header.byProfile}
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${mobileSection === "profiles" ? "rotate-180" : ""}`}
@@ -374,10 +381,10 @@ export const Header = () => {
                     {profileItems.map((p) => (
                       <li key={p.to}>
                         <NavLink
-                          to={p.to}
+                          to={L(p.to)}
                           className="block rounded-md px-3 py-2 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
                         >
-                          {p.label}
+                          {lbl(p)}
                         </NavLink>
                       </li>
                     ))}
@@ -393,7 +400,7 @@ export const Header = () => {
                   aria-expanded={mobileSection === "blog"}
                   className="flex w-full items-center justify-between py-4 font-body text-base font-medium text-brand-black"
                 >
-                  Blog
+                  {t.header.blog}
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${mobileSection === "blog" ? "rotate-180" : ""}`}
@@ -404,11 +411,11 @@ export const Header = () => {
                     {blogHubLinks.map((l) => (
                       <li key={l.to}>
                         <NavLink
-                          to={l.to}
+                          to={L(l.to)}
                           onClick={() => setMobileOpen(false)}
                           className="block rounded-md px-3 py-2 font-body text-sm text-brand-black hover:bg-[var(--blue-light)] hover:text-brand-blue"
                         >
-                          {l.label}
+                          {lbl(l)}
                         </NavLink>
                       </li>
                     ))}
@@ -420,22 +427,22 @@ export const Header = () => {
               {simpleLinks.map((l) => (
                 <li key={l.to}>
                   <NavLink
-                    to={l.to}
+                    to={L(l.to)}
                     onClick={() => setMobileOpen(false)}
                     className="block py-4 font-body text-base font-medium text-brand-black"
                   >
-                    {l.label}
+                    {lbl(l)}
                   </NavLink>
                 </li>
               ))}
             </ul>
             <Link
-              to="/contact"
-              onClick={() => { track("cta_click", { cta_label: "Réserver une démo", cta_location: "header", cta_target: "/contact" }); setMobileOpen(false); }}
+              to={L("/contact")}
+              onClick={() => { track("cta_click", { cta_label: t.header.cta, cta_location: "header", cta_target: L("/contact") }); setMobileOpen(false); }}
               className="mt-6 block rounded-md px-4 py-3 text-center font-body text-sm font-medium text-brand-white"
               style={{ backgroundColor: "var(--blue)" }}
             >
-              Réserver une démo
+              {t.header.cta}
             </Link>
           </nav>
         </div>

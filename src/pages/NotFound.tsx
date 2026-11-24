@@ -3,6 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, Compass, Home, MessageCircle, Sparkles } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
+import { useLang } from "@/hooks/useLang";
+import { homePath, localizedPath } from "@/lib/i18n";
+import { ui } from "@/lib/ui-strings";
 
 function Mark({ children }: { children: React.ReactNode }) {
   return (
@@ -17,22 +20,15 @@ function Mark({ children }: { children: React.ReactNode }) {
   );
 }
 
-const quickLinks = [
-  { to: "/", label: "Accueil", desc: "La home MSL-iTECH" },
-  { to: "/odoo-erp", label: "Odoo ERP", desc: "Notre offre ERP complète" },
-  { to: "/realisations", label: "Réalisations", desc: "Nos clients & projets" },
-  { to: "/blog", label: "Blog", desc: "Conseils & analyses Odoo" },
-  { to: "/notre-approche", label: "Notre approche", desc: "Tarification sur mesure" },
-  { to: "/contact", label: "Contact", desc: "Parler à un consultant" },
-];
-
 const NotFound = () => {
   const location = useLocation();
+  const lang = useLang();
+  const t = ui(lang).notFound;
+  const quickLinks = t.quickLinks;
 
   useProductSeo({
-    title: "Page introuvable (404) — MSL-iTECH",
-    description:
-      "Cette page n'existe pas ou a été déplacée. Retrouvez nos offres Odoo, notre blog et nos réalisations depuis l'accueil MSL-iTECH.",
+    title: t.seoTitle,
+    description: t.seoDesc,
     path: location.pathname,
     noIndex: true,
   });
@@ -72,35 +68,34 @@ const NotFound = () => {
           <div className="inline-flex items-center gap-2 rounded-full border border-brand-blue/20 bg-brand-white/70 px-3.5 py-1.5 backdrop-blur-sm">
             <Sparkles size={12} className="text-brand-blue" aria-hidden="true" />
             <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand-blue">
-              Erreur 404 · Page introuvable
+              {t.eyebrow}
             </p>
           </div>
 
           <h1 className="mt-8 font-heading text-6xl font-bold leading-[1.04] tracking-tight text-brand-black md:text-[96px]">
-            On <Mark>s'est perdus</Mark>.
+            {t.titleBefore} <Mark>{t.titleMark}</Mark>.
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl font-body text-base text-brand-grey md:text-lg">
-            La page <code className="rounded bg-brand-white px-2 py-0.5 font-mono text-xs text-brand-blue">{location.pathname}</code> n'existe pas
-            — ou plus. Pas de panique, on vous remet sur les rails.
+            {t.pageBefore} <code className="rounded bg-brand-white px-2 py-0.5 font-mono text-xs text-brand-blue">{location.pathname}</code> {t.pageAfter}
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Link
-              to="/"
+              to={homePath(lang)}
               className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
               style={{ backgroundColor: "var(--gold)" }}
             >
               <Home size={18} aria-hidden="true" />
-              Retour à l'accueil
+              {t.home}
               <ArrowRight size={18} aria-hidden="true" className="transition group-hover:translate-x-1" />
             </Link>
             <Link
-              to="/contact"
+              to={localizedPath("/contact", lang)}
               className="inline-flex items-center gap-2 rounded-full border-2 border-brand-blue/30 bg-brand-white px-6 py-3.5 font-body text-sm font-semibold text-brand-blue transition hover:border-brand-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
             >
               <MessageCircle size={16} aria-hidden="true" />
-              Nous contacter
+              {t.contact}
             </Link>
           </div>
         </div>
@@ -110,7 +105,7 @@ const NotFound = () => {
           <div className="mb-8 flex items-center justify-center gap-2">
             <span className="h-px w-10 bg-brand-blue" aria-hidden="true" />
             <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-brand-blue">
-              Reprenez la navigation
+              {t.resume}
             </p>
             <span className="h-px w-10 bg-brand-blue" aria-hidden="true" />
           </div>
@@ -118,7 +113,7 @@ const NotFound = () => {
             {quickLinks.map((l) => (
               <li key={l.to}>
                 <Link
-                  to={l.to}
+                  to={l.to === "/" ? homePath(lang) : localizedPath(l.to, lang)}
                   className="group flex items-center gap-4 rounded-2xl border bg-brand-white p-5 transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
                   style={{ borderColor: "var(--grey-light)" }}
                 >

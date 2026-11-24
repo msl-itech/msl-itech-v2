@@ -9,6 +9,9 @@ import {
   setConsent,
   type ConsentState,
 } from "@/lib/consent";
+import { useLang } from "@/hooks/useLang";
+import { localizedPath } from "@/lib/i18n";
+import { ui } from "@/lib/ui-strings";
 
 export function CookieConsent() {
   const [state, setState] = useState<ConsentState>(() => getConsent());
@@ -16,6 +19,9 @@ export function CookieConsent() {
   const [showPrefs, setShowPrefs] = useState(false);
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
+  const lang = useLang();
+  const t = ui(lang).cookies;
+  const privacyPath = localizedPath("/politique-de-confidentialite", lang);
 
   // Initial check + open-from-footer event
   useEffect(() => {
@@ -64,7 +70,7 @@ export function CookieConsent() {
         <div
           role="dialog"
           aria-live="polite"
-          aria-label="Bandeau de consentement aux cookies"
+          aria-label={t.bannerAria}
           className="fixed inset-x-0 bottom-0 z-[60] p-3 sm:p-5"
         >
           <div className="mx-auto max-w-5xl overflow-hidden rounded-3xl border-2 border-brand-black/10 bg-brand-white shadow-[0_24px_60px_-20px_rgba(0,0,0,0.35)]">
@@ -75,18 +81,15 @@ export function CookieConsent() {
                 </span>
                 <div>
                   <p className="font-heading text-base font-bold text-brand-black md:text-lg">
-                    Vos cookies, votre choix
+                    {t.bannerTitle}
                   </p>
                   <p className="mt-1 font-body text-sm leading-relaxed text-brand-black/75">
-                    Nous utilisons des cookies essentiels au fonctionnement du site et,
-                    avec votre accord, des cookies de mesure d'audience (Google Analytics,
-                    Microsoft Clarity) pour améliorer votre expérience. Aucun cookie analytique
-                    ou marketing n'est déposé sans votre consentement.{" "}
+                    {t.bannerText}{" "}
                     <Link
-                      to="/politique-de-confidentialite"
+                      to={privacyPath}
                       className="font-medium text-brand-blue hover:underline"
                     >
-                      En savoir plus
+                      {t.learnMore}
                     </Link>
                   </p>
                 </div>
@@ -98,7 +101,7 @@ export function CookieConsent() {
                   onClick={handleRejectAll}
                   className="rounded-full border-2 border-brand-black/15 bg-brand-white px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-brand-black transition hover:border-brand-black"
                 >
-                  Tout refuser
+                  {t.rejectAll}
                 </button>
                 <button
                   type="button"
@@ -107,14 +110,14 @@ export function CookieConsent() {
                   }}
                   className="rounded-full border-2 border-brand-blue/15 bg-brand-bg px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-brand-blue transition hover:border-brand-blue"
                 >
-                  Personnaliser
+                  {t.customize}
                 </button>
                 <button
                   type="button"
                   onClick={handleAcceptAll}
                   className="rounded-full bg-brand-gold px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-brand-blue shadow-[0_8px_24px_-8px_hsl(var(--foreground)/0.4)] transition hover:scale-[1.02]"
                 >
-                  Tout accepter
+                  {t.acceptAll}
                 </button>
               </div>
             </div>
@@ -127,7 +130,7 @@ export function CookieConsent() {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Préférences cookies"
+          aria-label={t.prefsAria}
           className="fixed inset-0 z-[70] flex items-end justify-center bg-brand-black/50 p-3 backdrop-blur-sm sm:items-center sm:p-6"
           onClick={(e) => {
             if (e.target === e.currentTarget && state.decided) setShowPrefs(false);
@@ -142,10 +145,10 @@ export function CookieConsent() {
                 </span>
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
-                    Confidentialité
+                    {t.prefsEyebrow}
                   </p>
                   <h2 className="font-heading text-lg font-bold text-brand-black">
-                    Gérer mes cookies
+                    {t.prefsTitle}
                   </h2>
                 </div>
               </div>
@@ -153,7 +156,7 @@ export function CookieConsent() {
                 <button
                   type="button"
                   onClick={() => setShowPrefs(false)}
-                  aria-label="Fermer"
+                  aria-label={t.close}
                   className="rounded-full p-2 text-brand-black/60 transition hover:bg-brand-bg hover:text-brand-black"
                 >
                   <X className="h-4 w-4" />
@@ -163,28 +166,27 @@ export function CookieConsent() {
 
             <div className="space-y-3 p-5 md:p-6">
               <p className="font-body text-sm text-brand-black/75">
-                Choisissez les catégories de cookies que vous autorisez. Vous pouvez
-                modifier vos choix à tout moment depuis le footer.
+                {t.prefsIntro}
               </p>
 
               <Category
                 icon={ShieldCheck}
-                title="Strictement nécessaires"
-                description="Indispensables au fonctionnement du site (session, sécurité, préférences). Toujours actifs."
+                title={t.necessaryTitle}
+                description={t.necessaryDesc}
                 checked
                 disabled
               />
               <Category
                 icon={BarChart3}
-                title="Mesure d'audience"
-                description="Google Analytics (anonymisation IP) + Microsoft Clarity (enregistrements de session). Nous aident à comprendre l'usage du site et améliorer l'expérience."
+                title={t.analyticsTitle}
+                description={t.analyticsDesc}
                 checked={analytics}
                 onChange={setAnalytics}
               />
               <Category
                 icon={Megaphone}
-                title="Marketing"
-                description="Permet de mesurer la performance de nos campagnes et de vous proposer des contenus pertinents."
+                title={t.marketingTitle}
+                description={t.marketingDesc}
                 checked={marketing}
                 onChange={setMarketing}
               />
@@ -193,11 +195,11 @@ export function CookieConsent() {
             {/* Footer */}
             <div className="sticky bottom-0 flex flex-col gap-2 border-t-2 border-brand-black/5 bg-brand-white p-5 md:flex-row md:items-center md:justify-between md:p-6">
               <Link
-                to="/politique-de-confidentialite"
+                to={privacyPath}
                 className="font-mono text-[11px] uppercase tracking-[0.15em] text-brand-blue hover:underline"
                 onClick={() => setShowPrefs(false)}
               >
-                Politique de confidentialité →
+                {t.privacyLink}
               </Link>
               <div className="flex flex-col gap-2 md:flex-row">
                 <button
@@ -205,21 +207,21 @@ export function CookieConsent() {
                   onClick={handleRejectAll}
                   className="rounded-full border-2 border-brand-black/15 bg-brand-white px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-brand-black transition hover:border-brand-black"
                 >
-                  Tout refuser
+                  {t.rejectAll}
                 </button>
                 <button
                   type="button"
                   onClick={handleSave}
                   className="rounded-full bg-brand-blue px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-brand-white transition hover:bg-brand-blue/90"
                 >
-                  Enregistrer mes choix
+                  {t.save}
                 </button>
                 <button
                   type="button"
                   onClick={handleAcceptAll}
                   className="rounded-full bg-brand-gold px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-brand-blue transition hover:scale-[1.02]"
                 >
-                  Tout accepter
+                  {t.acceptAll}
                 </button>
               </div>
             </div>

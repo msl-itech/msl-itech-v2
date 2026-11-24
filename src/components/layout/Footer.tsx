@@ -6,6 +6,9 @@ import { ChevronDown, Facebook, Instagram, Linkedin, Youtube } from "lucide-reac
 import { track } from "@/lib/analytics";
 import { openConsentPreferences } from "@/lib/consent";
 import { SOCIAL_LINKS } from "@/lib/social-links";
+import { useLang } from "@/hooks/useLang";
+import { homePath, localizedPath } from "@/lib/i18n";
+import { ui } from "@/lib/ui-strings";
 
 const SOCIAL_ICONS = { LinkedIn: Linkedin, Facebook, Instagram, YouTube: Youtube } as const;
 
@@ -50,11 +53,7 @@ const toolsCol = [
   { to: "/outils/comparateur-sage-odoo", label: "Comparateur Sage vs Odoo" },
 ];
 
-const COUNTRIES = {
-  BE: "🇧🇪 Belgique",
-  MA: "🇲🇦 Maroc",
-  CA: "🇨🇦 Canada",
-} as const;
+type CountryCode = "BE" | "MA" | "CA";
 
 type FooterColProps = {
   id: string;
@@ -67,6 +66,8 @@ type FooterColProps = {
 
 function FooterCol({ id, title, links, openId, setOpenId, extra }: FooterColProps) {
   const isOpen = openId === id;
+  const lang = useLang();
+  const labels = ui(lang).footer.nav;
   return (
     <div>
       {/* Mobile: accordion trigger */}
@@ -93,8 +94,8 @@ function FooterCol({ id, title, links, openId, setOpenId, extra }: FooterColProp
       >
         {links.map((l) => (
           <li key={l.to}>
-            <Link to={l.to} className="hover:text-brand-white">
-              {l.label}
+            <Link to={localizedPath(l.to, lang)} className="hover:text-brand-white">
+              {labels[l.to] ?? l.label}
             </Link>
           </li>
         ))}
@@ -107,8 +108,11 @@ function FooterCol({ id, title, links, openId, setOpenId, extra }: FooterColProp
 export const Footer = () => {
   const { market } = useMarket();
   const [openId, setOpenId] = useState<string | null>(null);
+  const lang = useLang();
+  const t = ui(lang).footer;
+  const L = (to: string) => localizedPath(to, lang);
 
-  const order: (keyof typeof COUNTRIES)[] =
+  const order: CountryCode[] =
     market === "MA" ? ["MA", "BE", "CA"] : ["BE", "MA", "CA"];
 
   /* QA market toggle — hidden in production
@@ -123,7 +127,7 @@ export const Footer = () => {
       <div className="container grid gap-4 px-4 py-10 sm:grid-cols-2 sm:gap-10 sm:px-6 sm:py-12 md:py-16 lg:grid-cols-6">
         {/* Col 1 */}
         <div className="sm:col-span-2 lg:col-span-1">
-          <Link to="/" aria-label="MSL-iTECH — accueil" className="inline-block">
+          <Link to={homePath(lang)} aria-label={ui(lang).header.homeAria} className="inline-block">
           <img
             src={logoWhite}
             alt="MSL-iTECH"
@@ -134,7 +138,7 @@ export const Footer = () => {
           />
           </Link>
           <p className="mt-3 max-w-md font-body text-sm text-brand-grey-light/85 sm:mt-4">
-            L'intégrateur Odoo qui structure, construit et accélère.
+            {t.tagline}
           </p>
           <ul className="mt-4 flex items-center gap-3">
             {SOCIAL_LINKS.map((s) => {
@@ -145,7 +149,7 @@ export const Footer = () => {
                     href={s.url}
                     target="_blank"
                     rel="noreferrer noopener"
-                    aria-label={`MSL-iTECH sur ${s.name}`}
+                    aria-label={t.socialAria(s.name)}
                     onClick={() => track("social_click", { network: s.name, cta_location: "footer" })}
                     className="flex h-9 w-9 items-center justify-center rounded-full border border-brand-grey/40 text-brand-grey-light/85 transition hover:border-brand-white hover:text-brand-white"
                   >
@@ -156,28 +160,28 @@ export const Footer = () => {
             })}
           </ul>
           <p className="mt-3 hidden max-w-md font-body text-xs text-brand-grey-light/70 sm:mt-4 sm:block">
-            Partenaire officiel Odoo — 40+ projets livrés.{" "}
+            {t.partner}{" "}
             <a
-              href="https://www.odoo.com/fr_FR/partners/msl-itech-15851608"
+              href={t.partnerUrl}
               target="_blank"
               rel="noreferrer noopener"
               className="underline hover:text-brand-white"
             >
-              Fiche partenaire
+              {t.partnerLink}
             </a>
           </p>
           <p className="mt-3 font-mono text-[11px] text-brand-grey-light/80 sm:mt-5 sm:text-xs">
-            {order.map((c) => COUNTRIES[c]).join(" · ")}
+            {order.map((c) => t.countries[c]).join(" · ")}
           </p>
         </div>
 
-        <FooterCol id="odoo" title="Odoo ERP" links={odooCol} openId={openId} setOpenId={setOpenId} />
-        <FooterCol id="sectors" title="Secteurs" links={sectorsCol} openId={openId} setOpenId={setOpenId} />
-        <FooterCol id="tools" title="Outils gratuits" links={toolsCol} openId={openId} setOpenId={setOpenId} />
-        <FooterCol id="cities" title="Nos villes" links={citiesCol} openId={openId} setOpenId={setOpenId} />
+        <FooterCol id="odoo" title={t.colOdoo} links={odooCol} openId={openId} setOpenId={setOpenId} />
+        <FooterCol id="sectors" title={t.colSectors} links={sectorsCol} openId={openId} setOpenId={setOpenId} />
+        <FooterCol id="tools" title={t.colTools} links={toolsCol} openId={openId} setOpenId={setOpenId} />
+        <FooterCol id="cities" title={t.colCities} links={citiesCol} openId={openId} setOpenId={setOpenId} />
         <FooterCol
           id="company"
-          title="Entreprise"
+          title={t.colCompany}
           links={companyCol}
           openId={openId}
           setOpenId={setOpenId}
@@ -186,7 +190,7 @@ export const Footer = () => {
 
       <div className="border-t border-brand-grey/30">
         <div className="container grid gap-4 px-4 py-6 text-center font-mono text-[11px] text-brand-grey-light/70 sm:px-6 sm:text-xs md:grid-cols-3 md:items-center md:gap-3 md:text-left">
-          <span>© 2026 MSL-iTECH · Tous droits réservés</span>
+          <span>{t.copyright}</span>
           <span className="break-words md:text-center">
             <a href="tel:+3228860549" onClick={() => track("contact_click", { contact_method: "phone", cta_location: "footer" })} className="transition hover:text-brand-white">+32 2 886 05 49</a>
             {" · "}
@@ -207,24 +211,24 @@ export const Footer = () => {
               Test : {market === "BE" ? "🇧🇪 BE → 🇲🇦 MA" : "🇲🇦 MA → 🇧🇪 BE"}
             </button>
             */}
-            <Link to="/politique-de-confidentialite" className="hover:text-brand-white">
-              Politique de confidentialité
+            <Link to={L("/politique-de-confidentialite")} className="hover:text-brand-white">
+              {t.privacy}
             </Link>
-            <Link to="/mentions-legales" className="hover:text-brand-white">
-              Mentions légales
+            <Link to={L("/mentions-legales")} className="hover:text-brand-white">
+              {t.legal}
             </Link>
-            <Link to="/conditions-generales-de-vente" className="hover:text-brand-white">
-              CGV
+            <Link to={L("/conditions-generales-de-vente")} className="hover:text-brand-white">
+              {t.terms}
             </Link>
-            <Link to="/conformite-loi-09-08" className="hover:text-brand-white">
-              Loi 09-08
+            <Link to={L("/conformite-loi-09-08")} className="hover:text-brand-white">
+              {t.law0908}
             </Link>
             <button
               type="button"
               onClick={openConsentPreferences}
               className="hover:text-brand-white"
             >
-              Gérer mes cookies
+              {t.cookies}
             </button>
           </div>
         </div>

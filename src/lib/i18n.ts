@@ -75,3 +75,22 @@ export const SEO_LABELS: Record<Lang, { home: string }> = {
 export function englishPaths(): string[] {
   return Object.values(TRANSLATED_ROUTES);
 }
+
+/**
+ * Chemin à utiliser dans un lien interne selon la langue courante.
+ * En anglais : chemin EN s'il existe dans TRANSLATED_ROUTES, sinon le chemin FR.
+ * Les query strings et ancres sont conservées.
+ */
+export function localizedPath(frPath: string, lang: Lang): string {
+  if (lang !== "en") return frPath;
+  const m = frPath.match(/^([^?#]*)(.*)$/);
+  const base = m ? m[1] : frPath;
+  const rest = m ? m[2] : "";
+  const en = TRANSLATED_ROUTES[base];
+  return en ? en + rest : frPath;
+}
+
+/** Préfixe « [EN] » le message libre d'un formulaire envoyé depuis une page anglaise. */
+export function tagMessageForLang(message: string, lang: Lang): string {
+  return lang === "en" ? `[EN] ${message}` : message;
+}

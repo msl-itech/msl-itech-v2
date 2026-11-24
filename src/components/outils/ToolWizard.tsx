@@ -15,6 +15,13 @@ import { buildLeadDescription, OdooLeadData } from "@/lib/odoo";
 import { submitLead } from "@/lib/leads";
 import { toast } from "@/hooks/use-toast";
 import { track } from "@/lib/analytics";
+import { useLang } from "@/hooks/useLang";
+import { localizedPath } from "@/lib/i18n";
+import { ui, type UiStrings } from "@/lib/ui-strings";
+
+function useToolStrings(): UiStrings["tool"] { return ui(useLang()).tool; }
+function useBookPath(): string { return localizedPath("/prendre-rendez-vous", useLang()); }
+function usePrivacyPath(): string { return localizedPath("/politique-de-confidentialite", useLang()); }
 
 export type ToolOption = {
   value: string;
@@ -97,6 +104,7 @@ export function ToolWizard(props: ToolWizardProps) {
     badgeMax,
   } = props;
 
+  const tt = useToolStrings();
   const [step, setStep] = useState(0); // 0..questions.length-1 = question; questions.length = result+form
   const [answers, setAnswers] = useState<Record<string, string | number>>({});
   const [form, setForm] = useState<FormState>({
@@ -325,15 +333,15 @@ export function ToolWizard(props: ToolWizardProps) {
 
       setLeadCaptured(true);
       toast({
-        title: "Analyse envoyée",
-        description: "Vous recevez votre résultat complet par email.",
+        title: tt.toastOkTitle,
+        description: tt.toastOkBody,
       });
     } catch (err) {
       track("form_error", { lead_source: "outil", tool_name: slug, error_type: "network" });
       console.error(err);
       toast({
-        title: "Une erreur est survenue",
-        description: "Réessayez ou contactez-nous directement.",
+        title: tt.toastErrTitle,
+        description: tt.toastErrBody,
         variant: "destructive",
       });
     } finally {
@@ -389,10 +397,10 @@ export function ToolWizard(props: ToolWizardProps) {
           <div className="mb-6 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey">
             <span>
               {leadCaptured
-                ? "Plan d'action envoyé"
+                ? tt.leadSent
                 : step < total
-                  ? `Question ${Math.min(step + 1, total)} / ${total}`
-                  : "Votre résultat"}
+                  ? tt.question(Math.min(step + 1, total), total)
+                  : tt.yourResult}
             </span>
             <span>{progress}%</span>
           </div>
@@ -434,7 +442,7 @@ export function ToolWizard(props: ToolWizardProps) {
           {showPartial && (
             <div className="mt-8 rounded-2xl border border-brand-gold/40 bg-[color:var(--gold)]/10 p-5">
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
-                Aperçu intermédiaire
+                {tt.partialPreview}
               </p>
               <p className="mt-2 font-body text-sm text-brand-black">{partialTeaser}</p>
             </div>
@@ -443,7 +451,7 @@ export function ToolWizard(props: ToolWizardProps) {
 
         {/* Trust footer */}
         <p className="mx-auto mt-6 max-w-2xl text-center font-mono text-[10px] uppercase tracking-[0.18em] text-brand-grey">
-          Données traitées en France · Aucune revente · Conforme Loi 09-08
+          {tt.trust}
         </p>
       </div>
     </section>
@@ -464,6 +472,7 @@ function QuestionBlock({
   onBack?: () => void;
 }) {
   const [num, setNum] = useState<string>(value !== undefined ? String(value) : "");
+  const tt = useToolStrings();
 
   return (
     <div className="mt-8">
@@ -534,7 +543,7 @@ function QuestionBlock({
             onClick={() => onAnswer(Number(num))}
             className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-blue px-6 py-3 font-body text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Continuer <ArrowRight size={16} />
+            {tt.continue} <ArrowRight size={16} />
           </button>
         </div>
       )}
@@ -545,7 +554,7 @@ function QuestionBlock({
           onClick={onBack}
           className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey hover:text-brand-blue"
         >
-          <ArrowLeft size={12} /> Précédent
+          <ArrowLeft size={12} /> {tt.previous}
         </button>
       )}
     </div>
@@ -589,6 +598,9 @@ function ResultAndLeadBlock({
   badgeLabel?: string;
   badgeMax?: number;
 }) {
+  const tt = useToolStrings();
+  const bookPath = useBookPath();
+  const privacyPath = usePrivacyPath();
   return (
     <div className="mt-8 space-y-6">
       {/* ── Résultat complet ── */}
@@ -596,7 +608,7 @@ function ResultAndLeadBlock({
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
-              Votre résultat
+              {tt.yourResult}
             </p>
             <h2 className="mt-1 font-heading text-xl font-bold text-brand-black md:text-2xl">
               {result.headline}
@@ -650,7 +662,7 @@ function ResultAndLeadBlock({
         {result.recommendations.length > 0 && (
           <div className="mt-5">
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-brand-blue">
-              3 actions prioritaires
+              {tt.topActions}
             </p>
             <ul className="mt-3 space-y-2">
               {result.recommendations.map((rec, i) => (
@@ -670,10 +682,10 @@ function ResultAndLeadBlock({
 
         {/* RDV button — always visible */}
         <Link
-          to={`/prendre-rendez-vous?score=${result.badgeValue !== undefined ? result.badgeValue : score}`}
+          to={`${bookPath}?score=${result.badgeValue !== undefined ? result.badgeValue : score}`}
           className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand-blue px-5 py-2.5 font-body text-sm font-semibold text-brand-blue transition hover:bg-brand-blue hover:text-white"
         >
-          Réserver un cadrage de 30 min <ArrowRight size={14} />
+          {tt.bookCall} <ArrowRight size={14} />
         </Link>
       </div>
 
@@ -681,22 +693,22 @@ function ResultAndLeadBlock({
       {!leadCaptured ? (
         <form onSubmit={onSubmit} className="rounded-2xl border border-brand-grey-light bg-brand-white p-6">
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-blue">
-            Recevoir mon plan d'action détaillé par email
+            {tt.formEyebrow}
           </p>
           <p className="mt-1 font-body text-sm text-brand-grey">
-            Résultats complets, recommandations priorisées et ressources adaptées à votre profil — envoyés en quelques minutes.
+            {tt.formIntro}
           </p>
 
           <div className="mt-4 grid gap-4">
             <LeadField
-              label="Prénom *"
+              label={tt.firstName}
               value={form.firstName}
               onChange={(v) => setForm({ ...form, firstName: v })}
               autoComplete="given-name"
               required
             />
             <LeadField
-              label="Email professionnel *"
+              label={tt.email}
               type="email"
               value={form.email}
               onChange={(v) => setForm({ ...form, email: v })}
@@ -704,18 +716,18 @@ function ResultAndLeadBlock({
               required
               hint={
                 form.email && !isProfessionalEmail(form.email)
-                  ? "Astuce : un email pro accélère le traitement de votre demande."
+                  ? tt.emailHint
                   : undefined
               }
             />
             <LeadField
-              label="Société"
+              label={tt.company}
               value={form.company}
               onChange={(v) => setForm({ ...form, company: v })}
               autoComplete="organization"
             />
             <LeadField
-              label="Téléphone (facultatif)"
+              label={tt.phone}
               value={form.phone}
               onChange={(v) => setForm({ ...form, phone: v })}
               autoComplete="tel"
@@ -723,7 +735,7 @@ function ResultAndLeadBlock({
             />
             <div>
               <label className="block font-body text-sm font-semibold text-brand-black">
-                Quel outil utilisez-vous aujourd'hui ? *
+                {tt.currentTool}
               </label>
               <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {(["excel", "sage", "odoo", "autre"] as const).map((t) => (
@@ -737,7 +749,7 @@ function ResultAndLeadBlock({
                         : "border-brand-grey-light bg-brand-white text-brand-grey hover:border-brand-blue/60"
                     }`}
                   >
-                    {t === "autre" ? "Autre" : t.charAt(0).toUpperCase() + t.slice(1)}
+                    {t === "autre" ? tt.other : t.charAt(0).toUpperCase() + t.slice(1)}
                   </button>
                 ))}
               </div>
@@ -752,15 +764,15 @@ function ResultAndLeadBlock({
               className="mt-0.5 h-4 w-4 shrink-0 accent-[color:var(--gold)]"
             />
             <span className="font-body text-sm text-brand-grey">
-              J'accepte que MSL-iTECH me recontacte dans le cadre de ma demande, conformément à la{" "}
+              {tt.consentBefore}{" "}
               <Link
-                to="/politique-de-confidentialite"
+                to={privacyPath}
                 className="underline hover:text-brand-blue"
                 onClick={(e) => e.stopPropagation()}
               >
-                politique de confidentialité
+                {tt.consentLink}
               </Link>{" "}
-              (Loi 09-08 / RGPD). *
+              {tt.consentAfter}
             </span>
           </label>
 
@@ -769,7 +781,7 @@ function ResultAndLeadBlock({
             <div ref={turnstileRef} />
             {!turnstileToken && (
               <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-brand-grey">
-                Vérification anti-robot requise avant l'envoi.
+                {tt.captcha}
               </p>
             )}
           </div>
@@ -780,7 +792,7 @@ function ResultAndLeadBlock({
               onClick={onRestart}
               className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-grey hover:text-brand-blue"
             >
-              <ArrowLeft size={12} /> Refaire le test
+              <ArrowLeft size={12} /> {tt.restart}
             </button>
             <button
               type="submit"
@@ -788,7 +800,7 @@ function ResultAndLeadBlock({
               className="inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 font-body text-base font-bold text-brand-black shadow-[0_18px_50px_-15px_rgba(255,221,87,0.55)] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
               style={{ backgroundColor: "var(--gold)" }}
             >
-              {submitting ? "Envoi en cours…" : "Recevoir mon plan d'action"}
+              {submitting ? tt.sending : tt.submit}
               <ArrowRight size={18} />
             </button>
           </div>
@@ -803,17 +815,17 @@ function ResultAndLeadBlock({
             <CheckCircle2 className="text-brand-blue" size={24} />
           </div>
           <p className="mt-3 font-heading text-lg font-bold text-brand-black">
-            Votre plan d'action est en route !
+            {tt.doneTitle}
           </p>
           <p className="mt-1 font-body text-sm text-brand-grey">
-            Vous recevrez le détail complet et vos recommandations personnalisées par email dans quelques minutes.
+            {tt.doneBody}
           </p>
           <Link
-            to={`/prendre-rendez-vous?score=${result.badgeValue !== undefined ? result.badgeValue : score}`}
+            to={`${bookPath}?score=${result.badgeValue !== undefined ? result.badgeValue : score}`}
             className="mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-body text-sm font-bold transition hover:scale-[1.02]"
             style={{ backgroundColor: "var(--blue)", color: "white" }}
           >
-            Réserver un cadrage de 30 min <ArrowRight size={14} />
+            {tt.bookCall} <ArrowRight size={14} />
           </Link>
         </div>
       )}
