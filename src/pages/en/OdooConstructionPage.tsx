@@ -4,7 +4,6 @@ import { ProductPageShellEn } from "@/pages/en/components/ProductPageShellEn";
 import { ProductBento, type BentoCard } from "@/components/product/ProductBento";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { localizedPath } from "@/lib/i18n";
-import { PARTNER_STATUS_EN } from "@/lib/brand";
 import constructionHero from "@/assets/btp-hero.webp";
 
 const features = [
@@ -199,8 +198,7 @@ export default function OdooConstructionPage() {
               >
                 Odoo implementation partner in Morocco
               </Link>{" "}
-              for your construction company? MSL-iTECH is an Odoo{" "}
-              {PARTNER_STATUS_EN} partner based in Morocco.
+              for your construction company? MSL-iTECH is an official Odoo partner based in Morocco.
             </p>
           </div>
         </section>

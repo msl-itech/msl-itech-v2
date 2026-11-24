@@ -205,7 +205,7 @@ export default function OurApproachPage() {
             <HeroCursorGlow radius="inherit" />
 
             <div className="absolute -top-3 left-8 z-20 md:-top-4 md:left-12">
-              <Sticker rotate={-8}>★ Official Odoo {PARTNER_STATUS_EN} Partner</Sticker>
+              <Sticker rotate={-8}>★ {PARTNER_STATUS_EN}</Sticker>
             </div>
 
             <div className="relative flex min-h-[460px] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[560px] md:py-28">

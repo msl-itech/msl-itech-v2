@@ -107,7 +107,7 @@ export default function OdooHospitalityPage() {
       heroImageAlt="Moroccan restaurant equipped with an Odoo point-of-sale system"
       metaNote="On-site or remote demo · Response within 24 hours · +212 6 89 30 62 78"
       heroBullets={[
-        `Odoo ${PARTNER_STATUS_EN} Partner`,
+        PARTNER_STATUS_EN,
         "Deployment by functional module",
         "Response within 24 hours",
         "No obligation · Personalized demo",
@@ -155,13 +155,13 @@ export default function OdooHospitalityPage() {
               <div>
                 <p className="mb-3 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-brand-blue">
                   <span className="inline-block h-px w-6 bg-brand-blue" />
-                  Odoo {PARTNER_STATUS_EN} Partner
+                  {PARTNER_STATUS_EN}
                 </p>
                 <p className="font-heading text-xl font-bold text-brand-black">
                   Looking for an Odoo implementation partner in Morocco?
                 </p>
                 <p className="mt-2 font-body text-sm text-brand-grey">
-                  MSL-iTECH is an Odoo {PARTNER_STATUS_EN} Partner based in
+                  MSL-iTECH is an official Odoo partner based in
                   Morocco, specializing in deployments for hotels, restaurants
                   and cafés.
                 </p>

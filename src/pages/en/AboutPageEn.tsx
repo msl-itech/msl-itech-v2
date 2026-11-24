@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { localizedPath } from "@/lib/i18n";
-import { PARTNER_STATUS_EN } from "@/lib/brand";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
@@ -206,7 +205,7 @@ export default function AboutPageEn() {
               </h1>
 
               <p className="mt-7 max-w-2xl font-body text-base text-white/80 md:text-lg">
-                MSL-iTECH is an official {PARTNER_STATUS_EN} providing certified ERP implementation, custom development, and long-term support for growing SMEs. Based in Morocco with international reach, our dedicated team delivers enterprise-grade solutions at transparent, competitive rates.
+                MSL-iTECH is an official Odoo partner providing certified ERP implementation, custom development, and long-term support for growing SMEs. Based in Morocco with international reach, our dedicated team delivers enterprise-grade solutions at transparent, competitive rates.
               </p>
             </div>
 
@@ -279,7 +278,7 @@ export default function AboutPageEn() {
               </h2>
             </div>
             <p className="font-body text-base text-brand-grey lg:col-span-5 md:text-lg">
-              MSL-iTECH was established with a singular mission: to provide ambitious SMEs with the technical excellence of an official {PARTNER_STATUS_EN} based in Morocco. Our consultants collaborate seamlessly through structured remote delivery (scoping, live demos, and sprint support) complemented by on-site workshops and end-user training.
+              MSL-iTECH was established with a singular mission: to provide ambitious SMEs with the technical excellence of an official Odoo partner based in Morocco. Our consultants collaborate seamlessly through structured remote delivery (scoping, live demos, and sprint support) complemented by on-site workshops and end-user training.
             </p>
           </div>
 

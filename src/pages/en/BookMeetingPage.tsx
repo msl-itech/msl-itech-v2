@@ -293,7 +293,7 @@ export default function BookMeetingPage() {
             {[
               {
                 icon: <ShieldCheck size={20} />,
-                label: `${PARTNER_STATUS_EN} Partner`,
+                label: PARTNER_STATUS_EN,
                 desc: "Over 10 years of open-source ERP implementation and customization experience.",
               },
               {

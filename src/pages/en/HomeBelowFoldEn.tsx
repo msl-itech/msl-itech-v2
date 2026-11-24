@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
-import { PARTNER_STATUS_EN } from "@/lib/brand";
 import { localizedPath } from "@/lib/i18n";
 import pillarErp from "@/assets/home/pillar-erp.webp";
 import pillarWeb from "@/assets/home/pillar-web.webp";
@@ -72,7 +71,7 @@ function Sticker({
 const homeFaqs: { q: string; a: string }[] = [
   {
     q: "Is MSL-iTECH an official Odoo partner?",
-    a: `Yes. MSL-iTECH is an official ${PARTNER_STATUS_EN} with 40+ delivered projects. Our consultants are certified on Odoo v18 and v19, with continuous version upgrades. You can verify our partner profile at odoo.com/partners/msl-itech-15851608.`,
+    a: `Yes. MSL-iTECH is an official Odoo partner with 40+ delivered projects. Our consultants are certified on Odoo v18 and v19, with continuous version upgrades. You can verify our partner profile at odoo.com/partners/msl-itech-15851608.`,
   },
   {
     q: "How much does an Odoo implementation cost with MSL-iTECH?",

@@ -106,7 +106,7 @@ const faqs = [
   },
   {
     q: "Why choose a certified official Odoo partner in Morocco?",
-    a: `An official partner status like ${PARTNER_STATUS_EN} guarantees that the team has passed technical Odoo certifications and demonstrated a track record of delivered projects. Choosing a local partner such as MSL-iTECH ensures trilingual support in Arabic, French, and English, deep mastery of Moroccan regulatory standards (VAT, CGNC accounting chart, DGI e-invoicing), and seamless real-time communication on GMT+1.`,
+    a: `An official partner status like ours guarantees that the team has passed technical Odoo certifications and demonstrated a track record of delivered projects. Choosing a local partner such as MSL-iTECH ensures trilingual support in Arabic, French, and English, deep mastery of Moroccan regulatory standards (VAT, CGNC accounting chart, DGI e-invoicing), and seamless real-time communication on GMT+1.`,
   },
   {
     q: "What is the difference between an official Odoo partner and a freelance Odoo consultant?",
@@ -231,7 +231,7 @@ function useSeo() {
     service: {
       name: "Odoo ERP Implementation in Morocco",
       description:
-        `End-to-end Odoo ERP implementation, custom development, and long-term support for Moroccan SMEs and mid-market enterprises by an official certified ${PARTNER_STATUS_EN}.`,
+        `End-to-end Odoo ERP implementation, custom development, and long-term support for Moroccan SMEs and mid-market enterprises by an official Odoo partner.`,
       serviceType: [
         "ERP Implementation",
         "Odoo Customization",
@@ -284,7 +284,7 @@ export default function OdooPartnerMoroccoPage() {
               <div className="inline-flex items-center gap-2 rounded-full border border-brand-blue/20 bg-brand-white/80 px-3.5 py-1.5 backdrop-blur-sm shadow-sm">
                 <Sparkles size={13} className="text-brand-blue" aria-hidden="true" />
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-brand-blue">
-                  Official Odoo {PARTNER_STATUS_EN} · Morocco
+                  {PARTNER_STATUS_EN} · Morocco
                 </p>
               </div>
 
@@ -365,7 +365,7 @@ export default function OdooPartnerMoroccoPage() {
                   <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl bg-brand-black/60 p-3 backdrop-blur-md text-white">
                     <div className="flex items-center gap-2.5">
                       <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="font-heading text-xs font-semibold">Official Odoo {PARTNER_STATUS_EN}</span>
+                      <span className="font-heading text-xs font-semibold">{PARTNER_STATUS_EN}</span>
                     </div>
                     <span className="font-mono text-[10px] uppercase tracking-wider text-white/80">Morocco</span>
                   </div>
@@ -429,7 +429,7 @@ export default function OdooPartnerMoroccoPage() {
             <div className="flex shrink-0 items-center justify-center rounded-2xl bg-brand-white p-4 shadow-sm border border-brand-grey/10">
               <img
                 src={odooPartnerLogo}
-                alt={`Official Odoo ${PARTNER_STATUS_EN} certified badge`}
+                alt={`${PARTNER_STATUS_EN} badge`}
                 className="h-16 w-auto object-contain md:h-20"
                 loading="lazy"
               />
@@ -439,7 +439,7 @@ export default function OdooPartnerMoroccoPage() {
                 <ShieldCheck size={14} /> Official Listed Partner
               </div>
               <h2 className="font-heading text-xl font-bold text-brand-black md:text-2xl">
-                Certified Odoo {PARTNER_STATUS_EN} — v18 &amp; v19 certified consultants
+                {PARTNER_STATUS_EN} — v18 &amp; v19 certified consultants
               </h2>
               <p className="mt-2 font-body text-sm leading-relaxed text-brand-grey">
                 MSL-iTECH is officially listed on <strong>odoo.com/partners</strong> as a recognized Odoo implementation partner in Morocco. Our senior consultants hold functional and technical certifications across versions 18 and 19 and benefit from direct publisher escalation paths with Odoo S.A. engineering teams.

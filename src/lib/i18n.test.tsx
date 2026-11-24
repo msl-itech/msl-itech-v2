@@ -91,3 +91,31 @@ describe("balises du head", () => {
     ]);
   });
 });
+
+function ogLocales() {
+  return Array.from(document.head.querySelectorAll<HTMLMetaElement>('meta[property^="og:locale"]')).map(
+    (m) => `${m.getAttribute("property")}=${m.getAttribute("content")}`,
+  );
+}
+function webPageLang() {
+  const nodes = Array.from(document.head.querySelectorAll('script[type="application/ld+json"]'))
+    .map((s) => JSON.parse(s.textContent || "{}"))
+    .flatMap((j) => (j["@graph"] ? j["@graph"] : [j]));
+  return nodes.find((n) => n["@type"] === "WebPage")?.inLanguage;
+}
+
+describe("og:locale et inLanguage par langue", () => {
+  it("page /en traduite : en_US + alternate fr_MA, inLanguage en", async () => {
+    render(<HelmetProvider><Harness path="/en/about" /></HelmetProvider>);
+    await waitFor(() => expect(ogLocales()).toContain("og:locale=en_US"));
+    expect(ogLocales()).toContain("og:locale:alternate=fr_MA");
+    expect(webPageLang()).toBe("en");
+  });
+
+  it("page FR traduite : fr_MA + alternate en_US, inLanguage fr", async () => {
+    render(<HelmetProvider><Harness path="/a-propos" /></HelmetProvider>);
+    await waitFor(() => expect(ogLocales()).toContain("og:locale=fr_MA"));
+    expect(ogLocales()).toContain("og:locale:alternate=en_US");
+    expect(webPageLang()).toBe("fr");
+  });
+});

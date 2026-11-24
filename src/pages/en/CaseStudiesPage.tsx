@@ -11,7 +11,6 @@ import {
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import { localizedPath } from "@/lib/i18n";
-import { PARTNER_STATUS_EN } from "@/lib/brand";
 import pillarWeb from "@/assets/home/pillar-web.webp";
 import ctaBg from "@/assets/home/cta-bg.webp";
 
@@ -490,7 +489,7 @@ export default function CaseStudiesPage() {
                   <span className="italic font-light">odoo.com/partners</span>
                 </h2>
                 <p className="mt-5 max-w-xl font-body text-base text-white/80">
-                  Our {PARTNER_STATUS_EN} status, certifications and client
+                  Our official Odoo partner status, certifications and client
                   references are public. No empty promises — just concrete
                   evidence.
                 </p>

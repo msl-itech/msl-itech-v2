@@ -243,7 +243,7 @@ function Hero({
     heroBullets && heroBullets.length > 0
       ? heroBullets
       : [
-          `Official Odoo partner · ${PARTNER_STATUS_EN}`,
+          PARTNER_STATUS_EN,
           "Deployment by functional blocks",
           "Response within 24 hours",
           "No commitment · Personalized demo",

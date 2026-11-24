@@ -307,7 +307,7 @@ function HeroBE() {
   return (
     <HeroShell
       bgImage={heroBeImg}
-      eyebrow={`Odoo ${PARTNER_STATUS_EN} Partner · Morocco → Belgium & Canada`}
+      eyebrow={`${PARTNER_STATUS_EN} · Morocco → Belgium & Canada`}
       titleTop="Certified Odoo Partner Morocco."
       titleAccent="European standards, nearshore agility."
       description="MSL-iTECH provides remote Odoo ERP implementation, custom development, and native module tuning for businesses in Belgium, Canada, and across Europe. Our Morocco-based certified team delivers top-tier consulting and rapid execution without large-agency overhead."
@@ -319,7 +319,7 @@ function HeroMA() {
   return (
     <HeroShell
       bgImage={heroMaImg}
-      eyebrow={`Official Odoo ${PARTNER_STATUS_EN} Partner · Morocco`}
+      eyebrow={`${PARTNER_STATUS_EN} · Morocco`}
       titleTop="Official Odoo Partner Morocco."
       titleAccent="Scale your business faster."
       description="MSL-iTECH is an official Odoo partner in Morocco delivering tailored ERP implementations, business workflow automation, and custom web solutions. We help ambitious companies streamline operations and achieve full DGI (the Moroccan tax authority) compliance."

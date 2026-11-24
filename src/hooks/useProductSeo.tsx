@@ -148,6 +148,15 @@ export function useProductSeo(opts: {
     // Assemble JSON-LD schemas for this page.
     const schemas: Record<string, unknown>[] = [];
 
+    // WebPage minimal — porte la langue de la page (pas de #website déclaré).
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": url + "#webpage",
+      url,
+      inLanguage: lang,
+    });
+
     // ProfessionalService entity — on entity pages, and on pages whose
     // schemas reference it via @id (article → publisher, service → provider).
     if (opts.isEntityPage || opts.article || opts.service) {
@@ -158,6 +167,7 @@ export function useProductSeo(opts: {
       schemas.push({
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        inLanguage: lang,
         mainEntity: opts.faqs.map((f) => ({
           "@type": "Question",
           name: f.q,
@@ -220,7 +230,7 @@ export function useProductSeo(opts: {
           url: `${origin}/a-propos`,
         },
         publisher: { "@id": `${origin}/#organization` },
-        mainEntityOfPage: { "@type": "WebPage", "@id": url },
+        mainEntityOfPage: { "@id": url + "#webpage" },
       });
     }
 

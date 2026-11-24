@@ -28,7 +28,6 @@ import caseBe from "@/assets/home/case-be.webp";
 import { HeroCursorGlow } from "@/components/HeroCursorGlow";
 import { useProductSeo } from "@/hooks/useProductSeo";
 import { localizedPath } from "@/lib/i18n";
-import { PARTNER_STATUS_EN } from "@/lib/brand";
 
 /* ---------------- SEO ---------------- */
 function useErpSeo() {
@@ -792,7 +791,7 @@ const faqs = [
   },
   {
     q: "Are you really an official Odoo partner?",
-    a: `Yes. Our partner status is ${PARTNER_STATUS_EN}. Our partner profile is public on odoo.com/partners, with our certifications and verifiable client references.`,
+    a: `Yes. We are an official Odoo partner. Our partner profile is public on odoo.com/partners, with our certifications and verifiable client references.`,
   },
 ];
 
