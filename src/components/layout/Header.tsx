@@ -98,12 +98,15 @@ export const Header = () => {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
+        <nav aria-label="Navigation principale" className="hidden items-center gap-5 lg:flex xl:gap-7">
           {/* Odoo ERP dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setOpenMenu("odoo")}
             onMouseLeave={() => setOpenMenu(null)}
+            onFocus={() => setOpenMenu("odoo")}
+            onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpenMenu(null); }}
+            onKeyDown={(e) => { if (e.key === "Escape") { setOpenMenu(null); (e.currentTarget.querySelector("a,button") as HTMLElement | null)?.focus(); } }}
           >
             <NavLink
               to="/odoo-erp"
@@ -113,7 +116,7 @@ export const Header = () => {
                 }`
               }
             >
-              Odoo ERP <ChevronDown size={14} />
+              Odoo ERP <ChevronDown size={14} aria-hidden="true" />
             </NavLink>
             {openMenu === "odoo" && (
               <div className="absolute left-0 top-full pt-3">
@@ -144,9 +147,12 @@ export const Header = () => {
             className="relative"
             onMouseEnter={() => setOpenMenu("sectors")}
             onMouseLeave={() => setOpenMenu(null)}
+            onFocus={() => setOpenMenu("sectors")}
+            onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpenMenu(null); }}
+            onKeyDown={(e) => { if (e.key === "Escape") { setOpenMenu(null); (e.currentTarget.querySelector("a,button") as HTMLElement | null)?.focus(); } }}
           >
-            <button className="flex items-center gap-1 font-body text-sm text-brand-black hover:text-brand-blue">
-              Nos Secteurs <ChevronDown size={14} />
+            <button type="button" aria-haspopup="true" aria-expanded={openMenu === "sectors"} onClick={() => setOpenMenu(openMenu === "sectors" ? null : "sectors")} className="flex items-center gap-1 font-body text-sm text-brand-black hover:text-brand-blue">
+              Nos Secteurs <ChevronDown size={14} aria-hidden="true" />
             </button>
             {openMenu === "sectors" && (
               <div className="absolute left-0 top-full pt-3">
@@ -201,6 +207,9 @@ export const Header = () => {
             className="relative"
             onMouseEnter={() => setOpenMenu("blog")}
             onMouseLeave={() => setOpenMenu(null)}
+            onFocus={() => setOpenMenu("blog")}
+            onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpenMenu(null); }}
+            onKeyDown={(e) => { if (e.key === "Escape") { setOpenMenu(null); (e.currentTarget.querySelector("a,button") as HTMLElement | null)?.focus(); } }}
           >
             <NavLink
               to="/blog"
@@ -210,7 +219,7 @@ export const Header = () => {
                 }`
               }
             >
-              Blog <ChevronDown size={14} />
+              Blog <ChevronDown size={14} aria-hidden="true" />
             </NavLink>
             {openMenu === "blog" && (
               <div className="absolute right-0 top-full pt-3">
@@ -240,7 +249,7 @@ export const Header = () => {
             Réserver une démo
           </Link>
           <button
-            aria-label="Menu"
+            aria-label="Ouvrir le menu" aria-expanded={mobileOpen}
             className="lg:hidden"
             onClick={() => setMobileOpen(true)}
           >
@@ -251,7 +260,7 @@ export const Header = () => {
 
       {/* Mobile full-screen overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-brand-white lg:hidden">
+        <div role="dialog" aria-modal="true" aria-label="Menu de navigation" onKeyDown={(e) => { if (e.key === "Escape") setMobileOpen(false); }} className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-brand-white lg:hidden">
           <div className="container flex h-16 items-center justify-between">
             <Link
               to="/"
@@ -261,7 +270,7 @@ export const Header = () => {
             >
               <img src={logoDark} alt="MSL-iTECH" className="h-8 w-auto" width="288" height="120" loading="eager" decoding="async" />
             </Link>
-            <button aria-label="Fermer" onClick={() => setMobileOpen(false)}>
+            <button type="button" autoFocus aria-label="Fermer le menu" onClick={() => setMobileOpen(false)}>
               <X size={26} />
             </button>
           </div>

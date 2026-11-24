@@ -32,8 +32,14 @@ export const Layout = () => {
       <ScrollToTop />
       <SmoothScroll />
       <ScrollProgress />
+      <a
+        href="#contenu"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-3 focus:font-semibold focus:text-primary-foreground focus:shadow-lg"
+      >
+        Aller au contenu principal
+      </a>
       <Header />
-      <main>
+      <main id="contenu" tabIndex={-1} className="outline-none">
         <Suspense
           fallback={
             <div className="flex min-h-[60vh] items-center justify-center" role="status" aria-live="polite">
