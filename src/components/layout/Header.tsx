@@ -249,7 +249,7 @@ export const Header = () => {
 
         <div className="flex items-center gap-3">
           {/* Lien FR/EN — invisible tant que la page n'a pas de traduction */}
-          <LanguageSwitch className="text-brand-black" />
+          <LanguageSwitch />
           <Link
             to={L("/contact")}
             onClick={() => track("cta_click", { cta_label: t.header.cta, cta_location: "header", cta_target: L("/contact") })}
@@ -280,9 +280,12 @@ export const Header = () => {
             >
               <img src={logoDark} alt="MSL-iTECH" className="h-8 w-auto" width="288" height="120" loading="eager" decoding="async" />
             </Link>
-            <button type="button" autoFocus aria-label={t.header.closeMenu} onClick={() => setMobileOpen(false)}>
-              <X size={26} />
-            </button>
+            <div className="flex items-center gap-3">
+              <LanguageSwitch />
+              <button type="button" autoFocus aria-label={t.header.closeMenu} onClick={() => setMobileOpen(false)}>
+                <X size={26} />
+              </button>
+            </div>
           </div>
           <nav className="container flex-1 overflow-y-auto py-4">
             <ul className="divide-y divide-brand-grey-light/60">

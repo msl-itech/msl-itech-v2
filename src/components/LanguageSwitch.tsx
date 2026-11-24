@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { Globe } from "lucide-react";
 import { getAlternates, langFromPath } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -16,18 +17,32 @@ export function LanguageSwitch({ className }: { className?: string }) {
   if (!target) return null;
 
   const targetLang = lang === "fr" ? "en" : "fr";
+  const currentLabel = lang === "fr" ? "FR" : "EN";
+  const targetLabel = targetLang === "fr" ? "FR" : "EN";
+
   return (
     <Link
       to={target}
       hrefLang={targetLang}
       lang={targetLang}
-      aria-label={targetLang === "en" ? "Read this page in English" : "Lire cette page en français"}
+      aria-label={
+        targetLang === "en" ? "Read this page in English" : "Lire cette page en français"
+      }
       className={cn(
-        "font-heading text-xs font-semibold uppercase tracking-wide underline-offset-4 hover:underline",
+        "inline-flex shrink-0 items-center gap-1.5 rounded-full border border-brand-grey-light bg-brand-white py-1.5 pl-3 pr-1.5",
+        "font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-grey",
+        "transition-colors duration-200 hover:border-brand-blue hover:text-brand-blue",
         className,
       )}
     >
-      {targetLang === "en" ? "EN" : "FR"}
+      <Globe size={13} aria-hidden="true" className="text-brand-blue" />
+      <span aria-hidden="true">{currentLabel}</span>
+      <span
+        aria-hidden="true"
+        className="rounded-full bg-brand-blue px-2 py-0.5 text-brand-white"
+      >
+        {targetLabel}
+      </span>
     </Link>
   );
 }
